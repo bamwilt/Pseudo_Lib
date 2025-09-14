@@ -1,28 +1,23 @@
-Algoritmo main
-	Definir num, length_w Como Numero;
-	Definir Arreglo, text Como Texto;
+Algoritmo Pseudo_Leng_avance
+	Definir num, num2, length_w Como Numero;
+	Definir Arreglo, text , array Como Texto;
 	Definir decimal Como Numero;
-	Definir boolean Como Lógico;
+	Definir boolean como Logico;
 	Definir s Como Texto;
-	Dimension Arreglo[5];
-	arreglo[0] = "Mango";
-	arreglo[1] = "Carro";
-	arreglo[2] = "Casa";
-	arreglo[3] = "Camion";
-	arreglo[4] = "Rana";
-	text = TUI_DrawArea(12,12);
+	Dimension Arreglo[5], array[2];
 
+	num = Local_Time_getSecond;
+	Escribir "TIME START:"+Num_ToString(num);
+	main;
+	num = Duration_between_second_now(num);
+	Escribir "TIME:"+Num_ToString(num);
 FinAlgoritmo
 
-//°øØ@
-// Arregar salto de linea para replicar color en cada una \n agregar color en cada salto
-// terminar has color y remove Color
-// una ventana estandar debe tener como 17 caracteres
-//   // ya tenemos valor para variable null
-// =[2J
+
+//    null
 // por cordenanas normalizadas esta dif_elseicil hasta que tengamos un metodo de parseo para calcular donde insertar segun la logitud pero en esa linea especif_elseica no en el plano en general
-// ARREGLAR Y FORMATEAR \n y \r PARA MEJORAR EL CANVAS TUI<<<<<<<<<<<<<<
-// verdadero, falso, false, true, 1, 0, t, f, y, n, yes, si, no
+// solucionado simplemente tenemos un array x entonces lo tratamos como un xy separando en dos secciones 
+// \n \t \r
 Funcion code_ascci <- ASCII(text)
 	Definir code_ascci como Numero;
 	println("simb: sad");
@@ -35,11 +30,11 @@ Funcion code_ascci <- ASCII(text)
 	println("Minus:"); // inicia en 65 - 90
 	println(text>="a" Y text<="z");
 // ñ 164 y Ñ 165
-// " " - "/" 32 - 47 verif_elseicar el resto
+// " " - "/" 32 - 47 verifcar el resto
 FinFuncion // 97 - 122
 
 // RECORDAR QUE INDEX DEBE QUITAR COLORES SI EL TEXTO TIENE COLOR
-// hacer Split
+
 ///%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%[ PSeInt-Toolkit ] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // String=Texto, Texto,Caracter
 // Int=Numero, Numero
@@ -50,13 +45,11 @@ FinFuncion // 97 - 122
 //V == &&
 //& == &&
 // \ # $ % & | ( ) * + , - . / : ; < = > ? @ [  ] ^ _ ` { | } ~  ¢ £ ¥ « » ± © ® ÷ ×  ¡ § ¶ · ? ø æ ~ ª º ^¹²³ ? !
-// Documentar invert
+//pixeles  ·×*øØ@
 // Work pendiente : stack, queue, map, list, setter,
-// Textos metodos: ordernar, parseBoolean ,Datetime, sleep, cleanScreen, randomInt, split,
-// containsIgnoreCase,reverse, arrayLength, arraySort, arrayIndex, ArrayReverse
-// log(WARNING, ERROR, ADVERTENCE,SUCCESS)
-// TUI: Window, Button, label,row, column,input, inputPrompt,Notif_elseication, Checkbox , progresBar,Menú desplegable
-// infoCode, init
+// Textos metodos: randomInt, split,
+// containsIgnoreCase, arrayLength(para cada [solo PC]), arraySort, ArrayReverse
+// TUI: Window, Button, label,row, column,input, inputPrompt,Notif_elseication, Checkbox , progresBar,Menú desplegable, infoCode, init
 // #1 INPUT
 // #2 STRING
 // #3 PRINTERS
@@ -69,48 +62,64 @@ FinFuncion // 97 - 122
 // #10 TUI/CANVAS
 ///========================================================>>>  [ INPUT ] <<==///#1
 
-Funcion user_input <- user_input_console_options(options,TYPE)
-	Según TYPE Hacer
-	TYPE_STRING:
-		Definir user_input Como Texto;
-		user_input = user_input_console_String;
-	TYPE_BOOLEAN:
-		Definir user_input Como Logico;
-		user_input = String_isBoolean_true(user_input_text);
-	TYPE_INT:
-		Definir user_input Como Numero;
-		user_input = user_input_console_Interger;
-	TYPE_FLOAT:
-		Definir user_input Como Real;
-		user_input = user_input_console_Float;
-	De Otro Modo:
-		Definir user_input Como Texto;
-		user_input = String_null;
-	FinSegún
+Funcion user_input <- user_input_options(options,TYPE)
+	Segun TYPE Hacer
+		TYPE_STRING: Definir user_input Como Texto;
+		TYPE_BOOLEAN: Definir user_input Como Logico;
+		TYPE_INT: Definir user_input Como Numero;
+		TYPE_FLOAT: Definir user_input Como Real;
+		De Otro Modo: Definir user_input Como Texto;
+	FinSegun
+	user_input <- user_input_options_separator(options,separator_Symbol,TYPE);
+FinFuncion
+
+Funcion user_input <- user_input_options_separator(options,separator,TYPE)
+	Definir user_input_evaluator  como Texto;
+	user_input_evaluator = user_input_String;
+	user_input_evaluator = if_else_MessageError(String_Constains(options, user_input_evaluator), user_input_evaluator, String_append("Invalid input ->",user_input_evaluator), TYPE_STRING);
+	user_input_evaluator = if_else_MessageError(!String_Constains(user_input_evaluator,separator), user_input_evaluator, String_append("Invalid input ->",user_input_evaluator), TYPE_STRING);
+	
+	Segun TYPE Hacer
+		TYPE_STRING:
+			Definir user_input Como Texto;
+			user_input = user_input_evaluator;
+		TYPE_BOOLEAN:
+			Definir user_input Como Logico;
+			user_input = String_isBoolean_true(user_input_evaluator);
+		TYPE_INT:
+			Definir user_input Como Numero;
+			user_input = String_ToNum(user_input_evaluator);
+		TYPE_FLOAT:
+			Definir user_input Como Real;
+			user_input = String_ToNum(user_input_evaluator);
+		De Otro Modo:
+			Definir user_input Como Texto;
+			user_input = String_null;
+	FinSegun
 FinFuncion
 
 //ser mas flexible con Float para aceptar numeros enteros
 //sino consta de un . entonces seguir pero ver si cuenta como entero
-Funcion user_input <- user_input_console_Interger
+Funcion user_input <- user_input_Interger
 	Definir user_input Como Numero;
 	Definir user_input_str Como Texto;
-	user_input_str = user_input_console_String;
-	user_input = if(String_isNumber_int(user_input_str),String_ToNum(user_input_str), TYPE_INT);
+	user_input_str = user_input_String;
+	user_input = String_ToNum(user_input_str);
 FinFuncion
 
-Funcion user_input <- user_input_console_boolean
-	Definir user_input Como Numero;
-	user_input = String_isBoolean_true(user_input_console_String);
+Funcion user_input <- user_input_boolean
+	Definir user_input Como logico;
+	user_input = String_isBoolean_true(user_input_String);
 FinFuncion
 
-Funcion user_input <- user_input_console_Float
+Funcion user_input <- user_input_Float
 	Definir user_input Como Real;
 	Definir user_input_str Como Texto;
-	user_input_str = user_input_console_String;
+	user_input_str = user_input_String;
 	user_input = if(String_isNumber_float(user_input_str),String_ToNum(user_input_str), TYPE_FLOAT);
 FinFuncion
 
-Funcion user_input <- user_input_console_String
+Funcion user_input <- user_input_String
 	Definir user_input Como Texto;
 	Leer user_input;
 FinFuncion
@@ -120,16 +129,16 @@ Funcion boolean <- String_toBoolean(str)
 	boolean = String_isBoolean_true(str);
 FinFuncion
 ///========================================================>>>  [ STRING ] <<==///#2
-// =========================================================== UNIONS
+// =========================================================== APPENDS
 // ----------------------------------agregar a referencia en unions revisar
-Funcion result <- String_join_withSeparator(str1,str2,separator)
+Funcion result <- String_append_withSeparator(str1,str2,separator)
 	Definir result Como Texto;
 	result = str1+separator+str2+"";
 FinFuncion
 
-Funcion result <- String_join(str1,str2)
+Funcion result <- String_append(str1,str2)
 	Definir result Como Texto;
-	result = String_join_withSeparator(str1,str2,"");
+	result = String_append_withSeparator(str1,str2,"");
 FinFuncion
 
 Funcion result <- String_join_array_withSeparator(array,size,separator)
@@ -137,15 +146,30 @@ Funcion result <- String_join_array_withSeparator(array,size,separator)
 	Definir i Como Numero;
 	result = array[0];
 	Para i=1 Hasta decrement(size) Hacer
-		result = String_join_withSeparator(result,array[i],separator);
+		result = String_append_withSeparator(result,array[i],separator);
 	FinPara
 FinFuncion
 
-Funcion result <- String_join_array(array,size)
+Funcion result <- String_join_array_(array,size)
 	Definir result Como Texto;
 	result=String_join_array_withSeparator(array,size,"");
 FinFuncion
 
+Funcion text_Color <- String_append_in_brakelines(text,text_append)
+	Definir text_Color Como Texto;
+	Definir index_color como Numero;
+	index_color = 0;
+	index_color = String_indexOf_fromIndex_speedNative(text,"\n",0);
+	text_Color = String_append(text_color,text_append);
+	Mientras index_color>=0 Hacer
+		index_color = increment_step(index_color,2);
+		text_Color = String_append(text_color,String_substring(text, 0, index_color));
+		text_Color = String_append(text_color,text_append);
+		text = String_substring_from(text, index_color);
+		index_color = String_indexOf_fromIndex_speedNative(text,"\n",0);
+	FinMientras
+	text_Color = String_append(text_color,String_substring(text, 0, String_length(text)));
+FinFuncion
 // =========================================================== INSERT
 Funcion str <- String_insert(text,text_insert,index)
 	Definir str Como Texto;
@@ -164,26 +188,34 @@ FinFuncion
 
 Funcion str <- __private_String_insert_general(text,text_insert,index,isReplace)
 	Definir str, before, after, fragments Como Texto;
+	Definir index_after como Numero;
 	Dimension text_Union(3);
 	before=String_substring_from_start(text,index);
-	after=String_substring_from(text,index+if_else(isReplace,String_length(text_insert)+1,0,TYPE_INT));
+	index_after = index+if_else(isReplace, String_length(text_insert),0,TYPE_INT);
+	after=String_substring_from(text,Math_min_int(index_after,String_length(text)));
 	Dimension fragments[3];// ...join
 	fragments[0]=before;
 	fragments[1]=text_insert;
 	fragments[2]=after;
-	str=String_join_array(fragments,3);
+	str=String_join_array_(fragments,3);
 FinFuncion
 
 Funcion str <-  String_pad_start(text,text_pad)
 	Definir str Como Texto;
-	str=String_insert(text,String_substring_from_start(text_pad,min_int(String_length(text_pad)-String_length(text),0)),0);
+	str=String_insert(text,String_substring_from_start(text_pad,Math_max_Int(String_length(text_pad)-String_length(text),0)),0);
 FinFuncion
 
+Funcion str <-  String_fit(text,text_pad)
+	Definir str Como Texto;
+	str=String_insert(text,String_substring_from_start(text_pad,Math_max_Int(String_length(text_pad)-String_length(text),0)),0);
+	str=String_substring(str,0,String_length(text_pad));
+FinFuncion
 // =========================================================== REMOVE
 Funcion str <- String_remove(text,start,end)
 	Definir str Como Texto;
+	//Hello world,4,7 = Hellorld
 	str=String_substring_from_start(text,start);
-	str=String_join(str,String_substring_from(text,end));
+	str=String_append(str,String_substring_from(text,end));
 FinFuncion
 
 // =============================================================== CONVERSIONS ====
@@ -200,23 +232,31 @@ FinFuncion
 // =============================================================== REPLACE ====
 Funcion result <- String_replace(text,text_match,text_Replace)
 	Definir result, text_Current Como Texto;
-	result = text;
-	Mientras String_Constains(result,text_match) Hacer
-		result=String_replace_firts(result,text_match,text_Replace);
+	Definir index, match_length  Como Numero;//Hello World,"o","X" = HellX World
+	index=String_indexOf_fromIndex_speedNative(text,text_match,0);
+	match_length = String_length(text_match);
+	result = "";
+	Mientras index>=0 Hacer
+		result= String_append(result,String_substring_from_start(text,index));//Hell
+		result= String_append(result,text_Replace);//X
+		text = String_substring_from(text,index+match_length);
+		index=String_indexOf_fromIndex_speedNative(text,text_match,0);
 	FinMientras
+	result= String_append(result,String_substring_from(text,index+match_length));// World
 FinFuncion
 
 Funcion result <- String_replace_firts(text,text_match,text_Replace)
-	Definir result, before, after Como Texto;
-	Definir index Como Numero;
-	index=String_indexOf(text,text_match);
-	result= String_remove(text,index,index+String_length(text_match));
-	result=String_insert(result,text_Replace,index);
+	Definir result Como texto;
+	Definir index Como Numero;//Hello World,"o","X" = HellX World
+	index=String_indexOf_fromIndex_speedNative(text,text_match,0);
+	result= String_substring_from_start(text,index);//Hell
+	result= String_append(result,text_Replace);//X
+	result= String_append(result,String_substring_from(text,index+String_length(text_match)));// World
 FinFuncion
 
 Funcion str <- String_trim(text)
 	Definir str Como Texto;
-	str = String_replace(text," ","");
+	str = String_replace(text," ",'");
 FinFuncion
 
 Funcion text_invert <- String_revert(text)
@@ -225,7 +265,7 @@ Funcion text_invert <- String_revert(text)
 	text_invert = "";
 	indexText = String_length(text);
 	Para i=0 Hasta indexText Con Paso 1 Hacer
-		text_invert = String_join(text_invert,charAt(text,indexText-i));
+		text_invert = String_append(text_invert,charAt(text,indexText-i));
 	FinPara
 FinFuncion
 
@@ -242,17 +282,23 @@ FinFuncion
 
 // =============================================================== SUBSTRING ====
 
-Funcion strSubs <- String_substring(str,start,end)
-	Definir strSubs Como Texto;
-	Definir max_index Como Numero;
-	max_index=min_int(String_length(str),1);
-	end=rangeLimit_Int(end,0,max_index);
-	start=rangeLimit_Int(start,0,end);
-	str=String_join(" ",str);
-	strSubs=if_else(start == end,"",SubCadena(str,start,end),TYPE_STRING);
-	strSubs=SubCadena(strSubs,1,String_length(strSubs));
+Funcion strSubs <- __private_PSEINT_SUBCADENA(str,start,end)
+	Definir strSubs como Texto;
+	strSubs = subcadena(str,start,end);
 FinFuncion
 
+Funcion strSubs <- String_substring(str,start,end)
+	Definir strSubs como Texto; condition_error_message_substring(str,start, end);
+	strSubs = if_else(Num_isEquals(start, end), "", __private_PSEINT_SUBCADENA(str, start, Math_max_int(end-1,0)), TYPE_STRING);
+FinFuncion
+
+Funcion condition_error_message_substring(str,start, end)
+	Definir num_lentgh como Numero;
+	num_lentgh = String_length(str);
+	condition_error_message(start>end,"Substring",String_append_withSeparator(Num_ToString(start), Num_ToString(end),">"));
+	condition_error_message(start<0 | end<0,"Substring","index negative");
+	condition_error_message(start > num_lentgh | end>num_lentgh,"Substring","index out of range");
+FinFuncion
 
 Funcion strSubs <- String_substring_from(str,start)
 	Definir strSubs Como Texto;
@@ -261,7 +307,6 @@ FinFuncion
 
 Funcion strSubs <- String_substring_from_start(str,numLimit)
 	Definir strSubs Como Texto;
-	Definir length Como Numero;
 	strSubs = String_substring(str,0,numLimit);
 FinFuncion
 
@@ -274,7 +319,27 @@ FinFuncion
 
 Funcion str <- charAt(text,index)
 	Definir str Como Texto;
-	str = String_substring(text,index,index+1);
+	str = String_substring(text,index,Math_min_int(increment(index),String_length(text)));
+FinFuncion
+
+Funcion str_element <- String_ElementAt_index(text, index)
+	Definir str_element como texto;
+	str_element = String_ElementAt_index_withSeparator(text, index, separator_Symbol);
+FinFuncion
+
+Funcion str_element <- String_ElementAt_index_withSeparator(text, index, separator)
+	Definir count_sep, i, index_match como Numero;
+	Definir str_element como texto;
+	count_sep = String_countMatches(text, separator);
+	condition_error_message(count_sep < index, "String_ElementAt_index_withSeparator", "index out of range");
+	index_match = String_indexOf_fromIndex_speedNative(text, separator, index_match);
+	Mientras i<index Hacer
+		text = String_substring_from(text, increment(index_match));
+		index_match = String_indexOf_fromIndex_speedNative(text, separator, index_match);
+		i=increment(i);
+	FinMientras
+	str_element = String_substring_from_start(text, if_else(index_match>=0,index_match,String_length(text),TYPE_INT));
+	str_element = if(count_sep>=index,str_element,TYPE_STRING);
 FinFuncion
 
 // =============================================================== INDEX ======= 
@@ -301,47 +366,81 @@ FinFuncion
 Funcion result <- __private_String_Indexof_fromIndex_general(text, text_match, index,isLast)
 	Definir result, i, index_Text, index_Match, end_index_match Como Numero;
 	Definir text_Current Como Texto;
-	Definir condition_index Como Lógico;
+	Definir condition_index Como Logico;
+	
 	index_Text = String_length(text);//Hello world
 	index_Match = String_length(text_match);//world
 	result = -1;//default result
+	
 	i = if_else(isLast,decrement_step(index,decrement(index_Match)),index,TYPE_INT);
 	end_index_match = if_else(isLast,-1,increment(index_Text)-index_Match,TYPE_INT) ;//limit searches
-	condition_index = if_else_Boolean(isLast,i>=0,i<=(index_Text-index_Match)) &  Num_isEquals(result, -1) & !Num_isEquals(i, end_index_match) ;// inRange & isSucces & inLimit
+	condition_index = if_else_TYPEBOOLEAN(isLast,i>=0, i<=(index_Text-index_Match)) &  Num_isEquals(result, -1) & !Num_isEquals(i, end_index_match);// condition: inRange & isSucces & inLimit
+	
 	Mientras condition_index Hacer
 		text_Current = String_substring(text,i,i+index_Match);//text to compare
 		result = if_else(String_isEquals(text_Current,text_match),i,-1,TYPE_INT);// result
 		i = if_else(isLast,decrement(i),increment(i),TYPE_INT);//text advance
-		condition_index = if_else_Boolean(isLast,i>=0,i<=(index_Text-index_Match)) & Num_isEquals(result, -1) & !Num_isEquals(i, end_index_match);
+		condition_index = if_else_TYPEBOOLEAN(isLast,i>=0,i<=(index_Text-index_Match)) & Num_isEquals(result, -1) & !Num_isEquals(i, end_index_match);
 	FinMientras
 FinFuncion
 
-// arreglar esto en vez de buscar una segunda ocurrencia
-// que busque desde el indice que indicamos
-// luego heredamos desde ahi estos metodos de busqueda con un bucle que ocupe
-// ese indexof_for num o algo asi
-Funcion result <- String_indexOf_Occurrence(text,text_match,numOccurrences)
-	Definir result Como Numero;
-FinFuncion
+Funcion index <- String_indexOf_fromIndex_speedNative(text,match,index_Start)
+	Definir index, i, match_length, index_end como Numero;
+	Definir condition Como Logico;
+    index = -1;
+    match_length = String_length(match);
 
-Funcion result <- String_indexOf_String_indexOf_Occurrence_OverLap(text,text_match,numOccurrences)
-	Definir result Como Numero;
-FinFuncion
+	i = Math_max_Int(index_Start,0);
+	index_end = String_length(text)-match_length;
 
-Funcion result <- __private_String_indexOf_Occurrence_general(text,text_match,num_occurrences,isOverLap)
-	Definir result, count, index, progress_sum Como Numero;
-	Definir text_Current Como Texto;
-	text_Current = text;
-	count = 0; 
-	progress_sum = if_else(isOverLap,1,String_length(text_match),TYPE_INT);
-	Mientras (String_Constains(text_Current,text_match) Y (count<num_occurrences)) Hacer
-		index = String_indexOf(text_Current,text_match);
-		result = if_else(index<0,-1,result+index,TYPE_INT); 
-		text_Current = String_remove(text_Current,0,index+progress_sum);
-		count = increment(count);
+	Mientras index_end>=i & Num_isEquals(index,-1) Hacer
+		si String_isEquals(match, String_substring(text,i,i+match_length)) Entonces
+			index =i;
+			i = index_end+1;
+		SiNo
+			i = increment(i);
+		FinSi
 	FinMientras
-	result = if_else(count <> num_occurrences, -1, result+(progress_sum*(num_occurrences-1)), TYPE_INT);
-FinFuncion 
+FinFuncion
+
+//Optimizar KMP
+Funcion index <- String_indexOf_fromIndex_KMP(text,text_pattern,index_Start)
+	Definir index, i, j, pattern_length,text_length, LPS, len como Numero;
+	Definir pattern como Texto;
+	Definir condition, equalsChar Como Logico;
+    index = -1;
+	text_length = String_length(text);
+	pattern_length = String_length(text_pattern);
+	Dimension pattern[pattern_length];
+
+	Dimension LPS[pattern_length];
+	len = 0;
+
+	Para i=0 Hasta decrement(pattern_length) con paso 1 hacer
+		pattern[i] = charAt(text_pattern,i);
+	FinPara
+
+    Para i = 1 Hasta pattern_length-1 con paso 1 hacer
+        Mientras len > 0 y !String_isEquals(pattern[i], pattern[len]) Hacer
+            len = LPS[len-1] ;
+        FinMientras
+        Si String_isEquals(pattern[i], pattern[len]) Entonces
+            len = increment(len);
+        FinSi
+        LPS[i] = len;
+    FinPara
+
+	condition = !Num_isEquals(j,pattern_length);
+	i = Math_rangeLimit_Int(index_Start, 0,text_length);
+
+	Mientras condition hacer 
+		equalsChar = String_isEquals(pattern[j],charAt(text, i));
+		j = if_else(equalsChar,increment(j),if_else(j<>0,LPS[Math_max_Int(j-1,0)],j,TYPE_INT),TYPE_INT);
+		i = if_else(equalsChar,increment(i), if_else(j<>0,i,increment(i),TYPE_INT),TYPE_INT);
+		condition = !Num_isEquals(j,pattern_length) & i<=text_length;
+	FinMientras
+	index=if(equalsChar,i-j, TYPE_INT);
+FinFuncion
 
 // =============================================================== OCURRENCES =======
 Funcion result <- String_occurrences(text,text_match)
@@ -353,7 +452,7 @@ Funcion result <- String_occurrences_overlap(text,text_match)
 Definir result Como Numero;
 result = __private_String_occurrences_general(text,text_match,true);
 FinFuncion
-
+//actualizar con index_from
 Funcion result <- __private_String_occurrences_general(text,text_match,isOverLap)
 	Definir result, count, index, progress_sum Como Numero;
 	Definir text_Current Como Texto;
@@ -376,50 +475,209 @@ FinFuncion
 
 Funcion num <- String_length_index(text)
 	Definir num Como Numero;
-	num = min_int(String_length(text)-1,0);
+	num = Math_max_Int(String_length(text)-1,0);
+FinFuncion
+
+Funcion count <- String_countMatches(text, text_matcher)
+	Definir count como Numero;
+	count =	__private_String_countMatches_general(text, text_matcher, false);
+FinFuncion
+
+Funcion count <- String_countMatches_overlap(text, text_matcher)
+	Definir count como Numero;
+	count =	__private_String_countMatches_general(text, text_matcher, true);
+FinFuncion
+
+Funcion count <- __private_String_countMatches_general(text, text_matcher, isOverLap)
+	Definir index, count , length_Match como Numero;
+	length_Match = if_else(isOverLap,1,String_length(text_matcher),TYPE_INT);
+	count = 0;
+	index = String_indexOf_fromIndex_speedNative(text, text_matcher, 0);
+	Mientras index>=0 Hacer
+		count = increment(count);
+		text = String_substring_from(text, if_else(isOverLap,1,index,TYPE_INT));
+		index = String_indexOf_fromIndex_speedNative(text, text_matcher, length_Match);
+	FinMientras
+FinFuncion
+
+///========================================================>>>  [ ARRAY] <<==///
+
+Funcion  str <- array_ofString(array, size)
+	Definir str como Texto;
+	str = array_ofString_separator(array, size, "");
+FinFuncion
+
+Funcion str <- array_ofString_separator(array, size, separator)
+	Definir str como Texto;
+	Definir i como Numero;
+	str = "";
+	i=0;
+	size = decrement(size);
+	Mientras i<size Hacer
+		str = String_append(str, array[i]);
+		str = String_append(str, separator);
+		i=increment(i);
+	FinMientras
+	str = String_append(str, array[i]);
 FinFuncion
 
 // -------------------------------------------------------------------------------------Falta el metodo Comparare To
 ///========================================================>>>  [ PRINTERS ] <<==///#3
 Funcion print(text)
-	Escribir text Sin Saltar;
+	__private_internal_printer_formater(text);
 FinFuncion
 
-// ...
 Funcion println(text)
-	//__private_PSEINT_Escribir(text);
-	__private_internal_println_formater(text);
+	text = String_append(text,"\n");
+	print(text);
+FinFuncion
+
+Funcion print_simple(text)
+	__PSEINT_print(text);
 FinFuncion
 
 Funcion println_simple(text)
-	__private_PSEINT_Escribir(text);
+	__PSEINT_println(text);
 FinFuncion
 
-Funcion __private_PSEINT_Escribir(text)
+Funcion println_progress(text)
+	text = String_append(text,"\n");
+	print_progress_with_speed(text, 100);
+FinFuncion
+
+Funcion print_progress(text)
+	print_progress_with_speed(text, 100);
+FinFuncion
+
+Funcion print_progress_simple(text)
+	print_progress_with_speed_simple(text, 100);
+FinFuncion
+
+Funcion print_progress_with_speed(text, speed)
+	Definir index_breakLine como Numero;
+	index_breakLine = String_indexOf(text,"\n");
+	Mientras index_breakLine>-1 Hacer
+		print_progress_with_speed_simple(String_substring(text, 0, index_breakLine),speed);
+		lineBreak;
+		text = String_substring(text, increment_step(index_breakLine,2), String_length(text));
+		index_breakLine = String_indexOf(text,"\n");
+	FinMientras
+	print_progress_with_speed_simple(String_substring(text, 0, String_length(text)),speed);
+FinFuncion
+
+Funcion print_progress_with_speed_simple(text, speed)
+	Definir i, end Como Numero;
+	end = String_length(text);
+	Para i = 0 Hasta end hacer 
+		print_simple(charAt(text,i));
+		Sleep(speed);
+	FinPara
+FinFuncion
+
+Funcion __PSEINT_println(text)
 	Escribir text;
 FinFuncion
-//=================================================================PRINTLN
-//OPTIMIZAR Doble condicional en pseint hace que sea mas lento un proceso de pintado 
-// intentar no usar condicionales en el bucle de impresion y entregar un solo array 
-// para imprimirlo todo con un printer Array 
 
-// Saber cuantas Cadenas imprimir
-// Rellenar Arreglo co Text sin "\n"
-// Verificar si hay color o si hay estilo
-// si hay entonces hacer un index of y un last Indexof comparar si son iguales y si son iguales guardar el color
-// sino son iguales pues cuardar el de last index of
-// luego aplicar color a esa cadena si es que no tiene color al inicio 
-// imprmir todo 
-// 
-Funcion __private_internal_println_formater(text)
-	Definir index_breakLine, count como Numero;
-	index_breakLine = 0;
-	
-	Mientras index_breakLine > -1 Hacer
-	index_breakLine = Index	
+Funcion __PSEINT_print(text)
+	Escribir text Sin Saltar ;
+FinFuncion
+//=================================================================PRINTLN
+// OPTIMIZACIÓN: Evitar el uso de condicionales dentro del bucle de impresión,
+// ya que las evaluaciones condicionales repetitivas ralentizan el proceso de renderizado.
+// En su lugar, se recomienda preparar un único arreglo con todos los valores
+// ya procesados, y luego enviarlo directamente al printer Array.
+
+// Pasos generales del proceso:
+// 1. Calcular cuántas cadenas se deben imprimir.
+// 2. Rellenar el arreglo eliminando los caracteres "\n" innecesarios.
+// 3. Verificar si existe color o estilo aplicado en la cadena:
+//    - Si existe, obtener la posición con `indexOf` y `lastIndexOf`.
+//    - Si ambas posiciones son iguales, guardar ese color como definitivo.
+//    - Si son diferentes, utilizar el valor correspondiente a `lastIndexOf`.
+// 4. Aplicar el color al texto si no cuenta con uno definido al inicio.
+// 5. Enviar todo el arreglo al método de impresión en un solo paso.
+
+// Hipótesis sobre el rendimiento en PSeInt:
+// - Las llamadas a funciones con cadenas muy largas resultan costosas.
+// - Cada llamada genera una copia adicional de la cadena, y con cadenas extensas
+//   este proceso se vuelve muy pesado en memoria y en tiempo de ejecución.
+
+// Nota adicional:
+// Para una versión optimizada, se debería priorizar el manejo de arreglos simples
+// para impresión, evitando tabulaciones y herencia de color dentro del bucle.
+// La versión "ideal" podría incluir estilos y formatos avanzados, pero con el
+// costo de mayor complejidad y lentitud en PSeInt.
+// Dado que no existe un `indexOf` más eficiente en este entorno, la alternativa
+// viable es implementar un printer array especializado que recorte el último "\n"
+// sin necesidad de condicionales dentro del bucle.
+
+Funcion __private_internal_printer_formater(text)
+	Definir index_breakLine,text_length como Numero;
+	index_breakLine = String_indexOf(text,"\n");
+	Mientras index_breakLine>-1 Hacer
+		println_simple(String_substring(text, 0, index_breakLine));
+		text = String_substring(text, increment_step(index_breakLine,2), String_length(text));
+		index_breakLine = String_indexOf_fromIndex_speedNative(text,"\n",0);
 	FinMientras
+	print_simple(String_substring(text,0, String_length(text)));
 FinFuncion
 
+Funcion print_shoot(text)
+	__private_internal_printer_formater_shoot(text, false);
+FinFuncion
+
+Funcion println_shoot(text)
+	text = String_append(text,"\n");
+	print_shoot(text);
+FinFuncion
+
+Funcion print_shoot_clear(text)
+	__private_internal_printer_formater_shoot(text, true);
+FinFuncion
+
+Funcion println_shoot_clear(text)
+	text = String_append(text,"\n");
+	print_shoot_clear(text);
+FinFuncion
+
+Funcion __private_internal_printer_formater_shoot(text, isClear)
+	Definir index_breakLine, text_length, num_breakline, i como Numero;
+	Definir text_municion Como Texto;
+	
+	num_breakline = String_countMatches(text, "\n");
+	num_breakline = Math_max_int(num_breakline,1);
+	Dimension text_municion[num_breakline];
+	
+	index_breakLine = String_indexOf_fromIndex_speedNative(text,"\n",0);
+	i=0;
+	Mientras i<num_breakline Hacer
+		text_municion[i]=String_substring(text, 0, index_breakLine);
+		text = String_substring(text, increment_step(index_breakLine,2),String_length(text));
+		index_breakLine = String_indexOf_fromIndex_speedNative(text,"\n",0);
+		i=increment(i);
+	FinMientras
+	
+	si isClear Entonces
+		ClearConsole;
+	FinSi
+	
+	println_array(text_municion,num_breakline);//shoot
+	print_simple(String_substring(text,0, String_length(text)));
+FinFuncion
+
+Funcion println_array(array, index_array)
+	Definir i como Numero;
+	para i = 0 Hasta decrement(index_array) Hacer
+		println_simple(array[i]);
+	FinPara
+FinFuncion
+
+Funcion print_array(array, index_array)
+	Definir i como Numero;
+	para i = 0 Hasta decrement(index_array) Hacer
+		print_simple(array[i]);
+	FinPara
+FinFuncion
 // ...
 Funcion repeat(text,numEnd)
 	Definir start Como Numero;
@@ -438,14 +696,14 @@ FinFuncion
 
 // ..
 Funcion lineBreak
-	println("");
+	print("\n");
 FinFuncion
 
 Funcion HideText
-	print("[2J");
+	print(String_join(Escape_Symbol,"2J"));
 FinFuncion
 
-Funcion ClearWindow
+Funcion ClearConsole
 	Limpiar Pantalla;
 FinFuncion
 
@@ -480,10 +738,10 @@ FinFuncion
 
 // selected color
 Funcion __private_general_log(message,start_tag,SELECTED_COLOR)
-	println(Color_setColorText(String_join(start_tag,message),SELECTED_COLOR));
+	println(Color_setColorText(String_append(start_tag,message),SELECTED_COLOR));
 FinFuncion
 
-///========================================================>>>  [ INT ] <<==///
+///========================================================>>>  [ INT ] <<==///#4
 // =============================================================== CONVERSIONS
 Funcion num <- TextToNum(text)
 	Definir num Como Numero;
@@ -492,87 +750,260 @@ FinFuncion
 
 Funcion num <- String_ToNum(str)
 	Definir num Como Numero;
-	num = if_else(String_isNumber(str),TextToNum(str),-1,TYPE_INT);
+	str = if_else(!String_isEmpty(str) & String_isNumber(str), str, "-1",TYPE_STRING);
+	num = TextToNum(str);
 FinFuncion
-
-// =============================================================== MAX
-Funcion result <- max_Int(value,limit)
-	Definir result Como Numero;
-	result = if_else(value<limit,value,limit,TYPE_INT);
-FinFuncion
-
-Funcion result <- max_Float(value,limit)
-	Definir result Como Real;
-	result = if_else(value<limit,value,limit,TYPE_FLOAT);
-FinFuncion
-
-// =============================================================== MIN
-Funcion result <- min_int(value,limit)
-	Definir result Como Numero;
-	result = if_else(value>limit,value,limit,TYPE_INT);
-FinFuncion
-
-Funcion result <- min_Float(value,limit)
-	Definir result Como Real;
-	result = if_else(value>limit,value,limit,TYPE_FLOAT);
-FinFuncion
-
-// =============================================================== IN_RANGE (MIN<NUM>MAX)
-Funcion result <- rangeLimit_Float(value,limit_min,limit_max)
-	Definir result Como Real;
-	result = max_Float(min_Float(value,limit_min),limit_max);
-FinFuncion
-
-Funcion result <- rangeLimit_Int(value,limit_min,limit_max)
-	Definir result Como Numero;
-	result = max_Int(min_int(value,limit_min),limit_max);
-FinFuncion
-
-// =============================================================== BINARY                           <<<<<<< HACER
 
 Funcion binaryString <- int_ToBinaryString(num)
 	Definir binaryString, residue Como Texto;
 	Mientras num>0 Hacer
-		residue = Num_ToString(Num_module(num,2));
+		residue = Num_ToString(Math_module(num,2));
 		binaryString = String_insert(binaryString,residue,0);
-		num = Num_truncate(num/2);
+		num = Math_truncate(num/2);
 	FinMientras
 	binaryString = String_pad_start(binaryString,"0000");
 FinFuncion
 
-// a-floor(a/b)*b
-Funcion module <- Num_module(dividend,divisor)
-	Definir module Como Numero;
-	module = dividend-Num_truncate(dividend/divisor)*divisor;
+///========================================================>>>  [ MATH ] <<==///#5
+// =============================================================== MAX
+Funcion result <- Math_max_Int(value,limit)
+	Definir result Como Numero;
+	result = if_else(value>limit,value,limit,TYPE_INT);
+FinFuncion
+// max = (1>0, 1,0) result = 1
+Funcion result <- Math_max_Float(value,limit)
+	Definir result Como Real;
+	result = if_else(value>limit,value,limit,TYPE_FLOAT);
 FinFuncion
 
-Funcion num_trunc <- Num_truncate(num)
-	Definir num_trunc Como Numero;
+// =============================================================== MIN
+Funcion result <- Math_min_int(value,limit)
+	Definir result Como Numero;
+	result = if_else(value<limit,value,limit,TYPE_INT);
+FinFuncion
+// min = (1<0, 0,1) result = 0
+Funcion result <- Math_min_float(value,limit)
+	Definir result Como Real;
+	result = if_else(value<limit,value,limit,TYPE_FLOAT);
+FinFuncion
+
+// =============================================================== IN_RANGE (MIN<NUM>MAX)
+Funcion result <- Math_rangeLimit_Float(value,limit_min,limit_max)
+	Definir result Como Real;
+	result = Math_max_Float(limit_min, Math_min_float(limit_max,value));  
+FinFuncion
+// rangeLimit =  [min = (1<2, 2,1)] result min = 2 -> max(0>min,0,min) result = 2
+Funcion result <- Math_rangeLimit_Int(value,limit_min,limit_max)
+	Definir result Como Numero;
+	result = Math_max_Int(limit_min, Math_min_int(limit_max,value));
+FinFuncion
+// =============================================================== POW
+Funcion num_pow <- Math_pow(num, num2)
+	Definir num_pow,i como Numero;
+	num_pow = 1;
+	para i=1 Hasta num2 hacer 
+		num_pow = num_pow*num;//2*2>4*2>8*2
+	FinPara
+FinFuncion
+
+Funcion num_pow <- Math_pow_float(base, exponente)
+    Definir num_pow, ln_base Como Real;
+    ln_base = Math_ln(base);
+    num_pow = Math_exp(exponente * ln_base);
+FinFuncion
+
+
+// ===============================================================
+
+
+
+Funcion log_x <- Math_log(x, base)
+    Definir log_x Como Real;
+    log_x = Math_ln(x) / Math_ln(base);
+FinFuncion
+
+// ===============================================================
+
+Funcion num_sin <- Math_sin(x)
+    Definir num_sin Como Real;//RAD
+	num_sin =  Math_serie_taylor(x,x,10,1,2,2, true(), true());
+FinFuncion
+
+Funcion num_cos <- Math_cos(x)
+    Definir num_cos Como Real;
+	num_cos =  Math_serie_taylor(x,1,10,0,2,2,true(), true());
+FinFuncion
+
+Funcion num_tan <- Math_tan(x)
+	Definir num_tan, n, i,t Como Real;
+	num_tan =  Math_sin(x)/Math_cos(x);
+FinFuncion
+
+Funcion num_exp <- Math_exp(x)
+    Definir num_exp, term , n Como Real;
+	term = 40+x;
+    num_exp = Math_serie_taylor(x,1,term,0,1,1,false(), false());
+FinFuncion
+
+Funcion ln_x <- Math_ln(x)
+	Definir ln_x, t, term Como Real;
+    Definir i, n Como Entero;
+	//ln_x =  Math_serie_taylor(decrement(x),decrement(x), 10,1, 1, 1, false(), true());
+	t = decrement(x);
+    ln_x = t;
+    term = t;
+    n = 1;
+	
+    Para i = 2 Hasta 10 Con Paso 1 Hacer
+		n = i;
+        term = -term * t;   // alterna signo y multiplica por t
+        ln_x = ln_x + term / n;
+    FinPara
+FinFuncion
+
+//las cariables como x y firts_term son molestas ver como hacer ln o dejarlo asi
+Funcion num_taylor <- Math_serie_taylor(x,first_term, num_terms,n_start, n_increment, num_exp, isFact, HasAlternations)
+	Definir num_taylor,term, i, n , n_divisor Como Real;	
+	num_taylor=first_term;
+	term=first_term;
+	n=n_start;
+	
+	n_divisor =1;
+	para i=1 Hasta num_terms con paso 1 Hacer
+		n = increment_step(n,n_increment);
+		si isFact Entonces
+			n_divisor = decrement(n)*n;
+		SiNo
+			n_divisor = n;
+		FinSi
+		n_divisor = if_else(n_divisor<=0,1,n_divisor, TYPE_FLOAT);
+		
+		term = term * Math_pow(x,num_exp)/n_divisor; 
+		si HasAlternations Entonces
+			term = -term;
+		FinSi
+		
+		num_taylor=increment_step(num_taylor, term);
+	FinPara
+FinFuncion
+
+Funcion num_sin <- Math_sin_DEG(x)
+	Definir num_sin Como Real;
+	num_sin= Math_sin(RAD_TO_DEG(x));
+FinFuncion
+
+Funcion num_cos <- Math_cos_DEG(x)
+	Definir num_cos Como Real;
+	num_cos= Math_cos(RAD_TO_DEG(x));
+FinFuncion
+
+Funcion num_deg <- RAD_TO_DEG(x_rad)
+	Definir num_deg como Real;
+    num_deg = x_rad * (Math_PI()/180);
+FinFuncion
+
+///=======		>>> main <<
+Funcion main
+	Definir text, screen, array_text como texto;
+	Definir num , num2 , match , DWx, DWy Como Entero;
+	
+		ClearConsole;
+		DWx = 40;
+		DWy = 14;
+		screen = TUI_DrawArea(DWx,DWy);
+		screen = TUI_DrawArea_DrawEllipse(screen, DWx, DWy, 10, 5,6,6);
+		Print_TUI_DrawArea(screen,DWx, Dwy);
+	
+	//text= Color_setColorText_multiColor("Hello\nWorld\nis\nAmazing");
+FinFuncion
+
+Funcion DrawArea_ellipse <- TUI_DrawArea_DrawEllipse(DrawArea, DWx, DWy, cx, cy, rx, ry)
+    Definir DrawArea_ellipse como Texto;
+    Definir x_, y_ Como Entero;
+    Definir dx, dy Como Entero;
+    Definir valor Como Real;
+	
+    Para y_ = 0 Hasta DWy-1
+        Para x_ = 0 Hasta DWx-1
+            dx = x_ - cx;
+            dy = y_ - cy;
+            valor = (dx*dx)/(rx*rx) + (dy*dy)/(ry*ry);
+            si (valor >= 0.9) y (valor <= 1.1) Entonces
+                DrawArea = TUI_DrawArea_Drawpoint(DrawArea, DWx, DWy, x_, y_);
+            FinSi
+        FinPara
+    FinPara
+	
+    DrawArea_ellipse = DrawArea;
+FinFuncion
+
+
+
+// =============================================================== ROUND
+// module = a-floor(a/b)*b
+Funcion module <- Math_module(dividend,divisor)
+	Definir module Como Numero;
+	divisor= Math_max_int(divisor,1);
+	module = dividend-Math_truncate(dividend/divisor)*divisor;
+FinFuncion
+
+Funcion num_abs <- Math_abs(num)
+	Definir num_abs Como Numero;
+	num_abs=if_else(num<0,num*(-1),num,TYPE_INT);
+FinFuncion
+
+Funcion num_trunc <- Math_truncate(num)
+	Definir num_trunc, index_point Como Numero;
 	Definir str_num Como Texto;
 	str_num = Num_ToString(num);
-	num_trunc = if_else(String_isNumber_float(str_num),String_ToNum(String_substring_from_start(str_num,String_indexOf(str_num,"."))),num,TYPE_INT);
+	index_point = String_indexOf_fromIndex_speedNative(str_num,".",0);
+	index_point = Math_max_Int(index_point,0);
+	num_trunc = if_else(String_isNumber_float(str_num),String_ToNum(String_substring_from_start(str_num,index_point)),num,TYPE_INT);
 FinFuncion 
 
-// ========================== reparar primero verif_elseicar si es mayor a 1 si es mayor a uno solo truncar sino entonces si decimal mayor a 1 entonces restar 1
-// num >1 entonces truncate num
-// else
-// truncate num if_else decimal >1?
-// entonces truncNum-1 else TruncNum
-Funcion int_floor <- floor(num)
-	Definir num_floor, num_trunc, decimal_floor Como Numero;
-	Definir str_num, str_decimal Como Texto;
-	num_trunc = Num_truncate(num);
+Funcion num_signum <- Math_signum(num)
+	Definir num_signum Como Numero;
+	num_signum = if_else(num>0, 1, if_else(num<0, -1, 0, TYPE_INT), TYPE_INT);
+FinFuncion
+// =============================================================== CONSTANTS
+
+Funcion num_PI <- Math_PI
+	Definir num_PI como Numero;
+	num_PI=3.141592653589793;
+FinFuncion
+
+Funcion num_EULER <- Math_EULER
+	Definir num_PI como Numero;
+	num_EULER=2.718281828459045;
+FinFuncion
+
+Funcion num_fact <- Math_factorial(x)
+    Definir num_fact,i Como Real;
+	num_fact=1;
+	para i=1 Hasta x Con Paso 1 Hacer
+		num_fact = num_fact*i;
+	FinPara
+FinFuncion
+
+//Babylonian method: 1/2(xk+S/xk)
+Funcion num_sqrt <- Math_sqrt(S)
+    Definir num_sqrt, xk, i Como Real;
+	xk=S;
+	para i=1 Hasta 6 con paso 1 Hacer
+		num_sqrt = 0.5*(xk+(S/xk));
+		xk = num_sqrt;
+	FinPara
 FinFuncion
 
 ///========================================================>>>  [ BOOLEANS ] <<==///#4
 // ===========================================================  STRING <<<<<<
 Funcion boolean <- String_isEmpty(text)
-	Definir boolean Como Lógico;
+	Definir boolean Como Logico;
 	boolean = __private_isEquals_general(text,"");
 FinFuncion
 
 Funcion boolean <- String_isBlank(text)
-	Definir boolean Como Lógico;
+	Definir boolean Como Logico;
 	Definir i Como Numero;
 	Definir text_Current Como Texto;
 	boolean = true;
@@ -585,42 +1016,43 @@ Funcion boolean <- String_isBlank(text)
 FinFuncion
 
 Funcion boolean <- String_Constains(text,text_match)
-	Definir boolean Como Lógico;
+	Definir boolean Como Logico;
 	boolean = String_indexOf(text,text_match) > -1;
 FinFuncion
 
 Funcion boolean <- String_startsWith(text,text_match)
-	Definir boolean Como Lógico;
+	Definir boolean Como Logico;
 	boolean = String_isEquals(String_substring_from_start(text,String_length(text_match)),text_match);
 FinFuncion
 
 Funcion boolean <- String_endsWith(text,text_match)
-	Definir boolean Como Lógico;
+	Definir boolean Como Logico;
 	boolean = String_isEquals(String_substring_from_end(text,String_length(text_match)),text_match);
 FinFuncion
 
 Funcion boolean <- String_isEquals(str1,str2)
-	Definir boolean Como Lógico;
+	Definir boolean Como Logico;
 	boolean = __private_isEquals_general(str1,str2);
 FinFuncion
 
 Funcion boolean <- String_isEquals_IgnoreCase(str1,str2)
-	Definir boolean Como Lógico;
+	Definir boolean Como Logico;
 	boolean = String_isEquals(String_ToUpperCase(str1),String_ToUpperCase(str2));
 FinFuncion
 
 Funcion boolean <- String_isNumber(text)
-	Definir boolean Como Lógico;
+	Definir boolean Como Logico;
 	boolean = String_isNumber_int(text) O String_isNumber_float(text);
 FinFuncion
 
 Funcion boolean <- __private_isEquals_general(value1,value2)//---- Private
-	Definir boolean Como Lógico;
+	Definir boolean Como Logico;
 	boolean = (value1==value2);
 FinFuncion
 //simplificar
+
 Funcion boolean <- String_isBoolean(text)
-	Definir boolean Como Lógico;
+	Definir boolean Como Logico;
 	Definir index como Numero;
 	boolean = false;
 	text = String_ToLowerCase(text);
@@ -637,7 +1069,7 @@ Funcion boolean <- String_isBoolean(text)
 FinFuncion
 
 Funcion boolean <- String_isBoolean_true(text)
-	Definir boolean Como Lógico;
+	Definir boolean Como Logico;
 	Definir index como Numero;
 	boolean = false;
 	text = String_ToLowerCase(text);
@@ -649,7 +1081,7 @@ Funcion boolean <- String_isBoolean_true(text)
 FinFuncion
 
 Funcion boolean <- String_isNumber_int(text)
-	Definir boolean Como Lógico;
+	Definir boolean Como Logico;
 	Definir i, length Como Numero;
 	text = if_else(String_startsWith(text,"-"),String_substring_from(text,1),text,TYPE_STRING);
 	length = String_length(text);
@@ -662,7 +1094,7 @@ Funcion boolean <- String_isNumber_int(text)
 FinFuncion
 
 Funcion boolean <- String_isNumber_float(str_num)
-	Definir boolean, interger_valid, decimal_valid Como Lógico;
+	Definir boolean, interger_valid, decimal_valid Como Logico;
 	Definir str_decimal Como Texto;
 	str_num = if_else(String_Constains(str_num," "),String_trim(str_num), str_num,TYPE_STRING); // poner esto en trim
 	Si String_Constains(str_num, ".") & String_indexOf(str_num, ".") > 0 Entonces
@@ -675,13 +1107,12 @@ FinFuncion
 
 // =============================================================== NUM  <<<<<<
 Funcion boolean <- Num_isInterger(num)
-	Definir boolean Como Lógico;
-	boolean = (num == Num_truncate(num));
+	Definir boolean Como Logico;
+	boolean = (num == Math_truncate(num));
 FinFuncion
 
 Funcion boolean <- Num_isEquals(num,num2)
-	Definir boolean, isNum, isNume Como Lógico;
-	isNum = String_isNumber(Num_ToString(num)) & String_isNumber(Num_ToString(num2));
+	Definir boolean Como Logico;
 	boolean = __private_isEquals_general(num,num2);
 FinFuncion
 
@@ -691,7 +1122,7 @@ FinFuncion
 // con if_else se podria
 // =============================================================== CHAR  <<<<<<
 Funcion boolean <- char_isNumber(char)
-	Definir boolean Como Lógico;
+	Definir boolean Como Logico;
 	Definir nums Como Numero;
 	boolean = false;
 	nums = 0;
@@ -702,15 +1133,29 @@ Funcion boolean <- char_isNumber(char)
 FinFuncion
 
 // =============================================================== COLOR  <<<<<<
-Funcion boolean <- String_hasColor(text)
-	Definir boolean Como Lógico;
-	boolean = String_Constains(text,"[3");
+Funcion boolean <- String_hasColor(text)//terminar==================
+	Definir boolean Como Logico;
+	boolean = __private_String_hasStyle_or_Color(text);
 FinFuncion
 
+Funcion boolean <- String_hasStyle(text)
+	Definir boolean Como Logico;
+	boolean = __private_String_hasStyle_or_Color(text);
+FinFuncion
+
+Funcion boolean <- String_hasColor_or_Style(text)
+	Definir boolean Como Logico;
+	boolean =__private_String_hasStyle_or_Color(text);
+FinFuncion
+
+Funcion boolean <- __private_String_hasStyle_or_Color(text)
+	Definir boolean Como Logico;
+	boolean = String_Constains(text,Escape_Symbol);
+FinFuncion
 // =============================================================== DATE  <<<<<<
 Funcion boolean <- Local_Date_isBisies(year)
-	Definir boolean Como Lógico;
-	boolean = (Num_isEquals(Num_module(year,4),0) & !Num_isEquals(Num_module(year,100),0)) | Num_isEquals(Num_module(year,400),0);
+	Definir boolean Como Logico;
+	boolean = (Num_isEquals(Math_module(year,4),0) & !Num_isEquals(Math_module(year,100),0)) | Num_isEquals(Math_module(year,400),0);
 FinFuncion
 
 /// RANDOM
@@ -731,26 +1176,42 @@ Funcion index <- array_search_text(array, size, text)
 FinFuncion
 ///========================================================>>>  [ CONDITIONS ] <<==///#5
 Funcion result <- if_else(condition,result1,result2,TYPE)
-	Según TYPE Hacer
-	TYPE_INT:
-		Definir result Como Numero;
-	TYPE_STRING:
-		Definir result Como Texto;
-	TYPE_FLOAT:
-		Definir result Como Real;
-	De Otro Modo:
-		Definir result Como Lógico;
-	FinSegún
+	Segun TYPE Hacer
+		TYPE_INT:
+			Definir result Como Numero;
+		TYPE_STRING:
+			Definir result Como Texto;
+		TYPE_FLOAT:
+			Definir result Como Real;
+		De Otro Modo:
+			Definir result Como Logico;
+	FinSegun
 	
 	Si condition Entonces
 		result = result1;
 	SiNo
 		result = result2;
-	FinSi
+	FinSi	
+FinFuncion
+
+Funcion result <- if_else_MessageError(condition,result1,message,TYPE)
+	Segun TYPE Hacer
+		TYPE_INT:
+			Definir result Como Numero;
+		TYPE_STRING:
+			Definir result Como Texto;
+		TYPE_FLOAT:
+			Definir result Como Real;
+		De Otro Modo:
+			Definir result Como Logico;
+	FinSegun
+	
+	condition_error_message(!condition,"",message);
+	result = if(condition,result1,TYPE);
 FinFuncion
 
 Funcion result <- if(condition,result1,TYPE)
-	Según TYPE Hacer
+	Segun TYPE Hacer
 	TYPE_INT:
 		Definir result Como Numero;
 		result = -1;
@@ -761,16 +1222,16 @@ Funcion result <- if(condition,result1,TYPE)
 		Definir result Como Real;
 		result = -1.1;
 	De Otro Modo:
-		Definir result Como Lógico;
+		Definir result Como Logico;
 		result = true;
-	FinSegún
-
+	FinSegun
+	
 	Si condition Entonces
 		result = result1;
 	FinSi
 FinFuncion
 
-Funcion result <-if_else_Boolean(condition, result1, result2)
+Funcion result <-if_else_TYPEBOOLEAN(condition, result1, result2)
 	Definir result como logico;
 	si condition Entonces
 		result = result1;
@@ -778,38 +1239,41 @@ Funcion result <-if_else_Boolean(condition, result1, result2)
 		result = result2;
 	FinSi
 FinFuncion
-// ==========================================================================================++<<<< hacer esto
-// caso TYPE_STRING:	Definir result como Texto;	result="; maldito pseint ejecuta en pila parece que tendremos que parsear
+
+Funcion condition_error_message(condition,method,message)
+	si condition Entonces
+		println_simple(Escape_Symbol+"31m[ERROR] » (method:"+method+") » "+message+".");
+	FinSi
+FinFuncion
+
 Funcion isERROR <- condition_catch (condition,message,TYPE)
-	Según TYPE Hacer
+	Segun TYPE Hacer
 	TYPE_INT:
 		Definir result Como Numero;
 		result = -1;
 	TYPE_FLOAT:
 		Definir result Como Real;
 		result = -1.0;
+	TYPE_STRING:
+		Definir result Como Texto;
+		result = strNull;
 	De Otro Modo:
-		Definir result Como Lógico;
+		Definir result Como Logico;
 		result = false;
-	FinSegún
+	FinSegun
 FinFuncion
 
 ///========================================================>>>  [ DEFINITIONS ] <<==///#6
 // booleans
 Funcion boolean <- false
-	Definir boolean Como Lógico;
+	Definir boolean Como Logico;
 	boolean = Falso;
 FinFuncion
 
 Funcion boolean <- true
-	Definir boolean Como Lógico;
+	Definir boolean Como Logico;
 	boolean = Verdadero;
 FinFuncion
-
-Funcion numInc <- increment(num)
-	Definir numInc Como Numero;
-	numInc = num+1;
-FinFuncion 
 
 Funcion value <- array_String_Booleans_False(index)
 	Definir value Como Texto;
@@ -824,7 +1288,6 @@ Funcion value <- array_String_Booleans_False(index)
 			value = String_null;
 	FinSegun
 FinFuncion
-
 
 Funcion value <- array_String_Booleans_True(index)
 	Definir value Como Texto;
@@ -843,10 +1306,27 @@ Funcion value <- array_String_Booleans_True(index)
 	FinSegun
 FinFuncion
 
+Funcion numInc <- increment(num)
+	Definir numInc Como Numero;
+	numInc = num+1;
+FinFuncion 
+
 Funcion str <- String_null
 	Definir str Como Texto;
 	str = "";
 FinFuncion
+
+// color&style
+Funcion str <- Escape_Symbol
+	Definir str Como Texto;
+	str = "[";
+FinFuncion
+
+Funcion str <- separator_Symbol
+	Definir str Como Texto;
+	str = ",";
+FinFuncion
+
 Funcion numInc <- increment_step(num,value)
 	Definir numInc Como Numero;
 	numInc = num+value;
@@ -915,71 +1395,108 @@ Funcion TYPE <- STRUC_TYPE_DAQUE
 FinFuncion
 
 ///========================================================>>>  [ COLORS ] <<==///#7
+//setFomater Color
+//color: \R,\G,\Y,\B,\M,\C,\W
+//segun code en texto colorear 
+
+//salto de linea heredar color 
+//
 // =============================================================== CODES <<<<<<
 Funcion color <- COLOR_RED
 	Definir color Como Texto;
-	color = "[31m";
+	color =  color_getColor_forIndex(1);
 FinFuncion
 
 Funcion color <- COLOR_GREEN
 	Definir color Como Texto;
-	color = "[32m";
+	color =  color_getColor_forIndex(2);
 FinFuncion
 
 Funcion color <- COLOR_YELLOW
 	Definir color Como Texto;
-	color = "[33m";
+	color =  color_getColor_forIndex(3);
 FinFuncion
 
 Funcion color <- COLOR_BLUE
 	Definir color Como Texto;
-	color = "[34m";
+	color =  color_getColor_forIndex(4);
 FinFuncion
 
 Funcion color <- COLOR_MAGENTA
 	Definir color Como Texto;
-	color = "[35m";
+	color =  color_getColor_forIndex(5);
 FinFuncion
 
 Funcion color <- COLOR_CYAN
 	Definir color Como Texto;
-	color = "[36m";
+	color =  color_getColor_forIndex(6);
 FinFuncion
 
 Funcion color <- COLOR_WHITE
 	Definir color Como Texto;
-	color = "[37m";
+	color =  color_getColor_forIndex(7);
 FinFuncion
 
-Funcion color <- COLOR_DARK
+Funcion color <- __private_color_getColor_or_style_forIndex(index)
 	Definir color Como Texto;
-	color = "[0m";
+	color = String_append_withSeparator(Escape_Symbol,"m",Num_ToString(index));
 FinFuncion
 
-Funcion color <- COLOR_NORMALCOLOR
+Funcion color <- color_getColor_forIndex(index)
 	Definir color Como Texto;
-	color = "[1m";
+	condition_error_message(index<1|index>7,"color_getColor_forIndex","invalid index color (index valid: 1...7)");
+	index = increment_step(index,30);
+	color = __private_color_getColor_or_style_forIndex(index);
 FinFuncion
 
-// =============================================================== UTILS <<<<<<
-Funcion remove_Color
+
+Funcion color <- COLOR_STYLE_BOLD
+	Definir color Como Texto;
+	color =__private_color_getColor_or_style_forIndex(1);
+FinFuncion
+
+Funcion color <- COLOR_STYLE_PLAIN
+	Definir color Como Texto;
+	color = __private_color_getColor_or_style_forIndex(0);
+FinFuncion
+
+Funcion remove_Colors 
 // ====================================================ijm7889y9
 FinFuncion
 
+//agregar soporte para colores a print_progress_formater
+
 Funcion text_Color <- Color_setColorText(text,color)
 	Definir text_Color Como Texto;
-	text_Color = String_join(color,text);
+	condition_error_message(!String_hasColor(color),"Color_setColorText", String_append("invalid color `",String_append(color,"`")));
+	text_Color = String_append(color,text);
+FinFuncion
+
+Funcion text_Color <- Color_setColorText_brakelines(text,color)
+	Definir text_Color Como Texto;
+	condition_error_message(!String_hasColor(color),"Color_setColorText", String_append("invalid color `",String_append(color,"`")));
+	text_Color = String_append_in_brakelines(text,color);
+FinFuncion
+
+Funcion text_Color <- Color_setColorText_multiColor(text)
+	Definir text_Color, color_char Como Texto;
+	Definir text_length, i Como Numero;
+	text_length = String_length(text);
+	para i=0 Hasta text_length Hacer
+		color_char = Color_setColorText(charAt(text,i), color_getColor_forIndex(increment(Math_module(i,7))));
+		text_Color = String_append(text_Color, color_char);
+	FinPara
 FinFuncion
 
 Funcion text_Color <- Color_Darked(text,color)
 	Definir text_Color Como Texto;
-	text = String_join(DARK,text);
-	text_Color = String_join(color,text);
+	text = String_append(DARK,text);
+	text_Color = String_append(color,text);
 FinFuncion
 
 Funcion text_dark <- Color_Normal(text)
 	Definir text_dark Como Texto;
-	text_dark = String_join(DARK,text);
+	text_dark = String_append(DARK,text);
 FinFuncion
 
 ///========================================================>>>  [ LOCAL DATE TIME ] <<==///#9
@@ -992,9 +1509,22 @@ Funcion Time_num <- getTime
 	Definir Time_num Como Numero;
 	Time_num = HoraActual();
 FinFuncion
+//length_time_pseint = 0,1,2,3,4,5,6 example -> 00:12:23 in pseint == 1223 (4) \ 06:12:23  pseint == 61223 (5)\ 12:12:23 pseint == 121223 (6)
+//length_getTime_toString = 6 \ formater string 00:12:23  == "001223" 
+Funcion time_value_String <- getTime_toString
+	Definir time_value_String Como Texto;
+	time_value_String = String_pad_start(Num_ToString(getTime),"000000");
+FinFuncion
 
 // =============================================================== DATE <<<<<<
 Funcion Date <- Local_Date_now
+	Definir Date Como Texto;
+	Date = Num_ToString(getDate);
+	Date = String_insert(Date,"-",4);
+	Date = String_insert(Date,"-",7);
+FinFuncion
+
+Funcion Date <- Local_Date_year
 	Definir Date Como Texto;
 	Date = Num_ToString(getDate);
 	Date = String_insert(Date,"-",4);
@@ -1006,19 +1536,16 @@ Funcion Date <- Local_Date_of(year,month,day)
 	Date = Local_Date_ofString(Num_ToString(year),Num_ToString(month),Num_ToString(day));
 FinFuncion
 
-Funcion Date <- Local_Date_ofString(year,month,day)// <______________ ARREGLAR CON RELLENADOR
+Funcion Date <- Local_Date_ofString(year,month,day)
 	Definir Date, dateParts, year_format, month_format, day_format Como Texto;
 	Definir int_year, int_month, int_day Como Numero;
-	Dimension dateParts(3);
-	int_year = min_int(String_ToNum(year),0);
-	int_month = rangeLimit_Int(String_ToNum(month),1,12);
-	int_day = rangeLimit_Int(String_ToNum(day),1,31);
-	year_format = String_pad_start("0000", Num_ToString(int_year));
-	month_format = if_else(String_length_index(Num_ToString(int_month))<1,"0","",TYPE_STRING); // pad agregar
-	day_format = if_else(String_length_index(Num_ToString(int_day))<1,"0","",TYPE_STRING);
-	dateParts[0] = String_join(year_format,Num_ToString(int_year));
-	dateParts[1] = String_join(month_format,Num_ToString(int_month));
-	dateParts[2] = String_join(day_format,Num_ToString(int_day));
+	Dimension dateParts[3];
+	int_year = Math_max_Int(String_ToNum(year),0);
+	int_month = Math_rangeLimit_Int(String_ToNum(month),1,12);
+	int_day = Math_rangeLimit_Int(String_ToNum(day),1,31);
+	dateParts[0] = String_pad_start(Num_ToString(int_year),"0000");
+	dateParts[1] =  String_pad_start(Num_ToString(int_month),"00");
+	dateParts[2] = String_pad_start(Num_ToString(int_day),"00");
 	Date = String_join_array_withSeparator(dateParts,3,"-");
 FinFuncion
 
@@ -1037,8 +1564,22 @@ FinFuncion
 // m minutos
 // s segundos
 // S miliSegundos
-// 30.6m-29.4-i
-// si es bisiesto i=3 sino i=2, si es enero/ febrero no restar si es i
+
+//no estoy seguro de donde viene esta formula pero estaba en la wiki hasta que alguien la borro de la pagina
+//esta es una version simplificada de esa formula que encontre, esta derivaba de la formula de Zeller
+//Formula:
+//floor(30.6*m-29.4-i)+d 
+//[i = if isBisies 3 else 2]
+//[if enero o febrero i=0]
+//si haces sumatoria de los dia del mes puede salir Resultado+1 eso depende de como cuentes los dias 
+//si 1 de enero = 1 o enero = 0 
+//facil de corregir suma 1 a los valores [0,2,3]
+
+Funcion numDay <- Local_Date_getDayOfTheYear(year, month, day)
+	Definir numDay como Numero;
+	
+FinFuncion
+
 Funcion Date <- Local_Date_format(text)
 	Definir Date, dateParts, DateTemp Como Texto;
 	Definir index Como Numero;
@@ -1062,11 +1603,46 @@ FinFuncion
 // =============================================================== TIME <<<<<<
 Funcion Time <- Local_Time_now
 	Definir Time Como Texto;
-	Time = Num_ToString(getTime);
+	Time = getTime_toString;
 	Time = String_insert(Time,":",2);
 	Time = String_insert(Time,":",5);
 FinFuncion
 
+Funcion Hour <- Local_Time_getHour
+	Definir Hour Como Numero;
+	Hour = __private_Local_Time_getTime_int(0,2);
+FinFuncion
+
+Funcion Hour <- Local_Time_getMinute
+	Definir Hour Como Numero;
+	Hour = __private_Local_Time_getTime_int(2,4);
+FinFuncion
+
+Funcion Hour <- Local_Time_getSecond
+	Definir Hour Como Numero;
+	Hour = __private_Local_Time_getTime_int(4,6);
+FinFuncion
+
+Funcion time_value <- __private_Local_Time_getTime_int(num1,num2)
+	Definir time_value Como Numero;
+	Definir time_value_format Como Texto;
+	time_value_format = getTime_toString;
+	time_value = String_ToNum(String_substring(time_value_format,num1,num2));
+FinFuncion
+
+// =============================================================== DURATION <<<<<<
+
+Funcion duration_hour <- Duration_between_hour(hour1,hour2)
+	Definir duration_hour Como Numero;
+	duration_hour = decrement_step(hour1, hour2);
+FinFuncion
+
+Funcion duration_hour <- Duration_between_second_now(second)
+	Definir duration_hour, second_current Como Numero;
+	second_current = Local_Time_getSecond;
+	second_current = if_else(second>second_current,second_current+60,second_current,TYPE_INT);
+	duration_hour = second_current-second;
+FinFuncion
 /////////////////////////////////////////////////////------------------=///
 //////////////////////////////////////////////////////>>>  [ UTIL] <<==///#10
 /////////////////////////////////////////////////////------------------=///
@@ -1078,7 +1654,7 @@ Funcion data_structure <- __private_Util_newStructure(TYPE,STRUC_TYPE)
 	dataParts[1] = "<";
 	dataParts[2] = TYPE;
 	dataParts[3] = ">[]:";
-	data_structure = String_join_array(dataParts,4);
+	data_structure = String_join_array_(dataParts,4);
 FinFuncion
 
 ///========================================================>>>  [ MAP ] <<==///
@@ -1089,43 +1665,248 @@ FinFuncion
 // burbuja group
 Funcion new_Map <- Util_Map_newMap(TYPE,TYPE2)
 	Definir new_Map Como Texto;
-	new_Map = __private_Util_newStructure(String_join_withSeparator(TYPE,TYPE2,","),STRUC_TYPE_MAP);
+	new_Map = __private_Util_newStructure(String_append_withSeparator(TYPE,TYPE2,separator_Symbol),STRUC_TYPE_MAP);
 FinFuncion
 
 Funcion map <- Util_Map_put(struc_map,TYPE,TYPE2)
 	Definir map, new_data Como Texto;
-	new_data = String_join_withSeparator(TYPE,TYPE2,"=");
-	map = String_join(struc_map,new_data);
-	map = String_insert_from_End(map,",");
+	new_data = String_append_withSeparator(TYPE,TYPE2,"=");
+	map = String_append(struc_map,new_data);
+	map = String_insert_from_End(map,separator_Symbol);
 FinFuncion
 
 ///========================================================>>>  [ TUI/CANVAS ] <<==///#11
-Funcion vec <- vec_3(x_,y_,z_)
-	Definir vec, array_vec Como Texto;
-	Dimension array_vec[3];
-	array_vec[0] = Num_ToString(x_);
-	array_vec[1] = Num_ToString(y_);
-	array_vec[2] = Num_ToString(z_);
-	vec = "vec3:";
-	vec = String_join(vec,String_join_array_withSeparator(array_vec,3,","));
+//vec
+//pixeles  ·×øØ@
+
+Funcion DrawArea_move <- TUI_DrawArea_MoveContent_XY(DrawArea, DWx, DWy, isleft, istop,speed_move)
+	Definir DrawArea_move como Texto;
+	DrawArea_move = TUI_DrawArea_MoveContent_X(DrawArea, DWx, DWy,isLeft,speed_move);
+	DrawArea_move = TUI_DrawArea_MoveContent_Y(DrawArea_move, DWx, DWy,istop,speed_move);
 FinFuncion
 
-Funcion vec <- vec_2(x_,y_)
-Definir vec, array_vec Como Texto;
-Dimension array_vec[2];
-array_vec[0] = Num_ToString(x_);
-array_vec[1] = Num_ToString(y_);
-vec = "vec2:";
-vec = String_join(vec,String_join_array_withSeparator(array_vec,2,","));
+Funcion DrawArea_move <- TUI_DrawArea_MoveContent_Y(DrawArea, DWx, DWy, istop,speed_moven)
+    Definir DrawArea_move, text_clean como Texto;
+	Definir i, index_row, y_insert_position,y_remove_position, y_insert_length como Numero;
+	DrawArea_move = DrawArea;
+	y_insert_length = DWx*speed_moven;//10*3=30
+	y_insert_position = if_else(istop, 0, DWx*DWy,TYPE_INT);//0 | 15*4 = 60
+	y_remove_position= if_else(istop,decrement_step(DWx*DWy,y_insert_length), 0,TYPE_INT);//15*4=60 - 30 = 30 | 0
+	text_clean = TUI_Row_WithText("·", y_insert_length);//row = 30 char
+	DrawArea_move = String_remove(DrawArea_move,y_remove_position,increment_step(y_remove_position,y_insert_length));//30,60 | 0,30
+	DrawArea_move = String_insert(DrawArea_move,text_clean,y_insert_position);
 FinFuncion
 
-Funcion DrawArea <- TUI_DrawArea(_x,_y)
-	Definir i, j Como Numero;
+Funcion DrawArea_move <- TUI_DrawArea_MoveContent_X(DrawArea, DWx, DWy,isLeft,speed_moven)
+    Definir DrawArea_move, text_clean como Texto;
+	Definir i, index_row, x_remove, x_insert como Numero;
+	DrawArea_move = DrawArea;
+	text_clean = TUI_Row_WithText("·",speed_moven);
+	x_insert = if_else(isLeft,Dwx,0,TYPE_INT);
+	x_remove = if_else(isLeft,0,Dwx,TYPE_INT);
+	para i=0 Hasta decrement(DWy) Con Paso 1 Hacer
+		DrawArea_move = String_insert(DrawArea_move,text_clean,TUI_DrawArea_getIndex(x_insert,i,Dwx));
+		index_row = TUI_DrawArea_getIndex(x_remove,i,Dwx);
+		DrawArea_move = String_remove(DrawArea_move,index_row,increment_step(index_row,speed_moven));
+	finPara
+FinFuncion
+
+Funcion DrawArea_rectangle <- TUI_DrawArea_DrawRectangle(DrawArea, DWx, DWy, x0, y0, x1, y1)
+    Definir DrawArea_rectangle como Texto;
+	DrawArea = TUI_DrawArea_DrawLine(DrawArea, DWx, DWy, x0, y0, x1, y0);//top
+    DrawArea = TUI_DrawArea_DrawLine(DrawArea, DWx, DWy, x0, y1, x1, y1);//botton
+	DrawArea = TUI_DrawArea_DrawLine(DrawArea, DWx, DWy, x0, y0, x0, y1);//left
+	DrawArea = TUI_DrawArea_DrawLine(DrawArea, DWx, DWy, x1, y0, x1, y1+1);	//rigth
+    DrawArea_rectangle = DrawArea;
+FinFuncion
+
+Funcion DrawArea_triangle <- TUI_DrawArea_DrawTriangle(DrawArea, DWx, DWy, x0, y0, x1, y1, x2, y2)
+    Definir DrawArea_triangle como Texto;
+    DrawArea = TUI_DrawArea_DrawLine(DrawArea, DWx, DWy, x0, y0, x1, y1);
+    DrawArea = TUI_DrawArea_DrawLine(DrawArea, DWx, DWy, x1, y1, x2, y2);
+    DrawArea = TUI_DrawArea_DrawLine(DrawArea, DWx, DWy, x2, y2, x0, y0);
+    DrawArea_triangle = DrawArea;
+FinFuncion
+
+Funcion DrawArea_point <- TUI_DrawArea_DrawPoint(DrawArea,DWx,DWy,_x,_y)
+	Definir DrawArea_point como Texto;
+	DrawArea_point = TUI_DrawArea_DrawText("×",DrawArea,DWx,DWy,_x,_y);
+FinFuncion
+
+Funcion DrawArea_button <- TUI_DrawArea_DrawButton(text,DrawArea,DWx,DWy,_x,_y)
+	Definir DrawArea_button como Texto;
+	Definir xt,yt, length_text como Numero;
+	text = String_append_withSeparator("[ "," ]",text);
+	length_text = String_length(text);
+	xt = increment_step(_x,length_text);
+	yt= increment_step(_y,2);
+	DrawArea_button = TUI_DrawArea_DrawRectangle(DrawArea, DWx, DWy, _x, _y, increment(xt), yt);
+	DrawArea_button = TUI_DrawArea_DrawText(text,DrawArea_button,DWx,DWy,increment(_x),increment(_y));
+FinFuncion
+
+Funcion DrawArea_text<- TUI_DrawArea_DrawText(text,DrawArea,DWx,DWy,x_,y_)
+	Definir DrawArea_text como Texto;
+	condition_error_message(x_>=DWx,"TUI_DrawArea_DrawText","x >= Dx");
+	condition_error_message(y_>=DWy,"TUI_DrawArea_DrawText","y >= Dy");
+	x_ = TUI_DrawArea_getIndex(x_,y_,DWx);//12+(1*40) = 52
+	DrawArea_text = String_insert_withReplace(DrawArea,text, x_);
+FinFuncion
+
+Funcion index_tui <- TUI_DrawArea_getIndex(x_,y_,DWx)
+	Definir index_tui como Numero;
+	index_tui= x_+(y_*DWx);
+FinFuncion
+
+Funcion DrawArea_line <- TUI_DrawArea_DrawLine(DrawArea,DWx,DWy,x0,y0,x1,y1)
+    Definir DrawArea_line como Texto;
+    Definir Dx, Dy, xi, yi, xi_rec, yi_rec, x_, y_, error como Entero;
+	
+    Dx = x1 - x0;
+    Dy = y1 - y0;
+	
+    xi = if_else(Dx >= 0, 1, -1, TYPE_INT);
+    yi = if_else(Dy >= 0, 1, -1, TYPE_INT);
+	
+    Dx = Math_abs(Dx);
+    Dy = Math_abs(Dy);
+	
+    si Dx >= Dy Entonces
+        xi_rec = xi;
+        yi_rec = 0;
+        error = 2*Dy - Dx;
+    Sino
+        xi_rec = 0;
+        yi_rec = yi;
+        error = 2*Dx - Dy;
+        Dx = Dx + Dy;//(10,20) 30
+        Dy = Dx - Dy;//30-20=10
+        Dx = Dx - Dy;//30-10=20
+    FinSi
+	
+    x_ = x0;
+    y_ = y0;
+	DrawArea_line = DrawArea;
+    Mientras !Num_isEquals(x_, x1) | !Num_isEquals(y_, y1) Hacer
+        DrawArea_line = TUI_DrawArea_DrawPoint(DrawArea_line, DWx, DWy, x_, y_);
+		
+        si error >= 0 Entonces
+            x_ = increment_step(x_, xi);
+            y_ = increment_step(y_, yi);
+            error = error + 2*(Dy - Dx);
+        SiNo
+            x_ = increment_step(x_, xi_rec);
+            y_ = increment_step(y_, yi_rec);
+            error = error + 2*Dy;
+        FinSi
+    FinMientras
+FinFuncion
+
+Funcion Vec_drawArea <- TUI_DrawArea_getVec_DrawArea(DrawArea)
+	Definir Vec_drawArea como Texto;
+	Definir index_end como Numero;
+	index_end =String_indexOf_fromIndex_speedNative(DrawArea,"|",0); 
+	Vec_drawArea = String_substring_from_start(DrawArea, increment(index_end));
+FinFuncion
+
+Funcion Vec_drawArea <- TUI_DrawArea_no_vector_DrawingArea(DrawArea)
+	Definir Vec_drawArea como Texto;
+	Definir index_end como Numero;
+	index_end =String_indexOf_fromIndex_speedNative(DrawArea,"|",0); 
+	Vec_drawArea = String_substring_from(DrawArea, increment(index_end));
+FinFuncion
+
+
+Funcion vec_index <- TUI_vec_getX(vec_str)
+	Definir  vec_index como Numero;
+	vec_index= __private_TUI_vec_getN(vec_str, 0, "X");
+FinFuncion
+
+Funcion vec_index <- TUI_vec_getY(vec_str)
+	Definir  vec_index como Numero;
+	vec_index= __private_TUI_vec_getN(vec_str, 1, "Y");
+FinFuncion
+
+Funcion vec_index <- TUI_vec_getZ(vec_str)
+	Definir  vec_index como Numero;
+	vec_index=__private_TUI_vec_getN(vec_str, 2, "Z");
+FinFuncion
+
+Funcion vec_index <- __private_TUI_vec_getN(vec_str, index, name_coord)
+	Definir vec_index como Numero;
+	condition_error_message(String_countMatches(vec_str, separator_Symbol) < index, String_append("TUI_vec_get", name_coord), String_append(name_coord, " no exist"));
+	vec_index = TUI_vecN_getindex(vec_str, index);
+FinFuncion
+
+Funcion vec_index <- TUI_vecN_getindex(vec_str,index)
+	Definir  vec_index como Numero;
+	vec_index = TUI_vec_getindex_withSeparator(vec_str,index,separator_Symbol);
+FinFuncion
+
+Funcion vec_index <- TUI_vec_getindex_withSeparator(vec_str,index, separator)
+	Definir  vec_index, index_Match como Numero;
+	index_Match = String_indexOf_fromIndex_speedNative(vec_str,":",0);
+	vec_str = String_substring_from(vec_str,increment(index_Match));
+	vec_str = String_substring_from_start(vec_str,decrement(String_length(vec_str)));
+	vec_str = String_ElementAt_index_withSeparator(vec_str, index, separator);
+	vec_index = String_ToNum(vec_str);
+FinFuncion
+
+Funcion vec2_str <- TUI_vec2(_x,_y)
+	Definir vec2_str, XY como Texto;
+	Dimension XY[2];
+	XY[0] = Num_ToString(_x);
+	XY[1] = Num_ToString(_y);
+	vec2_str = TUI_vec_str(array_ofString_separator(XY,2,separator_Symbol));
+FinFuncion
+
+Funcion vec3_str <- TUI_vec3(_x,_y, _z)
+	Definir vec3_str, XYZ como Texto;
+	Dimension XYZ[3];
+	XYZ[0] = Num_ToString(_x);
+	XYZ[1] = Num_ToString(_y);
+	XYZ[2] = Num_ToString(_z);
+	vec3_str = TUI_vec_str(array_ofString_separator(XYZ,3,separator_Symbol));
+FinFuncion
+
+Funcion vec_str <- TUI_vec_str(str)
+	Definir vec_str como Texto;
+	vec_str = TUI_vec_str_withSeparator(str, separator_Symbol);
+FinFuncion
+
+Funcion vec_str <- TUI_vec_str_withSeparator(str, separator)
+	Definir vec_str como Texto;
+	Definir count_vec como Numero;
+	count_vec = String_countMatches(str,separator);
+	vec_str= String_append("vec",Num_ToString(increment(count_vec)));
+	vec_str= String_append_withSeparator(vec_str,str,":");
+	vec_str= String_append(vec_str,"|");
+FinFuncion
+
+Funcion Print_TUI_DrawArea(DrawArea, DWx, DWy)
+	Definir index_endVec, i como Numero;
+	Definir TUI, DrawX como Texto;
+	Dimension TUI[DWy];
+	para i=0 Hasta decrement(DWy) con paso 1 Hacer
+		DrawX = String_substring(DrawArea, TUI_DrawArea_getIndex(0,i,DWx),(TUI_DrawArea_getIndex(0,increment(i),DWx)));
+		TUI[i] = DrawX;
+	FinPara
+	println_array(TUI, DWy);
+FinFuncion
+
+Funcion row_x <- TUI_Row_WithText(text,repeats)
+	Definir i Como Numero;
+	Definir row_x Como Texto;
+	Para i=1 Hasta repeats Con Paso 1 Hacer
+		row_x = String_append(row_x,text);
+	FinPara
+FinFuncion
+
+Funcion DrawArea <- TUI_DrawArea(x_,y_)
+	Definir i Como Numero;
 	Definir DrawArea, DrawArea_x Como Texto;
-	Para i=1 Hasta _x Con Paso 1 Hacer
-		DrawArea_x = String_join(DrawArea_x,"` ");
-	FinPara
-	Para j=1 Hasta _y Con Paso 1 Hacer
-		DrawArea = String_join_withSeparator(DrawArea,"\n",DrawArea_x);
+	DrawArea_x=TUI_Row_WithText("·",x_);
+	Para i=1 Hasta y_ Con Paso 1 Hacer
+		DrawArea = String_append(DrawArea,DrawArea_x);
 	FinPara
 FinFuncion
+
