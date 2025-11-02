@@ -21,20 +21,11 @@
 //OBJECT 				##5   			 Object_
 
 Funcion main
-	Definir text, persona, empleado como Texto;
-	Definir num como Numero;
-	Definir  bool Como Logico;
-	Definir decimal como Real;
-
+	println("Hello\nWorld");
 FinFuncion
 
 
 
-//quitar null de object remove analizar si es necesario
-//TEST_ASSERT_EQ(Math_pow(2,3), 8)
-//TEST_ASSERT_TRUE(String_isNumber("123"))
-
-//array filter, sort, condition
 
 
 
@@ -130,19 +121,6 @@ Funcion result <- String_append(str1,str2)
 	result = String_append_withSeparator(str1,str2,"");
 FinFuncion
 
-Funcion result <- String_join_array_withSeparator(array,size,separator)
-	Definir result Como Texto;
-	Definir i Como Numero;
-	result = array[0];
-	Para i=1 Hasta decrement(size) Hacer
-		result = String_append_withSeparator(result,array[i],separator);
-	FinPara
-FinFuncion
-
-Funcion result <- String_join_array_(array,size)
-	Definir result Como Texto;
-	result=String_join_array_withSeparator(array,size,"");
-FinFuncion
 
 Funcion text_Color <- String_append_in_brakelines(text,text_append)
 	Definir text_Color Como Texto;
@@ -186,7 +164,7 @@ Funcion str <- __private_String_insert_general(text,text_insert,index,isReplace)
 	fragments[0]=before;
 	fragments[1]=text_insert;
 	fragments[2]=after;
-	str=String_join_array_(fragments,3);
+	str= array_ofString_separator(fragments,3,"");
 FinFuncion
 
 Funcion str <-  String_pad_start(text,text_pad)
@@ -292,7 +270,7 @@ Funcion condition_error_message_substring(str,start, end)
 	
 	condition_error_message(start>end,"Substring",String_append_withSeparator(Num_ToString(start), Num_ToString(end),">"));
 	condition_error_message(start<0 | end<0,"Substring","index negative");
-	condition_error_message(start > num_lentgh | end>num_lentgh,"Substring", String_append("index out of range ", String_join_array_(Dates, 3)));
+	condition_error_message(start > num_lentgh | end>num_lentgh,"Substring", String_append("index out of range ", array_ofString_separator(Dates,3,"")));
 FinFuncion
 
 Funcion strSubs <- String_substring_from(str,start)
@@ -496,6 +474,7 @@ Funcion str <- array_ofString_separator(array, size, separator)
 	str = String_append(str, array[i]);
 FinFuncion
 
+
 // -------------------------------------------------------------------------------------Falta el metodo Comparare To
 ///========================================================>>>  [ PRINTERS ] <<==///#4
 Funcion print(text)
@@ -691,7 +670,7 @@ Funcion breakline
 FinFuncion
 
 Funcion HideText
-	print(String_join(Escape_Symbol(),"2J"));
+	print(String_append(Escape_Symbol(),"2J"));
 FinFuncion
 
 Funcion ClearConsole
@@ -704,7 +683,7 @@ FinFuncion
 
 // =============================================================== LOGS
 Funcion log_WARNING(message)
-	__private_general_log(message,"WARNING: ",COLOR_YELLOW());
+	__private_general_log(message,"WARNING: ",COLORy0ELLOW());
 FinFuncion
 
 Funcion log_INFO(message)
@@ -807,9 +786,9 @@ FinFuncion
 
 // ===============================================================
 
-Funcion log_x <- Math_log(x, base)
-    Definir log_x Como Real;
-    log_x = Math_ln(x) / Math_ln(base);
+Funcion logx0 <- Math_log(x, base)
+    Definir logx0 Como Real;
+    logx0 = Math_ln(x) / Math_ln(base);
 FinFuncion
 
 // ===============================================================
@@ -843,19 +822,19 @@ Funcion num_exp <- Math_exp(x)
     num_exp = Math_serie_taylor(x,1,term,0,1,1,false(), false());
 FinFuncion
 
-Funcion ln_x <- Math_ln(x)
-	Definir ln_x, t, term Como Real;
+Funcion lnx0 <- Math_ln(x)
+	Definir lnx0, t, term Como Real;
     Definir i, n Como Entero;
-	//ln_x =  Math_serie_taylor(decrement(x),decrement(x), 10,1, 1, 1, false(), true());
+	//lnx0 =  Math_serie_taylor(decrement(x),decrement(x), 10,1, 1, 1, false(), true());
 	t = decrement(x);
-    ln_x = t;
+    lnx0 = t;
     term = t;
     n = 1;
 	
     Para i = 2 Hasta 10 Con Paso 1 Hacer
 		n = i;
         term = -term * t;   // alterna signo y multiplica por t
-        ln_x = ln_x + term / n;
+        lnx0 = lnx0 + term / n;
     FinPara
 FinFuncion
 
@@ -920,7 +899,7 @@ Funcion num_trunc <- Math_truncate(num)
 	str_num = Num_ToString(num);
 	index_point = String_indexOf_fromIndex_speedNative(str_num,".",0);
 	index_point = Math_max_Int(index_point,0);
-	num_trunc = if_else(String_isNumber_float(str_num),String_ToNum(String_substring_from_start(str_num,index_point)),num,TYPE_INT());
+	num_trunc = if_else(String_isNumber_float(str_num) & index_point>0,String_ToNum(String_substring_from_start(str_num,index_point)),num,TYPE_INT());
 FinFuncion 
 
 Funcion num_signum <- Math_signum(num)
@@ -1375,6 +1354,11 @@ FinFuncion
 //salto de linea heredar color \n
 //
 // =============================================================== CODES <<<<<<
+Funcion color <- COLOR_TRANSPARENT
+	Definir color Como Texto;
+	color =  COLOR_getColor_forIndex(0);
+FinFuncion
+
 Funcion color <- COLOR_RED
 	Definir color Como Texto;
 	color =  COLOR_getColor_forIndex(1);
@@ -1385,7 +1369,7 @@ Funcion color <- COLOR_GREEN
 	color =  COLOR_getColor_forIndex(2);
 FinFuncion
 
-Funcion color <- COLOR_YELLOW
+Funcion color <- COLORy0ELLOW
 	Definir color Como Texto;
 	color =  COLOR_getColor_forIndex(3);
 FinFuncion
@@ -1412,7 +1396,7 @@ FinFuncion
 
 Funcion color <- COLOR_getColor_forIndex(index)
 	Definir color Como Texto;
-	condition_error_message(index<1|index>7,"COLOR_getColor_forIndex","invalid index color (index valid: 1...7)");
+	condition_error_message(index<0|index>7,"COLOR_getColor_forIndex","invalid index color (index valid: 0...7)");
 	index = increment_step(index,30);
 	color = __private_color_getColor_or_style_forIndex(index);
 FinFuncion
@@ -1496,7 +1480,7 @@ Funcion Date <- Local_Date_now
 	Date = String_insert(Date,"-",7);
 FinFuncion
 
-Funcion Date <- Local_Date_year
+Funcion Date <- Local_Datey0ear
 	Definir Date Como Texto;
 	Date = Num_ToString(getDate);
 	Date = String_insert(Date,"-",4);
@@ -1510,15 +1494,15 @@ FinFuncion
 
 Funcion Date <- Local_Date_ofString(year,month,day)
 	Definir Date, dateParts, year_format, month_format, day_format Como Texto;
-	Definir int_year, int_month, int_day Como Numero;
+	Definir inty0ear, int_month, int_day Como Numero;
 	Dimension dateParts[3];
-	int_year = Math_max_Int(String_ToNum(year),0);
+	inty0ear = Math_max_Int(String_ToNum(year),0);
 	int_month = Math_rangeLimit_Int(String_ToNum(month),1,12);
 	int_day = Math_rangeLimit_Int(String_ToNum(day),1,31);
-	dateParts[0] = String_pad_start(Num_ToString(int_year),"0000");
+	dateParts[0] = String_pad_start(Num_ToString(inty0ear),"0000");
 	dateParts[1] =  String_pad_start(Num_ToString(int_month),"00");
 	dateParts[2] = String_pad_start(Num_ToString(int_day),"00");
-	Date = String_join_array_withSeparator(dateParts,3,"-");
+	Date = array_ofString_separator(dateParts,3,"-");;
 FinFuncion
 
 // y ear (y o yy 25) yyy 025 yyyy 2025 yyyyy 2025
@@ -1644,7 +1628,7 @@ Funcion data_structure <- __private_Util_newStructure(TYPE,STRUC_TYPE)
 	dataParts[1] = "<";
 	dataParts[2] = TYPE;
 	dataParts[3] = ">[]::";
-	data_structure = String_join_array_(dataParts,4);
+	data_structure = array_ofString_separator(dataParts,4,"");
 FinFuncion
 
 ///========================================================>>>  [ MAP ] <<==///#12_1
@@ -1670,22 +1654,46 @@ FinFuncion
 //pixeles  ·×øØ
 Funcion pixel <- pixel_clear
 	Definir pixel como texto;
-	pixel = "·";
+	pixel =  get_pixel_whitIndex(0);
 FinFuncion
 
 Funcion pixel <- pixel_plain
 	Definir pixel como texto;
-	pixel = "×";
+	pixel = get_pixel_whitIndex(1);
 FinFuncion
 
 Funcion pixel <- pixel_medium
 	Definir pixel como texto;
-	pixel = "ø";
+	pixel = get_pixel_whitIndex(2);
 FinFuncion
 
 Funcion pixel <- pixel_bold
 	Definir pixel como texto;
-	pixel = "Ø";
+	pixel = get_pixel_whitIndex(3);
+FinFuncion
+
+Funcion pixel <- get_pixel_whitIndex(index)
+	Definir pixel como texto;
+	Segun index Hacer
+		caso 0:
+			pixel = "·";
+		caso 1:
+			pixel = "*";
+		caso 2: 
+			pixel = "ø";
+		De Otro Modo:
+			pixel = "Ø";
+	FinSegun
+FinFuncion
+
+Funcion Print_TUI_DrawArea3D(DrawArea, DWx, DWy, DWz,z_view_index)
+	Definir TUI, DrawXY como Texto;
+	Definir Page_size, Page_select como Numero;
+	Page_size = DWy*DWx;
+	condition_error_message(z_view_index>DWz,"Print_TUI_DrawArea3D","index out of range");
+	Page_select = Math_min_Int(z_view_index,decrement(DWz))*Page_size;
+	DrawXY = String_substring(DrawArea, Page_select,Page_select+Page_size);
+	Print_TUI_DrawArea_color(DrawXY, DWx, DWy, "");
 FinFuncion
 
 //max:630*130
@@ -1726,25 +1734,25 @@ Funcion DrawArea_ellipse <- TUI_DrawArea_DrawEllipse(DrawArea, DWx, DWy, cx, cy,
 FinFuncion
 
 
-Funcion DrawArea_move <- TUI_DrawArea_MoveContent_XY(DrawArea, DWx, DWy, isleft, istop,speed_move)
+Funcion DrawArea_move <- TUI_DrawArea_MoveContent_x_y(DrawArea, DWx, DWy, isleft, is_top,speed_move)
 	Definir DrawArea_move como Texto;
-	DrawArea_move = TUI_DrawArea_MoveContent_X(DrawArea, DWx, DWy,isLeft,speed_move);
-	DrawArea_move = TUI_DrawArea_MoveContent_Y(DrawArea_move, DWx, DWy,istop,speed_move);
+	DrawArea_move = TUI_DrawArea_MoveContent_x(DrawArea, DWx, DWy,isLeft,speed_move);
+	DrawArea_move = TUI_DrawArea_MoveContent_y(DrawArea_move, DWx, DWy,is_top,speed_move);
 FinFuncion
 
-Funcion DrawArea_move <- TUI_DrawArea_MoveContent_Y(DrawArea, DWx, DWy, istop,speed_moven)
+Funcion DrawArea_move <- TUI_DrawArea_MoveContent_y(DrawArea, DWx, DWy, is_top,speed_moven)
     Definir DrawArea_move, text_clean como Texto;
 	Definir i, index_row, y_insert_position,y_remove_position, y_insert_length como Numero;
 	y_insert_length = DWx*speed_moven;//10*3=30
-	y_insert_position = if_else(istop, 0, DWx*DWy,TYPE_INT());//0 | 15*4 = 60
-	y_remove_position= if_else(istop,decrement_step(DWx*DWy,y_insert_length), 0,TYPE_INT());//15*4=60 - 30 = 30 | 0
+	y_insert_position = if_else(is_top, 0, DWx*DWy,TYPE_INT());//0 | 15*4 = 60
+	y_remove_position= if_else(is_top,decrement_step(DWx*DWy,y_insert_length), 0,TYPE_INT());//15*4=60 - 30 = 30 | 0
 	text_clean = TUI_Row_WithText(pixel_clear(), y_insert_length);//row = 30 char
 	DrawArea_move = DrawArea;
 	DrawArea_move = String_remove(DrawArea_move,y_remove_position,increment_step(y_remove_position,y_insert_length));//30,60 | 0,30
 	DrawArea_move = String_insert(DrawArea_move,text_clean,y_insert_position);
 FinFuncion
 
-Funcion DrawArea_move <- TUI_DrawArea_MoveContent_X(DrawArea, DWx, DWy,isLeft,speed_moven)
+Funcion DrawArea_move <- TUI_DrawArea_MoveContent_x(DrawArea, DWx, DWy,isLeft,speed_moven)
     Definir DrawArea_move, text_clean como Texto;
 	Definir i, index_row, x_remove, x_insert como Numero;
 	DrawArea_move = DrawArea;
@@ -1758,6 +1766,15 @@ Funcion DrawArea_move <- TUI_DrawArea_MoveContent_X(DrawArea, DWx, DWy,isLeft,sp
 	finPara
 FinFuncion
 
+Funcion DrawArea_rectangle <- TUI_DrawArea_DrawRectangle_normaliced(DrawArea, DWx, DWy, x0, y0, x1, y1)
+    Definir DrawArea_rectangle como Texto;
+ 	x0 = noramaliced_coordinate_x_toPixel(DWx,x0);
+	y0 = noramaliced_coordinate_y_toPixel(DWy,y0);
+	x1 = noramaliced_coordinate_x_toPixel(DWx,x1);
+	y1 = noramaliced_coordinate_y_toPixel(DWy,y1);	
+    DrawArea_rectangle = TUI_DrawArea_DrawRectangle(DrawArea, DWx, DWy, x0, y0, x1, y1);
+FinFuncion
+
 Funcion DrawArea_rectangle <- TUI_DrawArea_DrawRectangle(DrawArea, DWx, DWy, x0, y0, x1, y1)
     Definir DrawArea_rectangle como Texto;
 	DrawArea = TUI_DrawArea_DrawLine(DrawArea, DWx, DWy, x0, y0, x1, y0);//top
@@ -1765,6 +1782,17 @@ Funcion DrawArea_rectangle <- TUI_DrawArea_DrawRectangle(DrawArea, DWx, DWy, x0,
 	DrawArea = TUI_DrawArea_DrawLine(DrawArea, DWx, DWy, x0, y0, x0, y1);//left
 	DrawArea = TUI_DrawArea_DrawLine(DrawArea, DWx, DWy, x1, y0, x1, y1+1);	//rigth
     DrawArea_rectangle = DrawArea;
+FinFuncion
+
+Funcion DrawArea_triangle <- TUI_DrawArea_DrawTriangle_normaliced(DrawArea, DWx, DWy, x0, y0, x1, y1, x2, y2)
+    Definir DrawArea_triangle como Texto;
+ 	x0 = noramaliced_coordinate_x_toPixel(DWx,x0);
+	y0 = noramaliced_coordinate_y_toPixel(DWy,y0);
+	x1 = noramaliced_coordinate_x_toPixel(DWx,x1);
+	y1 = noramaliced_coordinate_y_toPixel(DWy,y1);	
+	x2 = noramaliced_coordinate_x_toPixel(DWx,x2);
+	y2 = noramaliced_coordinate_y_toPixel(DWy,y2);
+    DrawArea_triangle = TUI_DrawArea_DrawTriangle(DrawArea, DWx, DWy, x0, y0, x1, y1, x2, y2);
 FinFuncion
 
 Funcion DrawArea_triangle <- TUI_DrawArea_DrawTriangle(DrawArea, DWx, DWy, x0, y0, x1, y1, x2, y2)
@@ -1775,40 +1803,51 @@ Funcion DrawArea_triangle <- TUI_DrawArea_DrawTriangle(DrawArea, DWx, DWy, x0, y
     DrawArea_triangle = DrawArea;
 FinFuncion
 
-
-Funcion DrawArea_button <- TUI_DrawArea_DrawButton(text,DrawArea,DWx,DWy,_x,_y)
+Funcion DrawArea_button <- TUI_newButton(text,DrawArea,DWx,DWy,x0,y0)
 	Definir DrawArea_button como Texto;
 	Definir xt,yt, length_text como Numero;
 	text = String_append_withSeparator("[ "," ]",text);
 	length_text = String_length(text);
-	xt = increment_step(_x,length_text);
-	yt= increment_step(_y,2);
-	DrawArea_button = TUI_DrawArea_DrawRectangle(DrawArea, DWx, DWy, _x, _y, increment(xt), yt);
-	DrawArea_button = TUI_DrawArea_DrawText(text,DrawArea_button,DWx,DWy,increment(_x),increment(_y));
+	xt = increment_step(x0,length_text);
+	yt= increment_step(y0,2);
+	DrawArea_button = TUI_DrawArea_DrawRectangle(DrawArea, DWx, DWy, x0, y0, increment(xt), yt);
+	DrawArea_button = TUI_DrawArea_DrawText(text,DrawArea_button,DWx,DWy,increment(x0),increment(y0));
 FinFuncion
 
-Funcion DrawArea_point <- TUI_DrawArea_DrawPoint(DrawArea,DWx,DWy,_x,_y)
+Funcion DrawArea_point <- TUI_DrawArea_DrawPoint_normaliced(DrawArea,DWx,DWy,x0,y0)
 	Definir DrawArea_point como Texto;
-	DrawArea_point = TUI_DrawArea_DrawText(pixel_plain(),DrawArea,DWx,DWy,_x,_y);
+	x0 = noramaliced_coordinate_x_toPixel(DWx,x0);
+	y0 = noramaliced_coordinate_y_toPixel(DWy,y0);
+	DrawArea_point = TUI_DrawArea_DrawPoint_pixel(DrawArea,pixel_plain(),DWx,DWy,x0,y0);
 FinFuncion
 
-Funcion DrawArea_point <- TUI_DrawArea_DrawPoint_pixel(DrawArea,pixel_symb,DWx,DWy,_x,_y)
+Funcion DrawArea_point <- TUI_DrawArea_DrawPoint(DrawArea,DWx,DWy,x0,y0)
 	Definir DrawArea_point como Texto;
-	DrawArea_point = TUI_DrawArea_DrawText(pixel_symb,DrawArea,DWx,DWy,_x,_y);
+	DrawArea_point = TUI_DrawArea_DrawPoint_pixel(DrawArea,pixel_plain(),DWx,DWy,x0,y0);
 FinFuncion
 
-Funcion DrawArea_text<- TUI_DrawArea_DrawText(text,DrawArea,DWx,DWy,x_,y_)
+Funcion DrawArea_point <- TUI_DrawArea_DrawPoint_pixel(DrawArea,pixel_symb,DWx,DWy,x0,y0)
+	Definir DrawArea_point como Texto;
+	DrawArea_point = TUI_DrawArea_DrawText(pixel_symb,DrawArea,DWx,DWy,x0,y0);
+FinFuncion
+
+Funcion DrawArea_text<- TUI_DrawArea_DrawText(text,DrawArea,DWx,DWy,x0,y0)
 	Definir DrawArea_text como Texto;
-	condition_error_message(x_>=DWx,"TUI_DrawArea_DrawText","x >= Dx");
-	condition_error_message(y_>=DWy,"TUI_DrawArea_DrawText","y >= Dy");
-	x_ = TUI_DrawArea_getIndex(x_,y_,DWx);//x+(y*dx)=12+(1*40) = 52
-	DrawArea_text = String_insert_withReplace(DrawArea,text, x_);
+	condition_error_message(x0>=DWx,"TUI_DrawArea_DrawText","x >= DWx");
+	condition_error_message(y0>=DWy,"TUI_DrawArea_DrawText","y >= DWy");
+	x0 = TUI_DrawArea_getIndex(x0,y0,DWx);//x+(y*dx)=12+(1*40) = 52
+	DrawArea_text = String_insert_withReplace(DrawArea,text, x0);
 FinFuncion
 
-Funcion index_tui <- TUI_DrawArea_getIndex(x_,y_,DWx)
-	Definir index_tui como Numero;
-	index_tui= x_+(y_*DWx);
+Funcion DrawArea_line <- TUI_DrawArea_DrawLine_normaliced(DrawArea,DWx,DWy,x0,y0,x1,y1)
+    Definir DrawArea_line como Texto;
+	x0 = noramaliced_coordinate_x_toPixel(DWx,x0);
+	y0 = noramaliced_coordinate_y_toPixel(DWy,y0);
+	x1 = noramaliced_coordinate_x_toPixel(DWx,x1);
+	y1 = noramaliced_coordinate_y_toPixel(DWy,y1);
+	DrawArea_line = TUI_DrawArea_DrawLine_pixel(DrawArea,pixel_plain(),DWx,DWy,x0,y0,x1,y1);
 FinFuncion
+
 Funcion DrawArea_line <- TUI_DrawArea_DrawLine(DrawArea,DWx,DWy,x0,y0,x1,y1)
     Definir DrawArea_line como Texto;
 	DrawArea_line = TUI_DrawArea_DrawLine_pixel(DrawArea,pixel_plain(),DWx,DWy,x0,y0,x1,y1);
@@ -1818,19 +1857,19 @@ Funcion DrawArea_line <- TUI_DrawArea_DrawLine_pixel(DrawArea,pixel_symb,DWx,DWy
     Definir DrawArea_line como Texto;
     Definir Dx, Dy, xi, yi, xi_rec, yi_rec, x_, y_, error como Entero;
 	
-    Dx = x1 - x0;
-    Dy = y1 - y0;
+    Dx = x1 - x0;//2-10=-8
+    Dy = y1 - y0;//3-10=-7
 	
-    xi = if_else(Dx >= 0, 1, -1, TYPE_INT());
-    yi = if_else(Dy >= 0, 1, -1, TYPE_INT());
+    xi = if_else(Dx >= 0, 1, -1, TYPE_INT());// -1
+    yi = if_else(Dy >= 0, 1, -1, TYPE_INT());// -1
 	
-    Dx = Math_abs(Dx);
-    Dy = Math_abs(Dy);
+    Dx = Math_abs(Dx);// -8 -> 8
+    Dy = Math_abs(Dy);// -7 -> 7
 	
     si Dx >= Dy Entonces
-        xi_rec = xi;
-        yi_rec = 0;
-        error = 2*Dy - Dx;
+        xi_rec = xi;//-1
+        yi_rec = 0;// 0 
+        error = 2*Dy - Dx;//2*8 = 16-7= 9
     Sino
         xi_rec = 0;
         yi_rec = yi;
@@ -1847,9 +1886,9 @@ Funcion DrawArea_line <- TUI_DrawArea_DrawLine_pixel(DrawArea,pixel_symb,DWx,DWy
         DrawArea_line = TUI_DrawArea_DrawPoint_pixel(DrawArea_line,pixel_symb, DWx, DWy, x_, y_);
 		
         si error >= 0 Entonces
-            x_ = increment_step(x_, xi);
-            y_ = increment_step(y_, yi);
-            error = error + 2*(Dy - Dx);
+            x_ = increment_step(x_, xi);//10+ -1
+            y_ = increment_step(y_, yi);//10+ -1
+            error = error + 2*(Dy - Dx);// 9 + (2*(7-8)) = 9+ -2 = 7
         SiNo
             x_ = increment_step(x_, xi_rec);
             y_ = increment_step(y_, yi_rec);
@@ -1858,21 +1897,111 @@ Funcion DrawArea_line <- TUI_DrawArea_DrawLine_pixel(DrawArea,pixel_symb,DWx,DWy
     FinMientras
 FinFuncion
 
-Funcion row_x <- TUI_Row_WithText(text,repeats)
+Funcion rowx0 <- TUI_Row_WithText(text,repeats)
 	Definir i Como Numero;
-	Definir row_x Como Texto;
+	Definir rowx0 Como Texto;
 	Para i=1 Hasta repeats Con Paso 1 Hacer
-		row_x = String_append(row_x,text);
+		rowx0 = String_append(rowx0,text);
 	FinPara
 FinFuncion
 
-Funcion DrawArea <- TUI_DrawArea(x_,y_)
+Funcion index_tui <- TUI_DrawArea_getIndex(x0,y0,DWx)
+	Definir index_tui como Numero;
+	index_tui= x0+(y0*DWx);
+FinFuncion
+
+Funcion DrawArea <- TUI_DrawArea(DWx,DWy)
 	Definir i Como Numero;
 	Definir DrawArea, DrawArea_x Como Texto;
-	DrawArea_x=TUI_Row_WithText(pixel_clear(),x_);
-	Para i=1 Hasta y_ Con Paso 1 Hacer
+	DrawArea_x = TUI_Row_WithText(pixel_clear(),DWx);
+	Para i=1 Hasta DWy Con Paso 1 Hacer
 		DrawArea = String_append(DrawArea,DrawArea_x);
 	FinPara
+FinFuncion
+//-------------------------{ 3D }
+Funcion DrawArea_point <- TUI_DrawArea3D_DrawPoint(DrawArea,DWx,DWy,DWz,x0,y0,z0)
+	Definir DrawArea_point como Texto;
+	DrawArea_point=TUI_DrawArea3D_DrawPoint_ViewDistance(DrawArea,DWx,DWy,DWz,x0,y0,z0, 6);
+FinFuncion
+//hacerlo progresivo en pixeles
+Funcion DrawArea_point <- TUI_DrawArea3D_DrawPoint_ViewDistance(DrawArea,DWx,DWy,DWz,x0,y0,z0, view_distance_max)
+    Definir DrawArea_point como Texto;
+    Definir z_actual, index_point, peso, end Como Numero;
+	end = Math_max_Int(decrement_step(z0, view_distance_max), 0);  
+	
+    DrawArea_point = DrawArea;
+    z_actual = z0;
+	
+    Mientras z_actual >= end  Hacer
+        index_point = TUI_DrawArea3D_getIndex(x0, y0, z_actual, DWx, DWy);
+		peso = Math_truncate( (view_distance_max - (z0 - z_actual) - 1) * 4 / view_distance_max );
+		peso = increment(Math_module(peso, 4));  
+        DrawArea_point = String_insert_withReplace(DrawArea_point, get_pixel_whitIndex(peso), index_point);
+        z_actual = decrement(z_actual);
+    FinMientras
+FinFuncion
+
+
+//debe saber cuanto permanecer en una pagina mejorar y optimizar
+Funcion DrawArea_line3D <- TUI_DrawArea3D_DrawLine(DrawArea, DWx, DWy, DWz, x0, y0, z0, x1, y1, z1)
+    Definir DrawArea_line3D como Texto;
+    Definir dx, dy, dz, pasos, i como Numero;
+    Definir x, y_, z como Real;
+	
+    // Inicializar salida
+    DrawArea_line3D = DrawArea;
+	
+    // Diferencias
+    dx = x1 - x0;
+    dy = y1 - y0;
+    dz = z1 - z0;
+	
+    // Número de pasos = máximo de diferencias absolutas
+    pasos = Math_max_Int(Math_abs(dx), Math_max_Int(Math_abs(dy), Math_abs(dz)));
+	
+    si pasos = 0 Entonces
+        DrawArea_line3D = TUI_DrawArea3D_DrawPoint(DrawArea_line3D,DWx,DWy,DWz,x0,y0,z0);
+    Sino
+        Para i = 0 Hasta pasos
+            x = Math_truncate(x0 + dx * i / pasos);
+            y_ = Math_truncate(y0 + dy * i / pasos);
+            z = Math_truncate(z0 + dz * i / pasos);
+            DrawArea_line3D = TUI_DrawArea3D_DrawPoint(DrawArea_line3D,DWx,DWy,DWz,x,y_,z);
+        FinPara
+    FinSi
+	
+FinFuncion
+
+Funcion index_tui <- TUI_DrawArea3D_getIndex(x0,y0,z0,DWx,DWy)
+	Definir index_tui como Numero;
+	index_tui= TUI_DrawArea_getIndex(x0,y0,DWx)+(z0*DWx*DWy);
+FinFuncion
+
+Funcion DrawArea <- TUI_DrawArea3D(DWx,DWy,DWz)
+	Definir i Como Numero;
+	Definir DrawArea, DrawArea_xy Como Texto;
+	DrawArea_xy = TUI_DrawArea(DWx,DWy);
+	Para i=1 Hasta DWz Con Paso 1 Hacer
+		DrawArea = String_append(DrawArea,DrawArea_xy);
+	FinPara
+FinFuncion
+//(w*0.5)(1+a)
+//(h*0.5)(1-a)
+Funcion pixel_index <- noramaliced_coordinate_x_toPixel(Dx,x)
+	Definir pixel_index como Numero;
+	pixel_index = __private_noramaliced_coordinate_toPixel(Dx,x,"x");
+FinFuncion
+
+Funcion pixel_index <- noramaliced_coordinate_y_toPixel(Dy,y_)
+	Definir pixel_index como Numero;
+	pixel_index = __private_noramaliced_coordinate_toPixel(Dy,y_,"y");
+FinFuncion
+
+Funcion pixel_index <- __private_noramaliced_coordinate_toPixel(Dc,c, letter)
+	Definir pixel_index como Numero;
+	condition_error_message(c<-1 | c>1,String_append("noramaliced_coordinate_", letter),"index out of range [-1,1]");
+	c= c* if(String_isEquals(letter,"x"),1,TYPE_INT);
+	pixel_index = Math_min_Int(Math_truncate((Dc*0.5)*(1+c)), decrement(Dc));
 FinFuncion
 
 ///========================================================>>>  [ VEC ] <<==///##4
@@ -1911,19 +2040,19 @@ Funcion vec_index <- VEC_getindex_withSeparator(vec_str,index, separator)
 	vec_index = String_ToNum(vec_str);
 FinFuncion
 
-Funcion vec2_str <- VEC_vec2(_x,_y)
+Funcion vec2_str <- VEC_vec2(x0,y0)
 	Definir vec2_str, XY como Texto;
 	Dimension XY[2];
-	XY[0] = Num_ToString(_x);
-	XY[1] = Num_ToString(_y);
+	XY[0] = Num_ToString(x0);
+	XY[1] = Num_ToString(y0);
 	vec2_str = VEC_vec_str(array_ofString_separator(XY,2,separator_Symbol()));
 FinFuncion
 
-Funcion vec3_str <- VEC_vec3(_x,_y, _z)
+Funcion vec3_str <- VEC_vec3(x0,y0, _z)
 	Definir vec3_str, XYZ como Texto;
 	Dimension XYZ[3];
-	XYZ[0] = Num_ToString(_x);
-	XYZ[1] = Num_ToString(_y);
+	XYZ[0] = Num_ToString(x0);
+	XYZ[1] = Num_ToString(y0);
 	XYZ[2] = Num_ToString(_z);
 	vec3_str = VEC_vec_str(array_ofString_separator(XYZ,3,separator_Symbol()));
 FinFuncion
@@ -1966,7 +2095,7 @@ Funcion Object_result <- Object_newObject_properties_separator_separatorgroup(na
 	properties = String_trim(properties_list);
 	index_separator_group = String_indexOf(properties, separator_group);
 	index_separator_group = if_else(index_separator_group < 0, String_length(properties),index_separator_group,TYPE_INT);
-
+	
 	Mientras !String_isEmpty(properties)  Hacer
 		prop_list_length = String_length(properties);
 		index_separator_group = String_indexOf(properties, separator_group);
@@ -2256,20 +2385,25 @@ FinFuncion
 //| ==  ||
 //V == &&
 //& == &&
-// \ # $ % & | ( ) * + , - . / : ; < = > ? @ [  ] ^ _ ` { | } ~  ¢ £ ¥ « » ± © ® ÷ ×  ¡ § ¶ · ? ø æ ~ ª º ^¹²³ ? !
-// Work pendiente : stack, queue, map, list, setter,
-// Textos metodos: randomInt,
-// containsIgnoreCase, arraySort, ArrayReverse
+// symbols: \ # $ % & | ( ) * + , - . / : ; < = > ? @ [  ] ^ _ ` { | } ~  ¢ £ ¥ « » ± © ® ÷ ×  ¡ § ¶ · ? ø æ ~ ª º ^¹²³ ? !
+// --------------------  Trabajo pendiente :
+//  Structures: stack, queue, map, list, setter,
+//  metodos: randomInt, contains_IgnoreCase, array_sort, Array_reverse, array_filter
 // TUI: Window, row, column,input, inputPrompt,Notif_elseication, Checkbox, progresBar,Menu-desplegable, infoCode, init
+// quitar null de object remove --> analizar si es necesario
+// Modulo de Testeo /TEST_ASSERT_EQ(Math_pow(2,3), 8) / TEST_ASSERT_TRUE(String_isNumber("123"))
+//mejorar print progress con soporte para color y color transparente
+//print soporte de color 
 ///%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%[ PSeInt-Toolkit ] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Algoritmo start_Code
 	Definir start_second, start_minute como Numero;
 	Definir Time_Duration, minute_duration, second_duratrion como Texto;
 	start_minute = Local_Time_getMinute();
 	start_second = Local_Time_getSecond();
+	ClearConsole();
 	main();
 	minute_duration = Num_ToString(Duration_between_minute_strict(start_minute,start_second));
 	second_duratrion = Num_ToString(Duration_between_second_now(start_second));
 	Time_Duration = String_append_withSeparator(String_pad_start(minute_duration, "00"),String_pad_start(second_duratrion, "00"),":");
-	println_simple(Color_setColorText(String_append(" : execution time : (mm:ss) >>> ",Time_Duration),COLOR_BLUE()));
+	println_simple(Color_setColorText(String_append("//// execution time : (mm:ss) >>> ",Time_Duration),COLOR_BLUE()));
 FinAlgoritmo

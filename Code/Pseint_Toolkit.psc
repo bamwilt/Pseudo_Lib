@@ -21,25 +21,20 @@
 //OBJECT 				##5   			 Object_
 
 Funcion main
-	Definir text, persona, empleado, DrawArea como Texto;
-	Definir num , DWx, DWy, DWz, x0,y0, z_view_index, i como Numero;
-	Definir  bool Como Logico;
-	Definir decimal como Real;
-	DWx = 30;
-	DWy = 10;//30*10=300
-	DWz = 10;//300*5 = 1500
-	x0=0;
-	y0=0;
-
+	println("Hello\nWorld");
 FinFuncion
 
 
 
-//quitar null de object remove analizar si es necesario
-//TEST_ASSERT_EQ(Math_pow(2,3), 8)
-//TEST_ASSERT_TRUE(String_isNumber("123"))
-//mejorar print progress con soporte para color y color transparente
-//array filter, sort, condition
+
+
+
+
+
+
+
+
+
 
 
 ///========================================================>>>  [ INPUT ] <<==///#1
@@ -1936,7 +1931,7 @@ Funcion DrawArea_point <- TUI_DrawArea3D_DrawPoint_ViewDistance(DrawArea,DWx,DWy
     Definir DrawArea_point como Texto;
     Definir z_actual, index_point, peso, end Como Numero;
 	end = Math_max_Int(decrement_step(z0, view_distance_max), 0);  
-
+	
     DrawArea_point = DrawArea;
     z_actual = z0;
 	
@@ -1966,7 +1961,7 @@ Funcion DrawArea_line3D <- TUI_DrawArea3D_DrawLine(DrawArea, DWx, DWy, DWz, x0, 
 	
     // Número de pasos = máximo de diferencias absolutas
     pasos = Math_max_Int(Math_abs(dx), Math_max_Int(Math_abs(dy), Math_abs(dz)));
-
+	
     si pasos = 0 Entonces
         DrawArea_line3D = TUI_DrawArea3D_DrawPoint(DrawArea_line3D,DWx,DWy,DWz,x0,y0,z0);
     Sino
@@ -2393,11 +2388,15 @@ FinFuncion
 //| ==  ||
 //V == &&
 //& == &&
-// \ # $ % & | ( ) * + , - . / : ; < = > ? @ [  ] ^ _ ` { | } ~  ¢ £ ¥ « » ± © ® ÷ ×  ¡ § ¶ · ? ø æ ~ ª º ^¹²³ ? !
-// Work pendiente : stack, queue, map, list, setter,
-// Textos metodos: randomInt,
-// containsIgnoreCase, arraySort, ArrayReverse
+// symbols: \ # $ % & | ( ) * + , - . / : ; < = > ? @ [  ] ^ _ ` { | } ~  ¢ £ ¥ « » ± © ® ÷ ×  ¡ § ¶ · ? ø æ ~ ª º ^¹²³ ? !
+// --------------------  Trabajo pendiente :
+//  Structures: stack, queue, map, list, setter,
+//  metodos: randomInt, contains_IgnoreCase, array_sort, Array_reverse, array_filter
 // TUI: Window, row, column,input, inputPrompt,Notif_elseication, Checkbox, progresBar,Menu-desplegable, infoCode, init
+// quitar null de object remove --> analizar si es necesario
+// Modulo de Testeo /TEST_ASSERT_EQ(Math_pow(2,3), 8) / TEST_ASSERT_TRUE(String_isNumber("123"))
+//mejorar print progress con soporte para color y color transparente
+//print soporte de color 
 ///%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%[ PSeInt-Toolkit ] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Algoritmo start_Code
 	Definir start_second, start_minute como Numero;
