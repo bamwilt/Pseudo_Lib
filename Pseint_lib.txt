@@ -34,6 +34,9 @@ FinFuncion
 
 
 
+
+
+
 ///========================================================>>>  [ INPUT ] <<==///#1
 
 Funcion user_input <- user_input_options(options_text_list,TYPE)
