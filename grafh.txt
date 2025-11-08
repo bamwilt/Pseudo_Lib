@@ -1,6 +1,7 @@
+// copy on Graphviz.com
 digraph PseintMax {
     graph [bgcolor="#ccf", fontsize=12, fontname="monospace" , pad=1];
-      
+     
     node [
         shape=box,
         style="rounded,filled",

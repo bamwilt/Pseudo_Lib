@@ -1,6 +1,7 @@
-# ⚠️ Pseudo Avance: Objects, Graphics & Libraries
+# Pseudo Lib: Objects, Graphics & Libraries
 
 > **Demo / Work in Progress:** Esta es una Demo de mi archivo toolkit de Pseint de mas de 2000 lineas.
+> funciones para Pseint.
 ## modulos
 1. INPUT 
 2. STRING 
