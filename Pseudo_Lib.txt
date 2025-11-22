@@ -1,4 +1,5 @@
 ///========================================================>>>  [ MAIN] <<==///#0
+//LIB !1
 //MAIN- code_search: #0  
 //SEARCH: Ctrl+F
 //LIBRARIES:
@@ -7,7 +8,7 @@
 //INPUT 				#1 			   user_input_
 //STRING 				#2  			 string_
 //ARRAY 				#3  			 array_
-//PRINTERS				#4 		  	print_ : prinln_ 
+//PRINTERS				#4 		 print_ : prinln_ : log_
 //INT					#5  			int_
 //MATH  				#6 				 Math_
 //BOOLEAN 				#7 			 string_ : 
@@ -16,30 +17,71 @@
 //COLOR 				##0 			COLOR_
 //LOCAL DATE TIME 		##1				Local_
 //UTIL 					##2 			 NULL
-//TUI/CANVAS 			##3 			 TUI_
-//VEC 					##4   			 VEC_
-//OBJECT 				##5   			 Object_
+//OBJECT 				##3   			 Object_
+//TUI/CANVAS 			##4  			 TUI_
+//VEC 					##5   			 VEC_
+
+//Object_equals(obj1, obj2)
+//texto = Object_serialize(persona)
+//persona2 = Object_deserialize(texto)
 
 Funcion main
-	println("Hello\nWorld");
+	Definir persona_1, empleado_1, new_instace_persona,new_instace_empleado, list como Texto;
+	Definir i como Numero;
+	
+	new_instace_persona = New_Persona();
+	new_instace_empleado = New_Empleado();
+	
+	persona_1 = new_instace_persona;
+	empleado_1 = new_instace_empleado;
+
+	persona_1 = Init_Construct_Persona(persona_1, "juan","wilson",18);
+	empleado_1 = Init_Construct_Empleado(empleado_1, "carlos","Marzi", 200.43, true());
+	persona_1 = Object_InheritsFrom(persona_1, empleado_1);
+	persona_1 = Object_removeCommon_properties_From(persona_1, empleado_1);
+	
+FinFuncion
+
+Funcion persona <- New_Persona
+	Definir persona como Texto;
+	persona = Object_newObject("persona");
+	persona = Object_add_property(persona, "nombre", TYPE_STRING());
+	persona = Object_add_property(persona, "apellido", TYPE_STRING());
+	persona = Object_add_property(persona, "edad", TYPE_INT());
+FinFuncion
+
+Funcion persona <- New_Empleado
+	Definir persona como Texto;
+	persona = Object_newObject("empleado");
+	persona = Object_add_property(persona, "nombre", TYPE_STRING());
+	persona = Object_add_property(persona, "apellido", TYPE_STRING());
+	persona = Object_add_property(persona, "sueldo", TYPE_FLOAT());
+	persona = Object_add_property(persona, "activo", TYPE_BOOLEAN());
+FinFuncion
+
+Funcion persona <- Init_Construct_Empleado(instace_empleado, nombre, apellido, sueldo, activo)
+	Definir persona como Texto;
+	persona = Object_newObject("empleado");
+	persona = Object_add_property(persona, "nombre", TYPE_STRING());
+	persona = Object_add_property(persona, "apellido", TYPE_STRING());
+	persona = Object_add_property(persona, "sueldo", TYPE_FLOAT());
+	persona = Object_add_property(persona, "activo", TYPE_BOOLEAN());
+FinFuncion
+
+Funcion persona <- Init_Construct_Persona(instace_persona, nombre, apellido, edad)
+	Definir persona como Texto;
+	persona = instace_persona;
+	persona = Object_setValue_property(persona,"nombre", nombre);
+	persona = Object_setValue_property(persona,"apellido", apellido);
+	persona = Object_setValue_property(persona,"edad", edad);
 FinFuncion
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+//testear get Value property en objeto cuando esta vacio
 ///========================================================>>>  [ INPUT ] <<==///#1
 
 Funcion user_input <- user_input_options(options_text_list,TYPE)
+	options_text_list = String_ToLowerCase(options_text_list);
 	Segun TYPE Hacer
 		TYPE_STRING(): Definir user_input Como Texto;
 		TYPE_BOOLEAN(): Definir user_input Como Logico;
@@ -47,21 +89,49 @@ Funcion user_input <- user_input_options(options_text_list,TYPE)
 		TYPE_FLOAT(): Definir user_input Como Real;
 		De Otro Modo: Definir user_input Como Texto;
 	FinSegun
-	user_input <- user_input_options_separator(options_text_list,separator_Symbol(),TYPE);
+	user_input = __private_user_input_options_separator(options_text_list,user_input_String(),",",TYPE);
+FinFuncion
+
+Funcion user_input <- user_input_options_ignoreCase(options_text_list,TYPE)
+	Segun TYPE Hacer
+		TYPE_STRING(): Definir user_input Como Texto;
+		TYPE_BOOLEAN(): Definir user_input Como Logico;
+		TYPE_INT(): Definir user_input Como Numero;
+		TYPE_FLOAT(): Definir user_input Como Real;
+		De Otro Modo: Definir user_input Como Texto;
+	FinSegun
+	user_input = __private_user_input_options_separator(String_ToLowerCase(options_text_list),String_ToLowerCase(user_input_String()),",",TYPE);
 FinFuncion
 
 Funcion user_input <- user_input_options_separator(options_text_list,separator,TYPE)
-	Definir user_input_obtained, message_error, message_date como Texto;
+	Segun TYPE Hacer
+		TYPE_STRING(): Definir user_input Como Texto;
+		TYPE_BOOLEAN(): Definir user_input Como Logico;
+		TYPE_INT(): Definir user_input Como Numero;
+		TYPE_FLOAT(): Definir user_input Como Real;
+		De Otro Modo: Definir user_input Como Texto;
+	FinSegun
+	user_input = __private_user_input_options_separator(options_text_list,user_input_String(),separator,TYPE);
+FinFuncion
+
+Funcion user_input <- __private_user_input_options_separator(options_text_list,user_input_obtained ,separator,TYPE)
+	Definir message_error, message_date, option_i como Texto;
 	Definir user_input_isValid Como Logico;
-	user_input_obtained = user_input_String();
+	Definir i como Numero;
 	Dimension message_date[2];
-	message_date[0] = String_append("options:",options_text_list);
-	message_date[1] = String_append_withSeparator("/ input:", " /",user_input_obtained);
-	message_error = array_ofString_separator(message_date, 2,"");
-	user_input_isValid = String_Constains(options_text_list,user_input_obtained) & !String_Constains(user_input_obtained, separator);
-	condition_message_log(!user_input_isValid, message_error,"info");
-	user_input_obtained = if(user_input_isValid,user_input_obtained,TYPE_STRING());
+	i=0; user_input_isValid = false(); option_i = "";
+	Mientras !user_input_isValid & !String_isEquals(option_i, String_null()) Hacer
+		option_i = collection_getElement_AtIndex_withSeparator(options_text_list,i,separator);
+		user_input_isValid = String_isEquals(option_i, user_input_obtained);
+		i = increment(i);
+	FinMientras
 	
+	message_date[0] = String_append("NOT VALID // options: [",options_text_list);
+	message_date[1] = String_append_withSeparator("] // (!) input: »", "« //", user_input_obtained);
+	message_error = array_ofString_separator(message_date, 2,"");
+	condition_message_log(!user_input_isValid, message_error,"info");
+	
+	user_input_obtained = if(user_input_isValid,user_input_obtained,TYPE_STRING());
 	Segun TYPE Hacer
 		TYPE_STRING():
 			Definir user_input Como Texto;
@@ -81,8 +151,6 @@ Funcion user_input <- user_input_options_separator(options_text_list,separator,T
 	FinSegun
 FinFuncion
 
-//ser mas flexible con Float para aceptar numeros enteros
-//sino consta de un . entonces seguir pero ver si cuenta como entero
 Funcion user_input <- user_input_Interger
 	Definir user_input Como Numero;
 	Definir user_input_str Como Texto;
@@ -92,17 +160,22 @@ FinFuncion
 
 Funcion user_input <- user_input_boolean
 	Definir user_input Como logico;
-	user_input = String_isBoolean_true(user_input_String);
+	user_input = String_isBoolean_true(user_input_String());
 FinFuncion
 
 Funcion user_input <- user_input_Float
 	Definir user_input Como Real;
 	Definir user_input_str Como Texto;
-	user_input_str = user_input_String;
+	user_input_str = user_input_String();
 	user_input = if(String_isNumber_float(user_input_str),String_ToNum(user_input_str), TYPE_FLOAT());
 FinFuncion
 
 Funcion user_input <- user_input_String
+	Definir user_input Como Texto;
+	Leer user_input;
+FinFuncion
+
+Funcion user_input_wait
 	Definir user_input Como Texto;
 	Leer user_input;
 FinFuncion
@@ -123,7 +196,6 @@ Funcion result <- String_append(str1,str2)
 	Definir result Como Texto;
 	result = String_append_withSeparator(str1,str2,"");
 FinFuncion
-
 
 Funcion text_Color <- String_append_in_brakelines(text,text_append)
 	Definir text_Color Como Texto;
@@ -477,8 +549,17 @@ Funcion str <- array_ofString_separator(array, size, separator)
 	str = String_append(str, array[i]);
 FinFuncion
 
+Funcion index <- array_search_text(array, size, text)
+	Definir index, i Como Numero;
+	i = 0;
+	index = -1;
+	Mientras (i < size) & index < 0 hacer 
+		index = if(String_isEquals(array[i], text),i,TYPE_INT());
+		i = increment(i);
+	FinMientras
+FinFuncion
 
-// -------------------------------------------------------------------------------------Falta el metodo Comparare To
+// -------------------------------------------------------------------------------------Falta el metodo ComparareTo()
 ///========================================================>>>  [ PRINTERS ] <<==///#4
 Funcion print(text)
 	__private_internal_printer_formater(text);
@@ -673,7 +754,7 @@ Funcion breakline
 FinFuncion
 
 Funcion HideText
-	print(String_append(Escape_Symbol(),"2J"));
+	print(String_append(Symbol_Escape(),"2J"));
 FinFuncion
 
 Funcion ClearConsole
@@ -686,7 +767,7 @@ FinFuncion
 
 // =============================================================== LOGS
 Funcion log_WARNING(message)
-	__private_general_log(message,"WARNING: ",COLORy0ELLOW());
+	__private_general_log(message,"WARNING: ",COLOR_YELLOW());
 FinFuncion
 
 Funcion log_INFO(message)
@@ -707,6 +788,21 @@ FinFuncion
 
 Funcion log_FATAL(message)
 	__private_general_log(message,"FATAL: ",COLOR_MAGENTA());
+FinFuncion
+
+Funcion Test_checkpoint(id)
+	Test_checkpoint_info(id, "");
+FinFuncion
+
+Funcion Test_checkpoint_info(id, info_string)
+	breakline();
+	println_simple(Color_setColorText(String_append_withSeparator(" < "," >- - - - - - - - - - - </>",Num_ToString(id)), COLOR_CYAN()));
+	si !String_isEmpty(info_string) Entonces
+		Definir popup_message como Texto;
+		popup_message = String_append_withSeparator(" < start >","< /end >",info_string);
+		println_simple(Color_setColorText(popup_message, COLOR_CYAN()));
+	FinSi
+	user_input_wait();
 FinFuncion
 
 // selected color
@@ -1096,7 +1192,7 @@ FinFuncion
 
 Funcion boolean <- __private_String_hasStyle_or_Color(text)
 	Definir boolean Como Logico;
-	boolean = String_Constains(text,Escape_Symbol());
+	boolean = String_Constains(text,Symbol_Escape());
 FinFuncion
 // =============================================================== DATE  <<<<<<
 Funcion boolean <- Local_Date_isBisies(year)
@@ -1110,15 +1206,10 @@ Funcion numRamd = getRandomNum
 	numRamd = Aleatorio(1,123456);
 FinFuncion
 
-///array
-Funcion index <- array_search_text(array, size, text)
-	Definir index, i Como Numero;
-	i = 0;
-	index = -1;
-	Mientras (i < size) & index < 0 hacer 
-		index = if(String_isEquals(array[i], text),i,TYPE_INT());
-		i = increment(i);
-	FinMientras
+//============================ OTHER 
+Funcion isValid <- TYPE_isValid(TYPE)
+	Definir isValid Como Logico;
+	isValid = String_isEquals(TYPE, TYPE_STRING()) | String_isEquals(TYPE, TYPE_INT()) | String_isEquals(TYPE, TYPE_BOOLEAN()) | String_isEquals(TYPE, TYPE_FLOAT());
 FinFuncion
 ///========================================================>>>  [ CONDITIONS ] <<==///#8
 Funcion result <- if_else(condition,result1,result2,TYPE)
@@ -1145,13 +1236,13 @@ Funcion result <- if(condition,result1,TYPE)
 	Segun TYPE Hacer
 		TYPE_INT():
 			Definir result Como Numero;
-			result = -1;
+			result = Int_error();
 		TYPE_STRING():
 			Definir result Como Texto;
 			result = String_null();
 		TYPE_FLOAT():
 			Definir result Como Real;
-			result = -1.0;
+			result = Float_error();
 		De Otro Modo:
 			Definir result Como Logico;
 			result = true;
@@ -1173,7 +1264,7 @@ FinFuncion
 
 Funcion condition_error_message(condition,method,message)
 	si condition Entonces
-		println_simple(Escape_Symbol()+"31m[ERROR] : (method:"+method+") : "+message+".");
+		println_simple(Symbol_Escape()+"31m[ERROR] // method: "+method+"() // "+message+".");
 	FinSi
 FinFuncion
 
@@ -1267,15 +1358,30 @@ Funcion str <- String_null
 	str = "";
 FinFuncion
 
+Funcion Num <- Int_error
+	Definir Num Como Numero;
+	Num = -1;
+FinFuncion
+
+Funcion Num <- Float_error
+	Definir Num Como Real;
+	Num = -1.1;
+FinFuncion
+
 // color&style
-Funcion str <- Escape_Symbol
+Funcion str <- Symbol_Escape
 	Definir str Como Texto;
 	str = "[";
 FinFuncion
 
-Funcion str <- separator_Symbol
+Funcion str <- Symbol_Separator
 	Definir str Como Texto;
-	str = ",";
+	str = "";
+FinFuncion
+
+Funcion str <- Symbol_Separator_key_value
+	Definir str Como Texto;
+	str = "=";
 FinFuncion
 
 Funcion numInc <- increment_step(num,value)
@@ -1315,39 +1421,54 @@ Funcion TYPE <- TYPE_BOOLEAN
 FinFuncion
 
 // ....Util...................................UTIL
-Funcion TYPE <- STRUC_TYPE_LIST
+Funcion TYPE <- STRUCT_TYPE_LIST
 	Definir TYPE Como Texto;
 	TYPE = "list";
 FinFuncion
 
-Funcion TYPE <- STRUC_TYPE_MAP
+Funcion TYPE <- STRUCT_TYPE_MAP
 	Definir TYPE Como Texto;
 	TYPE = "map";
 FinFuncion
 
-Funcion TYPE <- STRUC_TYPE_SET
+Funcion TYPE <- STRUCT_TYPE_SET
 	Definir TYPE Como Texto;
 	TYPE = "set";
 FinFuncion
 
-Funcion TYPE <- STRUC_TYPE_QUEUE
+Funcion TYPE <- STRUCT_TYPE_QUEUE
 	Definir TYPE Como Texto;
 	TYPE = "queue";
 FinFuncion
 
-Funcion TYPE <- STRUC_TYPE_STACK
+Funcion TYPE <- STRUCT_TYPE_STACK
 	Definir TYPE Como Texto;
 	TYPE = "stack";
 FinFuncion
 
-Funcion TYPE <- STRUC_TYPE_DAQUE
+Funcion TYPE <- STRUCT_TYPE_DAQUE
 	Definir TYPE Como Texto;
 	TYPE = "deque";
 FinFuncion
 
-Funcion TYPE <- STRUC_TYPE_OBJECT
+Funcion TYPE <- STRUCT_TYPE_OBJECT
 	Definir TYPE Como Texto;
 	TYPE = "object";
+FinFuncion
+
+Funcion symbol_ta <- symbol_dataArea
+	Definir symbol_ta como Texto;
+	symbol_ta = "";
+FinFuncion
+
+Funcion symbol_ta <- symbol_typeArea
+	Definir symbol_ta como Texto;
+	symbol_ta = "";
+FinFuncion
+
+Funcion symbol_ta <- symbol_metadata_Area
+	Definir symbol_ta como Texto;
+	symbol_ta = "";
 FinFuncion
 
 ///========================================================>>>  [ COLORS ] <<==///##0
@@ -1372,7 +1493,7 @@ Funcion color <- COLOR_GREEN
 	color =  COLOR_getColor_forIndex(2);
 FinFuncion
 
-Funcion color <- COLORy0ELLOW
+Funcion color <- COLOR_YELLOW
 	Definir color Como Texto;
 	color =  COLOR_getColor_forIndex(3);
 FinFuncion
@@ -1406,7 +1527,7 @@ FinFuncion
 
 Funcion color <- __private_color_getColor_or_style_forIndex(index)
 	Definir color Como Texto;
-	color = String_append_withSeparator(Escape_Symbol(),"m",Num_ToString(index));
+	color = String_append_withSeparator(Symbol_Escape(),"m",Num_ToString(index));
 FinFuncion
 
 Funcion color <- COLOR_STYLE_BOLD
@@ -1621,38 +1742,398 @@ Funcion duration <- Duration_between_time_now(time, time_now)
 	duration = decrement_step(if_else(time>time_now,increment_step(time_now, 60),time_now,TYPE_INT()), time);
 FinFuncion
 /////////////////////////////////////////////////////------------------=///
-//////////////////////////////////////////////////////>>>  [ UTIL] <<==///##2
+//////////////////////////////////////////////////////>>>  [ UTIL ] <<==///##2
 /////////////////////////////////////////////////////------------------=///
-///========================================================>>>  [ structure ] <<==///
-Funcion data_structure <- __private_Util_newStructure(TYPE,STRUC_TYPE)
-	Definir data_structure, dataParts Como Texto;
-	Dimension dataParts[4];
-	dataParts[0] = STRUC_TYPE;
-	dataParts[1] = "<";
-	dataParts[2] = TYPE;
-	dataParts[3] = ">[]::";
-	data_structure = array_ofString_separator(dataParts,4,"");
+///========================================================>>>  [ collection ] <<==///
+Funcion name_collect <- collection_getName_collection(collection)
+	Definir name_collect Como Texto;
+	name_collect = String_substring(collection, 0, String_indexOf(collection, symbol_typeArea()));
 FinFuncion
 
-///========================================================>>>  [ MAP ] <<==///#12_1
+Funcion type_area <- collection_getContent_TypesArea(collection)
+	Definir type_area como Texto;
+	type_area =  collection_getContent_TypesArea_End_Of_Text(collection, symbol_dataArea());
+FinFuncion
+
+Funcion type_area <- collection_getContent_TypesArea_End_Of_Text(collection, text_end)
+	Definir type_area como Texto;
+	type_area = collection_getContent_WithIn_Symbols(collection, symbol_typeArea(), text_end);
+FinFuncion
+
+Funcion type_area <- collection_getContent_WithIn_Symbols(collection, symbol_start, symbol_end)
+	Definir Type_property,type_area como Texto;
+	Definir index_start, index_end, index_check como Numero;
+	index_start = increment(String_indexOf(collection,symbol_start));
+	index_end = String_indexOf_fromIndex(collection,symbol_end,index_start);
+	type_area = String_substring(collection,index_start,index_end);
+FinFuncion
+
+Funcion index_typeArea <- collection_getIndexStart_typeArea(struct)
+	Definir index_typeArea como Numero;
+	index_typeArea = increment(String_indexOf(struct,symbol_typeArea()));
+FinFuncion
+
+Funcion index_separator <- collection_getIndex_FromNumElement(text, num)
+	Definir index_separator como Numero;
+	index_separator = collection_getIndex_FromNumElement_Separator(text,num,Symbol_Separator());
+FinFuncion
+
+Funcion index_separator <- collection_getIndex_FromNumElement_Separator(text, num,separator)
+	Definir i, index_separator, text_length como Numero;
+	text_length = String_length(text);
+	index_separator = String_indexOf_fromIndex_speedNative(text,separator,index_separator);
+	mientras index_separator < text_length & i<num Hacer
+		index_separator = increment(index_separator);
+		index_separator = String_indexOf_fromIndex_speedNative(text,separator,index_separator);
+		i = increment(i);
+	FinMientras
+FinFuncion
+
+Funcion str_element <- collection_getElement_AtIndex(text, index)
+	Definir str_element como texto;
+	str_element = collection_getElement_AtIndex_withSeparator(text, index, Symbol_Separator());
+FinFuncion
+
+Funcion str_element <- collection_getElement_AtIndex_withSeparator(text, index, separator)
+	Definir count_sep, i, index_match, index_matchEnd, sum como Real;
+	Definir str_element, Slice_After como texto;
+	index_matchEnd = collection_getIndex_FromNumElement_Separator(text,index,separator);
+	index_matchEnd= if_else(index_Matchend<0,String_length(text),index_Matchend,TYPE_INT);
+	
+	index_match = String_LastindexOf_fromIndex(text,separator,index_MatchEnd)+1;
+	index_match = if_else(index_Match<0,0,index_Match,TYPE_INT);
+	
+	si index >= 0 & index <= String_countMatches(text, separator) Entonces
+		str_element = String_substring(text, index_Match,index_Matchend);
+	SiNo
+		str_element = String_null();
+	FinSi
+FinFuncion
+
+Funcion data_collection <- __private_Util_newcollection(TYPE,STRUCT_TYPE)
+	Definir data_collection, dataParts, index_end_dataArea Como Texto;
+	Definir length_data_area como Numero;
+	Dimension dataParts[5];
+	dataParts[0] = STRUCT_TYPE;
+	dataParts[1] = symbol_typeArea();
+	dataParts[2] = TYPE;
+	dataParts[3] = symbol_dataArea();
+	dataParts[4] = symbol_metadata_Area();
+	data_collection = array_ofString_separator(dataParts,5,"");//list/<STRING[Data(meta_data
+FinFuncion
+
+Funcion result <- __private_Data_Parser_ToString(data,TYPE)
+	Definir result Como Texto;
+	Segun TYPE Hacer
+		TYPE_INT():
+			result = Num_ToString(data);
+		TYPE_FLOAT():
+			result = Num_ToString(data);
+		TYPE_STRING():
+			result = String_append(data,"");//wrapper
+		De Otro Modo:
+			Definir property_value Como Logico;
+			result = Boolean_ToString(data);
+	FinSegun
+FinFuncion
+
+///========================================================>>>  [ MAP ] <<==///##2_1
 // REcordar que usar . en el identif_elseicador [1.2] es impresiso ya que puede ser redondeado
-// estructura Map<T,T>[]:()()()
+// estructtura Map<T,T>[]:()()()
 // recordar que son 3 partes bien separadas identif_elseicador/ruler
 // data cache index length
 // burbuja group
 Funcion new_Map <- Util_Map_newMap(TYPE,TYPE2)
 	Definir new_Map Como Texto;
-	new_Map = __private_Util_newStructure(String_append_withSeparator(TYPE,TYPE2,separator_Symbol()),STRUC_TYPE_MAP());
+	new_Map = __private_Util_newcollection(String_append_withSeparator(TYPE,TYPE2,Symbol_Separator()),STRUCT_TYPE_MAP());
 FinFuncion
 
-Funcion map <- Util_Map_put(struc_map,TYPE,TYPE2)
+Funcion map <- Util_Map_put(struct_map,TYPE,TYPE2)
 	Definir map, new_data Como Texto;
 	new_data = String_append_withSeparator(TYPE,TYPE2,"=");
-	map = String_append(struc_map,new_data);
-	map = String_insert_from_End(map,separator_Symbol());
+	map = String_append(struct_map,new_data);
+	map = String_insert_from_End(map,Symbol_Separator());
+FinFuncion
+///========================================================>>>  [ LIST ] <<==///##2_2
+// REcordar que usar . en el identif_elseicador [1.2] es impresiso ya que puede ser redondeado
+// estructtura Map<T,T>[]:()()()
+// recordar que son 3 partes bien separadas identif_elseicador/ruler
+// data cache index length
+// burbuja group
+Funcion new_list <- Util_List_newList(TYPE)
+	Definir new_list Como Texto;
+	new_list = __private_Util_newcollection(TYPE,STRUCT_TYPE_LIST());
 FinFuncion
 
-/////========================================================>>>  [ TUI/CANVAS ] <<==///##3
+Funcion list <- Util_List_add(struct_list,new_data)
+	Definir list, type_list,data_string Como Texto;
+	type_list = collection_getContent_TypesArea(struct_list);
+	list =  Util_List_add_TYPE(struct_list,new_data,type_list);
+FinFuncion
+
+Funcion list <- Util_List_add_TYPE(struct_list,new_data,TYPE)
+	Definir list, data_string Como Texto;
+	data_string = __private_Data_Parser_ToString(new_data,TYPE);
+	list = String_insert(struct_list,String_append(data_string, ","),decrement(String_length(struct_list)));
+FinFuncion
+
+///========================================================>>>  [ OBJECT ] <<==///##3
+//------------------------newObject
+Funcion Object_result <- Object_newObject(name_obj)
+	Definir Object_result como Texto;
+	Object_result = __private_Util_newcollection("",String_append_withSeparator(STRUCT_TYPE_OBJECT(),String_ToLowerCase(name_obj), Symbol_Separator()));
+FinFuncion
+
+Funcion Object_result <- Object_add_property(Object_struct,property_name,TYPE)
+	Definir Object_result, new_data como Texto;
+	Object_result = Object_struct;
+	si !Object_property_exists(Object_struct, property_name) Entonces
+		new_data = String_append_withSeparator(TYPE,String_ToLowerCase(property_name),Symbol_Separator_key_value());
+		new_data= String_append(new_data, Symbol_Separator());
+		Object_result = String_insert(Object_struct, new_data, String_indexOf_fromIndex_speedNative(Object_struct,symbol_dataArea(),6));
+		Object_result = String_insert(Object_result,Symbol_Separator(),decrement(String_length(Object_result)));
+	sino 
+		condition_error_message(true(),"Object_add_property",String_append("property exist: ", property_name));
+	FinSi
+FinFuncion
+//1TODO OPTIMIZAR
+Funcion Object_Debug(Object_struct)
+	Definir Item_Area, Type_area, Name_Object, name_property,Type_property, value_property como Texto;
+	Definir i, num_properties como Numero;
+	Type_area = collection_getContent_TypesArea(Object_struct);
+	Item_area = collection_getContent_WithIn_Symbols(Object_struct,symbol_dataArea(),symbol_metadata_Area());
+	i = 0;
+	println_simple("____________________________________");
+	println_simple(String_append("          Object / ",Object_getName(Object_struct)));
+	println_simple("````````````````````````````````````");
+	num_properties = String_countMatches(Item_Area,Symbol_Separator());
+	Mientras i < num_properties Hacer
+		name_property = collection_getElement_AtIndex(Type_area,i);
+		Type_property = collection_getElement_AtIndex_withSeparator(name_property,0,"=");
+		name_property = collection_getElement_AtIndex_withSeparator(name_property,1,"=");
+		value_property= collection_getElement_AtIndex(item_Area,i);
+		println_simple(String_fit(Type_property,"       ")+" : "+String_fit(name_property,"           ")+" : "+String_fit(value_property,"            "));
+		i = increment(i);
+	FinMientras
+	println_simple("____________________________________");
+FinFuncion
+//---------------------- get
+Funcion Object_Name <- Object_getName(Object_struct)
+	Definir Object_Name como Texto;
+	Object_Name = collection_getName_collection(Object_struct);
+	Object_Name = String_substring(Object_struct, increment(String_length(STRUCT_TYPE_OBJECT())),String_length(Object_Name));
+FinFuncion
+
+Funcion Type_ID <- Object_getID_property(Object_struct,property_name)
+	Definir Type_ID, index_property, space_start como Numero;	
+	Definir typeArea_slice como Texto;
+	index_property = Object_getindex_property(Object_struct,property_name);
+	space_start = increment(String_indexOf(Object_struct,symbol_typeArea()));
+	Type_ID =Object_getID_property_FromRange(Object_struct,property_name, space_start, index_property);
+FinFuncion
+
+Funcion Type_ID <-Object_getID_property_FromRange(Object_struct,property_name, space_start, index_end)
+	Definir Type_ID como Numero;	
+	Definir typeArea_slice como Texto;
+	si index_end > -1 Entonces
+		space_start = collection_getIndexStart_typeArea(Object_struct);
+		typeArea_slice = String_substring(Object_struct,space_start,index_end);
+		Type_ID = String_countMatches(typeArea_slice,Symbol_Separator());
+	sino 
+		condition_error_message(true(),"Object_getID_property_FromIndex_StartToFinish",String_append("property no exist: ", property_name));	
+		Type_ID = -1;
+	FinSi
+FinFuncion
+
+Funcion Type_property <- Object_getType_property(Object_struct,property_name)
+	Definir Type_property como Texto;
+	Definir  index_end, space_start como Numero;
+	index_end = Object_getindex_property(Object_struct,property_name);
+	space_start = collection_getIndexStart_typeArea(Object_struct);
+	Type_property =  Object_getType_property_FromRange(Object_struct,property_name, space_start, index_end);
+FinFuncion
+
+Funcion Type_property <- Object_getType_property_FromRange(Object_struct,property_name, space_start, index_end)
+	Definir Type_property, type_area, property_end como Texto;
+	Definir index_start, length_property, length_object como Numero;
+	Definir isValid como Logico;
+	property_end = ""; isValid = false();
+	
+	si index_end > -1 Entonces
+		index_start = increment(String_lastIndexOf_fromIndex(Object_struct, Symbol_Separator,index_end));
+		index_start = Math_max_Int(index_start,space_start);
+		Type_property = String_substring(Object_struct,index_start,decrement(index_end));
+	SiNo
+		condition_error_message(true()," Object_getType_property_FromRange",String_append("property no exist: ", property_name));		
+		Type_property = String_null();
+	FinSi
+FinFuncion
+
+Funcion property_exists <- Object_property_exists(Object_struct,property_name)
+	Definir property_exists como Logico;	
+	property_exists = (Object_getindex_property(Object_struct,property_name) > -1);
+FinFuncion
+
+Funcion index_property <- Object_getindex_property(Object_struct,property_name)
+	Definir Type_property, type_area, property_end como Texto;
+	Definir index_property, index_start, index_end, length_property, length_object, length_typeArea como Numero;
+	Definir isValid como Logico;
+	index_end = 0; property_end = ""; isValid = false();
+	property_name = if(!String_isEmpty(property_name),property_name,TYPE_STRING());
+	length_object = String_length(Object_struct);
+	
+	index_start = collection_getIndexStart_typeArea(Object_struct);
+	index_end = String_indexOf_fromIndex(Object_struct,symbol_dataArea(),index_start);
+	type_area = String_substring(Object_struct,index_start,index_end);
+	
+	length_property = String_length(property_name);
+	length_property = if_else(length_property>length_object,1,length_property,TYPE_INT());
+	length_typeArea = String_length(Type_area);
+	index_property = length_typeArea;
+	
+	Mientras index_property <> -1 & !isValid Hacer 
+		index_property = String_lastIndexOf_fromIndex(type_area,property_name,index_property);
+		property_end = charAt(Type_area,Math_min_Int(increment_step(index_property, length_property),length_typeArea ));
+		isValid = String_isEquals(property_end, Symbol_Separator());
+	FinMientras
+	
+	si index_property> -1 Entonces
+		index_property = increment_step(index_property,index_start);	
+	FinSi
+FinFuncion
+
+Funcion property_value <- Object_getValue_property(Object_struct, property_name)
+	Definir data, TYPE como Texto;
+	data = Object_getValue_property_toString(Object_struct, property_name);
+	TYPE = Object_getType_property(Object_struct, property_name);
+	Segun TYPE Hacer
+		TYPE_INT():
+			Definir property_value Como Numero;
+			property_value = String_ToNum(data);
+		TYPE_FLOAT():
+			Definir property_value Como Real;
+			property_value = String_ToNum(data);
+		TYPE_STRING():
+			Definir property_value Como Texto;
+			property_value = String_append(data,"");//wrapper
+		De Otro Modo:
+			Definir property_value Como Logico;
+			property_value = String_toBoolean(data);
+	FinSegun
+FinFuncion
+
+Funcion property_value <- Object_getValue_property_toString(Object_struct, property_name)
+	Definir property_value,ItemArea como Texto;
+	Definir ID_property como Numero;	
+	ID_property = Object_getID_property(Object_struct, property_name);
+	si ID_property > -1 Entonces
+		ItemArea = collection_getContent_WithIn_Symbols(Object_struct,symbol_dataArea(),symbol_metadata_Area());
+		property_value = collection_getElement_AtIndex(ItemArea ,ID_property);
+	FinSi
+FinFuncion
+ 
+Funcion index_value <- Object_getIndex_value(Object_struct, property_name)
+	Definir index_value, property_id, i como Numero;
+	i = 0;
+	index_value = -1;
+	property_id = Object_getID_property(Object_struct, property_name);
+	si property_id > -1 Entonces
+		index_value = increment(String_indexOf(Object_struct,symbol_dataArea()));
+		Mientras i < property_id Hacer
+			index_value = increment(String_indexOf_fromIndex(Object_struct,Symbol_Separator(),index_value));
+			i=increment(i);
+		FinMientras
+	FinSi
+FinFuncion
+//---------------------- set
+Funcion Object_result <- Object_setValue_property(Object_struct,property_name, value)
+	Definir Object_result, item_Area, property_type como Texto;
+	Definir index_end, index_start, property_id, space_start, index_endType, i como Numero;
+	i = 0;
+	Object_result = Object_struct;
+	index_endType = Object_getindex_property(Object_struct,property_name);
+	space_start = increment(String_indexOf(Object_struct,symbol_typeArea()));
+	property_id =Object_getID_property_FromRange(Object_struct, property_name,space_start,index_endType);
+	si property_id > -1 Entonces
+		property_type = Object_getType_property_FromRange(Object_struct, property_name,space_start,index_endType);
+		index_start = increment(String_indexOf_fromIndex(Object_struct,symbol_dataArea(),index_endType));
+		Mientras i < property_id Hacer
+			index_start = increment(String_indexOf_fromIndex(Object_struct,Symbol_Separator(),index_start));
+			i=increment(i);
+		FinMientras
+		index_end = String_indexOf_fromIndex(Object_struct,Symbol_Separator(),index_start);
+		Object_result = String_remove(Object_result,index_start,index_end);
+		Object_result = String_insert(Object_result,__private_Data_Parser_ToString(value, property_type),index_start);
+	sino 
+		condition_error_message(true(),"Object_setValue_property",String_append("property no exist: ", property_name));
+	FinSi
+FinFuncion
+//TODO hacer funciones para getindex_value y asi hacer remove y lo demas
+//---------------------- Inherits
+Funcion Object_result <- Object_InheritsFrom(Object_Original,Object_Hereditary)
+	Definir Object_result como Texto;
+	Object_result = __private_Object_process_AddOrRemove_general(Object_Original,Object_Hereditary, 1);
+FinFuncion
+
+Funcion Object_depure <- Object_removeCommon_properties_From(Object_Original,Object_Compartor)
+	Definir Object_depure como Texto;
+	Object_depure = __private_Object_process_AddOrRemove_general(Object_Original,Object_Compartor, 0);
+FinFuncion 
+
+Funcion Object_select <- __private_Object_process_AddOrRemove_general(Object_1,Object_2, isRemove)
+	Definir index_start_typeArea, index_start_dataArea como Numero;
+	Definir i, index_start,index_end, index_end_typeArea  como Numero;
+	Definir property_name, property_type, Object_select, Object_compartor como Texto;
+	Definir property_exists Como Logico;
+	i=0;
+	Object_select = Object_1; Object_compartor = Object_2;
+	
+	index_start_typeArea = String_indexOf(Object_compartor,symbol_typeArea());
+	index_start_dataArea = String_indexOf_fromIndex(Object_compartor,symbol_dataArea(),index_start_typeArea);
+	index_end_typeArea = decrement(index_start_dataArea);
+	
+	index_start = index_start_typeArea;
+
+	Mientras index_start < index_end_typeArea Hacer
+		index_end = String_indexOf_fromIndex(Object_compartor,Symbol_Separator_key_value(),index_start);
+		property_type = String_substring(Object_compartor,increment(index_start),index_end);
+		index_start = String_indexOf_fromIndex(Object_compartor,Symbol_Separator(),index_end);
+		property_name = String_substring(Object_compartor,increment(index_end),index_start);
+		property_exists = Object_property_exists(Object_select,property_name);
+		
+		Segun isRemove Hacer
+			caso 0:
+				Si property_exists Entonces
+					Object_select = Object_remove_property(Object_select, property_name);		
+				FinSi
+			De Otro Modo:
+				Si !property_exists Entonces
+					Object_select = Object_add_property(Object_select, property_name, property_type);
+				Finsi;
+		FinSegun
+	FinMientras
+FinFuncion 
+
+//---------------------- remove
+//#TODO
+Funcion Object_result <- Object_remove_property(Object_struct,property_name)
+	Definir Object_result, Type_Area, item_Area como Texto;
+	Definir index_start_value, index_end_value,index_end,index_start, property_id, startSum, space_start como Numero;
+	space_start = Object_getindex_property(Object_struct, property_name);
+	index_end = increment(String_indexOf_fromIndex(Object_struct,Symbol_Separator(), space_start));
+	index_start = Math_max_Int(increment(String_lastIndexOf_fromIndex(Object_struct,Symbol_Separator(), space_start)),collection_getIndexStart_typeArea(Object_struct));
+	index_start_value = Object_getIndex_value(Object_struct, property_name);
+	index_end_value = Math_min_Int(increment(String_indexOf_fromIndex(Object_struct,Symbol_Separator,index_start_value)), decrement(String_length(Object_struct)));
+	Object_result = String_remove(Object_struct,index_start_value,index_end_value);
+	Object_result = String_remove(Object_result,index_start,index_end);
+FinFuncion
+
+Funcion Object_result <- Object_removeValue_property(Object_struct,property_name)
+	Definir Object_result como Texto;
+	Object_result = Object_setValue_property(Object_struct,property_name, String_null());
+FinFuncion
+
+/////========================================================>>>  [ TUI/CANVAS ] <<==///##4
 
 //pixeles  ·×øØ
 Funcion pixel <- pixel_clear
@@ -1689,16 +2170,6 @@ Funcion pixel <- get_pixel_whitIndex(index)
 	FinSegun
 FinFuncion
 
-Funcion Print_TUI_DrawArea3D(DrawArea, DWx, DWy, DWz,z_view_index)
-	Definir TUI, DrawXY como Texto;
-	Definir Page_size, Page_select como Numero;
-	Page_size = DWy*DWx;
-	condition_error_message(z_view_index>DWz,"Print_TUI_DrawArea3D","index out of range");
-	Page_select = Math_min_Int(z_view_index,decrement(DWz))*Page_size;
-	DrawXY = String_substring(DrawArea, Page_select,Page_select+Page_size);
-	Print_TUI_DrawArea_color(DrawXY, DWx, DWy, "");
-FinFuncion
-
 //max:630*130
 Funcion Print_TUI_DrawArea(DrawArea, DWx, DWy)
 	Print_TUI_DrawArea_color(DrawArea, DWx, DWy, "");
@@ -1712,7 +2183,7 @@ Funcion Print_TUI_DrawArea_color(DrawArea, DWx, DWy, color)
 		DrawX = String_substring(DrawArea, TUI_DrawArea_getIndex(0,i,DWx),(TUI_DrawArea_getIndex(0,increment(i),DWx)));
 		TUI[i] = DrawX;
 	FinPara
-	//Escribir "<"+String_substring(DrawArea, TUI_DrawArea_getIndex(0,DWy,DWx),String_length(DrawArea));
+	//Escribir "<"+String_substring(DrawArea, TUI_DrawArea_getIndex(0,DWy,DWx),String_length(DrawArea)); metadata
 	println_array_color(TUI, DWy,color);
 FinFuncion
 
@@ -1805,16 +2276,18 @@ Funcion DrawArea_triangle <- TUI_DrawArea_DrawTriangle(DrawArea, DWx, DWy, x0, y
     DrawArea = TUI_DrawArea_DrawLine(DrawArea, DWx, DWy, x2, y2, x0, y0);
     DrawArea_triangle = DrawArea;
 FinFuncion
-
-Funcion DrawArea_button <- TUI_newButton(text,DrawArea,DWx,DWy,x0,y0)
+//2TODO:CORREGIR PINTADO PARA QUE ELTEXTO NO SOBRE PASE LA ZONA DEBIDA YA QUE HACE SALTO DE LINEA CUANDO LLEGA AL BORDE PARA CONTINUAR
+Funcion DrawArea_button <- TUI_DrawArea_Button(DrawArea,DWx,DWy,text,x0,y0)
 	Definir DrawArea_button como Texto;
 	Definir xt,yt, length_text como Numero;
 	text = String_append_withSeparator("[ "," ]",text);
-	length_text = String_length(text);
+	length_text = increment(String_length(text));
 	xt = increment_step(x0,length_text);
 	yt= increment_step(y0,2);
-	DrawArea_button = TUI_DrawArea_DrawRectangle(DrawArea, DWx, DWy, x0, y0, increment(xt), yt);
-	DrawArea_button = TUI_DrawArea_DrawText(text,DrawArea_button,DWx,DWy,increment(x0),increment(y0));
+	x0 = Math_min_Int(increment(x0),decrement(DWx));
+	y0 = Math_min_Int(increment(y0),decrement(DWy));
+	DrawArea_button = TUI_DrawArea_DrawRectangle(DrawArea, DWx, DWy, decrement(x0), decrement(y0), Math_min_Int(xt,decrement(DWx)), Math_min_Int(yt,decrement(DWy)));
+	DrawArea_button = TUI_DrawArea_DrawText(DrawArea_button,DWx,DWy,text,x0,y0);
 FinFuncion
 
 Funcion DrawArea_point <- TUI_DrawArea_DrawPoint_normaliced(DrawArea,DWx,DWy,x0,y0)
@@ -1831,10 +2304,10 @@ FinFuncion
 
 Funcion DrawArea_point <- TUI_DrawArea_DrawPoint_pixel(DrawArea,pixel_symb,DWx,DWy,x0,y0)
 	Definir DrawArea_point como Texto;
-	DrawArea_point = TUI_DrawArea_DrawText(pixel_symb,DrawArea,DWx,DWy,x0,y0);
+	DrawArea_point = TUI_DrawArea_DrawText(DrawArea,DWx,DWy,pixel_symb,x0,y0);
 FinFuncion
 
-Funcion DrawArea_text<- TUI_DrawArea_DrawText(text,DrawArea,DWx,DWy,x0,y0)
+Funcion DrawArea_text<- TUI_DrawArea_DrawText(DrawArea,DWx,DWy,text,x0,y0)
 	Definir DrawArea_text como Texto;
 	condition_error_message(x0>=DWx,"TUI_DrawArea_DrawText","x >= DWx");
 	condition_error_message(y0>=DWy,"TUI_DrawArea_DrawText","y >= DWy");
@@ -1921,73 +2394,7 @@ Funcion DrawArea <- TUI_DrawArea(DWx,DWy)
 		DrawArea = String_append(DrawArea,DrawArea_x);
 	FinPara
 FinFuncion
-//-------------------------{ 3D }
-Funcion DrawArea_point <- TUI_DrawArea3D_DrawPoint(DrawArea,DWx,DWy,DWz,x0,y0,z0)
-	Definir DrawArea_point como Texto;
-	DrawArea_point=TUI_DrawArea3D_DrawPoint_ViewDistance(DrawArea,DWx,DWy,DWz,x0,y0,z0, 6);
-FinFuncion
-//hacerlo progresivo en pixeles
-Funcion DrawArea_point <- TUI_DrawArea3D_DrawPoint_ViewDistance(DrawArea,DWx,DWy,DWz,x0,y0,z0, view_distance_max)
-    Definir DrawArea_point como Texto;
-    Definir z_actual, index_point, peso, end Como Numero;
-	end = Math_max_Int(decrement_step(z0, view_distance_max), 0);  
-	
-    DrawArea_point = DrawArea;
-    z_actual = z0;
-	
-    Mientras z_actual >= end  Hacer
-        index_point = TUI_DrawArea3D_getIndex(x0, y0, z_actual, DWx, DWy);
-		peso = Math_truncate( (view_distance_max - (z0 - z_actual) - 1) * 4 / view_distance_max );
-		peso = increment(Math_module(peso, 4));  
-        DrawArea_point = String_insert_withReplace(DrawArea_point, get_pixel_whitIndex(peso), index_point);
-        z_actual = decrement(z_actual);
-    FinMientras
-FinFuncion
 
-
-//debe saber cuanto permanecer en una pagina mejorar y optimizar
-Funcion DrawArea_line3D <- TUI_DrawArea3D_DrawLine(DrawArea, DWx, DWy, DWz, x0, y0, z0, x1, y1, z1)
-    Definir DrawArea_line3D como Texto;
-    Definir dx, dy, dz, pasos, i como Numero;
-    Definir x, y_, z como Real;
-	
-    // Inicializar salida
-    DrawArea_line3D = DrawArea;
-	
-    // Diferencias
-    dx = x1 - x0;
-    dy = y1 - y0;
-    dz = z1 - z0;
-	
-    // Número de pasos = máximo de diferencias absolutas
-    pasos = Math_max_Int(Math_abs(dx), Math_max_Int(Math_abs(dy), Math_abs(dz)));
-	
-    si pasos = 0 Entonces
-        DrawArea_line3D = TUI_DrawArea3D_DrawPoint(DrawArea_line3D,DWx,DWy,DWz,x0,y0,z0);
-    Sino
-        Para i = 0 Hasta pasos
-            x = Math_truncate(x0 + dx * i / pasos);
-            y_ = Math_truncate(y0 + dy * i / pasos);
-            z = Math_truncate(z0 + dz * i / pasos);
-            DrawArea_line3D = TUI_DrawArea3D_DrawPoint(DrawArea_line3D,DWx,DWy,DWz,x,y_,z);
-        FinPara
-    FinSi
-	
-FinFuncion
-
-Funcion index_tui <- TUI_DrawArea3D_getIndex(x0,y0,z0,DWx,DWy)
-	Definir index_tui como Numero;
-	index_tui= TUI_DrawArea_getIndex(x0,y0,DWx)+(z0*DWx*DWy);
-FinFuncion
-
-Funcion DrawArea <- TUI_DrawArea3D(DWx,DWy,DWz)
-	Definir i Como Numero;
-	Definir DrawArea, DrawArea_xy Como Texto;
-	DrawArea_xy = TUI_DrawArea(DWx,DWy);
-	Para i=1 Hasta DWz Con Paso 1 Hacer
-		DrawArea = String_append(DrawArea,DrawArea_xy);
-	FinPara
-FinFuncion
 //(w*0.5)(1+a)
 //(h*0.5)(1-a)
 Funcion pixel_index <- noramaliced_coordinate_x_toPixel(Dx,x)
@@ -2007,7 +2414,7 @@ Funcion pixel_index <- __private_noramaliced_coordinate_toPixel(Dc,c, letter)
 	pixel_index = Math_min_Int(Math_truncate((Dc*0.5)*(1+c)), decrement(Dc));
 FinFuncion
 
-///========================================================>>>  [ VEC ] <<==///##4
+///========================================================>>>  [ VEC ] <<==///##5
 Funcion vec_index <- VEC_getX(vec_str)
 	Definir  vec_index como Numero;
 	vec_index= __private_VEC_getN(vec_str, 0, "X");
@@ -2025,13 +2432,13 @@ FinFuncion
 
 Funcion vec_index <- __private_VEC_getN(vec_str, index, name_coord)
 	Definir vec_index como Numero;
-	condition_error_message(String_countMatches(vec_str, separator_Symbol()) < index, String_append("VEC_get", name_coord), String_append(name_coord, " no exist"));
+	condition_error_message(String_countMatches(vec_str, Symbol_Separator()) < index, String_append("VEC_get", name_coord), String_append(name_coord, " no exist"));
 	vec_index = VEC_vecN_getindex(vec_str, index);
 FinFuncion
 
 Funcion vec_index <- VEC_vecN_getindex(vec_str,index)
 	Definir  vec_index como Numero;
-	vec_index = VEC_getindex_withSeparator(vec_str,index,separator_Symbol());
+	vec_index = VEC_getindex_withSeparator(vec_str,index,Symbol_Separator());
 FinFuncion
 
 Funcion vec_index <- VEC_getindex_withSeparator(vec_str,index, separator)
@@ -2039,7 +2446,7 @@ Funcion vec_index <- VEC_getindex_withSeparator(vec_str,index, separator)
 	index_Match = String_indexOf_fromIndex_speedNative(vec_str,":",0);
 	vec_str = String_substring_from(vec_str,increment(index_Match));
 	vec_str = String_substring_from_start(vec_str,decrement(String_length(vec_str)));
-	vec_str = structure_getElement_AtIndex_withSeparator(vec_str, index, separator);
+	vec_str = collection_getElement_AtIndex_withSeparator(vec_str, index, separator);
 	vec_index = String_ToNum(vec_str);
 FinFuncion
 
@@ -2048,7 +2455,7 @@ Funcion vec2_str <- VEC_vec2(x0,y0)
 	Dimension XY[2];
 	XY[0] = Num_ToString(x0);
 	XY[1] = Num_ToString(y0);
-	vec2_str = VEC_vec_str(array_ofString_separator(XY,2,separator_Symbol()));
+	vec2_str = VEC_vec_str(array_ofString_separator(XY,2,Symbol_Separator()));
 FinFuncion
 
 Funcion vec3_str <- VEC_vec3(x0,y0, _z)
@@ -2057,12 +2464,12 @@ Funcion vec3_str <- VEC_vec3(x0,y0, _z)
 	XYZ[0] = Num_ToString(x0);
 	XYZ[1] = Num_ToString(y0);
 	XYZ[2] = Num_ToString(_z);
-	vec3_str = VEC_vec_str(array_ofString_separator(XYZ,3,separator_Symbol()));
+	vec3_str = VEC_vec_str(array_ofString_separator(XYZ,3,Symbol_Separator()));
 FinFuncion
 
 Funcion vec_str <- VEC_vec_str(str)
 	Definir vec_str como Texto;
-	vec_str = VEC_str_withSeparator(str, separator_Symbol());
+	vec_str = VEC_str_withSeparator(str, Symbol_Separator());
 FinFuncion
 
 Funcion vec_str <- VEC_str_withSeparator(str, separator)
@@ -2074,331 +2481,24 @@ Funcion vec_str <- VEC_str_withSeparator(str, separator)
 	vec_str= String_append(vec_str,"|");
 FinFuncion
 
-///========================================================>>>  [ OBJECT ] <<==///##5
-
-Funcion Object_result <- Object_newObject(name_obj)
-	Definir Object_result como Texto;
-	Object_result = __private_Util_newStructure("",String_append_withSeparator(STRUC_TYPE_OBJECT,String_ToLowerCase(name_obj), "/"));
-FinFuncion
-
-Funcion Object_result <- Object_newObject_properties(name_obj, properties_list)
-	Definir Object_result como Texto;
-	Object_result =  Object_newObject_properties_separator(name_obj, properties_list, "=");
-FinFuncion
-
-Funcion Object_result <- Object_newObject_properties_separator(name_obj, properties_list, separator_type_name)
-	Definir Object_result como Texto;
-	Object_result =  Object_newObject_properties_separator_separatorgroup(name_obj, properties_list, separator_type_name, separator_Symbol());
-FinFuncion
-//Int=edad,String=name --> Int separator_type_name edad separator_group String...
-Funcion Object_result <- Object_newObject_properties_separator_separatorgroup(name_obj, properties_list, separator_type_name, separator_group)
-	Definir Object_result, property_name, property_type, property, properties como Texto;
-	Definir index_separator_group, prop_list_length como Numero;
-	Object_result = Object_newObject(name_obj);
-	properties = String_trim(properties_list);
-	index_separator_group = String_indexOf(properties, separator_group);
-	index_separator_group = if_else(index_separator_group < 0, String_length(properties),index_separator_group,TYPE_INT);
-	
-	Mientras !String_isEmpty(properties)  Hacer
-		prop_list_length = String_length(properties);
-		index_separator_group = String_indexOf(properties, separator_group);
-		index_separator_group = if_else(index_separator_group < 0, prop_list_length,index_separator_group,TYPE_INT);
-		property = String_substring(properties,0,index_separator_group);
-		property_type = structure_getElement_AtIndex_withSeparator(property,0, separator_type_name);
-		property_name = String_substring(property,increment(String_length(property_type)),String_length(property));
-		Object_result = Object_add_property(Object_result, property_type, property_name);
-		properties = String_substring_from(properties,Math_min_int(increment(index_separator_group),prop_list_length));
-	FinMientras
-FinFuncion
-
-Funcion isValid <- TYPE_isValid(TYPE)
-	Definir isValid Como Logico;
-	isValid = String_isEquals(TYPE, TYPE_STRING()) | String_isEquals(TYPE, TYPE_INT()) | String_isEquals(TYPE, TYPE_BOOLEAN()) | String_isEquals(TYPE, TYPE_FLOAT());
-FinFuncion
-
-Funcion Object_Debug(Object_struc)
-	Definir Item_Area, Type_area, Name_Object, name_property,Type_property, value_property como Texto;
-	Definir i, num_properties como Numero;
-	Type_area = structure_getContent_TypesArea(Object_struc);
-	Item_area = structure_getContent_ItemArea(Object_struc);
-	i = 0;
-	println_simple("------------------------------------");
-	println_simple(String_append("          Object / ",Object_getName(Object_struc)));
-	println_simple("------------------------------------");
-	num_properties = String_countMatches(Item_Area,",");
-	Mientras i < num_properties Hacer
-		name_property = structure_getElement_AtIndex(Type_area,i);
-		Type_property = structure_getElement_AtIndex_withSeparator(name_property,0,"=");
-		name_property = structure_getElement_AtIndex_withSeparator(name_property,1,"=");
-		value_property= structure_getElement_AtIndex(item_Area,i);
-		println_simple(String_fit(Type_property,"       ")+" : "+String_fit(name_property,"           ")+" : "+String_fit(value_property,"            "));
-		i = increment(i);
-	FinMientras
-	println_simple("------------------------------------");
-FinFuncion
-
-Funcion Object_Name <- Object_getName(Object_struc)
-	Definir Object_Name como Texto;
-	Object_Name = String_substring(Object_struc, increment(String_indexOf(Object_struc, "/")),String_indexOf(Object_struc, "<"));
-FinFuncion
-Funcion Object_result <- Object_InheritsFrom(Object_Original,Object_Hereditary)
-	Definir Object_result, property_Hereditary, ItemArea_Hereditary como Texto;
-	Object_Hereditary =  Object_removeCommon_properties(Object_Hereditary,Object_Original);
-	property_Hereditary = structure_getContent_TypesArea(Object_Hereditary);
-	itemArea_Hereditary = structure_getContent_ItemArea(Object_Hereditary);
-	Object_result = String_insert(Object_Original, itemArea_Hereditary, decrement(String_length(Object_Original)));
-	Object_result = String_insert(Object_result, property_Hereditary, String_indexOf(Object_result, ">"));
-FinFuncion
-
-Funcion Object_depure <- Object_removeCommon_properties(Object_1,Object_2)
-	Definir i como Numero;
-	Definir property_name, Types_Area, Object_property , Object_depure como Texto;
-	i=0;
-	Types_Area = structure_getContent_TypesArea(Object_2);
-	property_name = "temp";
-	Mientras property_name <> "" Hacer
-		property_name = structure_getElement_AtIndex(Types_Area,i);
-		property_name = String_substring(property_name,increment(String_indexOf(property_name,"=")),String_length(property_name));
-		Object_property =__private_Object_sliceBeforeProperty(Object_1,property_name);
-		si  Object_property  <> String_null & Object_property <> "" Entonces
-			Object_1 = Object_remove_property(Object_1, property_name);
-		FinSi
-		i = increment(i);
-	FinMientras
-	Object_depure = Object_1;
-FinFuncion 
-
-
-Funcion Object_result <- Object_add_property(Object_struc,TYPE,item_name)
-	Definir Object_result, new_data como Texto;
-	new_data = String_append_withSeparator(TYPE,String_ToLowerCase(item_name),"=");
-	new_data= String_append(new_data, ",");
-	Object_result = String_insert(Object_struc, new_data, String_indexOf(Object_struc,">"));
-	Object_result = String_insert(Object_result,",", decrement(String_length(Object_result)));
-FinFuncion
-
-Funcion Object_result <- Object_remove_property(Object_struc,property_name)
-	Definir Object_result, Type_Area, item_Area como Texto;
-	Definir base_index,index_end,index_start, property_id, startSum como Numero;
-	Type_area =  __private_Object_sliceBeforeProperty(Object_struc,property_name);
-	Object_result = Object_struc;
-	
-	si Type_area <> String_null() Entonces
-		property_id = String_countMatches(Type_area,",");
-		//---property_remove
-		index_end = String_length(property_name)+String_length(Type_area)+1;
-		index_Start = String_lastIndexOf(Type_area,",");
-		index_Start = increment(index_Start);
-		base_index = increment(String_indexOf(Object_result, "<"));
-		Object_result = String_remove(Object_result, index_start+base_index, index_end+base_index);
-		//---item_remove
-		item_Area = structure_getContent_ItemArea(Object_result);
-		index_end = structure_getIndex_FromNumSeparator(Item_Area, property_id);
-		index_Start = String_lastIndexOf_fromIndex(Item_Area, separator_Symbol(), index_end);
-		index_Start = increment(index_Start);
-		base_index = increment(String_indexOf(Object_result, ":"));
-		
-		Object_result = String_remove(Object_result, index_start + base_index, index_end + base_index + 1);
-	FinSi
-FinFuncion
-
-Funcion Object_result <- Object_removeValue_property(Object_struc,property_name)
-	Definir Object_result como Texto;
-	Object_result = Object_setValue_property(Object_struc,property_name, String_null());
-FinFuncion
-
-Funcion Object_result <- Object_setValue_property(Object_struc,property_name, value)
-	Definir Object_result, item_indexs, Type_property como Texto;
-	Definir index_end,index_start, property_id como Numero;
-	Object_result = Object_struc;
-	property_id = Object_getID_property(Object_struc, property_name);
-	si property_id >= 0 Entonces
-		Type_property = Object_getType_property(Object_struc, property_name);
-		item_indexs = Object_getIndexRangeAsString(Object_struc, property_id);
-		index_start = String_ToNum(structure_getElement_AtIndex(item_indexs,0));
-		index_end = String_ToNum(structure_getElement_AtIndex(item_indexs,1));
-		Object_result = String_remove(Object_result, index_start, index_end);
-		Object_result = String_insert(Object_result, __private_Object_parser_ToString(Type_property, value), index_start);
-	FinSi
-FinFuncion
-
-Funcion index_start_end<- Object_getIndexRangeAsString(Object_struc, property_id)
-	Definir item_Area, index_start_end como Texto;
-	Definir base_index, index_start, index_end como Numero;
-	
-	item_Area = structure_getContent_ItemArea(Object_struc);
-	base_index = increment(String_indexOf(Object_struc, ":"));
-	
-	index_end = structure_getIndex_FromNumSeparator(item_Area, property_id);
-	index_end = index_end + base_index;
-	
-	index_start = String_lastIndexOf_fromIndex(item_Area, separator_Symbol(), index_end - base_index);
-	index_start = increment(index_start) + base_index;
-	index_start_end = String_append_withSeparator(Num_ToString(index_start), Num_ToString(index_end), Separator_symbol());
-FinFuncion
-
-Funcion index_property <- Object_getIndexStart_ID(Object_struc,property_name)
-	property_ID = Object_getID_property(Object_struc, property_name);
-	
-FinFuncion
-
-Funcion Type_property <- Object_getType_property(Object_struc,property_name)
-	Definir Type_property como Texto;
-	Type_property =__private_Object_sliceBeforeProperty(Object_struc,property_name);
-	Type_property = String_substring_from(Type_property,increment(String_lastIndexOf(Type_property, ",")));
-	Type_property = String_remove(Type_property, String_length(Type_property)-1,String_length(Type_property));
-FinFuncion
-
-Funcion Type_ID <- Object_getID_property(Object_struc,property_name)
-	Definir Type_ID como Numero;	
-	Definir Slice_AreaProperty como Texto;
-	Slice_AreaProperty = __private_Object_sliceBeforeProperty(Object_struc,property_name);
-	Type_ID = String_countMatches(Slice_AreaProperty, ",");
-	condition_error_message(Slice_AreaProperty == String_null(),"Object_getID_property","property no exist");
-	Type_ID = if(Slice_AreaProperty <> String_null(), Type_ID, TYPE_INT);
-FinFuncion
-
-Funcion Type_property <- __private_Object_sliceBeforeProperty(Object_struc,property_name)
-	Definir Type_property,Content_TypesArea como Texto;
-	Definir index_property como Numero;
-	property_name = String_ToLowerCase(property_name);
-	Content_TypesArea = structure_getContent_TypesArea(Object_struc);
-	index_property = String_indexOf(Content_TypesArea,property_name);
-	si index_property >= 0 Entonces
-		Type_property = String_substring(Content_TypesArea,0,index_property);
-	sino 
-		Type_property = String_null();
-	FinSi
-FinFuncion
-
-Funcion result <- __private_Object_parser_ToString(TYPE, data)
-	Definir result Como Texto;
-	Segun TYPE Hacer
-		TYPE_INT():
-			result = Num_ToString(data);
-		TYPE_FLOAT():
-			result = Num_ToString(data);
-		TYPE_STRING():
-			result = String_append(data,"");//wrapper
-		De Otro Modo:
-			result = Boolean_ToString(data);
-	FinSegun
-FinFuncion
-
-Funcion property_value <- Object_getValue_property(Object_struc, property_name)
-	Definir data, TYPE como Texto;
-	data = Object_getValue_property_toString(Object_struc, property_name);
-	TYPE = Object_getType_property(Object_struc, property_name);
-	Segun TYPE Hacer
-		TYPE_INT():
-			Definir property_value Como Numero;
-			property_value = String_ToNum(data);
-		TYPE_FLOAT():
-			Definir property_value Como Real;
-			property_value = String_ToNum(data);
-		TYPE_STRING():
-			Definir property_value Como Texto;
-			property_value = String_append(data,"");//wrapper
-		De Otro Modo:
-			property_value = String_toBoolean(data);
-	FinSegun
-FinFuncion
-
-Funcion property_value <- Object_getValue_property_toString(Object_struc, property_name)
-	Definir property_value,ItemArea como Texto;
-	Definir ID_property como Numero;
-	ItemArea = structure_getContent_ItemArea(Object_struc);
-	ID_property = Object_getID_property(Object_struc, property_name);
-	
-	property_value = structure_getElement_AtIndex(ItemArea ,ID_property);
-FinFuncion
-
-Funcion TypesArea <- structure_getNameStructure(Structure)
-	Definir TypesArea Como Texto;
-	TypesArea = String_substring(Structure, 0, String_indexOf(Structure, "<"));
-FinFuncion
-
-Funcion TypesArea <- structure_getContent_TypesArea(Structure)
-	Definir TypesArea Como Texto;
-	TypesArea = structure_getContent_Container(Structure,"<", ">");
-FinFuncion
-
-Funcion IndexArea <- structure_getContent_IndexArea(Structure)
-	Definir IndexArea Como Texto;
-	IndexArea = structure_getContent_Container(Structure,"(", ")");
-FinFuncion
-
-Funcion ItemArea <- structure_getContent_ItemArea(Structure)
-	Definir ItemArea Como Texto;
-	ItemArea = structure_getContent_Container(Structure,":", ":");
-FinFuncion
-
-Funcion Content <- structure_getContent_Container(Structure,open_symbol, close_symbol)
-	Definir Content Como Texto;
-	Definir index_Start,index_end Como Entero;
-	index_Start = increment(String_indexOf(Structure,open_symbol));
-	index_end = index_Start+(String_indexOf(String_substring_from(Structure, index_Start),close_symbol));
-	Content = String_substring(Structure,index_Start,index_end);
-FinFuncion
-
-Funcion index_separator <- structure_getIndex_FromNumSeparator(text, num)
-	Definir index_separator como Numero;
-	index_separator = structure_getIndex_FromNumSeparator_Separator(text,separator_Symbol(),num);
-FinFuncion
-
-Funcion index_separator <- structure_getIndex_FromNumSeparator_Separator(text, separator, num)
-	Definir i, index_separator, text_length como Numero;
-	text_length = String_length(text);
-	index_separator = String_indexOf_fromIndex_speedNative(text,separator,index_separator);
-	mientras index_separator < text_length & i<num Hacer
-		index_separator = increment(index_separator);
-		index_separator = String_indexOf_fromIndex_speedNative(text,separator,index_separator);
-		i = increment(i);
-	FinMientras
-FinFuncion
-
-Funcion str_element <- structure_getElement_AtIndex(text, index)
-	Definir str_element como texto;
-	str_element = structure_getElement_AtIndex_withSeparator(text, index, separator_Symbol());
-FinFuncion
-
-Funcion str_element <- structure_getElement_AtIndex_withSeparator(text, index, separator)
-	Definir count_sep, i, index_match, index_matchEnd, sum como Real;
-	Definir str_element, Slice_After como texto;
-	index_MatchEnd = structure_getIndex_FromNumSeparator_Separator(text,separator,index);
-	index_Matchend= if_else(index_Matchend<0,String_length(text),index_Matchend,TYPE_INT);
-	
-	index_match = String_LastindexOf_fromIndex(text,separator,index_MatchEnd)+1;
-	index_Match= if_else(index_Match<0,0,index_Match,TYPE_INT);
-	
-	si index >= 0 & index <= String_countMatches(text, separator) Entonces
-		str_element = String_substring(text, index_Match,index_Matchend);
-	SiNo
-		str_element = String_null();
-	FinSi
-FinFuncion
-
 ///%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%[ PSeInt-Toolkit ] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //Pseint --version 2023
-// String=Texto, Caracter
-// Int=Numero, Numerico, Entero
-// Float=Real
-// Boolean=Logico
-// var+FinFuncion == return (@retorna el valor de la variable en el estado en el que este a menos que alla otra asignacion
-//| ==  ||
-//V == &&
-//& == &&
+// String=Texto, Caracter // Int=Numero, Numerico, Entero // Float=Real // Boolean=Logico // | ==  || // & == &&
+// return = var+FinFuncion (@retorna el valor de la variable en el estado en el que este a menos que alla otra asignacion)
 // symbols: \ # $ % & | ( ) * + , - . / : ; < = > ? @ [  ] ^ _ ` { | } ~  ¢ £ ¥ « » ± © ® ÷ ×  ¡ § ¶ · ? ø æ ~ ª º ^¹²³ ? !
 // --------------------  Trabajo pendiente :
-//  Structures: stack, queue, map, list, setter,
+//  collections: stack, queue, map, list, setter,
 //  metodos: randomInt, contains_IgnoreCase, array_sort, Array_reverse, array_filter
 // TUI: Window, row, column,input, inputPrompt,Notif_elseication, Checkbox, progresBar,Menu-desplegable, infoCode, init
 // quitar null de object remove --> analizar si es necesario
 // Modulo de Testeo /TEST_ASSERT_EQ(Math_pow(2,3), 8) / TEST_ASSERT_TRUE(String_isNumber("123"))
 //mejorar print progress con soporte para color y color transparente
 //print soporte de color 
+//	" /``````````````````\"
+// " §     B.A.M.W       §"
+// " \__________________/"
 ///%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%[ PSeInt-Toolkit ] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Algoritmo start_Code
+Algoritmo main_start_code
 	Definir start_second, start_minute como Numero;
 	Definir Time_Duration, minute_duration, second_duratrion como Texto;
 	start_minute = Local_Time_getMinute();
@@ -2408,5 +2508,5 @@ Algoritmo start_Code
 	minute_duration = Num_ToString(Duration_between_minute_strict(start_minute,start_second));
 	second_duratrion = Num_ToString(Duration_between_second_now(start_second));
 	Time_Duration = String_append_withSeparator(String_pad_start(minute_duration, "00"),String_pad_start(second_duratrion, "00"),":");
-	println_simple(Color_setColorText(String_append("//// execution time : (mm:ss) >>> ",Time_Duration),COLOR_BLUE()));
+	println_simple(Color_setColorText(String_append(">>> execution time >>> (mm:ss) ... ",Time_Duration),COLOR_BLUE()));
 FinAlgoritmo
