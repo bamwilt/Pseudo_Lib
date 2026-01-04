@@ -1,0 +1,96 @@
+Funcion main
+	Definir persona_1, empleado_1, tarjeta_1, new_instace_persona,new_instace_empleado, new_instace_credito,list como Texto;
+	Definir producto_1,  new_instace_producto, informe_venta como Texto;
+	Definir i como Numero;
+	Dimension informe_venta[6];
+	new_instace_credito = New_Tarjeta_Credito();
+	new_instace_persona = New_Persona();
+	new_instace_empleado = New_Empleado();
+	new_instace_producto = New_Producto();
+	
+	persona_1 = Init_Construct_Persona(new_instace_persona,1234,"Maria","aguilar",18);
+	
+	empleado_1 = Init_Construct_Empleado(new_instace_empleado,"Juan","Alvarado",24,1200.21,true());
+	
+	tarjeta_1 = Init_Construct_Tarjeta_credito(new_instace_credito,Object_getValue_property(persona_1,"id"),300.12);
+	
+	producto_1 = Init_Construct_Producto(new_instace_producto,"queso",20.22);
+	
+	si Num_isEquals(Object_getValue_property(persona_1, "id"),Object_getValue_property(persona_1, "id")) & Object_getValue_property(tarjeta_1, "saldo") > Object_getValue_property(producto_1, "precio") Entonces
+		tarjeta_1 = Object_setValue_property(tarjeta_1, "saldo", decrement_step(Object_getValue_property(tarjeta_1,"saldo"),Object_getValue_property(producto_1, "precio")));
+		empleado_1 = Object_setValue_property(empleado_1,"caja",increment_step(Object_getValue_property(empleado_1,"caja"),Object_getValue_property(producto_1,"precio")));
+		informe_venta[0] = "{-----TRANSACCION EXITOSA------}";
+		informe_venta[1] = String_append("Producto: ", Object_getValue_property_toString(producto_1,"nombre"));
+		informe_venta[2] = String_append("Precio Unitario: ", Object_getValue_property_toString(producto_1,"precio"));
+		informe_venta[3] = String_append("Cliente: ", Object_getValue_property_toString(persona_1,"nombre"));
+		informe_venta[4] = String_append("Saldo de Cliente: ", Object_getValue_property_toString(tarjeta_1,"saldo"));
+		informe_venta[5] = String_append("Caja Final: ", Object_getValue_property_toString(empleado_1,"caja"));
+		println_array(informe_venta,6);
+	FinSi
+FinFuncion
+
+Funcion persona <- New_Persona
+	Definir persona como Texto;
+	persona = Object_newObject("persona");
+	persona = Object_add_property(persona, "ID", TYPE_INT());
+	persona = Object_add_property(persona, "nombre", TYPE_STRING());
+	persona = Object_add_property(persona, "apellido", TYPE_STRING());
+	persona = Object_add_property(persona, "edad", TYPE_INT());
+FinFuncion
+
+Funcion empleado <- New_Empleado
+	Definir empleado, persona como Texto;
+	empleado = Object_newObject("empleado");
+	persona = New_Persona();
+	empleado = Object_InheritsFrom(empleado,persona);
+	empleado = Object_add_property(empleado, "caja", TYPE_FLOAT());
+	empleado = Object_add_property(empleado, "activo", TYPE_BOOLEAN());
+FinFuncion
+
+Funcion credito <- New_Tarjeta_Credito
+	Definir credito como Texto;
+	credito = Object_newObject("tarjeta");
+	credito = Object_add_property(credito, "ID", TYPE_INT());
+	credito = Object_add_property(credito, "Saldo", TYPE_FLOAT());
+FinFuncion
+
+Funcion producto <- New_Producto
+	Definir producto como Texto;
+	producto = Object_newObject("producto");
+	producto = Object_add_property(producto, "nombre", TYPE_STRING());
+	producto = Object_add_property(producto, "precio", TYPE_FLOAT());
+FinFuncion
+
+Funcion empleado <- Init_Construct_Empleado(instace_empleado, nombre, apellido, edad, sueldo, activo)
+	Definir persona, empleado como Texto;
+	empleado = Object_newObject("empleado");
+	empleado = Object_add_property(empleado, "nombre", TYPE_STRING());
+	empleado = Object_add_property(empleado, "apellido", TYPE_STRING());
+	empleado = Object_add_property(empleado, "edad", TYPE_INT());
+	empleado = Object_add_property(empleado, "caja", TYPE_FLOAT());
+	empleado = Object_add_property(empleado, "activo", TYPE_BOOLEAN());
+FinFuncion
+
+Funcion persona <- Init_Construct_Persona(instace_persona, ID, nombre, apellido, edad)
+	Definir persona como Texto;
+	persona = instace_persona;
+	persona = Object_setValue_property(persona,"ID", ID);
+	persona = Object_setValue_property(persona,"nombre", nombre);
+	persona = Object_setValue_property(persona,"apellido", apellido);
+	persona = Object_setValue_property(persona,"edad", edad);
+FinFuncion
+
+Funcion credito <- Init_Construct_Tarjeta_credito(instace_credito,id,saldo)
+	Definir credito como Texto;
+	credito = instace_credito;
+	credito = Object_setValue_property(credito,"ID",id);
+	credito = Object_setValue_property(credito,"Saldo",saldo);
+FinFuncion
+
+Funcion producto <- Init_Construct_Producto(instace_producto, nombre, precio)
+	Definir producto como Texto;
+	producto = instace_producto;
+	producto = Object_setValue_property(producto,"nombre",nombre);
+	producto = Object_setValue_property(producto,"precio", precio);
+FinFuncion
+
