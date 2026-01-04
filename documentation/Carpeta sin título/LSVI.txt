@@ -1,0 +1,52 @@
+```Lazy Versioned String Index (LVSI) ```
+
+_(i, L(xi), vi ;) {j:vj} v_
+
+- i = índice base del bloque
+- L(xi) = longitud del dato
+- vi = versión de operación propia
+- (j:vj) = versiones pendientes que afectan a este bloque
+- j = índice de la versión
+- vj = valor del desplazamiento 
+- [v] = última versión aplicada globalmente
+
+- Fórmulas
+
+si es nueva insercion
+N[i] = N[i-1] +L(xi-1)+vf
+Sino es nueva:
+N[i]=N[i]+L(xi)+vf
+donde vf es la sumatoria de todas las versiones pendientes que cumplan j<i
+
+Si índice anterior vj<v entonces aplicar las versiones faltantes
+
+En esta estructura los índices internamente cumplen la regla de n[i-1]<n[i]
+Los índices están ordenados de mayor a menor internamente y a la hora de hacer get o set se calcula el valor real que siempre cumplirá esa regla.
+
+Lo que busca es una lazy update con versiones, para que los  demás indices no se calcule y simplemente con la sumatoria de versiones se sepa su índice real (así no importa el tamaño de los datos solo su posición y longitud para pode extraer inmediatamente la cadena) evitando comparaciones innecesarias en una cadena de datos de gran tamaño 
+........ 
+Jerarquía de optimización de versiones:
+nn=(n+n) 
+mnm=n(m+m) 
+n1mn=(m-n1) (n1+n)
+n-n = none
+
+Esto representa el orden de llegada y como se compacta (= result) como último recurso se podría usar la formula:
+
+i=L(x[i-1] )+L(x[i])
+
+Y actualizar todos lo índices vaciando así las versiones
+....... 
+Estructura óptima:
+"área de datos:(indices){versiones}[versión global]"
+ 
+Los índices dentro de cadena gracias al estar en un posición inicial no cambian 
+Los índices y demás aunque sean variantes están en una posición intermedia evitando modificaciones a los índices reales de la cadena
+La versión global se colocó al final para evitar ser la primer cosa en comparar y guardar así evitando calcular cosas innecesarias 
+
+Actualmente, las versiones solo afectan índices (desplazamiento) +; no se versiona el contenido. 
+
+Nota:
+Todos los datos están dentro de la cadena como regla ya que el entorno no permite pasar arreglos ni colecciones complejas entre métodos/funciones, así que la transferencia de datos y velocidad ha sido trasladado a cadenas con metadatos internos
+
+Otra sugerencia para búsquedas rapida seria que los metadatos midan lo mismo ejemplo 000:000:0 pero cuando la longitud o índices aumenten deberia expandirse para todos los metadatos, ademas que agregarias una comprobación mas la de limite a superar para actualizar, pero a cambio la búsqueda lineal por separador seria eliminada

@@ -39,11 +39,8 @@ Funcion main
 	arrayNum[2]=4;
 	arrayNum[3]=11;
 	arrayNum[4]=1;
-	
-	Escribir Local_Date_getNumDayOfTheYear(2024, 3, 1);
 	//new_instace_persona = New_Persona();
 	//persona_1 = Init_Construct_Persona(new_instace_persona,1234,"Maria","aguilar",18);
-
 FinFuncion
 
 Funcion persona <- New_Persona
@@ -86,8 +83,7 @@ Funcion producto <- Init_Construct_Producto(instace_producto, nombre, precio)
 	producto = Object_setValue_property(producto,"precio", precio);
 FinFuncion
 
-
-//testear get Value property en objeto cuando esta vacio
+//TODO4:testear get Value property en objeto cuando esta vacio
 ///========================================================>>>  [ INPUT ] <<==///#1
 
 Funcion user_input <- user_input_options(options_text,TYPE)
@@ -180,7 +176,6 @@ Funcion boolean <- String_toBoolean(str)
 FinFuncion
 ///========================================================>>>  [ STRING ] <<==///#2
 // =========================================================== APPENDS
-// ----------------------------------agregar a referencia en unions revisar
 Funcion result <- String_append_withSeparator(str1,str2,separator)
 	Definir result Como Texto;
 	result = str1+separator+str2+"";
@@ -489,8 +484,8 @@ Funcion index <- String_indexOf_fromIndex_KMP(text,text_pattern,index_Start)
 	FinMientras
 	index=if(equalsChar,i-j, TYPE_INT());
 FinFuncion
-
 // =============================================================== OCURRENCES =======
+
 Funcion result <- String_occurrences(text,text_match)
 	Definir result Como Numero;
 	result = __private_String_occurrences_general(text,text_match,false);
@@ -500,7 +495,7 @@ Funcion result <- String_occurrences_overlap(text,text_match)
 	Definir result Como Numero;
 	result = __private_String_occurrences_general(text,text_match,true);
 FinFuncion
-//actualizar con index_from
+//TODO5:actualizar con index_from
 Funcion result <- __private_String_occurrences_general(text,text_match,isOverLap)
 	Definir result, count, index, progress_sum Como Numero;
 	Definir text_Current Como Texto;
@@ -514,7 +509,6 @@ Funcion result <- __private_String_occurrences_general(text,text_match,isOverLap
 	FinMientras 
 	result = count;
 FinFuncion
-
 // =============================================================== LENGTH =======
 Funcion num <- String_length(text)
 	Definir num Como Numero;
@@ -547,7 +541,6 @@ Funcion count <- __private_String_countMatches_general(text, text_matcher, isOve
 		index = String_indexOf_fromIndex_speedNative(text, text_matcher, length_Match);
 	FinMientras
 FinFuncion
-
 ///========================================================>>>  [ ARRAY] <<==/// #3
 
 Funcion str_array <- array_ofString(array, size, type)
@@ -648,17 +641,15 @@ Funcion __PSEINT_print(text)
 	Escribir text Sin Saltar ;
 FinFuncion
 //=================================================================PRINTLN
-
 // Pasos generales del proceso:
-// 1. Calcular cu\E1ntas cadenas se deben imprimir.
+// 1. Calcular cuantas cadenas se deben imprimir.
 // 2. Rellenar el arreglo eliminando los caracteres "\n" innecesarios.
 // 3. Verificar si existe color o estilo aplicado en la cadena:
-//    - Si existe, obtener la posici\F3n con `indexOf` y `lastIndexOf`.
+//    - Si existe, obtener la posicion con `indexOf` y `lastIndexOf`.
 //    - Si ambas posiciones son iguales, guardar ese color como definitivo.
 //    - Si son diferentes, utilizar el valor correspondiente a `lastIndexOf`.
 // 4. Aplicar el color al texto si no cuenta con uno definido al inicio.
 // 5. Enviar todo el arreglo al m\E9todo de impresi\F3n en un solo paso.
-
 
 Funcion __private_internal_printer_formater(text)
 	Definir index_breakline,text_length como Numero;
@@ -750,7 +741,6 @@ Funcion repeat(text,numEnd)
 		print(text);
 	FinPara
 FinFuncion
-
 // ...
 Funcion repeat_ln(text,numEnd)
 	Definir start Como Numero;
@@ -758,8 +748,7 @@ Funcion repeat_ln(text,numEnd)
 		println(text);
 	FinPara
 FinFuncion
-
-// ..
+//..
 Funcion breakline
 	print("\n");
 FinFuncion
@@ -879,7 +868,6 @@ Funcion __private_general_log(message,start_tag,SELECTED_COLOR)
 	message = String_append(start_tag,message);
 	println_simple(String_append(SELECTED_COLOR,message));
 FinFuncion
-
 ///========================================================>>>  [ INT ] <<==///#5
 // =============================================================== CONVERSIONS
 Funcion num <- TextToNum(text)
@@ -1094,7 +1082,7 @@ Funcion lnx0 <- Math_ln(x)
         lnx0 = lnx0 + term / n;
     FinPara
 FinFuncion
-//las variables como x y firts_term son molestas ver como hacer ln o dejarlo asi
+//las variables como x y firts_term son molestas ver como hacer ln() o dejarlo asi
 Funcion num_taylor <- Math_serie_taylor(x,first_term, num_terms,n_start, n_increment, num_exp, isFact, HasAlternations)
 	Definir num_taylor,term, i, n , n_divisor Como Real;	
 	num_taylor=first_term;
@@ -1134,7 +1122,6 @@ Funcion num_deg <- RAD_TO_DEG(x_rad)
 	Definir num_deg como Real;
     num_deg = x_rad * (Math_PI()/180);
 FinFuncion
-
 //Babylonian method: 1/2(xk+S/xk)
 Funcion num_sqrt <- Math_sqrt(S)
     Definir num_sqrt, xk, i Como Real;
@@ -1144,7 +1131,6 @@ Funcion num_sqrt <- Math_sqrt(S)
 		xk = num_sqrt;
 	FinPara
 FinFuncion
-
 // =============================================================== ROUND
 // module = a-floor(a/b)*b
 Funcion module <- Math_module(dividend,divisor)
@@ -1194,7 +1180,6 @@ Funcion num_fact <- Math_factorial(x)
 		num_fact = num_fact*i;
 	FinPara
 FinFuncion
-
 // =============================================================== CONSTANTS
 Funcion num_PI <- Math_PI
 	Definir num_PI como Real;
@@ -1205,7 +1190,6 @@ Funcion num_EULER <- Math_EULER
 	Definir num_PI como Real;
 	num_EULER = 2.718281828459045;
 FinFuncion
-
 ///========================================================>>>  [ BOOLEANS ] <<==///#7
 // ===========================================================  STRING <<<<<<
 Funcion boolean <- String_isEmpty(text)
@@ -1376,9 +1360,10 @@ Funcion boolean <- char_isNumber(char)
 FinFuncion
 
 // =============================================================== COLOR  <<<<<<
-Funcion boolean <- String_hasColor(text)//terminar==================
+Funcion boolean <- String_hasColor(text)
 	Definir boolean Como Logico;
 	boolean = __private_String_hasStyle_or_Color(text);
+	//TODO8: terminar junto con remove Colors
 FinFuncion
 
 Funcion boolean <- String_hasStyle(text)
@@ -1583,7 +1568,6 @@ Funcion Num <- number_Error
 	Definir Num Como Numero;
 	Num = -1;
 FinFuncion
-
 // color&style
 Funcion str <- symbol_Escape
 	Definir str Como Texto;
@@ -1694,11 +1678,6 @@ Funcion symbol_area <- symbol_Metadata_Area
 FinFuncion
 
 ///========================================================>>>  [ COLORS ] <<==///##0
-//setFomater Color
-//color: \R,\G,\Y,\B,\M,\C,\W
-//segun code en texto colorear 
-//salto de linea heredar color \n
-//
 // =============================================================== CODES <<<<<<
 Funcion color <- COLOR_TRANSPARENT
 	Definir color Como Texto;
@@ -1767,7 +1746,7 @@ Funcion remove_Colors
 FinFuncion
 //TODO:
 //agregar soporte para colores a print_progress_formater
-
+//agregar un caracter al final de printFormater para hacer efecto de preparacion tipo Hell_ luego Hello 
 Funcion text_Color <- Color_setColorText(text,color)
 	Definir text_Color Como Texto;
 	condition_error_message(!String_hasColor(color),"Color_setColorText", String_append("invalid color `",String_append(color,"`")));
@@ -2346,11 +2325,7 @@ Funcion element_Result <- util_Stack_Pop(struct_Stack Por Referencia)
 FinFuncion
 
 ///========================================================>>>  [ MAP ] <<==///##2_5
-// REcordar que usar . en el identif_elseicador [1.2] es impresiso ya que puede ser redondeado
-// estructtura Map<T,T>[]:()()()
-// recordar que son 3 partes bien separadas identif_elseicador/ruler
-// data cache index length
-// burbuja group
+// estructura Map<T,T>[]:()()() burbuja group
 Funcion new_Map <- util_Map_newMap(TYPE,TYPE2)
 	Definir new_Map Como Texto;
 	new_Map = collection_NewCollection(String_append_withSeparator(TYPE,TYPE2,symbol_Separator()),STRUCT_TYPE_MAP());
@@ -2368,17 +2343,6 @@ Funcion new_list <- util_List_newList(TYPE)
 	new_list = collection_NewCollection(TYPE,STRUCT_TYPE_LIST());
 FinFuncion
 
-Funcion list <- util_List_add(struct_list,new_data)
-	Definir list, type_list,data_string Como Texto;
-	type_list = collection_getContent_TypesArea(struct_list);
-	list =  util_List_add_TYPE(struct_list,new_data,type_list);
-FinFuncion
-
-Funcion list <- util_List_add_TYPE(struct_list,new_data,TYPE)
-	Definir list, data_string Como Texto;
-	data_string = dataParser_ToString(new_data,TYPE);
-	list = String_insert(struct_list,String_append(data_string, symbol_Separator()),decrement(String_length(struct_list)));
-FinFuncion
 ///========================================================>>>  [ SET ] <<==///##2_7
 Funcion new_Set <- util_Set_newSet(TYPE)
 	Definir new_Set Como Texto;
@@ -2643,7 +2607,6 @@ FinFuncion
 
 /////========================================================>>>  [ TUI/CANVAS ] <<==///##4
 
-//pixeles  ·×øØ
 Funcion pixel <- pixel_clear
 	Definir pixel como texto;
 	pixel =  get_pixel_whitIndex(0);
@@ -2677,8 +2640,7 @@ Funcion pixel <- get_pixel_whitIndex(index)
 			pixel = "Ø";
 	FinSegun
 FinFuncion
-
-//max:630*130
+//maximo recomendado:630*130
 Funcion Print_TUI_DrawArea(DrawArea, DWx, DWy)
 	Print_TUI_DrawArea_color(DrawArea, DWx, DWy, "");
 FinFuncion
@@ -2690,8 +2652,7 @@ Funcion Print_TUI_DrawArea_color(DrawArea, DWx, DWy, color)
 	para i=0 Hasta decrement(DWy) con paso 1 Hacer
 		DrawX = String_substring(DrawArea, TUI_DrawArea_getIndex(0,i,DWx),(TUI_DrawArea_getIndex(0,increment(i),DWx)));
 		TUI[i] = DrawX;
-	FinPara
-	//Escribir "<"+String_substring(DrawArea, TUI_DrawArea_getIndex(0,DWy,DWx),String_length(DrawArea)); metadata
+	FinPara	//Escribir "<"+String_substring(DrawArea, TUI_DrawArea_getIndex(0,DWy,DWx),String_length(DrawArea));// metadata
 	println_array_color(TUI, DWy,color);
 FinFuncion
 
@@ -2988,7 +2949,6 @@ FinFuncion
 
 ///========================================================>>>  [ ASCII ] <<==///##6
 
-
 Funcion char <- ascii_char(code)
 	Definir i como Numero;
 	Definir char Como Texto;
@@ -3166,11 +3126,15 @@ FinFuncion
 //  metodos: randomInt, contains_IgnoreCase, array_sort, Array_reverse, array_filter
 // TUI: Window, row, column,input, inputPrompt,Notif_elseication, Checkbox, progresBar, Menu-desplegable, infoCode, init
 // Modulo de Testeo /TEST_ASSERT_EQ(Math_pow(2,3), 8) / TEST_ASSERT_TRUE(String_isNumber("123"))
-// mejorar print progress con soporte para color y color transparente   /// print soporte de color 
+// mejorar print progress con soporte para color y color transparente   /// print soporte de color ESC[0
+//setFomater Color
+//color: \R,\G,\Y,\B,\M,\C,\W
+//segun code en texto colorear 
+//salto de linea heredar color \n
 //	" /``````````````````\"
-// " §     B.A.M.W       §"
+// " §   © Bryan.A.M.W   §"
 // " \__________________/"
-///%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%[ PSeInt-Toolkit ] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+///%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%[ PSeInt-Toolkit ] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%!0
 Algoritmo main_start_code
 	Definir start_second, start_minute como Numero;
 	Definir Time_Duration, minute_duration, second_duratrion como Texto;
