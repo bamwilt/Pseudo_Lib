@@ -23,13 +23,15 @@ Pseudo_Lib
 ├── STRING (#2) - Manipulación de strings
 ├── ARRAY (#3) - Arreglos
 ├── PRINTERS (#4) - Sistema de impresión
-├── INT (#5) - Enteros y binarios
+├── INT (#5) - Enteros 
+│   └── BINARY - binarios
 ├── MATH (#6) - Matemáticas
 ├── BOOLEAN (#7) - Booleanos
 ├── CONDITIONS (#8) - Condiciones
 ├── DEFINITIONS (#9) - Definiciones
 ├── COLOR (##0) - Colores
 ├── LOCAL DATE TIME (##1) - Fecha/hora
+│   └── DURATION - intervalos
 ├── UTIL (##2) - Utilidades y colecciones
 │   ├── COLLECTION - Colecciones base
 │   ├── LINEARCOLLECTION - Colecciones lineales
