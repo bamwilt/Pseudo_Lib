@@ -38,7 +38,6 @@ Pseudo_Lib
 │   ├── STACK - Pila
 │   ├── LIST - Lista
 │   ├── MAP - Mapa
-│   ├── LIST OFFSET - Lista con offset
 │   └── SET - Conjunto
 ├── OBJECT (##3) - Objetos
 ├── TUI/CANVAS (##4) - Interfaz gráfica
