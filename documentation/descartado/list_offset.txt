@@ -1,0 +1,203 @@
+Funcion new_list <- __private_util_List_OffSet_newList(TYPE)
+	Definir new_list Como Texto;
+	new_list = collection_NewCollection(TYPE,STRUCT_TYPE_LIST());
+	new_list = String_append(new_list,symbol_Separator());
+	new_list = String_append(new_list,String_RepeatText(String_append("0",symbol_Separator_Simple()),4));
+	new_list = String_append(new_list,String_append_withSeparator("2","0",symbol_ExtraData()));
+FinFuncion
+
+Funcion list_result <- __private_util_List_OffSet_Add(struct_List, element)
+	Definir list_result, element_String, element_Length_str, index_data_str, element_bit Como Texto;
+	Definir num_group, element_Length, index_data, num_group_list, max_length como Numero;
+	//parsing
+	element_String = value_Parser_ToString(element,collection_getContent_TypesArea(struct_List));//Hello World
+	element_Length = String_length(element_String); //10
+	element_Length_str = num_ToString(element_Length);// "10"
+	num_group_list = __private_util_List_OffSet_getLengthBit(struct_List);// list group 2 : 00 00 
+	index_data = collection_getIndex_MetaDataArea(struct_List);// index_insert : 123
+	index_data_str  = num_ToString(index_data);//"123"
+	//calculate 
+	max_length = Math_max_Int(String_length(element_Length_str),String_length(index_data_str));// "123" = 3 / "10" = 2 result = 3
+	num_group = Math_max_Int(int_getRangeCeil_ToFromSeparatedString(max_length, "2,4,6,8,10"), num_group_list);// num_group(3) = 4 /4 > 2 result = 4
+	element_bit = __private_util_List_OffSet_DataParser_padding(num_ToString(index_data), element_Length_str, num_group);//index: 0123 length: 0010
+	//result
+	list_result = __private_LinearCollection_increment_numElement(struct_List);// 0 --> 1
+	list_result = String_insert(list_result,element_bit,increment(index_data));// 01230010
+	list_result = String_insert(list_result,element_String,index_data);//list_result_end : List<String>(.....Hello World)[01230010]/x,x,x,x,1:4
+	
+	si num_group > num_group_list  Entonces
+		list_result = __private_util_List_OffSet_update_groupNum(list_result,num_Group);// 2 --> 4 : 0000 0000 list_group
+		list_result = __private_util_List_OffSet_update_metadata_range(list_result, num_group);// 0,0,0,1 index memory
+	FinSi
+FinFuncion
+
+Funcion element_Result <- __private_util_List_OffSet_getElement(struct_List, index_element)
+	Definir TYPE, element_String como Texto;
+	TYPE = collection_getContent_TypesArea(struct_List);
+	element_String = __private_util_List_OffSet_getElement_ToString(struct_List, index_element);
+	Segun TYPE Hacer
+		TYPE_INT():
+			Definir element_Result Como Numero;
+			element_Result = String_ToNum(element_String);
+		TYPE_FLOAT():
+			Definir element_Result Como Real;
+			element_Result = String_ToNum(element_String);
+		TYPE_BOOLEAN():
+			Definir element_Result Como Logico;
+			element_Result = String_toBoolean(element_String);
+		De Otro Modo:
+			Definir element_Result Como Texto;
+			element_Result = String_append(element_String,"");//wrapper
+	FinSegun
+FinFuncion
+
+Funcion list_result <- __private_util_List_OffSet_RemoveElement(struct_List, index_element)
+	Definir list_result, element_Result, AreaSizeGroup, num_AreaSize_str como texto;
+	Definir index_element_bitFormat, separator_info, multiplication_carry, OffsetInfo_element, element_Length, element_inner_index como Numero;
+	si __private_util_List_OffSet_getSize(struct_List) > 1 Entonces
+		OffsetInfo_element = __private_util_List_OffSet_GetElementOffsetInfo(struct_List, index_element);
+		
+		index_element_bitFormat = OffsetInfo_element/100;
+		multiplication_carry = Math_module(OffsetInfo_element,100);
+		separator_info = decrement_step(index_element_bitFormat, multiplication_carry/2);//00/00
+		
+		element_Length = String_ToNum(String_substring(struct_List, separator_info, index_element_bitFormat));
+		element_inner_index = String_ToNum(String_substring(struct_List, decrement_step(index_element_bitFormat, multiplication_carry), separator_info));
+		
+		list_result = String_Delete(struct_List, decrement_step(index_element_bitFormat,multiplication_carry), index_element_bitFormat);
+		list_result =  __private_util_List_OffSet_decrement_AreaSizeGroup_ByIndex(list_result, index_element);
+		list_result = __private_LinearCollection_decrement_numElement(list_result);
+	SiNo
+		list_result = __private_util_List_OffSet_newList(collection_getContent_TypesArea(struct_List));
+	FinSi
+FinFuncion
+
+Funcion element_Result <- __private_util_List_OffSet_getElement_ToString(struct_List, index_element)
+	Definir element_Result, AreaSizeGroup, num_AreaSize_str como texto;
+	Definir index_element_bitFormat, separator_info, multiplication_carry, OffsetInfo_element, element_Length, element_inner_index como Numero;
+	si decrement(__private_util_List_OffSet_getSize(struct_List)) > index_element Entonces
+		OffsetInfo_element = __private_util_List_OffSet_GetElementOffsetInfo(struct_List, index_element);
+		index_element_bitFormat = OffsetInfo_element/100;
+		multiplication_carry = Math_module(OffsetInfo_element,100);
+		separator_info = decrement_step(index_element_bitFormat, multiplication_carry/2);//00/00
+		
+		element_Length = String_ToNum(String_substring(struct_List, separator_info, index_element_bitFormat));
+		element_inner_index = String_ToNum(String_substring(struct_List, decrement_step(index_element_bitFormat, multiplication_carry), separator_info));
+		element_Result = String_substring(struct_List, element_inner_index, increment_step(element_inner_index, element_Length));
+	sino 
+		error_Message_Funtion("__private_util_List_OffSet_getElement_ToString","index_element no exist");	
+		element_Result = string_Null();
+	FinSi
+FinFuncion
+
+//. . . . . . .. HELPERS: 
+//struct_List = String_Delete(struct_List, increment(String_lastIndexOf(struct_List,symbol_Separator())),String_length(struct_List));
+//struct_List = String_append(struct_List, "2,1,0,0,10:15");//A=16, B=12, C=8, D=4 / null=20 
+//index_element = 3;
+Funcion OffsetInfo_element <- __private_util_List_OffSet_GetElementOffsetInfo(struct_List, index_element)
+	Definir OffsetInfo_element, subtract_carry, multiplication_carry, element_rest, num_AreaSize como Numero;
+	Definir index_StartSize, index_EndSize, sum_carry, index_element_bitFormat, index_start_search como Numero;
+	Definir element_Length, element_Inner_index, separator_info, i, end_carry como Numero;
+	Definir AreaSizeGroup, num_AreaSize_str como Texto;
+	AreaSizeGroup = String_substring(struct_List,increment(String_lastIndexOf(struct_List,symbol_Separator())),String_lastIndexOf(struct_List,symbol_Separator_Simple()));
+	index_endSize = String_length(AreaSizeGroup);
+	subtract_carry = 0;
+	multiplication_carry = 0;
+	element_rest = index_element;
+	num_AreaSize = 0;
+	end_carry = __private_util_List_OffSet_getLengthBit(struct_List) * 2;
+	Mientras multiplication_carry < end_carry & num_AreaSize <= index_element Hacer
+		multiplication_carry = increment_step(multiplication_carry, 4);
+		si index_StartSize > -1  Entonces
+			index_StartSize = String_lastIndexOf_fromIndex(AreaSizeGroup,symbol_Separator_Simple(),index_endSize);
+			num_AreaSize_str = String_substring(AreaSizeGroup, increment(index_StartSize), index_EndSize);
+			num_AreaSize = String_ToNum(num_AreaSize_str);
+			index_EndSize = index_StartSize;
+		FinSi
+		
+		si (num_AreaSize <= index_element) & num_AreaSize > 0 Entonces
+			subtract_carry = decrement_step(num_AreaSize, subtract_carry);
+			sum_carry = increment_step((subtract_carry * multiplication_carry), sum_carry);
+			element_rest = decrement_step(element_rest, subtract_carry);
+		FinSi
+		subtract_carry = num_AreaSize;
+	FinMientras
+	index_start_search = String_lastIndexOf(struct_List,symbol_Separator());
+	index_element_bitFormat = decrement_step(index_start_search,increment_step((element_rest * multiplication_carry), sum_carry));//122-((2*4)+4)
+	OffsetInfo_element = increment_step((index_element_bitFormat*100),multiplication_carry);// index + multCarry_info
+FinFuncion
+
+Funcion list_result <- __private_util_List_OffSet_decrement_AreaSizeGroup_ByIndex(struct_List, index_element)
+	Definir list_result, AreaSizeGroup, AreaSizeGroup_carry, AreaInfo, num_AreaSize_str como Texto;
+	Definir i,subtract_carry, index_endSize, index_StartSize, num_AreaSize , index_AreaSizeGroup, index_AreaInfo, list_length como Numero;
+	index_AreaInfo = String_lastIndexOf(struct_List,symbol_Separator_Simple());
+	index_AreaSizeGroup = String_lastIndexOf_fromIndex(struct_list,symbol_Separator(),index_AreaInfo);
+	list_length = String_length(struct_List);
+	
+	AreaInfo = String_substring(struct_List,increment(index_AreaInfo), list_length);
+	AreaSizeGroup = String_substring(struct_List,increment(index_AreaSizeGroup),index_AreaInfo );
+	index_endSize = String_length(AreaSizeGroup);
+	i = 0;
+	Mientras i < 4 Hacer
+		index_StartSize = String_lastIndexOf_fromIndex(AreaSizeGroup,symbol_Separator_Simple(),index_endSize);
+		num_AreaSize_str = String_substring(AreaSizeGroup, increment(index_StartSize), index_EndSize);
+		num_AreaSize = String_ToNum(num_AreaSize_str);
+		index_EndSize = index_StartSize;
+		si (num_AreaSize > index_element) & num_AreaSize > 0 Entonces
+			num_AreaSize_str = num_ToString(decrement(num_AreaSize));
+		FinSi
+		i= increment(i);
+		AreaSizeGroup_carry = String_append_withSeparator(num_AreaSize_str,AreaSizeGroup_carry, symbol_Separator_Simple()); 
+	FinMientras
+	
+	list_result = String_Delete(struct_List,increment(index_AreaSizeGroup),list_length);
+	list_result = String_append(list_result, AreaSizeGroup_carry);
+	list_result = String_append(list_result, AreaInfo);
+FinFuncion
+
+Funcion list_result <- __private_util_List_OffSet_update_metadata_range(struct_List, num_group)
+	Definir list_result como Texto; 
+	Definir group_index, index_start,index_end_data, index_end como Numero;
+	group_index = decrement_step(num_group/2,2);
+	index_end = collection_getLastIndex_FromNumElement_Separator(struct_List,group_index,symbol_Separator_Simple());
+	index_start = increment(String_lastIndexOf_fromIndex(struct_List,symbol_Separator_Simple(),index_end));	
+	si group_index > 2 Entonces
+		index_start = increment(String_lastIndexOf_fromIndex(struct_List,symbol_Separator(),index_start));
+	FinSi
+	list_result = String_Delete(struct_List,index_start,index_end);
+	list_result = String_insert(list_result,num_ToString(decrement(__private_util_List_OffSet_getSize(struct_List))),index_start);
+FinFuncion
+
+Funcion AreaData_indexSizeGroup <- __private_util_List_OffSet_getAreaData_indexSizeGroup(struct_List)
+	Definir AreaData_indexSizeGroup como Texto;
+	AreaData_indexSizeGroup = String_substring(struct_List,increment(String_lastIndexOf(struct_List,symbol_Separator())),increment(String_lastIndexOf(struct_List,symbol_Separator_Simple())));
+FinFuncion
+
+Funcion index_length <- __private_util_List_OffSet_getSize(struct_List)
+	Definir index_length como Numero;
+	index_length = String_ToNum(String_substring_from(struct_List,increment(String_lastIndexOf(struct_List,symbol_ExtraData()))));// list group 2 : 00 00 
+FinFuncion
+
+Funcion list_result <- __private_util_List_OffSet_update_groupNum(struct_List, num_group)
+	Definir list_result como Texto;
+	Definir index_separator, index_end, num_elements como Numero;
+	index_separator = increment(String_lastIndexOf(struct_List, symbol_Separator_Simple()));
+	index_end = String_lastIndexOf(struct_List, symbol_ExtraData());
+	list_result = String_Delete(struct_List, index_separator, index_end);
+	list_result = String_insert(list_result, num_ToString(num_group), index_separator);
+FinFuncion
+
+Funcion num_elements <- __private_util_List_OffSet_getLengthBit(struct_List)
+	Definir list_result como Texto;
+	Definir index_separator, index_end, num_elements como Numero;
+	index_separator = increment(String_lastIndexOf(struct_List,symbol_Separator_Simple()));
+	index_end = String_lastIndexOf(struct_List,symbol_ExtraData());
+	num_elements = String_ToNum(String_substring(struct_List,index_separator,index_end));
+FinFuncion
+
+Funcion data_bit <- __private_util_List_OffSet_DataParser_padding(data_index_str, data_length_str, padding)
+	Definir data_bit como Texto;
+	data_index_str = String_pad_start(data_index_str,String_RepeatText("0",(padding)));
+	data_length_str = String_pad_start(data_length_str,String_RepeatText("0",(padding)));
+	data_bit = String_append(data_index_str,data_length_str);
+FinFuncion
