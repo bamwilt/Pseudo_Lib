@@ -7,11 +7,9 @@ PseudoLib es una extensa biblioteca de pseudo-código escrita en PSeInt que impl
 
 ![demoSpiral](media/Spiral.jpeg)
 
-Total de funciones: ~340 funciones organizadas en módulos
-
-Versión: PSeInt 2023+
-
-Estado: En desarrollo activo
+> Total de funciones: ~340 funciones organizadas en módulos
+> Versión: PSeInt 2023+
+> Estado: En desarrollo activo
 
 ---
 
@@ -55,7 +53,7 @@ Pseudo_Lib
 - Algoritmos de ordenamiento: **QuickSort, BubbleSort, MergeSort**  
 - Transformaciones gráficas 2D y soporte 3D  
 - Reescritura de **Vec**: optimización y mejoras de helpers  
-- Reescritura de **Object**: optimización y agregado de objetos internos   
+- Manipulacion a Objetos Internos dentro de Objetos   
 - mejoras en los helpers de funciones de Local_Date_Time y Duration
 
 > la mayoria de cosas complejas se manejan mediante asignaciones y texto
