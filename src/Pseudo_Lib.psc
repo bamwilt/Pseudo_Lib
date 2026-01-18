@@ -1,7 +1,7 @@
 ///========================================================>>>  [ MAIN] <<==///#0
 
 Funcion main
-	Definir persona_1, persona_2, empleado_1, tarjeta_1, new_instance_persona,new_instance_empleado, new_instance_credito Como Texto;
+	Definir persona_1, persona_2, empleado_1, tarjeta_1, new_instance_persona,new_instance_empleado, new_instance_tarjeta Como Texto;
 	Definir char,text,input, array, list, struct, options, queue, stack, count_string Como Texto;
 	Definir num, opc, arrayNum, i Como Numero;
 	DimenSionar arrayNum[5];
@@ -12,8 +12,14 @@ Funcion main
 	arrayNum[4]=1;
 	new_instance_persona = New_Persona();
 	persona_1 = init_Persona(new_instance_persona,"Juan","Alvarado",20);
-	new_instance_empleado = New_Empleado();
-	empleado_1 = init_empleado(new_instance_empleado, "Ana", "Alimar", 23, 1, 200.34);
+	new_instance_tarjeta = New_Tarjeta();
+	tarjeta_1 = init_Tarjeta(new_instance_tarjeta,1234, 1200.12);
+	tarjeta_1 = Object_Property_Add(tarjeta_1,"emp","empleado");
+	tarjeta_1 = Object_Property_SetValue(tarjeta_1, "emp", New_Empleado());
+	persona_1 = Object_Property_Add(persona_1,"tarjeta_pago", "tarjeta");
+	persona_1 = Object_Property_SetValue(persona_1, "tarjeta_pago", tarjeta_1);
+	persona_1 = Object_Property_SetValue(persona_1, "tarjeta_pago.emp.nombre", "carlos");
+	print_Simple(Object_Property_GetValue_toString(persona_1, "tarjeta_pago.emp.nombre"));
 FinFuncion
 
 Funcion persona <- New_Persona
@@ -49,6 +55,22 @@ Funcion empleado_result <- init_empleado(instance_empleado, nombre, apellido, ed
 	empleado_result = Object_Property_SetValue(empleado_result,"apellido", apellido);
 	empleado_result = Object_Property_SetValue(empleado_result,"edad", edad);
 FinFuncion
+
+
+Funcion tarjeta <- New_Tarjeta
+	Definir tarjeta Como Texto;
+	tarjeta = Object_newObject("tarjeta");
+	tarjeta = Object_Property_Add(tarjeta, "id", TYPE_INT());
+	tarjeta = Object_Property_Add(tarjeta, "saldo", TYPE_FLOAT());
+FinFuncion
+
+Funcion tarjeta_result <- init_Tarjeta(instance_tarjeta, id, saldo)
+	Definir tarjeta_result como Texto;
+	tarjeta_result = instance_tarjeta;
+	tarjeta_result = Object_Property_SetValue(tarjeta_result,"id", id);
+	tarjeta_result = Object_Property_SetValue(tarjeta_result,"saldo", saldo);
+FinFuncion
+
 ///%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%[ PSeInt-Toolkit ] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //LIB !0
 //SEARCH: Ctrl+F
@@ -66,7 +88,7 @@ FinFuncion
 //1----math   ·  ·  ·  ·  ·  ·  ·	#6 				 		math_
 //1----BOOLEAN   ·  ·  ·  ·  ·  ·	#7 					 	...
 //1----CONDITIONS   ·  ·  ·  ·  ·	#8    	 			if_ : condition_
-//1----DEFinITIONS  ·  ·  ·  ·  ·	#9 						 NULL
+//1----DEFINITIONS  ·  ·  ·  ·  ·	#9 						 NULL
 //1----COLOR  ·  ·  ·  ·  ·  ·  ·  	#+0 					COLOR_
 //1----LOCAL_DATE_TIME ·  ·  ·  ·	#+1					 	Local_
 //1----UTIL   ·  ·  ·  ·  ·  ·  · 	#+2 			 		 NULL
@@ -323,17 +345,17 @@ Funcion result_string <- num_ToString(num)
 	result_string = ConvertirATexto(num);
 FinFuncion
 
-Funcion result_string <- object_ToString(object_str)
+Funcion result_string <- object_ToString(object_str, TYPE)
 	Definir result_string Como Texto;
-	result_string = object_str;
-	Si !String_isObject(object_str) Entonces
-		exection_Error(String_append("Error de tipado Object: ", object_str));
-	FinSi
+	Definir Object_isValid Como Logico;
+	Object_isValid = Object_isType(object_str, TYPE);
+	result_string = if_else(Object_isValid, object_str, Object_newObject(TYPE),TYPE_STRING());
+	condition_error_Message_Funtion(!Object_isValid,"object_ToString", String_append_withSeparator(TYPE, object_str, " // type no valid >> "));
 FinFuncion
 
 Funcion isObject <- String_isObject(str_struct)
 	Definir isObject Como Logico;
-	isObject = !String_isEmpty(Object_getName(str_struct));
+	isObject = String_length(str_struct) >= String_length(Object_Empty("")) & !String_isEmpty(Object_getName(str_struct));
 FinFuncion
 // =============================================================== REPLACE ====
 Funcion result <- String_replace(text,text_match,text_Replace)
@@ -1732,6 +1754,11 @@ Funcion result_string <- string_Null
 	result_string = "";
 FinFuncion
 
+Funcion result_string <- Object_Empty(type_Name)
+	Definir result_string Como Texto;
+	result_string = Object_newObject(type_Name);
+FinFuncion
+
 Funcion Num <- number_Null
 	Definir Num Como Numero;
 	Num = -1;
@@ -2240,10 +2267,10 @@ Funcion result <- value_Parser_ToString(data,TYPE)
 			result = float_ToString(data);
 		TYPE_BOOLEAN():
 			result = boolean_ToString(data);
-		TYPE_OBJECT():
-			result = object_ToString(data);
-		De Otro Modo:
+		TYPE_STRING():
 			result = String_append(data,"");//wrapper
+		De Otro Modo:
+			result = object_ToString(data, TYPE);
 	FinSegun
 FinFuncion
 
@@ -2282,9 +2309,12 @@ Funcion result <- value_getNullType(TYPE)
 		TYPE_FLOAT():
 			Definir result Como Real;
 			result = number_Null();
-		De Otro Modo:
+		TYPE_STRING():
 			Definir result Como Texto;
 			result = string_Null();
+		De Otro Modo:
+			Definir result Como Texto;
+			result = Object_Empty(TYPE);
 	FinSegun
 FinFuncion
 
@@ -2302,8 +2332,10 @@ Funcion boolean <- value_isNull(value, TYPE)
 			boolean = Num_isEquals(value,number_Null());
 		TYPE_BOOLEAN():
 			boolean = !value;
-		De Otro Modo:
+		TYPE_STRING():
 			boolean = String_isEquals(value,string_Null());
+		De Otro Modo:
+			boolean = String_isEquals(value, Object_Empty(TYPE));
 	FinSegun
 FinFuncion
 
@@ -2459,13 +2491,19 @@ Funcion collection_result <- linearCollection_addFirts(struct_Collection, Elemen
 FinFuncion
 
 Funcion collection_result <- linearCollection_addLast(struct_Collection, Element)
-	Definir collection_result, TYPE, element_String, element_Length_str Como Texto;
+	Definir collection_result, TYPE Como Texto;
+	TYPE = collection_getContent_TypesArea(struct_Collection);
+	collection_result = linearCollection_addLast_ToType(struct_Collection, Element, TYPE);
+FinFuncion
+
+Funcion collection_result <- linearCollection_addLast_ToType(struct_Collection, Element, TYPE)
+	Definir collection_result, element_String, element_Length_str Como Texto;// (C,B,A/1;2;3)
 	Definir index_DataArea, index_MetaData Como Numero;//last  (->:<-)
-	TYPE = collection_getContent_TypesArea(struct_Collection);// (C,B,A/1;2;3)
 	element_String = value_Parser_ToString(Element, TYPE);//"Z";
+	collection_result = struct_Collection;
 	element_Length_str = String_append(symbol_Separator(),num_ToString(String_length(element_String)));//,4
 	index_MetaData = collection_getIndex_MetaDataArea(struct_Collection);
-	collection_result = String_insert(struct_Collection,element_Length_str,increment(index_MetaData));
+	collection_result = String_insert(collection_result,element_Length_str,increment(index_MetaData));
 	collection_result = String_insert(collection_result,element_String,index_MetaData);//(C,B,A,Z/4;1;2;3)
 	collection_result = linearCollection_increment_numElement(collection_result);
 FinFuncion
@@ -2868,21 +2906,35 @@ Funcion Object_result <- Object_Property_Add(struct_Object, property_name, TYPE)
 		new_Data = String_append_withSeparator(property_lowerCase, TYPE,symbol_Separator_key_value());
 		new_Data = String_append(new_Data, symbol_Separator());
 		Object_result = String_insert(struct_Object, new_Data, increment(String_indexOf(struct_Object,symbol_ExtraData())));
-		Object_result = linearCollection_addLast(Object_result, value_getNullType_toString(TYPE));
+		Object_result = linearCollection_addLast_ToType(Object_result, value_getNullType(TYPE), TYPE);
 	FinSi
 FinFuncion
-
+Funcion isNull <- String_isNull(value_string) 
+	Definir isNull Como Logico;
+	isNull = String_isEquals(value_string, String_Null());
+FinFuncion
 Funcion property_Value <- Object_Property_GetValue_toString(struct_Object,property_name)
-	Definir property_Value, property_TYPE  Como Texto;
+	Definir property_Value, InnerObject_info Como Texto;
+	Definir index_CenterInfo como Numero;
+	InnerObject_info = Object_Property_InnerObject_getInfoProperty(struct_Object, property_name);
+	si !String_isNull(InnerObject_info) Entonces
+		index_CenterInfo = String_lastIndexOf(InnerObject_info,symbol_Separator());
+		struct_Object = String_substring(InnerObject_info, 0, index_CenterInfo);
+		property_name = String_substring_from(InnerObject_info,increment(index_CenterInfo));
+	FinSi
 	property_Value = linearCollection_getElement_toString(struct_Object, Object_Property_GetInnerIndex(struct_Object, property_name));
 FinFuncion
 
 Funcion element_Result <- Object_Property_GetValue(struct_Object, property_name)
-	Definir TYPE Como Texto;
-	Definir property_InnerIndex, index_property Como Numero;
-	index_property = Object_Property_GetIndex(struct_Object, property_name);
-	property_InnerIndex = __private_Object_Property_GetInnerIndex_IndexProperty(struct_Object, property_name, index_property);
-	TYPE = __private_Object_Property_GetType_IndexProperty(struct_Object, property_name, index_property);
+	Definir TYPE, InnerObject_info Como Texto;
+	Definir index_CenterInfo como Numero;
+	InnerObject_info = Object_Property_InnerObject_getInfoProperty(struct_Object, property_name);
+	si !String_isNull(InnerObject_info) Entonces
+		index_CenterInfo = String_lastIndexOf(InnerObject_info,symbol_Separator());
+		struct_Object = String_substring(InnerObject_info, 0, index_CenterInfo);
+		property_name = String_substring_from(InnerObject_info,increment(index_CenterInfo));
+	FinSi
+	TYPE = Object_Property_GetType(struct_Object,property_name);
 	Segun TYPE Hacer
 		TYPE_INT():
 			Definir element_Result  Como Numero;
@@ -2895,18 +2947,75 @@ Funcion element_Result <- Object_Property_GetValue(struct_Object, property_name)
 	FinSegun
 	element_Result = String_toType(Object_Property_GetValue_toString(struct_Object,property_name), TYPE);
 FinFuncion
+//tarjeta_pago.id    set(value)
+//intance >> tarjeta_pago >> id (stop) 
+//intance << tarjeta_pago << id << value 
 
 Funcion Object_Result <- Object_Property_SetValue(struct_Object,property_name, property_Value)
-	Definir Object_Result, property_Type  Como Texto;
-	Definir index_property, property_InnerIndex Como Numero;
-	index_property = Object_Property_GetIndex(struct_Object, property_name);
-	Si index_property < 0 Entonces
+	Definir Object_Result Como Texto;
+	Object_Result = Object_Property_SetValue_ToSeparator(struct_Object, property_name, property_value, ".");
+FinFuncion
+
+Funcion Object_Result <- Object_Property_SetValue_ToSeparator(struct_Object, property_name, property_value, separator)
+    Definir Object_Result, stack_Objects, stack_Keys Como Texto;
+    Definir current_Key, rest_Path, sub_Object Como Texto;
+    Definir dot_Index, p_Index, p_InnerIndex Como Numero;
+    Definir p_Type, property_value_string  Como Texto;
+    Definir i, stack_Pointer, size_arrays Como Numero;
+	size_arrays = String_countMatches(property_name, separator);
+	si size_arrays > 0 Entonces
+		stack_Pointer = 0;
+		Dimension stack_Objects[size_arrays]; 
+		Dimension stack_Keys[size_arrays];
+		
+		Mientras String_indexOf(property_name, separator) >= 0 Hacer
+			dot_Index = String_indexOf(property_name, separator);
+			current_Key = String_substring(property_name, 0, dot_Index);
+			stack_Objects[stack_Pointer] = struct_Object;
+			stack_Keys[stack_Pointer] = current_Key;
+			stack_Pointer = increment(stack_Pointer);
+			
+			struct_Object = linearCollection_getElement_toString(struct_Object, Object_Property_GetInnerIndex(struct_Object, current_Key));
+			property_name = String_substring_from(property_name, increment(dot_Index));
+		FinMientras
+	FinSi
+    p_Index = Object_Property_GetIndex(struct_Object, property_name);
+	Si p_Index  < 0 Entonces
 		Object_Result = struct_Object;
-		error_Message_Funtion("Object_Property_SetValue", String_append("property no exist :", property_name));
+		error_Message_Funtion("Object_Property_SetValue", String_append("property no exist: ", property_name));
 	SiNo
-		property_InnerIndex = __private_Object_Property_GetInnerIndex_IndexProperty(struct_Object, property_name, index_property);
-		property_Type = __private_Object_Property_GetType_IndexProperty(struct_Object, property_name, index_property);
-		Object_Result = linearCollection_SetElement_ToType(struct_Object, property_InnerIndex, property_Value, property_Type);
+		p_InnerIndex = __private_Object_Property_GetInnerIndex_IndexProperty(struct_Object, property_name, p_Index);
+		p_Type = __private_Object_Property_GetType_IndexProperty(struct_Object, property_name, p_Index);
+		property_value_string = linearCollection_SetElement_ToType(struct_Object, p_InnerIndex, property_value, p_Type);
+		Para i = decrement(stack_Pointer) Hasta 0 con Paso -1 Hacer
+			struct_Object = stack_Objects[i];
+			current_Key = stack_Keys[i];
+			p_Index = Object_Property_GetIndex(struct_Object, current_Key);
+			p_InnerIndex = __private_Object_Property_GetInnerIndex_IndexProperty(struct_Object, current_Key, p_Index);
+			p_Type = __private_Object_Property_GetType_IndexProperty(struct_Object, current_Key, p_Index);
+			property_value_string = linearCollection_SetElement_ToType(struct_Object, p_InnerIndex, property_value_string, p_Type);
+		FinPara
+		Object_Result = property_value_string;
+	FinSi
+FinFuncion
+
+Funcion InnerObject_info <- Object_Property_InnerObject_getInfoProperty(struct_Object, property_name)
+	Definir InnerObject_info, property_Name_Inner, struct_Object_Inner, property_search Como Texto;
+	Definir index_innerObject como Numero;
+	index_innerObject = String_indexOf(property_name,".");
+	property_Name_Inner = property_name;
+	struct_Object_Inner = struct_Object;
+	Mientras index_innerObject >= 0 Hacer
+		property_search = String_Delete(property_Name_Inner, index_innerObject, String_length(property_Name_Inner));
+		property_Name_Inner = String_substring_from(property_Name_Inner, increment(index_innerObject));
+		struct_Object_Inner = linearCollection_getElement_toString(struct_Object_Inner, Object_Property_GetInnerIndex(struct_Object_Inner, property_search));
+		index_innerObject = String_indexOf(property_Name_Inner,".");
+	FinMientras
+	si Object_Property_Exist(struct_Object_Inner, property_Name_Inner) Entonces
+		InnerObject_info = String_append_withSeparator(struct_Object_Inner,property_Name_Inner,symbol_Separator());
+	SiNo
+		InnerObject_info = String_Null();
+		error_Message_Funtion("Object_Property_InnerObject_getInfoProperty",String_append_withSeparator("inner property no exist :: ", " :: ",property_name));
 	FinSi
 FinFuncion
 
@@ -2929,6 +3038,14 @@ Funcion Object_depure <- Object_Remove_CommonPropertiesFrom(Object_Original,Obje
 	Object_depure = __private_Object_process_AddOrRemove_general(Object_Original,Object_Compartor, true());
 FinFuncion 
 //.....................................................................................Helpers
+Funcion object_IsEquals <- Object_isType(Object_Select, name)
+	Definir object_IsEquals Como Logico;
+	object_IsEquals = String_isObject(Object_Select);
+	si object_IsEquals Entonces
+		object_IsEquals = String_isEquals(Object_getName(Object_Select),name);
+	FinSi
+FinFuncion
+
 Funcion property_TYPE <- Object_Property_GetType(struct_Object,property_name)
 	Definir property_TYPE Como Texto;
 	property_TYPE = __private_Object_Property_GetType_IndexProperty(struct_Object,property_name, Object_Property_GetIndex(struct_Object,property_name));

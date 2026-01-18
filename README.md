@@ -53,7 +53,6 @@ Pseudo_Lib
 - Algoritmos de ordenamiento: **QuickSort, BubbleSort, MergeSort**  
 - Transformaciones gráficas 2D y soporte 3D  
 - Reescritura de **Vec**: optimización y mejoras de helpers  
-- Manipulacion a Objetos Internos dentro de Objetos   
 - mejoras en los helpers de funciones de Local_Date_Time y Duration
 
 > la mayoria de cosas complejas se manejan mediante asignaciones y texto
