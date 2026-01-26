@@ -19,7 +19,10 @@ Funcion main
 	persona_1 = Object_Property_Add(persona_1,"tarjeta_pago", "tarjeta");
 	persona_1 = Object_Property_SetValue(persona_1, "tarjeta_pago", tarjeta_1);
 	persona_1 = Object_Property_SetValue(persona_1, "tarjeta_pago.emp.nombre", "carlos");
-	print_Simple(Object_Property_GetValue_toString(persona_1, "tarjeta_pago.emp.nombre"));
+	println_Simple(Object_Property_GetValue_toString(persona_1, "tarjeta_pago.emp.nombre"));
+	Escribir persona_1;
+	breakline();
+	Escribir Object_Property_Remove(persona_1, "tarjeta_pago.emp.nombre");
 FinFuncion
 
 Funcion persona <- New_Persona
@@ -1876,6 +1879,11 @@ Funcion result_string <- symbol_ExtraData
 	Definir result_string Como Texto;
 	result_string = "";
 FinFuncion
+//....Object
+Funcion char_string <- symbol_ObjectSeparator
+	Definir char_string Como Texto;
+	char_string = ".";
+FinFuncion
 ///========================================================>>>  [ COLORS ] <<==///#+0
 // =============================================================== CODES <<<<<<
 Funcion color <- COLOR_TRANSPARENT
@@ -2446,22 +2454,22 @@ FinFuncion
 
 Funcion element_String <- linearCollection_getFirts_ToString(struct_Collection)
 	Definir element_String Como Texto;
-	Definir index_DataArea, separator_index, Index_EndMetaData, element_Length Como Numero;
+	Definir index_DataArea, property_, Index_EndMetaData, element_Length Como Numero;
 	Si linearCollection_isEmpty(struct_Collection) Entonces
 		error_Message_Funtion("linearCollection_getFirts_ToString","struct is Empty");
 		element_String = string_Null();
 	SiNo
 		Index_EndMetaData = linearCollection_getIndex_EndMetaData(struct_Collection);
 		index_DataArea = increment(collection_getIndex_DataArea(struct_Collection));// (C B A/,1,2,3)
-		separator_index = String_lastIndexOf(struct_Collection, symbol_Separator());
-		element_Length = String_ToNum(String_substring(struct_Collection,increment(separator_index), index_EndMetaData));
+		property_ = String_lastIndexOf(struct_Collection, symbol_Separator());
+		element_Length = String_ToNum(String_substring(struct_Collection,increment(property_), index_EndMetaData));
 		element_String = String_substring(struct_Collection, index_DataArea, increment_step(index_DataArea, element_Length));
 	FinSi
 FinFuncion
 
 Funcion element_String <- linearCollection_getLast_ToString(struct_Collection)
 	Definir element_String Como Texto;
-	Definir index_DataArea, index_MetaData, separator_index Como Numero;
+	Definir index_DataArea, index_MetaData, property_ Como Numero;
 	Definir length_separator, Index_EndMetaData , element_Length Como Numero;
 	Si linearCollection_isEmpty(struct_Collection) Entonces
 		error_Message_Funtion("linearCollection_getLast_ToString","struct is Empty");
@@ -2470,9 +2478,9 @@ Funcion element_String <- linearCollection_getLast_ToString(struct_Collection)
 		Index_EndMetaData = linearCollection_getIndex_EndMetaData(struct_Collection);
 		length_separator = String_length(symbol_Separator());
 		index_MetaData = increment_step(collection_getIndex_MetaDataArea(struct_Collection), length_separator);
-		separator_index = String_indexOf_fromIndex(struct_Collection, symbol_Separator(), increment(index_MetaData));
-		separator_index = if_else(separator_index > 0, separator_index, Index_EndMetaData,TYPE_INT());
-		element_Length = String_ToNum(String_substring(struct_Collection, increment(index_MetaData), separator_index));
+		property_ = String_indexOf_fromIndex(struct_Collection, symbol_Separator(), increment(index_MetaData));
+		property_ = if_else(property_ > 0, property_, Index_EndMetaData,TYPE_INT());
+		element_Length = String_ToNum(String_substring(struct_Collection, increment(index_MetaData), property_));
 		index_MetaData = decrement_step(index_MetaData,length_separator);
 		element_String = String_substring(struct_Collection, decrement_step(index_MetaData, element_Length), index_MetaData);
 	FinSi
@@ -2510,28 +2518,28 @@ FinFuncion
 
 Funcion collection_result <- linearCollection_RemoveFirts(struct_Collection)
 	Definir collection_result Como Texto;
-	Definir index_DataArea, index_MetaData, separator_index Como Numero;
+	Definir index_DataArea, index_MetaData, property_ Como Numero;
 	Definir length_separator, index_EndMetaData, element_Length Como Numero;
 	index_EndMetaData = linearCollection_getIndex_EndMetaData(struct_Collection);
 	index_DataArea = increment(collection_getIndex_DataArea(struct_Collection));// (C B A/,1,2,3)
-	separator_index = String_lastIndexOf(struct_Collection, symbol_Separator());
-	element_Length = String_ToNum(String_substring(struct_Collection,increment(separator_index), index_EndMetaData));
-	collection_result = String_Delete(struct_Collection, separator_index, index_EndMetaData);
+	property_ = String_lastIndexOf(struct_Collection, symbol_Separator());
+	element_Length = String_ToNum(String_substring(struct_Collection,increment(property_), index_EndMetaData));
+	collection_result = String_Delete(struct_Collection, property_, index_EndMetaData);
 	collection_result = String_Delete(collection_result, index_DataArea, increment_step(index_DataArea, element_Length));
 	collection_result = linearCollection_decrement_numElement(collection_result);
 FinFuncion
 
 Funcion collection_result <- linearCollection_RemoveLast(struct_Collection)
 	Definir collection_result Como Texto;
-	Definir index_DataArea, index_MetaData, separator_index Como Numero;
+	Definir index_DataArea, index_MetaData, property_ Como Numero;
 	Definir length_separator, index_EndMetaData, element_Length Como Numero;
 	index_EndMetaData = linearCollection_getIndex_EndMetaData(struct_Collection);
 	length_separator = String_length(symbol_Separator());
 	index_MetaData = increment_step(collection_getIndex_MetaDataArea(struct_Collection), length_separator);
-	separator_index = String_indexOf_fromIndex(struct_Collection,symbol_Separator(),increment(index_MetaData));
-	separator_index = if_else(separator_index > 0, separator_index, index_EndMetaData,TYPE_INT());
-	element_Length = String_ToNum(String_substring(struct_Collection, increment(index_MetaData), separator_index));
-	collection_result = String_Delete(struct_Collection, index_MetaData, separator_index);
+	property_ = String_indexOf_fromIndex(struct_Collection,symbol_Separator(),increment(index_MetaData));
+	property_ = if_else(property_ > 0, property_, index_EndMetaData,TYPE_INT());
+	element_Length = String_ToNum(String_substring(struct_Collection, increment(index_MetaData), property_));
+	collection_result = String_Delete(struct_Collection, index_MetaData, property_);
 	index_MetaData = decrement_step(index_MetaData,length_separator);
 	collection_result = String_Delete(collection_result, decrement_step(index_MetaData, element_Length), index_MetaData);
 	collection_result = linearCollection_decrement_numElement(collection_result);
@@ -2909,31 +2917,23 @@ Funcion Object_result <- Object_Property_Add(struct_Object, property_name, TYPE)
 		Object_result = linearCollection_addLast_ToType(Object_result, value_getNullType(TYPE), TYPE);
 	FinSi
 FinFuncion
+
 Funcion isNull <- String_isNull(value_string) 
 	Definir isNull Como Logico;
 	isNull = String_isEquals(value_string, String_Null());
 FinFuncion
-Funcion property_Value <- Object_Property_GetValue_toString(struct_Object,property_name)
-	Definir property_Value, InnerObject_info Como Texto;
-	Definir index_CenterInfo como Numero;
-	InnerObject_info = Object_Property_InnerObject_getInfoProperty(struct_Object, property_name);
-	si !String_isNull(InnerObject_info) Entonces
-		index_CenterInfo = String_lastIndexOf(InnerObject_info,symbol_Separator());
-		struct_Object = String_substring(InnerObject_info, 0, index_CenterInfo);
-		property_name = String_substring_from(InnerObject_info,increment(index_CenterInfo));
-	FinSi
-	property_Value = linearCollection_getElement_toString(struct_Object, Object_Property_GetInnerIndex(struct_Object, property_name));
-FinFuncion
-
+//....get
 Funcion element_Result <- Object_Property_GetValue(struct_Object, property_name)
-	Definir TYPE, InnerObject_info Como Texto;
-	Definir index_CenterInfo como Numero;
-	InnerObject_info = Object_Property_InnerObject_getInfoProperty(struct_Object, property_name);
-	si !String_isNull(InnerObject_info) Entonces
-		index_CenterInfo = String_lastIndexOf(InnerObject_info,symbol_Separator());
-		struct_Object = String_substring(InnerObject_info, 0, index_CenterInfo);
-		property_name = String_substring_from(InnerObject_info,increment(index_CenterInfo));
+	Definir TYPE, data_Inner Como Texto;
+	Definir index_innerObject, center_info como Numero;
+	index_innerObject = String_indexOf(property_name, symbol_ObjectSeparator());
+	si index_innerObject > 0 Entonces
+		data_Inner = __private_Object_Property_GetData(struct_Object, property_name, index_innerObject);
+		center_info = String_indexOf(data_Inner,symbol_ExtraData());
+		property_name = String_substring(data_Inner, 0, center_info);
+		struct_Object = String_substring_from(data_Inner, increment(center_info));
 	FinSi
+	
 	TYPE = Object_Property_GetType(struct_Object,property_name);
 	Segun TYPE Hacer
 		TYPE_INT():
@@ -2947,21 +2947,56 @@ Funcion element_Result <- Object_Property_GetValue(struct_Object, property_name)
 	FinSegun
 	element_Result = String_toType(Object_Property_GetValue_toString(struct_Object,property_name), TYPE);
 FinFuncion
-//tarjeta_pago.id    set(value)
-//intance >> tarjeta_pago >> id (stop) 
-//intance << tarjeta_pago << id << value 
 
+Funcion property_Value  <- Object_Property_GetValue_toString(struct_Object, property_name)
+	Definir property_Value, data_Inner Como Texto;
+	Definir index_innerObject, center_info como Numero;
+	index_innerObject = String_indexOf(property_name, symbol_ObjectSeparator());
+	si index_innerObject > 0 Entonces
+		data_Inner = __private_Object_Property_GetData(struct_Object, property_name, index_innerObject);
+		center_info = String_indexOf(data_Inner,symbol_ExtraData());
+		property_name = String_substring(data_Inner, 0, center_info);
+		struct_Object = String_substring_from(data_Inner, increment(center_info));
+	FinSi
+	
+	si Object_Property_Exist(struct_Object, property_name) Entonces
+		property_Value = linearCollection_getElement_toString(struct_Object, Object_Property_GetInnerIndex(struct_Object, property_name));
+	FinSi
+FinFuncion
+
+Funcion Object_Data <- __private_Object_Property_GetData(struct_Object, property_name, index_innerObject)
+	Definir Object_Data, InnerObject_info, property_search Como Texto;
+	Mientras index_innerObject >= 0 Hacer
+		property_search = String_Delete(property_name, index_innerObject, String_length(property_name));
+		property_name = String_substring_from(property_name, increment(index_innerObject));
+		struct_Object = linearCollection_getElement_toString(struct_Object, Object_Property_GetInnerIndex(struct_Object, property_search));
+		index_innerObject = String_indexOf(property_name, symbol_ObjectSeparator());
+	FinMientras
+	
+	si Object_Property_Exist(struct_Object, property_name) Entonces
+		Object_Data = String_append_withSeparator(property_name,struct_Object,symbol_ExtraData());
+	SiNo
+		InnerObject_info = String_Null();
+		error_Message_Funtion("__private_Object_Property_GetData",String_append_withSeparator("property no exist :: ", " :: ",property_name));
+	FinSi
+FinFuncion
+
+//......set
 Funcion Object_Result <- Object_Property_SetValue(struct_Object,property_name, property_Value)
 	Definir Object_Result Como Texto;
-	Object_Result = Object_Property_SetValue_ToSeparator(struct_Object, property_name, property_value, ".");
+	Object_Result = Object_Property_SetValue_ToSeparator(struct_Object, property_name, property_value, symbol_ObjectSeparator);
 FinFuncion
 
 Funcion Object_Result <- Object_Property_SetValue_ToSeparator(struct_Object, property_name, property_value, separator)
-    Definir Object_Result, stack_Objects, stack_Keys Como Texto;
-    Definir current_Key, rest_Path, sub_Object Como Texto;
-    Definir dot_Index, p_Index, p_InnerIndex Como Numero;
-    Definir p_Type, property_value_string  Como Texto;
-    Definir i, stack_Pointer, size_arrays Como Numero;
+	Definir Object_Result Como Texto;
+	Object_Result = Object_Property_ModifyOrRemove_ToSeparator(struct_Object, property_name, property_value, separator, false());
+FinFuncion
+
+Funcion Object_Result <- Object_Property_ModifyOrRemove_ToSeparator(struct_Object, property_name, property_value, separator, isRemove)
+    Definir Object_Result, current_Key , stack_Objects, stack_Keys Como Texto;
+    Definir dot_Index, property_Index, property_InnerIndex Como Numero;
+    Definir property_Type, Object_Modify_string Como Texto;
+    Definir i, stack_Pointer, size_arrays, index_property, index_property_end Como Numero;
 	size_arrays = String_countMatches(property_name, separator);
 	si size_arrays > 0 Entonces
 		stack_Pointer = 0;
@@ -2979,53 +3014,37 @@ Funcion Object_Result <- Object_Property_SetValue_ToSeparator(struct_Object, pro
 			property_name = String_substring_from(property_name, increment(dot_Index));
 		FinMientras
 	FinSi
-    p_Index = Object_Property_GetIndex(struct_Object, property_name);
-	Si p_Index  < 0 Entonces
+    property_Index = Object_Property_GetIndex(struct_Object, property_name);
+	Si property_Index  < 0 Entonces
 		Object_Result = struct_Object;
 		error_Message_Funtion("Object_Property_SetValue", String_append("property no exist: ", property_name));
 	SiNo
-		p_InnerIndex = __private_Object_Property_GetInnerIndex_IndexProperty(struct_Object, property_name, p_Index);
-		p_Type = __private_Object_Property_GetType_IndexProperty(struct_Object, property_name, p_Index);
-		property_value_string = linearCollection_SetElement_ToType(struct_Object, p_InnerIndex, property_value, p_Type);
+		property_InnerIndex = __private_Object_Property_GetInnerIndex_IndexProperty(struct_Object, property_name, property_Index);
+		property_Type = __private_Object_Property_GetType_IndexProperty(struct_Object, property_name, property_Index);
+		si isRemove Entonces
+			Object_Modify_string = linearCollection_RemoveElement(struct_Object, property_InnerIndex);
+			index_property = Object_Property_GetIndex(struct_Object, property_name);
+			index_property_end = increment(String_indexOf_fromIndex(struct_Object, symbol_Separator(), index_property));
+			Object_Modify_string = String_Delete(Object_Modify_string,index_property, index_property_end);
+		SiNo
+			Object_Modify_string = linearCollection_SetElement_ToType(struct_Object, property_InnerIndex, property_value, property_Type);
+		FinSi
+		
 		Para i = decrement(stack_Pointer) Hasta 0 con Paso -1 Hacer
 			struct_Object = stack_Objects[i];
 			current_Key = stack_Keys[i];
-			p_Index = Object_Property_GetIndex(struct_Object, current_Key);
-			p_InnerIndex = __private_Object_Property_GetInnerIndex_IndexProperty(struct_Object, current_Key, p_Index);
-			p_Type = __private_Object_Property_GetType_IndexProperty(struct_Object, current_Key, p_Index);
-			property_value_string = linearCollection_SetElement_ToType(struct_Object, p_InnerIndex, property_value_string, p_Type);
+			property_Index = Object_Property_GetIndex(struct_Object, current_Key);
+			property_InnerIndex = __private_Object_Property_GetInnerIndex_IndexProperty(struct_Object, current_Key, property_Index);
+			property_Type = __private_Object_Property_GetType_IndexProperty(struct_Object, current_Key, property_Index);
+			Object_Modify_string = linearCollection_SetElement_ToType(struct_Object, property_InnerIndex, Object_Modify_string, property_Type);
 		FinPara
-		Object_Result = property_value_string;
-	FinSi
-FinFuncion
-
-Funcion InnerObject_info <- Object_Property_InnerObject_getInfoProperty(struct_Object, property_name)
-	Definir InnerObject_info, property_Name_Inner, struct_Object_Inner, property_search Como Texto;
-	Definir index_innerObject como Numero;
-	index_innerObject = String_indexOf(property_name,".");
-	property_Name_Inner = property_name;
-	struct_Object_Inner = struct_Object;
-	Mientras index_innerObject >= 0 Hacer
-		property_search = String_Delete(property_Name_Inner, index_innerObject, String_length(property_Name_Inner));
-		property_Name_Inner = String_substring_from(property_Name_Inner, increment(index_innerObject));
-		struct_Object_Inner = linearCollection_getElement_toString(struct_Object_Inner, Object_Property_GetInnerIndex(struct_Object_Inner, property_search));
-		index_innerObject = String_indexOf(property_Name_Inner,".");
-	FinMientras
-	si Object_Property_Exist(struct_Object_Inner, property_Name_Inner) Entonces
-		InnerObject_info = String_append_withSeparator(struct_Object_Inner,property_Name_Inner,symbol_Separator());
-	SiNo
-		InnerObject_info = String_Null();
-		error_Message_Funtion("Object_Property_InnerObject_getInfoProperty",String_append_withSeparator("inner property no exist :: ", " :: ",property_name));
+		Object_Result = Object_Modify_string;
 	FinSi
 FinFuncion
 
 Funcion Object_Result <- Object_Property_Remove(struct_Object,property_name)
-	Definir Object_Result, property_TYPE  Como Texto;
-	Definir index_property, index_property_end Como Numero;
-	index_property = Object_Property_GetIndex(struct_Object, property_name);
-	Object_Result = linearCollection_RemoveElement(struct_Object, __private_Object_Property_GetInnerIndex_IndexProperty(struct_Object, property_name, index_property));
-	index_property_end = increment(String_indexOf_fromIndex(struct_Object,symbol_Separator(), index_property));
-	Object_Result = String_Delete(Object_Result,index_property, index_property_end);
+	Definir Object_Result Como Texto;
+	Object_Result = Object_Property_ModifyOrRemove_ToSeparator(struct_Object, property_name, String_Null(), symbol_ObjectSeparator(), true());
 FinFuncion
 
 Funcion Object_result <- Object_InheritsFrom(Object_Original,Object_Hereditary)
@@ -3046,11 +3065,6 @@ Funcion object_IsEquals <- Object_isType(Object_Select, name)
 	FinSi
 FinFuncion
 
-Funcion property_TYPE <- Object_Property_GetType(struct_Object,property_name)
-	Definir property_TYPE Como Texto;
-	property_TYPE = __private_Object_Property_GetType_IndexProperty(struct_Object,property_name, Object_Property_GetIndex(struct_Object,property_name));
-FinFuncion
-
 Funcion Object_Name <- Object_getName(struct_Object)
 	Definir Object_Name Como Texto;
 	Object_Name = collection_getContent_Between_Symbols(struct_Object,symbol_typeArea(),symbol_ExtraData());
@@ -3062,8 +3076,8 @@ Funcion property_exists <- Object_Property_Exist(struct_Object,property_name)
 FinFuncion
 
 Funcion index_property <- Object_Property_GetIndex(struct_Object,property_name)
-	Definir index_property Como Numero;
-	Definir Area_Property Como Texto;
+	Definir index_property, index_innerObject, center_info Como Numero;
+	Definir Area_Property, data_Inner Como Texto;
 	Area_Property = Object_getAreaProperty(struct_Object);
 	index_property = __private_Object_Property_GetIndex_AreaProperty(struct_Object,property_name, Area_Property);
 	Si index_property >= 0 Entonces
@@ -3087,6 +3101,26 @@ Funcion index_property <- __private_Object_Property_GetIndex_AreaProperty(struct
 	FinSi
 FinFuncion
 
+Funcion property_TYPE <- Object_Property_GetType(struct_Object,property_name)
+	Definir property_TYPE, data_Inner Como Texto;
+	Definir index_innerObject, center_info como Numero;
+	
+	index_innerObject = String_indexOf(property_name, symbol_ObjectSeparator());
+	si index_innerObject > 0 Entonces
+		data_Inner = __private_Object_Property_GetData(struct_Object, property_name, index_innerObject);
+		center_info = String_indexOf(data_Inner,symbol_ExtraData());
+		property_name = String_substring(data_Inner, 0, center_info);
+		struct_Object = String_substring_from(data_Inner, increment(center_info));
+	FinSi
+	
+	si Object_Property_Exist(struct_Object, property_name) Entonces
+		property_TYPE = __private_Object_Property_GetType_IndexProperty(struct_Object,property_name, Object_Property_GetIndex(struct_Object,property_name));
+	SiNo
+		InnerObject_info = String_Null();
+		error_Message_Funtion("Object_Property_GetType",String_append_withSeparator("property no exist :: ", " :: ",property_name));
+	FinSi
+FinFuncion
+
 Funcion property_TYPE <- __private_Object_Property_GetType_IndexProperty(struct_Object,property_name, index_property)
 	Definir property_TYPE Como Texto;
 	Definir start_index, End_index Como Numero;
@@ -3097,22 +3131,22 @@ Funcion property_TYPE <- __private_Object_Property_GetType_IndexProperty(struct_
 		property_TYPE = String_substring(struct_Object, start_index, End_index);
 	SiNo
 		property_TYPE = string_Null();
-		error_Message_Funtion("Object_Property_GetType", String_append("property no exist :", property_name));
+		error_Message_Funtion("__private_Object_Property_GetType_IndexProperty", String_append("property no exist :", property_name));
 	FinSi
+FinFuncion
+
+Funcion property_InnerIndex <- __private_Object_Property_GetInnerIndex_IndexProperty(struct_Object, property_name, IndexProperty)
+	Definir property_InnerIndex Como Numero;
+	property_InnerIndex = -1;
+	Mientras (IndexProperty >= 0) & !String_isEquals(charAt(struct_Object, increment(IndexProperty)), symbol_DataArea()) Hacer
+		IndexProperty = String_indexOf_fromIndex(struct_Object,symbol_Separator(), increment(IndexProperty));
+		property_InnerIndex = increment(property_InnerIndex);
+	FinMientras
 FinFuncion
 
 Funcion property_InnerIndex <- Object_Property_GetInnerIndex(struct_Object,property_name)
 	Definir property_InnerIndex Como Numero;
 	property_InnerIndex = __private_Object_Property_GetInnerIndex_IndexProperty(struct_Object,property_name, Object_Property_GetIndex(struct_Object,property_name));
-FinFuncion
-
-Funcion property_InnerIndex <- __private_Object_Property_GetInnerIndex_IndexProperty(struct_Object,property_name, index_separator)
-	Definir property_InnerIndex Como Numero;
-	property_InnerIndex = -1;
-	Mientras (index_separator >= 0) & !String_isEquals(charAt(struct_Object, increment(index_separator)), symbol_DataArea()) Hacer
-		index_separator = String_indexOf_fromIndex(struct_Object,symbol_Separator(), increment(index_separator));
-		property_InnerIndex = increment(property_InnerIndex);
-	FinMientras
 FinFuncion
 
 Funcion area_Property <- Object_getAreaProperty(struct_Object)
@@ -3147,9 +3181,12 @@ FinFuncion
 Funcion Object_Instructions <- __private_Object_GetInstructions_AccordingToProcess(Object_select, Object_compartor, isRemove)
 	Definir Object_Instructions, Area_Property_Comparator, Area_Property_Select, array_Select, array_Comparator Como Texto;
 	Definir i, Size_Select, Size_Comparator, start_index, End_index Como Numero;
+	
 	Size_Select = linearCollection_GetSize(Object_select);
 	Size_Comparator = linearCollection_GetSize(Object_compartor);
 	Area_Property_Comparator = Object_getAreaProperty(Object_compartor);
+	Object_Instructions = String_Null();
+	
 	si (Size_Comparator > 0) & (Size_Select > 0) Entonces
 		DimenSion array_Select[Size_Select];
 		DimenSion array_Comparator[Size_Comparator];
@@ -3168,8 +3205,6 @@ Funcion Object_Instructions <- __private_Object_GetInstructions_AccordingToProce
 		FinPara
 		//. . . . . . . . . . start On2 vvvvv
 		Object_Instructions = array_ToDeltaString_ByComparation(array_Select, size_Select, array_Comparator, size_Comparator, isRemove);
-	SiNo
-		Object_Instructions = String_Null();
 	FinSi
 	
 	si (Size_Select < 1) & (Size_Comparator > 0) Entonces
