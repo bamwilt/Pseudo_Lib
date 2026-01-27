@@ -2,13 +2,17 @@
 
 ![Banner de Pseudo Lib](media/PseudoLib_banner_.png)
 
-### Estadísticas del Proyecto
-PseudoLib es una extensa biblioteca de pseudo-código escrita en PSeInt que implementa estructuras de datos, utilidades matemáticas, manipulación de strings, interfaces de usuario y funcionalidades similares a lenguajes de programación modernos. Este proyecto es un esfuerzo para llevar las capacidades de PSeInt más allá de sus límites tradicionales, implementando conceptos de programación moderna en un entorno educativo. 
+### Estad�sticas del Proyecto
+PseudoLib es una extensa biblioteca de pseudo-c�digo escrita en PSeInt que implementa estructuras de datos, utilidades matem�ticas, manipulaci�n de strings, interfaces de usuario y funcionalidades similares a lenguajes de programaci�n modernos. Este proyecto es un esfuerzo para llevar las capacidades de PSeInt m�s all� de sus l�mites tradicionales, implementando conceptos de programaci�n moderna en un entorno educativo. 
 
 ![demoSpiral](media/Spiral.jpeg)
 
-> Total de funciones: ~340 funciones organizadas en módulos
-> Versión: PSeInt 2023+
+> Total de funciones: ~340 funciones organizadas en m�dulos
+
+> Lineas: ~3700
+
+> Versi�n: PSeInt 2023+
+
 > Estado: En desarrollo activo
 
 ---
@@ -16,44 +20,46 @@ PseudoLib es una extensa biblioteca de pseudo-código escrita en PSeInt que impl
 ## Estructura del Proyecto
 ```
 Pseudo_Lib
-├── MAIN (#0) - Función principal
-├── INPUT (#1) - Entrada de usuario
-├── STRING (#2) - Manipulación de strings
-├── ARRAY (#3) - Arreglos
-├── PRINTERS (#4) - Sistema de impresión
-├── INT (#5) - Enteros 
-│   └── BINARY - binarios
-├── MATH (#6) - Matemáticas
-├── BOOLEAN (#7) - Booleanos
-├── CONDITIONS (#8) - Condiciones
-├── DEFINITIONS (#9) - Definiciones
-├── COLOR (##0) - Colores
-├── LOCAL DATE TIME (##1) - Fecha/hora
-│   └── DURATION - intervalos
-├── UTIL (##2) - Utilidades y colecciones
-│   ├── COLLECTION - Colecciones base
-│   ├── LINEARCOLLECTION - Colecciones lineales
-│   ├── DEQUE - Doble cola
-│   ├── QUEUE - Cola
-│   ├── STACK - Pila
-│   ├── LIST - Lista
-│   ├── MAP - Mapa
-│   └── SET - Conjunto
-├── OBJECT (##3) - Objetos
-├── TUI/CANVAS (##4) - Interfaz gráfica
-├── VEC (##5) - Vectores
-└── ASCII (##6) - Caracteres ASCII
+??? MAIN (#0) - Funci�n principal
+??? INPUT (#1) - Entrada de usuario
+??? STRING (#2) - Manipulaci�n de strings
+??? ARRAY (#3) - Arreglos
+??? PRINTERS (#4) - Sistema de impresi�n
+?   ??? BINARY - binarios
+??? INT (#5) - Enteros 
+?   ??? SLEEP - tiempo de espera
+?   ??? LOG - Registro de eventos
+??? MATH (#6) - Matem�ticas
+??? BOOLEAN (#7) - Booleanos
+??? CONDITIONS (#8) - Condiciones
+??? DEFINITIONS (#9) - Definiciones
+??? COLOR (##0) - Colores
+??? LOCAL DATE TIME (##1) - Fecha/hora
+?   ??? DURATION - intervalos
+??? UTIL (##2) - Utilidades y colecciones
+?   ??? COLLECTION - Colecciones base
+?   ??? LINEARCOLLECTION - Colecciones lineales
+?   ??? DEQUE - Doble cola
+?   ??? QUEUE - Cola
+?   ??? STACK - Pila
+?   ??? LIST - Lista
+?   ??? MAP - Mapa
+?   ??? SET - Conjunto
+??? OBJECT (##3) - Objetos
+??? TUI/CANVAS (##4) - Interfaz gr�fica
+??? VEC (##5) - Vectores
+??? ASCII (##6) - Caracteres ASCII
 ```
-
 ---
 
-## Próximamente / En desarrollo
+## Pr�ximamente / En desarrollo
 
-- Estructuras de datos avanzadas: **Map, Set**  
-- Algoritmos de ordenamiento: **QuickSort, BubbleSort, MergeSort**  
-- Transformaciones gráficas 2D y soporte 3D  
-- Reescritura de **Vec**: optimización y mejoras de helpers  
 - mejoras en los helpers de funciones de Local_Date_Time y Duration
+- Algoritmos de ordenamiento: **QuickSort, BubbleSort, MergeSort**  
+- Estructuras de datos avanzadas: **Map, Set**  
+- soperte para color 2D y graficos simples 3D  
+- Reescritura de **Vec**: optimizaci�n y mejoras de helpers  
+
 
 > la mayoria de cosas complejas se manejan mediante asignaciones y texto
 > es simulacion con el objetivo de programar cosas complejas con flexibilidad 
