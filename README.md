@@ -19,36 +19,32 @@ PseudoLib es una extensa biblioteca de pseudo-código escrita en PSeInt que imple
 
 ## Estructura del Proyecto
 ```
-Pseudo_Lib
-??? MAIN (#0) - Función principal
-??? INPUT (#1) - Entrada de usuario
-??? STRING (#2) - Manipulación de strings
-??? ARRAY (#3) - Arreglos
-??? PRINTERS (#4) - Sistema de impresión
-?   ??? BINARY - binarios
-??? INT (#5) - Enteros 
-?   ??? SLEEP - tiempo de espera
-?   ??? LOG - Registro de eventos
-??? MATH (#6) - Matemáticas
-??? BOOLEAN (#7) - Booleanos
-??? CONDITIONS (#8) - Condiciones
-??? DEFINITIONS (#9) - Definiciones
-??? COLOR (##0) - Colores
-??? LOCAL DATE TIME (##1) - Fecha/hora
-?   ??? DURATION - intervalos
-??? UTIL (##2) - Utilidades y colecciones
-?   ??? COLLECTION - Colecciones base
-?   ??? LINEARCOLLECTION - Colecciones lineales
-?   ??? DEQUE - Doble cola
-?   ??? QUEUE - Cola
-?   ??? STACK - Pila
-?   ??? LIST - Lista
-?   ??? MAP - Mapa
-?   ??? SET - Conjunto
-??? OBJECT (##3) - Objetos
-??? TUI/CANVAS (##4) - Interfaz gráfica
-??? VEC (##5) - Vectores
-??? ASCII (##6) - Caracteres ASCII
+NAME                     CODE_SEARCH
+------------------------------------
+|----INPUT               #1
+|----STRING              #2
+|----ARRAY               #3
+|----PRINTERS            #4
+|     --SLEEP            ++4_1
+|     --LOGS             ++4_2
+|----INT                 #5
+|     --BINARY_STRING    ++5
+|----MATH                #6
+|----BOOLEAN             #7
+|----CONDITIONS          #8
+|----DEFINITIONS         #9
+|----COLOR               #+0
+|----LOCAL_DATE_TIME     #+1
+|----UTIL                #+2
+|     --COLLECTION       ///
+|     --LINEAR_COLLECTION ++2_1
+|     --DEQUE            ++2_2
+|     --QUEUE            ++2_3
+|     --STACK            ++2_4
+|     --LIST             ++2_5
+|----OBJECT              #+3
+|----TUI/CANVAS          #+4
+|----VEC                 #+5
 ```
 ---
 

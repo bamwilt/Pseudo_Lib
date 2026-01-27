@@ -77,17 +77,18 @@ FinFuncion
 ///%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%[ PSeInt-Toolkit ] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //LIB !0
 //SEARCH: Ctrl+F
+
 //LIBRARIES:
 //NAME		      			 /		CODE_SEARCH 		/      USE
 //-------------------------------------------------------------------------
-//1----INPUT  ·  ·  ·  ·  ·  ·  ·   #1 					   user_input_
+//l----INPUT  ·  ·  ·  ·  ·  ·  ·   #1 					   user_input_
 //1----STRING ·  ·  ·  ·  ·  ·  ·   #2  			 		string_
 //1----ARRAY  ·  ·  ·  ·  ·  ·  ·   #3  					 array_
 //1----PRINTERS  ·  ·  ·  ·  ·  ·   #4 		 		print_ : prinln_ : log_
-//1      '--SLEEP   ·  ·  ·  ·  ·   ++4_1				   sleep_
-//1      '--LOGS ·  ·  ·  ·  ·  ·   ++4_2					Log_
+//1      \--SLEEP   ·  ·  ·  ·  ·   ++4_1				   sleep_
+//1      \--LOGS ·  ·  ·  ·  ·  ·   ++4_2					Log_
 //1----INT ·  ·  ·  ·  ·  ·  ·  ·   #5  					int_
-//1      '--BINARY_STRING ·  ·  ·  	++5					binaryString_
+//1      \--BINARY_STRING ·  ·  ·  	++5					binaryString_
 //1----math   ·  ·  ·  ·  ·  ·  ·	#6 				 		math_
 //1----BOOLEAN   ·  ·  ·  ·  ·  ·	#7 					 	...
 //1----CONDITIONS   ·  ·  ·  ·  ·	#8    	 			if_ : condition_
@@ -95,12 +96,12 @@ FinFuncion
 //1----COLOR  ·  ·  ·  ·  ·  ·  ·  	#+0 					COLOR_
 //1----LOCAL_DATE_TIME ·  ·  ·  ·	#+1					 	Local_
 //1----UTIL   ·  ·  ·  ·  ·  ·  · 	#+2 			 		 NULL
-//1      '--COLLECTION ·  ·  ·  ·   ///				       collection_
-//1      '--LINEAR_COLLECTION   ·	++2_1		    	linearCollection_
-//1      '--DEQUE   ·  ·  ·  ·  · 	++2_2					util_Deque_
-//1      '--QUEUE   ·  ·  ·  ·  ·	++2_3					util_Queue_
-//1      '--STACK   ·  ·  ·  ·  ·	++2_4					util_Stack
-//1      '--LIST    ·  ·  ·  ·  ·	++2_5					util_List_
+//1      \--COLLECTION ·  ·  ·  ·   ///				       collection_
+//1      \--LINEAR_COLLECTION   ·	++2_1		    	linearCollection_
+//1      \--DEQUE   ·  ·  ·  ·  · 	++2_2					util_Deque_
+//1      \--QUEUE   ·  ·  ·  ·  ·	++2_3					util_Queue_
+//1      \--STACK   ·  ·  ·  ·  ·	++2_4					util_Stack
+//1      \--LIST    ·  ·  ·  ·  ·	++2_5					util_List_
 //1----OBJECT    ·  ·  ·  ·  ·  · 	#+3   			 	   	Object_
 //1----TUI/CANVAS   ·  ·  ·  ·  ·	#+4  			 		 TUI_
 //1----VEC 	  ·  ·  ·  ·  ·  ·  ·   #+5   					 VEC_
