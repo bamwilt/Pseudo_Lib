@@ -7,13 +7,10 @@ PseudoLib es una extensa biblioteca de pseudo-código escrita en PSeInt que imple
 
 ![demoSpiral](media/Spiral.jpeg)
 
-> Estado: ~340 funciones &  ~3700 Lineas 
-
+> Estado: ~340 funciones & ~3700 Lineas 
 > Versión: PSeInt 2023+
-
 > Estado: En desarrollo activo
 
-> *No* esta hecho para *uso pegagogico o Educativo*
 ---
 
 ## Estructura del Proyecto
