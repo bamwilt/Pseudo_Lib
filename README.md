@@ -3,18 +3,17 @@
 ![Banner de Pseudo Lib](media/PseudoLib_banner_.png)
 
 ### Estadísticas del Proyecto
-PseudoLib es una extensa biblioteca de pseudo-código escrita en PSeInt que implementa estructuras de datos, utilidades matemáticas, manipulación de strings, interfaces de usuario y funcionalidades similares a lenguajes de programación modernos. Este proyecto es un esfuerzo para llevar las capacidades de PSeInt más allá de sus límites tradicionales, implementando conceptos de programación moderna en un entorno educativo. 
+PseudoLib es una extensa biblioteca de pseudo-código escrita en PSeInt que implementa funcionalidades para emular a una libreria estandar de un lenguaje real. Su propósito no es educativo sino experimental.
 
 ![demoSpiral](media/Spiral.jpeg)
 
-> Total de funciones: ~340 funciones organizadas en módulos
-
-> Lineas: ~3700
+> Estado: ~340 funciones &  ~3700 Lineas 
 
 > Versión: PSeInt 2023+
 
 > Estado: En desarrollo activo
 
+> *No* esta hecho para *uso pegagogico o Educativo*
 ---
 
 ## Estructura del Proyecto
