@@ -6,7 +6,7 @@
 PseudoLib es una extensa biblioteca de pseudo-código escrita en PSeInt que implementa funcionalidades para emular a una libreria estandar de un lenguaje real. Su propósito no es educativo sino experimental.
 
 ![demoSpiral](media/Spiral.png)
-![demoTUI](media/TUI_example.png)
+![demoTUI](media/TUI_Example.png)
 
 > Estado: En desarrollo activo
 
@@ -52,7 +52,6 @@ PseudoLib es una extensa biblioteca de pseudo-código escrita en PSeInt que imple
 //END_CODE ++0
 //LINES_CODE: ~5300
 //[+]: Stable
-
 //[D]: Current Development
 //[P]: stable (Pending additions)
 //[X]: Unusable / undeveloped state
