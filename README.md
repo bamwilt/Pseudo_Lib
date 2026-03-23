@@ -3,7 +3,7 @@
 ![Banner de Pseudo Lib](media/PseudoLib_banner_.png)
 
 ### Estadísticas del Proyecto
-PseudoLib es una extensa biblioteca de pseudo-código escrita en PSeInt que implementa funcionalidades para emular a una libreria estandar de un lenguaje real. Su propósito no es educativo sino experimental.
+PseudoLib es una extensa biblioteca de pseudo-código escrita en PSeInt que implementa funcionalidades para emular a una libreria estandar de un lenguaje real. Su propósito no es educativo sino experimental .
 > Spirtal Demostracion
 ![demoSpiral](media/Spiral.png)
 > poder de dibujo con TUI o Canvas
