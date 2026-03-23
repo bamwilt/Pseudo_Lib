@@ -1,5 +1,4 @@
 ///%%%%%[ MAIN ]%%%%%%%%[ #0 ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 Funcion main
 	Definir tui, text, canvas, sprite  Como Texto;
 	breakline();
@@ -28,14 +27,12 @@ Funcion main
 //	TUI_Display(tui);
 FinFuncion
 
-
 ///%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% [ PSeInt-Toolkit ] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-//LIB !0
-//SEARCH: Ctrl+F
-//LIBRARIES:
-//NAME		       /		CODE_SEARCH 		/      USE			/      STATE
+//LIB !0 >> SEARCH: Ctrl+F   >> LIBRARIES:  
 //--------------------------------------------------------------------------------------
-//l--INPUT  ·  ·  ·  ·  ·  ·  · #1 					user_input_				[+]
+//    NAME	       /		CODE_SEARCH 		/      USE			/      STATE	   
+//--------------------------------------------------------------------------------------
+//1--INPUT  ·  ·  ·  ·  ·  ·  · #1 					user_input_				[+]
 //1--STRING ·  ·  ·  ·  ·  ·  · #2  			 	string_					[+]
 //1--ARRAY  ·  ·  ·  ·  ·  ·  · #3  				array_					[P]
 //1--PRINTERS  ·  ·  ·  ·  ·  · #4 		        	print_ : prinln_ 		[#]
@@ -50,49 +47,66 @@ FinFuncion
 //1--DEFINITIONS  ·  ·  ·  ·  ·	#9 					NULL					[+]
 //1--COLOR  ·  ·  ·  ·  ·  ·  · #+0 				COLOR_     				[P]
 //1--LOCAL_DATE_TIME ·  ·  ·  ·	#+1					Local_					[D]
-//1    \--DURATION   ·  ·  ·  · ++1_1				Duration_				[P]
-//1--UTIL   ·  ·  ·  ·  ·  ·  · #+2 			 	NULL					[+]
+//1    \--DURATION   ·  ·  ·  · -+1_1				Duration_				[P]
+//1--VALUE	·  ·  ·  ·  ·  · 	///				    value_					[+]
+//1--UTIL   ·  ·  ·  ·  ·  ·  · #+2 			 	...						[+]
 //1    \--COLLECTION ·  ·  ·  · ///				    collection_				[+]
-//1    \--LINEAR_COLLECTION   ·	++2_1		    	linearCollection_		[+]
-//1    \--DEQUE   ·  ·  ·  ·  · ++2_2				util_Deque_				[+]
-//1    \--QUEUE   ·  ·  ·  ·  ·	++2_3				util_Queue_				[+]
-//1    \--STACK   ·  ·  ·  ·  ·	++2_4				util_Stack				[+]
-//1    \--LIST ·  ·  ·  ·  ·  ·	++2_5				util_List_				[+]
-//1    \--COLLECTION_SETTER·  · ++2_6				util_List_				[+]
-//1    			\--SET  ·  ·  ·	++2_7				util_Set_				[+]
-//1 			\--MAP  ·  ·  ·	++2_8				util_Map_				[+]
-//1--OBJECT    ·  ·  ·  ·  ·  ·	#+3   			 	object_					[#]
-//1--canvas    ·  ·  ·  ·  ·  ·	#+4  			 	canvas_					[+]
-//1--TUI	   ·  ·  ·  ·  ·  · #+5   				TUI_					[+]
+//1      \--LINEAR_COLLECTION ·	-+2_1		    	linearCollection_		[+]
+//1    	   \--DEQUE  ·  ·  ·  · -+2_2				util_Deque_				[+]
+//1    	   \--QUEUE  ·  ·  ·  ·	-+2_3				util_Queue_				[+]
+//1    	   \--STACK  ·  ·  ·  ·	-+2_4				util_Stack				[+]
+//1        \--LIST   ·  ·  ·  ·	-+2_5				util_List_				[+]
+//1        \--COLLECTION_SETTER -+2_6				util_List_				[+]
+//1    			\--SET  ·  ·  ·	-+2_7				util_Set_				[+]
+//1 			\--MAP  ·  ·  ·	-+2_8				util_Map_				[+]
+//1--OBJECT ·  ·  ·  ·  ·  ·  ·	#+3   			 	object_					[#]
+//1--CANVAS ·  ·  ·  ·  ·  ·  ·	#+4  			 	canvas_					[+]
+//1    \--SPRITE  ·  ·  ·  ·  ·	-+4_1  			 	Sprite_					[+]
+//1--TUI ·  ·  ·  ·  ·  ·  ·  · #+5  				TUI_					[+]
+//1    \--TCOMPONENT ·  ·  ·  ·	-+5_1  			 	Tcomponent_				[+]
 //1--VEC 	   ·  ·  ·  ·  ·  · #+6   				VEC_					[X]
 //1--ASCCI/HASH   ·  ·  ·  ·  · #+7   				ascii_					[+]
-//  _______________________________________________
-//END_CODE ++0
-//LINES_CODE: ~5300
+//1-- END_CODE ++0
+//¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
 //[+]: Stable
 //[#]: Stable, but could be better (review)
 //[D]: Current Development
 //[P]: stable (Pending additions)
 //[X]: Unusable / undeveloped state
 //Pseint --version 2023
-//- - - - - - - - extra 
-//String = Texto, Caracter // Int = Numero, Numerico, Entero // Float=Real // Boolean=Logico // | ==  || // & == &&
-// return = var+FinFuncion (@retorna el valor de la variable en el estado en el que este)
+//LINES_CODE: ~5400
+//______________________________________________________________________________________
+// TYPE			 /		TYPE_PSEINT
+//--------------------------------------------------------------------------------------
+// String 		= 	Texto, Caracter 
+// Int 			= 	Numero, Numerico, Entero 
+// Float 		= 	Real 
+// Boolean 		= 	Logico 
+// | 			=  	|| 
+// & 			= 	&&
+// return 		= var+FinFuncion (@retorna el estado final que quedo var en la funcion)
 // Symbols_Extra:
 //  ¡ ¢ £ ¤ ¥ ¦ § ¨ © ª « ~ ­® ¯ ° ± ² ³ ´ µ ¶ · ¸ ¹ º » ¼ ½ ¾ ¿ À Á Â Ã Ä Å Æ Ç È É 
-// Ê Ë Ì Í Î Ï Ð Ò Ó Ô Õ Ö × ØÙ Ú Û Ü Ý Þ ß à á â ã ä å æ ç è é é ê ë ì í î ï ð ñ ò ó 
+// Ê Ë Ì Í Î Ï Ð Ò Ó Ô Õ Ö × Ø Ù Ú Û Ü Ý Þ ß à á â ã ä å æ ç è é é ê ë ì í î ï ð ñ ò ó 
 // ô õ ö ÷ ø ù ú ü ý þ ÿ ñ Ñ 
-// --------------------  Trabajo pendiente 
+//---[ TASK ]------------------------------------------------------------------------<#>
 // metodos: array_sort, Array_reverse, array_filter, Runnable(opcional para el #+8)
 // contains_IgnoreCase, posible agregado de mas componentes (opcional)
 // mejorar print progress con soporte para color y color transparente, print color 
-//	" /````````````````````\"
-// " §   © Bryan.A.M.Wilt   §"
-// " \_____________________/"
-//..................../* You are not expected to understand this */...................//
+// <TODO: Actualizar con Index_FromIndex> __private_string_occurrences_general
+// <TODO: Agregar un CompareTo> String(?)
+// <TODO: Eliminar agregar o modifcar las animacion para hacerlas utiles > Sleep
+// <TODO: Mejorar lectura o dejarlo como esta>  math_ Serie de Taylor
+// <TODO: agregar hasColor y RemoveColor >  Color
+// <TODO: Eliminar esta funcion y eleminar las dependencias >  if_else_TYPEBOOLEAN
+// <TODO: agregar soporte para monocolor y agregar como maquina de escritura (Hell_ luego Hello)>  print_progress_formater
+//--------------------------------------------------------------------------------------
+//	  /````````````````````\
+//   §   © Bryan.A.M.Wilt  §
+//   \____________________/
+//................../* You are not expected to understand this */.....................//
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% [ START FUNTIONS ] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-///%%%%%[ INPUT ]%%%%%%%%[ #1 ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+///%%%%%[ INPUT ]%%%%%%%%%%%%%%%%%%%%[   #1   ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Funcion user_input <- user_input_options_separator_message(options_text, separator, message, TYPE)
 	Segun TYPE Hacer
 		caso TYPE_BOOLEAN(): Definir user_input Como Logico;
@@ -183,7 +197,7 @@ Funcion user_input_wait
 	Definir user_input Como Texto;
 	Leer user_input;
 FinFuncion
-///%%%%%[ STRING ]%%%%%%%%[ #2 ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+///%%%%%[ STRING ]%%%%%%%%%%%%%%%%%%%%[   #2   ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // =========================================================== APPENDS
 Funcion result <- string_append_withSeparator(str1, str2, separator)
 	Definir result Como Texto;
@@ -570,15 +584,14 @@ Funcion index <- string_indexOf_fromIndex_speedNative(text, match, index_Start)
 	
 	Mientras index_end>=i & Num_isEquals(index, -1) Hacer
 		Si string_isEquals(match, string_substring(text, i, i+match_length)) Entonces
-			index =i;
+			index = i;
 			i = increment(index_end);
 		SiNo
 			i = increment(i);
 		FinSi
 	FinMientras
 FinFuncion
-
-//Optimizar KMP
+// en teoria deberia ser mas rapido pero al ser un interprete creo que afecta su velocidad
 Funcion index <- string_indexOf_fromIndex_KMP(text, text_pattern, index_Start)
 	Definir index, i, j, pattern_length, text_length, LPS, len Como Numero;
 	Definir pattern Como Texto;
@@ -627,7 +640,7 @@ Funcion result <- string_occurrences_overlap(text, text_match)
 	Definir result Como Numero;
 	result = __private_string_occurrences_general(text, text_match, true);
 FinFuncion
-//TODO5:actualizar con index_fromindex
+
 Funcion result <- __private_string_occurrences_general(text, text_match, isOverLap)
 	Definir result, count, index, progress_sum Como Numero;
 	Definir text_Current Como Texto;
@@ -673,7 +686,7 @@ Funcion count <- __private_string_countMatches_general(text, text_matcher, isOve
 		index = string_indexOf_fromIndex_speedNative(text, text_matcher, length_Match);
 	FinMientras
 FinFuncion
-///%%%%%[ ARRAY ]%%%%%%%%[ #3 ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+///%%%%%[ ARRAY ]%%%%%%%%%%%%%%%%%%%%[   #3   ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Funcion str_array <- array_ofString(array, Size, type)
 	Definir str_array Como Texto;
 	str_array = array_ofstring_separator(array, Size, symbol_Separator_Simple(), type);
@@ -746,8 +759,7 @@ Funcion string_Delta <- array_ToDeltastring_ByComparation(array_Select, size_Sel
 		FinSi
 	FinPara
 FinFuncion
-// -------------------------------------------------------------------------------------TODO9: alta el me ComparareTo()
-///%%%%%[ PRINTERS ]%%%%%%%%[ #4 ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+///%%%%%[ PRINTERS ]%%%%%%%%%%%%%%%%%[   #4   ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Funcion print(text)
 	__private_internal_printer_formater(text);
 FinFuncion
@@ -916,7 +928,7 @@ FinFuncion
 Funcion ClearConsole
 	Limpiar Pantalla;
 FinFuncion
-// =============================================================== SLEEP ++4_1
+///$$$$$[ SLEEP ]$$$$$$$$$$$$$$$$$$$$[  ++4_1 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Funcion Sleep(s)
 	Sleep_Millisecond(s*1000);
 FinFuncion
@@ -957,9 +969,7 @@ Funcion Sleep_CircleLoad(s)
 	sequence[3]= "\";
 	Sleep_Animation(4, 100, sequence, Size, 35, 10, true());
 FinFuncion
-//TODO: REPARA ESTAS ANIMACIONES
-//enableRepeat para hacer que cada frame tarde lo que deba de tardar hasta que termina el tiempo
-//neceSitaria otro metodo esta ya hace lo que hace 
+
 Funcion Sleep_Animation(s, speed, text_array_Sequence, Size, padding_x, padding_y, EnableClear)
 	Definir Time, Time_End, Time_adjust Como Numero;
 	Definir padding_x_text Como Texto;
@@ -984,7 +994,7 @@ Funcion Sleep_Animation(s, speed, text_array_Sequence, Size, padding_x, padding_
 	ClearConsole();
 FinFuncion
 //Sleep_Animations  loading points: . .. ... 
-// =============================================================== LOGS ++4_2
+///$$$$$[ LOGS ]$$$$$$$$$$$$$$$$$$$$$[  ++4_2 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Funcion log_WARNING(message)
 	__private_general_log(message, "WARNING: ", COLOR_YELLOW());
 FinFuncion
@@ -1013,8 +1023,7 @@ Funcion __private_general_log(message, start_tag, SELECTED_COLOR)
 	message = string_append(start_tag, message);
 	println_Simple(string_append(SELECTED_COLOR, message));
 FinFuncion
-
-// =============================================================== Test ++4_3
+///$$$$$[ TEST ]$$$$$$$$$$$$$$$$$$$$$[  ++4_3 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Funcion test_Checkpoint(id)
 	test_Checkpoint_info(id, "");
 FinFuncion
@@ -1093,8 +1102,8 @@ Funcion test_funtion_Passed_Debug(count_string)
 FinFuncion
 
 
-///========================================================>>>  [ INT ] <<==///#5
-// =============================================================== CONVERSiONS
+///%%%%%[ INT ]%%%%%%%%%%%%%%%%%%%%%%[   #5   ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//---[ COVERSIONS ]------------------------------------------------------------------<#>
 //Int_IsPoSitive(n)
 //Int_IsNegative(n)
 //Int_Negate(n)
@@ -1148,8 +1157,7 @@ Funcion num_range <- int_getRangeCeil_ToFromSeparatedString(num, list_Str)
 		i = increment(i);
 	FinMientras
 FinFuncion
-//--------------Binary
-
+///$$$$$[ BINARY_STRING ]$$$$$$$$$$$$[   ++5  ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Funcion int_num <- binarystring_ToInt(binaryString)
 	Definir int_num, i, binary_Length, bit Como Numero;
 	binary_Length = decrement(string_Length(binaryString));
@@ -1255,7 +1263,7 @@ Funcion binarystring_result <- binarystring_TwosComplement(binaryString)
 	binarystring_result = binarystring_SUM(binarystring_NOT(binaryString), string_pad_start("1", string_RepeatText("0", string_Length(binaryString))));
 FinFuncion
 
-///========================================================>>>  [ math ] <<==///#6
+///%%%%%[ MATH ]%%%%%%%%%%%%%%%%%%%%%[   #6   ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // =============================================================== MAX
 Funcion result <- math_max_Int(value, limit)
 	Definir result Como Numero;
@@ -1356,7 +1364,7 @@ Funcion lnx0 <- math_ln(x)
         lnx0 = lnx0 + term / n;
     FinPara
 FinFuncion
-// TODO: las variables Como x y firts_term son molestas ver Como hacer ln() o dejarlo aSi
+
 Funcion num_taylor <- math_serie_taylor(x, first_term, num_terms, n_start, n_increment, num_exp, isFact, HasAlternations)
 	Definir num_taylor, term, i, n , n_divisor Como Real;	
 	num_taylor=first_term;
@@ -1509,7 +1517,7 @@ Funcion num_EULER <- math_EULER
 	Definir num_EULER Como Real;
 	num_EULER = 2.718281828459045;
 FinFuncion
-///========================================================>>>  [ BOOLEANS ] <<==///#7
+///%%%%%[ BOOLEAN ]%%%%%%%%%%%%%%%%%%[   #7   ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // ===========================================================  STRING <<<<<<
 Funcion boolean <- string_isEmpty(text)
 	Definir boolean Como Logico;
@@ -1676,7 +1684,6 @@ FinFuncion
 Funcion boolean <- string_hasColor(text)
 	Definir boolean Como Logico;
 	boolean = __private_string_hasStyle_or_Color(text);
-	//TODO8: terminar junto con remove Colors
 FinFuncion
 
 Funcion boolean <- string_hasStyle(text)
@@ -1709,7 +1716,7 @@ Funcion isValid <- TYPE_isValid(TYPE)
 	Definir isValid Como Logico;
 	isValid = string_isEquals(TYPE, TYPE_STRING()) | string_isEquals(TYPE, TYPE_INT()) | string_isEquals(TYPE, TYPE_BOOLEAN()) | string_isEquals(TYPE, TYPE_FLOAT());
 FinFuncion
-///========================================================>>>  [ CONDITIONS ] <<==///#8
+///%%%%%[ CONDITIONS ]%%%%%%%%%%%%%%%[   #8   ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Funcion result <- if_else(condition, result1, result2, TYPE)
 	Segun TYPE Hacer
 		caso TYPE_INT():
@@ -1745,7 +1752,7 @@ Funcion result <- if(condition, result1, TYPE)
 		result = result1;
 	FinSi
 FinFuncion
-//TODO: eliminar esto y limpiar Funciones que ocupen esto 
+
 Funcion result <-if_else_TYPEBOOLEAN(condition, result1, result2)
 	Definir result Como logico;
 	Si condition Entonces
@@ -1816,7 +1823,7 @@ Funcion exection_Error(message_Error)
 	error_int = string_Null();
 FinFuncion
 
-///========================================================>>>  [ DEFINITIONS ] <<==///#9
+///%%%%%[ DEFINITIONS ]%%%%%%%%%%%%%%[   #9   ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // booleans
 Funcion boolean <- false
 	Definir boolean Como Logico;
@@ -2146,13 +2153,12 @@ Funcion Sprite_effect <- Sprite_EFFECT_FLIP_V
     Definir Sprite_effect Como Texto;
     Sprite_effect = "FLIP_V";
 FinFuncion
-///========================================================>>>  [ COLORS ] <<==///#+0
-// =============================================================== CODES <<<<<<
+///%%%%%[ COLOR ]%%%%%%%%%%%%%%%%%%%%[   #+0  ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Funcion color <- COLOR_TRANSPARENT
 	Definir color Como Texto;
 	color =  COLOR_getColor_forIndex(0);
 FinFuncion
-
+// CODES <<<<<<
 Funcion color <- COLOR_RED
 	Definir color Como Texto;
 	color =  COLOR_getColor_forIndex(1);
@@ -2213,9 +2219,7 @@ FinFuncion
 Funcion remove_Colors 
 	
 FinFuncion
-//TODO:
-//agregar soporte para colores a print_progress_formater
-//agregar un caracter al Final de printFormater para hacer efecto de preparacion tipo Hell_ luego Hello 
+
 Funcion text_Color <- Color_setColorText(text, color)
 	Definir text_Color Como Texto;
 	condition_error_Message_Funtion(!string_hasColor(color), "Color_setColorText", string_append("invalid color `", string_append(color, "`")));
@@ -2248,8 +2252,7 @@ Funcion text_dark <- Color_Normal(text)
 	Definir text_dark Como Texto;
 	text_dark = string_append(DARK, text);
 FinFuncion
-
-///========================================================>>>  [ LOCAL DATE TIME ] <<==///#+1
+///%%%%%[ LOCAL_DATE_TIME ]%%%%%%%%%%[   #+1  ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Funcion Date_num <- getDate
 	Definir Date_num Como Numero;
 	Date_num = FechaActual();
@@ -2381,9 +2384,7 @@ Funcion time_value <- __private_Local_Time_getTime_int(num1, num2)
 	time_value_format = getTime_toString;
 	time_value = string_ToNum(string_substring(time_value_format, num1, num2));
 FinFuncion
-
-// =============================================================== DURATION <<<<<< ++1_1
-
+///$$$$$[ DURATION ]$$$$$$$$$$$$$$$$$[  -+1_1 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Funcion duration <- Duration_between_hour(hour1, hour2)
 	Definir duration Como Numero;
 	duration = decrement_step(hour1, hour2);
@@ -2412,135 +2413,7 @@ Funcion duration <- Duration_between_time_now(time, time_now)
 	Definir duration Como Numero;
 	duration = decrement_step(if_else(time>time_now, increment_step(time_now, 60), time_now, TYPE_INT()), time);
 FinFuncion
-//////////////////////////////////////////////////////>>>  [ util ] <<==///#+2
-///========================================================>>>  [ collection ] <<==///
-Funcion data_collection <- collection_NewCollection(STRUCT_TYPE, TYPE)
-	Definir data_collection, dataParts, index_end_dataArea Como Texto;
-	Definir length_data_area Como Numero;
-	DimenSion dataParts[5];
-	dataParts[0] = STRUCT_TYPE;
-	dataParts[1] = symbol_TypeArea();
-	dataParts[2] = TYPE;
-	dataParts[3] = symbol_DataArea();
-	dataParts[4] = symbol_MetaData();
-	data_collection = array_ofstring_separator(dataParts, 5, "", TYPE_STRING());//struct/<STRING[Data(meta_data
-FinFuncion
-
-Funcion name_Collection <- collection_getName_TypeCollection(collection)
-	Definir name_Collection Como Texto;
-	name_Collection = string_GetLeadingLetters(collection);
-FinFuncion
-
-Funcion isType <- ascii_IsLetters(char)
-	Definir isType Como Logico;
-	isType = ascii_IsLetters_UpperCase(char) | ascii_IsLetter_LowerCase(char);//65-90
-FinFuncion
-
-Funcion data_Area <- collection_getContent_DataArea(collection)
-	Definir data_Area Como Texto;
-	data_Area = collection_getContent_Between_Symbols(collection, symbol_DataArea(), symbol_MetaData());
-FinFuncion
-
-Funcion type_area <- collection_getContent_TypesArea(collection)
-	Definir type_area Como Texto;
-	type_area =  collection_getContent_TypesArea_End_Of_Text(collection, symbol_DataArea());
-FinFuncion
-
-Funcion type_area <- collection_getContent_TypesArea_End_Of_Text(collection, text_end)
-	Definir type_area Como Texto;
-	type_area = collection_getContent_Between_Symbols(collection, symbol_TypeArea(), text_end);
-FinFuncion
-
-Funcion type_area <- collection_getContent_Between_Symbols(collection, symbol_start, symbol_end)
-	Definir Type_property, type_area Como Texto;
-	Definir index_start, index_end, index_check Como Numero;
-	index_start = increment(string_indexOf(collection, symbol_start));
-	index_end = string_indexOf_fromIndex(collection, symbol_end, index_start);
-	type_area = string_substring(collection, index_start, index_end);
-FinFuncion
-
-Funcion type_area <- collection_getContent_Between_LastSymbols(collection, symbol_start, symbol_end)
-	Definir Type_property, type_area Como Texto;
-	Definir index_start, index_end, index_check Como Numero;
-	index_start = increment(string_LastindexOf(collection, symbol_start));
-	index_end = string_indexOf_fromIndex(collection, symbol_end, index_start);
-	type_area = string_substring(collection, index_start, index_end);
-FinFuncion
-
-Funcion index_TypeArea <- collection_getIndex_TypeArea(struct_Collection)
-	Definir index_TypeArea Como Numero;
-	index_TypeArea = string_indexOf(struct_Collection, symbol_TypeArea());
-FinFuncion
-
-Funcion index_MetaData <- collection_getIndex_MetaDataArea(struct_Collection)
-	Definir index_MetaData Como Numero;
-	index_MetaData = string_lastIndexOf(struct_Collection, symbol_MetaData());
-FinFuncion
-
-Funcion index_DataArea <- collection_getIndex_DataArea(struct_Collection)
-	Definir index_DataArea Como Numero;
-	index_DataArea = string_IndexOf(struct_Collection, symbol_DataArea());
-FinFuncion
-
-Funcion clear_Collection <- collection_Clear(struct_Collection)
-	Definir clear_Colection Como Texto;
-	clear_Colection = collection_NewCollection(collection_getContent_TypesArea(struct_Collection), collection_getName_TypeCollection(struct_Collection));
-FinFuncion
-
-Funcion index_separator <- collection_getIndex_FromNumElement(text, num)
-	Definir index_separator Como Numero;
-	index_separator = collection_getIndex_FromNumElement_Separator(text, num, symbol_Separator());
-FinFuncion
-
-Funcion index_separator <- collection_getLastIndex_FromNumElement(text, num)
-	Definir index_separator Como Numero;
-	index_separator = collection_getLastIndex_FromNumElement_Separator(text, num, symbol_Separator());
-FinFuncion
-
-Funcion index_separator <- collection_getIndex_FromNumElement_Separator(text, num, separator)
-	Definir i, index_separator, text_length Como Numero;
-	text_length = string_Length(text);
-	index_separator = string_indexOf_fromIndex_speedNative(text, separator, index_separator);
-	mientras index_separator < text_length & i<num Hacer
-		index_separator = increment(index_separator);
-		index_separator = string_indexOf_fromIndex_speedNative(text, separator, index_separator);
-		i = increment(i);
-	FinMientras
-FinFuncion
-
-Funcion index_separator <- collection_getLastIndex_FromNumElement_Separator(text, num_separator, separator)
-	Definir i, index_separator, text_length Como Numero;
-	index_separator = string_lastIndexOf(text, separator);
-	i = 0;
-	mientras index_separator > -1 & i < num_separator Hacer
-		index_separator = decrement(index_separator);
-		index_separator = string_lastIndexOf_fromIndex(text, separator, index_separator);
-		i = increment(i);
-	FinMientras
-FinFuncion
-
-Funcion str_element <- collection_getElement_AtIndex(text, index)
-	Definir str_element Como Texto;
-	str_element = collection_getElement_AtIndex_withSeparator(text, index, symbol_Separator_Simple());
-FinFuncion
-
-Funcion str_element <- collection_getElement_AtIndex_withSeparator(text, index, separator)
-	Definir count_sep, i, index_match, index_matchEnd, sum Como Real;
-	Definir str_element, Slice_After Como Texto;
-	index_matchEnd = collection_getIndex_FromNumElement_Separator(text, index, separator);
-	index_matchEnd= if_else(index_Matchend<0, string_Length(text), index_Matchend, TYPE_INT);
-	
-	index_match = string_LastindexOf_fromIndex(text, separator, index_MatchEnd)+1;
-	index_match = if_else(index_Match<0, 0, index_Match, TYPE_INT);
-	
-	Si index >= 0 & index <= string_countMatches(text, separator) Entonces
-		str_element = string_substring(text, index_Match, index_Matchend);
-	SiNo
-		str_element = string_Null();
-	FinSi
-FinFuncion
-//....value
-
+///$$$$$$[ VALUE ]$$$$$$$$$$$$$$$$$$$$[   ///  ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Funcion element_Result <- value_Parser_StringToType(element_String, TYPE)
 	Segun TYPE Hacer
 		caso TYPE_INT():
@@ -2684,8 +2557,134 @@ Funcion string_Increment <- value_modify_StringNumber_inArea_symbols(Text, num_s
 	index_end = string_indexOf_fromIndex(Text, symbol_end, increment(index_start));
 	string_Increment = value_modify_StringNumber_inArea(Text, num_sum, index_start, index_end);
 FinFuncion
+///%%%%%[ UTIL ]%%%%%%%%%%%%%%%%%%%%%[   #+2  ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+///$$$$$$[ COLLECTION ]$$$$$$$$$$$$$$$[   ///  ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Funcion data_collection <- collection_NewCollection(STRUCT_TYPE, TYPE)
+	Definir data_collection, dataParts, index_end_dataArea Como Texto;
+	Definir length_data_area Como Numero;
+	DimenSion dataParts[5];
+	dataParts[0] = STRUCT_TYPE;
+	dataParts[1] = symbol_TypeArea();
+	dataParts[2] = TYPE;
+	dataParts[3] = symbol_DataArea();
+	dataParts[4] = symbol_MetaData();
+	data_collection = array_ofstring_separator(dataParts, 5, "", TYPE_STRING());//struct/<STRING[Data(meta_data
+FinFuncion
 
-///========================================================>>>  [ LINEARCOLLECTION ] <<==///++2_1
+Funcion name_Collection <- collection_getName_TypeCollection(collection)
+	Definir name_Collection Como Texto;
+	name_Collection = string_GetLeadingLetters(collection);
+FinFuncion
+
+Funcion isType <- ascii_IsLetters(char)
+	Definir isType Como Logico;
+	isType = ascii_IsLetters_UpperCase(char) | ascii_IsLetter_LowerCase(char);//65-90
+FinFuncion
+
+Funcion data_Area <- collection_getContent_DataArea(collection)
+	Definir data_Area Como Texto;
+	data_Area = collection_getContent_Between_Symbols(collection, symbol_DataArea(), symbol_MetaData());
+FinFuncion
+
+Funcion type_area <- collection_getContent_TypesArea(collection)
+	Definir type_area Como Texto;
+	type_area =  collection_getContent_TypesArea_End_Of_Text(collection, symbol_DataArea());
+FinFuncion
+
+Funcion type_area <- collection_getContent_TypesArea_End_Of_Text(collection, text_end)
+	Definir type_area Como Texto;
+	type_area = collection_getContent_Between_Symbols(collection, symbol_TypeArea(), text_end);
+FinFuncion
+
+Funcion type_area <- collection_getContent_Between_Symbols(collection, symbol_start, symbol_end)
+	Definir Type_property, type_area Como Texto;
+	Definir index_start, index_end, index_check Como Numero;
+	index_start = increment(string_indexOf(collection, symbol_start));
+	index_end = string_indexOf_fromIndex(collection, symbol_end, index_start);
+	type_area = string_substring(collection, index_start, index_end);
+FinFuncion
+
+Funcion type_area <- collection_getContent_Between_LastSymbols(collection, symbol_start, symbol_end)
+	Definir Type_property, type_area Como Texto;
+	Definir index_start, index_end, index_check Como Numero;
+	index_start = increment(string_LastindexOf(collection, symbol_start));
+	index_end = string_indexOf_fromIndex(collection, symbol_end, index_start);
+	type_area = string_substring(collection, index_start, index_end);
+FinFuncion
+
+Funcion index_TypeArea <- collection_getIndex_TypeArea(struct_Collection)
+	Definir index_TypeArea Como Numero;
+	index_TypeArea = string_indexOf(struct_Collection, symbol_TypeArea());
+FinFuncion
+
+Funcion index_MetaData <- collection_getIndex_MetaDataArea(struct_Collection)
+	Definir index_MetaData Como Numero;
+	index_MetaData = string_lastIndexOf(struct_Collection, symbol_MetaData());
+FinFuncion
+
+Funcion index_DataArea <- collection_getIndex_DataArea(struct_Collection)
+	Definir index_DataArea Como Numero;
+	index_DataArea = string_IndexOf(struct_Collection, symbol_DataArea());
+FinFuncion
+
+Funcion clear_Collection <- collection_Clear(struct_Collection)
+	Definir clear_Colection Como Texto;
+	clear_Colection = collection_NewCollection(collection_getContent_TypesArea(struct_Collection), collection_getName_TypeCollection(struct_Collection));
+FinFuncion
+
+Funcion index_separator <- collection_getIndex_FromNumElement(text, num)
+	Definir index_separator Como Numero;
+	index_separator = collection_getIndex_FromNumElement_Separator(text, num, symbol_Separator());
+FinFuncion
+
+Funcion index_separator <- collection_getLastIndex_FromNumElement(text, num)
+	Definir index_separator Como Numero;
+	index_separator = collection_getLastIndex_FromNumElement_Separator(text, num, symbol_Separator());
+FinFuncion
+
+Funcion index_separator <- collection_getIndex_FromNumElement_Separator(text, num, separator)
+	Definir i, index_separator, text_length Como Numero;
+	text_length = string_Length(text);
+	index_separator = string_indexOf_fromIndex_speedNative(text, separator, index_separator);
+	mientras index_separator < text_length & i<num Hacer
+		index_separator = increment(index_separator);
+		index_separator = string_indexOf_fromIndex_speedNative(text, separator, index_separator);
+		i = increment(i);
+	FinMientras
+FinFuncion
+
+Funcion index_separator <- collection_getLastIndex_FromNumElement_Separator(text, num_separator, separator)
+	Definir i, index_separator, text_length Como Numero;
+	index_separator = string_lastIndexOf(text, separator);
+	i = 0;
+	mientras index_separator > -1 & i < num_separator Hacer
+		index_separator = decrement(index_separator);
+		index_separator = string_lastIndexOf_fromIndex(text, separator, index_separator);
+		i = increment(i);
+	FinMientras
+FinFuncion
+
+Funcion str_element <- collection_getElement_AtIndex(text, index)
+	Definir str_element Como Texto;
+	str_element = collection_getElement_AtIndex_withSeparator(text, index, symbol_Separator_Simple());
+FinFuncion
+
+Funcion str_element <- collection_getElement_AtIndex_withSeparator(text, index, separator)
+	Definir count_sep, i, index_match, index_matchEnd, sum Como Real;
+	Definir str_element, Slice_After Como Texto;
+	index_matchEnd = collection_getIndex_FromNumElement_Separator(text, index, separator);
+	index_matchEnd= if_else(index_Matchend<0, string_Length(text), index_Matchend, TYPE_INT);
+	
+	index_match = string_LastindexOf_fromIndex(text, separator, index_MatchEnd)+1;
+	index_match = if_else(index_Match<0, 0, index_Match, TYPE_INT);
+	
+	Si index >= 0 & index <= string_countMatches(text, separator) Entonces
+		str_element = string_substring(text, index_Match, index_Matchend);
+	SiNo
+		str_element = string_Null();
+	FinSi
+FinFuncion
+///$$$$$$[ LINEAR_COLLECTION ]$$$$$$$$[  -+2_1 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Funcion new_LinearColletion <- linearCollection_newLinearCollection(struct_Collection, TYPE)
 	Definir new_LinearColletion Como Texto;
 	new_LinearColletion = string_append_withSeparator(collection_NewCollection(struct_Collection, TYPE), "0", symbol_ExtraData());
@@ -3012,8 +3011,7 @@ Funcion separated_String <- __private_LinearCollection_GetDataSeparatedString(da
 		i = increment(i);
 	FinMientras
 FinFuncion
-
-///========================================================>>>  [ DEQUE ] <<==///++2_2
+///$$$$$[ DEQUE ]$$$$$$$$$$$$$$$$$$$$[  -+2_2 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Funcion new_Deque <- util_Deque_New(TYPE)
 	Definir new_Deque Como Texto;
 	new_Deque = linearCollection_newLinearCollection( STRUCT_TYPE_DEQUE(), TYPE);
@@ -3067,8 +3065,7 @@ Funcion element_Result <- util_Deque_getLast(struct_Deque)
 	FinSegun
 	element_Result = linearCollection_getFromSide(struct_Deque, 1, TYPE);
 FinFuncion
-
-///========================================================>>>  [ QUEUE ] <<==///++2_3
+///$$$$$[ QUEUE ]$$$$$$$$$$$$$$$$$$$$[  -+2_3 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Funcion new_Queue <- util_Queue_New(TYPE)
 	Definir new_Queue Como Texto;
 	new_Queue = linearCollection_newLinearCollection( STRUCT_TYPE_QUEUE(), TYPE);
@@ -3114,8 +3111,7 @@ Funcion element_Result <- util_Queue_Poll(struct_Queue Por Referencia)
 	// (In older verSions:) En verSiones antiguas usar por separado util_Queue_Peek() & util_Queue_RemoveFirst() para actualizar
 	struct_Queue = util_Queue_RemoveFirst(struct_Queue);
 FinFuncion
-
-///========================================================>>>  [ STACK ] <<==///++2_4
+///$$$$$[ STACK ]$$$$$$$$$$$$$$$$$$$$[  -+2_4 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Funcion new_Stack <- util_Stack_New(TYPE)
 	Definir new_Stack Como Texto;
 	new_Stack = linearCollection_newLinearCollection(STRUCT_TYPE_STACK(), TYPE);
@@ -3161,8 +3157,7 @@ Funcion element_Result <- util_Stack_Pop(struct_Stack Por Referencia)
 	// (In older verSions:) En verSiones antiguas usar por separado util_Stack_Top() & util_Stack_removeLast() para actualizar
 	struct_Stack = util_Stack_removeLast(struct_Stack);
 FinFuncion
-
-///========================================================>>>  [ LIST ] <<==///++2_5
+///$$$$$[ LIST ]$$$$$$$$$$$$$$$$$$$$$[  -+2_5 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Funcion new_list <- util_List_New(TYPE)
 	Definir new_list Como Texto;
 	new_list = linearCollection_newLinearCollection(STRUCT_TYPE_LIST(), TYPE);
@@ -3199,9 +3194,7 @@ Funcion list_Result <- util_List_SetElement(struct_list, index_element, new_Valu
 	Definir list_Result Como Texto;
 	list_Result = linearCollection_SetElement(struct_List, index_element, new_Value);
 FinFuncion
-
-///===========================================>>>  [ COLLECTION_SETTER] <<==///++2_6
-
+///$$$$$[ COLLECTION_SETTER ]$$$$$$$$[  -+2_6 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Funcion new_Setter <- collectionSetter_New(type_Struct, TYPE)
 	Definir new_Setter, SetterArea, setterStructure Como Texto;
 	SetterArea = "";
@@ -3588,8 +3581,7 @@ Funcion setter_newValue <- collectionSetter_Key_SetValue_ByString(collection_set
 		setter_newValue = collection_setter;
 	FinSi
 FinFuncion
-
-///========================================================>>>  [ SET ] <<==///++2_7
+///$$$$$[ SET ]$$$$$$$$$$$$$$$$$$$$$$[  -+2_7 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Funcion new_Set <- util_Set_New(TYPE)
 	Definir new_Set Como Texto;
 	new_Set = collectionSetter_New(STRUCT_TYPE_SET(), TYPE);
@@ -3629,8 +3621,7 @@ Funcion result_Set <- util_Set_RetainAll(struct_Set, struct_SetRetain)
 	Definir result_Set como Texto;
 	result_Set = collectionSetter_RetainAll(struct_Set, struct_SetRetain);
 FinFuncion
-
-///========================================================>>>  [ MAP ] <<==///++2_8
+///$$$$$[ MAP ]$$$$$$$$$$$$$$$$$$$$$$[  -+2_8 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Funcion new_Map <- util_Map_New(TYPE, TYPE_VALUE)
 	Definir new_Map Como Texto;
 	new_Map = collectionSetter_addValueFuntion(collectionSetter_New(STRUCT_TYPE_MAP(), TYPE), TYPE_VALUE);
@@ -3667,8 +3658,7 @@ Funcion keyExist <- util_Map_Constain(struct_map, key)
 	Definir keyExist Como Logico;
 	keyExist = collectionSetter_Exist(struct_Set, key_match);
 FinFuncion
-	
-///========================================================>>>  [ OBJECT ] <<==///#+3
+///%%%%%[ OBJECT ]%%%%%%%%%%%%%%%%%%%[   #+3  ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Funcion object_result <- object_New(name_object)
 	Definir object_result Como Texto;
 	object_result = linearCollection_newLinearCollection(TYPE_OBJECT(), string_append(name_object, symbol_ExtraData()));
@@ -3982,9 +3972,7 @@ Funcion object_Instructions <- __private_object_GetInstructions_AccordingToProce
 		object_Instructions = if_else(isRemove, string_Null(), Area_Property_Comparator, TYPE_STRING());
 	FinSi
 FinFuncion 
-
-/////========================================================>>>  [ canvas ] <<==///#+4
-
+///%%%%%[ CANVAS ]%%%%%%%%%%%%%%%%%%%[   #+4  ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Funcion pixel <- pixel_clear
 	Definir pixel Como Texto;
 	pixel =  get_pixel_whitIndex(0);
@@ -4386,7 +4374,44 @@ Funcion canvas_Result <- canvas_DrawVerticalLine_Full(canvas, Cx, Cy, x0)
 	Definir canvas_Result Como Texto;
 	canvas_Result = canvas_DrawVerticalLine(canvas, Cx, Cy, x0, 0, Cy);
 FinFuncion
-//= = = = = = = = = = = = = = [ SPRITE_DRAW] = = = = = = = = = = = = = = = //
+///$$$$$[ SPRITE ]$$$$$$$$$$$$$$$$$$$[  -+4_1 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Funcion SpriteString_Structure <- SpriteString_New
+	Definir SpriteString_Structure Como Texto;
+	SpriteString_Structure = linearCollection_newLinearCollection(Tcomponent_TYPE_SPRITE_STRING(), TYPE_STRING());
+	SpriteString_Structure = linearCollection_addLast(SpriteString_Structure, "0");
+FinFuncion
+
+Funcion length_MaxLine <- SpriteString_GetWidth(SpriteString_Structure)
+	Definir length_MaxLine Como Numero;
+	length_MaxLine = string_ToNum(linearCollection_getFirts_ToString(SpriteString_Structure));
+FinFuncion
+
+Funcion length_MaxLine <- SpriteString_GetHeigth(SpriteString_Structure)
+	Definir length_MaxLine Como Numero;
+	length_MaxLine = linearCollection_GetSize(SpriteString_Structure);
+FinFuncion
+
+Funcion SpriteString_NewChange <- SpriteString_UpdateMaxWidth(SpriteString_Structure, line_String)
+	Definir SpriteString_NewChange Como Texto;
+	Definir line_length Como Numero;
+	line_length = string_Length(line_String);
+	SpriteString_NewChange = SpriteString_Structure;
+	si SpriteString_GetWidth(SpriteString_NewChange) < line_length Entonces
+		SpriteString_NewChange = linearCollection_SetElement(SpriteString_NewChange, 0, num_ToString(line_length));
+	FinSi
+FinFuncion
+
+Funcion SpriteString_NewChange <- SpriteString_AddLine(SpriteString_Structure, line_String)
+	Definir SpriteString_NewChange Como Texto;
+	SpriteString_NewChange = linearCollection_addLast(SpriteString_Structure, line_String);
+	SpriteString_NewChange = SpriteString_UpdateMaxWidth(SpriteString_NewChange, line_String);
+FinFuncion
+
+Funcion isSpriteValid <- SpriteString_isSpriteValid(SpriteString_Structure)
+	Definir isSpriteValid Como Logico;
+	isSpriteValid = string_isEquals(collection_getName_TypeCollection(SpriteString_Structure), Tcomponent_TYPE_SPRITE_STRING());
+FinFuncion
+//_______________________________________________________________________________________
 Funcion canvas_Sprite <- canvas_DrawSpriteString(canvas, Cx, Cy, SpriteString_Structure, x0, y0)
     Definir canvas_Sprite Como Texto; 
     canvas_Sprite = __private_canvas_DrawSpriteString_sprite_effect(canvas, Cx, Cy, SpriteString_Structure, x0, y0, "null", Sprite_EFFECT_NONE());
@@ -4540,45 +4565,7 @@ Funcion canvas_Sprite <- canvas_DrawSprite_Cutout_FlipVertical(canvas, Cx, Cy, x
 	FinMientras
 	canvas_Sprite = canvas_DrawSprite_Cutout(canvas, Cx, Cy, x0, y0, array_column_invert, size);
 FinFuncion
-
-//= = = = = = = = = = = = = = [ SPRITE ] = = = = = = = = = = = = = = = //
-Funcion SpriteString_Structure <- SpriteString_New
-	Definir SpriteString_Structure Como Texto;
-	SpriteString_Structure = linearCollection_newLinearCollection(Tcomponent_TYPE_SPRITE_STRING(), TYPE_STRING());
-	SpriteString_Structure = linearCollection_addLast(SpriteString_Structure, "0");
-FinFuncion
-
-Funcion length_MaxLine <- SpriteString_GetWidth(SpriteString_Structure)
-	Definir length_MaxLine Como Numero;
-	length_MaxLine = string_ToNum(linearCollection_getFirts_ToString(SpriteString_Structure));
-FinFuncion
-
-Funcion length_MaxLine <- SpriteString_GetHeigth(SpriteString_Structure)
-	Definir length_MaxLine Como Numero;
-	length_MaxLine = linearCollection_GetSize(SpriteString_Structure);
-FinFuncion
-
-Funcion SpriteString_NewChange <- SpriteString_UpdateMaxWidth(SpriteString_Structure, line_String)
-	Definir SpriteString_NewChange Como Texto;
-	Definir line_length Como Numero;
-	line_length = string_Length(line_String);
-	SpriteString_NewChange = SpriteString_Structure;
-	si SpriteString_GetWidth(SpriteString_NewChange) < line_length Entonces
-		SpriteString_NewChange = linearCollection_SetElement(SpriteString_NewChange, 0, num_ToString(line_length));
-	FinSi
-FinFuncion
-
-Funcion SpriteString_NewChange <- SpriteString_AddLine(SpriteString_Structure, line_String)
-	Definir SpriteString_NewChange Como Texto;
-	SpriteString_NewChange = linearCollection_addLast(SpriteString_Structure, line_String);
-	SpriteString_NewChange = SpriteString_UpdateMaxWidth(SpriteString_NewChange, line_String);
-FinFuncion
-
-Funcion isSpriteValid <- SpriteString_isSpriteValid(SpriteString_Structure)
-	Definir isSpriteValid Como Logico;
-	isSpriteValid = string_isEquals(collection_getName_TypeCollection(SpriteString_Structure), Tcomponent_TYPE_SPRITE_STRING());
-FinFuncion
-///========================================================>>>  [ TUI ] <<==///#+5
+///%%%%%[ TUI ]%%%%%%%%%%%%%%%%%%%%%%[   #+5  ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Funcion tui_TFrame <- TUI_New(Wx,Wy)
 	Definir tui_TFrame, stores_Tcomponents, size_TFrame Como Texto;
 	tui_TFrame  = linearCollection_newLinearCollection(TUI_TYPE_TFRAME(), TYPE_STRING());
@@ -4927,7 +4914,7 @@ Funcion new_canvas <- __private_Tocanvas_ByDataSoup(canvas, Cx, Cy, dataSoup, st
 		i = increment(i);
 	FinMientras
 FinFuncion
-// ## ## ## ## ## [ TComponent ] ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## * 
+///$$$$$[ TCOMPONETN ]$$$$$$$$$$$$$$$$[  -+5_1 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Funcion tcomponent_Build <- Tcomponent_New(type, x0, y0)
 	Definir tcomponent_Build, tcomponent_Size Como Texto;
 	tcomponent_Size = TUI_ParserPointXY_ToString(x0, y0);
@@ -5206,8 +5193,7 @@ Funcion canvas_Result <- canvas_DrawArray_TComponent(canvas, Cx, Cy, array_Tcomp
 		i = increment(i);
 	FinMientras
 FinFuncion
-
-///========================================================>>>  [ VEC ] <<==///#+6
+///%%%%%[ VEC ]%%%%%%%%%%%%%%%%%%%%%%[   #+6  ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Funcion vec_index <- VEC_getX(vec_str)
 	Definir  vec_index Como Numero;
 	vec_index= __private_VEC_getN(vec_str, 0, "X");
@@ -5273,8 +5259,7 @@ Funcion vec_str <- VEC_str_withSeparator(result_string, separator)
 	vec_str= string_append_withSeparator(vec_str, result_string, ":");
 	vec_str= string_append(vec_str, "|");
 FinFuncion
-
-///========================================================>>>  [ ASCII ] <<==///#+7
+///%%%%%[ ASCCI/HASH ]%%%%%%%%%%%%%%%[   #+7  ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Funcion char <- ascii_char(code)
 	Definir i Como Numero;
 	Definir char Como Texto;
@@ -5380,7 +5365,7 @@ FinFuncion
 
 Funcion BaSicSymbols <- ascii_GetBaSicSymbols
 	Definir BaSicSymbols Como Texto;
-	BaSicSymbols = " !#+$%&(()*+, -./";// !"#$%&'()*+, -./
+	BaSicSymbols = " ! #+$%& ()*+, -./";// !"#$%&'()*+, -./
 FinFuncion
 
 Funcion NumberSymbols <- ascii_GetNumberSymbols
@@ -5457,18 +5442,23 @@ Funcion iSinRangue <- ascii_iSinRangue(char, char_start, char_end)
 	Definir iSinRangue Como Logico;
 	iSinRangue = (char_start <= char & char <= char_end);
 FinFuncion
-///%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%[ START_CODE ] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+///%%%%%[ START_CODE ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Algoritmo run_code
-	Definir start_second, start_minute Como Numero;
-	Definir Time_Duration, minute_duration, second_duratrion Como Texto;
+	Definir start_second, start_minute, Between_Minute Como Numero;
+	Definir Time_Duration, minute_duration, second_duratrion, minute_pad Como Texto;
+	Definir second_pad, time_main_Message Como Texto;
 	start_minute = Local_Time_getMinute();
 	start_second = Local_Time_getSecond();
 	ClearConsole();
 	main();
-	minute_duration = num_ToString(Duration_between_minute_strict(start_minute, start_second));
+	Between_Minute = Duration_between_minute_strict(start_minute, start_second);
+	minute_duration	 = num_ToString(Between_Minute);
 	second_duratrion = num_ToString(Duration_between_second_now(start_second));
-	Time_Duration = string_append_withSeparator(string_pad_start(minute_duration, "00"), string_pad_start(second_duratrion, "00"), ":");
+	minute_pad		 = string_pad_start(minute_duration , "00");
+	second_pad		 = string_pad_start(second_duratrion, "00");
+	Time_Duration 	 = string_append_withSeparator(minute_pad, second_pad, ":");
 	breakline();
-	println_Simple(Color_setColorText(string_append(">>> execution time >>> (mm:ss) ... ", Time_Duration), COLOR_BLUE()));
+	time_main_Message = string_append("»» execution time »» (mm:ss) ... ", Time_Duration);
+	println_Simple(Color_setColorText(time_main_Message,COLOR_BLUE()));
 FinAlgoritmo
-///%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%[ END CODE ] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%++0
+///%%%%%[ END_CODE ]%%%%%%%%[ ++0 ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

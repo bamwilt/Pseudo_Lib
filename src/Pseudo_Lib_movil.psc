@@ -3368,4 +3368,4 @@ Algoritmo run_code
 	//println_Simple(Color_setColorText("end execution << Pseudo_Lib >>", COLOR_BLUE()));
 FinAlgoritmo
 ///%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%[ END CODE ] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%++0
-//123456789 123456789 123456789 
+//123456789 123456789 123456789  la version movil debe tener funciones compactas 
