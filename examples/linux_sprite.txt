@@ -1,0 +1,18 @@
+Funcion LinuxSprite
+	Definir tui, text, canvas, sprite  Como Texto;
+	Definir Cx, Cy Como Numero;
+	Cx = 34; Cy =  14;
+	sprite = SpriteString_New();
+	sprite = SpriteString_AddLine(sprite, ":¯;     _  ____   _. ._ __  __"); 
+	sprite = SpriteString_AddLine(sprite, "| |    | ||  _ \ | | | |\ \/ /");
+	sprite = SpriteString_AddLine(sprite, "| |___ | || | | || |_| | >  < ");
+	sprite = SpriteString_AddLine(sprite, "|_____||_||_| |_| \___/ /_/\_\");
+	canvas = canvas_New(Cx, Cy);
+	canvas = canvas_DrawSpriteString_Cutout(canvas, Cx, Cy, sprite, 2, 1);
+	canvas = canvas_DrawHorizontalLine_Full(canvas, Cx, Cy, 6);
+	canvas = canvas_DrawText(canvas, Cx, Cy, "Sistemas Operativos Presentacion", 1, 7);
+	canvas = canvas_DrawHorizontalLine_Full(canvas, Cx, Cy, 8);
+	canvas = canvas_DrawButton(canvas, Cx, Cy, " 1. Linux Mint ", 7, 9);
+	canvas = canvas_DrawPanel(canvas, Cx, Cy, 0, 0, Cx, Cy);
+	canvas_Display(canvas, Cx, Cy);
+FinFuncion

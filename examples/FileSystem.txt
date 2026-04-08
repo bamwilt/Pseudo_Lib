@@ -1,0 +1,168 @@
+///%%%%%[ MAIN ]%%%%%%%%[ #0 ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Funcion main
+	init_FileSystem();
+FinFuncion
+
+Funcion init_FileSystem
+	Definir archive_current, name_archive, folder_archive, linearCollection Como Texto;
+	Definir id_line, input Como Numero;
+	name_archive = NameArchive_Defualt();
+	archive_current = util_List_New(TYPE_STRING());
+	archive_current = util_List_add(archive_current, " ");
+	folder_archive = util_Map_New(TYPE_STRING(), TYPE_STRING());
+	folder_archive = util_Map_Put(folder_archive, name_archive, archive_current);
+	folder_archive = folder_setCurrentName(folder_archive, name_archive);
+	input = 1;
+	id_line = 0;
+	FileSystem(archive_current, name_archive, folder_archive, input, id_line);
+FinFuncion
+
+Funcion FileSystem(archive_current, name_archive, folder_archive, input, id_line)
+	Mientras input > 0 Hacer 
+		println(string_append("FOLDER_CONTENT: ", Folder_getKeyVisible(folder_archive)));
+		println(string_append("ARCHIVO: ", name_archive));
+		println(string_append("LINE: ", num_ToString(id_line)));
+		println(string_append("CONTENT: ", util_List_getElement(archive_current, id_line)));
+		input = user_input_options_message("1,2,3,4,5,6,0", "1. escribir\n2. avanzar\n3. retroceder\n4. mostrar contenido\n5. cambiar archivos\n6. crear archivo \n0. salir", TYPE_INT());
+		break_Line();
+		folder_archive = SaveFolder(input, folder_archive, name_archive, archive_current);
+		si input > 0 & input < 6 Entonces
+			archive_current = execute_ModifyArchive(archive_current, name_archive, folder_archive, input, id_line);
+		FinSi
+		si input == 6 Entonces
+			folder_archive = execute_ModifyFolder_AddArchive(archive_current, name_archive, folder_archive, input, id_line);
+		FinSi
+		si input == 5 Entonces
+			name_archive <- folder_getCurrentName(folder_archive);
+		FinSi
+		id_line = Update_PointerLine(input, id_line);
+		clear_Console();
+	FinMientras
+FinFuncion
+
+Funcion folder_archiveCurrent <- folder_setCurrentName(folder_archive, name_archive)
+	Definir folder_archiveCurrent Como Texto;
+	folder_archiveCurrent = util_Map_Put(folder_archive, key_currentName(), name_archive);
+FinFuncion
+
+Funcion name_archive <- folder_getCurrentName(folder_archive)
+	Definir  name_archive Como Texto;
+	name_archive = util_Map_Get(folder_archive, key_currentName());
+FinFuncion
+
+funcion folder_Savearchive <- SaveFolder(input, folder_archive, name_archive, archive_current)
+	Definir  folder_Savearchive Como Texto;
+	si input == 5 Entonces
+		folder_Savearchive = util_Map_Put(folder_archive, name_archive, archive_current);
+	SiNo
+		folder_Savearchive = folder_archive;
+	FinSi
+FinFuncion
+
+Funcion id_lineUpdate <- Update_PointerLine(input, id_line)
+	Definir id_lineUpdate Como Numero;
+	Segun input hacer
+		caso 2:
+			id_lineUpdate = increment(id_line);
+		caso 3:
+			si id_line > 0  Entonces
+				id_lineUpdate = math_max_Int(decrement(id_line), 0);
+			FinSi
+		caso 5:
+			id_lineUpdate = 0;
+		De Otro Modo:
+			id_lineUpdate = id_line;
+	FinSegun
+FinFuncion
+
+Funcion folder_archive <- execute_ModifyFolder_AddArchive(archive_current, name_archive, folder_archive, input, id_line)
+	println("escriba el nombre del nuevo archivo");
+	print("escribir nombre >>>");
+	name_archive = string_append(string_replace(user_input_String(), ".txt", ""), ".txt");
+	si !util_Map_Contains(folder_archive, name_archive) Entonces
+		id_line = 0;
+		folder_archive = util_Map_Put(folder_archive, name_archive, util_List_add(util_List_New(TYPE_STRING()), " "));
+		folder_archive = folder_setCurrentName(folder_archive, name_archive);
+		notification("archivo agregado");
+	SiNo
+		notification("archivo ya existe");
+	FinSi
+FinFuncion
+
+Funcion archive_current <- execute_ModifyArchive(archive_current, name_archive, folder_archive, input, id_line)
+	segun input Hacer
+		caso 1:
+			print("escribir linea >>>");
+			archive_current = util_List_SetElement(archive_current, id_line, user_input_String());
+			notification("se ha escrito");
+		caso 2:
+			si !index_exist(archive_current, increment(id_line))  Entonces
+				archive_current = util_List_add(archive_current, "");	
+				notification("se ha creado una linea");
+			FinSi
+		caso 4:
+			println(string_append("ARCHIVO: ", name_archive));
+			println(canvas_Row_WithText("-",10));
+			util_List_println(archive_current);
+			println(canvas_Row_WithText("-",10));
+			println("presione una tecla");
+			user_input_wait();
+		caso 5:
+			archive_current = Archive_change(archive_current, name_archive, folder_archive );
+	FinSegun
+FinFuncion
+
+Funcion archive_current <- Archive_change(archive_current, name_archive, folder_archive)
+	folder_archive = util_Map_Put(folder_archive, name_archive, archive_current);
+	println(string_append("ARCHIVO ACTUAL: ", name_archive));
+	println(canvas_Row_WithText("-",10));
+	println("archivos:");
+	println(canvas_Row_WithText("..",10));
+	println_bySeparator(Folder_getKeyVisible(folder_archive), Folder_getSeparator());
+	println(canvas_Row_WithText("-",10));
+	println("escriba el nombre del archivo deseado");
+	print("escribir nombre >>>");
+	name_archive = string_append(string_replace(user_input_String(), ".txt", ""), ".txt");
+	si util_Map_Contains(folder_archive, name_archive) Entonces
+		notification("archivo Seleccionado");
+	SiNo
+		notification(string_append("archivo no existe", name_archive));
+		name_archive = NameArchive_Defualt();
+	FinSi
+	archive_current = util_Map_Get(folder_archive, name_archive);
+FinFuncion
+
+Funcion Default_archive <- NameArchive_Defualt
+	Definir Default_archive Como Texto;
+	Default_archive = "notepad.txt";
+FinFuncion
+
+Funcion key_Name <- key_currentName
+	Definir key_Name Como Texto;
+	key_Name = "archivo_actual.config";
+FinFuncion
+
+Funcion notification(message)
+	println(message);
+	sleep(600);
+FinFuncion
+
+Funcion boolean <- index_exist(list, index)
+	Definir boolean como Logico;
+	Definir size_list Como Numero;
+	size_list = util_List_Size(list);
+	boolean = index >= 0 & index < size_list;
+FinFuncion
+
+Funcion folder_separator <- Folder_getSeparator
+	Definir folder_separator Como Texto;
+	folder_separator = ", ";
+FinFuncion
+
+Funcion folder_VisibleContent <- Folder_getKeyVisible(folder_archive)
+	Definir folder_Content, match_archive, folder_VisibleContent Como Texto;
+	folder_Content  = CollectionSetter_GetKeys_ToSeparatedString(folder_archive, Folder_getSeparator());
+	match_archive = string_append(key_currentName(), Folder_getSeparator());
+	folder_VisibleContent  = string_replace_First(folder_Content, match_archive, "");
+	folder_VisibleContent  = string_replace_Last(folder_VisibleContent, ",", "");
+FinFuncion

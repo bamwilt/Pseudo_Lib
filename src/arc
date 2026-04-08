@@ -1,0 +1,44 @@
+//MÉTODO                               | PARÁMETROS            | DEVUELVE        | DESCRIPCIÓN BREVE
+//----------------------------------------------------------------------------------------------------------------------------
+//adjustInto(Temporal temporal)        | Ambas                 | Temporal        | Ajusta el objeto recibido para que tenga esta fecha.
+//atStartOfDay()                       | Implícito             | LocalDateTime   | Crea un LocalDateTime a las 00:00:00 de esa fecha.
+//atStartOfDay(ZoneId zone)            | Ambas                 | ZonedDateTime   | Crea la fecha-hora con zona al inicio del día.
+//atTime(int h, int m)                 | Ambas                 | LocalDateTime   | Combina la fecha con una hora y minuto.
+//atTime(int h, int m, int s)          | Ambas                 | LocalDateTime   | Combina la fecha con hora, minuto y segundo.
+//atTime(LocalTime time)               | Ambas                 | LocalDateTime   | Combina la fecha con un objeto LocalTime.
+//atTime(OffsetTime time)              | Ambas                 | OffsetDateTime  | Combina la fecha con una hora con zona/offset.
+
+//compareTo(ChronoLocalDate other)     | Ambas                 | int             | Compara fechas (devuelve 0 si son iguales).
+//equals(Object obj)                   | Ambas                 | boolean         | Verifica si el objeto es idéntico a la fecha.
+//format(DateTimeFormatter f)          | Ambas                 | String          | Convierte la fecha a texto según un formato.
+//from(TemporalAccessor t)             | Explícito (Estático)  | LocalDate       | Crea un LocalDate desde otro objeto temporal.
+//get(TemporalField field)             | Ambas                 | int             | Obtiene un valor específico (ej. día) como int.
+//getChronology()                      | Implícito             | IsoChronology   | Obtiene el sistema de calendario (ISO).
+
+//getLong(TemporalField field)         | Ambas                 | long            | Obtiene un valor específico como long.
+
+//isAfter(ChronoLocalDate other)       | Ambas                 | boolean         | ¿Es esta fecha posterior a la otra?
+//isBefore(ChronoLocalDate other)      | Ambas                 | boolean         | ¿Es esta fecha anterior a la otra?
+//isEqual(ChronoLocalDate other)       | Ambas                 | boolean         | ¿Es esta fecha igual a la otra?
+//isSupported(TemporalField field)     | Ambas                 | boolean         | ¿Acepta este campo de tiempo?
+//isSupported(TemporalUnit unit)       | Ambas                 | boolean         | ¿Acepta esta unidad de tiempo (días, meses)?
+//now(Clock clock)                     | Explícito (Estático)  | LocalDate       | Obtiene la fecha actual desde un reloj específico.
+//now(ZoneId zone)                     | Explícito (Estático)  | LocalDate       | Obtiene la fecha actual en una zona horaria.
+//ofEpochDay(long epochDay)            | Explícito (Estático)  | LocalDate       | Crea fecha basada en días desde 1970-01-01.
+
+//parse(CharSequence text)             | Explícito (Estático)  | LocalDate       | Lee un texto "AAAA-MM-DD" y lo hace fecha.
+//parse(CharSequence t, DTFormatter f) | Explícito (Estático)  | LocalDate       | Lee un texto usando un formato personalizado.
+//query(TemporalQuery<R> query)        | Ambas                 | R               | Realiza una consulta personalizada a la fecha.
+//range(TemporalField field)           | Ambas                 | ValueRange      | Obtiene el rango de valores (ej. meses del 1-12).
+//toEpochDay()                         | Implícito             | long            | Convierte la fecha a días totales desde 1970.
+//until(ChronoLocalDate end)           | Ambas                 | Period          | Calcula tiempo faltante en años, meses, días.
+//until(Temporal end, TemporalUnit u)  | Ambas                 | long            | Calcula tiempo faltante en una unidad (ej. días).
+
+//with(TemporalAdjuster adjuster)      | Ambas                 | LocalDate       | Ajusta la fecha (ej. "primer lunes del mes").
+//with(TemporalField f, long value)    | Ambas                 | LocalDate       | Cambia una parte de la fecha por un valor.
+//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=========================================
+Algoritmo asd
+FinAlgoritmo
+
+
+	
