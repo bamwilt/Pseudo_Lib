@@ -32,13 +32,13 @@ PseudoLib es una infraestructura integral de pseudo-código desarrollada para PSe
 //1--BOOLEAN   ·  ·  ·  ·  ·  ·	#7 					 ...					[+]
 //1--CONDITIONS   ·  ·  ·  ·  ·	#8    	 			if_ : condition_		[+]
 //1--COLOR  ·  ·  ·  ·  ·  ·  · #9  				COLOR_     				[P]
-//1--TEMPORAL\CHRONO_UNIT ·  ·	#+0					localDate_time_			[+] 
-//1--LOCALDATE_TIME ·  ·  ·  ·	-+0_1				localDate_time_			[D] 
+//1--TEMPORAL\CHRONO_UNIT ·  ·	#+0					localDate_time_			[+]
+//1    \--LOCALTIME  ·  ·  ·  · -+0_1				localTime_				[+]
 //1    \--LOCALDATE  ·  ·  ·  · -+0_2				localDate_				[P]
-//1    \--LOCALTIME  ·  ·  ·  · -+0_3				localTime_				[+]	
-//1    \--DURATION   ·  ·  ·  · -+0_4				duration_				[+]	
-//1    \--PERIOD     ·  ·  ·  · -+0_5				period_  				[P]
-//1--VALUE	·  ·  ·  ·  ·  · 	#+1				    value_					[+]
+//1    \--LOCALDATE_TIME·  ·  ·	-+0_3				localDate_time_			[P]
+//1--DURATION  ·  ·  ·  ·  ·  · -+0_4				duration_				[+]	
+//1--PERIOD ·  ·  ·  ·  ·  ·  · -+0_5				period_  				[P]
+//1--VALUE  ·  ·  ·  ·  ·  ·  · #+1				    value_					[+]
 //1--UTIL   ·  ·  ·  ·  ·  ·  · /// 			 	...						[+] 
 //1    \--COLLECTION ·  ·  ·  · #+2				    collection_				[+]
 //1      \--LINEAR_COLLECTION ·	-+2_1		    	linearCollection_		[+]
@@ -63,7 +63,7 @@ PseudoLib es una infraestructura integral de pseudo-código desarrollada para PSe
 //[P]: stable (Pending additions)
 //[X]: Unusable / undeveloped state
 //Pseint --version 2023
-//LINES_CODE: ~6900
+//LINES_CODE: ~7300
 ```
 ---
 

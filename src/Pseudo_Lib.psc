@@ -1,9 +1,11 @@
 ///%%%%%[ MAIN ]%%%%%%%%[ #0 ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 Funcion main
-	Definir Hello_PseudoLib Como Texto;
-	Hello_PseudoLib = "Hello\nPseudoLib !!!";
-	println(Hello_PseudoLib);
+	println("Hello\nPseudoLib !!!");
 FinFuncion
+
+
 ///%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% [ PSeInt-Toolkit ] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //LIB !0 >> SEARCH: Ctrl+F   >> LIBRARIES:  
 //--------------------------------------------------------------------------------------
@@ -22,13 +24,13 @@ FinFuncion
 //1--BOOLEAN   ·  ·  ·  ·  ·  ·	#7 					 ...					[+]
 //1--CONDITIONS   ·  ·  ·  ·  ·	#8    	 			if_ : condition_		[+]
 //1--COLOR  ·  ·  ·  ·  ·  ·  · #9  				COLOR_     				[P]
-//1--TEMPORAL\CHRONO_UNIT ·  ·	#+0					localDate_time_			[+] 
-//1--LOCALDATE_TIME ·  ·  ·  ·	-+0_1				localDate_time_			[D] 
+//1--TEMPORAL\CHRONO_UNIT ·  ·	#+0					localDate_time_			[+]
+//1    \--LOCALTIME  ·  ·  ·  · -+0_1				localTime_				[+]
 //1    \--LOCALDATE  ·  ·  ·  · -+0_2				localDate_				[P]
-//1    \--LOCALTIME  ·  ·  ·  · -+0_3				localTime_				[+]	
-//1    \--DURATION   ·  ·  ·  · -+0_4				duration_				[+]	
-//1    \--PERIOD     ·  ·  ·  · -+0_5				period_  				[P]
-//1--VALUE	·  ·  ·  ·  ·  · 	#+1				    value_					[+]
+//1    \--LOCALDATE_TIME·  ·  ·	-+0_3				localDate_time_			[P]
+//1--DURATION  ·  ·  ·  ·  ·  · -+0_4				duration_				[+]	
+//1--PERIOD ·  ·  ·  ·  ·  ·  · -+0_5				period_  				[P]
+//1--VALUE  ·  ·  ·  ·  ·  ·  · #+1				    value_					[+]
 //1--UTIL   ·  ·  ·  ·  ·  ·  · /// 			 	...						[+] 
 //1    \--COLLECTION ·  ·  ·  · #+2				    collection_				[+]
 //1      \--LINEAR_COLLECTION ·	-+2_1		    	linearCollection_		[+]
@@ -53,7 +55,7 @@ FinFuncion
 //[P]: stable (Pending additions)
 //[X]: Unusable / undeveloped state
 //Pseint --version 2023
-//LINES_CODE: ~6900
+//LINES_CODE: ~7300
 //______________________________________________________________________________________
 // TYPE			 /		TYPE_PSEINT
 //--------------------------------------------------------------------------------------
@@ -309,7 +311,7 @@ Funcion result_str <- string_Delete_From(text, start)
 	Definir result_str Como Texto;
 	result_str = string_Delete(text, start, string_Length(text));
 FinFuncion
-//----[ REMPLACE ]------------------------------------------------------------------<#>
+//----[ REMPLACE ]-----------------------------------------------------------------<#>
 Funcion result <- string_replace(text, text_match, text_Replace)
 	Definir result, text_Current Como Texto;
 	Definir index, match_length, index_end Como Numero;//Hello World, "o", "X" = HellX World
@@ -891,7 +893,7 @@ Funcion value <- array_string_Booleans_True(index)
 	FinSegun
 FinFuncion
 ///%%%%%[ ARRAY ]%%%%%%%%%%%%%%%%%%%%[   #3   ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-//----[ OFSTRING ]------------------------------------------------------------------<#>
+//----[ OFSTRING ]-----------------------------------------------------------------<#>
 Funcion str_array <- array_ofString(array, Size, type)
 	Definir str_array Como Texto;
 	str_array = array_ofstring_separator(array, Size, symbol_Separator_Simple(), type);
@@ -1007,7 +1009,7 @@ FinFuncion
 Funcion __PSEINT_print(text)
 	Escribir text Sin Saltar ;
 FinFuncion
-//----[ PROGRESS ]------------------------------------------------------------------<#>
+//----[ PROGRESS ]-----------------------------------------------------------------<#>
 Funcion println_progress(text)
 	text = string_append(text, "\n");
 	print_progress_with_speed(text, 100);
@@ -1594,7 +1596,6 @@ Funcion num_taylor <- math_serie_taylor(x, first_term, num_terms, n_start, n_inc
 	num_taylor=first_term;
 	term=first_term;
 	n=n_start;
-	
 	n_divisor =1;
 	para i=1 Hasta num_terms con paso 1 Hacer
 		n = increment_step(n, n_increment);
@@ -1613,6 +1614,7 @@ Funcion num_taylor <- math_serie_taylor(x, first_term, num_terms, n_start, n_inc
 		num_taylor=increment_step(num_taylor, term);
 	FinPara
 FinFuncion
+
 Funcion num_sqrt <- math_sqrt(S)
     Definir num_sqrt, xk, i Como Real;
 	xk = S;//Babylonian method: 1/2(xk+S/xk)
@@ -1753,7 +1755,7 @@ Funcion value_normalized <- math_NormalizeCycle(current_value, max_limit)
         value_normalized = increment_step(value_normalized, max_limit);
     FinSi
 FinFuncion
-//----[ CONSTANTS ]------------------------------------------------------------------<#>
+//----[ CONSTANTS ]-----------------------------------------------------------------<#>
 Funcion num_PI <- math_PI
 	Definir num_PI Como Real;
 	num_PI = 3.141592653589793;
@@ -2244,7 +2246,7 @@ Funcion data_collection <- collection_new(STRUCT_TYPE, TYPE)
 	dataParts[4] = symbol_MetaData();
 	data_collection = array_ofstring_separator(dataParts, 5, "", TYPE_STRING());//struct/<STRING[Data(meta_data
 FinFuncion
-//----[ UTILITIES ]------------------------------------------------------------------<#>
+//----[ UTILITIES ]-----------------------------------------------------------------<#>
 Funcion isType <- ascii_IsLetters(char)
 	Definir isType Como Logico;
 	isType = ascii_IsLetters_UpperCase(char) | ascii_IsLetter_LowerCase(char);//65-90
@@ -2497,7 +2499,7 @@ Funcion collection_result <- linearCollection_RemoveLast(struct_Collection)
 	collection_result = string_Delete(collection_result, decrement_step(index_MetaData, element_Length), index_MetaData);
 	collection_result = linearCollection_decrement_numElement(collection_result);
 FinFuncion
-//----[ INCREMENT ]------------------------------------------------------------------<#>
+//----[ INCREMENT ]-----------------------------------------------------------------<#>
 Funcion collection_result <- linearCollection_increment_numElement(struct_List)
 	Definir collection_result Como Texto;
 	collection_result =  linearCollection_update_numElement(struct_List, 1);
@@ -2892,7 +2894,7 @@ Funcion TYPE <- STRUCT_TYPE_DEQUE
 	TYPE = "deque";
 FinFuncion
 ///$$$$$[ DEQUE ]$$$$$$$$$$$$$$$$$$$$[  -+2_2 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Funcion new_Deque <- util_new_Deque(TYPE)
+Funcion new_Deque <- util_Deque_new(TYPE)
 	Definir new_Deque Como Texto;
 	new_Deque = linearCollection_newLinearCollection( STRUCT_TYPE_DEQUE(), TYPE);
 FinFuncion
@@ -2950,7 +2952,7 @@ Funcion element_Result <- util_Deque_getLast(struct_Deque)
 	element_Result = linearCollection_getLast_toType(struct_Deque, TYPE);
 FinFuncion
 ///$$$$$[ QUEUE ]$$$$$$$$$$$$$$$$$$$$[  -+2_3 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Funcion new_Queue <- util_new_Queue(TYPE)
+Funcion new_Queue <- util_Queue_new(TYPE)
 	Definir new_Queue Como Texto;
 	new_Queue = linearCollection_newLinearCollection( STRUCT_TYPE_QUEUE(), TYPE);
 FinFuncion
@@ -3000,7 +3002,7 @@ Funcion element_Result <- util_Queue_Poll(struct_Queue Por Referencia)
 	struct_Queue = util_Queue_RemoveFirst(struct_Queue);
 FinFuncion
 ///$$$$$[ STACK ]$$$$$$$$$$$$$$$$$$$$[  -+2_4 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Funcion new_Stack <- util_new_Stack(TYPE)
+Funcion new_Stack <- util_Stack_new(TYPE)
 	Definir new_Stack Como Texto;
 	new_Stack = linearCollection_newLinearCollection(STRUCT_TYPE_STACK(), TYPE);
 FinFuncion
@@ -3050,7 +3052,7 @@ Funcion element_Result <- util_Stack_Pop(struct_Stack Por Referencia)
 	struct_Stack = util_Stack_removeLast(struct_Stack);
 FinFuncion
 ///$$$$$[ LIST ]$$$$$$$$$$$$$$$$$$$$$[  -+2_5 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Funcion new_list <- util_new_List(TYPE)
+Funcion new_list <- util_List_new(TYPE)
 	Definir new_list Como Texto;
 	new_list = linearCollection_newLinearCollection(STRUCT_TYPE_LIST(), TYPE);
 FinFuncion
@@ -3558,7 +3560,7 @@ Funcion symbol_area <- symbol_EndKeyArea
     symbol_area = "";
 FinFuncion
 ///$$$$$[ SET ]$$$$$$$$$$$$$$$$$$$$$$[  -+2_7 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Funcion new_Set <- util_new_Set(TYPE)
+Funcion new_Set <- util_Set_new(TYPE)
 	Definir new_Set Como Texto;
 	new_Set = collectionSetter_New(STRUCT_TYPE_SET(), TYPE);
 FinFuncion
@@ -3602,7 +3604,7 @@ Funcion result_Set <- util_Set_RetainAll(struct_Set, struct_SetRetain)
 	result_Set = collectionSetter_RetainAll(struct_Set, struct_SetRetain);
 FinFuncion
 ///$$$$$[ MAP ]$$$$$$$$$$$$$$$$$$$$$$[  -+2_8 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Funcion new_Map <- util_new_Map(TYPE, TYPE_VALUE)
+Funcion new_Map <- util_Map_new(TYPE, TYPE_VALUE)
 	Definir new_Map Como Texto;
 	new_Map = collectionSetter_addValueFunction(collectionSetter_New(STRUCT_TYPE_MAP(), TYPE), TYPE_VALUE);
 FinFuncion
@@ -3754,15 +3756,16 @@ FinFuncion
 //----[ OPERATIONS ]-----------------------------------------------------------------<#>
 Funcion struct_time <- temporal_with(struct_temporal, num_define, type_temporal)
     Definir struct_time Como Texto;
-    Definir time_now, t_old_part, t_new_part Como Real;
+    Definir time_now, t_old_part, t_new_part, time_total Como Real;
     Si temporal_isValidUnitTemporal(num_define, type_temporal) Entonces
         time_now    = temporal_getSeconds(struct_temporal);
         t_old_part  = duration_secondsToTemporalUnitPart(time_now, type_temporal);
         t_old_part  = duration_TemporalUnitToSeconds(t_old_part, type_temporal);
         t_new_part  = duration_TemporalUnitToSeconds(num_define, type_temporal);
-        struct_time = localTime_ofSecondOfDays((time_now - t_old_part) + t_new_part);
+		time_total = increment_step(decrement_step(time_now, t_old_part), t_new_part);
+        struct_time = __private_temporal_setSecondOfDays(struct_temporal, time_total);
     SiNo
-        error_message_Function("localTime_with", "unit range_error");
+        error_message_Function("temporal_with(struct, num, type)", "unit range_error");
         struct_time = struct_temporal;
     FinSi
 FinFuncion
@@ -3820,6 +3823,44 @@ FinFuncion
 Funcion isValid <- temporal_isValid(hours, minutes, seconds)
 	Definir isValid Como Logico;
 	isValid = temporal_isValidHours(hours) &temporal_isValidMinutes(minutes) & temporal_isValidSeconds(seconds);
+FinFuncion
+
+Funcion date_object <- __private_temporalDate_add(struct_date, year, month, day)
+	Definir date_object Como Texto;
+	date_object = struct_date;
+	date_object = linearCollection_addFirst(date_object, day);
+	date_object = linearCollection_addFirst(date_object, month);
+	date_object = linearCollection_addFirst(date_object, year);
+FinFuncion
+
+Funcion date_object <- __private_temporalDate_set(struct_date, year, month, day)
+	Definir date_object Como Texto;
+	date_object = struct_date;
+	date_object = linearCollection_SetElement_toType(date_object, 0, year, TYPE_INT());
+	date_object = linearCollection_SetElement_toType(date_object, 1, month, TYPE_INT());
+	date_object = linearCollection_SetElement_toType(date_object, 2, day, TYPE_INT());
+FinFuncion
+
+Funcion time_result <- __private_temporal_addSecondOfDays(struct_time, seconds)
+	Definir time_result Como Texto;
+	time_result = linearCollection_addLast_ByType(struct_time, seconds, TYPE_FLOAT());
+FinFuncion
+
+Funcion time_result <- __private_temporal_setSecondOfDays(struct_time, seconds)
+	Definir time_result Como Texto;
+	Definir size_struct Como Entero;
+	size_struct = linearCollection_GetSize(struct);
+	time_result = linearCollection_SetElement_ToType(struct_time, size_struct, seconds, TYPE_FLOAT());
+FinFuncion
+
+Funcion date_object <- __private_temporalDate_setDateNull(struct_date)
+	Definir date_object Como Texto;
+	date_object = __private_temporalDate_set(struct_date, 0, 0, 0);
+FinFuncion
+
+Funcion LocalTime_result <- __private_temporalTime_setTimeNull(struct_time)
+	Definir LocalTime_result Como Texto;
+	LocalTime_result = __private_temporal_addSecondOfDays(struct_time, number_Null());
 FinFuncion
 //=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=========================================
 Funcion Temporal_Type <- TEMPORAL_AMOUNT_DURATION
@@ -4067,25 +4108,15 @@ Funcion day_name <- DayOfWeek_of(number_day)
             day_name = string_Null();
     FinSegun
 FinFuncion
-///$$$$$$[ LOCALDATETIME ]$$$$$$$$$$$[  -+0_1 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-///$$$$$$[ LOCALDATE ]$$$$$$$$$$$$$$$[  -+0_2 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+///$$$$$$[ LOCALDATE ]$$$$$$$$$$$$$$$[  -+0_1 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Funcion Date_num <- __private_getDate_Now
 	Definir Date_num Como Numero;
-	Date_num = FechaActual();
+	Date_num = FechaActual();//20260407;
 FinFuncion
 
 Funcion Date_String <- __private_getDate_Now_toString
 	Definir Date_String Como Texto;
 	Date_String = string_fit(num_ToString(__private_getDate_Now()), "00000000");
-FinFuncion
-
-Funcion date_string <- localDate_toString(struct_date)
-	Definir date_string, date_array Como Texto;
-	Dimension date_array[3];
-	date_array[0] = string_fit(linearCollection_getElement_ToString(struct_date, 0), "0000");
-	date_array[1] = string_fit(linearCollection_getElement_ToString(struct_date, 1), "00");
-	date_array[2] = string_fit(linearCollection_getElement_ToString(struct_date, 2), "00");
-	date_string = array_ofstring_separator(date_array, 3, "-", TYPE_STRING());
 FinFuncion
 
 Funcion current_date <- localDate_now
@@ -4101,7 +4132,7 @@ Funcion current_date <- localDate_now
 	current_date = localDate_of(year, month, day);
 FinFuncion
 
-Funcion date_object <- localDate_ofMonth(year, MONTH_NAME, day)
+Funcion date_object <- localDate_of_monthName(year, MONTH_NAME, day)
 	Definir date_object Como Texto;
 	date_object = localDate_of(year, month_value(MONTH_NAME), day);
 FinFuncion
@@ -4111,27 +4142,34 @@ Funcion date_object <- localDate_of(year, month, day)
 	Si (temporal_isValidDate(year, month, day)) Entonces
 		date_object = __private_localDate_forcedOf(year, month, day);
 	SiNo
-		date_object = __private_localDate_getDateNull();
+		date_object = __private_localDate_ofDateNull();
 		error_message_Function("localDate_of(year, month, day)", "Date not valid");
 	FinSi
-FinFuncion
-
-Funcion date_object <- __private_localDate_getDateUnixEpoch
-	Definir date_object Como Texto;
-	date_object = __private_localDate_forcedOf(1970, 1, 1);
-FinFuncion
-
-Funcion date_object <- __private_localDate_getDateNull
-	Definir date_object Como Texto;
-	date_object = __private_localDate_forcedOf(0, 0, 0);
 FinFuncion
 
 Funcion date_object <- __private_localDate_forcedOf(year, month, day)
 	Definir date_object Como Texto;
 	date_object = linearCollection_newLinearCollection(TEMPORAL_LOCALDATE(), TYPE_INT());
-	date_object = linearCollection_addFirst(date_object, day);
-	date_object = linearCollection_addFirst(date_object, month);
-	date_object = linearCollection_addFirst(date_object, year);
+	date_object = __private_temporalDate_add(date_object, year, month, day);
+FinFuncion
+
+Funcion date_string <- localDate_toString(struct_date)
+	Definir date_string, date_array Como Texto;
+	Dimension date_array[3];
+	date_array[0] = string_fit(linearCollection_getElement_ToString(struct_date, 0), "0000");
+	date_array[1] = string_fit(linearCollection_getElement_ToString(struct_date, 1), "00");
+	date_array[2] = string_fit(linearCollection_getElement_ToString(struct_date, 2), "00");
+	date_string = array_ofstring_separator(date_array, 3, "-", TYPE_STRING());
+FinFuncion
+
+Funcion date_object <- __private_localDate_ofDateNull
+	Definir date_object Como Texto;
+	date_object = __private_localDate_forcedOf(number_Null(), number_Null(), number_Null());
+FinFuncion
+
+Funcion date_object <- __private_localDate_getDateUnixEpoch
+	Definir date_object Como Texto;
+	date_object = __private_localDate_forcedOf(1970, 1, 1);
 FinFuncion
 
 Funcion year_int <- localDate_getYear(struct_date)
@@ -4163,11 +4201,6 @@ Funcion era_result <- localDate_getEra(struct_date)
     FinSi
 FinFuncion
 
-Funcion date_object <- localDate_plusWeeks(struct_date, plus_weeks)
-	Definir date_object Como Texto;
-	date_object = localDate_plusDays(struct_date, (plus_weeks * 7));
-FinFuncion
-
 Funcion date_object <- localDate_plusDays(struct_date, plus_days)
     Definir date_object Como Texto;
     Definir year, month, days Como Entero;
@@ -4175,18 +4208,23 @@ Funcion date_object <- localDate_plusDays(struct_date, plus_days)
     month = localDate_getMonthValue(struct_date);
     days = increment_step(localDate_getDayOfMonth(struct_date), plus_days);
     Si days > localDate_lengthOfMonth(year, month) Entonces
-        date_object = __private_localDate_AdvanceDays(year, month, days);
+        date_object = __private_localDate_AdvanceDays(struct_date, year, month, days);
     Sino 
 		Si days <= 0 Entonces
-			date_object = __private_localDate_RewindDays(year, month, days);
+			date_object = __private_localDate_RewindDays(struct_date, year, month, days);
 		Sino
-			date_object = localDate_of(year, month, days);
+			date_object = __private_temporalDate_set(struct_date, year, month, days);
 		FinSi
 	FinSi
 FinFuncion
 
-Funcion struct_date <- __private_localDate_AdvanceDays(year, month, days)
-	Definir struct_date Como Texto;
+Funcion date_object <- localDate_plusWeeks(struct_date, plus_weeks)
+	Definir date_object Como Texto;
+	date_object = localDate_plusDays(struct_date, (plus_weeks * 7));
+FinFuncion
+
+Funcion struct_date_result <- __private_localDate_AdvanceDays(struct_date, year, month, days)
+	Definir struct_date_result Como Texto;
     Mientras days > localDate_lengthOfMonth(year, month) Hacer
         days = decrement_step(days, localDate_lengthOfMonth(year, month));
         month = increment(month);
@@ -4195,11 +4233,11 @@ Funcion struct_date <- __private_localDate_AdvanceDays(year, month, days)
             year = increment(year);
         FinSi
     FinMientras
-    struct_date = localDate_of(year, month, days);
+    struct_date_result = __private_temporalDate_set(struct_date, year, month, days);
 FinFuncion
 
-Funcion struct_date <- __private_localDate_RewindDays(year, month, days)
-	Definir struct_date Como Texto;
+Funcion struct_date_result <- __private_localDate_RewindDays(struct_date, year, month, days)
+	Definir struct_date_result Como Texto;
     Mientras days <= 0 Hacer
         month = decrement(month);
         Si month < 1 Entonces
@@ -4208,32 +4246,32 @@ Funcion struct_date <- __private_localDate_RewindDays(year, month, days)
         FinSi
         days = increment_step(days, localDate_lengthOfMonth(year, month));
     FinMientras
-    struct_date = localDate_of(year, month, days);
+    struct_date_result = __private_temporalDate_set(struct_date, year, month, day);
 FinFuncion
 
 Funcion date_object <- localDate_plusMonths(struct_date, plus_months)
-    Definir date_object Como Texto;
-    Definir years_date, total_months, month_base Como Entero;
-    Definir relative_months, days_date, length_month Como Entero;
-    month_base = decrement(localDate_getMonthValue(struct_date));
+	Definir date_object Como Texto;
+    Definir month_base, relative_months, years_to_add, final_month Como Entero;
+    Definir length_month, days_date Como Entero;
+    month_base = decrement(localDate_getMonthValue(struct_date)); 
     relative_months = increment_step(month_base, plus_months);
-    years_date = math_Round(math_div(relative_months, 12));
-    total_months = increment(math_NormalizeCycle(relative_months, 12));
-    date_object = localDate_plusYears(struct_date, years_date);
-    date_object = localDate_withMonth(date_object, total_months);
-	length_month = localDate_lengthOfMonth(localDate_getYear(date_object), total_months);
-	days_date = localDate_getDayOfMonth(date_object);
-	si length_month < days_date Entonces
-		date_object = localDate_withDayOfMonth(date_object, length_month);
-	FinSi
+    years_to_add = math_Round(math_div(relative_months, 12));
+    final_month = increment(math_NormalizeCycle(relative_months, 12));
+	date_object = localDate_withMonth(struct_date, final_month);
+    date_object = localDate_plusYears(date_object, years_to_add);
 FinFuncion
 
 Funcion date_object <- localDate_plusYears(struct_date, plus_years)
 	Definir date_object Como Texto;
-	Definir year_date, total_years Como Entero;
-	year_date = localDate_getYear(struct_date);
-	total_years = increment_step(year_date, plus_years);
-	date_object = localDate_withYear(struct_date, total_years);
+    Definir total_years, current_year, current_month, current_day  Como Entero;
+    current_year = localDate_getYear(struct_date);
+    total_years = increment_step(current_year, plus_years);
+	current_month = localDate_getMonthValue(struct_date);
+    current_day = localDate_getDayOfMonth(struct_date);
+    date_object = localDate_withYear(struct_date, total_years);
+    Si !temporal_isValidDayInMonthOfTheYear(total_years, current_month, current_day) Entonces
+        date_object = localDate_withDayOfMonth(date_object, localDate_lengthOfMonth(total_years, current_month));
+    FinSi
 FinFuncion
 
 Funcion date_object <- localDate_minusDays(struct_date, minus_days)
@@ -4259,6 +4297,7 @@ FinFuncion
 Funcion days <- __private_localDate_getAccumulatedDays(month, isLeap)
     Definir days Como Entero;
     Segun month Hacer
+        Caso 0:  days = 0;// Ene
         Caso 1:  days = 31;// Ene
         Caso 2:  days = 59;// Feb
         Caso 3:  days = 90;// Mar
@@ -4312,7 +4351,7 @@ Funcion Date <- localDate_ofDayOfYear(year, dayOfYear)
 		day = decrement_step(dayOfYear, __private_localDate_getAccumulatedDays(decrement(month), isLeap));
 		Date = localDate_of(year, month, day);
 	SiNo
-		Date = __private_localDate_getDateNull();
+		Date = __private_localDate_ofDateNull();
 		error_message_Function("localDate_ofDayOfYear(year, dayOfYear)", "(dayOfYear > lengthOfYear) no valid ");
 	FinSi
 FinFuncion
@@ -4322,7 +4361,7 @@ Funcion date_with <- localDate_withMonth(struct_date, month_int)
 	si temporal_isValidMonth(month_int) Entonces
 		date_with = linearCollection_SetElement(struct_date, 1, month_int);
 	SiNo
-		date_with = __private_localDate_getDateNull();
+		date_with = __private_temporalDate_setDateNull(struct_date);
 		error_message_Function("localDate_withMonth(struct_date, month_int)"," month no is valid");
 	FinSi
 FinFuncion
@@ -4334,10 +4373,10 @@ Funcion date_with <- localDate_withDayOfYear(struct_date, dayOfYear)
 	month = __private_localDate_getMonthFromDays(year, dayOfYear);
 	day = decrement_step(dayOfYear, __private_localDate_getAccumulatedDays(decrement(month), localDate_isLeapYear(year)));
 	si temporal_isValidDayInMonthOfTheYear(year, month, day) Entonces
-		date_with = linearCollection_SetElement(struct_date, 2, day);
-		date_with = linearCollection_SetElement(date_with, 1, month);
+		date_with = localDate_withDayOfMonth(struct_date, day);
+		date_with = localDate_withMonth(struct_date, month);
 	SiNo
-		date_with = __private_localDate_getDateNull();
+		date_with = __private_temporalDate_setDateNull(struct_date);
 		error_message_Function("localDate_withDayOfYear(struct_date, day_int)"," day no is valid");
 	FinSi
 FinFuncion
@@ -4350,7 +4389,7 @@ Funcion date_with <- localDate_withDayOfMonth(struct_date, day_int)
 	si temporal_isValidDayInMonthOfTheYear(year, month, day_int) Entonces
 		date_with = linearCollection_SetElement(struct_date, 2, day_int);
 	SiNo
-		date_with = __private_localDate_getDateNull();
+		date_with = __private_temporalDate_setDateNull(struct_date);
 		error_message_Function("localDate_withDayOfYear(struct_date, day_int)"," day no is valid");
 	FinSi
 FinFuncion
@@ -4360,7 +4399,7 @@ Funcion date_with <- localDate_withYear(struct_date, year_int)
 	si temporal_isValidYear(year_int) Entonces
 		date_with = linearCollection_SetElement(struct_date, 0, year_int);
 	SiNo
-		date_with = __private_localDate_getDateNull();
+		date_with = __private_temporalDate_setDateNull(struct_date);
 		error_message_Function("localDate_withYear(struct_date, year_int)","year no is valid");
 	FinSi
 FinFuncion
@@ -4375,7 +4414,7 @@ Funcion date_object <- localDate_with(struct_date, new_value, temporal_unit)
 		chronoUnit_DAYS():
 			date_object = localDate_withDayOfMonth(struct_date, new_value);
 		De Otro Modo:
-			date_object = __private_localDate_getDateNull();
+			date_with = __private_temporalDate_setDateNull(struct_date);
 			error_message_function("localDate_with(struct_date, new_value, temporal_unit)", "Unsupported or invalid temporal unit for field replacement");
 	FinSegun
 FinFuncion
@@ -4392,7 +4431,7 @@ Funcion date_object <- localDate_plus(struct_date, num_plus, temporal_unit)
 		chronoUnit_DAYS():
 			date_object = localDate_plusDays(struct_date, num_plus);
 		De Otro Modo:
-			date_object = __private_localDate_getDateNull();
+			date_with = __private_temporalDate_setDateNull(struct_date);
 			error_message_function("localDate_plus(struct_date, num_plus, temporal_unit)", "invalid temporal unit");
 	FinSegun
 FinFuncion
@@ -4409,7 +4448,7 @@ Funcion date_object <- localDate_minus(struct_date, num_minus, temporal_unit)
 		chronoUnit_DAYS():
 			date_object = localDate_minusDays(struct_date, num_minus);
 		De Otro Modo:
-			date_object = __private_localDate_getDateNull();
+			date_with = __private_temporalDate_setDateNull(struct_date);
 			error_message_function("localDate_minus(struct_date, num_minus, temporal_unit)", "invalid temporal unit");
 	FinSegun
 FinFuncion
@@ -4420,7 +4459,6 @@ FinFuncion
 // Ajuste de inicio:
 // - Si 1 de Enero = 0: leap_factor = 0 para Enero/Febrero.
 // - Si 1 de Enero = 1: leap_factor = 0 para Febrero, 1 para Enero.
-//Escribir localDate_getDayOfYear(2026, 9, 10);
 Funcion numDay <- localDate_getDayOfYear(year, month, day)
 	Definir numDay, leap_factor Como Entero;
 	si temporal_isValidDate(year, month, day) Entonces
@@ -4459,12 +4497,159 @@ Funcion numDay <- __private_localDate_getDayOfTheWeek_Value(year, month, day)
 		numDay = 7;
 	FinSi
 FinFuncion
+//verificar si cuando aumento anio es bisiesto y es ajustar mes en ese caso
 
-Funcion sandbox_development
-	Definir struct_date, str , str2 Como Texto;
-	Definir num, i Como Numero;
-	num = 0;
+Funcion struct_dateTime <- localDate_atStartOfDay(struct_date)
+	Definir struct_dateTime Como Texto;
+	struct_dateTime = __private_localDate_atTime_fromSeconds(struct_date, 0);
+FinFuncion
 
+Funcion struct_dateTime <- localDate_atTime_fromLocalTime(struct_date, struct_time)
+	Definir struct_dateTime Como Texto;
+	Definir total_time Como Entero;
+	total_time = localTime_getSecondsOfDay(struct_time);
+	struct_dateTime = __private_localDate_atTime_fromSeconds(struct_date, total_time);
+FinFuncion
+
+Funcion struct_dateTime <- localDate_atTime_HourMinute(struct_date, hour, minute)
+	Definir struct_dateTime Como Texto;
+	struct_dateTime = localDate_atTime(struct_date, hour, minute, 0);
+FinFuncion
+
+Funcion struct_dateTime <- localDate_atTime(struct_date, hour, minute, second)
+	Definir struct_dateTime Como Texto;
+	Definir hour_second, minute_second, total_second Como Entero;
+	hour_second = duration_hoursToSeconds(hour);
+	minute_second = duration_minutesToSeconds(minute);
+	total_second = increment_step(hour_second, minute_second);
+	total_second = increment_step(total_second, second);
+	struct_dateTime = __private_localDate_atTime_fromSeconds(struct_date, total_second);
+FinFuncion
+
+Funcion struct_dateTime <- __private_localDate_atTime_fromSeconds(struct_date, seconds)
+	Definir struct_dateTime Como Texto;
+	struct_dateTime = linearCollection_addLast(struct_date, seconds);
+	struct_dateTime = string_insert(struct_dateTime, "Time",string_indexOf(struct_dateTime,symbol_TypeArea()));
+FinFuncion
+
+Funcion boolean <- localDate_isLeapYear(year)
+	Definir boolean Como Logico;
+	boolean = (Num_isEquals(math_module(year, 4), 0) & !Num_isEquals(math_module(year, 100), 0)) | Num_isEquals(math_module(year, 400), 0);
+FinFuncion
+
+Funcion lengthOfYear <- localDate_lengthOfYear(struct_date)
+	Definir lengthOfYear, year_date Como Entero;
+	year_date = localDate_getYear(struct_date);
+	lengthOfYear = if_else(localDate_isLeapYear(year_date), 366, 365, TYPE_INT());
+FinFuncion
+
+Funcion days <- localDate_lengthOfMonth(year, month)
+	Definir days, type_month Como Entero;
+	type_month = -1;
+	
+	si (month == 2) Entonces
+		type_month = 0;
+	FinSi
+	
+	si (month == 4 | month == 6 | month == 9 | month == 11) Entonces
+		type_month = 1;
+	FinSi
+	
+	segun type_month Hacer
+		caso 0: 
+			days = 28;
+			Si localDate_isLeapYear(year) Entonces
+				days = increment(days);
+			FinSi
+		caso 1: 
+			days = 30;
+		De Otro Modo:
+			days = 31;
+	FinSegun
+FinFuncion
+//----[ BOOLEANS ]---------------------------------------------------------------------<#>
+Funcion isBefore <- localDate_isBefore(struct_LocalDate, struct_LocalDate_match)
+	Definir isBefore Como Logico;
+	isBefore = __private_localDate_CompareTo(struct_LocalDate, struct_LocalDate_match) < 0;
+FinFuncion
+
+Funcion isAfter <- localDate_isAfter(struct_LocalDate, struct_LocalDate_match)
+	Definir isAfter Como Logico;
+	isAfter = __private_localDate_CompareTo(struct_LocalDate, struct_LocalDate_match) > 0;
+FinFuncion
+
+Funcion isEqual <- localDate_isEqual(struct_LocalDate, struct_LocalDate_match)
+	Definir isEqual Como Logico;
+	isEqual = __private_localDate_CompareTo(struct_LocalDate, struct_LocalDate_match) == 0;
+FinFuncion
+
+Funcion int_result <- __private_localDate_CompareTo(struct_LocalDate, struct_LocalDate_match)
+	Definir int_result Como Entero;
+	Definir Date_Org, Date_Match Como Real;
+	Date_Org = localDate_toEpochDay(struct_LocalDate);
+	Date_Match = localDate_toEpochDay(struct_LocalDate_match);
+	int_result = int_CompareTo(Date_Org, Date_Match);
+FinFuncion
+//----[ UNTIL ]------------------------------------------------------------------------<#>
+Funcion total <- localDate_until_Years(struct_date_start, struct_date_end)
+    Definir total, year_start, year_end Como Entero;
+	Definir temp_date Como Texto;
+    year_start = localDate_getYear(struct_date_start);
+    year_end = localDate_getYear(struct_date_end);
+    total = year_end - year_start;
+    temp_date = localDate_withYear(struct_date_start, year_end);
+    Si localDate_isBefore(struct_date_end, temp_date) Entonces
+        total = decrement(total);
+    FinSi
+FinFuncion
+
+Funcion total <- localDate_until_Months(struct_date_start, struct_date_end)
+    Definir total, months_diff, years_diff Como Entero;
+    years_diff = decrement_step(localDate_getYear(struct_date_end), localDate_getYear(struct_date_start));
+    months_diff = decrement_step(localDate_getMonthValue(struct_date_end), localDate_getMonthValue(struct_date_start));
+    total = increment_step((years_diff * 12) , months_diff);
+    Si localDate_getDayOfMonth(struct_date_end) < localDate_getDayOfMonth(struct_date_start) Entonces
+        total = decrement(total);
+    FinSi
+FinFuncion
+
+Funcion total <- localDate_until_Days(struct_date_start, struct_date_end)
+    Definir total, epoch_start, epoch_end Como Entero;
+    epoch_start = localDate_toEpochDay(struct_date_start);
+    epoch_end = localDate_toEpochDay(struct_date_end);
+    total = decrement_step(epoch_end, epoch_start);
+FinFuncion
+//----[ BOOLEANS ]---------------------------------------------------------------------<#>
+Funcion epoch_days_result <- localDate_toEpochDay(struct_date)
+    Definir epoch_days_result Como Entero;
+    Definir year, month, day Como Entero;
+    Definir accumulated_days, total_since_zero Como Real;
+    Definir isLeap Como Logico;
+    year = localDate_getYear(struct_date);
+    month = localDate_getMonthValue(struct_date);
+    day = localDate_getDayOfMonth(struct_date);
+    isLeap = localDate_isLeapYear(year);
+    total_since_zero = __private_localDate_getDaysFromYears(year);
+    accumulated_days = __private_localDate_getAccumulatedDays(decrement(month), isLeap);
+    total_since_zero = increment_step(total_since_zero, accumulated_days);
+    total_since_zero = increment_step(total_since_zero, day);
+    epoch_days_result = decrement_step(total_since_zero, __private_localDate_getEpochOffset());
+FinFuncion
+
+Funcion constant_value <- __private_localDate_getEpochOffset
+	Definir constant_value Como Entero;
+	constant_value = 719528;
+FinFuncion
+
+Funcion total_days_years <- __private_localDate_getDaysFromYears(year_int)
+    Definir total_days_years Como Real;
+    Definir previous_year, leap_days Como Entero;
+    previous_year = decrement(year_int);
+    total_days_years = previous_year * 365;
+    leap_days = math_floor(previous_year / 4);
+    leap_days = decrement_step(leap_days, math_floor(previous_year / 100));
+    leap_days = increment_step(leap_days, math_floor(previous_year / 400));
+    total_days_years = increment_step(total_days_years, leap_days);
 FinFuncion
 
 // =========================================================================
@@ -4503,11 +4688,6 @@ FinFuncion
 // 2. Coherencia: No mezcles 'H' (24h) con 'a' (AM/PM), Java lanzará error.
 // 3. Parsing: Si el Texto no coincide EXACTO con el patrón, lanza DateTimeParseException.
 // =========================================================================
-Funcion boolean <- localDate_isLeapYear(year)
-	Definir boolean Como Logico;
-	boolean = (Num_isEquals(math_module(year, 4), 0) & !Num_isEquals(math_module(year, 100), 0)) | Num_isEquals(math_module(year, 400), 0);
-FinFuncion
-
 Funcion Date <- localDate_format(text)
 	Definir Date, dateParts, DateTemp Como Texto;
 	Definir index Como Numero;
@@ -4527,38 +4707,7 @@ Funcion Date <- localDate_format(text)
 		Date = string_insert(string_Delete(Date, index, index+1), dateParts[1], index);
 	FinSi
 FinFuncion
-
-Funcion lengthOfYear <- localDate_lengthOfYear(struct_date)
-	Definir lengthOfYear, year_date Como Entero;
-	year_date = localDate_getYear(struct_date);
-	lengthOfYear = if_else(localDate_isLeapYear(year_date), 366, 365, TYPE_INT());
-FinFuncion
-
-Funcion days <- localDate_lengthOfMonth(year, month)
-	Definir days, type_month Como Entero;
-	type_month = -1;
-	
-	si (month == 2) Entonces
-		type_month = 0;
-	FinSi
-	
-	si (month == 4 | month == 6 | month == 9 | month == 11) Entonces
-		type_month = 1;
-	FinSi
-	
-	segun type_month Hacer
-		caso 0: 
-			days = 28;
-			Si localDate_isLeapYear(year) Entonces
-				days = increment(days);
-			FinSi
-		caso 1: 
-			days = 30;
-		De Otro Modo:
-			days = 31;
-	FinSegun
-FinFuncion
-///$$$$$$[ LOCALTIME ]$$$$$$$$$$$$$$$[  -+0_3 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+///$$$$$$[ LOCALTIME ]$$$$$$$$$$$$$$$[  -+0_2 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 //----[ PRIVATE_TIME ]----------------------------------------------------------------<#>
 Funcion Time_num <- __private_localTime_Now
 	Definir Time_num Como Numero;
@@ -4580,7 +4729,7 @@ Funcion LocalTime_result <- localTime_now
 	LocalTime_result = localTime_of(hours, minutes, seconds);
 FinFuncion
 
-Funcion LocalTime_result <- localTime_ofHoursMinutes(hours, minutes)
+Funcion LocalTime_result <- localTime_of_HourMinute(hours, minutes)
 	Definir LocalTime_result Como Texto;
 	LocalTime_result = localTime_of(hours, minutes, 0);
 FinFuncion
@@ -4595,14 +4744,19 @@ Funcion LocalTime_result <- localTime_of(hours, minutes, seconds)
 		LocalTime_result =  localTime_ofSecondOfDays(seconds_total);
 	SiNo
 		error_message_Function("localTime_of(hh,mm,ss)","The given time is not valid [valid:: 00:00:00 - 23:59:59]");
-		LocalTime_result =  localTime_ofSecondOfDays(number_Null());
+		LocalTime_result =  __private_localTime_ofNull();
 	FinSi
 FinFuncion
 
 Funcion LocalTime_result <- localTime_ofSecondOfDays(seconds)
 	Definir LocalTime_result Como Texto;
 	LocalTime_result = linearCollection_newLinearCollection(TEMPORAL_LOCALTIME(), TYPE_FLOAT());
-	LocalTime_result = linearCollection_addLast_ByType(LocalTime_result, seconds, TYPE_FLOAT());
+	LocalTime_result = __private_temporal_addSecondOfDays(LocalTime_result, seconds);
+FinFuncion
+
+Funcion LocalTime_result <- __private_localTime_ofNull
+	Definir LocalTime_result Como Texto;
+	LocalTime_result = localTime_ofSecondOfDays(number_Null());
 FinFuncion
 //----[ BOOLEANS ]---------------------------------------------------------------------<#>
 Funcion isBefore <- localTime_isBefore(struct_LocalTime, struct_LocalTime_match)
@@ -4613,6 +4767,11 @@ FinFuncion
 Funcion isAfter <- localTime_isAfter(struct_LocalTime, struct_LocalTime_match)
 	Definir isAfter Como Logico;
 	isAfter = __private_localTime_CompareTo(struct_LocalTime, struct_LocalTime_match) > 0;
+FinFuncion
+
+Funcion isEqual <- localTime_isEquals(struct_LocalTime, struct_LocalTime_match)
+	Definir isEqual Como Logico;
+	isEqual = __private_localTime_CompareTo(struct_LocalTime, struct_LocalTime_match) == 0;
 FinFuncion
 
 Funcion int_result <- __private_localTime_CompareTo(struct_LocalTime, struct_LocalTime_match)
@@ -4642,7 +4801,7 @@ Funcion second_ofUnit <- localTime_getSeconds(struct_LocalTime)
 	Definir second_ofUnit Como Real;
 	second_ofUnit = duration_secondsToTemporalUnitPart(localTime_getSecondsofDay(struct_LocalTime), chronoUnit_SECONDS());
 FinFuncion
-// ----[ UTILITIES ]-----------------------------------------------------------------<#>
+//-----[ UTILITIES ]-----------------------------------------------------------------<#>
 Funcion seconds_adjusted <- localTime_NormalizeSeconds(seconds_total)
     Definir seconds_adjusted Como Real;
 	seconds_adjusted = math_NormalizeCycle(seconds_total, 86400);
@@ -4652,7 +4811,7 @@ Funcion localTime_Correction <- localTime_cicleCorrector(struct_localTime)
     Definir localTime_Correction Como Texto;
     Definir LocalTime_seconds Como Real;
 	LocalTime_seconds = localTime_NormalizeSeconds(temporal_getSeconds(struct_localTime));
-	localTime_Correction = localTime_ofSecondOfDays(LocalTime_seconds);
+	localTime_Correction = __private_temporal_setSecondOfDays(struct_localTime, LocalTime_seconds);
 FinFuncion
 
 Funcion Time_ToString <- localTime_ToString(struct_localTime)
@@ -4668,7 +4827,7 @@ Funcion Time_ToString <- localTime_ToString(struct_localTime)
 	Time_ToString = string_append_withSeparator(hours, minutes, ":");
 	Time_ToString = string_append_withSeparator(Time_ToString, seconds, ":");
 FinFuncion
-// ----[ PLUS ]----------------------------------------------------------------------<#>
+//-----[ PLUS ]----------------------------------------------------------------------<#>
 Funcion struct_time <- localTime_PlusHours(struct_localTime, num_increment)
     Definir struct_time Como Texto;
     struct_time = localTime_PlusUnitTemporal(struct_localTime, num_increment, chronoUnit_HOURS());
@@ -4689,7 +4848,7 @@ Funcion struct_time <- localTime_PlusUnitTemporal(struct_localTime, num_incremen
     struct_time = temporal_PlusUnitTemporal(struct_localTime, num_increment, type_temporal);
 	struct_time = localTime_cicleCorrector(struct_time);
 FinFuncion
-// ----[ MINUS ]---------------------------------------------------------------------<#>
+//-----[ MINUS ]---------------------------------------------------------------------<#>
 Funcion struct_time <- localTime_MinusHours(struct_localTime, num_decrement)
     Definir struct_time Como Texto;
     struct_time = localTime_PlusHours(struct_localTime, math_Negated(num_decrement));
@@ -4704,18 +4863,18 @@ Funcion struct_time <- localTime_MinusSeconds(struct_localTime, num_decrement)
     Definir struct_time Como Texto;
     struct_time = localTime_PlusSeconds(struct_localTime, math_Negated(num_decrement));
 FinFuncion
-// ----[ WITH ]----------------------------------------------------------------------<#>
-Funcion struct_time <- localTime_withHours(struct_localTime, num_define)
+//-----[ WITH ]----------------------------------------------------------------------<#>
+Funcion struct_time <- localTime_withHour(struct_localTime, num_define)
 	Definir struct_time Como Texto;
 	struct_time = localTime_with(struct_localTime, num_define, chronoUnit_HOURS());
 FinFuncion
 
-Funcion struct_time <- localTime_withMinutes(struct_localTime, num_define)
+Funcion struct_time <- localTime_withMinute(struct_localTime, num_define)
 	Definir struct_time Como Texto;
 	struct_time = localTime_with(struct_localTime, num_define, chronoUnit_MINUTES());
 FinFuncion
 
-Funcion struct_time <- localTime_withSeconds(struct_localTime, num_define)
+Funcion struct_time <- localTime_withSecond(struct_localTime, num_define)
 	Definir struct_time Como Texto;
 	struct_time = localTime_with(struct_localTime, num_define, chronoUnit_SECONDS());
 FinFuncion
@@ -4724,7 +4883,7 @@ Funcion struct_time <- localTime_with(struct_localTime, num_define, type_tempora
 	Definir struct_time Como Texto;
 	struct_time = temporal_with(struct_temporal, num_define, type_temporal);
 FinFuncion
-// ----[ TRUNCATE ]------------------------------------------------------------------<#>
+//-----[ TRUNCATE ]-----------------------------------------------------------------<#>
 Funcion struct_time <- localTime_truncatedToHours(struct_localTime)
     Definir struct_time Como Texto;
     struct_time = localTime_truncatedTo(struct_localTime, chronoUnit_HOURS());
@@ -4746,11 +4905,170 @@ Funcion struct_time <- localTime_truncatedTo(struct_localTime, type_temporal)
 			time_part = math_module(time_now, chronoUnit_getDuration(chronoUnit_MINUTES()));
     FinSegun
 	time_truncate = decrement_step(time_now, time_part);
-    struct_time = localTime_ofSecondOfDays(time_truncate );
+    struct_time = __private_temporal_setSecondOfDays(struct_localTime, time_truncate );
+FinFuncion
+///$$$$$$[ LOCALDATETIME ]$$$$$$$$$$$[  -+0_3 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Funcion string_dateTime <- localDateTime_toString(localDateTime)
+	Definir string_dateTime, string_date, string_time Como Texto;
+	string_date = localDate_ToString(localDateTime);
+	string_time = localTime_ToString(localDateTime);
+	string_dateTime = string_append_withSeparator(string_date, string_time," ");
+FinFuncion
+//----[ OF_TEMPORAL ]-----------------------------------------------------------------<#>
+Funcion struct_dateTime <- localDateTime_of_monthName_hourMinute(year, MONTH_NAME, dayOfMonth, hour, minute)
+	Definir struct_dateTime Como Texto;
+	struct_dateTime = localDateTime_of_monthName(year, MONTH_NAME, dayOfMonth, hour, minute, 0);
+FinFuncion
+
+Funcion struct_dateTime <- localDateTime_of_monthName(year, MONTH_NAME, dayOfMonth, hour, minute, second)
+	Definir struct_dateTime Como Texto;
+	struct_dateTime = localDateTime_of(year, month_value(MONTH_NAME), dayOfMonth, hour, minute, second);
+FinFuncion
+Funcion struct_dateTime <- localDateTime_of_hourMinute(year, month, dayOfMonth, hour, minute)
+	Definir struct_dateTime Como Texto;
+	struct_dateTime = localDateTime_of(year, month, dayOfMonth, hour, minute, 0);
+FinFuncion
+
+Funcion struct_dateTime <- localDateTime_of(year, month, dayOfMonth, hour, minute, second)
+	Definir struct_dateTime, struct_date Como Texto;
+	struct_date = localDate_of(year, month, dayOfMonth);
+	struct_dateTime = localDate_atTime(struct_date, hour, minute, second);
+FinFuncion
+
+Funcion struct_dateTime <- localDateTime_of_struct_DateAndTime(localDate, localTime)
+	Definir struct_dateTime Como Texto;
+	struct_dateTime = localDate_atTime_fromLocalTime(localDate, localTime);
+FinFuncion
+//-----[ PLUS ]----------------------------------------------------------------------<#>
+Funcion result_dateTime <- localDateTime_plusYears(struct_dateTime, unit_plus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_plusYears(struct_dateTime, unit_plus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_plusMonths(struct_dateTime, unit_plus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_plusMonths(struct_dateTime, unit_plus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_plusWeeks(struct_dateTime, unit_plus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_plusWeeks(struct_dateTime, unit_plus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_plusDays(struct_dateTime, unit_plus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_plusDays(struct_dateTime, unit_plus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_plusHours(struct_dateTime, unit_plus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localTime_plusHours(struct_dateTime, unit_plus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_plusMinutes(struct_dateTime, unit_plus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localTime_plusMinutes(struct_dateTime, unit_plus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_plusSeconds(struct_dateTime, unit_plus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localTime_plusSeconds(struct_dateTime, unit_plus);
+FinFuncion
+//-----[ MINUS ]---------------------------------------------------------------------<#>
+Funcion result_dateTime <- localDateTime_minusYears(struct_dateTime, unit_minus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_minusYears(struct_dateTime, unit_minus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_minusMonths(struct_dateTime, unit_minus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_minusMonths(struct_dateTime, unit_minus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_minusWeeks(struct_dateTime, unit_minus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_minusWeeks(struct_dateTime, unit_minus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_minusDays(struct_dateTime, unit_minus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_minusDays(struct_dateTime, unit_minus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_minusHours(struct_dateTime, unit_minus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localTime_minusHours(struct_dateTime, unit_minus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_minusMinutes(struct_dateTime, unit_minus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localTime_minusMinutes(struct_dateTime, unit_minus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_minusSeconds(struct_dateTime, unit_minus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localTime_minusSeconds(struct_dateTime, unit_minus);
+FinFuncion
+//-----[ WITH ]----------------------------------------------------------------------<#>
+Funcion result_dateTime <- localDateTime_withYear(struct_dateTime, year)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_withYear(struct_dateTime, year);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_withMonth(struct_dateTime, month)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_withMonth(struct_dateTime, month);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_withDayOfMonth(struct_dateTime, dayOfMonth)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_withDayOfMonth(struct_dateTime, dayOfMonth);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_withDayOfYear(struct_dateTime, dayOfYear)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_withDayOfYear(struct_dateTime, dayOfYear);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_withHour(struct_dateTime, hour)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localTime_withHour(struct_dateTime, hour);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_withMinute(struct_dateTime, minute)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localTime_withMinute(struct_dateTime, minute);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_withSecond(struct_dateTime, second)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localTime_withSecond(struct_dateTime, second);
+FinFuncion
+//----[ BOOLEANS ]---------------------------------------------------------------------<#>
+Funcion isBefore <- localDateTime_isBefore(struct_dt1, struct_dt2)
+    Definir isBefore Como Logico;
+    isBefore = __private_localDateTime_CompareTo(struct_dt1, struct_dt2) < 0;
+FinFuncion
+
+Funcion isAfter <- localDateTime_isAfter(struct_dt1, struct_dt2)
+    Definir isAfter Como Logico;
+    isAfter = __private_localDateTime_CompareTo(struct_dt1, struct_dt2) > 0;
+FinFuncion
+
+Funcion isEqual <- localDateTime_isEqual(struct_dt1, struct_dt2)
+    Definir isEqual Como Logico;
+    isEqual = __private_localDateTime_CompareTo(struct_dt1, struct_dt2) == 0;
+FinFuncion
+
+Funcion int_result <- __private_localDateTime_CompareTo(struct_dt1, struct_dt2)
+    Definir int_result Como Entero;
+    int_result = __private_localDate_CompareTo(struct_dt1, struct_dt2);
+    Si int_result == 0 Entonces
+        int_result = __private_localTime_CompareTo(struct_dt1, struct_dt2);
+    FinSi
 FinFuncion
 ///$$$$$[ DURATION ]$$$$$$$$$$$$$$$$$[  -+0_4 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 //parsed ISO:8601 "PT1H15M30.5S" y TruncateTo segun el tipo
-//part para separar minutos de segundos
 //----[ GETTERS ]---------------------------------------------------------------------<#>
 Funcion duration_ofUnit <- duration_ofDays(number_Units)
 	Definir duration_ofUnit Como Texto;
@@ -4791,9 +5109,9 @@ Funcion second_ofUnit <- duration_TemporalUnitToSeconds(unit_seconds, Temporal_T
 		Caso chronoUnit_DAYS():
 			second_ofUnit = temporal_daysToSecond(unit_seconds);
 		Caso chronoUnit_HOURS():
-			second_ofUnit = duration_hoursToSecond(unit_seconds);
+			second_ofUnit = duration_hoursToSeconds(unit_seconds);
 		Caso chronoUnit_MINUTES():
-			second_ofUnit = duration_minutesToSecond(unit_seconds);
+			second_ofUnit = duration_minutesToSeconds(unit_seconds);
 		Caso chronoUnit_SECONDS():
 			second_ofUnit = unit_seconds;
 		De Otro Modo:
@@ -4801,12 +5119,12 @@ Funcion second_ofUnit <- duration_TemporalUnitToSeconds(unit_seconds, Temporal_T
 	FinSegun
 FinFuncion
 
-Funcion second_ofUnit <- duration_minutesToSecond(unit_second)
+Funcion second_ofUnit <- duration_minutesToSeconds(unit_second)
 	Definir second_ofUnit Como Real;
 	second_ofUnit = unit_second * chronoUnit_getDuration(chronoUnit_MINUTES);
 FinFuncion
 
-Funcion second_ofUnit <- duration_hoursToSecond(unit_second)
+Funcion second_ofUnit <- duration_hoursToSeconds(unit_second)
 	Definir second_ofUnit Como Real;
 	second_ofUnit = unit_second * chronoUnit_getDuration(chronoUnit_HOURS);
 FinFuncion
@@ -5008,9 +5326,163 @@ Funcion int_result <- duration_CompareTo(struct_duration, struct_duration_match)
 	int_result = int_CompareTo(duration_Org, duration_Match);
 FinFuncion
 ///$$$$$[ PERIOD  ]$$$$$$$$$$$$$$$$$$[  -+0_5 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Funcion struct_period <- period_of(year, month, day)
+    Definir struct_period Como Texto;
+    struct_period = linearCollection_newLinearCollection(TEMPORAL_LOCALDATE(), TYPE_INT());
+	struct_period = __private_temporalDate_add(struct_period, year, month, day);
+FinFuncion
 
+Funcion struct_period <- period_ofYears(years)
+	Definir struct_period Como Texto;
+    struct_period = period_of(years, 0, 0);
+FinFuncion
 
+Funcion struct_period <- period_ofMonths(months)
+	Definir struct_period Como Texto;
+    struct_period = period_of(0, months, 0);
+FinFuncion
 
+Funcion struct_period <- period_ofWeeks(weeks)
+    Definir struct_period Como Texto;
+    struct_period = period_of(0, 0, weeks * 7);
+FinFuncion
+
+Funcion struct_period <- period_ofDays(days)
+	Definir struct_period Como Texto;
+    struct_period = period_of(0, 0, days);
+FinFuncion
+
+Funcion struct_period <- __private_period_ofNull
+	Definir struct_period Como Texto;
+	struct_period = period_of(number_Null(), number_Null(), number_Null());
+FinFuncion
+
+Funcion years <- period_getYear(struct_period)
+	Definir years Como Entero;
+    years = linearCollection_GetElement(struct_period, 0);
+FinFuncion
+
+Funcion months <- period_getMonth(struct_period)
+	Definir months Como Entero;
+    months = linearCollection_GetElement(struct_period, 1);
+FinFuncion
+
+Funcion days <- period_getDay(struct_period)
+	Definir days Como Entero;
+    days = linearCollection_GetElement(struct_period, 2);
+FinFuncion
+
+Funcion struct_period_res <- period_withYears(struct_period, years)
+    Definir struct_period_res Como Texto;
+    struct_period_res = linearCollection_SetElement_ToString(struct_period, 0, num_ToString(years));
+FinFuncion
+
+Funcion struct_period_res <- period_withMonths(struct_period, months)
+    Definir struct_period_res Como Texto;
+    struct_period_res = linearCollection_SetElement_ToString(struct_period, 1, num_ToString(months));
+FinFuncion
+
+Funcion struct_period_res <- period_withDays(struct_period, days)
+    Definir struct_period_res Como Texto;
+    struct_period_res = linearCollection_SetElement_ToString(struct_period, 2, num_ToString(days));
+FinFuncion
+
+Funcion result_period <- period_plusYear(struct_period, unit_plus)
+	Definir result_period Como Texto;
+	Definir year_date Como Entero;
+	year_date = increment_step(period_getYear(struct_period), unit_plus);
+	result_period = period_withYears(struct_period, year_date);
+FinFuncion
+
+Funcion result_period <- period_plusMonths(struct_period, unit_plus)
+    Definir result_period Como Texto;
+    Definir month_date Como Entero;
+    month_date = increment_step(period_getMonth(struct_period), unit_plus);
+    result_period = period_withMonths(struct_period, month_date);
+FinFuncion
+
+Funcion result_period <- period_plusDays(struct_period, unit_plus)
+    Definir result_period Como Texto;
+    Definir day_date Como Entero;
+    day_date = increment_step(period_getDay(struct_period), unit_plus);
+	result_period = period_withDays(struct_period, day_date);
+FinFuncion
+
+Funcion result_period <- period_minusYear(struct_period, unit_minus)
+	Definir result_period Como Texto;
+	result_period = period_plusYear(struct_period, math_Negated(unit_minus));
+FinFuncion
+
+Funcion result_period <- period_minusMonths(struct_period, unit_minus)
+	Definir result_period Como Texto;
+	result_period = period_plusMonths(struct_period, math_Negated(unit_minus));
+FinFuncion
+
+Funcion result_period <- period_minusDays(struct_period, unit_minus)
+	Definir result_period Como Texto;
+	result_period = period_plusDays(struct_period, math_Negated(unit_minus));
+FinFuncion
+
+Funcion struct_period_result <- period_multipliedBy(struct_period, scalar)
+    Definir year, month, day Como Entero;
+    year = period_getYear(struct_period) * scalar;
+    month = period_getMonth(struct_period) * scalar;
+    day = period_getDay(struct_period) * scalar;
+    struct_period_result = period_of(year, month, day);
+FinFuncion
+
+Funcion struct_period_res <- period_negated(struct_period)
+    Definir year, month, day Como Entero;
+    year = math_Negated(period_getYear(struct_period));
+    month = math_Negated(period_getMonth(struct_period));
+    day = math_Negated(period_getDay(struct_period));
+    struct_period_res = period_of(year, month, day);
+FinFuncion
+
+Funcion period_string <- period_toString(struct_period)
+    Definir period_string, period_array Como Texto;
+    Dimension period_array[3];
+    period_array[0] = string_append("Y:", num_ToString(period_getYear(struct_period)));
+    period_array[1] = string_append("M:", num_ToString(period_getMonth(struct_period)));
+    period_array[2] = string_append("D:", num_ToString(period_getDay(struct_period)));
+    period_string = array_ofstring_separator(period_array, 3, " ", TYPE_STRING());
+FinFuncion
+
+Funcion sandbox_development
+	Definir struct_date, struct_date2 Como Texto;
+	Definir num, i Como Numero;
+	num = 0;
+	struct_date  = period_of(100,213,349);
+	Escribir period_toString((period_normalized(struct_date)));
+FinFuncion
+
+Funcion result_period <- period_normalized(struct_period)
+    Definir result_period Como Texto;
+    Definir total_months, years_part, months_part, final_years Como Entero;
+    total_months = period_getMonth(struct_period);
+    years_part = math_truncate(total_months / 12);
+    months_part = math_module(total_months, 12);
+    final_years = increment_step(period_getYear(struct_period), years_part);
+    result_period = period_withYears(struct_period, final_years);
+    result_period = period_withMonths(result_period, months_part);
+FinFuncion
+
+Funcion struct_period <- period_between(struct_date_start, struct_date_end)
+    Definir year, total_months, month, day, d_start, d_end Como Entero;
+    Definir struct_period, previous_month_date Como Texto;
+    total_months = localDate_until_Months(struct_date_start, struct_date_end);
+    year = math_truncate(total_months / 12);
+    month = math_module(total_months, 12);
+    d_start = localDate_getDayOfMonth(struct_date_start);
+    d_end = localDate_getDayOfMonth(struct_date_end);
+    Si d_end >= d_start Entonces
+        day = decrement_step(d_end, d_start);
+    Sino
+        previous_month_date = localDate_minusMonths(struct_date_end, 1);
+        day = decrement_step(localDate_lengthOfMonth(localDate_getYear(struct_date_end), previous_month_date), d_start) + d_end;
+    FinSi    
+    struct_period = period_of(year, month, day);
+FinFuncion
 ///%%%%%[ OBJECT ]%%%%%%%%%%%%%%%%%%%[   #+3  ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //....Object
 Funcion symbol_char <- symbol_ObjectSeparator
@@ -5360,7 +5832,7 @@ Funcion canvas_Display_MonoColor(canvas, CWx, CWy, color)
 	FinPara	//Escribir "<"+string_substring(canvas, canvas_getIndex(0, CWy, CWx), string_Length(canvas));// metadata
 	println_array_color(canvas_array, CWy, color);
 FinFuncion
-//----[ UTILITIES ]------------------------------------------------------------------<#>
+//----[ UTILITIES ]-----------------------------------------------------------------<#>
 Funcion row_x <- canvas_Row_WithText(text, repeats)
     Definir i Como Numero;
 	Definir row_x  Como Texto;
@@ -6301,7 +6773,7 @@ Funcion TUI_result <- __private_TUI_TcomponentInput_Remove_inStore(tui_window, r
 	TUI_result   = linearCollection_SetElement_ToString(tui_window, TindexFrame_Store(), Store_Setter);
 	TUI_result   = linearCollection_SetElement_ToString(TUI_result, TindexFrame_Input(), input_TUI);
 FinFuncion
-//----[ BOOLEANS ]------------------------------------------------------------------<#>
+//----[ BOOLEANS ]-----------------------------------------------------------------<#>
 Funcion Exist_input <- TUI_TFrameInput_Exist(tui_window, input_string)
 	Definir Exist_input, input_inner Como Logico;
 	input_inner = TUI_GetTProperty_Input(tui_window);
@@ -6383,7 +6855,7 @@ Funcion tcomponent_Build <- Tcomponent_AddTPropertyValue(tcomponent, value)
 	Definir tcomponent_Build Como Texto;
     tcomponent_Build = collectionSetter_AddKeyValue_ByStringForced(tcomponent, TProperty_Value(), value);
 FinFuncion
-//----[ BOOLEANS ]------------------------------------------------------------------<#>
+//----[ BOOLEANS ]-----------------------------------------------------------------<#>
 Funcion isTUI <- Tcomponent_IsTcomponent(interface_string)
 	Definir isTUI Como Logico;
 	isTUI = string_isEquals(collection_getNameCollection(interface_string), TUI_TYPE_TCOMPONENT());
