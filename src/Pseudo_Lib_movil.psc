@@ -1,9 +1,11 @@
 ///%%%%%[ MAIN ]%%%%%%%%[ #0 ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 Funcion main
-	Definir Hello_PseudoLib Como Texto;
-	Hello_PseudoLib = "Hello\nPseudoLib !!!";
-	println(Hello_PseudoLib);
+	println("Hello\nPseudoLib !!!");
 FinFuncion
+
+
 ///%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% [ PSeInt-Toolkit ] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //LIB !0 >> SEARCH: Ctrl+F   >> LIBRARIES:  
 //--------------------------------------------------------------------------------------
@@ -22,13 +24,13 @@ FinFuncion
 //1--BOOLEAN   ·  ·  ·  ·  ·  ·	#7 					 ...					[+]
 //1--CONDITIONS   ·  ·  ·  ·  ·	#8    	 			if_ : condition_		[+]
 //1--COLOR  ·  ·  ·  ·  ·  ·  · #9  				COLOR_     				[P]
-//1--TEMPORAL\CHRONO_UNIT ·  ·	#+0					localDate_time_			[+] 
-//1--LOCALDATE_TIME ·  ·  ·  ·	-+0_1				localDate_time_			[D] 
-//1    \--LOCALDATE  ·  ·  ·  · -+0_2				localDate_				[P]
-//1    \--LOCALTIME  ·  ·  ·  · -+0_3				localTime_				[+]	
-//1    \--DURATION   ·  ·  ·  · -+0_4				duration_				[+]	
-//1    \--PERIOD     ·  ·  ·  · -+0_5				period_  				[P]
-//1--VALUE	·  ·  ·  ·  ·  · 	#+1				    value_					[+]
+//1--TEMPORAL\CHRONO_UNIT ·  ·	#+0					localDate_time_			[+]
+//1    \--LOCALTIME  ·  ·  ·  · -+0_1				localTime_				[+]
+//1    \--LOCALDATE  ·  ·  ·  · -+0_2				localDate_				[+]
+//1    \--LOCALDATE_TIME·  ·  ·	-+0_3				localDate_time_			[+]
+//1--DURATION  ·  ·  ·  ·  ·  · -+0_4				duration_				[+]	
+//1--PERIOD ·  ·  ·  ·  ·  ·  · -+0_5				period_  				[+]
+//1--VALUE  ·  ·  ·  ·  ·  ·  · #+1				    value_					[+]
 //1--UTIL   ·  ·  ·  ·  ·  ·  · /// 			 	...						[+] 
 //1    \--COLLECTION ·  ·  ·  · #+2				    collection_				[+]
 //1      \--LINEAR_COLLECTION ·	-+2_1		    	linearCollection_		[+]
@@ -53,7 +55,7 @@ FinFuncion
 //[P]: stable (Pending additions)
 //[X]: Unusable / undeveloped state
 //Pseint --version 2023
-//LINES_CODE: ~6900
+//LINES_CODE: ~8000
 //______________________________________________________________________________________
 // TYPE			 /		TYPE_PSEINT
 //--------------------------------------------------------------------------------------
@@ -67,17 +69,16 @@ FinFuncion
 // Symbols_Extra:
 //  ¡ ¢ £ ¤ ¥ ¦ § ¨ © ª « ~ ­® ¯ ° ± ² ³ ´ µ ¶ · ¸ ¹ º » ¼ ½ ¾ ¿ À Á Â Ã Ä Å Æ Ç È É 
 // Ê Ë Ì Í Î Ï Ð Ò Ó Ô Õ Ö × Ø Ù Ú Û Ü Ý Þ ß à á â ã ä å æ ç è é é ê ë ì í î ï ð ñ ò ó 
-// ô õ ö ÷ ø ù ú ü ý þ ÿ ñ Ñ 
+// ô õ ö ÷ ø ù ú ü ý þ ÿ ñ Ñ
 //----[ TASK ]----------------------------------------------------------------------<#>
 // metodos: array_sort, Array_reverse, array_filter, Runnable(opcional para el #+8)
 // contains_IgnoreCase, posible agregado de mas componentes (opcional)
 // mejorar print progress con soporte para color y color transparente, print color 
 // <TODO: Actualizar con Index_FromIndex> __private_string_occurrences_general
-// <TODO: Agregar un CompareTo> String(?)
-// <TODO: Eliminar agregar o modifcar las animacion para hacerlas utiles > Sleep
+// <TODO: Agregar un CompareTo para cadenas > String
+// <TODO: Eliminar o modifcar las animacion para hacerlas utiles > sleep
 // <TODO: Mejorar lectura o dejarlo Como esta>  math_ Serie de Taylor
 // <TODO: agregar hasColor y RemoveColor >  Color
-// <TODO: Eliminar esta Funcion y eleminar las dependencias >  if_else_TYPEBOOLEAN
 // <TODO: agregar soporte para monocolor y agregar Como maquina de escritura (Hell_ luego Hello)>  
 //	en print_progress_formater()
 //--------------------------------------------------------------------------------------
@@ -116,7 +117,7 @@ FinFuncion
 Funcion user_input_wait
 	Esperar Tecla;
 FinFuncion
-//----[ OPTIONS ]---------------------------------------------------------------------<#>
+//----[ OPTIONS ]-------------------------------------------------------------------<#>
 Funcion user_input <- user_input_options_message(options_text, message, TYPE)
 	Segun TYPE Hacer
 		caso TYPE_BOOLEAN(): Definir user_input Como Logico;
@@ -179,7 +180,7 @@ Funcion user_input <- __private_user_input_options_separator(user_input_obtained
 	user_input = value_Parser_StringToType(user_input_obtained, TYPE);
 FinFuncion
 ///%%%%%[ STRING ]%%%%%%%%%%%%%%%%%%%%[   #2   ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-//----[ APPENDS ]---------------------------------------------------------------------<#>
+//----[ APPENDS ]-------------------------------------------------------------------<#>
 Funcion result <- string_append_withSeparator(str1, str2, separator)
 	Definir result Como Texto;
 	result = str1+separator+str2+"";
@@ -226,7 +227,7 @@ Funcion value_StringHash <- string_toHashText(value_String)
 	Definir value_StringHash Como Texto;
 	value_StringHash = num_ToString(ascii_hash_Mini_DBJ2(value_String));
 FinFuncion
-//----[ LENGTH ]---------------------------------------------------------------------<#>
+//----[ LENGTH ]-------------------------------------------------------------------<#>
 Funcion num <- string_Length(text)
 	Definir num Como Numero;
 	num = Longitud(text);// --- native
@@ -236,7 +237,7 @@ Funcion length_String <- string_Length_ToString(text)
 	Definir length_String Como Texto;
 	length_String = num_ToString(string_Length(text));
 FinFuncion
-//----[ INSERT ]---------------------------------------------------------------------<#>
+//----[ INSERT ]-------------------------------------------------------------------<#>
 Funcion result_string <- string_insert(text, text_insert, index)
 	Definir result_string Como Texto;
 	result_string=__private_string_insert_general(text, text_insert, index, false);
@@ -255,8 +256,8 @@ FinFuncion
 Funcion result_string <- __private_string_insert_general(text, text_insert, index, isReplace)
 	Definir result_string, before, after, fragments Como Texto;
 	Definir index_after Como Numero;
-	DimenSion text_Union(3);
-	DimenSion fragments[3];// ...join
+	Dimension text_Union(3);
+	Dimension fragments[3];// ...join
 	before			= string_substring_from_start(text, index);
 	index_after		= index+if_else(isReplace, string_Length(text_insert), 0, TYPE_INT());
 	after			= string_substring_from(text, math_min_int(index_after, string_Length(text)));
@@ -288,7 +289,7 @@ Funcion result_string <-  string_fit_end(text, text_pad)
 	result_string	= string_substring(result_string, 0, string_Length(text_pad));
 FinFuncion
 
-Funcion result_string <- string_RepeatText(text, repeats)
+Funcion result_string <- string_repeatText(text, repeats)
     Definir i Como Numero;
     Definir result_string Como Texto;
     result_string = "";
@@ -296,7 +297,7 @@ Funcion result_string <- string_RepeatText(text, repeats)
         result_string = string_append(result_string, text);
     FinPara
 FinFuncion
-//----[ DELETE ]---------------------------------------------------------------------<#>
+//----[ DELETE ]-------------------------------------------------------------------<#>
 Funcion result_str <- string_Delete(text, start, end)
 	Definir result_str, start_Str, end_Str Como Texto;//Hello World (5, 8)
 	message_validateIndexRange("string_Delete", text, start, end);
@@ -309,7 +310,7 @@ Funcion result_str <- string_Delete_From(text, start)
 	Definir result_str Como Texto;
 	result_str = string_Delete(text, start, string_Length(text));
 FinFuncion
-//----[ REMPLACE ]------------------------------------------------------------------<#>
+//----[ REMPLACE ]-----------------------------------------------------------------<#>
 Funcion result <- string_replace(text, text_match, text_Replace)
 	Definir result, text_Current Como Texto;
 	Definir index, match_length, index_end Como Numero;//Hello World, "o", "X" = HellX World
@@ -418,7 +419,7 @@ Funcion result_string <- string_ToLowerCase(text)
 	Definir result_string Como Texto;
 	result_string = Minusculas(text);
 FinFuncion
-//----[ REVERSE ]---------------------------------------------------------------------<#>
+//----[ REVERSE ]-------------------------------------------------------------------<#>
 Funcion text_Reverse <- string_TextReverse_Caracters(text, array_Carathers, array_size)
     Definir text_Reverse, array_symbol, Char_Current Como Texto;
     Definir i, j, indexText Como Numero;
@@ -526,7 +527,7 @@ Funcion result_String <- string_GetLeadingLetters(text_input)
         FinMientras
     FinSi
 FinFuncion
-//----[ INDEX ]---------------------------------------------------------------------<#>
+//----[ INDEX ]-------------------------------------------------------------------<#>
 Funcion result <- string_indexOf(text, text_match)// --- >
 	Definir result Como Numero;
 	result = string_indexOf_fromIndex(text, text_match, 0);
@@ -578,9 +579,9 @@ Funcion index <- string_indexOf_fromIndex_KMP(text, text_pattern, index_Start)
     index = -1;
 	text_length = string_Length(text);
 	pattern_length = string_Length(text_pattern);
-	DimenSion pattern[pattern_length];
+	Dimension pattern[pattern_length];
 	
-	DimenSion LPS[pattern_length];
+	Dimension LPS[pattern_length];
 	len = 0;
 	
 	Para i=0 Hasta decrement(pattern_length) con paso 1 hacer
@@ -781,7 +782,7 @@ Funcion found <- string_Struct_Contains(text_search, string_struct, separator)
 		startIndex = increment(endIndex);
 	FinMientras
 FinFuncion
-//----[ STATE ]---------------------------------------------------------------------<#>
+//----[ STATE ]-------------------------------------------------------------------<#>
 Funcion boolean <- string_isEmpty(text)
 	Definir boolean Como Logico;
 	boolean = __private_isEquals_general(text, "");
@@ -824,7 +825,7 @@ Funcion isNull <- string_isNull(value_string)
 	Definir isNull Como Logico;
 	isNull = string_isEquals(value_string, string_Null());
 FinFuncion
-//----[ AFFIX ]---------------------------------------------------------------------<#>
+//----[ AFFIX ]-------------------------------------------------------------------<#>
 Funcion boolean <- string_startsWith(text, text_match)
 	Definir boolean Como Logico;
 	boolean = string_isEquals(string_substring_from_start(text, string_Length(text_match)), text_match);
@@ -891,7 +892,7 @@ Funcion value <- array_string_Booleans_True(index)
 	FinSegun
 FinFuncion
 ///%%%%%[ ARRAY ]%%%%%%%%%%%%%%%%%%%%[   #3   ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-//----[ OFSTRING ]------------------------------------------------------------------<#>
+//----[ OFSTRING ]-----------------------------------------------------------------<#>
 Funcion str_array <- array_ofString(array, Size, type)
 	Definir str_array Como Texto;
 	str_array = array_ofstring_separator(array, Size, symbol_Separator_Simple(), type);
@@ -911,7 +912,7 @@ Funcion str_array <- array_ofstring_separator(array, Size, separator, type)
 	str_array = string_append(str_array, value_Parser_TypeToString(array[i], type));
 FinFuncion
 
-//----[ RANGE ]---------------------------------------------------------------------<#>
+//----[ RANGE ]-------------------------------------------------------------------<#>
 Funcion num_range <- array_int_getRangeCeil(array, Size, num)
 	Definir num_range, i, j Como Numero;//4, 6, 8, 10     num: 5   result= 6
 	para i = 0 Hasta decrement(Size) con paso 1 Hacer
@@ -921,7 +922,7 @@ Funcion num_range <- array_int_getRangeCeil(array, Size, num)
 		FinSi
 	FinPara
 FinFuncion
-//----[ SEARCH ]---------------------------------------------------------------------<#>
+//----[ SEARCH ]-------------------------------------------------------------------<#>
 Funcion index <- array_search_text(array, Size, text)
 	Definir index, i Como Numero;
 	i = 0;
@@ -938,7 +939,7 @@ Funcion str_array <- array_QuickSort_Num_toString(array, Size)
 	
 	str_array = array_ofString(array, Size, TYPE_INT());
 FinFuncion
-//----[ COMPARE ]---------------------------------------------------------------------<#>
+//----[ COMPARE ]-------------------------------------------------------------------<#>
 //Funcion On^2: tal vez ordenando el primer y segundo arreglo aumene la velocidad
 Funcion string_Delta <- array_ToDeltastring_ByComparation(array_Select, size_Select, array_Comparator, size_Comparator, IsInnerJoin)
 	Definir string_Delta Como Texto;
@@ -971,7 +972,7 @@ Funcion println(text)
 	text = string_append(text, "\n");
 	print(text);
 FinFuncion
-//----[ SIMPLE ]---------------------------------------------------------------------<#>
+//----[ SIMPLE ]-------------------------------------------------------------------<#>
 Funcion print_Simple(text)
 	__PSEINT_print(text);
 FinFuncion
@@ -979,7 +980,7 @@ FinFuncion
 Funcion println_Simple(text)
 	__PSEINT_println(text);
 FinFuncion
-//----[ JUMPER ]---------------------------------------------------------------------<#>
+//----[ JUMPER ]-------------------------------------------------------------------<#>
 Funcion print_byseparator(text, separator)
 	__private_Print_Split(text, separator);
 FinFuncion
@@ -999,7 +1000,7 @@ Funcion __private_Print_Split(text, separator)
 	FinMientras
 	print_Simple(string_substring(text, 0, string_Length(text)));
 FinFuncion
-//----[ PSEINT ]---------------------------------------------------------------------<#>
+//----[ PSEINT ]-------------------------------------------------------------------<#>
 Funcion __PSEINT_println(text)
 	Escribir text;
 FinFuncion
@@ -1007,7 +1008,7 @@ FinFuncion
 Funcion __PSEINT_print(text)
 	Escribir text Sin Saltar ;
 FinFuncion
-//----[ PROGRESS ]------------------------------------------------------------------<#>
+//----[ PROGRESS ]-----------------------------------------------------------------<#>
 Funcion println_progress(text)
 	text = string_append(text, "\n");
 	print_progress_with_speed(text, 100);
@@ -1038,10 +1039,10 @@ Funcion print_progress_with_speed_Simple(text, speed)
 	end = string_Length(text);
 	Para i = 0 Hasta end hacer 
 		print_Simple(char_At(text, i));
-		Sleep(speed);
+		sleep(speed);
 	FinPara
 FinFuncion
-//----[ SHOOT ]---------------------------------------------------------------------<#>
+//----[ SHOOT ]-------------------------------------------------------------------<#>
 Funcion print_shoot(text)
 	__private_internal_printer_formater_shoot(text, false);
 FinFuncion
@@ -1066,7 +1067,7 @@ Funcion __private_internal_printer_formater_shoot(text, isClear)
 	
 	num_break_Line = string_countMatches(text, "\n");
 	num_break_Line = math_max_int(num_break_Line, 1);
-	DimenSion text_ammunition[num_break_Line];
+	Dimension text_ammunition[num_break_Line];
 	
 	index_break_Line = string_indexOf_fromIndex(text, "\n", 0);
 	i=0;
@@ -1084,7 +1085,7 @@ Funcion __private_internal_printer_formater_shoot(text, isClear)
 	println_array(text_ammunition, num_break_Line);//shoot
 	print_Simple(string_substring(text, 0, string_Length(text)));
 FinFuncion
-//----[ ARRAY ]---------------------------------------------------------------------<#>
+//----[ ARRAY ]-------------------------------------------------------------------<#>
 Funcion println_array(array, index_array)
 	Definir i Como Numero;
 	para i = 0 Hasta decrement(index_array) Hacer
@@ -1114,7 +1115,7 @@ Funcion print_array_color(array, index_array, color)
 	FinPara
 	print_array(array, index_array);
 FinFuncion
-//----[ REPEAT ]---------------------------------------------------------------------<#>
+//----[ REPEAT ]-------------------------------------------------------------------<#>
 Funcion print_Repeat(text, numEnd)
 	Definir start Como Numero;
 	Para start=1 Hasta numEnd Con Paso 1 Hacer
@@ -1140,49 +1141,49 @@ FinFuncion
 Funcion clear_Console
 	Limpiar Pantalla;
 FinFuncion
-///$$$$$[ SLEEP ]$$$$$$$$$$$$$$$$$$$$[  ++4_1 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Funcion Sleep(ms)
+///$$$$$[ sleep ]$$$$$$$$$$$$$$$$$$$$[  ++4_1 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Funcion sleep(ms)
 	Esperar ms Milisegundos;
 FinFuncion
 
-Funcion Sleep_And_Clear(ms)
-	Sleep(ms);
+Funcion sleep_And_Clear(ms)
+	sleep(ms);
 	clear_Console();
 FinFuncion
-//----[ SECOND ]---------------------------------------------------------------------<#>
-Funcion Sleep_Second_And_Clear(s)
-	Sleep_And_Clear(s * 1000);
+//----[ SECOND ]-------------------------------------------------------------------<#>
+Funcion sleep_Second_And_Clear(s)
+	sleep_And_Clear(s * 1000);
 FinFuncion
 
-Funcion Sleep_Second(s)
-	Sleep(s * 1000);
+Funcion sleep_Second(s)
+	sleep(s * 1000);
 FinFuncion
-//----[ messAGE ]---------------------------------------------------------------------<#>
+//----[ messAGE ]-------------------------------------------------------------------<#>
 Funcion sleep_if_message(s, condition, message_date)
 	Si condition Entonces
 		log_INFO(message_date);
-		Sleep(s);
+		sleep(s);
 	FinSi
 FinFuncion
 
 Funcion sleep_message(s, message_date)
 	log_INFO(message_date);
-	Sleep(s);
+	sleep(s);
 FinFuncion
 //----[ UTILITIES ]-----------------------------------------------------------------<#>
-Funcion Sleep_CircleLoad(s)
+Funcion sleep_CircleLoad(s)
 	Definir sequence Como Texto;
 	Definir Size Como Numero;
 	Size = 4;
-	DimenSion sequence[Size];
+	Dimension sequence[Size];
 	sequence[0]= "|";
 	sequence[1]= "/";
 	sequence[2]= "-";
 	sequence[3]= "\";
-	Sleep_Animation(4, 100, sequence, Size, 35, 10, true());
+	sleep_Animation(4, 100, sequence, Size, 35, 10, true());
 FinFuncion
 
-Funcion Sleep_Animation(s, speed, text_array_Sequence, Size, padding_x, padding_y, EnableClear)
+Funcion sleep_Animation(s, speed, text_array_Sequence, Size, padding_x, padding_y, EnableClear)
 	Definir Time, Time_End, Time_adjust Como Numero;
 	Definir padding_x_text Como Texto;
 	
@@ -1195,7 +1196,7 @@ Funcion Sleep_Animation(s, speed, text_array_Sequence, Size, padding_x, padding_
 	Mientras Time < Time_End Hacer
 		print_Simple(string_append(padding_x_text, text_array_Sequence[math_module(Time, Size)]));
 		Time = increment(Time);
-		Sleep(speed);
+		sleep(speed);
 		Si EnableClear Entonces
 			clear_Console();
 			println_Repeat("", padding_y);
@@ -1250,7 +1251,7 @@ Funcion test_Checkpoint_info(id, info_string)
 	FinSi
 	user_input_wait();
 FinFuncion
-//----[ ASSERT ]---------------------------------------------------------------------<#>
+//----[ ASSERT ]-------------------------------------------------------------------<#>
 Funcion test_Assert_Equal(value, value_expected, TYPE)
 	Definir value_String, value_expected_String Como Texto;
 	test_Function_Assert_Equal(value, value_expected, TYPE, "<?>");
@@ -1273,7 +1274,7 @@ Funcion result_Boolean <- test_Function_Assert_Equal_returnBoolean(value, value_
 		error_message(string_append_withSeparator(method_name, string_append_withSeparator(value_String, value_expected_String, " != "), "() >> The value is not as expected >> "));
 	FinSi
 FinFuncion
-//----[ PASSED ]---------------------------------------------------------------------<#>
+//----[ PASSED ]-------------------------------------------------------------------<#>
 Funcion count_result <- test_Passed(value, value_expected, TYPE, count_string)
 	Definir count_result Como Texto;
 	count_result = test_Function_Passed(value, value_expected, TYPE, "<?>", count_string);
@@ -1429,12 +1430,12 @@ Funcion binarystring_Result <- binarystring_LogicalOperations(binaryString1, bin
 	FinPara
 	binarystring_Result = string_Delete(binarystring_result, 0, if_else(string_indexOf(binarystring_result, "1") <> -1, string_indexOf(binarystring_result, "1"), 0, TYPE_INT()));
 FinFuncion
-//----[ GETTERS ]---------------------------------------------------------------------<#>
+//----[ GETTERS ]-------------------------------------------------------------------<#>
 Funcion binaryPad <- binarystring_GetPad_MaxSize(binaryString1, binaryString2)
 	Definir binaryPad Como Texto;
 	Definir max_length Como Numero;
 	max_length = math_max_Int(string_Length(binaryString1), string_Length(binaryString2));
-	binaryPad= string_RepeatText("0", max_length);
+	binaryPad= string_repeatText("0", max_length);
 FinFuncion
 //----[ BIT_LOGICAL_OPERATIONS ]-----------------------------------------------------<#>
 Funcion bitChar_Result <- bitChar_AND(bit_char1, bit_char2)
@@ -1459,7 +1460,7 @@ FinFuncion
 //----[ SHIFTING ]-------------------------------------------------------------------<#>
 Funcion binarystring_result <- binarystring_MoveLeft(binaryString, num_movements)
 	Definir binarystring_result Como Texto;
-	binarystring_result = string_append(binaryString, string_RepeatText("0", num_movements));
+	binarystring_result = string_append(binaryString, string_repeatText("0", num_movements));
 FinFuncion
 
 Funcion binarystring_result <- binarystring_MoveRight(binaryString, num_movements)
@@ -1479,7 +1480,7 @@ FinFuncion
 
 Funcion binarystring_result <- binarystring_TwosComplement(binaryString)
 	Definir binarystring_result Como Texto;
-	binarystring_result = binarystring_SUM(binarystring_NOT(binaryString), string_pad_start("1", string_RepeatText("0", string_Length(binaryString))));
+	binarystring_result = binarystring_SUM(binarystring_NOT(binaryString), string_pad_start("1", string_repeatText("0", string_Length(binaryString))));
 FinFuncion
 ///%%%%%[ MATH ]%%%%%%%%%%%%%%%%%%%%%[   #6   ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //----[ MAX ]------------------------------------------------------------------------<#>
@@ -1594,7 +1595,6 @@ Funcion num_taylor <- math_serie_taylor(x, first_term, num_terms, n_start, n_inc
 	num_taylor=first_term;
 	term=first_term;
 	n=n_start;
-	
 	n_divisor =1;
 	para i=1 Hasta num_terms con paso 1 Hacer
 		n = increment_step(n, n_increment);
@@ -1613,6 +1613,7 @@ Funcion num_taylor <- math_serie_taylor(x, first_term, num_terms, n_start, n_inc
 		num_taylor=increment_step(num_taylor, term);
 	FinPara
 FinFuncion
+
 Funcion num_sqrt <- math_sqrt(S)
     Definir num_sqrt, xk, i Como Real;
 	xk = S;//Babylonian method: 1/2(xk+S/xk)
@@ -1739,7 +1740,7 @@ Funcion float_lim <- math_limitDecimals(num, limitFloat)
 	FinSi
 	float_lim = string_ToNum(str_num);
 FinFuncion
-//----[ MODULE ]---------------------------------------------------------------------<#>
+//----[ MODULE ]-------------------------------------------------------------------<#>
 Funcion module <- math_module(dividend, divisor)
 	Definir module Como Numero;// module = a-floor(a/b)*b
 	divisor = math_max_int(divisor, 1);
@@ -1753,7 +1754,7 @@ Funcion value_normalized <- math_NormalizeCycle(current_value, max_limit)
         value_normalized = increment_step(value_normalized, max_limit);
     FinSi
 FinFuncion
-//----[ CONSTANTS ]------------------------------------------------------------------<#>
+//----[ CONSTANTS ]-----------------------------------------------------------------<#>
 Funcion num_PI <- math_PI
 	Definir num_PI Como Real;
 	num_PI = 3.141592653589793;
@@ -1921,6 +1922,20 @@ Funcion number_validateNumberRange(Function_name, value, min_val, max_val)
     FinSi
 FinFuncion
 
+Funcion isValid <- string_isSafeIndexRange(result_string, start, end)
+    Definir isValid Como Logico;
+    Definir num_length Como Numero;
+    num_length = string_Length(result_string);
+    isValid = indexValidate(num_length, start, end);
+FinFuncion
+
+Funcion isValid <- indexValidate(max_length, start, end)
+    Definir isValid Como Logico;	
+    isValid = number_IsInRange(start, 0, max_length);
+    isValid = isValid & number_IsInRange(end, 0, max_length);
+    isValid = isValid & (start <= end);
+FinFuncion
+
 Funcion IsInRange <- number_IsInRange(value, min_val, max_val)
     Definir IsInRange Como Logico;
     IsInRange = value >= min_val & value <= max_val;
@@ -2043,7 +2058,7 @@ Funcion result_string <- symbol_Escape
 	result_string = "[";
 FinFuncion
 ///$$$$$$[ VALUE ]$$$$$$$$$$$$$$$$$$$$[   #+1  ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-//----[ PARSERS ]---------------------------------------------------------------------<#>
+//----[ PARSERS ]-------------------------------------------------------------------<#>
 Funcion element_Result <- value_Parser_StringToType(element_String, TYPE)
 	Segun TYPE Hacer
 		caso TYPE_INT():
@@ -2076,7 +2091,7 @@ Funcion result <- value_Parser_TypeToString(data, TYPE)
 			result = object_ToString(data, TYPE);
 	FinSegun
 FinFuncion
-//----[ GETTERS ]---------------------------------------------------------------------<#>
+//----[ GETTERS ]-------------------------------------------------------------------<#>
 Funcion result <- value_getNullType(TYPE)
 	Segun TYPE Hacer
 		caso TYPE_INT():
@@ -2236,7 +2251,7 @@ FinFuncion
 Funcion data_collection <- collection_new(STRUCT_TYPE, TYPE)
 	Definir data_collection, dataParts, index_end_dataArea Como Texto;
 	Definir length_data_area Como Numero;
-	DimenSion dataParts[5];
+	Dimension dataParts[5];
 	dataParts[0] = STRUCT_TYPE;
 	dataParts[1] = symbol_TypeArea();
 	dataParts[2] = TYPE;
@@ -2244,7 +2259,7 @@ Funcion data_collection <- collection_new(STRUCT_TYPE, TYPE)
 	dataParts[4] = symbol_MetaData();
 	data_collection = array_ofstring_separator(dataParts, 5, "", TYPE_STRING());//struct/<STRING[Data(meta_data
 FinFuncion
-//----[ UTILITIES ]------------------------------------------------------------------<#>
+//----[ UTILITIES ]-----------------------------------------------------------------<#>
 Funcion isType <- ascii_IsLetters(char)
 	Definir isType Como Logico;
 	isType = ascii_IsLetters_UpperCase(char) | ascii_IsLetter_LowerCase(char);//65-90
@@ -2259,7 +2274,7 @@ Funcion isEmpty <- collection_isEmpty(struct_collection)
 	Definir isEmpty Como Logico;
 	isEmpty = string_isEmpty(collection_getContent_DataArea(struct_collection));
 FinFuncion
-//----[ GETTERS ]---------------------------------------------------------------------<#>
+//----[ GETTERS ]-------------------------------------------------------------------<#>
 Funcion name_Collection <- collection_getNameCollection(collection)
 	Definir name_Collection Como Texto;
 	name_Collection = string_GetLeadingLetters(collection);
@@ -2363,8 +2378,12 @@ Funcion str_element <- collection_getElement_AtIndex_withSeparator(text, index, 
 		str_element = string_Null();
 	FinSi
 FinFuncion
-//----[ PRINTER ]---------------------------------------------------------------------<#>
+//----[ PRINTER ]-------------------------------------------------------------------<#>
 Funcion __private_Collection_Printer(data_soup, string_sumation, isNewLine)
+	__private_Collection_Printer_color(data_soup, string_sumation, isNewLine, "");
+FinFuncion
+
+Funcion __private_Collection_Printer_color(data_soup, string_sumation, isNewLine, color)
 	Definir separated_String, num_carry, Char_Current, line_Current Como Texto;
 	Definir i, num_range, length_data_value Como Numero;
 	Definir length_Sumation, num_range_inc Como Numero;
@@ -2387,9 +2406,9 @@ Funcion __private_Collection_Printer(data_soup, string_sumation, isNewLine)
 			num_range_inc = increment_step(num_range, length_data_value);
 			line_Current  = string_substring(data_soup, num_range, num_range_inc);
 			si isNewLine Entonces
-				println(line_Current);
+				println(Color_setColorText(line_Current, color));
 			SiNo
-				print(line_Current);
+				print(Color_setColorText(line_Current, color));
 			FinSi
 			num_carry       = "";// clear
 			num_range       = num_range_inc;
@@ -2462,7 +2481,7 @@ Funcion collection_result <- linearCollection_addLast_ByString(struct_Collection
 	collection_result = string_insert(collection_result, element_String, index_MetaData);//(C, B, A, Z/4;1;2;3)
 	collection_result = linearCollection_increment_numElement(collection_result);
 FinFuncion
-//----[ REMOVE ]---------------------------------------------------------------------<#>
+//----[ REMOVE ]-------------------------------------------------------------------<#>
 Funcion collection_result <- linearCollection_RemoveElement(struct_Collection, index_element)
 	Definir collection_result Como Texto;
 	collection_result = __private_LinearCollection_ModifyElement(struct_Collection, index_element, string_Null());
@@ -2497,7 +2516,7 @@ Funcion collection_result <- linearCollection_RemoveLast(struct_Collection)
 	collection_result = string_Delete(collection_result, decrement_step(index_MetaData, element_Length), index_MetaData);
 	collection_result = linearCollection_decrement_numElement(collection_result);
 FinFuncion
-//----[ INCREMENT ]------------------------------------------------------------------<#>
+//----[ INCREMENT ]-----------------------------------------------------------------<#>
 Funcion collection_result <- linearCollection_increment_numElement(struct_List)
 	Definir collection_result Como Texto;
 	collection_result =  linearCollection_update_numElement(struct_List, 1);
@@ -2520,7 +2539,7 @@ Funcion collection_result <- linearCollection_update_numElement(struct_List, num
 		collection_result = string_append(string_substring(struct_List, 0, index_ExtraData), value_modify_StringNumber(num_elements_str, num_sum));
 	FinSi
 FinFuncion
-//----[ GETTERS ]---------------------------------------------------------------------<#>
+//----[ GETTERS ]-------------------------------------------------------------------<#>
 Funcion element_Result <- linearCollection_getElement(struct_Collection, index_element)
 	Definir TYPE Como Texto;
 	TYPE = linearCollection_GetType(struct_Collection);
@@ -2599,7 +2618,7 @@ FinFuncion
 Funcion element_String <- linearCollection_getElement_toString(struct_linearCollection, index_element)
 	Definir element_String, data_sumation, string_sumation, data_soup Como Texto;
 	Definir index_Data, index_MetaData, index_ExtraData Como Numero;
-	Si linearCollection_Index_IsValid(struct_linearCollection, index_element) Entonces
+	Si linearCollection_IndexIsValid(struct_linearCollection, index_element) Entonces
 		index_Data 		  = increment(string_indexOf(struct_linearCollection, symbol_DataArea()));
 		index_ExtraData   = string_LastindexOf(struct_linearCollection, symbol_ExtraData());
 		index_MetaData	  = string_LastindexOf_fromIndex(struct_linearCollection, symbol_MetaData(), index_ExtraData);
@@ -2745,7 +2764,7 @@ Funcion separated_String <- LinearCollection_GetValues_ToSeparatedString(linearC
 	string_sumation= string_substring(linearCollection, increment(index_MetaData), index_ExtraData);
 	separated_String = __private_LinearCollection_GetDataSeparatedString(data_soup, string_sumation, separator);
 FinFuncion
-//----[ SETTERS ]---------------------------------------------------------------------<#>
+//----[ SETTERS ]-------------------------------------------------------------------<#>
 Funcion collection_result <- linearCollection_SetElement(struct_Collection, index_element, new_value)
 	Definir collection_result, TYPE Como Texto;
 	TYPE = collection_getContent_TypesArea(struct_Collection);
@@ -2762,13 +2781,13 @@ Funcion collection_result <- linearCollection_SetElement_ToString(struct_Collect
 	Definir collection_result, element_String Como Texto;
 	collection_result = __private_LinearCollection_ModifyElement(struct_Collection, index_element, value_string);
 FinFuncion
-//----[ BOOLEANS ]---------------------------------------------------------------------<#>
+//----[ BOOLEANS ]-------------------------------------------------------------------<#>
 Funcion struct_IsEmpty <- linearCollection_isEmpty(struct_Collection)
 	Definir struct_IsEmpty Como Logico;
 	struct_IsEmpty = (linearCollection_GetSize(struct_Collection) < 1);
 FinFuncion
 
-Funcion index_isValid <- linearCollection_Index_IsValid(struct_Collection, index_element)
+Funcion index_isValid <- linearCollection_IndexIsValid(struct_Collection, index_element)
 	Definir index_isValid Como Logico;
 	Definir struct_Size Como Numero;
 	struct_Size = linearCollection_GetSize(struct_Collection);
@@ -2892,7 +2911,7 @@ Funcion TYPE <- STRUCT_TYPE_DEQUE
 	TYPE = "deque";
 FinFuncion
 ///$$$$$[ DEQUE ]$$$$$$$$$$$$$$$$$$$$[  -+2_2 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Funcion new_Deque <- util_new_Deque(TYPE)
+Funcion new_Deque <- util_Deque_new(TYPE)
 	Definir new_Deque Como Texto;
 	new_Deque = linearCollection_newLinearCollection( STRUCT_TYPE_DEQUE(), TYPE);
 FinFuncion
@@ -2950,7 +2969,7 @@ Funcion element_Result <- util_Deque_getLast(struct_Deque)
 	element_Result = linearCollection_getLast_toType(struct_Deque, TYPE);
 FinFuncion
 ///$$$$$[ QUEUE ]$$$$$$$$$$$$$$$$$$$$[  -+2_3 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Funcion new_Queue <- util_new_Queue(TYPE)
+Funcion new_Queue <- util_Queue_new(TYPE)
 	Definir new_Queue Como Texto;
 	new_Queue = linearCollection_newLinearCollection( STRUCT_TYPE_QUEUE(), TYPE);
 FinFuncion
@@ -3000,7 +3019,7 @@ Funcion element_Result <- util_Queue_Poll(struct_Queue Por Referencia)
 	struct_Queue = util_Queue_RemoveFirst(struct_Queue);
 FinFuncion
 ///$$$$$[ STACK ]$$$$$$$$$$$$$$$$$$$$[  -+2_4 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Funcion new_Stack <- util_new_Stack(TYPE)
+Funcion new_Stack <- util_Stack_new(TYPE)
 	Definir new_Stack Como Texto;
 	new_Stack = linearCollection_newLinearCollection(STRUCT_TYPE_STACK(), TYPE);
 FinFuncion
@@ -3050,7 +3069,7 @@ Funcion element_Result <- util_Stack_Pop(struct_Stack Por Referencia)
 	struct_Stack = util_Stack_removeLast(struct_Stack);
 FinFuncion
 ///$$$$$[ LIST ]$$$$$$$$$$$$$$$$$$$$$[  -+2_5 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Funcion new_list <- util_new_List(TYPE)
+Funcion new_list <- util_List_new(TYPE)
 	Definir new_list Como Texto;
 	new_list = linearCollection_newLinearCollection(STRUCT_TYPE_LIST(), TYPE);
 FinFuncion
@@ -3178,7 +3197,7 @@ Funcion KeyAreaUpdated <- __private_CollectionSetter_AddKey_inDataSumation(dataS
 	FinSi
 	KeyAreaUpdated = string_append_withSeparator(keySummation, dataSoup, symbol_KeyArea());
 FinFuncion
-//----[ REMOVE ]---------------------------------------------------------------------<#>
+//----[ REMOVE ]-------------------------------------------------------------------<#>
 Funcion result_Set <- collectionSetter_RemoveKey(collection_setter, key)
 	Definir result_Set, TYPE Como Texto;
 	TYPE = collectionSetter_GetTypeKeys(collection_setter);
@@ -3226,7 +3245,7 @@ Funcion result_Set <- __private_CollectionSetter_RemoveKeyIndexed(collection_set
     result_Set       = string_Delete(collection_setter, pos_KeyPhysic, increment_step(pos_KeyPhysic, len_Key));
     result_Set       = string_Delete(result_Set, pos_InIdArea, increment_step(pos_InIdArea, len_IdEntry));
 FinFuncion
-//----[ GETTERS ]---------------------------------------------------------------------<#>
+//----[ GETTERS ]-------------------------------------------------------------------<#>
 Funcion innerIndex <- collectionSetter_GetInnerId(collection_setter, key)
 	Definir innerIndex Como Numero;
 	Definir key_Type Como Texto;
@@ -3263,7 +3282,7 @@ Funcion num_Keys <- collectionSetter_getSizeKeys(collection_setter)
 	Definir num_Keys Como Numero;
 	num_Keys       = linearCollection_GetSize(collection_setter);
 FinFuncion
-//----[ EXIST ]---------------------------------------------------------------------<#>
+//----[ EXIST ]-------------------------------------------------------------------<#>
 Funcion result_Set <- collectionSetter_Exist(collection_setter, key)
 	Definir result_Set Como Logico;
 	result_Set = collectionSetter_GetInnerId(collection_setter, key) >= 0;
@@ -3273,7 +3292,7 @@ Funcion result_Set <- collectionSetter_Exist_ByString(collection_setter, key)
 	Definir result_Set Como Logico;
 	result_Set = collectionSetter_GetInnerId_ByString(collection_setter, key) >= 0;
 FinFuncion
-//----[ SEARCH ]---------------------------------------------------------------------<#>
+//----[ SEARCH ]-------------------------------------------------------------------<#>
 Funcion key_id <- __private_CollectionSetter_SearchIdKey(collection_setter, key_string, collection_size)
 	Definir key_id, index_idArea, index_KeyArea, index_EndKeyArea Como Numero;
 	Definir keys_collection, data_soup, string_sumation Como Texto;
@@ -3325,7 +3344,7 @@ Funcion inner_IdData <- __private_CollectionSetter_GetID_DataString(data_soup, s
 		i = increment(i);
 	FinMientras
 FinFuncion
-//----[ UNIONS ]---------------------------------------------------------------------<#>
+//----[ UNIONS ]-------------------------------------------------------------------<#>
 Funcion result_Set <- collectionSetter_AddAll(collection_setter, collection_setter_Match)
 	Definir result_Set Como Texto;
 	result_Set = __private_collectionSetter_ModifyInnerData(collection_setter, collection_setter_Match, false());
@@ -3436,7 +3455,7 @@ Funcion new_Setter <- collectionSetter_addValueFunction(collection_setter, TYPE_
 	index_ExtraData = string_lastIndexOf(collection_setter, symbol_ExtraData());
 	new_Setter 		= string_insert(collection_setter, value_Area, index_ExtraData);
 FinFuncion
-//----[ KEY_ADD ]---------------------------------------------------------------------<#>
+//----[ KEY_ADD ]-------------------------------------------------------------------<#>
 Funcion new_Setter <- collectionSetter_AddKeyValue(collection_setter, key, value)
 	Definir new_Setter, type_Key Como Texto;
 	type_Key = collectionSetter_GetTypeKeys(collection_setter);
@@ -3558,7 +3577,7 @@ Funcion symbol_area <- symbol_EndKeyArea
     symbol_area = "";
 FinFuncion
 ///$$$$$[ SET ]$$$$$$$$$$$$$$$$$$$$$$[  -+2_7 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Funcion new_Set <- util_new_Set(TYPE)
+Funcion new_Set <- util_Set_new(TYPE)
 	Definir new_Set Como Texto;
 	new_Set = collectionSetter_New(STRUCT_TYPE_SET(), TYPE);
 FinFuncion
@@ -3602,7 +3621,7 @@ Funcion result_Set <- util_Set_RetainAll(struct_Set, struct_SetRetain)
 	result_Set = collectionSetter_RetainAll(struct_Set, struct_SetRetain);
 FinFuncion
 ///$$$$$[ MAP ]$$$$$$$$$$$$$$$$$$$$$$[  -+2_8 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Funcion new_Map <- util_new_Map(TYPE, TYPE_VALUE)
+Funcion new_Map <- util_Map_new(TYPE, TYPE_VALUE)
 	Definir new_Map Como Texto;
 	new_Map = collectionSetter_addValueFunction(collectionSetter_New(STRUCT_TYPE_MAP(), TYPE), TYPE_VALUE);
 FinFuncion
@@ -3754,19 +3773,20 @@ FinFuncion
 //----[ OPERATIONS ]-----------------------------------------------------------------<#>
 Funcion struct_time <- temporal_with(struct_temporal, num_define, type_temporal)
     Definir struct_time Como Texto;
-    Definir time_now, t_old_part, t_new_part Como Real;
+    Definir time_now, t_old_part, t_new_part, time_total Como Real;
     Si temporal_isValidUnitTemporal(num_define, type_temporal) Entonces
         time_now    = temporal_getSeconds(struct_temporal);
         t_old_part  = duration_secondsToTemporalUnitPart(time_now, type_temporal);
         t_old_part  = duration_TemporalUnitToSeconds(t_old_part, type_temporal);
         t_new_part  = duration_TemporalUnitToSeconds(num_define, type_temporal);
-        struct_time = localTime_ofSecondOfDays((time_now - t_old_part) + t_new_part);
+		time_total = increment_step(decrement_step(time_now, t_old_part), t_new_part);
+        struct_time = __private_temporal_setSecondOfDays(struct_temporal, time_total);
     SiNo
-        error_message_Function("localTime_with", "unit range_error");
+        error_message_Function("temporal_with(struct, num, type)", "unit range_error");
         struct_time = struct_temporal;
     FinSi
 FinFuncion
-//----[ BOOLEANS ]---------------------------------------------------------------------<#>
+//----[ BOOLEANS ]-------------------------------------------------------------------<#>
 Funcion isValidUnitTemporal <- temporal_isValidUnitTemporal(unit_temporal, type_temporal)
 	Definir isValidUnitTemporal Como Logico;
 	segun type_temporal Hacer
@@ -3820,6 +3840,44 @@ FinFuncion
 Funcion isValid <- temporal_isValid(hours, minutes, seconds)
 	Definir isValid Como Logico;
 	isValid = temporal_isValidHours(hours) &temporal_isValidMinutes(minutes) & temporal_isValidSeconds(seconds);
+FinFuncion
+
+Funcion date_object <- __private_temporalDate_add(struct_date, year, month, day)
+	Definir date_object Como Texto;
+	date_object = struct_date;
+	date_object = linearCollection_addFirst(date_object, day);
+	date_object = linearCollection_addFirst(date_object, month);
+	date_object = linearCollection_addFirst(date_object, year);
+FinFuncion
+
+Funcion date_object <- __private_temporalDate_set(struct_date, year, month, day)
+	Definir date_object Como Texto;
+	date_object = struct_date;
+	date_object = linearCollection_SetElement_toType(date_object, 0, year, TYPE_INT());
+	date_object = linearCollection_SetElement_toType(date_object, 1, month, TYPE_INT());
+	date_object = linearCollection_SetElement_toType(date_object, 2, day, TYPE_INT());
+FinFuncion
+
+Funcion time_result <- __private_temporal_addSecondOfDays(struct_time, seconds)
+	Definir time_result Como Texto;
+	time_result = linearCollection_addLast_ByType(struct_time, seconds, TYPE_FLOAT());
+FinFuncion
+
+Funcion time_result <- __private_temporal_setSecondOfDays(struct_time, seconds)
+	Definir time_result Como Texto;
+	Definir size_struct Como Entero;
+	size_struct = linearCollection_GetSize(struct);
+	time_result = linearCollection_SetElement_ToType(struct_time, size_struct, seconds, TYPE_FLOAT());
+FinFuncion
+
+Funcion date_object <- __private_temporalDate_setDateNull(struct_date)
+	Definir date_object Como Texto;
+	date_object = __private_temporalDate_set(struct_date, 0, 0, 0);
+FinFuncion
+
+Funcion LocalTime_result <- __private_temporalTime_setTimeNull(struct_time)
+	Definir LocalTime_result Como Texto;
+	LocalTime_result = __private_temporal_addSecondOfDays(struct_time, number_Null());
 FinFuncion
 //=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=========================================
 Funcion Temporal_Type <- TEMPORAL_AMOUNT_DURATION
@@ -4067,25 +4125,15 @@ Funcion day_name <- DayOfWeek_of(number_day)
             day_name = string_Null();
     FinSegun
 FinFuncion
-///$$$$$$[ LOCALDATETIME ]$$$$$$$$$$$[  -+0_1 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-///$$$$$$[ LOCALDATE ]$$$$$$$$$$$$$$$[  -+0_2 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+///$$$$$$[ LOCALDATE ]$$$$$$$$$$$$$$$[  -+0_1 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Funcion Date_num <- __private_getDate_Now
 	Definir Date_num Como Numero;
-	Date_num = FechaActual();
+	Date_num = FechaActual();//20260407;
 FinFuncion
 
 Funcion Date_String <- __private_getDate_Now_toString
 	Definir Date_String Como Texto;
 	Date_String = string_fit(num_ToString(__private_getDate_Now()), "00000000");
-FinFuncion
-
-Funcion date_string <- localDate_toString(struct_date)
-	Definir date_string, date_array Como Texto;
-	Dimension date_array[3];
-	date_array[0] = string_fit(linearCollection_getElement_ToString(struct_date, 0), "0000");
-	date_array[1] = string_fit(linearCollection_getElement_ToString(struct_date, 1), "00");
-	date_array[2] = string_fit(linearCollection_getElement_ToString(struct_date, 2), "00");
-	date_string = array_ofstring_separator(date_array, 3, "-", TYPE_STRING());
 FinFuncion
 
 Funcion current_date <- localDate_now
@@ -4101,7 +4149,7 @@ Funcion current_date <- localDate_now
 	current_date = localDate_of(year, month, day);
 FinFuncion
 
-Funcion date_object <- localDate_ofMonth(year, MONTH_NAME, day)
+Funcion date_object <- localDate_of_monthName(year, MONTH_NAME, day)
 	Definir date_object Como Texto;
 	date_object = localDate_of(year, month_value(MONTH_NAME), day);
 FinFuncion
@@ -4111,27 +4159,34 @@ Funcion date_object <- localDate_of(year, month, day)
 	Si (temporal_isValidDate(year, month, day)) Entonces
 		date_object = __private_localDate_forcedOf(year, month, day);
 	SiNo
-		date_object = __private_localDate_getDateNull();
+		date_object = __private_localDate_ofDateNull();
 		error_message_Function("localDate_of(year, month, day)", "Date not valid");
 	FinSi
-FinFuncion
-
-Funcion date_object <- __private_localDate_getDateUnixEpoch
-	Definir date_object Como Texto;
-	date_object = __private_localDate_forcedOf(1970, 1, 1);
-FinFuncion
-
-Funcion date_object <- __private_localDate_getDateNull
-	Definir date_object Como Texto;
-	date_object = __private_localDate_forcedOf(0, 0, 0);
 FinFuncion
 
 Funcion date_object <- __private_localDate_forcedOf(year, month, day)
 	Definir date_object Como Texto;
 	date_object = linearCollection_newLinearCollection(TEMPORAL_LOCALDATE(), TYPE_INT());
-	date_object = linearCollection_addFirst(date_object, day);
-	date_object = linearCollection_addFirst(date_object, month);
-	date_object = linearCollection_addFirst(date_object, year);
+	date_object = __private_temporalDate_add(date_object, year, month, day);
+FinFuncion
+
+Funcion date_string <- localDate_toString(struct_date)
+	Definir date_string, date_array Como Texto;
+	Dimension date_array[3];
+	date_array[0] = string_fit(linearCollection_getElement_ToString(struct_date, 0), "0000");
+	date_array[1] = string_fit(linearCollection_getElement_ToString(struct_date, 1), "00");
+	date_array[2] = string_fit(linearCollection_getElement_ToString(struct_date, 2), "00");
+	date_string = array_ofstring_separator(date_array, 3, "-", TYPE_STRING());
+FinFuncion
+
+Funcion date_object <- __private_localDate_ofDateNull
+	Definir date_object Como Texto;
+	date_object = __private_localDate_forcedOf(number_Null(), number_Null(), number_Null());
+FinFuncion
+
+Funcion date_object <- __private_localDate_getDateUnixEpoch
+	Definir date_object Como Texto;
+	date_object = __private_localDate_forcedOf(1970, 1, 1);
 FinFuncion
 
 Funcion year_int <- localDate_getYear(struct_date)
@@ -4163,11 +4218,6 @@ Funcion era_result <- localDate_getEra(struct_date)
     FinSi
 FinFuncion
 
-Funcion date_object <- localDate_plusWeeks(struct_date, plus_weeks)
-	Definir date_object Como Texto;
-	date_object = localDate_plusDays(struct_date, (plus_weeks * 7));
-FinFuncion
-
 Funcion date_object <- localDate_plusDays(struct_date, plus_days)
     Definir date_object Como Texto;
     Definir year, month, days Como Entero;
@@ -4175,18 +4225,23 @@ Funcion date_object <- localDate_plusDays(struct_date, plus_days)
     month = localDate_getMonthValue(struct_date);
     days = increment_step(localDate_getDayOfMonth(struct_date), plus_days);
     Si days > localDate_lengthOfMonth(year, month) Entonces
-        date_object = __private_localDate_AdvanceDays(year, month, days);
+        date_object = __private_localDate_AdvanceDays(struct_date, year, month, days);
     Sino 
 		Si days <= 0 Entonces
-			date_object = __private_localDate_RewindDays(year, month, days);
+			date_object = __private_localDate_RewindDays(struct_date, year, month, days);
 		Sino
-			date_object = localDate_of(year, month, days);
+			date_object = __private_temporalDate_set(struct_date, year, month, days);
 		FinSi
 	FinSi
 FinFuncion
 
-Funcion struct_date <- __private_localDate_AdvanceDays(year, month, days)
-	Definir struct_date Como Texto;
+Funcion date_object <- localDate_plusWeeks(struct_date, plus_weeks)
+	Definir date_object Como Texto;
+	date_object = localDate_plusDays(struct_date, (plus_weeks * 7));
+FinFuncion
+
+Funcion struct_date_result <- __private_localDate_AdvanceDays(struct_date, year, month, days)
+	Definir struct_date_result Como Texto;
     Mientras days > localDate_lengthOfMonth(year, month) Hacer
         days = decrement_step(days, localDate_lengthOfMonth(year, month));
         month = increment(month);
@@ -4195,11 +4250,11 @@ Funcion struct_date <- __private_localDate_AdvanceDays(year, month, days)
             year = increment(year);
         FinSi
     FinMientras
-    struct_date = localDate_of(year, month, days);
+    struct_date_result = __private_temporalDate_set(struct_date, year, month, days);
 FinFuncion
 
-Funcion struct_date <- __private_localDate_RewindDays(year, month, days)
-	Definir struct_date Como Texto;
+Funcion struct_date_result <- __private_localDate_RewindDays(struct_date, year, month, days)
+	Definir struct_date_result Como Texto;
     Mientras days <= 0 Hacer
         month = decrement(month);
         Si month < 1 Entonces
@@ -4208,32 +4263,32 @@ Funcion struct_date <- __private_localDate_RewindDays(year, month, days)
         FinSi
         days = increment_step(days, localDate_lengthOfMonth(year, month));
     FinMientras
-    struct_date = localDate_of(year, month, days);
+    struct_date_result = __private_temporalDate_set(struct_date, year, month, day);
 FinFuncion
 
 Funcion date_object <- localDate_plusMonths(struct_date, plus_months)
-    Definir date_object Como Texto;
-    Definir years_date, total_months, month_base Como Entero;
-    Definir relative_months, days_date, length_month Como Entero;
-    month_base = decrement(localDate_getMonthValue(struct_date));
+	Definir date_object Como Texto;
+    Definir month_base, relative_months, years_to_add, final_month Como Entero;
+    Definir length_month, days_date Como Entero;
+    month_base = decrement(localDate_getMonthValue(struct_date)); 
     relative_months = increment_step(month_base, plus_months);
-    years_date = math_Round(math_div(relative_months, 12));
-    total_months = increment(math_NormalizeCycle(relative_months, 12));
-    date_object = localDate_plusYears(struct_date, years_date);
-    date_object = localDate_withMonth(date_object, total_months);
-	length_month = localDate_lengthOfMonth(localDate_getYear(date_object), total_months);
-	days_date = localDate_getDayOfMonth(date_object);
-	si length_month < days_date Entonces
-		date_object = localDate_withDayOfMonth(date_object, length_month);
-	FinSi
+    years_to_add = math_Round(math_div(relative_months, 12));
+    final_month = increment(math_NormalizeCycle(relative_months, 12));
+	date_object = localDate_withMonth(struct_date, final_month);
+    date_object = localDate_plusYears(date_object, years_to_add);
 FinFuncion
 
 Funcion date_object <- localDate_plusYears(struct_date, plus_years)
 	Definir date_object Como Texto;
-	Definir year_date, total_years Como Entero;
-	year_date = localDate_getYear(struct_date);
-	total_years = increment_step(year_date, plus_years);
-	date_object = localDate_withYear(struct_date, total_years);
+    Definir total_years, current_year, current_month, current_day  Como Entero;
+    current_year = localDate_getYear(struct_date);
+    total_years = increment_step(current_year, plus_years);
+	current_month = localDate_getMonthValue(struct_date);
+    current_day = localDate_getDayOfMonth(struct_date);
+    date_object = localDate_withYear(struct_date, total_years);
+    Si !temporal_isValidDayInMonthOfTheYear(total_years, current_month, current_day) Entonces
+        date_object = localDate_withDayOfMonth(date_object, localDate_lengthOfMonth(total_years, current_month));
+    FinSi
 FinFuncion
 
 Funcion date_object <- localDate_minusDays(struct_date, minus_days)
@@ -4259,6 +4314,7 @@ FinFuncion
 Funcion days <- __private_localDate_getAccumulatedDays(month, isLeap)
     Definir days Como Entero;
     Segun month Hacer
+        Caso 0:  days = 0;// Ene
         Caso 1:  days = 31;// Ene
         Caso 2:  days = 59;// Feb
         Caso 3:  days = 90;// Mar
@@ -4312,7 +4368,7 @@ Funcion Date <- localDate_ofDayOfYear(year, dayOfYear)
 		day = decrement_step(dayOfYear, __private_localDate_getAccumulatedDays(decrement(month), isLeap));
 		Date = localDate_of(year, month, day);
 	SiNo
-		Date = __private_localDate_getDateNull();
+		Date = __private_localDate_ofDateNull();
 		error_message_Function("localDate_ofDayOfYear(year, dayOfYear)", "(dayOfYear > lengthOfYear) no valid ");
 	FinSi
 FinFuncion
@@ -4322,7 +4378,7 @@ Funcion date_with <- localDate_withMonth(struct_date, month_int)
 	si temporal_isValidMonth(month_int) Entonces
 		date_with = linearCollection_SetElement(struct_date, 1, month_int);
 	SiNo
-		date_with = __private_localDate_getDateNull();
+		date_with = __private_temporalDate_setDateNull(struct_date);
 		error_message_Function("localDate_withMonth(struct_date, month_int)"," month no is valid");
 	FinSi
 FinFuncion
@@ -4334,10 +4390,10 @@ Funcion date_with <- localDate_withDayOfYear(struct_date, dayOfYear)
 	month = __private_localDate_getMonthFromDays(year, dayOfYear);
 	day = decrement_step(dayOfYear, __private_localDate_getAccumulatedDays(decrement(month), localDate_isLeapYear(year)));
 	si temporal_isValidDayInMonthOfTheYear(year, month, day) Entonces
-		date_with = linearCollection_SetElement(struct_date, 2, day);
-		date_with = linearCollection_SetElement(date_with, 1, month);
+		date_with = localDate_withDayOfMonth(struct_date, day);
+		date_with = localDate_withMonth(struct_date, month);
 	SiNo
-		date_with = __private_localDate_getDateNull();
+		date_with = __private_temporalDate_setDateNull(struct_date);
 		error_message_Function("localDate_withDayOfYear(struct_date, day_int)"," day no is valid");
 	FinSi
 FinFuncion
@@ -4350,7 +4406,7 @@ Funcion date_with <- localDate_withDayOfMonth(struct_date, day_int)
 	si temporal_isValidDayInMonthOfTheYear(year, month, day_int) Entonces
 		date_with = linearCollection_SetElement(struct_date, 2, day_int);
 	SiNo
-		date_with = __private_localDate_getDateNull();
+		date_with = __private_temporalDate_setDateNull(struct_date);
 		error_message_Function("localDate_withDayOfYear(struct_date, day_int)"," day no is valid");
 	FinSi
 FinFuncion
@@ -4360,7 +4416,7 @@ Funcion date_with <- localDate_withYear(struct_date, year_int)
 	si temporal_isValidYear(year_int) Entonces
 		date_with = linearCollection_SetElement(struct_date, 0, year_int);
 	SiNo
-		date_with = __private_localDate_getDateNull();
+		date_with = __private_temporalDate_setDateNull(struct_date);
 		error_message_Function("localDate_withYear(struct_date, year_int)","year no is valid");
 	FinSi
 FinFuncion
@@ -4375,7 +4431,7 @@ Funcion date_object <- localDate_with(struct_date, new_value, temporal_unit)
 		chronoUnit_DAYS():
 			date_object = localDate_withDayOfMonth(struct_date, new_value);
 		De Otro Modo:
-			date_object = __private_localDate_getDateNull();
+			date_with = __private_temporalDate_setDateNull(struct_date);
 			error_message_function("localDate_with(struct_date, new_value, temporal_unit)", "Unsupported or invalid temporal unit for field replacement");
 	FinSegun
 FinFuncion
@@ -4392,7 +4448,7 @@ Funcion date_object <- localDate_plus(struct_date, num_plus, temporal_unit)
 		chronoUnit_DAYS():
 			date_object = localDate_plusDays(struct_date, num_plus);
 		De Otro Modo:
-			date_object = __private_localDate_getDateNull();
+			date_with = __private_temporalDate_setDateNull(struct_date);
 			error_message_function("localDate_plus(struct_date, num_plus, temporal_unit)", "invalid temporal unit");
 	FinSegun
 FinFuncion
@@ -4409,7 +4465,7 @@ Funcion date_object <- localDate_minus(struct_date, num_minus, temporal_unit)
 		chronoUnit_DAYS():
 			date_object = localDate_minusDays(struct_date, num_minus);
 		De Otro Modo:
-			date_object = __private_localDate_getDateNull();
+			date_with = __private_temporalDate_setDateNull(struct_date);
 			error_message_function("localDate_minus(struct_date, num_minus, temporal_unit)", "invalid temporal unit");
 	FinSegun
 FinFuncion
@@ -4420,7 +4476,6 @@ FinFuncion
 // Ajuste de inicio:
 // - Si 1 de Enero = 0: leap_factor = 0 para Enero/Febrero.
 // - Si 1 de Enero = 1: leap_factor = 0 para Febrero, 1 para Enero.
-//Escribir localDate_getDayOfYear(2026, 9, 10);
 Funcion numDay <- localDate_getDayOfYear(year, month, day)
 	Definir numDay, leap_factor Como Entero;
 	si temporal_isValidDate(year, month, day) Entonces
@@ -4459,12 +4514,159 @@ Funcion numDay <- __private_localDate_getDayOfTheWeek_Value(year, month, day)
 		numDay = 7;
 	FinSi
 FinFuncion
+//verificar si cuando aumento anio es bisiesto y es ajustar mes en ese caso
 
-Funcion sandbox_development
-	Definir struct_date, str , str2 Como Texto;
-	Definir num, i Como Numero;
-	num = 0;
+Funcion struct_dateTime <- localDate_atStartOfDay(struct_date)
+	Definir struct_dateTime Como Texto;
+	struct_dateTime = __private_localDate_atTime_fromSeconds(struct_date, 0);
+FinFuncion
+
+Funcion struct_dateTime <- localDate_atTime_fromLocalTime(struct_date, struct_time)
+	Definir struct_dateTime Como Texto;
+	Definir total_time Como Entero;
+	total_time = localTime_getSecondsOfDay(struct_time);
+	struct_dateTime = __private_localDate_atTime_fromSeconds(struct_date, total_time);
+FinFuncion
+
+Funcion struct_dateTime <- localDate_atTime_HourMinute(struct_date, hour, minute)
+	Definir struct_dateTime Como Texto;
+	struct_dateTime = localDate_atTime(struct_date, hour, minute, 0);
+FinFuncion
+
+Funcion struct_dateTime <- localDate_atTime(struct_date, hour, minute, second)
+	Definir struct_dateTime Como Texto;
+	Definir hour_second, minute_second, total_second Como Entero;
+	hour_second = duration_hoursToSeconds(hour);
+	minute_second = duration_minutesToSeconds(minute);
+	total_second = increment_step(hour_second, minute_second);
+	total_second = increment_step(total_second, second);
+	struct_dateTime = __private_localDate_atTime_fromSeconds(struct_date, total_second);
+FinFuncion
+
+Funcion struct_dateTime <- __private_localDate_atTime_fromSeconds(struct_date, seconds)
+	Definir struct_dateTime Como Texto;
+	struct_dateTime = linearCollection_addLast(struct_date, seconds);
+	struct_dateTime = string_insert(struct_dateTime, "Time",string_indexOf(struct_dateTime,symbol_TypeArea()));
+FinFuncion
+
+Funcion boolean <- localDate_isLeapYear(year)
+	Definir boolean Como Logico;
+	boolean = (Num_isEquals(math_module(year, 4), 0) & !Num_isEquals(math_module(year, 100), 0)) | Num_isEquals(math_module(year, 400), 0);
+FinFuncion
+
+Funcion lengthOfYear <- localDate_lengthOfYear(struct_date)
+	Definir lengthOfYear, year_date Como Entero;
+	year_date = localDate_getYear(struct_date);
+	lengthOfYear = if_else(localDate_isLeapYear(year_date), 366, 365, TYPE_INT());
+FinFuncion
+
+Funcion days <- localDate_lengthOfMonth(year, month)
+	Definir days, type_month Como Entero;
+	type_month = -1;
 	
+	si (month == 2) Entonces
+		type_month = 0;
+	FinSi
+	
+	si (month == 4 | month == 6 | month == 9 | month == 11) Entonces
+		type_month = 1;
+	FinSi
+	
+	segun type_month Hacer
+		caso 0: 
+			days = 28;
+			Si localDate_isLeapYear(year) Entonces
+				days = increment(days);
+			FinSi
+		caso 1: 
+			days = 30;
+		De Otro Modo:
+			days = 31;
+	FinSegun
+FinFuncion
+//----[ BOOLEANS ]-------------------------------------------------------------------<#>
+Funcion isBefore <- localDate_isBefore(struct_LocalDate, struct_LocalDate_match)
+	Definir isBefore Como Logico;
+	isBefore = __private_localDate_CompareTo(struct_LocalDate, struct_LocalDate_match) < 0;
+FinFuncion
+
+Funcion isAfter <- localDate_isAfter(struct_LocalDate, struct_LocalDate_match)
+	Definir isAfter Como Logico;
+	isAfter = __private_localDate_CompareTo(struct_LocalDate, struct_LocalDate_match) > 0;
+FinFuncion
+
+Funcion isEqual <- localDate_isEqual(struct_LocalDate, struct_LocalDate_match)
+	Definir isEqual Como Logico;
+	isEqual = __private_localDate_CompareTo(struct_LocalDate, struct_LocalDate_match) == 0;
+FinFuncion
+
+Funcion int_result <- __private_localDate_CompareTo(struct_LocalDate, struct_LocalDate_match)
+	Definir int_result Como Entero;
+	Definir Date_Org, Date_Match Como Real;
+	Date_Org = localDate_toEpochDay(struct_LocalDate);
+	Date_Match = localDate_toEpochDay(struct_LocalDate_match);
+	int_result = int_CompareTo(Date_Org, Date_Match);
+FinFuncion
+//----[ UNTIL ]------------------------------------------------------------------------<#>
+Funcion total <- localDate_until_Years(struct_date_start, struct_date_end)
+    Definir total, year_start, year_end Como Entero;
+	Definir temp_date Como Texto;
+    year_start = localDate_getYear(struct_date_start);
+    year_end = localDate_getYear(struct_date_end);
+    total = year_end - year_start;
+    temp_date = localDate_withYear(struct_date_start, year_end);
+    Si localDate_isBefore(struct_date_end, temp_date) Entonces
+        total = decrement(total);
+    FinSi
+FinFuncion
+
+Funcion total <- localDate_until_Months(struct_date_start, struct_date_end)
+    Definir total, months_diff, years_diff Como Entero;
+    years_diff = decrement_step(localDate_getYear(struct_date_end), localDate_getYear(struct_date_start));
+    months_diff = decrement_step(localDate_getMonthValue(struct_date_end), localDate_getMonthValue(struct_date_start));
+    total = increment_step((years_diff * 12) , months_diff);
+    Si localDate_getDayOfMonth(struct_date_end) < localDate_getDayOfMonth(struct_date_start) Entonces
+        total = decrement(total);
+    FinSi
+FinFuncion
+
+Funcion total <- localDate_until_Days(struct_date_start, struct_date_end)
+    Definir total, epoch_start, epoch_end Como Entero;
+    epoch_start = localDate_toEpochDay(struct_date_start);
+    epoch_end = localDate_toEpochDay(struct_date_end);
+    total = decrement_step(epoch_end, epoch_start);
+FinFuncion
+//----[ BOOLEANS ]-------------------------------------------------------------------<#>
+Funcion epoch_days_result <- localDate_toEpochDay(struct_date)
+    Definir epoch_days_result Como Entero;
+    Definir year, month, day Como Entero;
+    Definir accumulated_days, total_since_zero Como Real;
+    Definir isLeap Como Logico;
+    year = localDate_getYear(struct_date);
+    month = localDate_getMonthValue(struct_date);
+    day = localDate_getDayOfMonth(struct_date);
+    isLeap = localDate_isLeapYear(year);
+    total_since_zero = __private_localDate_getDaysFromYears(year);
+    accumulated_days = __private_localDate_getAccumulatedDays(decrement(month), isLeap);
+    total_since_zero = increment_step(total_since_zero, accumulated_days);
+    total_since_zero = increment_step(total_since_zero, day);
+    epoch_days_result = decrement_step(total_since_zero, __private_localDate_getEpochOffset());
+FinFuncion
+
+Funcion constant_value <- __private_localDate_getEpochOffset
+	Definir constant_value Como Entero;
+	constant_value = 719528;
+FinFuncion
+
+Funcion total_days_years <- __private_localDate_getDaysFromYears(year_int)
+    Definir total_days_years Como Real;
+    Definir previous_year, leap_days Como Entero;
+    previous_year = decrement(year_int);
+    total_days_years = previous_year * 365;
+    leap_days = math_floor(previous_year / 4);
+    leap_days = decrement_step(leap_days, math_floor(previous_year / 100));
+    leap_days = increment_step(leap_days, math_floor(previous_year / 400));
+    total_days_years = increment_step(total_days_years, leap_days);
 FinFuncion
 
 // =========================================================================
@@ -4503,15 +4705,10 @@ FinFuncion
 // 2. Coherencia: No mezcles 'H' (24h) con 'a' (AM/PM), Java lanzará error.
 // 3. Parsing: Si el Texto no coincide EXACTO con el patrón, lanza DateTimeParseException.
 // =========================================================================
-Funcion boolean <- localDate_isLeapYear(year)
-	Definir boolean Como Logico;
-	boolean = (Num_isEquals(math_module(year, 4), 0) & !Num_isEquals(math_module(year, 100), 0)) | Num_isEquals(math_module(year, 400), 0);
-FinFuncion
-
 Funcion Date <- localDate_format(text)
 	Definir Date, dateParts, DateTemp Como Texto;
 	Definir index Como Numero;
-	DimenSion dateParts(3);
+	Dimension dateParts(3);
 	
 	dateParts[0] = string_substring_from_start(localDate_now, 4);
 	dateParts[1] = string_substring(localDate_now, 4, 6);
@@ -4527,38 +4724,7 @@ Funcion Date <- localDate_format(text)
 		Date = string_insert(string_Delete(Date, index, index+1), dateParts[1], index);
 	FinSi
 FinFuncion
-
-Funcion lengthOfYear <- localDate_lengthOfYear(struct_date)
-	Definir lengthOfYear, year_date Como Entero;
-	year_date = localDate_getYear(struct_date);
-	lengthOfYear = if_else(localDate_isLeapYear(year_date), 366, 365, TYPE_INT());
-FinFuncion
-
-Funcion days <- localDate_lengthOfMonth(year, month)
-	Definir days, type_month Como Entero;
-	type_month = -1;
-	
-	si (month == 2) Entonces
-		type_month = 0;
-	FinSi
-	
-	si (month == 4 | month == 6 | month == 9 | month == 11) Entonces
-		type_month = 1;
-	FinSi
-	
-	segun type_month Hacer
-		caso 0: 
-			days = 28;
-			Si localDate_isLeapYear(year) Entonces
-				days = increment(days);
-			FinSi
-		caso 1: 
-			days = 30;
-		De Otro Modo:
-			days = 31;
-	FinSegun
-FinFuncion
-///$$$$$$[ LOCALTIME ]$$$$$$$$$$$$$$$[  -+0_3 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+///$$$$$$[ LOCALTIME ]$$$$$$$$$$$$$$$[  -+0_2 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 //----[ PRIVATE_TIME ]----------------------------------------------------------------<#>
 Funcion Time_num <- __private_localTime_Now
 	Definir Time_num Como Numero;
@@ -4580,7 +4746,7 @@ Funcion LocalTime_result <- localTime_now
 	LocalTime_result = localTime_of(hours, minutes, seconds);
 FinFuncion
 
-Funcion LocalTime_result <- localTime_ofHoursMinutes(hours, minutes)
+Funcion LocalTime_result <- localTime_of_HourMinute(hours, minutes)
 	Definir LocalTime_result Como Texto;
 	LocalTime_result = localTime_of(hours, minutes, 0);
 FinFuncion
@@ -4595,16 +4761,21 @@ Funcion LocalTime_result <- localTime_of(hours, minutes, seconds)
 		LocalTime_result =  localTime_ofSecondOfDays(seconds_total);
 	SiNo
 		error_message_Function("localTime_of(hh,mm,ss)","The given time is not valid [valid:: 00:00:00 - 23:59:59]");
-		LocalTime_result =  localTime_ofSecondOfDays(number_Null());
+		LocalTime_result =  __private_localTime_ofNull();
 	FinSi
 FinFuncion
 
 Funcion LocalTime_result <- localTime_ofSecondOfDays(seconds)
 	Definir LocalTime_result Como Texto;
 	LocalTime_result = linearCollection_newLinearCollection(TEMPORAL_LOCALTIME(), TYPE_FLOAT());
-	LocalTime_result = linearCollection_addLast_ByType(LocalTime_result, seconds, TYPE_FLOAT());
+	LocalTime_result = __private_temporal_addSecondOfDays(LocalTime_result, seconds);
 FinFuncion
-//----[ BOOLEANS ]---------------------------------------------------------------------<#>
+
+Funcion LocalTime_result <- __private_localTime_ofNull
+	Definir LocalTime_result Como Texto;
+	LocalTime_result = localTime_ofSecondOfDays(number_Null());
+FinFuncion
+//----[ BOOLEANS ]-------------------------------------------------------------------<#>
 Funcion isBefore <- localTime_isBefore(struct_LocalTime, struct_LocalTime_match)
 	Definir isBefore Como Logico;
 	isBefore = __private_localTime_CompareTo(struct_LocalTime, struct_LocalTime_match) < 0;
@@ -4615,6 +4786,11 @@ Funcion isAfter <- localTime_isAfter(struct_LocalTime, struct_LocalTime_match)
 	isAfter = __private_localTime_CompareTo(struct_LocalTime, struct_LocalTime_match) > 0;
 FinFuncion
 
+Funcion isEqual <- localTime_isEquals(struct_LocalTime, struct_LocalTime_match)
+	Definir isEqual Como Logico;
+	isEqual = __private_localTime_CompareTo(struct_LocalTime, struct_LocalTime_match) == 0;
+FinFuncion
+
 Funcion int_result <- __private_localTime_CompareTo(struct_LocalTime, struct_LocalTime_match)
 	Definir int_result Como Entero;
 	Definir Time_Org, Time_Match Como Real;
@@ -4622,7 +4798,7 @@ Funcion int_result <- __private_localTime_CompareTo(struct_LocalTime, struct_Loc
 	Time_Match = localTime_getSeconds(struct_LocalTime_match);
 	int_result = int_CompareTo(Time_Org, Time_Match);
 FinFuncion
-//----[ GETTERS ]---------------------------------------------------------------------<#>
+//----[ GETTERS ]-------------------------------------------------------------------<#>
 Funcion duration_ofUnit <- localTime_getSecondsOfDay(struct_LocalTime)
 	Definir duration_ofUnit Como Real;
 	duration_ofUnit = linearCollection_getLast(struct_LocalTime);
@@ -4642,7 +4818,7 @@ Funcion second_ofUnit <- localTime_getSeconds(struct_LocalTime)
 	Definir second_ofUnit Como Real;
 	second_ofUnit = duration_secondsToTemporalUnitPart(localTime_getSecondsofDay(struct_LocalTime), chronoUnit_SECONDS());
 FinFuncion
-// ----[ UTILITIES ]-----------------------------------------------------------------<#>
+//-----[ UTILITIES ]-----------------------------------------------------------------<#>
 Funcion seconds_adjusted <- localTime_NormalizeSeconds(seconds_total)
     Definir seconds_adjusted Como Real;
 	seconds_adjusted = math_NormalizeCycle(seconds_total, 86400);
@@ -4652,7 +4828,7 @@ Funcion localTime_Correction <- localTime_cicleCorrector(struct_localTime)
     Definir localTime_Correction Como Texto;
     Definir LocalTime_seconds Como Real;
 	LocalTime_seconds = localTime_NormalizeSeconds(temporal_getSeconds(struct_localTime));
-	localTime_Correction = localTime_ofSecondOfDays(LocalTime_seconds);
+	localTime_Correction = __private_temporal_setSecondOfDays(struct_localTime, LocalTime_seconds);
 FinFuncion
 
 Funcion Time_ToString <- localTime_ToString(struct_localTime)
@@ -4668,7 +4844,7 @@ Funcion Time_ToString <- localTime_ToString(struct_localTime)
 	Time_ToString = string_append_withSeparator(hours, minutes, ":");
 	Time_ToString = string_append_withSeparator(Time_ToString, seconds, ":");
 FinFuncion
-// ----[ PLUS ]----------------------------------------------------------------------<#>
+//-----[ PLUS ]----------------------------------------------------------------------<#>
 Funcion struct_time <- localTime_PlusHours(struct_localTime, num_increment)
     Definir struct_time Como Texto;
     struct_time = localTime_PlusUnitTemporal(struct_localTime, num_increment, chronoUnit_HOURS());
@@ -4689,7 +4865,7 @@ Funcion struct_time <- localTime_PlusUnitTemporal(struct_localTime, num_incremen
     struct_time = temporal_PlusUnitTemporal(struct_localTime, num_increment, type_temporal);
 	struct_time = localTime_cicleCorrector(struct_time);
 FinFuncion
-// ----[ MINUS ]---------------------------------------------------------------------<#>
+//-----[ MINUS ]-------------------------------------------------------------------<#>
 Funcion struct_time <- localTime_MinusHours(struct_localTime, num_decrement)
     Definir struct_time Como Texto;
     struct_time = localTime_PlusHours(struct_localTime, math_Negated(num_decrement));
@@ -4704,18 +4880,18 @@ Funcion struct_time <- localTime_MinusSeconds(struct_localTime, num_decrement)
     Definir struct_time Como Texto;
     struct_time = localTime_PlusSeconds(struct_localTime, math_Negated(num_decrement));
 FinFuncion
-// ----[ WITH ]----------------------------------------------------------------------<#>
-Funcion struct_time <- localTime_withHours(struct_localTime, num_define)
+//-----[ WITH ]----------------------------------------------------------------------<#>
+Funcion struct_time <- localTime_withHour(struct_localTime, num_define)
 	Definir struct_time Como Texto;
 	struct_time = localTime_with(struct_localTime, num_define, chronoUnit_HOURS());
 FinFuncion
 
-Funcion struct_time <- localTime_withMinutes(struct_localTime, num_define)
+Funcion struct_time <- localTime_withMinute(struct_localTime, num_define)
 	Definir struct_time Como Texto;
 	struct_time = localTime_with(struct_localTime, num_define, chronoUnit_MINUTES());
 FinFuncion
 
-Funcion struct_time <- localTime_withSeconds(struct_localTime, num_define)
+Funcion struct_time <- localTime_withSecond(struct_localTime, num_define)
 	Definir struct_time Como Texto;
 	struct_time = localTime_with(struct_localTime, num_define, chronoUnit_SECONDS());
 FinFuncion
@@ -4724,7 +4900,7 @@ Funcion struct_time <- localTime_with(struct_localTime, num_define, type_tempora
 	Definir struct_time Como Texto;
 	struct_time = temporal_with(struct_temporal, num_define, type_temporal);
 FinFuncion
-// ----[ TRUNCATE ]------------------------------------------------------------------<#>
+//-----[ TRUNCATE ]-----------------------------------------------------------------<#>
 Funcion struct_time <- localTime_truncatedToHours(struct_localTime)
     Definir struct_time Como Texto;
     struct_time = localTime_truncatedTo(struct_localTime, chronoUnit_HOURS());
@@ -4746,12 +4922,236 @@ Funcion struct_time <- localTime_truncatedTo(struct_localTime, type_temporal)
 			time_part = math_module(time_now, chronoUnit_getDuration(chronoUnit_MINUTES()));
     FinSegun
 	time_truncate = decrement_step(time_now, time_part);
-    struct_time = localTime_ofSecondOfDays(time_truncate );
+    struct_time = __private_temporal_setSecondOfDays(struct_localTime, time_truncate );
+FinFuncion
+///$$$$$$[ LOCALDATETIME ]$$$$$$$$$$$[  -+0_3 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Funcion string_dateTime <- localDateTime_toString(localDateTime)
+	Definir string_dateTime, string_date, string_time Como Texto;
+	string_date = localDate_ToString(localDateTime);
+	string_time = localTime_ToString(localDateTime);
+	string_dateTime = string_append_withSeparator(string_date, string_time," ");
+FinFuncion
+//----[ OF_TEMPORAL ]-----------------------------------------------------------------<#>
+Funcion struct_dateTime <- localDateTime_of_monthName_hourMinute(year, MONTH_NAME, dayOfMonth, hour, minute)
+	Definir struct_dateTime Como Texto;
+	struct_dateTime = localDateTime_of_monthName(year, MONTH_NAME, dayOfMonth, hour, minute, 0);
+FinFuncion
+
+Funcion struct_dateTime <- localDateTime_of_monthName(year, MONTH_NAME, dayOfMonth, hour, minute, second)
+	Definir struct_dateTime Como Texto;
+	struct_dateTime = localDateTime_of(year, month_value(MONTH_NAME), dayOfMonth, hour, minute, second);
+FinFuncion
+Funcion struct_dateTime <- localDateTime_of_hourMinute(year, month, dayOfMonth, hour, minute)
+	Definir struct_dateTime Como Texto;
+	struct_dateTime = localDateTime_of(year, month, dayOfMonth, hour, minute, 0);
+FinFuncion
+
+Funcion struct_dateTime <- localDateTime_of(year, month, dayOfMonth, hour, minute, second)
+	Definir struct_dateTime, struct_date Como Texto;
+	struct_date = localDate_of(year, month, dayOfMonth);
+	struct_dateTime = localDate_atTime(struct_date, hour, minute, second);
+FinFuncion
+
+Funcion struct_dateTime <- localDateTime_of_struct_DateAndTime(localDate, localTime)
+	Definir struct_dateTime Como Texto;
+	struct_dateTime = localDate_atTime_fromLocalTime(localDate, localTime);
+FinFuncion
+//-----[ PLUS ]----------------------------------------------------------------------<#>
+Funcion result_dateTime <- localDateTime_plusYears(struct_dateTime, unit_plus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_plusYears(struct_dateTime, unit_plus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_plusMonths(struct_dateTime, unit_plus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_plusMonths(struct_dateTime, unit_plus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_plusWeeks(struct_dateTime, unit_plus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_plusWeeks(struct_dateTime, unit_plus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_plusDays(struct_dateTime, unit_plus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_plusDays(struct_dateTime, unit_plus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_plusHours(struct_dateTime, unit_plus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localTime_plusHours(struct_dateTime, unit_plus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_plusMinutes(struct_dateTime, unit_plus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localTime_plusMinutes(struct_dateTime, unit_plus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_plusSeconds(struct_dateTime, unit_plus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localTime_plusSeconds(struct_dateTime, unit_plus);
+FinFuncion
+//-----[ MINUS ]-------------------------------------------------------------------<#>
+Funcion result_dateTime <- localDateTime_minusYears(struct_dateTime, unit_minus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_minusYears(struct_dateTime, unit_minus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_minusMonths(struct_dateTime, unit_minus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_minusMonths(struct_dateTime, unit_minus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_minusWeeks(struct_dateTime, unit_minus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_minusWeeks(struct_dateTime, unit_minus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_minusDays(struct_dateTime, unit_minus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_minusDays(struct_dateTime, unit_minus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_minusHours(struct_dateTime, unit_minus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localTime_minusHours(struct_dateTime, unit_minus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_minusMinutes(struct_dateTime, unit_minus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localTime_minusMinutes(struct_dateTime, unit_minus);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_minusSeconds(struct_dateTime, unit_minus)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localTime_minusSeconds(struct_dateTime, unit_minus);
+FinFuncion
+//-----[ WITH ]----------------------------------------------------------------------<#>
+Funcion result_dateTime <- localDateTime_withYear(struct_dateTime, year)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_withYear(struct_dateTime, year);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_withMonth(struct_dateTime, month)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_withMonth(struct_dateTime, month);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_withDayOfMonth(struct_dateTime, dayOfMonth)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_withDayOfMonth(struct_dateTime, dayOfMonth);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_withDayOfYear(struct_dateTime, dayOfYear)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localDate_withDayOfYear(struct_dateTime, dayOfYear);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_withHour(struct_dateTime, hour)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localTime_withHour(struct_dateTime, hour);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_withMinute(struct_dateTime, minute)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localTime_withMinute(struct_dateTime, minute);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_withSecond(struct_dateTime, second)
+	Definir result_dateTime Como Texto;
+	result_dateTime = localTime_withSecond(struct_dateTime, second);
+FinFuncion
+//----[ BOOLEANS ]-------------------------------------------------------------------<#>
+Funcion isBefore <- localDateTime_isBefore(struct_dt1, struct_dt2)
+    Definir isBefore Como Logico;
+    isBefore = __private_localDateTime_CompareTo(struct_dt1, struct_dt2) < 0;
+FinFuncion
+
+Funcion isAfter <- localDateTime_isAfter(struct_dt1, struct_dt2)
+    Definir isAfter Como Logico;
+    isAfter = __private_localDateTime_CompareTo(struct_dt1, struct_dt2) > 0;
+FinFuncion
+
+Funcion isEqual <- localDateTime_isEqual(struct_dt1, struct_dt2)
+    Definir isEqual Como Logico;
+    isEqual = __private_localDateTime_CompareTo(struct_dt1, struct_dt2) == 0;
+FinFuncion
+
+Funcion int_result <- __private_localDateTime_CompareTo(struct_dt1, struct_dt2)
+    Definir int_result Como Entero;
+    int_result = __private_localDate_CompareTo(struct_dt1, struct_dt2);
+    Si int_result == 0 Entonces
+        int_result = __private_localTime_CompareTo(struct_dt1, struct_dt2);
+    FinSi
+FinFuncion
+//-----[ TRUNCATE ]-----------------------------------------------------------------<#>
+Funcion result_dateTime <- localDateTime_truncatedToHours(struct_dateTime)
+    Definir result_dateTime Como Texto;
+    result_dateTime = localTime_truncatedToHours(struct_dateTime);
+FinFuncion
+
+Funcion result_dateTime <- localDateTime_truncatedToMinutes(struct_dateTime)
+    Definir result_dateTime Como Texto;
+    result_dateTime = localTime_truncatedToMinutes(struct_dateTime);
+FinFuncion
+//----[ EXTRACTORS ]-----------------------------------------------------------------<#>	
+Funcion struct_date <- localDateTime_toLocalDate(struct_dateTime)
+	Definir struct_date Como Texto;
+	struct_date = localDate_of(localDate_getYear(struct_dateTime), localDate_getMonthValue(struct_dateTime), localDate_getDayOfMonth(struct_dateTime));
+FinFuncion
+
+Funcion struct_time <- localDateTime_toLocalTime(struct_dateTime)
+    Definir struct_time Como Texto;
+    struct_time = localTime_ofSecondOfDays(localTime_getSecondsOfDay(struct_dateTime));
+FinFuncion
+//----[ GETTERS ]-------------------------------------------------------------------<#>
+Funcion year <- localDateTime_getYear(struct_dateTime)
+    Definir year Como Entero;
+    year = localDate_getYear(struct_dateTime);
+FinFuncion
+
+Funcion month <- localDateTime_getMonthValue(struct_dateTime)
+    Definir month Como Entero;
+    month = localDate_getMonthValue(struct_dateTime);
+FinFuncion
+
+Funcion day <- localDateTime_getDayOfMonth(struct_dateTime)
+    Definir day Como Entero;
+    day = localDate_getDayOfMonth(struct_dateTime);
+FinFuncion
+
+Funcion dayYear <- localDateTime_getDayOfYear(struct_dateTime)
+    Definir dayYear Como Entero;
+    dayYear = localDate_getDayOfYear(localDate_getYear(struct_dateTime), localDate_getMonthValue(struct_dateTime), localDate_getDayOfMonth(struct_dateTime));
+FinFuncion
+
+Funcion hour <- localDateTime_getHour(struct_dateTime)
+    Definir hour Como Entero;
+    hour = localTime_getHours(struct_dateTime);
+FinFuncion
+
+Funcion minute <- localDateTime_getMinute(struct_dateTime)
+    Definir minute Como Entero;
+    minute = localTime_getMinutes(struct_dateTime);
+FinFuncion
+
+Funcion second <- localDateTime_getSecond(struct_dateTime)
+    Definir second Como Entero;
+    second = localTime_getSeconds(struct_dateTime);
+FinFuncion
+
+Funcion dayName <- localDateTime_getDayOfWeek(struct_dateTime)
+    Definir dayName Como Texto;
+    dayName = localDate_getDayOfTheWeek(struct_dateTime);
+FinFuncion
+
+Funcion era <- localDateTime_getEra(struct_dateTime)
+    Definir era Como Texto;
+    era = localDate_getEra(struct_dateTime);
 FinFuncion
 ///$$$$$[ DURATION ]$$$$$$$$$$$$$$$$$[  -+0_4 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 //parsed ISO:8601 "PT1H15M30.5S" y TruncateTo segun el tipo
-//part para separar minutos de segundos
-//----[ GETTERS ]---------------------------------------------------------------------<#>
+//----[ GETTERS ]-------------------------------------------------------------------<#>
 Funcion duration_ofUnit <- duration_ofDays(number_Units)
 	Definir duration_ofUnit Como Texto;
 	duration_ofUnit = duration_of(number_Units, chronoUnit_DAYS());
@@ -4784,16 +5184,16 @@ Funcion duration_ofUnit <- duration_getSeconds(struct_Duration)
 	Definir duration_ofUnit Como Real;
 	duration_ofUnit = temporal_getSeconds(struct_Duration);
 FinFuncion
-//----[ PARSER ]---------------------------------------------------------------------<#>
+//----[ PARSER ]-------------------------------------------------------------------<#>
 Funcion second_ofUnit <- duration_TemporalUnitToSeconds(unit_seconds, Temporal_Type)
 	Definir second_ofUnit Como Real;
 	Segun Temporal_Type Hacer
 		Caso chronoUnit_DAYS():
 			second_ofUnit = temporal_daysToSecond(unit_seconds);
 		Caso chronoUnit_HOURS():
-			second_ofUnit = duration_hoursToSecond(unit_seconds);
+			second_ofUnit = duration_hoursToSeconds(unit_seconds);
 		Caso chronoUnit_MINUTES():
-			second_ofUnit = duration_minutesToSecond(unit_seconds);
+			second_ofUnit = duration_minutesToSeconds(unit_seconds);
 		Caso chronoUnit_SECONDS():
 			second_ofUnit = unit_seconds;
 		De Otro Modo:
@@ -4801,12 +5201,12 @@ Funcion second_ofUnit <- duration_TemporalUnitToSeconds(unit_seconds, Temporal_T
 	FinSegun
 FinFuncion
 
-Funcion second_ofUnit <- duration_minutesToSecond(unit_second)
+Funcion second_ofUnit <- duration_minutesToSeconds(unit_second)
 	Definir second_ofUnit Como Real;
 	second_ofUnit = unit_second * chronoUnit_getDuration(chronoUnit_MINUTES);
 FinFuncion
 
-Funcion second_ofUnit <- duration_hoursToSecond(unit_second)
+Funcion second_ofUnit <- duration_hoursToSeconds(unit_second)
 	Definir second_ofUnit Como Real;
 	second_ofUnit = unit_second * chronoUnit_getDuration(chronoUnit_HOURS);
 FinFuncion
@@ -4830,7 +5230,7 @@ Funcion unit_Res <- duration_secondsToDay(unit_second)
     Definir unit_Res Como Real;
     unit_Res = unit_second / chronoUnit_getDuration(chronoUnit_DAYS());
 FinFuncion
-//----[ GETTERS ]---------------------------------------------------------------------<#>
+//----[ GETTERS ]-------------------------------------------------------------------<#>
 Funcion second_UnitTemp <- duration_secondsToTemporalUnit(unit_second, Temporal_Type)
 	Definir second_UnitTemp Como Real;
 	Segun Temporal_Type Hacer
@@ -4867,7 +5267,7 @@ Funcion second_ofUnit <- duration_ToSeconds(struct_temporal)
 	Definir second_ofUnit Como Real;
 	second_ofUnit = duration_secondsToTemporalUnit(temporal_getSeconds(struct_temporal), chronoUnit_SECONDS());
 FinFuncion
-//----[ TO_PARS ]---------------------------------------------------------------------<#>
+//----[ TO_PARS ]-------------------------------------------------------------------<#>
 Funcion second_UnitTemp <- duration_secondsToTemporalUnitPart(unit_second, Temporal_Type)
 	Definir second_UnitTemp Como Real;
 	second_UnitTemp = math_truncate(duration_secondsToTemporalUnit(unit_second, Temporal_Type));
@@ -4904,7 +5304,7 @@ Funcion second_ofUnit <- duration_ToSecondsPart(struct_temporal)
     Definir second_ofUnit Como Real;
     second_ofUnit = duration_secondsToTemporalUnitPart(temporal_getSeconds(struct_temporal), chronoUnit_SECONDS());
 FinFuncion
-//----[ BOOLEANS ]---------------------------------------------------------------------<#>
+//----[ BOOLEANS ]-------------------------------------------------------------------<#>
 Funcion isBetween <- duration_isNegative(struct_duration)
 	Definir isBetween Como Logico;
 	isBetween = duration_getSeconds(struct_duration) < 0;
@@ -5008,9 +5408,184 @@ Funcion int_result <- duration_CompareTo(struct_duration, struct_duration_match)
 	int_result = int_CompareTo(duration_Org, duration_Match);
 FinFuncion
 ///$$$$$[ PERIOD  ]$$$$$$$$$$$$$$$$$$[  -+0_5 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Funcion period_string <- period_toString(struct_period)
+    Definir period_string, period_array Como Texto;
+    Dimension period_array[3];
+    period_array[0] = string_append("Y:", num_ToString(period_getYear(struct_period)));
+    period_array[1] = string_append("M:", num_ToString(period_getMonth(struct_period)));
+    period_array[2] = string_append("D:", num_ToString(period_getDay(struct_period)));
+    period_string = array_ofstring_separator(period_array, 3, " ", TYPE_STRING());
+FinFuncion
+//----[ UTITLITIES ]-----------------------------------------------------------------<#>
+Funcion struct_period_result <- period_multipliedBy(struct_period, scalar)
+    Definir year, month, day Como Entero;
+    year = period_getYear(struct_period) * scalar;
+    month = period_getMonth(struct_period) * scalar;
+    day = period_getDay(struct_period) * scalar;
+    struct_period_result = period_of(year, month, day);
+FinFuncion
 
+Funcion struct_period_res <- period_negated(struct_period)
+    Definir year, month, day Como Entero;
+    year = math_Negated(period_getYear(struct_period));
+    month = math_Negated(period_getMonth(struct_period));
+    day = math_Negated(period_getDay(struct_period));
+    struct_period_res = period_of(year, month, day);
+FinFuncion
 
+Funcion total_months <- period_toTotalMonths(struct_period)
+    Definir total_months Como Real;
+    total_months = (period_getYear(struct_period) * 12) + period_getMonth(struct_period);
+FinFuncion
 
+Funcion result_period <- period_normalized(struct_period)
+    Definir result_period Como Texto;
+    Definir total_months, years_part, months_part, final_years Como Entero;
+    total_months = period_getMonth(struct_period);
+    years_part = math_truncate(total_months / 12);
+    months_part = math_module(total_months, 12);
+    final_years = increment_step(period_getYear(struct_period), years_part);
+    result_period = period_withYears(struct_period, final_years);
+    result_period = period_withMonths(result_period, months_part);
+FinFuncion
+//----[ OF ]-------------------------------------------------------------------------<#>
+Funcion struct_period <- period_of(year, month, day)
+    Definir struct_period Como Texto;
+    struct_period = linearCollection_newLinearCollection(TEMPORAL_LOCALDATE(), TYPE_INT());
+	struct_period = __private_temporalDate_add(struct_period, year, month, day);
+FinFuncion
+
+Funcion struct_period <- period_ofYears(years)
+	Definir struct_period Como Texto;
+    struct_period = period_of(years, 0, 0);
+FinFuncion
+
+Funcion struct_period <- period_ofMonths(months)
+	Definir struct_period Como Texto;
+    struct_period = period_of(0, months, 0);
+FinFuncion
+
+Funcion struct_period <- period_ofWeeks(weeks)
+    Definir struct_period Como Texto;
+    struct_period = period_of(0, 0, weeks * 7);
+FinFuncion
+
+Funcion struct_period <- period_ofDays(days)
+	Definir struct_period Como Texto;
+    struct_period = period_of(0, 0, days);
+FinFuncion
+
+Funcion struct_period <- __private_period_ofNull
+	Definir struct_period Como Texto;
+	struct_period = period_of(number_Null(), number_Null(), number_Null());
+FinFuncion
+//----[ GETTERS ]-------------------------------------------------------------------<#>
+Funcion years <- period_getYear(struct_period)
+	Definir years Como Entero;
+    years = linearCollection_GetElement(struct_period, 0);
+FinFuncion
+
+Funcion months <- period_getMonth(struct_period)
+	Definir months Como Entero;
+    months = linearCollection_GetElement(struct_period, 1);
+FinFuncion
+
+Funcion days <- period_getDay(struct_period)
+	Definir days Como Entero;
+    days = linearCollection_GetElement(struct_period, 2);
+FinFuncion
+//-----[ WITH ]----------------------------------------------------------------------<#>
+Funcion struct_period_res <- period_withYears(struct_period, years)
+    Definir struct_period_res Como Texto;
+    struct_period_res = linearCollection_SetElement_ToString(struct_period, 0, num_ToString(years));
+FinFuncion
+
+Funcion struct_period_res <- period_withMonths(struct_period, months)
+    Definir struct_period_res Como Texto;
+    struct_period_res = linearCollection_SetElement_ToString(struct_period, 1, num_ToString(months));
+FinFuncion
+
+Funcion struct_period_res <- period_withDays(struct_period, days)
+    Definir struct_period_res Como Texto;
+    struct_period_res = linearCollection_SetElement_ToString(struct_period, 2, num_ToString(days));
+FinFuncion
+//----[ PLUS ]------------------------------------------------------------------------<#>
+Funcion result_period <- period_plusYear(struct_period, unit_plus)
+	Definir result_period Como Texto;
+	Definir year_date Como Entero;
+	year_date = increment_step(period_getYear(struct_period), unit_plus);
+	result_period = period_withYears(struct_period, year_date);
+FinFuncion
+
+Funcion result_period <- period_plusMonths(struct_period, unit_plus)
+    Definir result_period Como Texto;
+    Definir month_date Como Entero;
+    month_date = increment_step(period_getMonth(struct_period), unit_plus);
+    result_period = period_withMonths(struct_period, month_date);
+FinFuncion
+
+Funcion result_period <- period_plusDays(struct_period, unit_plus)
+    Definir result_period Como Texto;
+    Definir day_date Como Entero;
+    day_date = increment_step(period_getDay(struct_period), unit_plus);
+	result_period = period_withDays(struct_period, day_date);
+FinFuncion
+
+Funcion struct_period_res <- period_plus(struct_period_A, struct_period_B)
+    Definir struct_period_res Como Texto;
+    Definir year, month, day Como Entero;
+    year	= increment_step(period_getYear(struct_period_A), period_getYear(struct_period_B));
+    month	= increment_step(period_getMonth(struct_period_A), period_getMonth(struct_period_B));
+    day		= increment_step(period_getDay(struct_period_A), period_getDay(struct_period_B));
+    struct_period_res = period_of(year, month, day);
+FinFuncion
+//----[ MINUS ]----------------------------------------------------------------------<#>
+Funcion result_period <- period_minusYear(struct_period, unit_minus)
+	Definir result_period Como Texto;
+	result_period = period_plusYear(struct_period, math_Negated(unit_minus));
+FinFuncion
+
+Funcion result_period <- period_minusMonths(struct_period, unit_minus)
+	Definir result_period Como Texto;
+	result_period = period_plusMonths(struct_period, math_Negated(unit_minus));
+FinFuncion
+
+Funcion result_period <- period_minusDays(struct_period, unit_minus)
+	Definir result_period Como Texto;
+	result_period = period_plusDays(struct_period, math_Negated(unit_minus));
+FinFuncion
+
+Funcion struct_period_res <- period_minus(struct_period_A, struct_period_B)
+    Definir struct_period_res Como Texto;
+    struct_period_res = period_plus(struct_period_A, period_negated(struct_period_B));
+FinFuncion
+//----[ BOOLEANS ]-------------------------------------------------------------------<#>
+Funcion boolean <- period_isNegative(struct_period)
+    Definir boolean Como Logico;
+    boolean = (period_getYear(struct_period) < 0) | (period_getMonth(struct_period) < 0) | (period_getDay(struct_period) < 0);
+FinFuncion
+
+Funcion boolean <- period_isZero(struct_period)
+    Definir boolean Como Logico;
+    boolean = (period_getYear(struct_period) == 0) & (period_getMonth(struct_period) == 0) & (period_getDay(struct_period) == 0);
+FinFuncion
+//----[ BETWEEN ]--------------------------------------------------------------------<#>
+Funcion struct_period <- period_between(struct_date_start, struct_date_end)
+    Definir year, total_months, month, day, d_start, d_end Como Entero;
+    Definir struct_period, previous_month_date Como Texto;
+    total_months = localDate_until_Months(struct_date_start, struct_date_end);
+    year = math_truncate(total_months / 12);
+    month = math_module(total_months, 12);
+    d_start = localDate_getDayOfMonth(struct_date_start);
+    d_end = localDate_getDayOfMonth(struct_date_end);
+    Si d_end >= d_start Entonces
+        day = decrement_step(d_end, d_start);
+    Sino
+        previous_month_date = localDate_minusMonths(struct_date_end, 1);
+        day = decrement_step(localDate_lengthOfMonth(localDate_getYear(struct_date_end), previous_month_date), d_start) + d_end;
+    FinSi    
+    struct_period = period_of(year, month, day);
+FinFuncion
 ///%%%%%[ OBJECT ]%%%%%%%%%%%%%%%%%%%[   #+3  ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //....Object
 Funcion symbol_char <- symbol_ObjectSeparator
@@ -5308,8 +5883,8 @@ Funcion object_Instructions <- __private_object_GetInstructions_AccordingToProce
 	object_Instructions = string_Null();
 	
 	si (Size_Comparator > 0) & (Size_Select > 0) Entonces
-		DimenSion array_Select[Size_Select];
-		DimenSion array_Comparator[Size_Comparator];
+		Dimension array_Select[Size_Select];
+		Dimension array_Comparator[Size_Comparator];
 		Area_Property_Select = object_getAreaProperty(object_Select);
 		start_index = 0;
 		para i = 0 Hasta decrement(Size_Select) Con Paso 1 Hacer
@@ -5332,12 +5907,12 @@ Funcion object_Instructions <- __private_object_GetInstructions_AccordingToProce
 	FinSi
 FinFuncion
 ///%%%%%[ CANVAS ]%%%%%%%%%%%%%%%%%%%[   #+4  ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Funcion canvas <- canvas_New(CWx, CWy)
+Funcion canvas <- canvas_new(CWx, CWy)
 	Definir canvas Como Texto;
-	canvas = canvas_New_WithPixel(CWx, CWy, pixel_clear());
+	canvas = canvas_new_WithPixel(CWx, CWy, pixel_clear());
 FinFuncion
 //recomendado:630*130
-Funcion canvas <- canvas_New_WithPixel(CWx, CWy, pixel_BackGround)
+Funcion canvas <- canvas_new_WithPixel(CWx, CWy, pixel_BackGround)
 	Definir i Como Numero;
 	Definir canvas, canvas_x Como Texto;
 	canvas_x = canvas_Row_WithText(pixel_BackGround, CWx);
@@ -5345,26 +5920,171 @@ Funcion canvas <- canvas_New_WithPixel(CWx, CWy, pixel_BackGround)
 		canvas = string_append(canvas, canvas_x);
 	FinPara
 FinFuncion
-//----[ DISPLAY ]---------------------------------------------------------------------<#>
-Funcion canvas_Display(canvas, CWx, CWy)
-	canvas_Display_MonoColor(canvas, CWx, CWy, "");
+//----[ DISPLAY ]-------------------------------------------------------------------<#>
+Funcion canvas_display(canvas, CWx, CWy)
+	canvas_display_MonoColor(canvas, CWx, CWy, "");
 FinFuncion
 
-Funcion canvas_Display_MonoColor(canvas, CWx, CWy, color)
-	Definir index_endVec, i Como Numero;
+Funcion canvas_display_MonoColor(canvas, CWx, CWy, color)
+	Definir i, slice_start, slice_end Como Numero;
 	Definir canvas_array, DrawX Como Texto;
-	DimenSion canvas_array[CWy];
+	Dimension canvas_array[CWy];
 	para i=0 Hasta decrement(CWy) con paso 1 Hacer
-		DrawX = string_substring(canvas, canvas_getIndex(0, i, CWx), (canvas_getIndex(0, increment(i), CWx)));
+		slice_start = canvas_getIndex(0, i, CWx);
+		slice_end 	= canvas_getIndex(0, increment(i), CWx);
+		DrawX		= string_substring(canvas, slice_start, slice_end);
 		canvas_array[i] = DrawX;
-	FinPara	//Escribir "<"+string_substring(canvas, canvas_getIndex(0, CWy, CWx), string_Length(canvas));// metadata
+	FinPara	
 	println_array_color(canvas_array, CWy, color);
 FinFuncion
-//----[ UTILITIES ]------------------------------------------------------------------<#>
+
+Funcion canvas_displayWindow(canvas, Cx, Cy, title)
+	canvas_displayWindow_monoColor(canvas, Cx, Cy, title, "");
+FinFuncion
+
+Funcion canvas_displayWindow_monoColor(canvas, Cx, Cy, title, color_window)
+	canvas_displayWindow_color(canvas, Cx, Cy, title, color_window, COLOR_CYAN());
+FinFuncion
+
+
+Funcion sandbox_development
+	Definir canvas, tui, list, canvas_2, color Como Texto;
+	Definir Cx, Cy, i, n, Cx2, Cy2 Como Entero;
+	Cx = 20; Cy = 10;
+	canvas  = canvas_new_WithPixel(Cx, Cy, ".");
+	canvas  = canvas_drawRectangle(canvas, Cx, Cy, 2, 2, 18, 8);
+	canvas_display(canvas, Cx, Cy);
+FinFuncion
+
+Funcion canvas_displayWindow_color(canvas, Cx, Cy, title, color_window, color_title)
+	Definir end_line, title_bar como Texto;
+	canvas = canvas_addColumn_withPixel(canvas, Cx, Cy, "¦");
+	Cx = increment(Cx);
+	canvas = canvas_addColumn_atStart_withPixel(canvas, Cx, Cy, "¦");
+	Cx = increment(Cx);
+	title_bar = __private_window_getTitleBar_color(title, Cx, color_window, color_title);
+	canvas_display(title_bar, __private_window_calcTitleBarColorLength(Cx, color_window), 3);
+	canvas_display_MonoColor(canvas, Cx, Cy, color_window);
+	end_line = canvas_Row_WithText_toBorders("¯", Cx, "`");
+	println_simple(color_setcolorText(end_line, color_window));
+FinFuncion
+//L = 1
+//
+//R = Vivos
+// mientas r > 0 y la palabra no sea encontrada 
+//Mientras L <= R Hacer
+//    Si Capa[L] == LetraBuscada Entonces 
+//        L = L + 1 // Este se queda en la zona de "vivos"
+//    Sino
+//        // Intercambio con el de la derecha
+//        Temporal = Indices[L]
+//        Indices[L] = Indices[R]
+//        Indices[R] = Temporal
+//        R = R - 1 // Achicamos el espacio de búsqueda sin avanzar para volver a comparar si es valido
+//    FinSi
+//FinMientras
+//Vivos = R // Actualizamos el límite global para la siguiente capa
+
+Funcion length_colors <- __private_window_calcTitleBarColorLength(width_titleBar, color_bar)
+	Definir length_colors Como Entero;
+	length_colors = increment_step(width_titleBar, (string_Length(color_bar) * 3));
+FinFuncion
+
+Funcion title_string <- __private_window_getTitleBar_color(title, width_titleBar, color_bar, color_title)
+	Definir title_string, titlebar, color_norm Como Texto;
+	Definir width_norm Como Entero; 
+	titlebar     = __private_window_getTitleBar(title, width_titleBar);
+	color_norm   = string_repeatText(color_bar, 3);
+	width_norm   = (width_titleBar * 2);
+	title_string = titlebar;
+	title_string = string_insert(title_string, color_norm, width_norm);
+	title_string = string_insert(title_string, color_bar, decrement_step(width_norm, 1));
+	title_string = string_insert(title_string, color_title, increment(width_titleBar));
+	title_string = string_insert(title_string, color_bar, width_titleBar);
+	title_string = string_append(color_norm, title_string);
+FinFuncion
+
+Funcion title_string <- __private_window_getTitleBar(title, width_titleBar)
+	Definir title_string, top_bar, button_bar, center_bar Como Texto;
+	top_bar       = canvas_Row_WithText_toBorders("_", width_titleBar, ".");
+	center_bar	  = __private_window_titleBar_getCenterBar(title, width_titleBar);
+	button_bar    = canvas_Row_WithText_toBorders("¨", width_titleBar, "¦");
+	title_string  = string_append_withSeparator(top_bar, button_bar, center_bar);
+FinFuncion
+
+Funcion center_bar <- __private_window_titleBar_getCenterBar(title, width_titleBar)
+	Definir center_bar, buttons, title_area, side_space Como Texto;
+	Definir side_left, side_right, center_content Como Texto;
+	Definir usable_width, title_maximum_length, padding Como Entero;
+	Definir length_sides, buttons_length Como Entero;
+	buttons = "- ¤ ×";
+	buttons_length = string_length(buttons);
+	side_space = " ";
+	Si width_titleBar < 4 Entonces
+		side_space = "";
+	FinSi
+	side_left = string_append("¦", side_space);
+	side_right = string_append(side_space, "¦");
+	length_sides = string_length(string_append(side_left, side_right));
+	usable_width = math_max_Int(0, decrement_step(width_titleBar, length_sides));
+	Si usable_width < buttons_length Entonces
+		title_area = "";
+		buttons = string_substring(buttons, decrement_step(buttons_length, usable_width), buttons_length);
+	SiNo
+		title_maximum_length = decrement_step(usable_width, increment(buttons_length));
+		title_area = string_fit_toRange(title, 0, title_maximum_length);
+		padding = decrement_step(title_maximum_length, string_length(title_area));
+		title_area = string_append(title_area, string_repeatText(" ", padding));
+		title_area = string_append(title_area, " ");
+	FinSi
+	center_content = string_append(title_area, buttons);
+	center_bar = string_append_withSeparator(side_left, side_right, center_content);
+FinFuncion
+//----[ TO_SPRITESTRING ]-----------------------------------------------------------<#>
+Funcion sprite_canvas <- canvas_toSpriteString(canvas, Cx, Cy)
+	Definir sprite_canvas, metaData_length, length_line Como Texto;
+	Definir index_MetaData Como Entero;
+	sprite_canvas   = linearCollection_newLinearCollection(Tcomponent_TYPE_SPRITE_STRING(), TYPE_STRING());
+	length_line     = Num_toString(Cx);
+	sprite_canvas   = linearCollection_addLast(sprite_canvas, length_line);
+	index_MetaData  = string_LastIndexOf(sprite_canvas, symbol_MetaData());
+	sprite_canvas   = string_insert(sprite_canvas, canvas, index_MetaData);
+	metaData_length = string_repeatText(string_append(symbol_Separator(), length_line), Cy);
+	index_MetaData  = increment(string_LastIndexOf(sprite_canvas, symbol_MetaData()));
+	sprite_canvas   = string_insert(sprite_canvas, metaData_length, index_MetaData);
+	sprite_canvas   = linearCollection_update_numElement(sprite_canvas, Cy);
+FinFuncion
+//----[ UTILITIES ]-----------------------------------------------------------------<#>
+Funcion sub_canvas <- canvas_extractRegion(canvas, Cx, Cy, x0, y0, x1, y1)
+	Definir sub_canvas, line_text Como Texto;
+	Definir slice_start, slice_end, current_y Como Numero;
+	Si x0 < 0 | y0 < 0 | x1 > Cx | y1 > Cy | x0 > x1 | y0 > y1 Entonces
+		error_message_Function("canvas_extractSubCanvas", "index no valid");
+		sub_canvas = "";
+	Sino
+		sub_canvas = "";
+		current_y = y0;
+		Mientras current_y <= y1 & current_y < Cy Hacer
+			slice_start = canvas_getIndex(x0, current_y, Cx);
+			slice_end   = canvas_getIndex(x1, current_y, Cx);
+			line_text = string_substring(canvas, slice_start, slice_end);
+			sub_canvas = String_append(sub_canvas, line_text);
+			current_y = increment(current_y);
+		FinMientras
+	FinSi
+FinFuncion
+
+Funcion row_x <- canvas_Row_WithText_toBorders(text, repeats, border)
+	Definir row_x, row_line Como Texto;
+	Definir repeats_norm Como Entero;
+	repeats_norm = math_max_int(decrement_step(repeats, 2), 0);
+	row_line = string_repeatText(text, repeats_norm);
+    row_x = string_append_withSeparator(border, border, row_line);
+FinFuncion
+
 Funcion row_x <- canvas_Row_WithText(text, repeats)
-    Definir i Como Numero;
-	Definir row_x  Como Texto;
-    row_x = string_RepeatText(text, repeats);
+	Definir row_x Como Texto;
+	row_x = string_repeatText(text, repeats);
 FinFuncion
 
 Funcion index_canvas <- canvas_getIndex(x0, y0, CWx)
@@ -5372,56 +6092,447 @@ Funcion index_canvas <- canvas_getIndex(x0, y0, CWx)
 	index_canvas= x0+(y0*CWx);
 FinFuncion
 
-Funcion text_norm <- __private_canvas_GetText_FitViewPort(text, x0, CWx)
-    Definir text_norm Como Texto;
-    Definir text_length, abs_x0, chars_to_keep Como Numero;
-    text_norm = text;
-    text_length = string_Length(text);
-    Si x0 < 0 Entonces
-        abs_x0 = math_abs(x0);
-        Si text_length > abs_x0 Entonces
-            text_norm = string_substring(text_norm, abs_x0, text_length);
+Funcion text_fit <- string_fit_toRange(text, index_start, max_width)
+    Definir text_fit Como Texto;
+    Definir text_len, abs_start, capacity Como Numero;
+    text_fit = text;
+    text_len = string_Length(text);
+    Si index_start < 0 Entonces
+        abs_start = math_abs(index_start);
+        Si text_len > abs_start Entonces
+            text_fit = string_substring(text_fit, abs_start, text_len);
         SiNo
-            text_norm = "";
+            text_fit = "";
         FinSi
-    Sino
-        chars_to_keep = CWx - x0;
-        Si text_length > chars_to_keep Entonces
-            text_norm = string_substring(text_norm, 0, chars_to_keep);
-        FinSi
+        text_len = string_Length(text_fit);
+        index_start = 0; 
+    FinSi
+    capacity = decrement_step(max_width, index_start);
+    Si text_len > capacity Entonces
+        text_fit = string_substring(text_fit, 0, capacity);
     FinSi
 FinFuncion
-//----[ MOVE_CONTENT ]----------------------------------------------------------------<#>
-Funcion canvas_move <- canvas_MoveContent_x_y(canvas, CWx, CWy, isleft, is_top, speed_move)
-	Definir canvas_move Como Texto;
-	canvas_move = canvas_MoveContent_x(canvas, CWx, CWy, isLeft, speed_move);
-	canvas_move = canvas_MoveContent_y(canvas_move, CWx, CWy, is_top, speed_move);
+//----[ ADD_COLUMN ]------------------------------------------------------------------<#>
+Funcion canvas_result <- canvas_addColumns_ofIndex_withPixel(canvas, CWx, CWy, num_columns, x_start, pixel)
+	Definir canvas_result, text_extra Como Texto;
+	Definir i, x_insert Como Numero;
+	canvas_result = canvas;
+	text_extra = canvas_Row_WithText(pixel, num_columns);
+	x_insert = math_rangeLimit_Int(x_start, 0, CWx);
+	i = decrement(Cwy);
+	Mientras i >= 0 Hacer
+		canvas_result = string_insert(canvas_result, text_extra, canvas_getIndex(x_insert, i, CWx));
+		i = decrement(i);
+	FinMientras
 FinFuncion
 
-Funcion canvas_move <- canvas_MoveContent_y(canvas, CWx, CWy, is_top, speed_moven)
-    Definir canvas_move, text_clean Como Texto;
-	Definir i, index_row, y_insert_poSition, y_remove_poSition, y_insert_length Como Numero;
-	y_insert_length = CWx*speed_moven;//10*3=30
-	y_insert_poSition = if_else(is_top, 0, CWx*CWy, TYPE_INT());//0 | 15*4 = 60
-	y_remove_poSition= if_else(is_top, decrement_step(CWx*CWy, y_insert_length), 0, TYPE_INT());//15*4=60 - 30 = 30 | 0
-	text_clean = canvas_Row_WithText(pixel_clear(), y_insert_length);//row = 30 char
-	canvas_move = canvas;
-	canvas_move = string_Delete(canvas_move, y_remove_poSition, increment_step(y_remove_poSition, y_insert_length));//30, 60 | 0, 30
-	canvas_move = string_insert(canvas_move, text_clean, y_insert_poSition);
+Funcion canvas_result <- canvas_addColumns_withPixel(canvas, CWx, CWy, num_columns, pixel)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_addColumns_ofIndex_withPixel(canvas, CWx, CWy, num_columns, 0, pixel);
 FinFuncion
 
-Funcion canvas_move <- canvas_MoveContent_x(canvas, CWx, CWy, isLeft, speed_moven)
-    Definir canvas_move, text_clean Como Texto;
-	Definir i, index_row, x_remove, x_insert Como Numero;
-	canvas_move = canvas;
-	text_clean = canvas_Row_WithText(pixel_clear(), speed_moven);
-	x_insert = if_else(isLeft, CWx, 0, TYPE_INT());
-	x_remove = if_else(isLeft, 0, CWx, TYPE_INT());
-	para i=0 Hasta decrement(CWy) Con Paso 1 Hacer
-		canvas_move = string_insert(canvas_move, text_clean, canvas_getIndex(x_insert, i, CWx));
+Funcion canvas_result <- canvas_addColumns_atStart_withPixel(canvas, CWx, CWy, num_columns, pixel)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_addColumns_ofIndex_withPixel(canvas, CWx, CWy, num_columns, CWx, pixel);
+FinFuncion
+
+Funcion canvas_result <- canvas_addColumns(canvas, CWx, CWy, num_columns)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_addColumns_withPixel(canvas, CWx, CWy, num_columns, pixel_clear());
+FinFuncion
+
+Funcion canvas_result <- canvas_addColumns_ofIndex(canvas, CWx, CWy, num_columns, index)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_addColumns_ofIndex_withPixel(canvas, CWx, CWy, num_columns, index, pixel_clear());
+FinFuncion
+
+Funcion canvas_result <- canvas_addColumns_atStart(canvas, CWx, CWy, num_columns)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_addColumns_atStart_withPixel(canvas, CWx, CWy, num_columns, pixel_clear());
+FinFuncion
+
+Funcion canvas_result <- canvas_addColumn_withPixel(canvas, CWx, CWy, pixel)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_addColumns_withPixel(canvas, CWx, CWy, 1, pixel);
+FinFuncion
+
+Funcion canvas_result <- canvas_addColumn_atStart_withPixel(canvas, CWx, CWy, pixel)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_addColumns_atStart_withPixel(canvas, CWx, CWy, 1, pixel);
+FinFuncion
+
+Funcion canvas_result <- canvas_addColumn_ofIndex(canvas, CWx, CWy, index)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_addColumns_ofIndex(canvas, CWx, CWy, 1, index);
+FinFuncion
+
+Funcion canvas_result <- canvas_addColumn(canvas, CWx, CWy)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_addColumn_withPixel(canvas, CWx, CWy, pixel_clear());
+FinFuncion
+
+Funcion canvas_result <- canvas_addColumn_atStart(canvas, CWx, CWy)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_addColumn_atStart_withPixel(canvas, CWx, CWy, pixel_clear());
+FinFuncion
+//----[ REMOVE_COLUMN ]---------------------------------------------------------------<#>
+Funcion canvas_result <- canvas_removeColumns_count(canvas, CWx, CWy, num_columns, x_start)
+	Definir canvas_result Como Texto;
+	Definir i, x_remove, index_row Como Numero;
+	canvas_result = canvas;
+	x_remove = math_rangeLimit_Int(x_start, 0, CWx);
+	Para i = decrement(CWy) Hasta 0 Con Paso decrement(0) Hacer
 		index_row = canvas_getIndex(x_remove, i, CWx);
-		canvas_move = string_Delete(canvas_move, index_row, increment_step(index_row, speed_moven));
+		canvas_result = string_Delete(canvas_result, index_row, increment_step(index_row, num_columns));
 	FinPara
+FinFuncion
+
+Funcion canvas_result <- canvas_removeColumns(canvas, CWx, CWy, num_columns)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_removeColumns_count(canvas, CWx, CWy, num_columns, 0);
+FinFuncion
+
+Funcion canvas_result <- canvas_removeColumns_ofIndex(canvas, CWx, CWy, num_columns, index)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_removeColumns_count(canvas, CWx, CWy, num_columns, index);
+FinFuncion
+
+Funcion canvas_result <- canvas_removeColumns_atStart(canvas, CWx, CWy, num_columns)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_removeColumns_count(canvas, CWx, CWy, num_columns, Cwx);
+FinFuncion
+
+Funcion canvas_result <- canvas_removeColumn_ofIndex(canvas, CWx, CWy, index)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_removeColumns_ofIndex(canvas, CWx, CWy, 1, index);
+FinFuncion
+
+Funcion canvas_result <- canvas_removeColumn(canvas, CWx, CWy)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_removeColumns(canvas, CWx, CWy, 1);
+FinFuncion
+
+Funcion canvas_result <- canvas_removeColumn_atStart(canvas, CWx, CWy)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_removeColumns_atStart(canvas, CWx, CWy, 1);
+FinFuncion
+//----[ ADD_ROW ]---------------------------------------------------------------------<#>
+Funcion canvas_result <- canvas_addRows_ofIndex_withPixel(canvas, CWx, CWy, num_rows, y_start, pixel)
+    Definir canvas_result, text_rows Como Texto;
+    Definir total_chars, y_insert Como Numero;
+	text_rows = canvas_Row_WithText(pixel, num_rows * CWx);
+	y_insert = math_rangeLimit_Int(y_start, 0, CWy);
+	canvas_result = string_Insert(canvas, text_rows, canvas_getIndex(0, y_insert, CWx));
+FinFuncion
+
+Funcion canvas_result <- canvas_addRows_withPixel(canvas, CWx, CWy, num_rows, pixel)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_addRows_ofIndex_withPixel(canvas, CWx, CWy, num_rows, 0, pixel);
+FinFuncion
+
+Funcion canvas_result <- canvas_addRows_atStart_withPixel(canvas, CWx, CWy, num_rows, pixel)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_addRows_ofIndex_withPixel(canvas, CWx, CWy, num_rows, CWy, pixel);
+FinFuncion
+
+Funcion canvas_result <- canvas_addRows(canvas, CWx, CWy, num_rows)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_addRows_withPixel(canvas, CWx, CWy, num_rows, pixel_clear());
+FinFuncion
+
+Funcion canvas_result <- canvas_addRows_ofIndex(canvas, CWx, CWy, num_rows, index)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_addRows_ofIndex_withPixel(canvas, CWx, CWy, num_rows, index, pixel_clear());
+FinFuncion
+
+Funcion canvas_result <- canvas_addRows_atStart(canvas, CWx, CWy, num_rows)
+	Definir canvas_result Como Texto;
+	canvas_result =canvas_addRows_atStart_withPixel(canvas, CWx, CWy, num_rows, pixel_clear());
+FinFuncion
+
+Funcion canvas_result <- canvas_addRow_withPixel(canvas, CWx, CWy, pixel)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_addRows_withPixel(canvas, CWx, CWy, 1, pixel);
+FinFuncion
+
+Funcion canvas_result <- canvas_addRow_atStart_withPixel(canvas, CWx, CWy, pixel)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_addRows_atStart_withPixel(canvas, CWx, CWy, 1, pixel);
+FinFuncion
+
+Funcion canvas_result <- canvas_addRow_ofIndex(canvas, CWx, CWy, index)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_addRows_ofIndex(canvas, CWx, CWy, 1, index);
+FinFuncion
+
+Funcion canvas_result <- canvas_addRow(canvas, CWx, CWy)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_addRow_withPixel(canvas, CWx, CWy, pixel_clear());
+FinFuncion
+
+Funcion canvas_result <- canvas_addRow_atStart(canvas, CWx, CWy)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_addRow_atStart_withPixel(canvas, CWx, CWy, pixel_clear());
+FinFuncion
+//----[ REMOVE_ROW ]------------------------------------------------------------------<#>
+Funcion canvas_result <- canvas_removeRows_count(canvas, CWx, CWy, num_rows, isTop)
+	Definir canvas_result Como Texto;
+	Definir total_chars, start_delete Como Numero;
+	total_chars = CWx * num_rows;
+	start_delete = if_else(isTop, 0, decrement_step(CWx * CWy, total_chars), TYPE_INT());
+	canvas_result = string_Delete(canvas, start_delete, increment_step(start_delete, total_chars));
+FinFuncion
+
+Funcion canvas_result <- canvas_removeRows(canvas, CWx, CWy, num_rows)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_removeRows_count(canvas, CWx, CWy, num_rows, false());
+FinFuncion
+
+Funcion canvas_result <- canvas_removeRows_atStart(canvas, CWx, CWy, num_rows)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_removeRows_count(canvas, CWx, CWy, num_rows, true());
+FinFuncion
+
+Funcion canvas_result <- canvas_removeRow(canvas, CWx, CWy)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_removeRows(canvas, CWx, CWy, 1);
+FinFuncion
+
+Funcion canvas_result <- canvas_removeRow_atStart(canvas, CWx, CWy)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_removeRows_atStart(canvas, CWx, CWy, 1);
+FinFuncion
+//----[ MOVE_CONTENT_Y ]--------------------------------------------------------------<#>
+Funcion canvas_move <- canvas_moveContent_top_nPositions_withPixel(canvas, CWx, CWy, pixel, n_positions)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_addRows_withPixel(canvas, CWx, CWy, n_positions, pixel);
+	canvas_move = canvas_removeRows_atStart(canvas_move, CWx, increment_step(CWy, n_positions), n_positions);
+FinFuncion
+
+Funcion canvas_move <- canvas_moveContent_bottom_nPositions_withPixel(canvas, CWx, CWy, pixel, n_positions)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_addRows_atStart_withPixel(canvas, CWx, CWy, n_positions, pixel);
+	canvas_move = canvas_removeRows(canvas_move, CWx, increment_step(CWy, n_positions), n_positions);
+FinFuncion
+
+Funcion canvas_move <- canvas_moveContent_top_nPositions(canvas, CWx, CWy, n_positions)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_top_nPositions_withPixel(canvas, CWx, CWy, pixel_clear(), n_positions);
+FinFuncion
+
+Funcion canvas_move <- canvas_moveContent_bottom_nPositions(canvas, CWx, CWy, n_positions)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_bottom_nPositions_withPixel(canvas, CWx, CWy, pixel_clear(), n_positions);
+FinFuncion
+
+Funcion canvas_move <- canvas_moveContent_top_withPixel(canvas, CWx, CWy, pixel)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_top_nPositions_withPixel(canvas, CWx, CWy, pixel, 1);
+FinFuncion
+
+Funcion canvas_move <- canvas_moveContent_bottom_withPixel(canvas, CWx, CWy, pixel)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_bottom_nPositions_withPixel(canvas, CWx, CWy, pixel, 1);
+FinFuncion
+
+Funcion canvas_move <- canvas_moveContent_top(canvas, CWx, CWy)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_top_withPixel(canvas, CWx, CWy, pixel_clear());
+FinFuncion
+
+Funcion canvas_move <- canvas_moveContent_bottom(canvas, CWx, CWy)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_bottom_withPixel(canvas, CWx, CWy, pixel_clear());
+FinFuncion
+//----[ MOVE_CONTENT_X ]--------------------------------------------------------------<#>
+Funcion canvas_move <- canvas_moveContent_Left_nPositions_withPixel(canvas, CWx, CWy, n_positions, pixel)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_addColumns_withPixel(canvas, CWx, CWy, n_positions, pixel);
+	canvas_move = canvas_removeColumns_atStart(canvas_move, increment_step(CWx, n_positions), CWy, n_positions);
+FinFuncion
+
+Funcion canvas_move <- canvas_moveContent_Right_nPositions_withPixel(canvas, CWx, CWy, n_positions, pixel)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_addColumns_atStart_withPixel(canvas, CWx, CWy, n_positions, pixel);
+	canvas_move = canvas_removeColumns(canvas_move, increment_step(CWx, n_positions), CWy, n_positions);
+FinFuncion
+
+Funcion canvas_move <- canvas_moveContent_Left_nPositions(canvas, CWx, CWy, n_positions)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_Left_nPositions_withPixel(canvas, CWx, CWy, n_positions, pixel_clear());
+FinFuncion
+
+Funcion canvas_move <- canvas_moveContent_Right_nPositions(canvas, CWx, CWy, n_positions)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_Right_nPositions_withPixel(canvas, CWx, CWy, n_positions, pixel_clear());
+FinFuncion
+
+Funcion canvas_move <- canvas_moveContent_Left_withPixel(canvas, CWx, CWy, pixel)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_Left_nPositions_withPixel(canvas, CWx, CWy, 1, pixel);
+FinFuncion
+
+Funcion canvas_move <- canvas_moveContent_Right_withPixel(canvas, CWx, CWy, pixel)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_Right_nPositions_withPixel(canvas, CWx, CWy, 1, pixel);
+FinFuncion
+
+Funcion canvas_move <- canvas_moveContent_Left(canvas, CWx, CWy)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_Left_withPixel(canvas, CWx, CWy, pixel_clear());
+FinFuncion
+
+Funcion canvas_move <- canvas_moveContent_Right(canvas, CWx, CWy)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_Right_withPixel(canvas, CWx, CWy, pixel_clear());
+FinFuncion
+//----[ MOVE_CONTENT_XY ]-------------------------------------------------------------<#>
+Funcion canvas_move <- canvas_moveContent_diagonal_atPositions_withPixel(canvas, CWx, CWy, isTop, isLeft, n_positions, pixel)
+	Definir canvas_move Como Texto;
+	Si isTop Entonces
+		canvas_move = canvas_moveContent_top_nPositions_withPixel(canvas, CWx, CWy, pixel, n_positions);
+	Sino
+		canvas_move = canvas_moveContent_bottom_nPositions_withPixel(canvas, CWx, CWy, pixel, n_positions);
+	FinSi
+	Si isLeft Entonces
+		canvas_move = canvas_moveContent_Left_nPositions_withPixel(canvas_move, CWx, CWy, n_positions, pixel);
+	Sino
+		canvas_move = canvas_moveContent_Right_nPositions_withPixel(canvas_move, CWx, CWy, n_positions, pixel);
+	FinSi
+FinFuncion
+//----[ MOVE_DIAGONAL_TOP_LEFT ]------------------------------------------------------<#>
+Funcion canvas_move <- canvas_moveContent_topLeft_nPositions_withPixel(canvas, CWx, CWy, n_positions, pixel)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_diagonal_atPositions_withPixel(canvas, CWx, CWy, true(), true(), n_positions, pixel);
+FinFuncion
+
+Funcion canvas_move <- canvas_moveContent_topLeft_nPositions(canvas, CWx, CWy, n_positions)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_topLeft_nPositions_withPixel(canvas, CWx, CWy, n_positions, pixel_clear());
+FinFuncion
+
+Funcion canvas_move <- canvas_moveContent_topLeft(canvas, CWx, CWy)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_topLeft_nPositions(canvas, CWx, CWy, 1);
+FinFuncion
+//----[ MOVE_DIAGONAL_TOP_RIGHT ]-----------------------------------------------------<#>
+Funcion canvas_move <- canvas_moveContent_topRight_nPositions_withPixel(canvas, CWx, CWy, n_positions, pixel)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_diagonal_atPositions_withPixel(canvas, CWx, CWy, true(), false(), n_positions, pixel);
+FinFuncion
+
+Funcion canvas_move <- canvas_moveContent_topRight_nPositions(canvas, CWx, CWy, n_positions)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_topRight_nPositions_withPixel(canvas, CWx, CWy, n_positions, pixel_clear());
+FinFuncion
+
+Funcion canvas_move <- canvas_moveContent_topRight(canvas, CWx, CWy)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_topRight_nPositions(canvas, CWx, CWy, 1);
+FinFuncion
+//----[ MOVE_DIAGONAL_BOTTOM_LEFT ]---------------------------------------------------<#>
+Funcion canvas_move <- canvas_moveContent_bottomLeft_nPositions_withPixel(canvas, CWx, CWy, n_positions, pixel)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_diagonal_atPositions_withPixel(canvas, CWx, CWy, false(), true(), n_positions, pixel);
+FinFuncion
+
+Funcion canvas_move <- canvas_moveContent_bottomLeft_nPositions(canvas, CWx, CWy, n_positions)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_bottomLeft_nPositions_withPixel(canvas, CWx, CWy, n_positions, pixel_clear());
+FinFuncion
+
+Funcion canvas_move <- canvas_moveContent_bottomLeft(canvas, CWx, CWy)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_bottomLeft_nPositions(canvas, CWx, CWy, 1);
+FinFuncion
+//----[ MOVE_DIAGONAL_BOTTOM_RIGHT ]--------------------------------------------------<#>
+Funcion canvas_move <- canvas_moveContent_bottomRight_nPositions_withPixel(canvas, CWx, CWy, n_positions, pixel)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_diagonal_atPositions_withPixel(canvas, CWx, CWy, false(), false(), n_positions, pixel);
+FinFuncion
+
+Funcion canvas_move <- canvas_moveContent_bottomRight_nPositions(canvas, CWx, CWy, n_positions)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_bottomRight_nPositions_withPixel(canvas, CWx, CWy, n_positions, pixel_clear());
+FinFuncion
+
+Funcion canvas_move <- canvas_moveContent_bottomRight(canvas, CWx, CWy)
+	Definir canvas_move Como Texto;
+	canvas_move = canvas_moveContent_bottomRight_nPositions(canvas, CWx, CWy, 1);
+FinFuncion
+//----[ RESIZE_EXPAND ]---------------------------------------------------------------<#>
+Funcion canvas_result <- canvas_resize_count_withPixel(canvas, CWx, CWy, num_rows, num_columns, isTop, isLeft, pixel)
+	Definir canvas_result Como Texto;
+	Definir new_CWx Como Numero;
+	canvas_result = canvas_addColumns_ofIndex_withPixel(canvas, CWx, CWy, num_columns, isLeft, pixel);
+	new_CWx = increment_step(CWx, num_columns);
+	canvas_result = canvas_addRows_ofIndex_withPixel(canvas_result, new_CWx, CWy, num_rows, isTop, pixel);
+FinFuncion
+
+Funcion canvas_result <- canvas_resize_withPixel(canvas, CWx, CWy, num_rows, num_columns, pixel)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_resize_count_withPixel(canvas, CWx, CWy, num_rows, num_columns, false(), false(), pixel);
+FinFuncion
+
+Funcion canvas_result <- canvas_resize_atStart_withPixel(canvas, CWx, CWy, num_rows, num_columns, pixel)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_resize_count_withPixel(canvas, CWx, CWy, num_rows, num_columns, true(), true(), pixel);
+FinFuncion
+
+Funcion canvas_result <- canvas_resize(canvas, CWx, CWy, num_rows, num_columns)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_resize_withPixel(canvas, CWx, CWy, num_rows, num_columns, pixel_clear());
+FinFuncion
+
+Funcion canvas_result <- canvas_resize_atStart(canvas, CWx, CWy, num_rows, num_columns)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_resize_atStart_withPixel(canvas, CWx, CWy, num_rows, num_columns, pixel_clear());
+FinFuncion
+
+Funcion canvas_result <- canvas_resize_expand_withPixel(canvas, CWx, CWy, pixel)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_resize_withPixel(canvas, CWx, CWy, 1, 1, pixel);
+FinFuncion
+
+Funcion canvas_result <- canvas_resize_expand_atStart_withPixel(canvas, CWx, CWy, pixel)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_resize_atStart_withPixel(canvas, CWx, CWy, 1, 1, pixel);
+FinFuncion
+
+Funcion canvas_result <- canvas_resize_expand(canvas, CWx, CWy)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_resize_expand_withPixel(canvas, CWx, CWy, pixel_clear());
+FinFuncion
+
+Funcion canvas_result <- canvas_resize_expand_atStart(canvas, CWx, CWy)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_resize_expand_atStart_withPixel(canvas, CWx, CWy, pixel_clear());
+FinFuncion
+//----[ DECREMENT_SIZE ]--------------------------------------------------------------<#>
+Funcion canvas_result <- canvas_decrementSize_count(canvas, CWx, CWy, num_rows, num_columns, isTop, isLeft)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_removeRows_count(canvas, CWx, CWy, num_rows, isTop);
+	canvas_result = canvas_removeColumns_count(canvas_result, CWx, CWy, num_columns, isLeft);
+FinFuncion
+
+Funcion canvas_result <- canvas_decrementSize(canvas, CWx, CWy, num_rows, num_columns)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_decrementSize_count(canvas, CWx, CWy, num_rows, num_columns, false(), false());
+FinFuncion
+
+Funcion canvas_result <- canvas_decrementSize_atStart(canvas, CWx, CWy, num_rows, num_columns)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_decrementSize_count(canvas, CWx, CWy, num_rows, num_columns, true(), true());
+FinFuncion
+
+Funcion canvas_result <- canvas_decrementSizeOne(canvas, CWx, CWy)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_decrementSize(canvas, CWx, CWy, 1, 1);
+FinFuncion
+
+Funcion canvas_result <- canvas_decrementSizeOne_atStart(canvas, CWx, CWy)
+	Definir canvas_result Como Texto;
+	canvas_result = canvas_decrementSize_atStart(canvas, CWx, CWy, 1, 1);
 FinFuncion
 //----[ DRAW ]------------------------------------------------------------------------<#>
 Funcion canvas_ellipse <- canvas_DrawEllipse(canvas, CWx, CWy, x0, y0, rx, ry)
@@ -5469,12 +6580,12 @@ FinFuncion
 
 Funcion canvas_triangle <- canvas_DrawTriangle_Normalized(canvas, CWx, CWy, x0, y0, x1, y1, x2, y2)
     Definir canvas_triangle Como Texto;
- 	x0 = canvas_Noramalized_ToPixelX(CWx, x0);
-	y0 = canvas_Noramalized_ToPixelY(CWy, y0);
-	x1 = canvas_Noramalized_ToPixelX(CWx, x1);
-	y1 = canvas_Noramalized_ToPixelY(CWy, y1);	
-	x2 = canvas_Noramalized_ToPixelX(CWx, x2);
-	y2 = canvas_Noramalized_ToPixelY(CWy, y2);
+ 	x0 = canvas_Normalized_ToPixelX(CWx, x0);
+	y0 = canvas_Normalized_ToPixelY(CWy, y0);
+	x1 = canvas_Normalized_ToPixelX(CWx, x1);
+	y1 = canvas_Normalized_ToPixelY(CWy, y1);	
+	x2 = canvas_Normalized_ToPixelX(CWx, x2);
+	y2 = canvas_Normalized_ToPixelY(CWy, y2);
     canvas_triangle = canvas_DrawTriangle(canvas, CWx, CWy, x0, y0, x1, y1, x2, y2);
 FinFuncion
 
@@ -5501,14 +6612,25 @@ Funcion canvas_point <- canvas_DrawPoint_pixel(canvas, CWx, CWy, pixel_symb, x0,
 	FinSi
 FinFuncion
 
+Funcion canvas_text <- canvas_DrawText_Normalized(canvas, CWx, CWy, text, x0, y0)
+	Definir canvas_text Como Texto;
+	Definir x_norm, y_norm Como Numero;
+	x_norm = canvas_Normalized_ToPixelX(CWx, x0);
+	y_norm = canvas_Normalized_ToPixelY(CWy, y0);
+	canvas_text = canvas_DrawText(canvas, CWx, CWy, text, x_norm, y_norm);
+FinFuncion
+
 Funcion canvas_text <- canvas_DrawText(canvas, CWx, CWy, text, x0, y0)
 	Definir canvas_text Como Texto;
 	Definir post_text Como Numero;
 	canvas_text = canvas;
 	si x0 < CWx & y0 < CWy & y0 >= 0 Entonces 
-		text = __private_canvas_GetText_FitViewPort(text, x0, CWx);
-		post_text = canvas_getIndex(x0, y0, CWx);
-		canvas_text = string_insert_withReplace(canvas_text, text, post_text);
+		text = string_fit_toRange(text, x0, CWx);
+		x0 = math_max_Int(x0, 0);
+		Si x0 < CWx & string_Length(text) > 0 Entonces
+            post_text = canvas_getIndex(x0, y0, CWx);
+            canvas_text = string_insert_withReplace(canvas_text, text, post_text);
+        FinSi
 	FinSi
 FinFuncion
 
@@ -5563,10 +6685,10 @@ FinFuncion
 //----[ NORMALIZED (-1 ... 1) ]-------------------------------------------------------<#>
 Funcion canvas_line <- canvas_DrawLine_Normalized(canvas, CWx, CWy, x0, y0, x1, y1)
     Definir canvas_line Como Texto;
-	x0 = canvas_Noramalized_ToPixelX(CWx, x0);
-	y0 = canvas_Noramalized_ToPixelY(CWy, y0);
-	x1 = canvas_Noramalized_ToPixelX(CWx, x1);
-	y1 = canvas_Noramalized_ToPixelY(CWy, y1);
+	x0 = canvas_Normalized_ToPixelX(CWx, x0);
+	y0 = canvas_Normalized_ToPixelY(CWy, y0);
+	x1 = canvas_Normalized_ToPixelX(CWx, x1);
+	y1 = canvas_Normalized_ToPixelY(CWy, y1);
 	canvas_line = canvas_DrawLine_pixel(canvas, CWx, CWy, pixel_plain(), x0, y0, x1, y1);
 FinFuncion
 
@@ -5577,27 +6699,27 @@ FinFuncion
 
 Funcion canvas_point <- canvas_DrawPoint_Pixel_Normalized(canvas, CWx, CWy, x0, y0, pixel_symb)
 	Definir canvas_point Como Texto;
-	x0 = canvas_Noramalized_ToPixelX(CWx, x0);
-	y0 = canvas_Noramalized_ToPixelY(CWy, y0);
+	x0 = canvas_Normalized_ToPixelX(CWx, x0);
+	y0 = canvas_Normalized_ToPixelY(CWy, y0);
 	canvas_point = canvas_DrawPoint_pixel(canvas, CWx, CWy, pixel_symb, x0, y0);
 FinFuncion
 
 Funcion canvas_rectangle <- canvas_DrawRectangle_Normalized(canvas, CWx, CWy, x0, y0, x1, y1)
     Definir canvas_rectangle Como Texto;
- 	x0 = canvas_Noramalized_ToPixelX(CWx, x0);
-	y0 = canvas_Noramalized_ToPixelY(CWy, y0);
-	x1 = canvas_Noramalized_ToPixelX(CWx, x1);
-	y1 = canvas_Noramalized_ToPixelY(CWy, y1);	
+ 	x0 = canvas_Normalized_ToPixelX(CWx, x0);
+	y0 = canvas_Normalized_ToPixelY(CWy, y0);
+	x1 = canvas_Normalized_ToPixelX(CWx, x1);
+	y1 = canvas_Normalized_ToPixelY(CWy, y1);	
     canvas_rectangle = canvas_DrawRectangle(canvas, CWx, CWy, x0, y0, x1, y1);
 FinFuncion
 //----[ NORMALIZED_TO (-1 ... 1 ) ]---------------------------------------------------<#>
 //(w*0.5)(1+a)  :: (h*0.5)(1-a)
-Funcion pixel_index <- canvas_Noramalized_ToPixelX(Cx, x)
+Funcion pixel_index <- canvas_Normalized_ToPixelX(Cx, x)
 	Definir pixel_index Como Numero;
 	pixel_index = __private_Noramalized_toPixel(Cx, x, "x");
 FinFuncion
 
-Funcion pixel_index <- canvas_Noramalized_ToPixelY(Cy, y_)
+Funcion pixel_index <- canvas_Normalized_ToPixelY(Cy, y_)
 	Definir pixel_index Como Numero;
 	pixel_index = __private_Noramalized_toPixel(Cy, y_, "y");
 FinFuncion
@@ -5625,6 +6747,22 @@ Funcion pixel_index <- __private_Noramalized_toPixel(Dc, norm_index, letter)
 	pixel_index = math_min_Int(math_truncate((Dc * 0.5) * (1 + norm_index)), decrement(Dc));
 FinFuncion
 //----[ COMPLEX_DRAW ]---------------------------------------------------------------<#>
+Funcion canvas_result <- canvas_drawCanvas(canvas, Cx, Cy, canvas_draw, Cx2, Cy2, x0, y0)
+	Definir canvas_result, DrawX Como Texto;
+	Definir i, slice_start, slice_end, x_draw, y_draw Como Numero;
+	canvas_result = canvas;
+	i = 0;
+	x_draw = increment_step(Cx2, x0);
+	Mientras i < Cy2 & y_draw < Cy Hacer
+		y_draw = increment_step(y0, i);
+		slice_start = canvas_getIndex(0, i, Cx2);
+		slice_end 	= canvas_getIndex(0, increment(i), Cx2);
+		DrawX		= string_substring(canvas_draw, slice_start, slice_end);
+		canvas_result  = canvas_drawText(canvas_result, Cx, Cy, DrawX, x0, y_draw);
+		i = increment(i);
+	FinMientras
+FinFuncion
+
 Funcion canvas_Result <- canvas_DrawButton(canvas, Cx, Cy, text, x0, y0)
 	Definir canvas_Result Como Texto;
 	Definir x1, y1, length_Text, xt, yt Como Numero;
@@ -5651,38 +6789,38 @@ FinFuncion
 Funcion canvas_Result <- canvas_DrawPanel(canvas, Cx, Cy, x0, y0, width, height)
 	Definir canvas_Result Como Texto;
 	canvas_Result = canvas;
-	canvas_Result  = canvas_DrawVerticalLine(canvas_Result, Cx, Cy, x0, y0, height);
-	canvas_Result = canvas_DrawVerticalLine(canvas_Result, Cx, Cy, decrement(width), y0, height);
-	canvas_Result = canvas_DrawHorizontalLine(canvas_Result, Cx, Cy, x0, y0, width);
+	canvas_Result  = canvas_DrawLine_Vertical(canvas_Result, Cx, Cy, x0, y0, height);
+	canvas_Result = canvas_DrawLine_Vertical(canvas_Result, Cx, Cy, decrement(width), y0, height);
+	canvas_Result = canvas_DrawLine_Horizontal(canvas_Result, Cx, Cy, x0, y0, width);
 	height = decrement(height);
-	canvas_Result = canvas_DrawHorizontalLine(canvas_Result, Cx, Cy, x0, height, width);
-	canvas_Result = canvas_DrawPoint_pixel(canvas_Result, Cx, Cy, "×", x0, y0);
-	canvas_Result = canvas_DrawPoint_pixel(canvas_Result, Cx, Cy, "×", x0, height);
+	canvas_Result = canvas_DrawLine_Horizontal(canvas_Result, Cx, Cy, x0, height, width);
+	canvas_Result = canvas_DrawPoint_pixel(canvas_Result, Cx, Cy, ".", x0, y0);
+	canvas_Result = canvas_DrawPoint_pixel(canvas_Result, Cx, Cy, "`", x0, height);
 	width = decrement(width);
-	canvas_Result = canvas_DrawPoint_pixel(canvas_Result, Cx, Cy, "×", width, height);
-	canvas_Result = canvas_DrawPoint_pixel(canvas_Result, Cx, Cy, "×", width, y0);
+	canvas_Result = canvas_DrawPoint_pixel(canvas_Result, Cx, Cy, ".", width, y0);
+	canvas_Result = canvas_DrawPoint_pixel(canvas_Result, Cx, Cy, "`", width, height);
 FinFuncion
 
-Funcion canvas_Result <- canvas_DrawHorizontalLine(canvas, Cx, Cy, x0, y0, width)
+Funcion canvas_Result <- canvas_DrawLine_Horizontal(canvas, Cx, Cy, x0, y0, width)
 	Definir canvas_Result Como Texto;
-	canvas_Result = canvas_DrawHorizontalLine_Pixel(canvas, Cx, Cy, "-", x0, y0, width);
+	canvas_Result = canvas_DrawLine_Horizontal_withPixel(canvas, Cx, Cy, x0, y0, width, "_");
 FinFuncion
 
-Funcion canvas_Result <- canvas_DrawHorizontalLine_Pixel(canvas, Cx, Cy, pixel, x0, y0, width)
+Funcion canvas_Result <- canvas_DrawLine_Horizontal_withPixel(canvas, Cx, Cy, x0, y0, width, pixel)
 	Definir canvas_Result, horizontalLine_String Como Texto;
 	canvas_Result = canvas;
 	si width > 0 Entonces
-		horizontalLine_String  = string_RepeatText(Pixel, width);
+		horizontalLine_String  = string_repeatText(Pixel, width);
 		canvas_Result = canvas_DrawText(canvas_Result, Cx, Cy, horizontalLine_String, x0, y0);
 	FinSi
 FinFuncion
 
-Funcion canvas_Result <- canvas_DrawVerticalLine(canvas, Cx, Cy, x0, y0, height)
+Funcion canvas_Result <- canvas_DrawLine_Vertical(canvas, Cx, Cy, x0, y0, height)
 	Definir canvas_Result Como Texto;
-	canvas_Result = canvas_DrawVerticalLine_Pixel(canvas, Cx, Cy, "¦", x0, y0, height);
+	canvas_Result = canvas_DrawLine_Vertical_withPixel(canvas, Cx, Cy, x0, y0, height,  "¦");
 FinFuncion
 
-Funcion canvas_Result <- canvas_DrawVerticalLine_Pixel(canvas, Cx, Cy, pixel, x0, y0, height)
+Funcion canvas_Result <- canvas_DrawLine_Vertical_withPixel(canvas, Cx, Cy, x0, y0, height, pixel)
 	Definir canvas_Result Como Texto;
 	canvas_Result = canvas;
 	si height > 0 Entonces
@@ -5690,14 +6828,14 @@ Funcion canvas_Result <- canvas_DrawVerticalLine_Pixel(canvas, Cx, Cy, pixel, x0
 	FinSi
 FinFuncion
 
-Funcion canvas_Result <- canvas_DrawHorizontalLine_Full(canvas, Cx, Cy, y0)
+Funcion canvas_Result <- canvas_DrawLine_Horizontal_Full(canvas, Cx, Cy, y0)
 	Definir canvas_Result Como Texto;
-	canvas_Result = canvas_DrawHorizontalLine(canvas, Cx, Cy, 0, y0, Cx);
+	canvas_Result = canvas_DrawLine_Horizontal(canvas, Cx, Cy, 0, y0, Cx);
 FinFuncion
 
-Funcion canvas_Result <- canvas_DrawVerticalLine_Full(canvas, Cx, Cy, x0)
+Funcion canvas_Result <- canvas_DrawLine_Vertical_Full(canvas, Cx, Cy, x0)
 	Definir canvas_Result Como Texto;
-	canvas_Result = canvas_DrawVerticalLine(canvas, Cx, Cy, x0, 0, Cy);
+	canvas_Result = canvas_DrawLine_Vertical(canvas, Cx, Cy, x0, 0, Cy);
 FinFuncion
 //=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=========================================
 Funcion pixel <- pixel_clear
@@ -5735,110 +6873,211 @@ Funcion pixel <- get_pixel_withIndex(index)
 FinFuncion
 ///$$$$$[ SPRITE ]$$$$$$$$$$$$$$$$$$$[  -+4_1 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 //----[ SPRITESTRING ]---------------------------------------------------------------<#>
-Funcion SpriteString_Structure <- SpriteString_New
-	Definir SpriteString_Structure Como Texto;
-	SpriteString_Structure = linearCollection_newLinearCollection(Tcomponent_TYPE_SPRITE_STRING(), TYPE_STRING());
-	SpriteString_Structure = linearCollection_addLast(SpriteString_Structure, "0");
-FinFuncion
-//----[ GETTERS ]---------------------------------------------------------------------<#>
-Funcion length_MaxLine <- SpriteString_GetWidth(SpriteString_Structure)
-	Definir length_MaxLine Como Numero;
-	length_MaxLine = string_ToNum(linearCollection_getFirst_ToString(SpriteString_Structure));
+Funcion spriteString_struct <- spriteString_new
+	Definir spriteString_struct Como Texto;
+	spriteString_struct = linearCollection_newLinearCollection(Tcomponent_TYPE_SPRITE_STRING(), TYPE_STRING());
+	spriteString_struct = linearCollection_addLast(spriteString_struct, "0");
 FinFuncion
 
-Funcion length_MaxLine <- SpriteString_Getheight(SpriteString_Structure)
-	Definir length_MaxLine Como Numero;
-	length_MaxLine = linearCollection_GetSize(SpriteString_Structure);
+Funcion sprite_string <- SpriteString_titleBar_color(title, width_titleBar, color_bar, color_title)
+	Definir sprite_string, title_bar Como Texto;
+	Definir width_titleBar_color Como Entero;
+	title_bar = __private_window_getTitleBar_color(title, width_titleBar, color_bar, color_title);
+	width_titleBar_color = __private_window_calcTitleBarColorLength(width_titleBar, color_bar);
+	sprite_string = __private_SpriteString_titleBar_build(title_bar, width_titleBar_color );
 FinFuncion
 
-Funcion SpriteString_NewChange <- SpriteString_UpdateMaxWidth(SpriteString_Structure, line_String)
-	Definir SpriteString_NewChange Como Texto;
+Funcion sprite_string <- SpriteString_titleBar(title, width_titleBar)
+	Definir sprite_string, title_bar Como Texto;
+	title_bar = __private_window_getTitleBar(title, width_titleBar);
+	sprite_string = __private_SpriteString_titleBar_build(title_bar, width_titleBar);
+FinFuncion
+
+Funcion sprite_string <- __private_SpriteString_titleBar_build(title_bar, width_titleBar)
+	Definir sprite_string Como Texto;
+	sprite_string = spriteString_new();
+	sprite_string = spriteSTring_addLine(sprite_string, string_substring(title_bar, 0, width_titleBar));
+	sprite_string = spriteSTring_addLine(sprite_string, string_substring(title_bar, width_titleBar, (width_titleBar * 2)));
+	sprite_string = spriteSTring_addLine(sprite_string, string_substring(title_bar, (width_titleBar * 2), (width_titleBar * 3)));
+FinFuncion
+//----[ CANVAS ]--------------------------------------------------------------------<#>
+Funcion canvas_sprite <- SpriteString_toCanvas(spriteString_struct)
+	Definir canvas_sprite Como Texto;
+	Definir Cx, Cy Como Entero;
+	Cx = spriteString_GetWidth(spriteString_struct);
+	Cy = spriteString_getHeight(spriteString_struct);
+	canvas_sprite = SpriteString_toCanvas_Size(spriteString_struct, Cx, Cy);
+FinFuncion
+
+Funcion canvas_sprite <- SpriteString_toCanvas_Size(spriteString_struct, Cx, Cy)
+	Definir canvas_sprite, canvas_init Como Texto;
+	canvas_init = canvas_new_WithPixel(Cx, Cy, " ");
+	canvas_sprite = canvas_DrawSpriteString(canvas_init, Cx, Cy, spriteString_struct, 0, 0);
+FinFuncion
+//----[ GETTERS ]-------------------------------------------------------------------<#>
+Funcion length_MaxLine <- spriteString_GetWidth(spriteString_struct)
+	Definir length_MaxLine Como Numero;
+	length_MaxLine = string_ToNum(linearCollection_getFirst_ToString(spriteString_struct));
+FinFuncion
+
+Funcion sizeSprite <- spriteString_GetSize(spriteString_struct)
+	Definir sizeSprite Como Numero;
+	sizeSprite = decrement(linearCollection_GetSize(spriteString_struct));
+FinFuncion
+
+Funcion height_lines <- spriteString_getHeight(spriteString_struct)
+	Definir height_lines Como Numero;
+	height_lines = spriteString_GetSize(spriteString_struct);
+FinFuncion
+
+Funcion spriteString_newChange <- spriteString_UpdateMaxWidth(spriteString_struct, line_String)
+	Definir spriteString_newChange Como Texto;
 	Definir line_length Como Numero;
 	line_length = string_Length(line_String);
-	SpriteString_NewChange = SpriteString_Structure;
-	si SpriteString_GetWidth(SpriteString_NewChange) < line_length Entonces
-		SpriteString_NewChange = linearCollection_SetElement(SpriteString_NewChange, 0, num_ToString(line_length));
+	spriteString_newChange = spriteString_struct;
+	si spriteString_GetWidth(spriteString_newChange) < line_length Entonces
+		spriteString_newChange = linearCollection_SetElement(spriteString_newChange, 0, num_ToString(line_length));
 	FinSi
 FinFuncion
+
+Funcion is_valid <- spriteString_IndexValidate(spriteString_struct, index_line)
+    Definir is_valid Como Logico;
+	is_valid = linearCollection_IndexIsValid(spriteString_struct, index_line);
+FinFuncion
 //----[ UTILITIES ]-----------------------------------------------------------------<#>
-Funcion isSpriteValid <- SpriteString_isSpriteValid(SpriteString_Structure)
+Funcion isSpriteValid <- spriteString_isSpriteValid(spriteString_struct)
 	Definir isSpriteValid Como Logico;
-	isSpriteValid = string_isEquals(collection_getNameCollection(SpriteString_Structure), Tcomponent_TYPE_SPRITE_STRING());
+	isSpriteValid = string_isEquals(collection_getNameCollection(spriteString_struct), Tcomponent_TYPE_SPRITE_STRING());
 FinFuncion
 
-Funcion SpriteString_NewChange <- SpriteString_AddLine(SpriteString_Structure, line_String)
-	Definir SpriteString_NewChange Como Texto;
-	SpriteString_NewChange = linearCollection_addLast(SpriteString_Structure, line_String);
-	SpriteString_NewChange = SpriteString_UpdateMaxWidth(SpriteString_NewChange, line_String);
+Funcion spriteString_newChange <- spriteString_ModefyLine(spriteString_struct, index_line, part_modefy, index_start)
+    Definir spriteString_newChange Como Texto;
+    Definir index_end Como Entero;
+    index_end = increment_step(index_start, string_Length(part_modefy));
+    spriteString_newChange = __private_spriteString_ModefyLine(spriteString_struct, index_line, part_modefy, index_start, index_end);
+FinFuncion
+
+Funcion spriteString_newChange <- spriteString_ModefyLine_strict(spriteString_struct, index_line, part_modefy, index_start, index_end)
+    Definir spriteString_newChange Como Texto;
+    spriteString_newChange = __private_spriteString_ModefyLine(spriteString_struct, index_line, part_modefy, index_start, index_end);
+FinFuncion
+
+Funcion spriteString_newChange <- __private_spriteString_ModefyLine(spriteString_struct, index_line, part_modefy, index_start, index_end)
+    Definir spriteString_newChange, line_String, line_result Como Texto;
+    Definir length_line Como Entero;
+	Definir indexLineIsValid, indexIsValid Como Logico;
+	spriteString_newChange = spriteString_struct;
+	indexIsValid = spriteString_IndexValidate(spriteString_newChange, index_line);
+    Si indexIsValid Entonces
+		line_String = linearCollection_getElement(spriteString_newChange, index_line);
+		length_line = string_Length(line_String);
+		indexLineIsValid = indexValidate(length_line, index_start, length_line);
+	SiNo
+		indexLineIsValid = false();
+        error_message_Function("ModefyLine", "Invalid Index");
+    FinSi
+	si indexIsValid & !indexLineIsValid Entonces
+		error_message_Function("ModefyLine", "Invalid Index line");
+	FinSi
+	si indexLineIsValid Entonces
+		index_end = math_min_int(index_end, length_line);
+		part_modefy = string_fit_toRange(part_modefy, index_start, index_end);
+		index_end = increment_step(index_start, string_Length(part_modefy));
+		line_result = string_delete(line_String, index_start, index_end);
+		line_result = string_insert(line_result, part_modefy, index_start);
+		spriteString_newChange = spriteString_setLine(spriteString_newChange, index_line, line_result);
+	FinSi
+FinFuncion
+
+Funcion spriteString_newChange <- spriteString_writeLine(spriteString_struct, index_line, part_modefy, index_start)
+    Definir spriteString_newChange, line_String, line_result Como Texto;
+    Definir length_line Como Entero;
+	Definir indexLineIsValid, indexIsValid Como Logico;
+	index_line = increment(index_line);
+	spriteString_newChange = spriteString_struct;
+	indexIsValid = spriteString_IndexValidate(spriteString_newChange, index_line);
+    Si indexIsValid Entonces
+		line_String = linearCollection_getElement(spriteString_newChange, index_line);
+		length_line = string_Length(line_String);
+		indexLineIsValid = indexValidate(length_line, index_start, length_line);
+	SiNo
+		indexLineIsValid = false();
+        error_message_Function("ModefyLine", "Invalid Index");
+    FinSi
+	si indexIsValid & !indexLineIsValid Entonces
+		error_message_Function("ModefyLine", "Invalid Index line");
+	FinSi
+	si indexLineIsValid Entonces
+		line_result = string_insert(line_String, part_modefy, index_start);
+		spriteString_newChange = spriteString_setLine(spriteString_newChange, index_line, line_result);	
+	FinSi
+FinFuncion
+
+Funcion spriteString_newChange <- spriteString_setLine(spriteString_struct, index_line, line_String)
+	Definir spriteString_newChange Como Texto;
+	spriteString_newChange = linearCollection_setElement(spriteString_struct, index_line, line_String);
+	spriteString_newChange = spriteString_UpdateMaxWidth(spriteString_newChange, line_String);
+FinFuncion
+
+Funcion spriteString_newChange <- spriteString_addLine(spriteString_struct, line_String)
+	Definir spriteString_newChange Como Texto;
+	spriteString_newChange = linearCollection_addLast(spriteString_struct, line_String);
+	spriteString_newChange = spriteString_UpdateMaxWidth(spriteString_newChange, line_String);
 FinFuncion
 //----[ DRAW_SPRITESTRING ]----------------------------------------------------------<#>
-Funcion canvas_Sprite <- canvas_DrawSpriteString(canvas, Cx, Cy, SpriteString_Structure, x0, y0)
+Funcion canvas_Sprite <- canvas_DrawSpriteString(canvas, Cx, Cy, spriteString_struct, x0, y0)
     Definir canvas_Sprite Como Texto;
-    canvas_Sprite = __private_canvas_DrawSpriteString_sprite_effect(canvas, Cx, Cy, SpriteString_Structure, x0, y0, "null", sprite_EFFECT_NONE());
+    canvas_Sprite = __private_canvas_DrawspriteString_sprite_effect(canvas, Cx, Cy, spriteString_struct, x0, y0, "null", sprite_EFFECT_NONE());
 FinFuncion
 
-Funcion canvas_Sprite <- canvas_DrawSpriteString_Cutout(canvas, Cx, Cy, SpriteString_Structure, x0, y0)
+Funcion canvas_Sprite <- canvas_DrawspriteString_Cutout(canvas, Cx, Cy, spriteString_struct, x0, y0)
     Definir canvas_Sprite Como Texto;
-    canvas_Sprite = __private_canvas_DrawSpriteString_sprite_effect(canvas, Cx, Cy, SpriteString_Structure, x0, y0, "null", sprite_EFFECT_CUTOUT());
+    canvas_Sprite = __private_canvas_DrawspriteString_sprite_effect(canvas, Cx, Cy, spriteString_struct, x0, y0, "null", sprite_EFFECT_CUTOUT());
 FinFuncion
 
-Funcion canvas_Sprite <- canvas_DrawSpriteString_Trimmed(canvas, Cx, Cy, SpriteString_Structure, symbol_Trimmed, x0, y0)
+Funcion canvas_Sprite <- canvas_DrawspriteString_Trimmed(canvas, Cx, Cy, spriteString_struct, symbol_Trimmed, x0, y0)
     Definir canvas_Sprite Como Texto;
-    canvas_Sprite = __private_canvas_DrawSpriteString_sprite_effect(canvas, Cx, Cy, SpriteString_Structure, x0, y0, symbol_Trimmed, sprite_EFFECT_TRIMMED());
+    canvas_Sprite = __private_canvas_DrawspriteString_sprite_effect(canvas, Cx, Cy, spriteString_struct, x0, y0, symbol_Trimmed, sprite_EFFECT_TRIMMED());
 FinFuncion
 
-Funcion canvas_Sprite <- canvas_DrawSpriteString_Cutout_FlipHorizontal(canvas, Cx, Cy, SpriteString_Structure, x0, y0)
+Funcion canvas_Sprite <- canvas_DrawspriteString_Cutout_FlipHorizontal(canvas, Cx, Cy, spriteString_struct, x0, y0)
     Definir canvas_Sprite Como Texto;
-    canvas_Sprite = __private_canvas_DrawSpriteString_sprite_effect(canvas, Cx, Cy, SpriteString_Structure, x0, y0, "null", sprite_EFFECT_FLIP_H());
+    canvas_Sprite = __private_canvas_DrawspriteString_sprite_effect(canvas, Cx, Cy, spriteString_struct, x0, y0, "null", sprite_EFFECT_FLIP_H());
 FinFuncion
 
-Funcion canvas_Sprite <- canvas_DrawSpriteString_Cutout_FlipVertical(canvas, Cx, Cy, SpriteString_Structure, x0, y0)
+Funcion canvas_Sprite <- canvas_DrawspriteString_Cutout_FlipVertical(canvas, Cx, Cy, spriteString_struct, x0, y0)
     Definir canvas_Sprite Como Texto;
-    canvas_Sprite = __private_canvas_DrawSpriteString_sprite_effect(canvas, Cx, Cy, SpriteString_Structure, x0, y0, "null", sprite_EFFECT_FLIP_V());
+    canvas_Sprite = __private_canvas_DrawspriteString_sprite_effect(canvas, Cx, Cy, spriteString_struct, x0, y0, "null", sprite_EFFECT_FLIP_V());
 FinFuncion
-//----[ RENDER ]---------------------------------------------------------------------<#>
-Funcion canvas_Sprite <- __private_Canvas_RenderSpriteString(canvas, Cx, Cy, data_soup, string_sumation, size_Sprite, symbol_Trimmed, x0, y0, sprite_effect)
-	Definir canvas_Sprite, num_carry, Char_Current, line_Current, array_sprite Como Texto;
-	Definir i, num_range, num_range_Inc, length_data_value, length_Sumation, count_line Como Numero;
-	Definir IsNumber Como Logico;
-	Dimension array_sprite[size_Sprite];
-	num_carry 	    = "";
-	num_range		= 0;	
-	i				= 0;
-	count_line   	= 0;
-	length_Sumation = string_Length(string_sumation);
-	canvas_Sprite = canvas;
-	Mientras i <= length_Sumation & size_Sprite < Cy Hacer
-		Char_Current = char_At(string_sumation, i);
-		IsNumber = char_isNumber(Char_Current);
-		Si IsNumber Entonces
-			num_carry = string_append(num_carry, Char_Current);
-		FinSi
-		Si !IsNumber & !string_isEmpty(num_carry) | Num_isEquals(i, length_Sumation) Entonces
-			length_data_value = string_ToNum(num_carry);
-			num_range_Inc = increment_step(num_range, length_data_value);
-			line_Current  = string_substring(data_soup, num_range, num_range_Inc);
-			array_sprite[count_line] = line_Current;
-			count_line = increment(count_line);
-			num_carry       = "";// clear
-			num_range       = num_range_Inc;
-		FinSi
-		i = increment(i);
-	FinMientras
-	canvas_Sprite = Canvas_ApplyRenderEffect(canvas, Cx, Cy, x0, y0, array_sprite, size_Sprite, symbol_Trimmed, sprite_effect);
-FinFuncion
-//----[ EFFECT ]---------------------------------------------------------------------<#>
-Funcion canvas_Sprite <- __private_canvas_DrawSpriteString_sprite_effect(canvas, Cx, Cy, SpriteString_Structure, x0, y0, symbol_Trimmed, sprite_effect)
+//----[ EFFECT ]-------------------------------------------------------------------<#>
+Funcion canvas_Sprite <- __private_canvas_DrawspriteString_sprite_effect(canvas, Cx, Cy, spriteString_struct, x0, y0, symbol_Trimmed, sprite_effect)
 	Definir canvas_Sprite, string_sumation, data_soup Como Texto;
 	Definir index_Data, index_MetaData, index_ExtraData, size_Sprite Como Numero;
-	size_Sprite 	 = SpriteString_Getheight(SpriteString_Structure);
-	SpriteString_Structure = linearCollection_RemoveFirst(SpriteString_Structure);
-	index_Data 		 = increment(string_indexOf(SpriteString_Structure, symbol_DataArea()));
-	index_ExtraData  = string_LastindexOf(SpriteString_Structure, symbol_ExtraData());
-	index_MetaData   = string_LastindexOf_fromIndex(SpriteString_Structure, symbol_MetaData(), index_ExtraData);
-	data_soup		 = string_substring(SpriteString_Structure, index_Data, index_MetaData);
-	string_sumation  = string_substring(SpriteString_Structure, increment(index_MetaData), index_ExtraData);
+	size_Sprite 	 = spriteString_getHeight(spriteString_struct);
+	spriteString_struct = linearCollection_RemoveFirst(spriteString_struct);
+	index_Data 		 = increment(string_indexOf(spriteString_struct, symbol_DataArea()));
+	index_ExtraData  = string_LastindexOf(spriteString_struct, symbol_ExtraData());
+	index_MetaData   = string_LastindexOf_fromIndex(spriteString_struct, symbol_MetaData(), index_ExtraData);
+	data_soup		 = string_substring(spriteString_struct, index_Data, index_MetaData);
+	string_sumation  = string_substring(spriteString_struct, increment(index_MetaData), index_ExtraData);
 	canvas_Sprite 	 = __private_Canvas_RenderSpriteString(canvas, Cx, Cy, data_soup, string_sumation,  size_Sprite, symbol_Trimmed, x0, y0, sprite_effect);
+FinFuncion
+
+Funcion spriteString_display(spriteString_struct)
+	spriteString_display_monocolor(spriteString_struct, "");
+FinFuncion
+
+Funcion spriteString_display_monocolor(spriteString_struct, color)
+    Definir string_sumation, data_soup, sprite_Stripped Como Texto;
+    Definir index_Data, index_MetaData, index_ExtraData, size_Sprite Como Numero;
+    size_Sprite = spriteString_getHeight(spriteString_struct);
+    sprite_Stripped = linearCollection_RemoveFirst(spriteString_struct);
+    index_Data      = increment(string_indexOf(sprite_Stripped, symbol_DataArea()));
+    index_ExtraData = string_LastindexOf(sprite_Stripped, symbol_ExtraData());
+    index_MetaData  = string_LastindexOf_fromIndex(sprite_Stripped, symbol_MetaData(), index_ExtraData);
+    data_soup       = string_substring(sprite_Stripped, index_Data, index_MetaData);
+    string_sumation = string_substring(sprite_Stripped, increment(index_MetaData), index_ExtraData);
+	__private_Collection_Printer_color(data_soup, string_sumation, true(), color);
 FinFuncion
 
 Funcion canvas_Sprite <- Canvas_ApplyRenderEffect(canvas, Cx, Cy, x0, y0, array_sprite, size_Sprite, symbol_Trimmed, sprite_effect)
@@ -5857,6 +7096,37 @@ Funcion canvas_Sprite <- Canvas_ApplyRenderEffect(canvas, Cx, Cy, x0, y0, array_
         De Otro Modo: 
             canvas_Sprite = canvas;
     FinSegun
+FinFuncion
+//----[ RENDER ]-------------------------------------------------------------------<#>
+Funcion canvas_Sprite <- __private_Canvas_RenderSpriteString(canvas, Cx, Cy, data_soup, string_sumation, size_Sprite, symbol_Trimmed, x0, y0, sprite_effect)
+	Definir canvas_Sprite, num_carry, Char_Current, line_Current, array_sprite Como Texto;
+	Definir i, num_range, num_range_Inc, length_data_value, length_Sumation, count_line Como Numero;
+	Definir IsNumber Como Logico;
+	Dimension array_sprite[size_Sprite];
+	num_carry 	    = "";
+	num_range		= 0;	
+	i				= 0;
+	count_line   	= 0;
+	length_Sumation = string_Length(string_sumation);
+	canvas_Sprite = canvas;
+	Mientras i <= length_Sumation & size_Sprite <= Cy Hacer
+		Char_Current = char_At(string_sumation, i);
+		IsNumber = char_isNumber(Char_Current);
+		Si IsNumber Entonces
+			num_carry = string_append(num_carry, Char_Current);
+		FinSi
+		Si !IsNumber & !string_isEmpty(num_carry) | Num_isEquals(i, length_Sumation) Entonces
+			length_data_value = string_ToNum(num_carry);
+			num_range_Inc = increment_step(num_range, length_data_value);
+			line_Current  = string_substring(data_soup, num_range, num_range_Inc);
+			array_sprite[count_line] = line_Current;
+			count_line = increment(count_line);
+			num_carry       = "";// clear
+			num_range       = num_range_Inc;
+		FinSi
+		i = increment(i);
+	FinMientras
+	canvas_Sprite = Canvas_ApplyRenderEffect(canvas, Cx, Cy, x0, y0, array_sprite, size_Sprite, symbol_Trimmed, sprite_effect);
 FinFuncion
 //----[ DRAW_SPRITE ]----------------------------------------------------------------<#>
 Funcion canvas_Sprite <- canvas_DrawSprite_Array(canvas, Cx, Cy, x0, y0, array_sprite, size)	
@@ -5960,8 +7230,12 @@ Funcion tui_TFrame <- TUI_New(Wx,Wy)
 	tui_TFrame  = linearCollection_addFirst(tui_TFrame, collectionSetter_New(TUI_TYPE_TINPUT(),TYPE_STRING()));//index:1
 	tui_TFrame  = linearCollection_addFirst(tui_TFrame, size_TFrame);//index:0
 FinFuncion
-//----[ DISPLAY ]---------------------------------------------------------------------<#>
-Funcion TUI_Display(tui_window)
+//----[ DISPLAY ]-------------------------------------------------------------------<#>
+Funcion TUI_display(tui_window, title)
+	TUI_display_monocolor(tui_window, title, "");
+FinFuncion
+
+Funcion TUI_display_monocolor(tui_window, title, color)
 	Definir Wx, Wy, index_separator Como Numero;
 	Definir Wsize, window_view Como Texto;
 	Si TUI_IsInterface_Valid(tui_window) Entonces 
@@ -5969,12 +7243,12 @@ Funcion TUI_Display(tui_window)
 		index_separator = string_indexOf(Wsize, symbol_Separator_Simple());
 		Wx = string_ToNum(string_substring(Wsize, 0, index_separator));
 		Wy = string_ToNum(string_substring_from(Wsize, increment(index_separator)));
-		canvas_Display(TUI_ToCanvas(tui_window), Wx,Wy);
+		canvas_displayWindow_monoColor(TUI_ToCanvas(tui_window), Wx,Wy, title, color);
 	SiNo
 		error_message_Function("TUI_Display(tui_window)","Its not a TUI interface");
 	FinSi
 FinFuncion
-//----[ GETTERS ]---------------------------------------------------------------------<#>
+//----[ GETTERS ]-------------------------------------------------------------------<#>
 Funcion size_String <- TUI_GetTproperty_Position(tui_TFrame) 
 	Definir size_String Como Texto;
 	size_String = linearCollection_getFirst_ToString(tui_TFrame);
@@ -6025,7 +7299,7 @@ Funcion user_input <- TUI_GetUser_Input(tui_window, TYPE)
 		user_input = value_getNullType(TYPE);
 	FinSi
 FinFuncion
-//----[ SETTERS ]---------------------------------------------------------------------<#>
+//----[ SETTERS ]-------------------------------------------------------------------<#>
 Funcion tui_resize <- TUI_SetSize(tui_window, Wx, Wy) 
 	Definir tui_resize, size_string Como Texto;
 	size_string = TUI_ParsePointXY_ToString(Wx, Wy);
@@ -6185,17 +7459,17 @@ Funcion tui_NewTcomponent <- TUI_AddTComponent_NewPanel(tui_window, reference_Na
 	FinSi
 FinFuncion
 
-Funcion tui_NewTcomponent <- TUI_AddTComponent_NewSpriteString(tui_window, reference_Name, SpriteString_Structure, sprite_Effect, x0, y0)
+Funcion tui_NewTcomponent <- TUI_AddTComponent_NewSpriteString(tui_window, reference_Name, spriteString_struct, sprite_Effect, x0, y0)
 	Definir tui_NewTcomponent, TSprite Como Texto;
 	tui_NewTcomponent = tui_window;
 	Si TUI_IsInterface_Valid(tui_window) Entonces
-		TSprite = __private_TComponent_ForcerdNewSpriteString(SpriteString_Structure, sprite_effect, x0, y0);
+		TSprite = __private_TComponent_ForcerdNewSpriteString(spriteString_struct, sprite_effect, x0, y0);
 		tui_NewTcomponent = TUI_AddTcomponent_Forced(tui_NewTcomponent, reference_Name, TSprite);
 	SiNo
 		error_message_Function("TUI_AddTComponent_NewPanel()", "Its not a TUI interface");
 	FinSi
 FinFuncion
-//----[ TUI_TOCANVAS ]---------------------------------------------------------------------<#>
+//----[ TUI_TOCANVAS ]-------------------------------------------------------------------<#>
 Funcion new_canvas <- TUI_ToCanvas(tui_window)
 	Definir new_canvas, Wsize, Store_Setter Como Texto;
 	Definir Wx, Wy, index_separator Como Numero;
@@ -6205,7 +7479,7 @@ Funcion new_canvas <- TUI_ToCanvas(tui_window)
 		Wx = string_ToNum(string_substring(Wsize, 0, index_separator));
 		Wy = string_ToNum(string_substring_from(Wsize, increment(index_separator)));
 		Store_Setter = TUI_GetTProperty_Store(tui_window);
-		new_canvas = __private_canvas_DrawLinearCollection_Tcomponent(canvas_New(Wx,Wy), Wx, Wy, Store_Setter);
+		new_canvas = __private_canvas_DrawLinearCollection_Tcomponent(canvas_new(Wx,Wy), Wx, Wy, Store_Setter);
 	SiNo
 		error_message_Function("TUI_Tocanvas(tui_window)","Its not a TUI interface");
 	FinSi
@@ -6256,7 +7530,7 @@ Funcion new_canvas <- __private_Tocanvas_Bydata_soup(canvas, Cx, Cy, data_soup, 
 		i = increment(i);
 	FinMientras
 FinFuncion
-//----[ REMOVE ]---------------------------------------------------------------------<#>
+//----[ REMOVE ]-------------------------------------------------------------------<#>
 Funcion TUI_result <- TUI_RemoveTcomponent(tui_window, reference_Name) 
 	Definir TUI_result, Store_Setter, tcomponent_Element Como Texto;
 	Store_Setter = TUI_GetTProperty_Store(tui_window);
@@ -6301,7 +7575,7 @@ Funcion TUI_result <- __private_TUI_TcomponentInput_Remove_inStore(tui_window, r
 	TUI_result   = linearCollection_SetElement_ToString(tui_window, TindexFrame_Store(), Store_Setter);
 	TUI_result   = linearCollection_SetElement_ToString(TUI_result, TindexFrame_Input(), input_TUI);
 FinFuncion
-//----[ BOOLEANS ]------------------------------------------------------------------<#>
+//----[ BOOLEANS ]-----------------------------------------------------------------<#>
 Funcion Exist_input <- TUI_TFrameInput_Exist(tui_window, input_string)
 	Definir Exist_input, input_inner Como Logico;
 	input_inner = TUI_GetTProperty_Input(tui_window);
@@ -6383,7 +7657,7 @@ Funcion tcomponent_Build <- Tcomponent_AddTPropertyValue(tcomponent, value)
 	Definir tcomponent_Build Como Texto;
     tcomponent_Build = collectionSetter_AddKeyValue_ByStringForced(tcomponent, TProperty_Value(), value);
 FinFuncion
-//----[ BOOLEANS ]------------------------------------------------------------------<#>
+//----[ BOOLEANS ]-----------------------------------------------------------------<#>
 Funcion isTUI <- Tcomponent_IsTcomponent(interface_string)
 	Definir isTUI Como Logico;
 	isTUI = string_isEquals(collection_getNameCollection(interface_string), TUI_TYPE_TCOMPONENT());
@@ -6398,7 +7672,7 @@ Funcion THasInput <- Tcomponent_HasInput(tcomponent)
 	Definir THasInput Como Logico;
 	THasInput = collectionSetter_Exist_ByString(tcomponent, TProperty_Input());
 FinFuncion
-//----[ GETTERS ]---------------------------------------------------------------------<#>
+//----[ GETTERS ]-------------------------------------------------------------------<#>
 Funcion Tproperty <- Tcomponent_GetTproperty_Position(tcomponent_Element)
 	Definir Tproperty Como Texto;
 	Tproperty = linearCollection_getFirst_ToString(tcomponent_Element);
@@ -6423,7 +7697,7 @@ Funcion Tproperty <- Tcomponent_GetTproperty_Text(tcomponent_Element)
 	Definir Tproperty Como Texto;
 	Tproperty = collectionSetter_Key_GetValue_ToString(tcomponent_Element, TProperty_Text());
 FinFuncion
-//----[ SETTERS ]---------------------------------------------------------------------<#>
+//----[ SETTERS ]-------------------------------------------------------------------<#>
 Funcion New_TComponent <- Tcomponent_SetTproperty(Tcomponent, Tproperty_Component, value_string) 
 	Definir New_TComponent Como Texto;
 	New_TComponent = collectionSetter_Key_SetValue_ByString(Tcomponent, Tproperty_Component, value_string);
@@ -6501,11 +7775,11 @@ FinFuncion
 
 Funcion NewTComponent <- TComponent_NewSpriteString(string_Sprite, sprite_effect, x0, y0)
 	Definir NewTComponent, pos_panel  Como Texto;
-	si SpriteString_isSpriteValid(string_Sprite) Entonces
+	si spriteString_isSpriteValid(string_Sprite) Entonces
 		NewTComponent = __private_TComponent_ForcerdNewSpriteString(string_Sprite, sprite_effect, x0, y0);
 	SiNo
 		NewTComponent = TComponent_NewLabel("<ERROR_sprite_STRING>", x0, y0);
-		error_message_Function("TComponent_NewSpriteString(sprite, separator, x, y)", "sprite not is TYPE_SPRITESTRING() [use SpriteString_New()]");
+		error_message_Function("TComponent_NewSpriteString(sprite, separator, x, y)", "sprite not is TYPE_SPRITESTRING() [use spriteString_new()]");
 	FinSi
 FinFuncion
 
@@ -6554,7 +7828,7 @@ Funcion canvas_Result <- canvas_DrawTComponent_HorizontalRuler(canvas, Cx, Cy, T
 		x0 = string_ToNum(string_substring(pos_Thrz_ruler, 0, index_separator));
 		y0 = string_ToNum(string_substring_from(pos_Thrz_ruler, increment(index_separator)));
 		width_hr = string_ToNum(Tcomponent_GetTproperty_Value(THrzRuler));
-		canvas_Result = canvas_DrawHorizontalLine(canvas_Result, Cx, Cy, x0, y0, width_hr);
+		canvas_Result = canvas_DrawLine_Horizontal(canvas_Result, Cx, Cy, x0, y0, width_hr);
 	FinSi
 FinFuncion
 
@@ -6568,7 +7842,7 @@ Funcion canvas_Result <- canvas_DrawTComponent_VerticalRuler(canvas, Cx, Cy, TVr
 		x0 = string_ToNum(string_substring(pos_Tvrz_ruler, 0, index_separator));
 		y0 = string_ToNum(string_substring_from(pos_Tvrz_ruler, increment(index_separator)));
 		height_vrz = string_ToNum(Tcomponent_GetTproperty_Value(TVrtRuler));
-		canvas_Result = canvas_DrawVerticalLine(canvas_Result, Cx, Cy, x0, y0, height_vrz);
+		canvas_Result = canvas_DrawLine_Vertical(canvas_Result, Cx, Cy, x0, y0, height_vrz);
 	FinSi
 FinFuncion
 
@@ -6601,7 +7875,7 @@ Funcion canvas_Result <- canvas_DrawTComponent_SpriteString(canvas, Cx, Cy, TSpr
 		y0 = string_ToNum(string_substring_from(pos_TSprite, increment(index_separator)));
 		SpriteString = Tcomponent_GetTproperty_Text(TSprite);
 		sprite_Effect = Tcomponent_GetTproperty_Value(TSprite);
-		canvas_Result = __private_canvas_DrawSpriteString_sprite_effect(canvas, Cx, Cy, SpriteString, x0, y0, pixel_clear(), sprite_Effect);
+		canvas_Result = __private_canvas_DrawspriteString_sprite_effect(canvas, Cx, Cy, SpriteString, x0, y0, pixel_clear(), sprite_Effect);
 	FinSi
 FinFuncion
 
@@ -6693,7 +7967,7 @@ FinFuncion
 ///%%%%%[ VEC ]%%%%%%%%%%%%%%%%%%%%%%[   #+6  ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // ------------------- NULL FunctionS
 ///%%%%%[ ASCCI/HASH ]%%%%%%%%%%%%%%%[   #+7  ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-//----[ PARSE ]---------------------------------------------------------------------<#>
+//----[ PARSE ]-------------------------------------------------------------------<#>
 Funcion char <- ascii_char(code)
 	Definir i Como Numero;
 	Definir char Como Texto;
@@ -6761,7 +8035,7 @@ Funcion hash <- ascii_hash_DBJ2(result_string)
 		hash = (hash * 33) + ascii_ord( char_At(result_string, i) );
 	FinPara
 FinFuncion
-//----[ GETTERS ]---------------------------------------------------------------------<#>
+//----[ GETTERS ]-------------------------------------------------------------------<#>
 Funcion ascii_codeCategory <- ascii_getOffSet_Category(index)
 	Definir ascii_codeCategory Como Numero;
 	segun index Hacer
@@ -6889,7 +8163,7 @@ Funcion message_duration(struct_localTime)
 	time_message  = Color_setColorText("::: execution time ::: format(hh:mm:ss) ::: ", COLOR_BLUE());
 	println(string_append(time_message, time_Total));
 FinFuncion
-//FALTA TESTEO Y ADAPTARLO A CARACTERES MINIMOS DE LONGITUD (30 MAX)
+
 Algoritmo run_code
 	Definir duration_Timer, localTime_Start, localTime_End  Como Texto;
 	localTime_Start = localTime_Now();

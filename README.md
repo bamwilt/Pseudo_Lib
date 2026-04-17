@@ -34,10 +34,10 @@ PseudoLib es una infraestructura integral de pseudo-código desarrollada para PSe
 //1--COLOR  ·  ·  ·  ·  ·  ·  · #9  				COLOR_     				[P]
 //1--TEMPORAL\CHRONO_UNIT ·  ·	#+0					localDate_time_			[+]
 //1    \--LOCALTIME  ·  ·  ·  · -+0_1				localTime_				[+]
-//1    \--LOCALDATE  ·  ·  ·  · -+0_2				localDate_				[P]
-//1    \--LOCALDATE_TIME·  ·  ·	-+0_3				localDate_time_			[P]
+//1    \--LOCALDATE  ·  ·  ·  · -+0_2				localDate_				[+]
+//1    \--LOCALDATE_TIME·  ·  ·	-+0_3				localDate_time_			[+]
 //1--DURATION  ·  ·  ·  ·  ·  · -+0_4				duration_				[+]	
-//1--PERIOD ·  ·  ·  ·  ·  ·  · -+0_5				period_  				[P]
+//1--PERIOD ·  ·  ·  ·  ·  ·  · -+0_5				period_  				[+]
 //1--VALUE  ·  ·  ·  ·  ·  ·  · #+1				    value_					[+]
 //1--UTIL   ·  ·  ·  ·  ·  ·  · /// 			 	...						[+] 
 //1    \--COLLECTION ·  ·  ·  · #+2				    collection_				[+]
@@ -63,14 +63,14 @@ PseudoLib es una infraestructura integral de pseudo-código desarrollada para PSe
 //[P]: stable (Pending additions)
 //[X]: Unusable / undeveloped state
 //Pseint --version 2023
-//LINES_CODE: ~7300
+//LINES_CODE: ~8000
 ```
 ---
 
 ## Próximamente / En desarrollo
 
 - Algoritmos de ordenamiento de arreglos compatibles con la estructura String  
-- soperte para color 2D (y graficos simples 3D?)  
+- mejora de setters 
 - Vectores Cruz y Punto a partir de Cadenas y arreglos  
 
 > la mayoria de cosas complejas se manejan mediante asignaciones y texto
