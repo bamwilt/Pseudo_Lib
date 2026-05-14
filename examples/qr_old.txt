@@ -1,0 +1,158 @@
+
+Funcion Test_Qr 
+	Definir canvas Como Texto;
+	Definir length_pixel Como Entero;
+	canvas = Qr_getBase(1, 1);
+	length_pixel = 2;
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*10, 1, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*13, 1, pixel_Qr_Plain());
+	
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*12, 2, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*9, 2, pixel_Qr_Plain());
+	
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*10, 3, pixel_Qr_Plain());
+	
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*12, 4, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*9, 4, pixel_Qr_Plain());
+	
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*11, 5, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*12, 5, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*13, 5, pixel_Qr_Plain());
+	
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*9, 6, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*10, 6, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*11, 6, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*13, 6, pixel_Qr_Plain());
+	
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*11, 8, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*12, 8, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*13, 8, pixel_Qr_Plain());
+	
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*1, 9, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*2, 9, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*3, 9, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*4, 9, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*5, 9, pixel_Qr_Plain());
+	
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*8, 9, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*9, 9, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*10, 9, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*13, 9, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*14, 9, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*16, 9, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*18, 9, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*20, 9, pixel_Qr_Plain());
+	
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*1,  10, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*2,  10, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*3,  10, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*4,  10, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*5,  10, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*8,  10, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*10, 10, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*13, 10, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*14, 10, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*15, 10, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*16, 10, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*17, 10, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*18, 10, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*19, 10, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*21, 10, pixel_Qr_Plain());
+	
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*1,  11, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*4,  11, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*9,  11, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*12, 11, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*14, 11, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*15, 11, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*18, 11, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*19, 11, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*20, 11, pixel_Qr_Plain());
+	
+	
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*5,  12, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*9,  12, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*11, 12, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*14, 12, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*17, 12, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*18, 12, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*19, 12, pixel_Qr_Plain());
+	
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*1,  13, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*2,  13, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*4, 13, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*5, 13, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*6, 13, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*8, 13, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*10, 13, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*11, 13, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*12, 13, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*14, 13, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*15, 13, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*21, 13, pixel_Qr_Plain());
+	
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*9, 14, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*11, 14, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*13, 14, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*18, 14, pixel_Qr_Plain());
+	
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*10,  15, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*13, 15, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*15, 15, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*19, 15, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*20, 15, pixel_Qr_Plain());
+	
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*10, 16, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*11, 16, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*12, 16, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*13, 16, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*14, 16, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*16, 16, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*18, 16, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*19, 16, pixel_Qr_Plain());
+	
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*9, 17, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*13, 17, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*15, 17, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*16, 17, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*20, 17, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*21, 17, pixel_Qr_Plain());
+	
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*9, 18, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*10, 18, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*14, 18, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*15, 18, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*16, 18, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*17, 18, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*18, 18, pixel_Qr_Plain());
+	
+	
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*9, 19, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*10, 19, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*11, 19, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*13, 19, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*16, 19, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*19, 19, pixel_Qr_Plain());
+	
+	
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*9, 20, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*10, 20, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*13, 20, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*14, 20, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*17, 20, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*18, 20, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*19, 20, pixel_Qr_Plain());
+	
+	
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*9, 21, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*10, 21, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*11, 21, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*12, 21, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*13, 21, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*15, 21, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*17, 21, pixel_Qr_Plain());
+	canvas = canvas_DrawPoint_withPixel(canvas, 46, 23, length_pixel*20, 21, pixel_Qr_Plain());
+	
+	canvas_display_monoColor(canvas, 46, 23, COLOR_WHITE());
+FinFuncion
+

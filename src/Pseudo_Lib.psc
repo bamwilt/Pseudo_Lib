@@ -1,4 +1,4 @@
-///%%%%%[ MAIN ]%%%%%%%%[ #0 ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+///%%%%%[ MAIN.................... ]%%%%%%%[    #0     ]%%%%%%%%%%%%%%%%%%
 
 
 Funcion main
@@ -6,90 +6,102 @@ Funcion main
 FinFuncion
 
 
-///%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% [ PSeInt-Toolkit ] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-//LIB !0 >> SEARCH: Ctrl+F   >> LIBRARIES:  
-//--------------------------------------------------------------------------------------
-//    NAME	       /		CODE_SEARCH 		/      USE			/      STATE	   
-//--------------------------------------------------------------------------------------
-//1--INPUT  ·  ·  ·  ·  ·  ·  · #1 					user_input_				[+]
-//1--STRING ·  ·  ·  ·  ·  ·  · #2  			 	string_					[+]
-//1--ARRAY  ·  ·  ·  ·  ·  ·  · #3  				array_					[P]
-//1--PRINTERS  ·  ·  ·  ·  ·  · #4 		        	print_ : prinln_ 		[P]
-//1    \--sleep   ·  ·  ·  ·  · ++4_1				sleep_					[+]
-//1    \--LOGS ·  ·  ·  ·  ·  · ++4_2				Log_					[+]
-//1    \--TEST ·  ·  ·  ·  ·  · ++4_3				Test_					[+]
-//1--INT ·  ·  ·  ·  ·  ·  ·  · #5  				int_					[+]
-//1    \--BINARY_STRING ·  ·  ·	++5					binarystring_			[+]
-//1--MATH   ·  ·  ·  ·  ·  ·  ·	#6 				 	math_					[+]
-//1--BOOLEAN   ·  ·  ·  ·  ·  ·	#7 					 ...					[+]
-//1--CONDITIONS   ·  ·  ·  ·  ·	#8    	 			if_ : condition_		[+]
-//1--COLOR  ·  ·  ·  ·  ·  ·  · #9  				COLOR_     				[P]
-//1--TEMPORAL\CHRONO_UNIT ·  ·	#+0					localDate_time_			[+]
-//1    \--LOCALTIME  ·  ·  ·  · -+0_1				localTime_				[+]
-//1    \--LOCALDATE  ·  ·  ·  · -+0_2				localDate_				[+]
-//1    \--LOCALDATE_TIME·  ·  ·	-+0_3				localDate_time_			[+]
-//1--DURATION  ·  ·  ·  ·  ·  · -+0_4				duration_				[+]	
-//1--PERIOD ·  ·  ·  ·  ·  ·  · -+0_5				period_  				[+]
-//1--VALUE  ·  ·  ·  ·  ·  ·  · #+1				    value_					[+]
-//1--UTIL   ·  ·  ·  ·  ·  ·  · /// 			 	...						[+] 
-//1    \--COLLECTION ·  ·  ·  · #+2				    collection_				[+]
-//1      \--LINEAR_COLLECTION ·	-+2_1		    	linearCollection_		[+]
-//1    	   \--DEQUE  ·  ·  ·  · -+2_2				util_Deque_				[+]
-//1    	   \--QUEUE  ·  ·  ·  ·	-+2_3				util_Queue_				[+]
-//1    	   \--STACK  ·  ·  ·  ·	-+2_4				util_Stack				[+]
-//1        \--LIST   ·  ·  ·  ·	-+2_5				util_List_				[+]
-//1        \--COLLECTION_SETTER -+2_6				collectionSetter_		[+]
-//1    			\--SET  ·  ·  ·	-+2_7				util_Set_				[+]
-//1 			\--MAP  ·  ·  ·	-+2_8				util_Map_				[+]
-//1--OBJECT ·  ·  ·  ·  ·  ·  ·	#+3   			 	object_					[+]
-//1--CANVAS ·  ·  ·  ·  ·  ·  ·	#+4  			 	canvas_					[+]
-//1    \--SPRITE  ·  ·  ·  ·  ·	-+4_1  			 	sprite_					[+]
-//1--TUI ·  ·  ·  ·  ·  ·  ·  · #+5  				TUI_					[+]
-//1    \--TCOMPONENT ·  ·  ·  ·	-+5_1  			 	Tcomponent_				[+]
-//1--VEC 	   ·  ·  ·  ·  ·  · #+6   				VEC_					[X]
-//1--ASCCI/HASH   ·  ·  ·  ·  · #+7   				ascii_					[+]
-//1-- END_CODE ++0
-//¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
-//[+]: Stable
-//[D]: Current Development (Unusable temporaly)
-//[P]: stable (Pending additions)
-//[X]: Unusable / undeveloped state
-//Pseint --version 2023
-//LINES_CODE: ~8000
-//______________________________________________________________________________________
-// TYPE			 /		TYPE_PSEINT
-//--------------------------------------------------------------------------------------
-// String 		= 	Texto, Caracter 
-// Int 			= 	Numero, Numerico, Entero 
-// Float 		= 	Real 
-// Boolean 		= 	Logico 
-// | 			=  	|| 
-// & 			= 	&&
-// return 		= var+FinFuncion(@retorna el estado final que quedo var en la Funcion)
-// Symbols_Extra:
-//  ¡ ¢ £ ¤ ¥ ¦ § ¨ © ª « ~ ­® ¯ ° ± ² ³ ´ µ ¶ · ¸ ¹ º » ¼ ½ ¾ ¿ À Á Â Ã Ä Å Æ Ç È É 
-// Ê Ë Ì Í Î Ï Ð Ò Ó Ô Õ Ö × Ø Ù Ú Û Ü Ý Þ ß à á â ã ä å æ ç è é é ê ë ì í î ï ð ñ ò ó 
-// ô õ ö ÷ ø ù ú ü ý þ ÿ ñ Ñ
-//----[ TASK ]----------------------------------------------------------------------<#>
-// metodos: array_sort, Array_reverse, array_filter, Runnable(opcional para el #+8)
+///%%%%%[ Pseudo_lib v 0.8.5 ]%%%%%%%%%%%%%%[    !1     ]%%%%%%%%%%%%%%%%%%
+//________________________________________________________________________
+//:: TABLE MODULES / CODE_SEARCH: Ctrl+F / year:2026 / © Bryan.A.M.Wilt ::
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//::::: [ #0 / MAIN ] :: [ !1 TABLE MODULES ] :: [ ##0 / END CODE ] ::::::
+//________________________________________________________________________
+//  CODE  ::        NAME MODULE         ::         USE           :: STATE
+//------------------------------------------------------------------------
+//  #INP  ::  INPUT                     ::  user_input_          ::  [+]
+//  #STR  ::  STRING                    ::  string_              ::  [+]
+//  #ARR  ::  ARRAY                     ::  array_               ::  [p]
+//  #PRN  ::  PRINTERS                  ::  print_ : prinln_     ::  [p]
+//  #SLP  ::  SLEEP                     ::  sleep_               ::  [+]
+//  #LOG  ::  LOGS                      ::  log_                 ::  [+]
+//  #TST  ::  TEST                      ::  test_                ::  [+]
+//  #INT  ::  INT                       ::  int_                 ::  [+]
+//  #BST  ::  BINARY_STRING             ::  binarystring_        ::  [+]
+//  #MTH  ::  MATH                      ::  math_                ::  [+]
+//  #BLN  ::  BOOLEAN                   ::  boolean_             ::  [+]
+//  #CDT  ::  CONDITIONS                ::  if_ : condition_     ::  [+]
+//  #COL  ::  COLOR                     ::  COLOR_               ::  [+]
+//  #VAL  ::  VALUE                     ::  value_               ::  [+]
+//  #CLL  ::  COLLECTION                ::  collection_          ::  [+]
+//  #MDA  ::  MANAGET_DATA              ::  managerData_         ::  [+]
+//  #LCL  ::  LINEAR_COLLECTION         ::  linearCollection_    ::  [+]
+//  #DEQ  ::  DEQUE                     ::  util_deque_          ::  [+]
+//  #QUE  ::  QUEUE                     ::  util_queue_          ::  [+]
+//  #STA  ::  STACK                     ::  util_stack_          ::  [+]
+//  #TMP  ::  TEMPORAL\CHRONO_UNIT      ::  localDate_time_      ::  [+]
+//  #LDA  ::  LOCALDATE                 ::  localDate_           ::  [+]
+//  #LTI  ::  LOCALTIME                 ::  localTime_           ::  [+]
+//  #LDT  ::  LOCALDATE_TIME            ::  localDate_time_      ::  [+]
+//  #DUR  ::  DURATION                  ::  duration_            ::  [+]
+//  #PER  ::  PERIOD                    ::  period_              ::  [+]
+//  #LIS  ::  LIST                      ::  util_List_           ::  [+]
+//  #CST  ::  COLLECTION_STORAGE        ::  collectionStorage_   ::  [+]
+//  #CCE  ::  CELLS_COLLECTION          ::  collectionCells_     ::  [+]
+//  #CCD  ::  CELLS_COLLECTION_DYNAMIC  ::  ...nCells_Dynamic_   ::  [+]
+//  #CCS  ::  CELLS_COLLECTION_SETTER   ::  ...nCells_Setter_    ::  [+]
+//  #SET  ::  SET                       ::  util_set_            ::  [+]
+//  #CDC  ::  COLLECTION_DUAL_CELLS     ::  collectionDualCell_  ::  [+]
+//  #CSC  ::  COLLECTION_STORAGE_CELLS  ::  collStorageCells_    ::  [p]
+//  #MAP  ::  MAP                       ::  util_map_            ::  [+]
+//  #OBJ  ::  OBJECTS                   ::  object_              ::  [+]
+//  #CAN  ::  CANVAS                    ::  canvas_              ::  [+]
+//  #SPR  ::  SPRITE                    ::  sprite_              ::  [+]
+//  #TUI  ::  TUI                       ::  tui_                 ::  [+]
+//  #TCO  ::  TCOMPONENT                ::  tComponent_          ::  [+]
+//  #VEC  ::  VEC                       ::  vec_                 ::  [x]
+//  #ASC  ::  ASCCI/HASH                ::  ascii_               ::  [+]
+//------------------------------------------------------------------------
+//:::: LINES_CODE: ~9600 ::: 41 MODULES ::: ( Pseint / version.2023 ) ::::
+//________________________________________________________________________
+//:::::::::::::::::::::::::: ( STATE MEANING ) :::::::::::::::::::::::::::
+//------------------------------------------------------------------------
+//  [+]: Stable                                                        
+//  [D]: Current Development (Unusable temporaly)                      
+//  [p]: stable (Pending additions)                                    
+//  [x]: Unusable / undeveloped state                                  
+//________________________________________________________________________
+//    TYPE   ::::     TYPE_PSEINT     
+//------------------------------------------------------------------------
+//    String  =  Texto, Caracter 
+//    Int     =  Entero, Numero, Numerico 
+//    Float   =  Real, Numero
+//   Boolean =  Logico 
+//     | 	   =  || 
+//     & 	   =  &&
+//  return  = var <- FinFuncion(returns var at the end of the function)
+//________________________________________________________________________
+//::::::::::::::::::::: ( EXTENDED SYMBOLS SPANISH ) :::::::::::::::::::::
+//------------------------------------------------------------------------
+//  ¡ ¢ £ ¤ ¥ ¦ § ¨ © ª « ~ ­® ¯ ° ± ² ³ ´ µ ¶ · ¸ ¹ º » ¼ ½ ¾ ¿ À Á Â
+// 
+// Ã Ä Å Æ Ç È É Ê Ë Ì Í Î Ï Ð Ò Ó Ô Õ Ö × Ø Ù Ú Û Ü Ý Þ ß à á â ã ä å æ 
+// 
+// ç è é é ê ë ì í î ï ð ñ ò ó ô õ ö ÷ ø ù ú ü ý þ ÿ ñ Ñ
+//________________________________________________________________________
+//::::::::::::::::::::::::::: ( TO-DO LIST ) :::::::::::::::::::::::::::::
+//------------------------------------------------------------------------
+// cell revisar revisar el ascii de simbolos basicos (Basic)
+// metodos: array_sort, Array_reverse, array_filter, Runnable(opcional)
 // contains_IgnoreCase, posible agregado de mas componentes (opcional)
-// mejorar print progress con soporte para color y color transparente, print color 
-// <TODO: Actualizar con Index_FromIndex> __private_string_occurrences_general
+// print color 
+// <TODO: update con Index_FromIndex> __private_string_occurrences_general
 // <TODO: Agregar un CompareTo para cadenas > String
 // <TODO: Eliminar o modifcar las animacion para hacerlas utiles > sleep
 // <TODO: Mejorar lectura o dejarlo Como esta>  math_ Serie de Taylor
-// <TODO: agregar hasColor y RemoveColor >  Color
-// <TODO: agregar soporte para monocolor y agregar Como maquina de escritura (Hell_ luego Hello)>  
-//	en print_progress_formater()
-//--------------------------------------------------------------------------------------
-//   .============================.		___						:::::::::          :::::
-//   |   Bryan.A.M.Wilt   © 2026 |				::::::::::::::
-//   '==========================='   ::::::::			___	       -----      ::::::::::
-//--------------------------------------------------------------------------------------
-//................../* You are not expected to understand this */.....................//
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% [ START FUNCTIONS ] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-///%%%%%[ INPUT ]%%%%%%%%%%%%%%%%%%%%[   #1   ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-//----[ PRIMITIVE ]-----------------------------------------------------------------<#>
+// <TODO: agregar hasColor y DeleteColor >  Color
+// <TODO: agregar soporte para monocolor y agregar Como maquina de 
+//        escritura (Hell_ luego Hello)>  en print_progress_formater()
+//________________________________________________________________________
+//::::::::::::::[ You are not expected to understand this ]:::::::::::::::
+//------------------------------------------------------------------------
+///%%%%%[ INPUT................... ]%%%%%%%[   #INP    ]%%%%%%%%%%%%%%%%%%
+//----[ PRIMITIVE ]--------------------------------------------------<#>
 Funcion user_input <- user_input_String
 	Definir user_input Como Texto;
 	Leer user_input;
@@ -117,7 +129,7 @@ FinFuncion
 Funcion user_input_wait
 	Esperar Tecla;
 FinFuncion
-//----[ OPTIONS ]-------------------------------------------------------------------<#>
+//----[ OPTIONS ]----------------------------------------------------<#>
 Funcion user_input <- user_input_options_message(options_text, message, TYPE)
 	Segun TYPE Hacer
 		caso TYPE_BOOLEAN(): Definir user_input Como Logico;
@@ -177,10 +189,10 @@ Funcion user_input <- __private_user_input_options_separator(user_input_obtained
 		caso TYPE_FLOAT(): Definir user_input Como Real;
 		De Otro Modo: Definir user_input Como Texto;
 	FinSegun
-	user_input = value_Parser_StringToType(user_input_obtained, TYPE);
+	user_input = value_stringToType(user_input_obtained, TYPE);
 FinFuncion
-///%%%%%[ STRING ]%%%%%%%%%%%%%%%%%%%%[   #2   ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-//----[ APPENDS ]-------------------------------------------------------------------<#>
+///%%%%%[ STRING.................. ]%%%%%%%[   #STR    ]%%%%%%%%%%%%%%%%%%
+//----[ APPENDS ]----------------------------------------------------<#>
 Funcion result <- string_append_withSeparator(str1, str2, separator)
 	Definir result Como Texto;
 	result = str1+separator+str2+"";
@@ -211,7 +223,7 @@ Funcion text_Color <- string_append_in_separators(text, text_append, separator)
     FinMientras
     text_Color = string_append(text_Color, text);
 FinFuncion
-//----[ STRING_PARSE ]---------------------------------------------------------------<#>
+//----[ STRING_PARSE ]--------------------------------------------------------------<#>
 Funcion boolean <- string_toBoolean(result_string)
 	Definir boolean Como Logico;
 	boolean = string_isBoolean_true(result_string);
@@ -227,7 +239,7 @@ Funcion value_StringHash <- string_toHashText(value_String)
 	Definir value_StringHash Como Texto;
 	value_StringHash = num_ToString(ascii_hash_Mini_DBJ2(value_String));
 FinFuncion
-//----[ LENGTH ]-------------------------------------------------------------------<#>
+//----[ LENGTH ]----------------------------------------------------<#>
 Funcion num <- string_Length(text)
 	Definir num Como Numero;
 	num = Longitud(text);// --- native
@@ -237,7 +249,7 @@ Funcion length_String <- string_Length_ToString(text)
 	Definir length_String Como Texto;
 	length_String = num_ToString(string_Length(text));
 FinFuncion
-//----[ INSERT ]-------------------------------------------------------------------<#>
+//----[ INSERT ]----------------------------------------------------<#>
 Funcion result_string <- string_insert(text, text_insert, index)
 	Definir result_string Como Texto;
 	result_string=__private_string_insert_general(text, text_insert, index, false);
@@ -254,17 +266,12 @@ Funcion result_string <- string_insert_from_End(text, text_insert)
 FinFuncion
 
 Funcion result_string <- __private_string_insert_general(text, text_insert, index, isReplace)
-	Definir result_string, before, after, fragments Como Texto;
+	Definir result_string, before, after Como Texto;
 	Definir index_after Como Numero;
-	Dimension text_Union(3);
-	Dimension fragments[3];// ...join
-	before			= string_substring_from_start(text, index);
-	index_after		= index+if_else(isReplace, string_Length(text_insert), 0, TYPE_INT());
-	after			= string_substring_from(text, math_min_int(index_after, string_Length(text)));
-	fragments[0]	= before;
-	fragments[1]	= text_insert;
-	fragments[2]	= after;
-	result_string	= array_ofstring_separator(fragments, 3, "", TYPE_STRING());
+	before        = string_substring_from_start(text, index);
+	index_after   = increment_step(index, if_else(isReplace, string_Length(text_insert), 0, TYPE_INT()));
+	after         = string_substring_from(text, math_min_int(index_after, string_Length(text)));
+	result_string = string_append_withSeparator(before, after, text_insert);
 FinFuncion
 
 Funcion result_string <- string_pad_start(text, text_pad)
@@ -274,11 +281,11 @@ FinFuncion
 
 Funcion result_string <- string_fit(text, text_pad)
 	Definir result_string Como Texto;
-	Definir text_length, pad_length, start_position Como Entero;
+	Definir text_length, pad_length, start_positionition Como Entero;
 	text_length		= string_Length(text);
 	pad_length		= string_Length(text_pad);
-	start_position	= math_max_Int(decrement_step(pad_length, text_length), 0);
-	result_string	= string_insert(text, string_substring(text_pad, 0, start_position), 0);
+	start_positionition	= math_max_Int(decrement_step(pad_length, text_length), 0);
+	result_string	= string_insert(text, string_substring(text_pad, 0, start_positionition), 0);
 	result_string	= string_substring(result_string, 0, pad_length);
 FinFuncion
 
@@ -290,19 +297,32 @@ Funcion result_string <-  string_fit_end(text, text_pad)
 FinFuncion
 
 Funcion result_string <- string_repeatText(text, repeats)
-    Definir i Como Numero;
-    Definir result_string Como Texto;
-    result_string = "";
-    Para i = 1 Hasta repeats Con Paso 1 Hacer
-        result_string = string_append(result_string, text);
-    FinPara
+	Definir result_string Como Texto;
+	Definir current_repeats, next_repeats, missing_repeats, text_length Como Entero;
+	si number_isEquals(repeats, 0) Entonces
+		result_string = "";
+	SiNo
+		result_string = text;
+		current_repeats = 1;
+		text_length = String_length(text);
+		next_repeats = increment_step(current_repeats, current_repeats);
+		Mientras next_repeats <= repeats Hacer
+			result_string = string_append(result_string, result_string);
+			current_repeats = next_repeats;
+			next_repeats = increment_step(current_repeats, current_repeats);
+		FinMientras
+		si current_repeats < repeats Entonces
+			missing_repeats = decrement_step(repeats, current_repeats);
+			result_string = string_append(result_string, String_subString(result_string, 0, (missing_repeats * text_length)));
+		FinSi
+	FinSi
 FinFuncion
-//----[ DELETE ]-------------------------------------------------------------------<#>
+//----[ DELETE ]---------------------------------------------------------------------<#>
 Funcion result_str <- string_Delete(text, start, end)
 	Definir result_str, start_Str, end_Str Como Texto;//Hello World (5, 8)
 	message_validateIndexRange("string_Delete", text, start, end);
 	start_Str = string_substring_from_start(text, start);//Hello <-]
-	end_Str = string_substring_from(text, end);//[->rld  
+	end_Str = string_substring_from(text, end);//.->rld  
 	result_str = string_append(start_Str, end_Str);//Hello+rld = Hellorld
 FinFuncion
 
@@ -310,7 +330,7 @@ Funcion result_str <- string_Delete_From(text, start)
 	Definir result_str Como Texto;
 	result_str = string_Delete(text, start, string_Length(text));
 FinFuncion
-//----[ REMPLACE ]-----------------------------------------------------------------<#>
+//----[ REMPLACE ]----------------------------------------------------<#>
 Funcion result <- string_replace(text, text_match, text_Replace)
 	Definir result, text_Current Como Texto;
 	Definir index, match_length, index_end Como Numero;//Hello World, "o", "X" = HellX World
@@ -419,7 +439,7 @@ Funcion result_string <- string_ToLowerCase(text)
 	Definir result_string Como Texto;
 	result_string = Minusculas(text);
 FinFuncion
-//----[ REVERSE ]-------------------------------------------------------------------<#>
+//----[ REVERSE ]----------------------------------------------------<#>
 Funcion text_Reverse <- string_TextReverse_Caracters(text, array_Carathers, array_size)
     Definir text_Reverse, array_symbol, Char_Current Como Texto;
     Definir i, j, indexText Como Numero;
@@ -476,7 +496,7 @@ Funcion inverted_text <- string_ReverseSeparatedValues(text, separator)
         i = decrement(i);
     FinMientras
 FinFuncion
-//----[ SUBSTRING ]-----------------------------------------------------------------<#>
+//----[ SUBSTRING ]----------------------------------------------------<#>
 Funcion strSubs <- __private_PSEINT_SUBCADENA(result_string, start, end)
 	Definir strSubs Como Texto;
 	strSubs = subcadena(result_string, start, end);
@@ -485,7 +505,7 @@ FinFuncion
 Funcion strSubs <- string_substring(result_string, start, end)
 	Definir strSubs Como Texto;
 	message_validateIndexRange("string_substring", result_string, start, end);
-	strSubs = if_else(Num_isEquals(start, end), "", __private_PSEINT_SUBCADENA(result_string, start, math_max_int(end-1, 0)), TYPE_STRING());
+	strSubs = if_else(number_isEquals(start, end), "", __private_PSEINT_SUBCADENA(result_string, start, math_max_int(end-1, 0)), TYPE_STRING());
 FinFuncion
 
 Funcion strSubs <- string_substring_from(result_string, start)
@@ -509,25 +529,7 @@ Funcion result_string <- char_At(text, index)
 	Definir result_string Como Texto;
 	result_string = string_substring(text, index, math_min_int(increment(index), string_Length(text)));
 FinFuncion
-
-Funcion result_String <- string_GetLeadingLetters(text_input)
-    Definir result_String, Char_Current Como Texto;
-    Definir i, length_Text Como Numero;
-    i = 0;
-    result_String = "";
-    length_Text = string_Length(text_input);
-    Si length_Text > 0 Entonces
-        Char_Current = char_At(text_input, i);
-        Mientras i < length_Text & ascii_IsLetters(Char_Current) Hacer
-            result_String = string_append(result_String, Char_Current);
-            i = increment(i);
-            Si i < length_Text Entonces
-                Char_Current = char_At(text_input, i);
-            FinSi
-        FinMientras
-    FinSi
-FinFuncion
-//----[ INDEX ]-------------------------------------------------------------------<#>
+//----[ INDEX ]----------------------------------------------------<#>
 Funcion result <- string_indexOf(text, text_match)// --- >
 	Definir result Como Numero;
 	result = string_indexOf_fromIndex(text, text_match, 0);
@@ -540,7 +542,7 @@ Funcion index <- string_indexOf_fromIndex(text, match, index_Start)
     match_length = string_Length(match);
 	i = math_max_Int(index_Start, 0);
 	index_end = string_Length(text) - match_length;
-	Mientras index_end >= i & Num_isEquals(index, -1) Hacer
+	Mientras index_end >= i & number_isEquals(index, -1) Hacer
 		Si string_isEquals(match, string_substring(text, i, i+match_length)) Entonces
 			index = i;
 			i = index_end + 1;
@@ -562,7 +564,7 @@ Funcion index <- string_LastindexOf_fromIndex(text, match, index_Start)
     match_length = string_Length(match);
 	i = math_max_Int(index_Start, match_length);
 	index_end = match_length;
-	Mientras index_end <= i & Num_isEquals(index, -1) Hacer
+	Mientras index_end <= i & number_isEquals(index, -1) Hacer
 		Si string_isEquals(match, string_substring(text, i-match_length, i)) Entonces
 			index = i-match_length;
 			i = -1;
@@ -598,28 +600,18 @@ Funcion index <- string_indexOf_fromIndex_KMP(text, text_pattern, index_Start)
         LPS[i] = len;
     FinPara
 	
-	condition = !Num_isEquals(j, pattern_length);
+	condition = !number_isEquals(j, pattern_length);
 	i = math_rangeLimit_Int(index_Start, 0, text_length);
 	
 	Mientras condition hacer 
 		equalsChar = string_isEquals(pattern[j], char_At(text, i));
 		j = if_else(equalsChar, increment(j), if_else(j<>0, LPS[math_max_Int(j-1, 0)], j, TYPE_INT()), TYPE_INT());
 		i = if_else(equalsChar, increment(i), if_else(j<>0, i, increment(i), TYPE_INT()), TYPE_INT());
-		condition = !Num_isEquals(j, pattern_length) & i<=text_length;
+		condition = !number_isEquals(j, pattern_length) & i<=text_length;
 	FinMientras
 	index=if(equalsChar, i-j, TYPE_INT());
 FinFuncion
-//----[ OCURRENCES ]-----------------------------------------------------------------<#>
-Funcion result <- string_occurrences(text, text_match)
-	Definir result Como Numero;
-	result = __private_string_occurrences_general(text, text_match, false);
-FinFuncion
-
-Funcion result <- string_occurrences_overlap(text, text_match)
-	Definir result Como Numero;
-	result = __private_string_occurrences_general(text, text_match, true);
-FinFuncion
-
+//----[ OCURRENCES ]----------------------------------------------------<#>
 Funcion result <- __private_string_occurrences_general(text, text_match, isOverLap)
 	Definir result, count, index, progress_sum Como Numero;
 	Definir text_Current Como Texto;
@@ -633,7 +625,17 @@ Funcion result <- __private_string_occurrences_general(text, text_match, isOverL
 	FinMientras 
 	result = count;
 FinFuncion
-//---[ COVERSIONS ]-----------------------------------------------------------------<#>
+
+Funcion result <- string_occurrences(text, text_match)
+	Definir result Como Numero;
+	result = __private_string_occurrences_general(text, text_match, false);
+FinFuncion
+
+Funcion result <- string_occurrences_overlap(text, text_match)
+	Definir result Como Numero;
+	result = __private_string_occurrences_general(text, text_match, true);
+FinFuncion
+//---[ COVERSIONS ]----------------------------------------------------<#>
 Funcion result_string <- object_ToString(object_str, TYPE)
 	Definir result_string Como Texto;
 	Definir object_isValid Como Logico;
@@ -641,8 +643,8 @@ Funcion result_string <- object_ToString(object_str, TYPE)
 	si object_isValid Entonces
 		result_string = object_str;
 	SiNo
-		result_string = object_New(TYPE);
-		error_message_Function("object_ToString", string_append_withSeparator(TYPE, object_str, " // type no valid >> "));
+		result_string = object_new(TYPE);
+		error_message_Function("object_ToString", string_append_withSeparator(TYPE, object_str, " // type no valid .        . "));
 	FinSi
 FinFuncion
 
@@ -666,7 +668,7 @@ Funcion result_string <- num_ToString(num)
 	Definir result_string Como Texto;
 	result_string = ConvertirATexto(num);
 FinFuncion
-//----[ COUNTMATCH ]-----------------------------------------------------------------<#>
+//----[ COUNTMATCH ]----------------------------------------------------<#>
 Funcion count <- string_countMatches(text, text_matcher)
 	Definir count Como Numero;
 	count =	__private_string_countMatches_general(text, text_matcher, false);
@@ -688,7 +690,7 @@ Funcion count <- __private_string_countMatches_general(text, text_matcher, isOve
 		index = string_indexOf_fromIndex(text, text_matcher, length_Match);
 	FinMientras
 FinFuncion
-//----[ IS_TYPE ]-------------------------------------------------------------------<#>
+//----[ IS_TYPE ]----------------------------------------------------<#>
 Funcion boolean <- string_isNumber(text)
 	Definir boolean Como Logico;
 	boolean = string_isNumber_int(text) O string_isNumber_float(text);
@@ -732,7 +734,7 @@ Funcion boolean <- string_isBoolean_false(text)
 	boolean = false;
 	text = string_ToLowerCase(text);
 	index = 0;
-	Mientras !boolean & !string_isEquals(array_string_Booleans_False(index), string_Null()) hacer 
+	Mientras !boolean & !string_isEquals(array_string_Booleans_False(index), string_NULL()) hacer 
 		boolean = string_isEquals(text, array_string_Booleans_False(index));
 		index = increment(index);
 	FinMientras
@@ -744,12 +746,12 @@ Funcion boolean <- string_isBoolean_true(text)
 	boolean = false;
 	text = string_ToLowerCase(text);
 	index = 0;
-	Mientras !boolean & !string_isEquals(array_string_Booleans_True(index), string_Null()) hacer 
+	Mientras !boolean & !string_isEquals(array_string_Booleans_True(index), string_NULL()) hacer 
 		boolean = string_isEquals(text, array_string_Booleans_True(index));
 		index = increment(index);
 	FinMientras
 FinFuncion
-//----[ CONSTAINS ]-----------------------------------------------------------------<#>
+//----[ CONSTAINS ]----------------------------------------------------<#>
 Funcion boolean <- string_Contains(text, text_match)
 	Definir boolean Como Logico;
 	boolean = string_indexOf(text, text_match) > -1;
@@ -782,7 +784,7 @@ Funcion found <- string_Struct_Contains(text_search, string_struct, separator)
 		startIndex = increment(endIndex);
 	FinMientras
 FinFuncion
-//----[ STATE ]-------------------------------------------------------------------<#>
+//----[ STATE ]----------------------------------------------------<#>
 Funcion boolean <- string_isEmpty(text)
 	Definir boolean Como Logico;
 	boolean = __private_isEquals_general(text, "");
@@ -811,7 +813,7 @@ Funcion boolean <- string_hasStyle(text)
 	boolean = __private_string_hasStyle_or_Color(text);
 FinFuncion
 
-Funcion boolean <- string_hasColor_or_Style(text)
+Funcion boolean <- string_hascolor_or_Style(text)
 	Definir boolean Como Logico;
 	boolean =__private_string_hasStyle_or_Color(text);
 FinFuncion
@@ -823,9 +825,9 @@ FinFuncion
 
 Funcion isNull <- string_isNull(value_string) 
 	Definir isNull Como Logico;
-	isNull = string_isEquals(value_string, string_Null());
+	isNull = string_isEquals(value_string, string_NULL());
 FinFuncion
-//----[ AFFIX ]-------------------------------------------------------------------<#>
+//----[ AFFIX ]----------------------------------------------------<#>
 Funcion boolean <- string_startsWith(text, text_match)
 	Definir boolean Como Logico;
 	boolean = string_isEquals(string_substring_from_start(text, string_Length(text_match)), text_match);
@@ -835,7 +837,7 @@ Funcion boolean <- string_endsWith(text, text_match)
 	Definir boolean Como Logico;
 	boolean = string_isEquals(string_substring_from_end(text, string_Length(text_match)), text_match);
 FinFuncion
-//----[ COMPARISON ]----------------------------------------------------------------<#>
+//----[ COMPARISON ]----------------------------------------------------<#>
 Funcion boolean <- string_isEquals(str1, str2)
 	Definir boolean Como Logico;
 	boolean = __private_isEquals_general(str1, str2);
@@ -845,7 +847,7 @@ Funcion boolean <- string_isEquals_IgnoreCase(str1, str2)
 	Definir boolean Como Logico;
 	boolean = string_isEquals(string_ToUpperCase(str1), string_ToUpperCase(str2));
 FinFuncion
-//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=========================================
+//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=======================================
 Funcion result_string <- symbol_Separator
 	Definir result_string Como Texto;
 	result_string = "";//001F
@@ -871,7 +873,7 @@ Funcion value <- array_string_Booleans_False(index)
 		caso 4: value = "n";
 		caso 5: value = "0";
 		De Otro Modo:
-			value = string_Null();
+			value = string_NULL();
 	FinSegun
 FinFuncion
 
@@ -888,11 +890,11 @@ Funcion value <- array_string_Booleans_True(index)
 		caso 7: value = "s";
 		caso 8: value = "1";
 		De Otro Modo:
-			value = string_Null();
+			value = string_NULL();
 	FinSegun
 FinFuncion
-///%%%%%[ ARRAY ]%%%%%%%%%%%%%%%%%%%%[   #3   ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-//----[ OFSTRING ]-----------------------------------------------------------------<#>
+///%%%%%[ ARRAY................... ]%%%%%%%[   #ARR    ]%%%%%%%%%%%%%%%%%%
+//----[ OFSTRING ]----------------------------------------------------<#>
 Funcion str_array <- array_ofString(array, Size, type)
 	Definir str_array Como Texto;
 	str_array = array_ofstring_separator(array, Size, symbol_Separator_Simple(), type);
@@ -905,14 +907,14 @@ Funcion str_array <- array_ofstring_separator(array, Size, separator, type)
 	i=0;
 	Size = decrement(Size);
 	Mientras i < Size Hacer
-		str_array = string_append(str_array, value_Parser_TypeToString(array[i], type));
+		str_array = string_append(str_array, value_TypeToString(array[i], type));
 		str_array = string_append(str_array, separator);
 		i=increment(i);
 	FinMientras
-	str_array = string_append(str_array, value_Parser_TypeToString(array[i], type));
+	str_array = string_append(str_array, value_TypeToString(array[i], type));
 FinFuncion
 
-//----[ RANGE ]-------------------------------------------------------------------<#>
+//----[ RANGE ]----------------------------------------------------<#>
 Funcion num_range <- array_int_getRangeCeil(array, Size, num)
 	Definir num_range, i, j Como Numero;//4, 6, 8, 10     num: 5   result= 6
 	para i = 0 Hasta decrement(Size) con paso 1 Hacer
@@ -922,7 +924,7 @@ Funcion num_range <- array_int_getRangeCeil(array, Size, num)
 		FinSi
 	FinPara
 FinFuncion
-//----[ SEARCH ]-------------------------------------------------------------------<#>
+//----[ SEARCH ]----------------------------------------------------<#>
 Funcion index <- array_search_text(array, Size, text)
 	Definir index, i Como Numero;
 	i = 0;
@@ -939,7 +941,7 @@ Funcion str_array <- array_QuickSort_Num_toString(array, Size)
 	
 	str_array = array_ofString(array, Size, TYPE_INT());
 FinFuncion
-//----[ COMPARE ]-------------------------------------------------------------------<#>
+//----[ COMPARE ]----------------------------------------------------<#>
 //Funcion On^2: tal vez ordenando el primer y segundo arreglo aumene la velocidad
 Funcion string_Delta <- array_ToDeltastring_ByComparation(array_Select, size_Select, array_Comparator, size_Comparator, IsInnerJoin)
 	Definir string_Delta Como Texto;
@@ -963,7 +965,7 @@ Funcion string_Delta <- array_ToDeltastring_ByComparation(array_Select, size_Sel
 		FinSi
 	FinPara
 FinFuncion
-///%%%%%[ PRINTERS ]%%%%%%%%%%%%%%%%%[   #4   ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+///%%%%%[ PRINTERS................ ]%%%%%%%[   #PRN    ]%%%%%%%%%%%%%%%%%%
 Funcion print(text)
 	print_byseparator(text, "\n");
 FinFuncion
@@ -972,15 +974,15 @@ Funcion println(text)
 	text = string_append(text, "\n");
 	print(text);
 FinFuncion
-//----[ SIMPLE ]-------------------------------------------------------------------<#>
-Funcion print_Simple(text)
+//----[ SIMPLE ]----------------------------------------------------<#>
+Funcion print_simple(text)
 	__PSEINT_print(text);
 FinFuncion
 
 Funcion println_Simple(text)
 	__PSEINT_println(text);
 FinFuncion
-//----[ JUMPER ]-------------------------------------------------------------------<#>
+//----[ JUMPER ]----------------------------------------------------<#>
 Funcion print_byseparator(text, separator)
 	__private_Print_Split(text, separator);
 FinFuncion
@@ -991,16 +993,17 @@ Funcion println_bySeparator(text, separator)
 FinFuncion
 
 Funcion __private_Print_Split(text, separator)
-	Definir index_break_Line, text_length Como Numero;
+	Definir index_break_Line, text_length, length_separator Como Numero;
 	index_break_Line = string_indexOf(text, separator);
+	length_separator = string_Length(separator);
 	Mientras index_break_Line > -1 Hacer
 		println_Simple(string_substring(text, 0, index_break_Line));
-		text = string_substring(text, increment_step(index_break_Line, 2), string_Length(text));
+		text = string_substring(text, increment_step(index_break_Line, length_separator), string_Length(text));
 		index_break_Line = string_indexOf_fromIndex(text, separator, 0);
 	FinMientras
-	print_Simple(string_substring(text, 0, string_Length(text)));
+	print_simple(string_substring(text, 0, string_Length(text)));
 FinFuncion
-//----[ PSEINT ]-------------------------------------------------------------------<#>
+//----[ PSEINT ]----------------------------------------------------<#>
 Funcion __PSEINT_println(text)
 	Escribir text;
 FinFuncion
@@ -1008,7 +1011,7 @@ FinFuncion
 Funcion __PSEINT_print(text)
 	Escribir text Sin Saltar ;
 FinFuncion
-//----[ PROGRESS ]-----------------------------------------------------------------<#>
+//----[ PROGRESS ]----------------------------------------------------<#>
 Funcion println_progress(text)
 	text = string_append(text, "\n");
 	print_progress_with_speed(text, 100);
@@ -1038,11 +1041,11 @@ Funcion print_progress_with_speed_Simple(text, speed)
 	Definir i, end Como Numero;
 	end = string_Length(text);
 	Para i = 0 Hasta end hacer 
-		print_Simple(char_At(text, i));
+		print_simple(char_At(text, i));
 		sleep(speed);
 	FinPara
 FinFuncion
-//----[ SHOOT ]-------------------------------------------------------------------<#>
+//----[ SHOOT ]----------------------------------------------------<#>
 Funcion print_shoot(text)
 	__private_internal_printer_formater_shoot(text, false);
 FinFuncion
@@ -1083,9 +1086,9 @@ Funcion __private_internal_printer_formater_shoot(text, isClear)
 	FinSi
 	
 	println_array(text_ammunition, num_break_Line);//shoot
-	print_Simple(string_substring(text, 0, string_Length(text)));
+	print_simple(string_substring(text, 0, string_Length(text)));
 FinFuncion
-//----[ ARRAY ]-------------------------------------------------------------------<#>
+//----[ ARRAY ]----------------------------------------------------<#>
 Funcion println_array(array, index_array)
 	Definir i Como Numero;
 	para i = 0 Hasta decrement(index_array) Hacer
@@ -1096,7 +1099,7 @@ FinFuncion
 Funcion print_array(array, index_array)
 	Definir i Como Numero;
 	para i = 0 Hasta decrement(index_array) Hacer
-		print_Simple(array[i]);
+		print_simple(array[i]);
 	FinPara
 FinFuncion
 
@@ -1115,7 +1118,7 @@ Funcion print_array_color(array, index_array, color)
 	FinPara
 	print_array(array, index_array);
 FinFuncion
-//----[ REPEAT ]-------------------------------------------------------------------<#>
+//----[ REPEAT ]----------------------------------------------------<#>
 Funcion print_Repeat(text, numEnd)
 	Definir start Como Numero;
 	Para start=1 Hasta numEnd Con Paso 1 Hacer
@@ -1129,7 +1132,7 @@ Funcion println_Repeat(text, numEnd)
 		println(text);
 	FinPara
 FinFuncion
-//----[ UTILITIES ]-----------------------------------------------------------------<#>
+//----[ UTILITIES ]----------------------------------------------------<#>
 Funcion break_Line
 	print("\n");
 FinFuncion
@@ -1141,7 +1144,7 @@ FinFuncion
 Funcion clear_Console
 	Limpiar Pantalla;
 FinFuncion
-///$$$$$[ sleep ]$$$$$$$$$$$$$$$$$$$$[  ++4_1 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+///%%%%%[ SLEEP................... ]%%%%%%%[   #SLP    ]%%%%%%%%%%%%%%%%%%
 Funcion sleep(ms)
 	Esperar ms Milisegundos;
 FinFuncion
@@ -1150,7 +1153,7 @@ Funcion sleep_And_Clear(ms)
 	sleep(ms);
 	clear_Console();
 FinFuncion
-//----[ SECOND ]-------------------------------------------------------------------<#>
+//----[ SECOND ]----------------------------------------------------<#>
 Funcion sleep_Second_And_Clear(s)
 	sleep_And_Clear(s * 1000);
 FinFuncion
@@ -1158,7 +1161,7 @@ FinFuncion
 Funcion sleep_Second(s)
 	sleep(s * 1000);
 FinFuncion
-//----[ messAGE ]-------------------------------------------------------------------<#>
+//----[ messAGE ]----------------------------------------------------<#>
 Funcion sleep_if_message(s, condition, message_date)
 	Si condition Entonces
 		log_INFO(message_date);
@@ -1170,7 +1173,7 @@ Funcion sleep_message(s, message_date)
 	log_INFO(message_date);
 	sleep(s);
 FinFuncion
-//----[ UTILITIES ]-----------------------------------------------------------------<#>
+//----[ UTILITIES ]----------------------------------------------------<#>
 Funcion sleep_CircleLoad(s)
 	Definir sequence Como Texto;
 	Definir Size Como Numero;
@@ -1194,7 +1197,7 @@ Funcion sleep_Animation(s, speed, text_array_Sequence, Size, padding_x, padding_
 	padding_x_text = canvas_Row_WithText(" ", padding_x);
 	println_Repeat( "", padding_y);
 	Mientras Time < Time_End Hacer
-		print_Simple(string_append(padding_x_text, text_array_Sequence[math_module(Time, Size)]));
+		print_simple(string_append(padding_x_text, text_array_Sequence[math_module(Time, Size)]));
 		Time = increment(Time);
 		sleep(speed);
 		Si EnableClear Entonces
@@ -1206,7 +1209,7 @@ Funcion sleep_Animation(s, speed, text_array_Sequence, Size, padding_x, padding_
 	FinMientras
 	clear_Console();
 FinFuncion
-///$$$$$[ LOGS ]$$$$$$$$$$$$$$$$$$$$$[  ++4_2 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+///%%%%%[ LOGS.................... ]%%%%%%%[   #LOG    ]%%%%%%%%%%%%%%%%%%
 Funcion log_WARNING(message)
 	__private_general_log(message, "WARNING: ", COLOR_YELLOW());
 FinFuncion
@@ -1235,23 +1238,23 @@ Funcion __private_general_log(message, start_tag, SELECTED_COLOR)
 	message = string_append(start_tag, message);
 	println_Simple(string_append(SELECTED_COLOR, message));
 FinFuncion
-///$$$$$[ TEST ]$$$$$$$$$$$$$$$$$$$$$[  ++4_3 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-//----[ CHECKPOINT ]-----------------------------------------------------------------<#>
+///%%%%%[ TEST.................... ]%%%%%%%[   #TST    ]%%%%%%%%%%%%%%%%%%
+//----[ CHECKPOINT ]----------------------------------------------------<#>
 Funcion test_Checkpoint(id)
 	test_Checkpoint_info(id, "");
 FinFuncion
 
 Funcion test_Checkpoint_info(id, info_string)
 	break_Line();
-	println_Simple(Color_setColorText(string_append_withSeparator(" < ", " >- - - - - - - - - - - </>", num_ToString(id)), COLOR_CYAN()));
+	println_Simple(color_setColorText(string_append_withSeparator(" < ", " >- - - - - - - - - - - </>", num_ToString(id)), COLOR_CYAN()));
 	Si !string_isEmpty(info_string) Entonces
 		Definir popup_message Como Texto;
 		popup_message = string_append_withSeparator(" < start >", "< /end >", info_string);
-		println_Simple(Color_setColorText(popup_message, COLOR_CYAN()));
+		println_Simple(color_setColorText(popup_message, COLOR_CYAN()));
 	FinSi
 	user_input_wait();
 FinFuncion
-//----[ ASSERT ]-------------------------------------------------------------------<#>
+//----[ ASSERT ]----------------------------------------------------<#>
 Funcion test_Assert_Equal(value, value_expected, TYPE)
 	Definir value_String, value_expected_String Como Texto;
 	test_Function_Assert_Equal(value, value_expected, TYPE, "<?>");
@@ -1265,16 +1268,16 @@ FinFuncion
 Funcion result_Boolean <- test_Function_Assert_Equal_returnBoolean(value, value_expected, TYPE, method_name)
 	Definir value_String, value_expected_String Como Texto;
 	Definir result_Boolean Como Logico;
-	value_String = value_Parser_TypeToString(value, TYPE);
-	value_expected_String = value_Parser_TypeToString(value_expected, TYPE);
+	value_String = value_TypeToString(value, TYPE);
+	value_expected_String = value_TypeToString(value_expected, TYPE);
 	result_Boolean = string_isEquals(value_String, value_expected_String);
 	Si result_Boolean Entonces
-		println_Simple(Color_setColorText(string_append_withSeparator(method_name, value_String, "() :: check ::"), COLOR_CYAN()));
+		println_Simple(color_setColorText(string_append_withSeparator(method_name, value_String, "() :: check ::"), COLOR_CYAN()));
 	SiNo
-		error_message(string_append_withSeparator(method_name, string_append_withSeparator(value_String, value_expected_String, " != "), "() >> The value is not as expected >> "));
+		error_message(string_append_withSeparator(method_name, string_append_withSeparator(value_String, value_expected_String, " != "), "() .        . The value is not as expected .        . "));
 	FinSi
 FinFuncion
-//----[ PASSED ]-------------------------------------------------------------------<#>
+//----[ PASSED ]----------------------------------------------------<#>
 Funcion count_result <- test_Passed(value, value_expected, TYPE, count_string)
 	Definir count_result Como Texto;
 	count_result = test_Function_Passed(value, value_expected, TYPE, "<?>", count_string);
@@ -1302,25 +1305,31 @@ Funcion test_Function_Passed_Debug(count_string)
 	index_Center = string_indexOf(count_string, symbol_Separator());
 	succes_Count = string_substring(count_string, 0, index_center);
 	error_Count = string_substring_from(count_string, increment(index_center));
-	succes_Msg = string_append("¦  + SUCCESS: ", string_fit_end(succes_Count, "            ¦"));
-	error_Msg = string_append("¦  - ERROR:   ", string_fit_end(error_Count, "            ¦"));
+	succes_Msg = string_append("?  + SUCCESS: ", string_fit_end(succes_Count, "            ?"));
+	error_Msg = string_append("?  - ERROR:   ", string_fit_end(error_Count, "            ?"));
 	Dimension array_test[6];
 	array_test[0] = ".=========================.";
-	array_test[1] = "¦      < END_TEST >        ¦";
+	array_test[1] = "?      < END_TEST >        ?";
 	array_test[2] = ":=========================:";
-	array_test[3] = Color_setColorText(succes_Msg, COLOR_CYAN());
-	array_test[4] = Color_setColorText(error_Msg, COLOR_YELLOW());
+	array_test[3] = color_setColorText(succes_Msg, COLOR_CYAN());
+	array_test[4] = color_setColorText(error_Msg, COLOR_YELLOW());
 	array_test[5] = ".=========================.";
 	println_array_color(array_test, 6, COLOR_WHITE());
 FinFuncion
-///%%%%%[ INT ]%%%%%%%%%%%%%%%%%%%%%%[   #5   ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//The interpreter waits for a return and then captures the total time
+Funcion duration_Timer <- Execution_Timer(localTime_Start, funtion_return)
+	Definir duration_Timer, localTime_End Como Texto;
+	localTime_End = localTime_now();
+	duration_Timer = duration_between(localTime_Start, localTime_End);
+FinFuncion
+///%%%%%[ INT.............. ]%%%%%%%%%%%%%%[   #INT    ]%%%%%%%%%%%%%%%%%%
 Funcion num <- text_ToNum(text)
 	Definir num Como Numero;
 	num = ConvertirANumero(text);
 FinFuncion
 
 Funcion num_range <- int_getRangeCeil_ToFromSeparatedString(num, list_Str)
-	Definir num_range, i, length_data_value, length_listStr Como Numero;
+	Definir num_range, i, length_value, length_listStr Como Numero;
 	Definir num_carry, Char_Current Como Texto;
 	num_carry = "";
 	length_listStr = decrement(string_Length(list_Str));
@@ -1329,10 +1338,10 @@ Funcion num_range <- int_getRangeCeil_ToFromSeparatedString(num, list_Str)
 		Si char_isNumber(Char_Current) Entonces
 			num_carry = string_append(num_carry, Char_Current);
 		SiNo
-			length_data_value = string_ToNum(num_carry);
+			length_value = string_ToNum(num_carry);
 			num_carry = "";
-			Si length_data_value >= num Entonces
-				num_range = length_data_value;
+			Si length_value >= num Entonces
+				num_range = length_value;
 				i = increment_step(i, length_listStr);
 			FinSi
 		FinSi
@@ -1377,7 +1386,7 @@ Funcion int_result <- Int_BitMoveRight(int_num, num_movements)
 	Definir int_result Como Numero;
 	int_result = binarystring_ToInt(binarystring_MoveRight(int_ToBinaryString(int_num), num_movements));
 FinFuncion
-///$$$$$[ BINARY_STRING ]$$$$$$$$$$$$[   ++5  ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+///%%%%%[ BINARY_STRING........... ]%%%%%%%[   #BIN    ]%%%%%%%%%%%%%%%%%%
 Funcion int_num <- binarystring_ToInt(binaryString)
 	Definir int_num, i, binary_Length, bit Como Numero;
 	binary_Length = decrement(string_Length(binaryString));
@@ -1430,7 +1439,7 @@ Funcion binarystring_Result <- binarystring_LogicalOperations(binaryString1, bin
 	FinPara
 	binarystring_Result = string_Delete(binarystring_result, 0, if_else(string_indexOf(binarystring_result, "1") <> -1, string_indexOf(binarystring_result, "1"), 0, TYPE_INT()));
 FinFuncion
-//----[ GETTERS ]-------------------------------------------------------------------<#>
+//----[ GETTERS ]----------------------------------------------------<#>
 Funcion binaryPad <- binarystring_GetPad_MaxSize(binaryString1, binaryString2)
 	Definir binaryPad Como Texto;
 	Definir max_length Como Numero;
@@ -1457,7 +1466,7 @@ Funcion bitChar_Result <- bitChar_NOT(bit_char1)
 	Definir bitChar_Result Como Texto;
 	bitChar_Result = if_else(string_isEquals(bit_char1, "1"), "0", "1", TYPE_STRING());
 FinFuncion
-//----[ SHIFTING ]-------------------------------------------------------------------<#>
+//----[ SHIFTING ]----------------------------------------------------<#>
 Funcion binarystring_result <- binarystring_MoveLeft(binaryString, num_movements)
 	Definir binarystring_result Como Texto;
 	binarystring_result = string_append(binaryString, string_repeatText("0", num_movements));
@@ -1467,7 +1476,7 @@ Funcion binarystring_result <- binarystring_MoveRight(binaryString, num_movement
 	Definir binarystring_result Como Texto;
 	binarystring_result = string_substring(binaryString, 0, decrement_step(string_Length(binaryString), num_movements));
 FinFuncion
-//----[ ARITHMETIC ]-----------------------------------------------------------------<#>
+//----[ ARITHMETIC ]----------------------------------------------------------------<#>
 Funcion binarystring_result <- binarystring_SUM(binaryString1, binaryString2)
     Definir binarystring_result, sum, carry Como Texto;
     Mientras string_Contains(binaryString2, "1") Hacer
@@ -1482,7 +1491,7 @@ Funcion binarystring_result <- binarystring_TwosComplement(binaryString)
 	Definir binarystring_result Como Texto;
 	binarystring_result = binarystring_SUM(binarystring_NOT(binaryString), string_pad_start("1", string_repeatText("0", string_Length(binaryString))));
 FinFuncion
-///%%%%%[ MATH ]%%%%%%%%%%%%%%%%%%%%%[   #6   ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+///%%%%%[ MATH.................... ]%%%%%%%[   #MTH    ]%%%%%%%%%%%%%%%%%%
 //----[ MAX ]------------------------------------------------------------------------<#>
 Funcion result <- math_max_Int(value, limit)
 	Definir result Como Entero;
@@ -1503,7 +1512,7 @@ Funcion result <- math_min_float(value, limit)
 	Definir result Como Real;
 	result = if_else(value<limit, value, limit, TYPE_FLOAT());
 FinFuncion
-//----[ RANGE_LIMIT ]----------------------------------------------------------------<#>
+//----[ RANGE_LIMIT ]----------------------------------------------------<#>
 Funcion result <- math_rangeLimit_Float(value, limit_min, limit_max)
 	Definir result Como Real;
 	result = math_max_Float(limit_min, math_min_float(limit_max, value));
@@ -1529,7 +1538,7 @@ Funcion num_pow <- math_pow_float(base, exponente)
     ln_base = math_ln(base);
     num_pow = math_exp(exponente * ln_base);
 FinFuncion
-//----[ TRIGONOMETRY ]---------------------------------------------------------------<#>
+//----[ TRIGONOMETRY ]--------------------------------------------------------------<#>
 Funcion num_Sin <- math_Sin(x)
     Definir num_Sin Como Real;//RAD
 	x = math_Normalize_InPiRange(x);
@@ -1568,7 +1577,7 @@ Funcion x_norm <- math_Normalize_InPiRange(x)
 	x_norm = math_module(x + pi_, 2 * pi_) - pi_;
 FinFuncion
 
-//----[ EXPONENTIAL ]----------------------------------------------------------------<#>
+//----[ EXPONENTIAL ]----------------------------------------------------<#>
 Funcion lnx0 <- math_ln(x)
 	Definir lnx0, t, term Como Real;
     Definir i, n Como Entero;
@@ -1630,7 +1639,7 @@ Funcion num_exp <- math_exp(x)
 FinFuncion
 
 Funcion num_range <- math_Summation_ToFromSeparatedString(separatedString, separator)
-	Definir num_range, i, length_data_value, length_listStr Como Numero;
+	Definir num_range, i, length_value, length_listStr Como Numero;
 	Definir num_carry, Char_Current Como Texto;
 	Definir IsNumber Como Logico;
 	num_carry = "";
@@ -1645,9 +1654,9 @@ Funcion num_range <- math_Summation_ToFromSeparatedString(separatedString, separ
 		FinSi
 		
 		Si !IsNumber & !string_isEmpty(num_carry) Entonces
-			length_data_value = string_ToNum(num_carry);
+			length_value = string_ToNum(num_carry);
 			num_carry = "";
-			num_range = increment_step(num_range, length_data_value);
+			num_range = increment_step(num_range, length_value);
 		FinSi
 		i = increment(i);
 	FinMientras
@@ -1691,7 +1700,7 @@ Funcion isNegative <- math_numberIsNegative(num)
 	Definir isNegative Como Logico;
 	isNegative = num < 0;
 FinFuncion
-//----[ ROUNDING ]-------------------------------------------------------------------<#>
+//----[ ROUNDING ]----------------------------------------------------<#>
 Funcion number_Round <- math_Round(number)
 	Definir number_Round, index_point Como Numero;
 	Definir number_String, number_Point Como Texto;
@@ -1740,7 +1749,7 @@ Funcion float_lim <- math_limitDecimals(num, limitFloat)
 	FinSi
 	float_lim = string_ToNum(str_num);
 FinFuncion
-//----[ MODULE ]-------------------------------------------------------------------<#>
+//----[ MODULE ]----------------------------------------------------<#>
 Funcion module <- math_module(dividend, divisor)
 	Definir module Como Numero;// module = a-floor(a/b)*b
 	divisor = math_max_int(divisor, 1);
@@ -1754,7 +1763,7 @@ Funcion value_normalized <- math_NormalizeCycle(current_value, max_limit)
         value_normalized = increment_step(value_normalized, max_limit);
     FinSi
 FinFuncion
-//----[ CONSTANTS ]-----------------------------------------------------------------<#>
+//----[ CONSTANTS ]----------------------------------------------------<#>
 Funcion num_PI <- math_PI
 	Definir num_PI Como Real;
 	num_PI = 3.141592653589793;
@@ -1772,9 +1781,9 @@ FinFuncion
 
 Funcion num_PHI <- math_PHI
     Definir num_PHI Como Real;
-    num_PHI = 1.618033988749895;// Para proporciones estéticas
+    num_PHI = 1.618033988749895;// Para proporciones est?ticas
 FinFuncion
-//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=========================================
+//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=======================================
 Funcion numInc <- increment(num)
 	Definir numInc Como Numero;
 	numInc = num + 1;
@@ -1794,7 +1803,7 @@ Funcion numDec <- decrement_step(num, value)
 	Definir numDec Como Numero;
 	numDec = num - value;
 FinFuncion
-///%%%%%[ BOOLEAN ]%%%%%%%%%%%%%%%%%%[   #7   ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+///%%%%%[ BOOLEAN................. ]%%%%%%%[   #BLN    ]%%%%%%%%%%%%%%%%%%
 Funcion boolean <- false
 	Definir boolean Como Logico;
 	boolean = Falso;
@@ -1820,7 +1829,7 @@ Funcion boolean <- Num_isInterger(num)
 	boolean = (num == math_truncate(num));
 FinFuncion
 
-Funcion boolean <- Num_isEquals(num, num2)
+Funcion boolean <- number_isEquals(num, num2)
 	Definir boolean Como Logico;
 	boolean = __private_isEquals_general(num, num2);
 FinFuncion
@@ -1829,7 +1838,7 @@ Funcion boolean <- char_isNumber(char)
 	Definir boolean Como Logico;
 	boolean = ascii_IsNumberSymbols(char);
 FinFuncion
-///%%%%%[ CONDITIONS ]%%%%%%%%%%%%%%%[   #8   ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+///%%%%%[ CONDITIONS.............. ]%%%%%%%[   #CON    ]%%%%%%%%%%%%%%%%%%
 Funcion result <- if_else(condition, result1, result2, TYPE)
 	Segun TYPE Hacer
 		caso TYPE_INT():
@@ -1922,14 +1931,14 @@ Funcion number_validateNumberRange(Function_name, value, min_val, max_val)
     FinSi
 FinFuncion
 
-Funcion isValid <- string_isSafeIndexRange(result_string, start, end)
+Funcion isValid <- string_indexValidate(result_string, start, end)
     Definir isValid Como Logico;
     Definir num_length Como Numero;
     num_length = string_Length(result_string);
-    isValid = indexValidate(num_length, start, end);
+    isValid = num_indexValidate(num_length, start, end);
 FinFuncion
 
-Funcion isValid <- indexValidate(max_length, start, end)
+Funcion isValid <- num_indexValidate(max_length, start, end)
     Definir isValid Como Logico;	
     isValid = number_IsInRange(start, 0, max_length);
     isValid = isValid & number_IsInRange(end, 0, max_length);
@@ -1944,122 +1953,122 @@ FinFuncion
 Funcion exection_Error(message_Error)
 	Definir error_int Como Entero;
 	log_ERROR(message_Error);
-	error_int = string_Null();
+	error_int = string_NULL();
 FinFuncion
-///%%%%%[ COLOR ]%%%%%%%%%%%%%%%%%%%%[   #9   ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+///%%%%%[ COLOR................... ]%%%%%%%[   #COL    ]%%%%%%%%%%%%%%%%%%
 Funcion color <- COLOR_TRANSPARENT
 	Definir color Como Texto;
-	color =  COLOR_getColor_forIndex(0);
+	color =  COLOR_getcolor_forIndex(0);
 FinFuncion
 // CODES <<<<<<
 Funcion color <- COLOR_RED
 	Definir color Como Texto;
-	color =  COLOR_getColor_forIndex(1);
+	color =  COLOR_getcolor_forIndex(1);
 FinFuncion
 
 Funcion color <- COLOR_GREEN
 	Definir color Como Texto;
-	color =  COLOR_getColor_forIndex(2);
+	color =  COLOR_getcolor_forIndex(2);
 FinFuncion
 
 Funcion color <- COLOR_YELLOW
 	Definir color Como Texto;
-	color =  COLOR_getColor_forIndex(3);
+	color =  COLOR_getcolor_forIndex(3);
 FinFuncion
 
 Funcion color <- COLOR_BLUE
 	Definir color Como Texto;
-	color =  COLOR_getColor_forIndex(4);
+	color =  COLOR_getcolor_forIndex(4);
 FinFuncion
 
 Funcion color <- COLOR_MAGENTA
 	Definir color Como Texto;
-	color =  COLOR_getColor_forIndex(5);
+	color =  COLOR_getcolor_forIndex(5);
 FinFuncion
 
 Funcion color <- COLOR_CYAN
 	Definir color Como Texto;
-	color =  COLOR_getColor_forIndex(6);
+	color =  COLOR_getcolor_forIndex(6);
 FinFuncion
 
 Funcion color <- COLOR_WHITE
 	Definir color Como Texto;
-	color =  COLOR_getColor_forIndex(7);
+	color =  COLOR_getcolor_forIndex(7);
 FinFuncion
 
-Funcion color <- COLOR_getColor_forIndex(index)
+Funcion color <- COLOR_getcolor_forIndex(index)
 	Definir color Como Texto;
 	si (index < 0) | (index > 7) Entonces
-		error_message_Function("COLOR_getColor_forIndex", "invalid index color (index valid: 0...7)");
-		color = __private_color_getColor_or_style_forIndex(0);
+		error_message_Function("COLOR_getcolor_forIndex", "invalid index color (index valid: 0...7)");
+		color = __private_color_getcolor_or_style_forIndex(0);
 	SiNo
 		index = increment_step(index, 30);
-		color = __private_color_getColor_or_style_forIndex(index);
+		color = __private_color_getcolor_or_style_forIndex(index);
 	FinSi
 FinFuncion
 
-Funcion color <- __private_color_getColor_or_style_forIndex(index)
+Funcion color <- __private_color_getcolor_or_style_forIndex(index)
 	Definir color Como Texto;
 	color = string_append_withSeparator(symbol_Escape(), "m", num_ToString(index));
 FinFuncion
 
 Funcion color <- COLOR_STYLE_BOLD
 	Definir color Como Texto;
-	color =__private_color_getColor_or_style_forIndex(1);
+	color =__private_color_getcolor_or_style_forIndex(1);
 FinFuncion
 
 Funcion color <- COLOR_STYLE_PLAIN
 	Definir color Como Texto;
-	color = __private_color_getColor_or_style_forIndex(0);
+	color = __private_color_getcolor_or_style_forIndex(0);
 FinFuncion
 
 Funcion remove_Colors 
 	
 FinFuncion
 
-Funcion text_Color <- Color_setColorText(text, color)
+Funcion text_Color <- color_setColorText(text, color)
 	Definir text_Color Como Texto;
 	text_Color = string_append(color, text);
 FinFuncion
 
-Funcion text_Color <- Color_setColorText_brakelines(text, color)
+Funcion text_Color <- color_setColorText_brakelines(text, color)
 	Definir text_Color Como Texto;
 	si !string_hasColor(color) Entonces
-		error_message_Function("Color_setColorText", string_append("invalid color `", string_append(color, "`")));
+		error_message_Function("color_setColorText", string_append("invalid color `", string_append(color, "`")));
 		text_Color = string_append_in_brakelines(text, COLOR_TRANSPARENT());
 	SiNo
 		text_Color = string_append_in_brakelines(text, color);
 	FinSi
 FinFuncion
 
-Funcion text_Color <- Color_setColorText_multiColor(text)
+Funcion text_Color <- color_setColorText_multiColor(text)
 	Definir text_Color, color_char Como Texto;
 	Definir text_length, i Como Numero;
 	text_length = string_Length(text);
 	para i=0 Hasta text_length Hacer
-		color_char = Color_setColorText(char_At(text, i), COLOR_getColor_forIndex(increment(math_module(i, 7))));
+		color_char = color_setColorText(char_At(text, i), COLOR_getcolor_forIndex(increment(math_module(i, 7))));
 		text_Color = string_append(text_Color, color_char);
 	FinPara
 FinFuncion
 
-Funcion text_Color <- Color_Darked(text, color)
+Funcion text_Color <- color_Darked(text, color)
 	Definir text_Color Como Texto;
 	text = string_append(DARK, text);
 	text_Color = string_append(color, text);
 FinFuncion
 
-Funcion text_dark <- Color_Normal(text)
+Funcion text_dark <- color_Normal(text)
 	Definir text_dark Como Texto;
 	text_dark = string_append(DARK, text);
 FinFuncion
-//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=========================================
+//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=======================================
 Funcion result_string <- symbol_Escape
 	Definir result_string Como Texto;
 	result_string = "[";
 FinFuncion
-///$$$$$$[ VALUE ]$$$$$$$$$$$$$$$$$$$$[   #+1  ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-//----[ PARSERS ]-------------------------------------------------------------------<#>
-Funcion element_Result <- value_Parser_StringToType(element_String, TYPE)
+///%%%%%[ VALUE................... ]%%%%%%%[   #VAL    ]%%%%%%%%%%%%%%%%%%
+//----[ PARSERS ]----------------------------------------------------<#>
+Funcion element_Result <- value_stringToType(element_String, TYPE)
 	Segun TYPE Hacer
 		caso TYPE_INT():
 			Definir element_Result Como Numero;
@@ -2076,7 +2085,7 @@ Funcion element_Result <- value_Parser_StringToType(element_String, TYPE)
 	FinSegun
 FinFuncion
 
-Funcion result <- value_Parser_TypeToString(data, TYPE)
+Funcion result <- value_TypeToString(data, TYPE)
 	Definir result Como Texto;
 	Segun TYPE Hacer
 		caso TYPE_INT():
@@ -2091,21 +2100,21 @@ Funcion result <- value_Parser_TypeToString(data, TYPE)
 			result = object_ToString(data, TYPE);
 	FinSegun
 FinFuncion
-//----[ GETTERS ]-------------------------------------------------------------------<#>
+//----[ GETTERS ]----------------------------------------------------<#>
 Funcion result <- value_getNullType(TYPE)
 	Segun TYPE Hacer
 		caso TYPE_INT():
 			Definir result Como Numero;
-			result = number_Null();
+			result = number_NULL();
 		caso TYPE_BOOLEAN():
 			Definir result Como Logico;
 			result = false();
 		caso TYPE_FLOAT():
 			Definir result Como Real;
-			result = number_Null();
+			result = number_NULL();
 		caso TYPE_STRING():
 			Definir result Como Texto;
-			result = string_Null();
+			result = string_NULL();
 		De Otro Modo:
 			Definir result Como Texto;
 			result = object_Empty(TYPE);
@@ -2114,7 +2123,7 @@ FinFuncion
 
 Funcion result <- value_getNullType_toString(TYPE)
 	Definir result Como Texto;
-	result = value_Parser_TypeToString(value_getNullType(TYPE), TYPE);
+	result = value_TypeToString(value_getNullType(TYPE), TYPE);
 FinFuncion
 
 Funcion result <- value_getValidstring_ofType(value, TYPE) 
@@ -2129,18 +2138,18 @@ Funcion boolean <- value_isNull(value, TYPE)
 	Definir boolean Como Logico;
 	Segun TYPE Hacer
 		caso TYPE_INT():
-			boolean = Num_isEquals(value, number_Null());
+			boolean = number_isEquals(value, number_NULL());
 		caso TYPE_FLOAT():
-			boolean = Num_isEquals(value, number_Null());
+			boolean = number_isEquals(value, number_NULL());
 		caso TYPE_BOOLEAN():
 			boolean = !value;
 		caso TYPE_STRING():
-			boolean = string_isEquals(value, string_Null());
+			boolean = string_isEquals(value, string_NULL());
 		De Otro Modo:
 			boolean = string_isEquals(value, object_Empty(TYPE));
 	FinSegun
 FinFuncion
-//----[ CATCH_VALUE ]-----------------------------------------------------------------<#>
+//----[ CATCH_VALUE ]----------------------------------------------------<#>
 Funcion result <- value_StringCatch_ofType(value, TYPE, method, message) 
 	Definir result Como Texto;
 	result = value;
@@ -2152,7 +2161,7 @@ FinFuncion
 
 Funcion result <- value_catch_toString(expected_value, method, message, TYPE)
 	Definir result Como Texto;
-	result = value_Parser_TypeToString(value_catch(expected_value, method, message, TYPE), TYPE);
+	result = value_TypeToString(value_catch(expected_value, method, message, TYPE), TYPE);
 FinFuncion
 
 Funcion result <- value_catch(expected_value, method, message, TYPE)
@@ -2175,10 +2184,6 @@ Funcion result <- value_catch(expected_value, method, message, TYPE)
 	FinSi
 FinFuncion
 //----[ MODIFY_STRINGNUMBER ]--------------------------------------------------------<#>
-Funcion string_Increment <- value_modify_StringNumber(string_number, num_sum)
-	Definir string_Increment Como Texto;
-	string_Increment = num_ToString(increment_step(string_toNum(string_number), num_sum));
-FinFuncion
 
 Funcion string_Increment <- value_increment_StringNumber_inArea(Text, index_start, index_end)
 	Definir string_Increment Como Texto;
@@ -2190,23 +2195,41 @@ Funcion string_Increment <- value_decrement_StringNumber_inArea(Text, index_star
 	string_Increment = value_modify_StringNumber_inArea(Text, -1, index_start, index_end);
 FinFuncion
 
-Funcion string_Increment <- value_modify_StringNumber_inArea(Text, num_sum, index_start, index_end)
-	Definir string_Increment Como Texto;
-	string_Increment = string_insert(string_Delete(Text, index_start, index_end), value_modify_StringNumber(string_substring(text, index_start, index_end), num_sum), index_start);
-FinFuncion
-
-Funcion string_Increment <- value_modify_StringNumber_inArea_symbols(Text, num_sum, symbol_start, symbol_end)
+Funcion string_Increment <- value_modify_StringNumber_inBetweenSymbols(Text, num_sum, symbol_start, symbol_end)
 	Definir string_Increment Como Texto;
 	Definir index_start, index_end Como Numero;
 	index_start = increment(string_indexOf(Text, symbol_start));
 	index_end = string_indexOf_fromIndex(Text, symbol_end, increment(index_start));
 	string_Increment = value_modify_StringNumber_inArea(Text, num_sum, index_start, index_end);
 FinFuncion
+
+Funcion string_Increment <- value_modify_StringNumber_inBetweenSymbols_Last(Text, num_sum, symbol_start, symbol_end)
+	Definir string_Increment Como Texto;
+	Definir index_start, index_end Como Numero;
+	index_end = string_LastIndexOf(Text, symbol_end);
+	index_start = string_LastIndexOf_fromIndex(Text, symbol_start, index_end);
+	index_start = increment(index_start);
+	string_Increment = value_modify_StringNumber_inArea(Text, num_sum, index_start, index_end);
+FinFuncion
+
+Funcion string_Increment <- value_modify_StringNumber_inArea(Text, num_sum, index_start, index_end)
+	Definir string_Increment, text_new, num_last, num_update Como Texto;
+	text_new = string_Delete(Text, index_start, index_end);
+	num_last = string_substring(text, index_start, index_end);
+	num_update = value_modify_StringNumber(num_last, num_sum);
+	string_Increment = string_insert(text_new, num_update, index_start);
+FinFuncion
+
+Funcion string_Increment <- value_modify_StringNumber(string_number, num_sum)
+	Definir string_Increment Como Texto;
+	string_Increment = num_ToString(increment_step(string_toNum(string_number), num_sum));
+FinFuncion
+
 Funcion isValid <- value_type_isValid(TYPE)
 	Definir isValid Como Logico;
 	isValid = string_isEquals(TYPE, TYPE_STRING()) | string_isEquals(TYPE, TYPE_INT()) | string_isEquals(TYPE, TYPE_BOOLEAN()) | string_isEquals(TYPE, TYPE_FLOAT());
 FinFuncion
-//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=========================================
+//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=======================================
 Funcion TYPE <- TYPE_STRING
 	Definir TYPE Como Texto;
 	TYPE = "string";
@@ -2232,67 +2255,74 @@ Funcion TYPE <- TYPE_OBJECT
 	TYPE = "object";
 FinFuncion
 
-Funcion Num <- number_Null
+Funcion Num <- number_NULL
 	Definir Num Como Numero;
 	Num = -1;
 FinFuncion
 
-Funcion result_string <- string_Null
+Funcion result_string <- string_NULL
 	Definir result_string Como Texto;
 	result_string = "";
 FinFuncion
 
 Funcion result_string <- object_Empty(type_Name)
 	Definir result_string Como Texto;
-	result_string = object_New(type_Name);
+	result_string = object_new(type_Name);
 FinFuncion
-///%%%%%[ UTIL ]%%%%%%%%%%%%%%%%%%%%%[   ///  ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-///$$$$$$[ COLLECTION ]$$$$$$$$$$$$$$$[   #+2  ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+///%%%%%[ COLLECTION.............. ]%%%%%%%[   #CLL    ]%%%%%%%%%%%%%%%%%%
 Funcion data_collection <- collection_new(STRUCT_TYPE, TYPE)
 	Definir data_collection, dataParts, index_end_dataArea Como Texto;
 	Definir length_data_area Como Numero;
 	Dimension dataParts[5];
 	dataParts[0] = STRUCT_TYPE;
-	dataParts[1] = symbol_TypeArea();
+	dataParts[1] = symbol_typeArea();
 	dataParts[2] = TYPE;
-	dataParts[3] = symbol_DataArea();
-	dataParts[4] = symbol_MetaData();
+	dataParts[3] = symbol_dataArea();
+	dataParts[4] = symbol_metaData();
 	data_collection = array_ofstring_separator(dataParts, 5, "", TYPE_STRING());//struct/<STRING[Data(meta_data
 FinFuncion
-//----[ UTILITIES ]-----------------------------------------------------------------<#>
-Funcion isType <- ascii_IsLetters(char)
-	Definir isType Como Logico;
-	isType = ascii_IsLetters_UpperCase(char) | ascii_IsLetter_LowerCase(char);//65-90
-FinFuncion
-
+//----[ UTILITIES ]----------------------------------------------------<#>
 Funcion clear_Collection <- collection_Clear(struct_Collection)
 	Definir clear_Colection Como Texto;
-	clear_Colection = collection_new(collection_getContent_TypesArea(struct_Collection), collection_getNameCollection(struct_Collection));
+	clear_Colection = collection_new(collection_getContent_TypeArea(struct_Collection), collection_getNameCollection(struct_Collection));
 FinFuncion
 
 Funcion isEmpty <- collection_isEmpty(struct_collection)
 	Definir isEmpty Como Logico;
 	isEmpty = string_isEmpty(collection_getContent_DataArea(struct_collection));
 FinFuncion
-//----[ GETTERS ]-------------------------------------------------------------------<#>
+
+Funcion collection_result <- collection_updateRange(struct_collection, index_start, index_end, data_string)
+	Definir collection_result Como Texto;
+	collection_result = string_Delete(struct_collection, index_start, index_end);
+	collection_result = string_insert(collection_result, data_string, index_start);
+FinFuncion
+//----[ GETTERS ]----------------------------------------------------<#>
 Funcion name_Collection <- collection_getNameCollection(collection)
 	Definir name_Collection Como Texto;
-	name_Collection = string_GetLeadingLetters(collection);
+	name_Collection = asci_getPrefix_alphabetic(collection);
+FinFuncion
+
+Funcion type_Area <- collection_getContent_fromSymbol(collection, symbol)
+	Definir type_Area Como Texto;
+	Definir index_symbol Como Entero;
+	index_symbol = increment(string_indexOf(collection, symbol));
+	type_Area    = asci_getPrefix_alphabetic_fromIndex(collection, index_symbol);
 FinFuncion
 
 Funcion data_Area <- collection_getContent_DataArea(collection)
 	Definir data_Area Como Texto;
-	data_Area = collection_getContent_Between_Symbols(collection, symbol_DataArea(), symbol_MetaData());
+	data_Area = collection_getContent_Between_Symbols(collection, symbol_dataArea(), symbol_metaData());
 FinFuncion
 
-Funcion type_area <- collection_getContent_TypesArea(collection)
+Funcion type_area <- collection_getContent_TypeArea(collection)
 	Definir type_area Como Texto;
-	type_area =  collection_getContent_TypesArea_End_Of_Text(collection, symbol_DataArea());
+	type_area =  collection_getContent_TypeArea_End_Of_Text(collection, symbol_dataArea());
 FinFuncion
 
-Funcion type_area <- collection_getContent_TypesArea_End_Of_Text(collection, text_end)
+Funcion type_area <- collection_getContent_TypeArea_End_Of_Text(collection, text_end)
 	Definir type_area Como Texto;
-	type_area = collection_getContent_Between_Symbols(collection, symbol_TypeArea(), text_end);
+	type_area = collection_getContent_Between_Symbols(collection, symbol_typeArea(), text_end);
 FinFuncion
 
 Funcion type_area <- collection_getContent_Between_Symbols(collection, symbol_start, symbol_end)
@@ -2303,27 +2333,27 @@ Funcion type_area <- collection_getContent_Between_Symbols(collection, symbol_st
 	type_area = string_substring(collection, index_start, index_end);
 FinFuncion
 
-Funcion type_area <- collection_getContent_Between_LastSymbols(collection, symbol_start, symbol_end)
+Funcion type_area <- collection_getContent_Between_lastSymbols(collection, symbol_start, symbol_end)
 	Definir Type_property, type_area Como Texto;
 	Definir index_start, index_end, index_check Como Numero;
-	index_start = increment(string_LastindexOf(collection, symbol_start));
-	index_end = string_indexOf_fromIndex(collection, symbol_end, index_start);
+	index_end = string_LastindexOf(collection, symbol_end);
+	index_start = increment(string_LastindexOf_fromIndex(collection, symbol_start, index_end));
 	type_area = string_substring(collection, index_start, index_end);
 FinFuncion
 
-Funcion index_TypeArea <- collection_getIndex_TypeArea(struct_Collection)
+Funcion index_TypeArea <- collection_getIndex_typeArea(struct_Collection)
 	Definir index_TypeArea Como Numero;
-	index_TypeArea = string_indexOf(struct_Collection, symbol_TypeArea());
+	index_TypeArea = string_indexOf(struct_Collection, symbol_typeArea());
 FinFuncion
 
-Funcion index_MetaData <- collection_getIndex_MetaDataArea(struct_Collection)
+Funcion index_MetaData <- collection_getIndex_metaData(struct_Collection)
 	Definir index_MetaData Como Numero;
-	index_MetaData = string_lastIndexOf(struct_Collection, symbol_MetaData());
+	index_MetaData = string_lastIndexOf(struct_Collection, symbol_metaData());
 FinFuncion
 
-Funcion index_DataArea <- collection_getIndex_DataArea(struct_Collection)
+Funcion index_DataArea <- collection_getIndex_dataArea(struct_Collection)
 	Definir index_DataArea Como Numero;
-	index_DataArea = string_IndexOf(struct_Collection, symbol_DataArea());
+	index_DataArea = string_IndexOf(struct_Collection, symbol_dataArea());
 FinFuncion
 
 Funcion index_separator <- collection_getIndex_FromNumElement(text, num)
@@ -2375,63 +2405,275 @@ Funcion str_element <- collection_getElement_AtIndex_withSeparator(text, index, 
 	Si index >= 0 & index <= string_countMatches(text, separator) Entonces
 		str_element = string_substring(text, index_Match, index_Matchend);
 	SiNo
-		str_element = string_Null();
+		str_element = string_NULL();
 	FinSi
 FinFuncion
-//----[ PRINTER ]-------------------------------------------------------------------<#>
-Funcion __private_Collection_Printer(data_soup, string_sumation, isNewLine)
-	__private_Collection_Printer_color(data_soup, string_sumation, isNewLine, "");
+//----[ SETTER ]---------------------------------------------------------------------<#>
+Funcion symbol_areaContent <- collection_replaceRange_between_symbols(collection, data_String, symbol_start, symbol_end)
+    Definir symbol_areaContent Como Texto;
+    Definir index_start, index_end Como Numero;
+    index_start = increment(string_indexOf(collection, symbol_start));
+    index_end = string_indexOf_fromIndex(collection, symbol_end, index_start);
+	
+    symbol_areaContent = collection_replaceRange(collection, data_String, index_start, index_end);
 FinFuncion
 
-Funcion __private_Collection_Printer_color(data_soup, string_sumation, isNewLine, color)
-	Definir separated_String, num_carry, Char_Current, line_Current Como Texto;
-	Definir i, num_range, length_data_value Como Numero;
-	Definir length_Sumation, num_range_inc Como Numero;
+Funcion symbol_areaContent <- collection_replaceRange_between_lastSymbols(collection, data_String, symbol_start, symbol_end)
+    Definir symbol_areaContent Como Texto;
+    Definir index_start, index_end Como Numero;
+    index_end = string_LastindexOf(collection, symbol_end);
+    index_start = increment(string_LastindexOf_fromIndex(collection, symbol_start, index_end));
+    symbol_areaContent = collection_replaceRange(collection, data_String, index_start, index_end);
+FinFuncion
+
+Funcion collection_out <- collection_replaceRange(collection, data_String, index_start, index_end)
+    Definir collection_out Como Texto;
+    collection_out = string_Delete(collection, index_start, index_end);
+    collection_out = string_Insert(collection_out, data_String, index_start);
+FinFuncion
+//----[ PRINTER ]----------------------------------------------------<#>
+Funcion __private_collection_printer(sequential_data, sequential_lengths, isnewLine)
+	managerData_printer_color(sequential_data, sequential_lengths, isnewLine, "");
+FinFuncion
+//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]===========================
+Funcion symbol_area <- symbol_dataArea
+	Definir symbol_area Como Texto;
+	symbol_area = "";//001A
+FinFuncion
+
+Funcion symbol_area <- symbol_typeArea
+	Definir symbol_area Como Texto;
+	symbol_area = "";//001D
+FinFuncion
+
+Funcion symbol_area <- symbol_metaData
+	Definir symbol_area Como Texto;
+	symbol_area = "";//001E
+FinFuncion
+///%%%%%[ MANAGER_DATA............ ]%%%%%%%[   #MDA    ]%%%%%%%%%%%%%%%%%%
+Funcion sequential_package <- managerData_modify(sequential_data, sequential_lengths, index_modify, value_string, isStorage)
+	Definir sequential_package, num_carry, Char_Current, current_data Como Texto;
+	Definir length_summations, i, index_end, index_start, length_value Como Numero;
+	Definir index_sum_start, index_sum_end, old_value_length, new_value_length Como Numero;
 	Definir IsNumber Como Logico;
+	//getIndex
 	num_carry 	     = "";
-	separated_String = "";
-	num_range		 = 0;	
-	num_range_inc  	 = 0;
-	length_Sumation  = string_Length(string_sumation);
-	i				 = length_Sumation;
-	Mientras i >= 0 Hacer
-		Char_Current = char_At(string_sumation, i);
+	index_end		 = 0;	
+	length_summations  = string_Length(sequential_lengths);
+	i				 = length_summations;
+	Mientras i >= 0 & index_modify >= 0 Hacer
+		Char_Current = char_At(sequential_lengths, i);
+		IsNumber = char_isNumber(Char_Current);
+		Si IsNumber Entonces
+			num_carry = string_append(Char_Current, num_carry);
+		FinSi
+		Si !IsNumber & !string_isEmpty(num_carry) | number_isEquals(i, 0) Entonces
+			length_value = string_ToNum(num_carry);
+			index_end         = increment_step(index_end, length_value);
+			index_modify 	  = decrement(index_modify);
+			old_value_length  = string_Length(num_carry);
+			num_carry         = "";// clear
+		FinSi
+		i = decrement(i);
+	FinMientras
+	//update
+	si index_modify >= 0 Entonces
+		error_message_Function("managerData_modify(data, summations, index, val_string)", "error index no valid");
+	SiNo
+		index_sum_start = increment(i);
+		index_sum_end = increment_step(index_sum_start, increment(old_value_length));
+		index_start = decrement_step(index_end,  length_value);
+		sequential_lengths = string_Delete(sequential_lengths, index_sum_start, index_sum_end);
+		sequential_package = string_Delete(sequential_data, index_start, index_end);
+		si !string_isEquals(value_String, string_NULL()) Entonces
+			new_value_length = string_Length(value_string);
+			sequential_lengths = string_insert(sequential_lengths, string_append(symbol_Separator(), Num_toString(new_value_length)), index_sum_start);
+			sequential_package = string_insert(sequential_package, value_string, index_start);
+		FinSi
+	FinSi
+	//format
+	si isStorage Entonces
+		sequential_package = string_append_withSeparator(sequential_lengths, sequential_package, symbol_dataArea());
+	SiNo
+		sequential_package = string_append_withSeparator(sequential_package, sequential_lengths, symbol_metaData());
+	FinSi
+FinFuncion
+
+Funcion inner_IdData <- managerData_getInnerIndex(sequential_data, sequential_lengths, max_NumComparations, data_string)
+	Definir inner_IdData, i, num_range, length_value Como Numero;
+	Definir length_summations, num_range_inc, length_data Como Numero;
+	Definir num_carry, Char_Current, data_Current Como Texto;
+	Definir IsNumber, BreakLoop_Data Como Logico;
+	num_carry 	     = "";
+	num_range		 = 0;
+	num_range_inc = 0;
+	i				 = 0;
+	length_summations  = string_Length(sequential_lengths);
+	length_data = string_length(data_string);
+	BreakLoop_Data = true();
+	inner_IdData = -1;
+	Mientras i <= length_summations & BreakLoop_Data Hacer
+		Char_Current = char_At(sequential_lengths, decrement_step(length_summations, i));
+		IsNumber = char_isNumber(Char_Current);
+		Si IsNumber Entonces
+			num_carry = string_append(num_carry, Char_Current);
+		FinSi
+		Si !IsNumber & !string_isEmpty(num_carry) | number_isEquals(i, length_summations) Entonces
+			length_value = string_ToNum(num_carry);
+			num_range_inc = increment_step(num_range, length_value);
+			si number_isEquals(length_value, length_data)  Entonces
+				data_Current     = string_substring(sequential_data, num_range, num_range_inc);
+				BreakLoop_Data   = !string_isEquals(data_string, data_Current);
+			FinSi
+			inner_IdData    = increment(inner_IdData);
+			num_carry       = "";// clear
+			num_range       = num_range_inc;
+		FinSi
+		i = increment(i);
+	FinMientras
+	si BreakLoop_Data Entonces
+		inner_IdData   = number_NULL();
+	FinSi
+FinFuncion
+
+Funcion value_string <- managerData_get_toString(sequential_data, sequential_lengths, index_getter)
+	Definir value_string, num_carry, Char_Current Como Texto;
+	Definir length_summations, i, index_end, index_start, length_value Como Numero;
+	Definir IsNumber Como Logico;
+	num_carry 	    = "";
+	index_end		= 0;	
+	length_summations = string_Length(sequential_lengths);
+	i				= length_summations;
+	Mientras i >= 0 & index_getter >= 0 Hacer
+		Char_Current = char_At(sequential_lengths, i);
 		IsNumber = char_isNumber(Char_Current);
 		Si IsNumber Entonces
 			num_carry = string_append(Char_Current, num_carry);
 		FinSi
 		
-		Si !IsNumber & !string_isEmpty(num_carry) | Num_isEquals(i, 0) Entonces
-			length_data_value = string_ToNum(num_carry);
-			num_range_inc = increment_step(num_range, length_data_value);
-			line_Current  = string_substring(data_soup, num_range, num_range_inc);
-			si isNewLine Entonces
-				println(Color_setColorText(line_Current, color));
-			SiNo
-				print(Color_setColorText(line_Current, color));
-			FinSi
+		Si (!IsNumber & !string_isEmpty(num_carry)) | number_isEquals(i, 0) Entonces
+			length_value = string_ToNum(num_carry);
+			index_end         = increment_step(index_end, length_value);
+			index_getter      = decrement(index_getter);
+			num_carry = "";
+		FinSi
+		i = decrement(i);
+	FinMientras
+	
+	Si index_getter >= 0 Entonces
+		error_message_Function("managerData_get_toString", "error index no valid");
+		value_string = string_NULL();
+	SiNo
+		index_start  = decrement_step(index_end, length_value);
+		value_string = string_substring(sequential_data, index_start, index_end);
+	FinSi
+FinFuncion
+
+Funcion separated_String <- managerData_getSeparateString(sequential_data, sequential_lengths, separator)
+	Definir separated_String, num_carry, Char_Current, data_Current Como Texto;
+	Definir i, num_range, length_value Como Numero;
+	Definir length_summations, num_range_dec Como Numero;
+	Definir IsNumber Como Logico;
+	num_carry 	     = "";
+	separated_String = "";
+	num_range		 = string_Length(sequential_data);	
+	num_range_dec = 0;
+	i				 = 0;
+	length_summations  = string_Length(sequential_lengths);
+	Mientras i <= length_summations Hacer
+		Char_Current = char_At(sequential_lengths, i);
+		IsNumber = char_isNumber(Char_Current);
+		Si IsNumber Entonces
+			num_carry = string_append(num_carry, Char_Current);
+		FinSi
+		Si !IsNumber & !string_isEmpty(num_carry) | number_isEquals(i, length_summations) Entonces
+			length_value   = string_ToNum(num_carry);
+			num_range_dec = decrement_step(num_range, length_value);
+			data_Current     = string_substring(sequential_data, num_range_dec, num_range);
+			separated_String = string_append(separated_String, data_Current);
+			separated_String = string_append(separated_String, separator);
 			num_carry       = "";// clear
-			num_range       = num_range_inc;
+			num_range       = num_range_dec;
+		FinSi
+		i = increment(i);
+	FinMientras
+FinFuncion
+
+Funcion managerData_printer_color(sequential_data, sequential_lengths, isnewLine, decorator)
+	Definir separated_String, num_carry, Char_Current, current_data Como Texto;
+	Definir i, num_range, length_value Como Numero;
+	Definir length_summations, num_range_inc Como Numero;
+	Definir IsNumber Como Logico;
+	num_carry 	     = "";
+	separated_String = "";
+	num_range		 = 0;	
+	num_range_inc  	 = 0;
+	length_summations  = string_Length(sequential_lengths);
+	i				 = length_summations;
+	Mientras i >= 0 Hacer
+		Char_Current = char_At(sequential_lengths, i);
+		IsNumber = char_isNumber(Char_Current);
+		Si IsNumber Entonces
+			num_carry = string_append(Char_Current, num_carry);
+		FinSi
+		
+		Si !IsNumber & !string_isEmpty(num_carry) | number_isEquals(i, 0) Entonces
+			length_value  = string_ToNum(num_carry);
+			num_range_inc = increment_step(num_range, length_value);
+			current_data  = string_substring(sequential_data, num_range, num_range_inc);
+			current_data  = string_append(decorator, current_data);
+			si isnewLine Entonces
+				println(current_data);
+			SiNo
+				print(current_data);
+			FinSi
+			num_carry = "";// clear
+			num_range = num_range_inc;
 		FinSi
 		i = decrement(i);
 	FinMientras
 FinFuncion
-//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=========================================
-Funcion symbol_area <- symbol_DataArea
-	Definir symbol_area Como Texto;
-	symbol_area = "";//001A
+//----[ CELLS ]--------------------------------------------------------<#>
+Funcion separated_String <- managerData_getSeparateString_cells(struct_cells, count_size, cell_length)
+	Definir separated_String, current_data Como Texto;
+	Definir i, current_pos, next_pos Como Entero;
+	current_pos   = 0;
+	separated_String = "";
+	i = 0;
+	Mientras i < count_size Hacer
+		next_pos         = increment_step(current_pos, cell_length);
+		current_data     = String_Substring(struct_cells, current_pos, next_pos);
+		current_data     = collectionCells_clear_cellString(current_data, cell_length);
+		separated_String = String_append_withSeparator(separated_String, symbol_separator(), current_data);
+		current_pos      = next_pos;
+		i = increment(i);
+	FinMientras
 FinFuncion
 
-Funcion symbol_area <- symbol_TypeArea
-	Definir symbol_area Como Texto;
-	symbol_area = "";//001D
+Funcion managerData_printer_cells(struct_cells, count_size, data_length, isBreakLine)
+	managerData_printer_cells_decorator(struct_cells, count_size, data_length, "", isBreakLine);
 FinFuncion
 
-Funcion symbol_area <- symbol_MetaData
-	Definir symbol_area Como Texto;
-	symbol_area = "";//001E
+Funcion managerData_printer_cells_decorator(struct_cells, count_size, data_length, decorator, isBreakLine)
+	Definir i, current_pos, next_pos Como Entero;
+	Definir current_data Como Texto;
+	current_pos = 0;
+	i = 0;
+	Mientras i < count_size Hacer
+		next_pos = increment_step(current_pos, data_length);
+		current_data = String_Substring(struct_cells, current_pos, next_pos);
+		current_data = collectionCells_clear_cellString(current_data, data_length);
+		current_data = string_append(decorator, current_data);
+		Si isBreakLine Entonces
+			println_simple(current_data);
+		SiNo
+			print_simple(current_data);
+		FinSi
+		current_pos = next_pos;
+		i = increment(i);
+	FinMientras
 FinFuncion
-///$$$$$$[ LINEAR_COLLECTION ]$$$$$$$$[  -+2_1 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+///%%%%%[ LINEAR_COLLECTION....... ]%%%%%%%[   #LCL    ]%%%%%%%%%%%%%%%%%%
 Funcion new_LinearColletion <- linearCollection_new(struct_Collection, TYPE)
 	Definir new_LinearColletion Como Texto;
 	new_LinearColletion = string_append_withSeparator(collection_new(struct_Collection, TYPE), "0", symbol_ExtraData());
@@ -2451,13 +2693,13 @@ FinFuncion
 
 Funcion collection_result <- linearCollection_addFirst_ByType(struct_Collection, Element, TYPE)
 	Definir collection_result, element_String Como Texto;// (C, B, A/1;2;3)
-	element_String = value_Parser_TypeToString(Element, TYPE);//"Z"
+	element_String = value_TypeToString(Element, TYPE);//"Z"
 	collection_result = linearCollection_addFirst_byString(struct_Collection, element_String);
 FinFuncion
 
 Funcion collection_result <- linearCollection_addLast_ByType(struct_Collection, Element, TYPE)
 	Definir collection_result, element_String Como Texto;// (C, B, A/1;2;3)
-	element_String = value_Parser_TypeToString(Element, TYPE);//"Z";
+	element_String = value_TypeToString(Element, TYPE);//"Z";
 	collection_result = linearCollection_addLast_ByString(struct_Collection, element_String);
 FinFuncion
 //....[ add_by_string ].................................................................
@@ -2465,7 +2707,7 @@ Funcion collection_result <- linearCollection_addFirst_byString(struct_Collectio
 	Definir collection_result, element_Length_str Como Texto;// (C, B, A/1;2;3)
 	Definir index_DataArea, index_MetaData Como Numero;//first  (<-:->)
 	element_Length_str = string_append(symbol_Separator(), num_ToString(string_Length(element_String)));// , 4
-	index_DataArea = collection_getIndex_DataArea(struct_Collection);
+	index_DataArea = collection_getIndex_dataArea(struct_Collection);
 	collection_result = string_insert(struct_Collection, element_Length_str, linearCollection_getIndex_EndMetaData(struct_Collection));
 	collection_result = string_insert(collection_result, element_String, increment(index_DataArea));//(Z, C, B, A/1;2;3;4)		
 	collection_result = linearCollection_increment_numElement(collection_result);
@@ -2476,24 +2718,24 @@ Funcion collection_result <- linearCollection_addLast_ByString(struct_Collection
 	Definir index_DataArea, index_MetaData Como Numero;//last  (->:<-)
 	collection_result = struct_Collection;
 	element_Length_str = string_append(symbol_Separator(), num_ToString(string_Length(element_String)));//, 4
-	index_MetaData = collection_getIndex_MetaDataArea(struct_Collection);
+	index_MetaData = collection_getIndex_metaData(struct_Collection);
 	collection_result = string_insert(collection_result, element_Length_str, increment(index_MetaData));
 	collection_result = string_insert(collection_result, element_String, index_MetaData);//(C, B, A, Z/4;1;2;3)
 	collection_result = linearCollection_increment_numElement(collection_result);
 FinFuncion
-//----[ REMOVE ]-------------------------------------------------------------------<#>
-Funcion collection_result <- linearCollection_RemoveElement(struct_Collection, index_element)
+//----[ DELETE ]---------------------------------------------------------------------<#>
+Funcion collection_result <- linearCollection_DeleteElement(struct_Collection, index_element)
 	Definir collection_result Como Texto;
-	collection_result = __private_LinearCollection_ModifyElement(struct_Collection, index_element, string_Null());
+	collection_result = __private_linearCollection_ModifyElement(struct_Collection, index_element, string_NULL());
 	collection_result = linearCollection_decrement_numElement(collection_result);
 FinFuncion
 
-Funcion collection_result <- linearCollection_RemoveFirst(struct_Collection)
+Funcion collection_result <- linearCollection_DeleteFirst(struct_Collection)
 	Definir collection_result Como Texto;
 	Definir index_DataArea, index_MetaData, property_ Como Numero;
 	Definir length_separator, index_EndMetaData, element_Length Como Numero;
 	index_EndMetaData = linearCollection_getIndex_EndMetaData(struct_Collection);
-	index_DataArea = increment(collection_getIndex_DataArea(struct_Collection));// (C B A/, 1, 2, 3)
+	index_DataArea = increment(collection_getIndex_dataArea(struct_Collection));// (C B A/, 1, 2, 3)
 	property_ = string_lastIndexOf(struct_Collection, symbol_Separator());
 	element_Length = string_ToNum(string_substring(struct_Collection, increment(property_), index_EndMetaData));
 	collection_result = string_Delete(struct_Collection, property_, index_EndMetaData);
@@ -2501,13 +2743,13 @@ Funcion collection_result <- linearCollection_RemoveFirst(struct_Collection)
 	collection_result = linearCollection_decrement_numElement(collection_result);
 FinFuncion
 
-Funcion collection_result <- linearCollection_RemoveLast(struct_Collection)
+Funcion collection_result <- linearCollection_DeleteLast(struct_Collection)
 	Definir collection_result Como Texto;
 	Definir index_DataArea, index_MetaData, property_ Como Numero;
 	Definir length_separator, index_EndMetaData, element_Length Como Numero;
 	index_EndMetaData = linearCollection_getIndex_EndMetaData(struct_Collection);
 	length_separator = string_Length(symbol_Separator());
-	index_MetaData = increment_step(collection_getIndex_MetaDataArea(struct_Collection), length_separator);
+	index_MetaData = increment_step(collection_getIndex_metaData(struct_Collection), length_separator);
 	property_ = string_indexOf_fromIndex(struct_Collection, symbol_Separator(), increment(index_MetaData));
 	property_ = if_else(property_ > 0, property_, index_EndMetaData, TYPE_INT());
 	element_Length = string_ToNum(string_substring(struct_Collection, increment(index_MetaData), property_));
@@ -2516,7 +2758,7 @@ Funcion collection_result <- linearCollection_RemoveLast(struct_Collection)
 	collection_result = string_Delete(collection_result, decrement_step(index_MetaData, element_Length), index_MetaData);
 	collection_result = linearCollection_decrement_numElement(collection_result);
 FinFuncion
-//----[ INCREMENT ]-----------------------------------------------------------------<#>
+//----[ INCREMENT ]----------------------------------------------------<#>
 Funcion collection_result <- linearCollection_increment_numElement(struct_List)
 	Definir collection_result Como Texto;
 	collection_result =  linearCollection_update_numElement(struct_List, 1);
@@ -2539,7 +2781,7 @@ Funcion collection_result <- linearCollection_update_numElement(struct_List, num
 		collection_result = string_append(string_substring(struct_List, 0, index_ExtraData), value_modify_StringNumber(num_elements_str, num_sum));
 	FinSi
 FinFuncion
-//----[ GETTERS ]-------------------------------------------------------------------<#>
+//----[ GETTERS ]----------------------------------------------------<#>
 Funcion element_Result <- linearCollection_getElement(struct_Collection, index_element)
 	Definir TYPE Como Texto;
 	TYPE = linearCollection_GetType(struct_Collection);
@@ -2554,7 +2796,7 @@ FinFuncion
 
 Funcion element_Result <- linearCollection_getFirst(struct_Collection)
 	Definir TYPE, element_String Como Texto;
-	TYPE = collection_getContent_TypesArea(struct_Collection);
+	TYPE = collection_getContent_TypeArea(struct_Collection);
 	Segun TYPE Hacer
 		caso TYPE_INT(): Definir element_Result Como Numero;
 		caso TYPE_FLOAT(): Definir element_Result Como Real;
@@ -2566,7 +2808,7 @@ FinFuncion
 
 Funcion element_Result <- linearCollection_getLast(struct_Collection)
 	Definir TYPE, element_String Como Texto;
-	TYPE = collection_getContent_TypesArea(struct_Collection);
+	TYPE = collection_getContent_TypeArea(struct_Collection);
 	Segun TYPE Hacer
 		caso TYPE_INT(): Definir element_Result Como Numero;
 		caso TYPE_FLOAT(): Definir element_Result Como Real;
@@ -2586,7 +2828,7 @@ Funcion element_Result <- linearCollection_getElement_toType(struct_Collection, 
 		caso TYPE_BOOLEAN(): Definir element_Result Como Logico;
 		De Otro Modo: Definir element_Result Como Texto;
 	FinSegun
-	element_Result = value_Parser_StringToType(element_String, TYPE);
+	element_Result = value_stringToType(element_String, TYPE);
 FinFuncion
 
 Funcion element_Result <- linearCollection_getLast_toType(struct_Collection, TYPE)
@@ -2599,7 +2841,7 @@ Funcion element_Result <- linearCollection_getLast_toType(struct_Collection, TYP
 	FinSegun
 	element_String = linearCollection_getLast_ToString(struct_Collection);
 	element_String = value_StringCatch_ofType(element_String, TYPE, "linearCollection_getLast_toType(struct, TYPE)", "struct is Empty");
-	element_Result = value_Parser_StringToType(element_String, TYPE);
+	element_Result = value_stringToType(element_String, TYPE);
 FinFuncion
 
 Funcion element_Result <- linearCollection_getFirst_toType(struct_Collection, TYPE)
@@ -2612,22 +2854,22 @@ Funcion element_Result <- linearCollection_getFirst_toType(struct_Collection, TY
 	FinSegun
 	element_String = linearCollection_getFirst_ToString(struct_Collection);
 	element_String = value_StringCatch_ofType(element_String, TYPE, "linearCollection_getFirst_toType(struct, TYPE)", "struct is Empty");
-	element_Result = value_Parser_StringToType(element_String, TYPE);
+	element_Result = value_stringToType(element_String, TYPE);
 FinFuncion
 //....[ get_data_string ]...............................................................
 Funcion element_String <- linearCollection_getElement_toString(struct_linearCollection, index_element)
-	Definir element_String, data_sumation, string_sumation, data_soup Como Texto;
+	Definir element_String, sequential_package, sequential_lengths, sequential_data Como Texto;
 	Definir index_Data, index_MetaData, index_ExtraData Como Numero;
 	Si linearCollection_IndexIsValid(struct_linearCollection, index_element) Entonces
-		index_Data 		  = increment(string_indexOf(struct_linearCollection, symbol_DataArea()));
+		index_Data 		  = increment(string_indexOf(struct_linearCollection, symbol_dataArea()));
 		index_ExtraData   = string_LastindexOf(struct_linearCollection, symbol_ExtraData());
-		index_MetaData	  = string_LastindexOf_fromIndex(struct_linearCollection, symbol_MetaData(), index_ExtraData);
-		data_soup 		  = string_substring(struct_linearCollection, index_Data, index_MetaData);
-		string_sumation   = string_substring(struct_linearCollection, increment(index_MetaData), index_ExtraData);
-		element_String 	  = __private_LinearCollection_getDataString(data_soup, string_sumation, index_element);
+		index_MetaData	  = string_LastindexOf_fromIndex(struct_linearCollection, symbol_metaData(), index_ExtraData);
+		sequential_data 		  = string_substring(struct_linearCollection, index_Data, index_MetaData);
+		sequential_lengths   = string_substring(struct_linearCollection, increment(index_MetaData), index_ExtraData);
+		element_String 	  = managerData_get_toString(sequential_data, sequential_lengths, index_element);
 	SiNo
-		error_message_Function("linearCollection_getElement_toString", string_append("index_element no is valid Size:", num_ToString(linearCollection_GetSize(struct_linearCollection))));
-		element_String = string_Null();
+		error_message_Function("linearCollection_getElement_toString", string_append("index_element no is valid Size:", num_ToString(linearCollection_getSize(struct_linearCollection))));
+		element_String = string_NULL();
 	FinSi
 FinFuncion
 
@@ -2636,10 +2878,10 @@ Funcion element_String <- linearCollection_getFirst_ToString(struct_Collection)
 	Definir index_DataArea, property_, Index_EndMetaData, element_Length Como Numero;
 	Si linearCollection_isEmpty(struct_Collection) Entonces
 		error_message_Function("linearCollection_getFirst_ToString", "struct is Empty");
-		element_String = string_Null();
+		element_String = string_NULL();
 	SiNo
 		Index_EndMetaData = linearCollection_getIndex_EndMetaData(struct_Collection);
-		index_DataArea = increment(collection_getIndex_DataArea(struct_Collection));// (C B A/, 1, 2, 3)
+		index_DataArea = increment(collection_getIndex_dataArea(struct_Collection));// (C B A/, 1, 2, 3)
 		property_ = string_lastIndexOf(struct_Collection, symbol_Separator());
 		element_Length = string_ToNum(string_substring(struct_Collection, increment(property_), index_EndMetaData));
 		element_String = string_substring(struct_Collection, index_DataArea, increment_step(index_DataArea, element_Length));
@@ -2652,11 +2894,11 @@ Funcion element_String <- linearCollection_getLast_ToString(struct_Collection)
 	Definir length_separator, Index_EndMetaData , element_Length Como Numero;
 	Si linearCollection_isEmpty(struct_Collection) Entonces
 		error_message_Function("linearCollection_getLast_ToString", "struct is Empty");
-		element_String = string_Null();
+		element_String = string_NULL();
 	SiNo
 		Index_EndMetaData = linearCollection_getIndex_EndMetaData(struct_Collection);
 		length_separator = string_Length(symbol_Separator());
-		index_MetaData = increment_step(collection_getIndex_MetaDataArea(struct_Collection), length_separator);
+		index_MetaData = increment_step(collection_getIndex_metaData(struct_Collection), length_separator);
 		property_ = string_indexOf_fromIndex(struct_Collection, symbol_Separator(), increment(index_MetaData));
 		property_ = if_else(property_ > 0, property_, Index_EndMetaData, TYPE_INT());
 		element_Length = string_ToNum(string_substring(struct_Collection, increment(index_MetaData), property_));
@@ -2664,133 +2906,80 @@ Funcion element_String <- linearCollection_getLast_ToString(struct_Collection)
 		element_String = string_substring(struct_Collection, decrement_step(index_MetaData, element_Length), index_MetaData);
 	FinSi
 FinFuncion
-
-Funcion value_string <- __private_LinearCollection_getDataString(data_soup, string_sumation, index_getter)
-	Definir value_string, num_carry, Char_Current Como Texto;
-	Definir length_Sumation, i, index_end, index_start, length_data_value Como Numero;
-	Definir IsNumber Como Logico;
-	num_carry 	    = "";
-	index_end		= 0;	
-	length_Sumation = string_Length(string_sumation);
-	i				= length_Sumation;
-	Mientras i >= 0 & index_getter >= 0 Hacer
-		Char_Current = char_At(string_sumation, i);
-		IsNumber = char_isNumber(Char_Current);
-		Si IsNumber Entonces
-			num_carry = string_append(Char_Current, num_carry);
-		FinSi
-		
-		Si (!IsNumber & !string_isEmpty(num_carry)) | Num_isEquals(i, 0) Entonces
-			length_data_value = string_ToNum(num_carry);
-			index_end         = increment_step(index_end, length_data_value);
-			index_getter      = decrement(index_getter);
-			num_carry = "";
-		FinSi
-		i = decrement(i);
-	FinMientras
-	
-	Si index_getter >= 0 Entonces
-		error_message_Function("__private_LinearCollection_getDataString", "error index no valid");
-		value_string = string_Null();
-	SiNo
-		index_start  = decrement_step(index_end, length_data_value);
-		value_string = string_substring(data_soup, index_start, index_end);
-	FinSi
-FinFuncion
-
-Funcion separated_String <- __private_LinearCollection_GetDataSeparatedString(data_soup, string_sumation, separator)
-	Definir separated_String, num_carry, Char_Current, data_Current Como Texto;
-	Definir i, num_range, length_data_value Como Numero;
-	Definir length_Sumation, num_range_dec Como Numero;
-	Definir IsNumber Como Logico;
-	num_carry 	     = "";
-	separated_String = "";
-	num_range		 = string_Length(data_soup);	
-	num_range_dec = 0;
-	i				 = 0;
-	length_Sumation  = string_Length(string_sumation);
-	Mientras i <= length_Sumation Hacer
-		Char_Current = char_At(string_sumation, i);
-		IsNumber = char_isNumber(Char_Current);
-		Si IsNumber Entonces
-			num_carry = string_append(num_carry, Char_Current);
-		FinSi
-		Si !IsNumber & !string_isEmpty(num_carry) | Num_isEquals(i, length_Sumation) Entonces
-			length_data_value   = string_ToNum(num_carry);
-			num_range_dec = decrement_step(num_range, length_data_value);
-			data_Current     = string_substring(data_soup, num_range_dec, num_range);
-			separated_String = string_append(separated_String, data_Current);
-			separated_String = string_append(separated_String, separator);
-			num_carry       = "";// clear
-			num_range       = num_range_dec;
-		FinSi
-		i = increment(i);
-	FinMientras
-FinFuncion
 //....[ get_utilities ].................................................................
 Funcion type_result <- linearCollection_GetType(struct_Collection)
 	Definir type_result Como Texto;
-	type_result = collection_getContent_TypesArea(struct_Collection);
+	type_result = collection_getContent_TypeArea(struct_Collection);
 FinFuncion
 
-Funcion Size_int <- linearCollection_GetSize(struct_Collection)
+Funcion Size_int <- linearCollection_getSize(struct_Collection)
 	Definir Size_int Como Numero;
 	Size_int = string_ToNum(string_substring_from(struct_Collection, increment(linearCollection_getIndex_EndMetaData(struct_Collection))));
 FinFuncion
 
-Funcion innerIndex <- LinearCollection_GetValue_InnerIndex(linearCollection, data_string)
-	Definir separated_String, string_sumation, data_soup Como Texto;
+Funcion innerIndex <- linearCollection_GetValue_InnerIndex(linearCollection, data_string)
+	Definir separated_String, sequential_lengths, sequential_data Como Texto;
 	Definir index_Data, index_MetaData, index_ExtraData Como Numero;
 	Definir innerIndex, collection_size Como Numero;
-	index_Data = increment(string_indexOf(linearCollection, symbol_DataArea()));
+	index_Data = increment(string_indexOf(linearCollection, symbol_dataArea()));
 	index_ExtraData = string_LastindexOf(linearCollection, symbol_ExtraData());
-	index_MetaData = string_LastindexOf_fromIndex(linearCollection, symbol_MetaData(), index_ExtraData);
-	data_soup = string_substring(linearCollection, index_Data, index_MetaData);
-	string_sumation = string_substring(linearCollection, increment(index_MetaData), index_ExtraData);
-	collection_size = linearCollection_GetSize(linearCollection);
-	innerIndex = __private_CollectionSetter_GetID_DataString(data_soup, string_sumation, collection_size, data_string);
+	index_MetaData = string_LastindexOf_fromIndex(linearCollection, symbol_metaData(), index_ExtraData);
+	sequential_data = string_substring(linearCollection, index_Data, index_MetaData);
+	sequential_lengths = string_substring(linearCollection, increment(index_MetaData), index_ExtraData);
+	collection_size = linearCollection_getSize(linearCollection);
+	innerIndex = managerData_getInnerIndex(sequential_data, sequential_lengths, collection_size, data_string);
 	si !value_isNull(innerIndex, TYPE_INT()) Entonces
 		innerIndex = decrement(collection_size) - innerIndex;
 	FinSi
 FinFuncion
 
-Funcion separated_String <- LinearCollection_GetValues_ToSeparatedString(linearCollection, separator)
-	Definir separated_String, string_sumation, data_soup Como Texto;
+Funcion separated_String <- linearCollection_GetValues_ToSeparatedString(linearCollection, separator)
+	Definir separated_String, sequential_lengths, sequential_data Como Texto;
 	Definir index_Data, index_MetaData, index_ExtraData Como Numero;
-	index_Data = increment(string_indexOf(linearCollection, symbol_DataArea()));
+	index_Data = increment(string_indexOf(linearCollection, symbol_dataArea()));
 	index_ExtraData = string_LastindexOf(linearCollection, symbol_ExtraData());
-	index_MetaData = string_LastindexOf_fromIndex(linearCollection, symbol_MetaData(), index_ExtraData);
-	data_soup = string_substring(linearCollection, index_Data, index_MetaData);
-	string_sumation= string_substring(linearCollection, increment(index_MetaData), index_ExtraData);
-	separated_String = __private_LinearCollection_GetDataSeparatedString(data_soup, string_sumation, separator);
+	index_MetaData = string_LastindexOf_fromIndex(linearCollection, symbol_metaData(), index_ExtraData);
+	sequential_data = string_substring(linearCollection, index_Data, index_MetaData);
+	sequential_lengths= string_substring(linearCollection, increment(index_MetaData), index_ExtraData);
+	separated_String = managerData_getSeparateString(sequential_data, sequential_lengths, separator);
 FinFuncion
-//----[ SETTERS ]-------------------------------------------------------------------<#>
+
+Funcion index_extraData <- linearCollection_getIndex_ExtraData(struct_LinearCollection)
+	Definir index_extraData Como Numero;
+	index_extraData = string_lastIndexOf(struct_LinearCollection, symbol_extraData());
+FinFuncion
+//----[ SETTERS ]----------------------------------------------------<#>
 Funcion collection_result <- linearCollection_SetElement(struct_Collection, index_element, new_value)
 	Definir collection_result, TYPE Como Texto;
-	TYPE = collection_getContent_TypesArea(struct_Collection);
+	TYPE = collection_getContent_TypeArea(struct_Collection);
 	collection_result = linearCollection_SetElement_ToType(struct_Collection, index_element, new_value, TYPE);
 FinFuncion
 
 Funcion collection_result <- linearCollection_SetElement_ToType(struct_Collection, index_element, new_value, TYPE)
 	Definir collection_result, value_string Como Texto;
-	value_string = value_Parser_TypeToString(new_value, TYPE);
+	value_string = value_TypeToString(new_value, TYPE);
 	collection_result = linearCollection_SetElement_ToString(struct_Collection, index_element, value_string);
 FinFuncion
 
 Funcion collection_result <- linearCollection_SetElement_ToString(struct_Collection, index_element, value_string)
 	Definir collection_result, element_String Como Texto;
-	collection_result = __private_LinearCollection_ModifyElement(struct_Collection, index_element, value_string);
+	collection_result = __private_linearCollection_ModifyElement(struct_Collection, index_element, value_string);
 FinFuncion
-//----[ BOOLEANS ]-------------------------------------------------------------------<#>
+//----[ BOOLEANS ]----------------------------------------------------<#>
 Funcion struct_IsEmpty <- linearCollection_isEmpty(struct_Collection)
 	Definir struct_IsEmpty Como Logico;
-	struct_IsEmpty = (linearCollection_GetSize(struct_Collection) < 1);
+	struct_IsEmpty = (linearCollection_getSize(struct_Collection) < 1);
 FinFuncion
 
 Funcion index_isValid <- linearCollection_IndexIsValid(struct_Collection, index_element)
 	Definir index_isValid Como Logico;
 	Definir struct_Size Como Numero;
-	struct_Size = linearCollection_GetSize(struct_Collection);
+	struct_Size   = linearCollection_getSize(struct_Collection);
+	index_isValid = Collection_IndexIsValid(struct_Size, index_element);
+FinFuncion
+
+Funcion index_isValid <- Collection_IndexIsValid(struct_Size, index_element)
+	Definir index_isValid Como Logico;
 	index_isValid = (index_element >= 0 & index_element < struct_Size );
 FinFuncion
 //----[ PRINTER_lINEAR ]--------------------------------------------------------------<#>
@@ -2802,15 +2991,15 @@ Funcion linearCollection_print(linearCollection)
 	__private_linearCollection_println(linearCollection, false());
 FinFuncion
 
-Funcion __private_linearCollection_println(linearCollection, isNewLine)
-	Definir string_sumation, data_soup Como Texto;
+Funcion __private_linearCollection_println(linearCollection, isnewLine)
+	Definir sequential_lengths, sequential_data Como Texto;
 	Definir index_Data, index_MetaData, index_ExtraData Como Numero;
-	index_Data = increment(string_indexOf(linearCollection, symbol_DataArea()));
+	index_Data = increment(string_indexOf(linearCollection, symbol_dataArea()));
 	index_ExtraData = string_LastindexOf(linearCollection, symbol_ExtraData());
-	index_MetaData = string_LastindexOf_fromIndex(linearCollection, symbol_MetaData(), index_ExtraData);
-	data_soup = string_substring(linearCollection, index_Data, index_MetaData);
-	string_sumation= string_substring(linearCollection, increment(index_MetaData), index_ExtraData);
-	__private_Collection_Printer(data_soup, string_sumation, isNewLine);
+	index_MetaData = string_LastindexOf_fromIndex(linearCollection, symbol_metaData(), index_ExtraData);
+	sequential_data = string_substring(linearCollection, index_Data, index_MetaData);
+	sequential_lengths= string_substring(linearCollection, increment(index_MetaData), index_ExtraData);
+	__private_collection_printer(sequential_data, sequential_lengths, isnewLine);
 FinFuncion
 //....[ utilities ].....................................................................
 Funcion End_index <- linearCollection_getIndex_EndMetaData(struct_Collection)
@@ -2818,64 +3007,18 @@ Funcion End_index <- linearCollection_getIndex_EndMetaData(struct_Collection)
 	End_index = string_lastIndexOf(struct_Collection, symbol_ExtraData());
 FinFuncion
 //----[ MODIFY_ELEMENT_INDEX ]-------------------------------------------------------<#>
-Funcion collection_result <- __private_LinearCollection_ModifyElement(struct_linearCollection, index_modify, value_string)
-	Definir collection_result, data_sumation, string_sumation, data_soup Como Texto;
+Funcion collection_result <- __private_linearCollection_ModifyElement(struct_linearCollection, index_modify, value_string)
+	Definir collection_result, sequential_package, sequential_lengths, sequential_data Como Texto;
 	Definir index_Data, index_MetaData, index_ExtraData Como Numero;
-	index_Data 		  = increment(string_indexOf(struct_linearCollection, symbol_DataArea()));
-	index_ExtraData   = string_LastindexOf(struct_linearCollection, symbol_ExtraData());
-	index_MetaData	  = string_LastindexOf_fromIndex(struct_linearCollection, symbol_MetaData(), index_ExtraData);
-	data_soup 		  = string_substring(struct_linearCollection, index_Data, index_MetaData);
-	string_sumation   = string_substring(struct_linearCollection, increment(index_MetaData), index_ExtraData);
-	data_sumation 	  = __private_LinearCollection_modify_dataSumation(data_soup, string_sumation, index_modify, value_string);
-	collection_result = string_Delete(struct_linearCollection, index_Data, index_ExtraData);
-	collection_result = string_insert(collection_result, data_sumation, index_Data);
+	index_Data 		   = increment(string_indexOf(struct_linearCollection, symbol_dataArea()));
+	index_ExtraData    = string_LastindexOf(struct_linearCollection, symbol_ExtraData());
+	index_MetaData	   = string_LastindexOf_fromIndex(struct_linearCollection, symbol_metaData(), index_ExtraData);
+	sequential_data    = string_substring(struct_linearCollection, index_Data, index_MetaData);
+	sequential_lengths = string_substring(struct_linearCollection, increment(index_MetaData), index_ExtraData);
+	sequential_package = managerData_modify(sequential_data, sequential_lengths, index_modify, value_string, false());
+	collection_result = collection_updateRange(struct_linearCollection, index_Data, index_ExtraData, sequential_package);
 FinFuncion
-
-Funcion data_sumation <- __private_LinearCollection_modify_dataSumation(data_soup, string_sumation, index_modify, value_string)
-	Definir data_sumation, num_carry, Char_Current, line_Current Como Texto;
-	Definir length_Sumation, i, index_end, index_start, length_data_value Como Numero;
-	Definir index_sum_start, index_sum_end, old_value_length, new_value_length Como Numero;
-	Definir IsNumber Como Logico;
-	num_carry 	     = "";
-	index_end		 = 0;	
-	length_Sumation  = string_Length(string_sumation);
-	i				 = length_Sumation;
-	Mientras i >= 0 & index_modify >= 0 Hacer
-		Char_Current = char_At(string_sumation, i);
-		IsNumber = char_isNumber(Char_Current);
-		Si IsNumber Entonces
-			num_carry = string_append(Char_Current, num_carry);
-		FinSi
-		
-		Si !IsNumber & !string_isEmpty(num_carry) | Num_isEquals(i, 0) Entonces
-			length_data_value = string_ToNum(num_carry);
-			index_end         = increment_step(index_end, length_data_value);
-			index_modify 	  = decrement(index_modify);
-			old_value_length  = string_Length(num_carry);
-			num_carry         = "";// clear
-		FinSi
-		i = decrement(i);
-	FinMientras
-	
-	si index_modify >= 0 Entonces
-		error_message_Function("__private_LinearCollection_modify_dataSumation(data, sumation, index, val_string)", "error index no valid");
-		data_sumation = string_append(data_soup, string_sumation);
-	SiNo
-		//data_soup, string_sumation, old_value_length, i, index_end, length_data_value, value_string
-		index_sum_start = increment(i);
-		index_sum_end = increment_step(index_sum_start, increment(old_value_length));
-		index_start = decrement_step(index_end,  length_data_value);
-		string_sumation = string_Delete(string_sumation, index_sum_start, index_sum_end);
-		data_sumation = string_Delete(data_soup, index_start, index_end);
-		si !string_isEquals(value_String, string_Null()) Entonces
-			new_value_length = string_Length(value_string);
-			string_sumation = string_insert(string_sumation, string_append(symbol_Separator(), Num_toString(new_value_length)), index_sum_start);
-			data_sumation = string_insert(data_sumation, value_string, index_start);
-		FinSi
-		data_sumation = string_append_withSeparator(data_sumation, string_sumation, symbol_MetaData());
-	FinSi
-FinFuncion
-//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=========================================
+//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=======================================
 Funcion result_string <- symbol_ExtraData
 	Definir result_string Como Texto;
 	result_string = "";//0003
@@ -2910,44 +3053,44 @@ Funcion TYPE <- STRUCT_TYPE_DEQUE
 	Definir TYPE Como Texto;
 	TYPE = "deque";
 FinFuncion
-///$$$$$[ DEQUE ]$$$$$$$$$$$$$$$$$$$$[  -+2_2 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Funcion new_Deque <- util_Deque_new(TYPE)
+///%%%%%[ DEQUE................... ]%%%%%%%[   #DEQ    ]%%%%%%%%%%%%%%%%%%
+Funcion new_Deque <- util_deque_new(TYPE)
 	Definir new_Deque Como Texto;
 	new_Deque = linearCollection_new( STRUCT_TYPE_DEQUE(), TYPE);
 FinFuncion
 
-Funcion Size_int <- util_Deque_Size(struct_Deque)
+Funcion Size_int <- util_deque_Size(struct_Deque)
 	Definir Size_int Como Numero;
-	Size_int = linearCollection_GetSize(struct_Deque);
+	Size_int = linearCollection_getSize(struct_Deque);
 FinFuncion
 
-Funcion deque_Result <- util_Deque_AddFirst(struct_Deque, element)
+Funcion deque_Result <- util_deque_AddFirst(struct_Deque, element)
 	Definir deque_Result Como Texto;
 	deque_Result = linearCollection_addFirst(struct_Deque, element);
 FinFuncion
 
-Funcion deque_Result <- util_Deque_AddLast(struct_Deque, element)
+Funcion deque_Result <- util_deque_AddLast(struct_Deque, element)
 	Definir deque_Result Como Texto;
 	deque_Result = linearCollection_addLast(struct_Deque, element);
 FinFuncion
 
-Funcion collection_result <- util_Deque_RemoveFirst(struct_Deque)
+Funcion collection_result <- util_deque_DeleteFirst(struct_Deque)
 	Definir collection_result Como Texto;
-	collection_result = linearCollection_RemoveFirst(struct_Deque);
+	collection_result = linearCollection_DeleteFirst(struct_Deque);
 FinFuncion
 
-Funcion collection_result <- util_Deque_RemoveLast(struct_Deque)
+Funcion collection_result <- util_deque_DeleteLast(struct_Deque)
 	Definir collection_result Como Texto;
-	collection_result = linearCollection_RemoveLast(struct_Deque);
+	collection_result = linearCollection_DeleteLast(struct_Deque);
 FinFuncion
 
-Funcion util_Deque_println(struct_Deque)
+Funcion util_deque_println(struct_Deque)
 	linearCollection_println(struct_Deque);
 FinFuncion
 
-Funcion element_Result <- util_Deque_getFirst(struct_Deque)
+Funcion element_Result <- util_deque_getFirst(struct_Deque)
 	Definir TYPE Como Texto;
-	TYPE = collection_getContent_TypesArea(struct_Deque);
+	TYPE = collection_getContent_TypeArea(struct_Deque);
 	Segun TYPE Hacer
 		caso TYPE_INT(): Definir element_Result Como Numero;
 		caso TYPE_FLOAT(): Definir element_Result Como Real;
@@ -2957,9 +3100,9 @@ Funcion element_Result <- util_Deque_getFirst(struct_Deque)
 	element_Result = linearCollection_getFirst_toType(struct_Deque, TYPE);
 FinFuncion
 
-Funcion element_Result <- util_Deque_getLast(struct_Deque)
+Funcion element_Result <- util_deque_getLast(struct_Deque)
 	Definir TYPE Como Texto;
-	TYPE = collection_getContent_TypesArea(struct_Deque);
+	TYPE = collection_getContent_TypeArea(struct_Deque);
 	Segun TYPE Hacer
 		caso TYPE_INT(): Definir element_Result Como Numero;
 		caso TYPE_FLOAT(): Definir element_Result Como Real;
@@ -2968,29 +3111,29 @@ Funcion element_Result <- util_Deque_getLast(struct_Deque)
 	FinSegun
 	element_Result = linearCollection_getLast_toType(struct_Deque, TYPE);
 FinFuncion
-///$$$$$[ QUEUE ]$$$$$$$$$$$$$$$$$$$$[  -+2_3 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Funcion new_Queue <- util_Queue_new(TYPE)
+///%%%%%[ QUEUE................... ]%%%%%%%[   #QUE    ]%%%%%%%%%%%%%%%%%%
+Funcion new_Queue <- util_queue_new(TYPE)
 	Definir new_Queue Como Texto;
 	new_Queue = linearCollection_new( STRUCT_TYPE_QUEUE(), TYPE);
 FinFuncion
 
-Funcion Size_int <- util_Queue_Size(struct_Queue)
+Funcion Size_int <- util_queue_Size(struct_Queue)
 	Definir Size_int Como Numero;
-	Size_int = linearCollection_GetSize(struct_Queue);
+	Size_int = linearCollection_getSize(struct_Queue);
 FinFuncion
 
-Funcion queue_Result <- util_Queue_Offer(struct_Queue, element)
+Funcion queue_Result <- util_queue_Offer(struct_Queue, element)
 	Definir queue_Result Como Texto;
 	queue_Result = linearCollection_addLast(struct_Queue, element);
 FinFuncion
 
-Funcion util_Queue_println(struct_Queue)
+Funcion util_queue_println(struct_Queue)
 	linearCollection_println(struct_Queue);
 FinFuncion
 
-Funcion element_Result <- util_Queue_Peek(struct_Queue)
+Funcion element_Result <- util_queue_Peek(struct_Queue)
 	Definir TYPE Como Texto;
-	TYPE = collection_getContent_TypesArea(struct_Queue);
+	TYPE = collection_getContent_TypeArea(struct_Queue);
 	Segun TYPE Hacer
 		caso TYPE_INT(): Definir element_Result Como Numero;
 		caso TYPE_FLOAT(): Definir element_Result Como Real;
@@ -3000,47 +3143,47 @@ Funcion element_Result <- util_Queue_Peek(struct_Queue)
 	element_Result = linearCollection_getFirst_toType(struct_Deque, TYPE);
 FinFuncion
 
-Funcion collection_result <- util_Queue_RemoveFirst(struct_Queue)
+Funcion collection_result <- util_queue_DeleteFirst(struct_Queue)
 	Definir collection_result Como Texto;
-	collection_result = linearCollection_RemoveFirst(struct_Queue);
+	collection_result = linearCollection_DeleteFirst(struct_Queue);
 FinFuncion
 
-Funcion element_Result <- util_Queue_Poll(struct_Queue Por Referencia)
+Funcion element_Result <- util_queue_Poll(struct_Queue Por Referencia)
 	Definir TYPE, element_String Como Texto;
-	TYPE = collection_getContent_TypesArea(struct_Queue);
+	TYPE = collection_getContent_TypeArea(struct_Queue);
 	Segun TYPE Hacer
 		caso TYPE_INT(): Definir element_Result Como Numero;
 		caso TYPE_FLOAT(): Definir element_Result Como Real;
 		caso TYPE_BOOLEAN(): Definir element_Result Como Logico;
 		De Otro Modo: Definir element_Result Como Texto;
 	FinSegun
-	element_Result = util_Queue_Peek(struct_Queue);
-	// (In older verSions:) En verSiones antiguas usar por separado util_Queue_Peek() & util_Queue_RemoveFirst() para actualizar
-	struct_Queue = util_Queue_RemoveFirst(struct_Queue);
+	element_Result = util_queue_Peek(struct_Queue);
+	// (In older verSions:) En verSiones antiguas usar por separado util_queue_Peek() & util_queue_DeleteFirst() para actualizar
+	struct_Queue = util_queue_DeleteFirst(struct_Queue);
 FinFuncion
-///$$$$$[ STACK ]$$$$$$$$$$$$$$$$$$$$[  -+2_4 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Funcion new_Stack <- util_Stack_new(TYPE)
+///%%%%%[ STACK................... ]%%%%%%%[   #STA    ]%%%%%%%%%%%%%%%%%%
+Funcion new_Stack <- util_stack_new(TYPE)
 	Definir new_Stack Como Texto;
 	new_Stack = linearCollection_new(STRUCT_TYPE_STACK(), TYPE);
 FinFuncion
 
-Funcion Size_int <- util_Stack_Size(struct_Stack)
+Funcion Size_int <- util_stack_Size(struct_Stack)
 	Definir Size_int Como Numero;
-	Size_int = linearCollection_GetSize(struct_Stack);
+	Size_int = linearCollection_getSize(struct_Stack);
 FinFuncion
 
-Funcion stack_Result <- util_Stack_push(struct_Stack, element)
+Funcion stack_Result <- util_stack_push(struct_Stack, element)
 	Definir stack_Result Como Texto;
 	stack_Result = linearCollection_addLast(struct_Stack, element);
 FinFuncion
 
-Funcion util_Stack_println(struct_Stack)
+Funcion util_stack_println(struct_Stack)
 	linearCollection_println(struct_Stack);
 FinFuncion
 
-Funcion element_Result <- util_Stack_Top(struct_Stack)
+Funcion element_Result <- util_stack_Top(struct_Stack)
 	Definir TYPE Como Texto;
-	TYPE = collection_getContent_TypesArea(struct_Stack);
+	TYPE = collection_getContent_TypeArea(struct_Stack);
 	Segun TYPE Hacer
 		caso TYPE_INT(): Definir element_Result Como Numero;
 		caso TYPE_FLOAT(): Definir element_Result Como Real;
@@ -3050,25 +3193,25 @@ Funcion element_Result <- util_Stack_Top(struct_Stack)
 	element_Result = linearCollection_getLast_toType(struct_Stack, TYPE);
 FinFuncion
 
-Funcion stack_Result <- util_Stack_removeLast(struct_Stack)
+Funcion stack_Result <- util_stack_removeLast(struct_Stack)
 	Definir stack_Result Como Texto;
-	stack_Result = linearCollection_RemoveLast(struct_Stack);
+	stack_Result = linearCollection_DeleteLast(struct_Stack);
 FinFuncion
 
-Funcion element_Result <- util_Stack_Pop(struct_Stack Por Referencia)
+Funcion element_Result <- util_stack_Pop(struct_Stack Por Referencia)
 	Definir TYPE, element_String Como Texto;
-	TYPE = collection_getContent_TypesArea(struct_Stack);
+	TYPE = collection_getContent_TypeArea(struct_Stack);
 	Segun TYPE Hacer
 		caso TYPE_INT(): Definir element_Result Como Numero;
 		caso TYPE_FLOAT(): Definir element_Result Como Real;
 		caso TYPE_BOOLEAN(): Definir element_Result Como Logico;
 		De Otro Modo: Definir element_Result Como Texto;
 	FinSegun
-	element_Result = util_Stack_Top(struct_Stack);
-	// (In older verSions:) En verSiones antiguas usar por separado util_Stack_Top() & util_Stack_removeLast() para actualizar
-	struct_Stack = util_Stack_removeLast(struct_Stack);
+	element_Result = util_stack_Top(struct_Stack);
+	// (In older verSions:) En verSiones antiguas usar por separado util_stack_Top() & util_stack_removeLast() para actualizar
+	struct_Stack = util_stack_removeLast(struct_Stack);
 FinFuncion
-///$$$$$[ LIST ]$$$$$$$$$$$$$$$$$$$$$[  -+2_5 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+///%%%%%[ LIST.................... ]%%%%%%%[   #LIS    ]%%%%%%%%%%%%%%%%%%
 Funcion new_list <- util_List_new(TYPE)
 	Definir new_list Como Texto;
 	new_list = linearCollection_new(STRUCT_TYPE_LIST(), TYPE);
@@ -3081,16 +3224,16 @@ FinFuncion
 
 Funcion Size_int <- util_List_Size(struct_List)
 	Definir Size_int Como Numero;
-	Size_int = linearCollection_GetSize(struct_List);
+	Size_int = linearCollection_getSize(struct_List);
 FinFuncion
 
 Funcion util_List_println(struct_List)
 	linearCollection_println(struct_List);
 FinFuncion
 
-Funcion element_Result <- util_List_getElement(struct_list, index_element)
+Funcion element_Result <- util_List_get(struct_list, index_element)
 	Definir TYPE Como Texto;
-	TYPE = collection_getContent_TypesArea(struct_List);
+	TYPE = collection_getContent_TypeArea(struct_List);
 	Segun TYPE Hacer
 		caso TYPE_INT(): Definir element_Result Como Numero;
 		caso TYPE_FLOAT(): Definir element_Result Como Real;
@@ -3100,611 +3243,16 @@ Funcion element_Result <- util_List_getElement(struct_list, index_element)
 	element_Result = linearCollection_getElement_toType(struct_List, index_element, TYPE);
 FinFuncion
 
-Funcion element_Result <- util_List_RemoveElement(struct_list, index_element)
+Funcion element_Result <- util_List_delete(struct_list, index_element)
 	Definir element_Result Como Texto;
-	element_Result = linearCollection_RemoveElement(struct_List, index_element);
+	element_Result = linearCollection_DeleteElement(struct_List, index_element);
 FinFuncion
 
-Funcion list_Result <- util_List_SetElement(struct_list, index_element, new_Value)
+Funcion list_Result <- util_List_set(struct_list, index_element, new_Value)
 	Definir list_Result Como Texto;
 	list_Result = linearCollection_SetElement(struct_List, index_element, new_Value);
 FinFuncion
-///$$$$$[ COLLECTION_SETTER ]$$$$$$$$[  -+2_6 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Funcion new_Setter <- collectionSetter_New(type_Struct, TYPE)
-	Definir new_Setter, SetterArea, setterStructure Como Texto;
-	SetterArea = "";
-	setterArea = string_append(SetterArea, type_Struct);//<T>Type<id>
-	setterArea = string_append(SetterArea, symbol_TypeKey());//<T>Type<id>
-	setterArea = string_append(SetterArea, TYPE);
-	setterArea = string_append(SetterArea, symbol_idArea());//<id>index_length<K>
-	setterArea = string_append(SetterArea, symbol_KeyArea());//<K>data<E>
-	setterArea = string_append(SetterArea, symbol_EndKeyArea());//<K>data<E>
-	setterArea = string_append(SetterArea, symbol_ExtraData());
-	new_Setter 		= string_append(SetterArea, "0");
-FinFuncion
-//----[ ADD ]------------------------------------------------------------------------<#>
-Funcion result_Set <- collectionSetter_AddKey_Forced(collection_setter, key)
-	Definir result_Set, length_key, lower_key Como Texto;
-	Definir index_KeyArea, index_idArea Como Numero;
-	result_Set     = collection_setter;
-	lower_key      = string_ToLowerCase(key);
-	length_key     = string_append(symbol_Separator(), num_ToString(string_Length(key)));
-	index_idArea   = increment(string_indexOf(collection_setter, symbol_idArea()));
-	index_KeyArea  = string_indexOf_fromIndex(result_Set, symbol_KeyArea(), index_idArea);
-	result_Set     = string_insert(result_Set, lower_key, increment(index_KeyArea));
-	result_Set     = string_insert(result_Set, length_key, index_idArea);
-FinFuncion
-
-Funcion result_Set   <- collectionSetter_AddKey_ByString(collection_setter, key_string)
-	Definir key_id, index_idArea, index_KeyArea, index_EndKeyArea, length_key Como Numero;
-	Definir keys_collection, data_soup, string_sumation Como Texto;
-	Definir result_Set, lower_key_string, data_sumation, lower_key  Como Texto;
-	result_Set     = collection_setter;
-	lower_key      = string_ToLowerCase(key_string);
-	index_idArea   = increment(string_indexOf(collection_setter, symbol_idArea()));
-	index_KeyArea  = string_indexOf_fromIndex(result_Set, symbol_KeyArea(), index_idArea);
-	index_EndKeyArea 	= string_indexOf_fromIndex(collection_setter, symbol_EndKeyArea(), index_KeyArea);
-	string_sumation     = string_substring(collection_setter, index_idArea, index_KeyArea);
-	data_soup           = string_substring(collection_setter, increment(index_KeyArea), index_EndKeyArea);
-	data_sumation = __private_CollectionSetter_AddKey_inDataSumation(data_soup, string_sumation, lower_key);
-	result_Set = string_Delete(result_Set, index_idArea, index_EndKeyArea);
-	result_Set = string_insert(result_Set, data_sumation, index_idArea);
-FinFuncion
-
-Funcion result_Set <- collectionSetter_AddKey_ByType(collection_setter, key, TYPE)
-	Definir result_Set, key_string Como Texto;
-	key_string = value_Parser_TypeToString(key, TYPE);
-	result_Set = collectionSetter_AddKey_ByString(collection_setter, key_string);
-FinFuncion
-
-Funcion result_Set <- collectionSetter_AddKey(collection_setter, key)
-	Definir result_Set, TYPE Como Texto;
-	TYPE = collectionSetter_GetTypeKeys(collection_setter);
-	result_Set = collectionSetter_AddKey_ByType(collection_setter, key, TYPE);
-FinFuncion
-
-Funcion KeyAreaUpdated <- __private_CollectionSetter_AddKey_inDataSumation(dataSoup, keySummation, lowerKey)
-	Definir KeyAreaUpdated, numberAccumulator, charCurrent, dataCurrent Como Texto;
-	Definir i, soupRange, innerDataLength Como Numero;
-	Definir summationLength, newKeyLength Como Numero;
-	Definir isNumber, keyFound Como Logico;
-	numberAccumulator = "";
-	soupRange = 0;
-	i = 0;
-	newKeyLength = string_Length(lowerKey);
-	summationLength = string_Length(keySummation);
-	keyFound = false;
-	Mientras i <= summationLength & !keyFound Hacer
-		charCurrent = char_At(keySummation, i);
-		isNumber = char_isNumber(charCurrent);
-		Si isNumber Entonces
-			numberAccumulator = string_append(numberAccumulator, charCurrent);
-		FinSi
-		Si (!isNumber & !string_isEmpty(numberAccumulator)) | Num_isEquals(i, summationLength) Entonces
-			innerDataLength = string_ToNum(numberAccumulator);
-			Si Num_isEquals(innerDataLength, newKeyLength) Entonces
-				dataCurrent = string_substring(dataSoup, soupRange, increment_step(soupRange, innerDataLength));
-				keyFound = string_isEquals(lowerKey, dataCurrent);
-			FinSi
-			soupRange = increment_step(soupRange, innerDataLength);
-			numberAccumulator = "";
-		FinSi
-		i = increment(i);
-	FinMientras
-	Si !keyFound Entonces
-		dataSoup = string_append(lowerKey, dataSoup);
-		keySummation = string_append(string_append(symbol_Separator(), Num_toString(newKeyLength)), keySummation);
-	FinSi
-	KeyAreaUpdated = string_append_withSeparator(keySummation, dataSoup, symbol_KeyArea());
-FinFuncion
-//----[ REMOVE ]-------------------------------------------------------------------<#>
-Funcion result_Set <- collectionSetter_RemoveKey(collection_setter, key)
-	Definir result_Set, TYPE Como Texto;
-	TYPE = collectionSetter_GetTypeKeys(collection_setter);
-	result_Set = collectionSetter_RemovedKey_ByType(collection_setter, key, TYPE);
-FinFuncion
-
-Funcion result_Set <- collectionSetter_RemovedKey_ByType(collection_setter, key, TYPE)
-	Definir result_Set, key_string Como Texto;
-	key_string = value_Parser_TypeToString(key, TYPE);
-	result_Set = collectionSetter_RemoveKey_ByString(collection_setter, key_string);
-FinFuncion
-
-Funcion result_Set <- collectionSetter_RemoveKey_ByString(collection_setter, key)
-	Definir result_Set Como Texto;
-    Definir index_IdArea, index_KeyArea, index_TargetID, count_size Como Numero;
-    index_IdArea   = string_indexOf(collection_setter, symbol_idArea());
-    count_size     = collectionSetter_getSizeKeys(collection_setter);
-	result_Set = collection_setter;
-    si count_size > 0 Entonces 
-        index_TargetID = __private_CollectionSetter_SearchIdKey(collection_setter, key, count_size);
-        si !value_isNull(index_TargetID, TYPE_INT())Entonces
-            result_Set = __private_CollectionSetter_RemoveKeyIndexed(collection_setter, key, index_idArea,  index_TargetID, count_size);
-			result_Set = linearCollection_decrement_numElement(result_Set);
-        FinSi
-    FinSi
-FinFuncion
-
-Funcion result_Set <- collectionSetter_RemoveKey_Discreet(collection_setter, key)
-    Definir result_Set Como Texto;
-	result_set = collectionSetter_RemoveKey_ByString(collection_setter, key);
-	result_Set = linearCollection_increment_numElement(result_Set);
-FinFuncion
-
-Funcion result_Set <- __private_CollectionSetter_RemoveKeyIndexed(collection_setter, key, index_Id,  index_TargetID, count_size)
-	Definir result_Set, string_sumation Como Texto;
-    Definir pos_InIdArea, offset_InKeyArea, pos_KeyPhysic Como Numero;
-    Definir len_Key, len_IdEntry, index_KeyArea Como Numero;
-	index_KeyArea    = string_indexOf_fromIndex(collection_setter, symbol_KeyArea(), index_Id);
-    pos_InIdArea     = collection_getIndex_FromNumElement_Separator(collection_setter, decrement_step(decrement(count_size), index_TargetID), symbol_Separator());
-	string_sumation  = string_substring(collection_setter, index_Id, pos_InIdArea);
-    offset_InKeyArea = math_Summation_ToFromSeparatedString(string_sumation, symbol_Separator());
-    pos_KeyPhysic    = increment_step(increment(index_KeyArea), offset_InKeyArea);
-    len_Key          = string_Length(key);
-    len_IdEntry      = increment_step(string_Length(num_ToString(len_Key)), string_Length(symbol_Separator()));
-    result_Set       = string_Delete(collection_setter, pos_KeyPhysic, increment_step(pos_KeyPhysic, len_Key));
-    result_Set       = string_Delete(result_Set, pos_InIdArea, increment_step(pos_InIdArea, len_IdEntry));
-FinFuncion
-//----[ GETTERS ]-------------------------------------------------------------------<#>
-Funcion innerIndex <- collectionSetter_GetInnerId(collection_setter, key)
-	Definir innerIndex Como Numero;
-	Definir key_Type Como Texto;
-	key_Type = collectionSetter_GetTypeKeys(collection_setter);
-	innerIndex = collectionSetter_GetInnerId_ByType(collection_setter, key, key_Type);
-FinFuncion
-
-Funcion innerIndex <- collectionSetter_GetInnerId_ByType(collection_setter, key, type)
-	Definir innerIndex Como Numero;
-	Definir key_string Como Texto;
-	key_string = value_Parser_TypeToString(key, type);
-	innerIndex = collectionSetter_GetInnerId_ByString(collection_setter, key_string);
-FinFuncion
-
-Funcion innerIndex <- collectionSetter_GetInnerId_ByString(collection_setter, key)
-    Definir innerIndex Como Numero;
-    Definir index_KeyArea, count_size Como Numero;
-    innerIndex     = number_Null();
-    count_size     = collectionSetter_getSizeKeys(collection_setter);
-    Si count_size > 0 Entonces
-        innerIndex    = __private_CollectionSetter_SearchIdKey(collection_setter, key, count_size);
-    FinSi
-FinFuncion
-
-Funcion Type_keys <- collectionSetter_GetTypeKeys(collection_setter)
-	Definir Type_keys Como Texto;
-	Definir index_TypeKey, index_idArea Como Numero;
-	index_TypeKey  = increment(string_indexOf(collection_setter, symbol_TypeKey()));
-	index_idArea   = string_indexOf_fromIndex(collection_setter, symbol_idArea(), index_TypeKey);
-	Type_keys      = string_substring(collection_setter, index_TypeKey, index_idArea);
-FinFuncion
-
-Funcion num_Keys <- collectionSetter_getSizeKeys(collection_setter)
-	Definir num_Keys Como Numero;
-	num_Keys       = linearCollection_GetSize(collection_setter);
-FinFuncion
-//----[ EXIST ]-------------------------------------------------------------------<#>
-Funcion result_Set <- collectionSetter_Exist(collection_setter, key)
-	Definir result_Set Como Logico;
-	result_Set = collectionSetter_GetInnerId(collection_setter, key) >= 0;
-FinFuncion
-
-Funcion result_Set <- collectionSetter_Exist_ByString(collection_setter, key)
-	Definir result_Set Como Logico;
-	result_Set = collectionSetter_GetInnerId_ByString(collection_setter, key) >= 0;
-FinFuncion
-//----[ SEARCH ]-------------------------------------------------------------------<#>
-Funcion key_id <- __private_CollectionSetter_SearchIdKey(collection_setter, key_string, collection_size)
-	Definir key_id, index_idArea, index_KeyArea, index_EndKeyArea Como Numero;
-	Definir keys_collection, data_soup, string_sumation Como Texto;
-	si collection_size >= 1 Entonces
-		index_idArea        = increment(string_indexOf(collection_setter, symbol_idArea()));
-		index_KeyArea       = string_indexOf_fromIndex(collection_setter, symbol_KeyArea(), index_idArea);
-		index_EndKeyArea 	= string_indexOf_fromIndex(collection_setter, symbol_EndKeyArea(), index_KeyArea);
-		string_sumation     = string_substring(collection_setter, index_idArea, index_KeyArea);
-		data_soup           = string_substring(collection_setter, increment(index_KeyArea), index_EndKeyArea);
-		key_id				= __private_CollectionSetter_GetID_DataString(data_soup, string_sumation, collection_size, string_ToLowerCase(key_string));
-	SiNo
-		key_id = number_Null();
-	FinSi
-FinFuncion
-
-Funcion inner_IdData <- __private_CollectionSetter_GetID_DataString(data_soup, string_sumation, max_NumComparations, data_string)
-	Definir separated_String, num_carry, Char_Current, data_Current Como Texto;
-	Definir i, num_range, length_innerData, length_data Como Numero;
-	Definir inner_IdData, length_Sumation, count_Comparations  Como Numero;
-	Definir IsNumber, BreakLoop_Data Como Logico;
-	num_carry 	     = "";
-	separated_String = "";
-	num_range		 = 0;	
-	i				 = 0;
-	count_Comparations = 0;
-	length_Sumation 	 = string_Length(string_sumation);
-	length_data = string_Length(data_string);
-	BreakLoop_Data = false();
-	inner_IdData = number_Null();
-	Mientras i <= length_Sumation & !BreakLoop_Data & max_NumComparations >= count_Comparations Hacer
-		Char_Current = char_At(string_sumation, i);
-		IsNumber = char_isNumber(Char_Current);
-		Si IsNumber Entonces
-			num_carry = string_append(num_carry, Char_Current);
-		FinSi
-		Si !IsNumber & !string_isEmpty(num_carry) | Num_isEquals(i, length_Sumation) Entonces
-			length_innerData    = string_ToNum(num_carry);
-			si Num_isEquals(length_innerData, length_data)  Entonces
-				data_Current     = string_substring(data_soup, num_range, increment_step(num_range, length_innerData));
-				BreakLoop_Data   =  string_isEquals(data_string, data_Current);
-			FinSi
-			num_carry       = "";// clear
-			count_Comparations = increment(count_Comparations);
-			num_range       = increment_step(num_range, length_innerData);
-		FinSi
-		si BreakLoop_Data Entonces
-			inner_IdData = max_NumComparations - count_Comparations;
-		FinSi
-		i = increment(i);
-	FinMientras
-FinFuncion
-//----[ UNIONS ]-------------------------------------------------------------------<#>
-Funcion result_Set <- collectionSetter_AddAll(collection_setter, collection_setter_Match)
-	Definir result_Set Como Texto;
-	result_Set = __private_collectionSetter_ModifyInnerData(collection_setter, collection_setter_Match, false());
-FinFuncion
-
-Funcion result_Set <- collectionSetter_RemoveAll(collection_setter, collection_setter_Match)
-	Definir result_Set Como Texto;
-	result_Set = __private_collectionSetter_ModifyInnerData(collection_setter, collection_setter_Match, true());
-FinFuncion
-
-Funcion keys_collection <- CollectionSetter_GetKeys_ToSeparatedString(collection_setter, separator)
-    Definir keys_collection, data_soup, string_sumation Como Texto;
-    Definir count_size, index_idArea, index_KeyArea, index_EndKeyArea Como Numero;
-    index_idArea        = increment(string_indexOf(collection_setter, symbol_idArea()));
-    index_KeyArea       = string_indexOf_fromIndex(collection_setter, symbol_KeyArea(), index_idArea);
-    index_EndKeyArea	= string_indexOf_fromIndex(collection_setter, symbol_EndKeyArea(), index_KeyArea);
-    string_sumation     = string_substring(collection_setter, index_idArea, index_KeyArea);
-	string_sumation   	= string_ReverseSeparatedValues(string_sumation, symbol_Separator());
-    data_soup            = string_substring(collection_setter, increment(index_KeyArea), index_EndKeyArea);
-    count_size          = collectionSetter_getSizeKeys(collection_setter);
-    Si count_size > 0 Entonces
-        keys_collection = __private_LinearCollection_GetDataSeparatedString(data_soup, string_sumation, separator);
-    FinSi
-FinFuncion
-
-Funcion result_Set <- __private_collectionSetter_ModifyInnerData(collection_setter, collection_setter_Match, isRemove)
-	Definir size_match, i, index_start, index_end Como Numero;
-	Definir result_Set, key_Setter, key_Match, key_current, separator Como Texto;
-	result_Set = collection_setter;
-	size_match = collectionSetter_getSizeKeys(collection_setter_Match);
-	separator = symbol_separator();
-	key_Match = CollectionSetter_GetKeys_ToSeparatedString(collection_setter_Match, separator);
-	i = 0;
-	index_start = 0;
-	Mientras i < size_match Hacer
-		index_end = string_indexOf_fromIndex(key_Match, separator, index_start);
-		key_current = string_substring(key_Match,index_start, index_end);
-		si isRemove Entonces
-			result_Set = collectionSetter_RemoveKey_ByString(result_Set, key_current);
-		SiNo
-			result_Set = collectionSetter_AddKey_ByString(result_Set, key_current);
-		FinSi
-		index_start = increment(index_end);
-		i = increment(i);
-	FinMientras
-FinFuncion
-
-Funcion result_Set <- collectionSetter_RetainAll(collection_setter, collection_setter_Match)
-	Definir size, size_match, i, index_start, index_end Como Numero;
-	Definir result_Set, key_Setter, key_Match, key_current, separator Como Texto;
-	Definir ExistInMatch Como Logico;
-	result_Set = collection_setter;
-	size_match = collectionSetter_getSizeKeys(collection_setter);
-	separator = symbol_separator();
-	key_Match = CollectionSetter_GetKeys_ToSeparatedString(collection_setter, separator);
-	i = 0;
-	index_start = 0;
-	Mientras i < size_match Hacer
-		index_end = string_indexOf_fromIndex(key_Match, separator, index_start);
-		key_current = string_substring(key_Match, index_start, index_end);
-		ExistInMatch = collectionSetter_Exist_ByString(collection_setter_Match, key_Current);
-		si !ExistInMatch Entonces
-			result_Set = collectionSetter_RemoveKey_ByString(result_Set, key_current);
-		FinSi
-		index_start = increment(index_end);
-		i = increment(i);
-	FinMientras
-FinFuncion
-
-Funcion isDataValid <- __private_collectionSetter_IsEqualsData(collection_setter, key, size, index)
-	Definir isDataValid Como Logico;
-	Definir data_Inner Como Texto;
-	data_Inner  = string_substring(collection_setter, index, size);
-	isDataValid = Num_isEquals(string_Length(key), size) & string_isEquals(key, data_Inner);
-FinFuncion
-
-Funcion keys_collection <- CollectionSetter_GetKeys_ToString(collection_setter)
-	Definir keys_collection Como Texto;
-	keys_collection = CollectionSetter_GetKeys_ToSeparatedString(collection_setter, symbol_Separator_Simple());
-FinFuncion
-//----[ PRINTER_SETTER ]--------------------------------------------------------------<#>
-Funcion collectionSetter_println(collection_setter)
-	__private_collectionSetter_printer(collection_setter, true());
-FinFuncion
-
-Funcion collectionSetter_print(collection_setter)
-	__private_collectionSetter_printer(collection_setter, false());
-FinFuncion
-
-Funcion __private_collectionSetter_printer(collection_setter, isNewLine)
-	Definir key_id, index_idArea, index_KeyArea, index_EndKeyArea Como Numero;
-	Definir data_soup, string_sumation Como Texto;
-	index_idArea        = increment(string_indexOf(collection_setter, symbol_idArea()));
-	index_KeyArea       = string_indexOf_fromIndex(collection_setter, symbol_KeyArea(), index_idArea);
-	index_EndKeyArea 	= string_indexOf_fromIndex(collection_setter, symbol_EndKeyArea(), index_KeyArea);
-	string_sumation     = string_substring(collection_setter, index_idArea, index_KeyArea);
-	string_sumation     = string_ReverseSeparatedValues(string_sumation, symbol_Separator());//adapter
-	data_soup            = string_substring(collection_setter, increment(index_KeyArea), index_EndKeyArea);
-	__private_Collection_Printer(data_soup, string_sumation, isNewLine);
-FinFuncion
-//----[ VALUE_Function ( KEY ) ]------------------------------------------------------<#>
-Funcion new_Setter <- collectionSetter_addValueFunction(collection_setter, TYPE_VALUE)
-	Definir new_Setter, value_TypeArea, value_SaveArea, value_Area Como Texto;
-	Definir index_ExtraData Como Numero;
-	value_TypeArea  = string_append(symbol_TypeArea(), TYPE_VALUE);
-	value_SaveArea = string_Append(symbol_DataArea(), symbol_MetaData());
-	value_Area = string_append(value_TypeArea, value_SaveArea);
-	index_ExtraData = string_lastIndexOf(collection_setter, symbol_ExtraData());
-	new_Setter 		= string_insert(collection_setter, value_Area, index_ExtraData);
-FinFuncion
-//----[ KEY_ADD ]-------------------------------------------------------------------<#>
-Funcion new_Setter <- collectionSetter_AddKeyValue(collection_setter, key, value)
-	Definir new_Setter, type_Key Como Texto;
-	type_Key = collectionSetter_GetTypeKeys(collection_setter);
-	new_Setter = collectionSetter_AddKeyValue_ToTypeKey(collection_setter, key, value, type_Key);
-FinFuncion
-
-Funcion new_Setter <- collectionSetter_AddKeyValue_ToTypeKey(collection_setter, key, value, type_Key)
-	Definir new_Setter, key_String Como Texto;
-	key_String = value_Parser_TypeToString(key, type_Key);
-	new_Setter = collectionSetter_AddKeyValue_ByString(collection_setter, key_string, value);
-FinFuncion
-
-Funcion new_Setter <- collectionSetter_AddKeyValue_ByString(collection_setter, key, value)
-	Definir new_Setter Como Texto;
-	new_Setter = collection_setter;
-	si !collectionSetter_Exist_ByString(new_Setter, key) Entonces
-		new_Setter =  collectionSetter_AddKeyValue_ByStringForced(collection_setter, key, value);
-	SiNo
-		new_Setter = collectionSetter_Key_SetValue_ByString(collection_setter, key, value);
-	FinSi	
-FinFuncion
-
-Funcion new_Setter <- collectionSetter_AddKeyValue_ByStringForced(collection_setter, key, value)
-	Definir new_Setter Como Texto;
-	new_Setter = collection_setter;
-	new_Setter = collectionSetter_AddKey_Forced(new_Setter, key);
-	new_Setter = linearCollection_addLast(new_Setter, value);
-FinFuncion
-//----[ KEY_SETTERS ]----------------------------------------------------------------<#>
-Funcion setter_newValue <- collectionSetter_Key_SetValue(collection_setter, key, value)
-	Definir setter_newValue  Como Texto;
-	Definir ID_key Como Numero;
-	ID_key = collectionSetter_GetInnerId(collection_setter, key);
-	si ID_key >= 0 Entonces
-		setter_newValue  = linearCollection_SetElement(collection_setter, ID_key, value);
-	sino
-		setter_newValue = collection_setter;
-	FinSi
-FinFuncion
-
-Funcion setter_newValue <- collectionSetter_Key_SetValue_ByString(collection_setter, key, value)
-	Definir setter_newValue Como Texto;
-	Definir ID_key Como Numero;
-	ID_key = collectionSetter_GetInnerId_ByString(collection_setter, key);
-	si ID_key >= 0 Entonces
-		setter_newValue = linearCollection_SetElement(collection_setter, ID_key, value);
-	sino
-		setter_newValue = collection_setter;
-	FinSi
-FinFuncion
-//----[ KEY_GETTERS ]----------------------------------------------------------------<#>
-Funcion value_key <- collectionSetter_Key_GetValue(collection_setter, key)
-	Definir ID_key Como Numero;
-	ID_key = collectionSetter_GetInnerId(collection_setter, key);
-	si ID_key >= 0 Entonces
-		Definir TYPE Como Texto;
-		TYPE = linearCollection_GetType(collection_setter);
-		Segun TYPE Hacer
-			caso TYPE_INT(): Definir value_key Como Numero;
-			caso TYPE_FLOAT(): Definir value_key Como Real;
-			caso TYPE_BOOLEAN(): Definir value_key Como Logico;
-			De Otro Modo: Definir value_key Como Texto;
-		FinSegun
-		value_key = linearCollection_getElement_toType(collection_setter, ID_key, type);
-	FinSi
-FinFuncion
-
-Funcion value_key <- collectionSetter_Key_GetValue_ToString(collection_setter, key)
-	Definir value_key Como Texto;
-	Definir ID_key Como Numero;
-	ID_key = collectionSetter_GetInnerId(collection_setter, key);
-	si ID_key >= 0 Entonces
-		value_key = linearCollection_getElement_toString(collection_setter,ID_key);
-	SiNo
-		value_key = string_Null();
-	FinSi
-FinFuncion
-//----[ KEY_REMOVE ]-----------------------------------------------------------------<#>
-Funcion new_Setter <- collectionSetter_RemoveKeyValue(collection_setter, key)
-	Definir new_Setter, type_Key Como Texto;
-	type_Key = collectionSetter_GetTypeKeys(collection_setter);
-	new_Setter = collectionSetter_RemoveKeyValue_ToTypeKey(collection_setter, key, type_Key);
-FinFuncion
-
-Funcion new_Setter <- collectionSetter_RemoveKeyValue_ToTypeKey(collection_setter, key, type_Key)
-	Definir new_Setter, key_String Como Texto;
-	key_String = value_Parser_TypeToString(key, type_Key);
-	new_Setter = collectionSetter_RemoveKeyValue_ByString(collection_setter, key_string);
-FinFuncion
-
-Funcion new_Setter <- collectionSetter_RemoveKeyValue_ByString(collection_setter, key)
-	Definir new_Setter Como Texto;
-	Definir ID_key  Como Numero;
-	new_Setter = collection_setter;
-	ID_key = collectionSetter_GetInnerId_ByString(collection_setter,key);
-	si !value_isNull(ID_key, TYPE_INT()) Entonces
-		new_Setter = collectionSetter_RemoveKey_Discreet(new_Setter, key);
-		new_Setter = linearCollection_RemoveElement(new_Setter, ID_key);
-	FinSi
-FinFuncion
-//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=========================================
-Funcion symbol_area <- symbol_TypeKey
-    Definir symbol_area Como Texto;
-    symbol_area = "";
-FinFuncion
-
-Funcion symbol_area <- symbol_idArea
-    Definir symbol_area Como Texto;
-    symbol_area = "";
-FinFuncion
-
-Funcion symbol_area <- symbol_KeyArea
-    Definir symbol_area Como Texto;
-    symbol_area = "";
-FinFuncion
-
-Funcion symbol_area <- symbol_EndKeyArea
-    Definir symbol_area Como Texto;
-    symbol_area = "";
-FinFuncion
-
-
-///$$$$$[ COLECTION_DATABLOCKS ]$$$$$[  -+2_6 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Funcion new_collectionDataBlocks <- collectionDataBlocks_new(struct_name, TYPE, space_quantity)
-	Definir new_collectionDataBlocks Como Texto;
-	new_collectionDataBlocks = String_append(collection_new(struct_name, TYPE), symbol_reserveSpace());
-	new_collectionDataBlocks = String_append(new_collectionDataBlocks, num_toString(space_quantity));
-	new_collectionDataBlocks = String_append(new_collectionDataBlocks, symbol_ExtraData());
-	new_collectionDataBlocks = String_append(new_collectionDataBlocks, "0");
-FinFuncion
-
-Funcion sandbox_development
-	Definir canvas, tui, list, canvas_2, color Como Texto;
-	Definir Cx, Cy, i, n, Cx2, Cy2 Como Entero;
-	Cx = 20; Cy = 10;
-	Escribir collectionDataBlocks_new("linearBlock", TYPE_INT(), 2);
-FinFuncion
-//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=========================================
-Funcion symbol_area <- symbol_reserveSpace
-    Definir symbol_area Como Texto;
-    symbol_area = "";
-FinFuncion
-///$$$$$[ LAYERED_COLLECTIONSETTER ]$[  -+2_7 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-//L = 1
-//R = Vivos
-// mientas r > 0 y la palabra no sea encontrada 
-//Mientras L <= R Hacer
-//    Si Capa[L] == LetraBuscada Entonces 
-//        L = L + 1 // Este se queda en la zona de "vivos"
-//    Sino
-//        // Intercambio con el de la derecha
-//        Temporal = Indices[L]
-//        Indices[L] = Indices[R]
-//        Indices[R] = Temporal
-//        R = R - 1 // Achicamos el espacio de búsqueda sin avanzar para volver a comparar si es valido
-//    FinSi
-//FinMientras
-//Vivos = R // Actualizamos el límite global para la siguiente capa
-
-///$$$$$[ SET ]$$$$$$$$$$$$$$$$$$$$$$[  -+2_7 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Funcion new_Set <- util_Set_new(TYPE)
-	Definir new_Set Como Texto;
-	new_Set = collectionSetter_New(STRUCT_TYPE_SET(), TYPE);
-FinFuncion
-
-Funcion result_Set <- util_Set_Add(struct_Set, key_new)
-	Definir result_Set Como Texto;
-	result_Set = collectionSetter_AddKey(struct_Set, key_new);
-FinFuncion
-
-Funcion result_Set <- util_Set_Remove(struct_Set, key_new)
-	Definir result_Set Como Texto;
-	result_Set = collectionSetter_RemoveKey_ByString(struct_Set, key_new);
-FinFuncion
-
-Funcion util_Set_println(struct_Set)
-	collectionSetter_println(struct_Set);
-FinFuncion
-
-Funcion keyExist <- util_Set_Containss(struct_Set, key_match)
-	Definir keyExist Como Logico;
-	keyExist = collectionSetter_Exist(struct_Set, key_match);
-FinFuncion
-
-Funcion result_Size <- util_Set_Size(struct_Set)
-	Definir result_Size Como Numero;
-	result_Size = collectionSetter_getSizeKeys(struct_Set);
-FinFuncion
-
-Funcion result_Set <- util_Set_AddAll(struct_Set, struct_SetRetain)
-	Definir result_Set Como Texto;
-	result_Set = collectionSetter_AddAll(struct_Set, struct_SetRetain);
-FinFuncion
-
-Funcion result_Set <- util_Set_RemoveAll(struct_Set, struct_SetRetain)
-	Definir result_Set Como Texto;
-	result_Set = collectionSetter_RemoveAll(struct_Set, struct_SetRetain);
-FinFuncion
-
-Funcion result_Set <- util_Set_RetainAll(struct_Set, struct_SetRetain)
-	Definir result_Set Como Texto;
-	result_Set = collectionSetter_RetainAll(struct_Set, struct_SetRetain);
-FinFuncion
-///$$$$$[ MAP ]$$$$$$$$$$$$$$$$$$$$$$[  -+2_8 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Funcion new_Map <- util_Map_new(TYPE, TYPE_VALUE)
-	Definir new_Map Como Texto;
-	new_Map = collectionSetter_addValueFunction(collectionSetter_New(STRUCT_TYPE_MAP(), TYPE), TYPE_VALUE);
-FinFuncion
-
-Funcion result_Map <- util_Map_Put(struct_map, key, value)
-	Definir result_Map Como Texto;
-	result_Map = collectionSetter_AddKeyValue(struct_map, key, value);
-FinFuncion
-
-Funcion result_Map <- util_Map_Remove(struct_map, key)
-	Definir result_Map Como Texto;
-	result_Map = collectionSetter_RemoveKeyValue(struct_map, key);
-FinFuncion
-
-Funcion util_Map_println_Key(struct_Map)
-	collectionSetter_println(struct_Map);
-FinFuncion
-
-Funcion util_Map_println_Value(struct_Map)
-	linearCollection_println(struct_Map);
-FinFuncion
-
-Funcion element_Result <- util_Map_Get(struct_map, key)
-	Definir TYPE Como Texto;
-	TYPE = linearCollection_GetType(struct_map);
-	Segun TYPE Hacer
-		caso TYPE_INT(): Definir element_Result Como Numero;
-		caso TYPE_FLOAT(): Definir element_Result Como Real;
-		caso TYPE_BOOLEAN(): Definir element_Result Como Logico;
-		De Otro Modo: Definir element_Result Como Texto;
-	FinSegun
-	element_Result = collectionSetter_Key_GetValue(struct_map, key);
-FinFuncion
-
-Funcion map_Size <- util_Map_Size(struct_map)
-	Definir map_Size Como Numero;
-	map_Size = collectionSetter_getSizeKeys(struct_map);
-FinFuncion
-
-Funcion keyExist <- util_Map_Contains(struct_map, key_match)
-	Definir keyExist Como Logico;
-	keyExist = collectionSetter_Exist(struct_map, key_match);
-FinFuncion
-///%%%%%[ TEMPORAL/CHRONO_UNIT ]%%%%%[   #+0  ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+///%%%%%[ TEMPORAL/CHRONO_UNIT.... ]%%%%%%%[   #TMP    ]%%%%%%%%%%%%%%%%%%
 //=====[ CHRONO_UNIT ]==============[ separator ]======================================
 Funcion second_units <- chronoUnit_getDuration(chronoUnit_type)
     Definir second_units Como Entero;
@@ -3809,7 +3357,7 @@ Funcion struct_temporal_result <- temporal_Minus(struct_temporal, struct_tempora
 	Definir struct_temporal_result Como Texto;
 	struct_temporal_result = temporal_PlusNumber(struct_temporal, math_Negated(temporal_getSeconds(struct_temporal_minus)));
 FinFuncion
-//----[ OPERATIONS ]-----------------------------------------------------------------<#>
+//----[ OPERATIONS ]----------------------------------------------------<#>
 Funcion struct_time <- temporal_with(struct_temporal, num_define, type_temporal)
     Definir struct_time Como Texto;
     Definir time_now, t_old_part, t_new_part, time_total Como Real;
@@ -3825,7 +3373,7 @@ Funcion struct_time <- temporal_with(struct_temporal, num_define, type_temporal)
         struct_time = struct_temporal;
     FinSi
 FinFuncion
-//----[ BOOLEANS ]-------------------------------------------------------------------<#>
+//----[ BOOLEANS ]----------------------------------------------------<#>
 Funcion isValidUnitTemporal <- temporal_isValidUnitTemporal(unit_temporal, type_temporal)
 	Definir isValidUnitTemporal Como Logico;
 	segun type_temporal Hacer
@@ -3905,7 +3453,7 @@ FinFuncion
 Funcion time_result <- __private_temporal_setSecondOfDays(struct_time, seconds)
 	Definir time_result Como Texto;
 	Definir size_struct Como Entero;
-	size_struct = linearCollection_GetSize(struct);
+	size_struct = linearCollection_getSize(struct);
 	time_result = linearCollection_SetElement_ToType(struct_time, size_struct, seconds, TYPE_FLOAT());
 FinFuncion
 
@@ -3916,9 +3464,9 @@ FinFuncion
 
 Funcion LocalTime_result <- __private_temporalTime_setTimeNull(struct_time)
 	Definir LocalTime_result Como Texto;
-	LocalTime_result = __private_temporal_addSecondOfDays(struct_time, number_Null());
+	LocalTime_result = __private_temporal_addSecondOfDays(struct_time, number_NULL());
 FinFuncion
-//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=========================================
+//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=======================================
 Funcion Temporal_Type <- TEMPORAL_AMOUNT_DURATION
 	Definir Temporal_Type Como Texto;
 	Temporal_Type = "Duration";
@@ -4107,7 +3655,7 @@ Funcion month_name <- month_of(number_month)
         12:
             month_name = Month_DECEMBER();
         De Otro Modo:
-            month_name = string_Null();
+            month_name = string_NULL();
     FinSegun
 FinFuncion
 
@@ -4139,7 +3687,7 @@ Funcion value <- month_value(name_month)
         Month_DECEMBER():
             value = 12;
         De Otro Modo:
-            value = number_Null();
+            value = number_NULL();
     FinSegun
 FinFuncion
 
@@ -4161,10 +3709,10 @@ Funcion day_name <- DayOfWeek_of(number_day)
         7:
             day_name = DayOfWeek_SUNDAY();
         De Otro Modo:
-            day_name = string_Null();
+            day_name = string_NULL();
     FinSegun
 FinFuncion
-///$$$$$$[ LOCALDATE ]$$$$$$$$$$$$$$$[  -+0_1 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+///%%%%%[ LOCAL_DATE.............. ]%%%%%%%[   #LDA    ]%%%%%%%%%%%%%%%%%%
 Funcion Date_num <- __private_getDate_Now
 	Definir Date_num Como Numero;
 	Date_num = FechaActual();//20260407;
@@ -4196,14 +3744,14 @@ FinFuncion
 Funcion date_object <- localDate_of(year, month, day)
 	Definir date_object Como Texto;
 	Si (temporal_isValidDate(year, month, day)) Entonces
-		date_object = __private_localDate_forcedOf(year, month, day);
+		date_object = __private_localDate_forceOf(year, month, day);
 	SiNo
 		date_object = __private_localDate_ofDateNull();
 		error_message_Function("localDate_of(year, month, day)", "Date not valid");
 	FinSi
 FinFuncion
 
-Funcion date_object <- __private_localDate_forcedOf(year, month, day)
+Funcion date_object <- __private_localDate_forceOf(year, month, day)
 	Definir date_object Como Texto;
 	date_object = linearCollection_new(TEMPORAL_LOCALDATE(), TYPE_INT());
 	date_object = __private_temporalDate_add(date_object, year, month, day);
@@ -4220,12 +3768,12 @@ FinFuncion
 
 Funcion date_object <- __private_localDate_ofDateNull
 	Definir date_object Como Texto;
-	date_object = __private_localDate_forcedOf(number_Null(), number_Null(), number_Null());
+	date_object = __private_localDate_forceOf(number_NULL(), number_NULL(), number_NULL());
 FinFuncion
 
 Funcion date_object <- __private_localDate_getDateUnixEpoch
 	Definir date_object Como Texto;
-	date_object = __private_localDate_forcedOf(1970, 1, 1);
+	date_object = __private_localDate_forceOf(1970, 1, 1);
 FinFuncion
 
 Funcion year_int <- localDate_getYear(struct_date)
@@ -4309,7 +3857,7 @@ Funcion date_object <- localDate_plusMonths(struct_date, plus_months)
 	Definir date_object Como Texto;
     Definir month_base, relative_months, years_to_add, final_month Como Entero;
     Definir length_month, days_date Como Entero;
-    month_base = decrement(localDate_getMonthValue(struct_date)); 
+    month_base = decrement(localDate_getMonthValue(struct_date));
     relative_months = increment_step(month_base, plus_months);
     years_to_add = math_Round(math_div(relative_months, 12));
     final_month = increment(math_NormalizeCycle(relative_months, 12));
@@ -4319,7 +3867,7 @@ FinFuncion
 
 Funcion date_object <- localDate_plusYears(struct_date, plus_years)
 	Definir date_object Como Texto;
-    Definir total_years, current_year, current_month, current_day  Como Entero;
+    Definir total_years, current_year, current_month, current_day Como Entero;
     current_year = localDate_getYear(struct_date);
     total_years = increment_step(current_year, plus_years);
 	current_month = localDate_getMonthValue(struct_date);
@@ -4509,8 +4057,8 @@ Funcion date_object <- localDate_minus(struct_date, num_minus, temporal_unit)
 	FinSegun
 FinFuncion
 
-// Derivado de la fórmula de Zeller para cálculo de días acumulados.
-// Fórmula: floor(30.6 * month - 29.4 - leap_factor) + day;
+// Derivado de la f?rmula de Zeller para c?lculo de d?as acumulados.
+// F?rmula: floor(30.6 * month - 29.4 - leap_factor) + day;
 // leap_factor: 2 si es bisiesto, 3 si no lo es.
 // Ajuste de inicio:
 // - Si 1 de Enero = 0: leap_factor = 0 para Enero/Febrero.
@@ -4523,7 +4071,7 @@ Funcion numDay <- localDate_getDayOfYear(year, month, day)
 		leap_factor = if_else(month == 2, 0, leap_factor, TYPE_INT());
 		numDay = math_floor(30.6 * month - 29.4 - leap_factor) + day;
 	sino
-		numDay = number_Null();
+		numDay = number_NULL();
 		error_message_Function("localDate_getDayOfYear(year, month, day)","date no is valid");
 	FinSi
 FinFuncion
@@ -4585,12 +4133,12 @@ FinFuncion
 Funcion struct_dateTime <- __private_localDate_atTime_fromSeconds(struct_date, seconds)
 	Definir struct_dateTime Como Texto;
 	struct_dateTime = linearCollection_addLast(struct_date, seconds);
-	struct_dateTime = string_insert(struct_dateTime, "Time",string_indexOf(struct_dateTime,symbol_TypeArea()));
+	struct_dateTime = string_insert(struct_dateTime, "Time",string_indexOf(struct_dateTime,symbol_typeArea()));
 FinFuncion
 
 Funcion boolean <- localDate_isLeapYear(year)
 	Definir boolean Como Logico;
-	boolean = (Num_isEquals(math_module(year, 4), 0) & !Num_isEquals(math_module(year, 100), 0)) | Num_isEquals(math_module(year, 400), 0);
+	boolean = (number_isEquals(math_module(year, 4), 0) & !number_isEquals(math_module(year, 100), 0)) | number_isEquals(math_module(year, 400), 0);
 FinFuncion
 
 Funcion lengthOfYear <- localDate_lengthOfYear(struct_date)
@@ -4623,7 +4171,7 @@ Funcion days <- localDate_lengthOfMonth(year, month)
 			days = 31;
 	FinSegun
 FinFuncion
-//----[ BOOLEANS ]-------------------------------------------------------------------<#>
+//----[ BOOLEANS ]----------------------------------------------------<#>
 Funcion isBefore <- localDate_isBefore(struct_LocalDate, struct_LocalDate_match)
 	Definir isBefore Como Logico;
 	isBefore = __private_localDate_CompareTo(struct_LocalDate, struct_LocalDate_match) < 0;
@@ -4675,7 +4223,7 @@ Funcion total <- localDate_until_Days(struct_date_start, struct_date_end)
     epoch_end = localDate_toEpochDay(struct_date_end);
     total = decrement_step(epoch_end, epoch_start);
 FinFuncion
-//----[ BOOLEANS ]-------------------------------------------------------------------<#>
+//----[ BOOLEANS ]----------------------------------------------------<#>
 Funcion epoch_days_result <- localDate_toEpochDay(struct_date)
     Definir epoch_days_result Como Entero;
     Definir year, month, day Como Entero;
@@ -4709,28 +4257,28 @@ Funcion total_days_years <- __private_localDate_getDaysFromYears(year_int)
 FinFuncion
 
 // =========================================================================
-// GUÍA DE PATRONES PARA DateTimeFormatter (Java 8+)
+// GU?A DE PATRONES PARA DateTimeFormatter (Java 8+)
 // =========================================================================
 
 // --- FECHAS (Dates) ---
-// yyyy  : Año completo (Ej: 2026)
-// yy    : Año corto (Ej: 26)
+// yyyy  : A?o completo (Ej: 2026)
+// yy    : A?o corto (Ej: 26)
 // MMMM  : month nombre completo (Ej: Marzo)
 // MMM   : month abreviado (Ej: Mar)
-// MM    : month número (01-12) -> ¡M mayúscula siempre para month!
-// d     : Día del month (1-31)
-// D     : Día del año (1-366)
-// EEEE  : Nombre del día completo (Ej: Lunes)
-// E     : Nombre del día abreviado (Ej: Lun)
-// e     : Número de día de la semana (1=Lunes, 7=Domingo)
-// w     : Semana del año (1-53)
+// MM    : month n?mero (01-12) -> ?M may?scula siempre para month!
+// d     : D?a del month (1-31)
+// D     : D?a del a?o (1-366)
+// EEEE  : Nombre del d?a completo (Ej: Lunes)
+// E     : Nombre del d?a abreviado (Ej: Lun)
+// e     : N?mero de d?a de la semana (1=Lunes, 7=Domingo)
+// w     : Semana del a?o (1-53)
 // W     : Semana del month (1-5)
 
 // --- TIEMPO (Time) ---
 // a     : Marcador AM / PM (Cambio de formato)
 // H     : Hora militar / formato 24h (00-23)
-// h     : Hora estándar / formato 12h (01-12) -> Usar con 'a'
-// m     : Minutos (00-59) -> ¡m minúscula siempre para minutos!
+// h     : Hora est?ndar / formato 12h (01-12) -> Usar con 'a'
+// m     : Minutos (00-59) -> ?m min?scula siempre para minutos!
 // s     : Segundos (00-59)
 // S     : Milisegundos / Fracciones de segundo (Ej: SSS)
 
@@ -4740,9 +4288,9 @@ FinFuncion
 
 // =========================================================================
 // NOTAS DE SEGURIDAD:
-// 1. Mayúsculas importan: M (month) != m (minuto) | H (24h) != h (12h).
-// 2. Coherencia: No mezcles 'H' (24h) con 'a' (AM/PM), Java lanzará error.
-// 3. Parsing: Si el Texto no coincide EXACTO con el patrón, lanza DateTimeParseException.
+// 1. May?sculas importan: M (month) != m (minuto) | H (24h) != h (12h).
+// 2. Coherencia: No mezcles 'H' (24h) con 'a' (AM/PM), Java lanzar? error.
+// 3. Parsing: Si el Texto no coincide EXACTO con el patr?n, lanza DateTimeParseException.
 // =========================================================================
 Funcion Date <- localDate_format(text)
 	Definir Date, dateParts, DateTemp Como Texto;
@@ -4763,8 +4311,8 @@ Funcion Date <- localDate_format(text)
 		Date = string_insert(string_Delete(Date, index, index+1), dateParts[1], index);
 	FinSi
 FinFuncion
-///$$$$$$[ LOCALTIME ]$$$$$$$$$$$$$$$[  -+0_2 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-//----[ PRIVATE_TIME ]----------------------------------------------------------------<#>
+///%%%%%[ LOCAL_TIME.............. ]%%%%%%%[   #LTI    ]%%%%%%%%%%%%%%%%%%
+//----[ PRIVATE_TIME ]----------------------------------------------------<#>
 Funcion Time_num <- __private_localTime_Now
 	Definir Time_num Como Numero;
 	Time_num = HoraActual();
@@ -4812,9 +4360,9 @@ FinFuncion
 
 Funcion LocalTime_result <- __private_localTime_ofNull
 	Definir LocalTime_result Como Texto;
-	LocalTime_result = localTime_ofSecondOfDays(number_Null());
+	LocalTime_result = localTime_ofSecondOfDays(number_NULL());
 FinFuncion
-//----[ BOOLEANS ]-------------------------------------------------------------------<#>
+//----[ BOOLEANS ]----------------------------------------------------<#>
 Funcion isBefore <- localTime_isBefore(struct_LocalTime, struct_LocalTime_match)
 	Definir isBefore Como Logico;
 	isBefore = __private_localTime_CompareTo(struct_LocalTime, struct_LocalTime_match) < 0;
@@ -4837,7 +4385,7 @@ Funcion int_result <- __private_localTime_CompareTo(struct_LocalTime, struct_Loc
 	Time_Match = localTime_getSeconds(struct_LocalTime_match);
 	int_result = int_CompareTo(Time_Org, Time_Match);
 FinFuncion
-//----[ GETTERS ]-------------------------------------------------------------------<#>
+//----[ GETTERS ]----------------------------------------------------<#>
 Funcion duration_ofUnit <- localTime_getSecondsOfDay(struct_LocalTime)
 	Definir duration_ofUnit Como Real;
 	duration_ofUnit = linearCollection_getLast(struct_LocalTime);
@@ -4857,7 +4405,7 @@ Funcion second_ofUnit <- localTime_getSeconds(struct_LocalTime)
 	Definir second_ofUnit Como Real;
 	second_ofUnit = duration_secondsToTemporalUnitPart(localTime_getSecondsofDay(struct_LocalTime), chronoUnit_SECONDS());
 FinFuncion
-//-----[ UTILITIES ]-----------------------------------------------------------------<#>
+//-----[ UTILITIES ]----------------------------------------------------<#>
 Funcion seconds_adjusted <- localTime_NormalizeSeconds(seconds_total)
     Definir seconds_adjusted Como Real;
 	seconds_adjusted = math_NormalizeCycle(seconds_total, 86400);
@@ -4904,7 +4452,7 @@ Funcion struct_time <- localTime_PlusUnitTemporal(struct_localTime, num_incremen
     struct_time = temporal_PlusUnitTemporal(struct_localTime, num_increment, type_temporal);
 	struct_time = localTime_cicleCorrector(struct_time);
 FinFuncion
-//-----[ MINUS ]-------------------------------------------------------------------<#>
+//-----[ MINUS ]----------------------------------------------------<#>
 Funcion struct_time <- localTime_MinusHours(struct_localTime, num_decrement)
     Definir struct_time Como Texto;
     struct_time = localTime_PlusHours(struct_localTime, math_Negated(num_decrement));
@@ -4939,7 +4487,7 @@ Funcion struct_time <- localTime_with(struct_localTime, num_define, type_tempora
 	Definir struct_time Como Texto;
 	struct_time = temporal_with(struct_temporal, num_define, type_temporal);
 FinFuncion
-//-----[ TRUNCATE ]-----------------------------------------------------------------<#>
+//-----[ TRUNCATE ]----------------------------------------------------<#>
 Funcion struct_time <- localTime_truncatedToHours(struct_localTime)
     Definir struct_time Como Texto;
     struct_time = localTime_truncatedTo(struct_localTime, chronoUnit_HOURS());
@@ -4963,14 +4511,14 @@ Funcion struct_time <- localTime_truncatedTo(struct_localTime, type_temporal)
 	time_truncate = decrement_step(time_now, time_part);
     struct_time = __private_temporal_setSecondOfDays(struct_localTime, time_truncate );
 FinFuncion
-///$$$$$$[ LOCALDATETIME ]$$$$$$$$$$$[  -+0_3 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+///%%%%%[ LOCAL_DATE_TIME......... ]%%%%%%%[   #LDT    ]%%%%%%%%%%%%%%%%%%
 Funcion string_dateTime <- localDateTime_toString(localDateTime)
 	Definir string_dateTime, string_date, string_time Como Texto;
 	string_date = localDate_ToString(localDateTime);
 	string_time = localTime_ToString(localDateTime);
 	string_dateTime = string_append_withSeparator(string_date, string_time," ");
 FinFuncion
-//----[ OF_TEMPORAL ]-----------------------------------------------------------------<#>
+//----[ OF_TEMPORAL ]----------------------------------------------------<#>
 Funcion struct_dateTime <- localDateTime_of_monthName_hourMinute(year, MONTH_NAME, dayOfMonth, hour, minute)
 	Definir struct_dateTime Como Texto;
 	struct_dateTime = localDateTime_of_monthName(year, MONTH_NAME, dayOfMonth, hour, minute, 0);
@@ -5030,7 +4578,7 @@ Funcion result_dateTime <- localDateTime_plusSeconds(struct_dateTime, unit_plus)
 	Definir result_dateTime Como Texto;
 	result_dateTime = localTime_plusSeconds(struct_dateTime, unit_plus);
 FinFuncion
-//-----[ MINUS ]-------------------------------------------------------------------<#>
+//-----[ MINUS ]----------------------------------------------------<#>
 Funcion result_dateTime <- localDateTime_minusYears(struct_dateTime, unit_minus)
 	Definir result_dateTime Como Texto;
 	result_dateTime = localDate_minusYears(struct_dateTime, unit_minus);
@@ -5100,7 +4648,7 @@ Funcion result_dateTime <- localDateTime_withSecond(struct_dateTime, second)
 	Definir result_dateTime Como Texto;
 	result_dateTime = localTime_withSecond(struct_dateTime, second);
 FinFuncion
-//----[ BOOLEANS ]-------------------------------------------------------------------<#>
+//----[ BOOLEANS ]----------------------------------------------------<#>
 Funcion isBefore <- localDateTime_isBefore(struct_dt1, struct_dt2)
     Definir isBefore Como Logico;
     isBefore = __private_localDateTime_CompareTo(struct_dt1, struct_dt2) < 0;
@@ -5123,7 +4671,7 @@ Funcion int_result <- __private_localDateTime_CompareTo(struct_dt1, struct_dt2)
         int_result = __private_localTime_CompareTo(struct_dt1, struct_dt2);
     FinSi
 FinFuncion
-//-----[ TRUNCATE ]-----------------------------------------------------------------<#>
+//-----[ TRUNCATE ]----------------------------------------------------<#>
 Funcion result_dateTime <- localDateTime_truncatedToHours(struct_dateTime)
     Definir result_dateTime Como Texto;
     result_dateTime = localTime_truncatedToHours(struct_dateTime);
@@ -5133,7 +4681,7 @@ Funcion result_dateTime <- localDateTime_truncatedToMinutes(struct_dateTime)
     Definir result_dateTime Como Texto;
     result_dateTime = localTime_truncatedToMinutes(struct_dateTime);
 FinFuncion
-//----[ EXTRACTORS ]-----------------------------------------------------------------<#>	
+//----[ EXTRACTORS ]----------------------------------------------------<#>	
 Funcion struct_date <- localDateTime_toLocalDate(struct_dateTime)
 	Definir struct_date Como Texto;
 	struct_date = localDate_of(localDate_getYear(struct_dateTime), localDate_getMonthValue(struct_dateTime), localDate_getDayOfMonth(struct_dateTime));
@@ -5143,7 +4691,7 @@ Funcion struct_time <- localDateTime_toLocalTime(struct_dateTime)
     Definir struct_time Como Texto;
     struct_time = localTime_ofSecondOfDays(localTime_getSecondsOfDay(struct_dateTime));
 FinFuncion
-//----[ GETTERS ]-------------------------------------------------------------------<#>
+//----[ GETTERS ]----------------------------------------------------<#>
 Funcion year <- localDateTime_getYear(struct_dateTime)
     Definir year Como Entero;
     year = localDate_getYear(struct_dateTime);
@@ -5188,9 +4736,9 @@ Funcion era <- localDateTime_getEra(struct_dateTime)
     Definir era Como Texto;
     era = localDate_getEra(struct_dateTime);
 FinFuncion
-///$$$$$[ DURATION ]$$$$$$$$$$$$$$$$$[  -+0_4 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+///%%%%%[ DURATION................ ]%%%%%%%[   #DUR    ]%%%%%%%%%%%%%%%%%%
 //parsed ISO:8601 "PT1H15M30.5S" y TruncateTo segun el tipo
-//----[ GETTERS ]-------------------------------------------------------------------<#>
+//----[ GETTERS ]----------------------------------------------------<#>
 Funcion duration_ofUnit <- duration_ofDays(number_Units)
 	Definir duration_ofUnit Como Texto;
 	duration_ofUnit = duration_of(number_Units, chronoUnit_DAYS());
@@ -5223,7 +4771,7 @@ Funcion duration_ofUnit <- duration_getSeconds(struct_Duration)
 	Definir duration_ofUnit Como Real;
 	duration_ofUnit = temporal_getSeconds(struct_Duration);
 FinFuncion
-//----[ PARSER ]-------------------------------------------------------------------<#>
+//----[ PARSER ]----------------------------------------------------<#>
 Funcion second_ofUnit <- duration_TemporalUnitToSeconds(unit_seconds, Temporal_Type)
 	Definir second_ofUnit Como Real;
 	Segun Temporal_Type Hacer
@@ -5269,7 +4817,7 @@ Funcion unit_Res <- duration_secondsToDay(unit_second)
     Definir unit_Res Como Real;
     unit_Res = unit_second / chronoUnit_getDuration(chronoUnit_DAYS());
 FinFuncion
-//----[ GETTERS ]-------------------------------------------------------------------<#>
+//----[ GETTERS ]----------------------------------------------------<#>
 Funcion second_UnitTemp <- duration_secondsToTemporalUnit(unit_second, Temporal_Type)
 	Definir second_UnitTemp Como Real;
 	Segun Temporal_Type Hacer
@@ -5306,7 +4854,7 @@ Funcion second_ofUnit <- duration_ToSeconds(struct_temporal)
 	Definir second_ofUnit Como Real;
 	second_ofUnit = duration_secondsToTemporalUnit(temporal_getSeconds(struct_temporal), chronoUnit_SECONDS());
 FinFuncion
-//----[ TO_PARS ]-------------------------------------------------------------------<#>
+//----[ TO_PARS ]----------------------------------------------------<#>
 Funcion second_UnitTemp <- duration_secondsToTemporalUnitPart(unit_second, Temporal_Type)
 	Definir second_UnitTemp Como Real;
 	second_UnitTemp = math_truncate(duration_secondsToTemporalUnit(unit_second, Temporal_Type));
@@ -5343,7 +4891,7 @@ Funcion second_ofUnit <- duration_ToSecondsPart(struct_temporal)
     Definir second_ofUnit Como Real;
     second_ofUnit = duration_secondsToTemporalUnitPart(temporal_getSeconds(struct_temporal), chronoUnit_SECONDS());
 FinFuncion
-//----[ BOOLEANS ]-------------------------------------------------------------------<#>
+//----[ BOOLEANS ]----------------------------------------------------<#>
 Funcion isBetween <- duration_isNegative(struct_duration)
 	Definir isBetween Como Logico;
 	isBetween = duration_getSeconds(struct_duration) < 0;
@@ -5353,7 +4901,7 @@ Funcion isBetween <- duration_isZero(struct_duration)
 	Definir isBetween Como Logico;
 	isBetween = duration_getSeconds(struct_duration) == 0;
 FinFuncion
-//----[ UTITLITIES ]-----------------------------------------------------------------<#>
+//----[ UTITLITIES ]----------------------------------------------------<#>
 Funcion struct_difference <- duration_between(duration_Start, duration_End)
     Definir struct_difference Como Texto;
     Definir difference Como Real;
@@ -5374,7 +4922,7 @@ Funcion struct_duration_result <- duration_abs(struct_duration)
 	unit_inner = math_abs(duration_getSeconds(struct_duration));
 	struct_duration_result = linearCollection_SetElement_ToString(struct_duration, 0, num_ToString(unit_inner));	
 FinFuncion
-//----[ OPERATIONS ]-----------------------------------------------------------------<#>
+//----[ OPERATIONS ]----------------------------------------------------<#>
 Funcion struct_duration_result <- duration_MultipliedBy(struct_duration, num_Mult)
 	Definir struct_duration_result Como Texto;
     Definir unit_inner Como Real;
@@ -5438,7 +4986,7 @@ Funcion struct_duration_result <- duration_Minus(struct_duration, struct_duratio
     Definir struct_duration_result Como Texto;
     struct_duration_result = temporal_PlusNumber(struct_duration, math_Negated(duration_getSeconds(struct_duration_minus)));
 FinFuncion
-//----[ COMPARE_TO ]-----------------------------------------------------------------<#>
+//----[ COMPARE_TO ]----------------------------------------------------<#>
 Funcion int_result <- duration_CompareTo(struct_duration, struct_duration_match)
 	Definir int_result Como Entero;
 	Definir duration_Org, duration_Match Como Real;
@@ -5446,7 +4994,7 @@ Funcion int_result <- duration_CompareTo(struct_duration, struct_duration_match)
 	duration_Match = duration_getSeconds(struct_duration_match);
 	int_result = int_CompareTo(duration_Org, duration_Match);
 FinFuncion
-///$$$$$[ PERIOD  ]$$$$$$$$$$$$$$$$$$[  -+0_5 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+///%%%%%[ PERIOD.................. ]%%%%%%%[   #PER    ]%%%%%%%%%%%%%%%%%%
 Funcion period_string <- period_toString(struct_period)
     Definir period_string, period_array Como Texto;
     Dimension period_array[3];
@@ -5455,7 +5003,7 @@ Funcion period_string <- period_toString(struct_period)
     period_array[2] = string_append("D:", num_ToString(period_getDay(struct_period)));
     period_string = array_ofstring_separator(period_array, 3, " ", TYPE_STRING());
 FinFuncion
-//----[ UTITLITIES ]-----------------------------------------------------------------<#>
+//----[ UTITLITIES ]----------------------------------------------------<#>
 Funcion struct_period_result <- period_multipliedBy(struct_period, scalar)
     Definir year, month, day Como Entero;
     year = period_getYear(struct_period) * scalar;
@@ -5487,7 +5035,7 @@ Funcion result_period <- period_normalized(struct_period)
     result_period = period_withYears(struct_period, final_years);
     result_period = period_withMonths(result_period, months_part);
 FinFuncion
-//----[ OF ]-------------------------------------------------------------------------<#>
+//----[ OF ]------------------------------------------------------------------------<#>
 Funcion struct_period <- period_of(year, month, day)
     Definir struct_period Como Texto;
     struct_period = linearCollection_new(TEMPORAL_LOCALDATE(), TYPE_INT());
@@ -5516,9 +5064,9 @@ FinFuncion
 
 Funcion struct_period <- __private_period_ofNull
 	Definir struct_period Como Texto;
-	struct_period = period_of(number_Null(), number_Null(), number_Null());
+	struct_period = period_of(number_NULL(), number_NULL(), number_NULL());
 FinFuncion
-//----[ GETTERS ]-------------------------------------------------------------------<#>
+//----[ GETTERS ]----------------------------------------------------<#>
 Funcion years <- period_getYear(struct_period)
 	Definir years Como Entero;
     years = linearCollection_GetElement(struct_period, 0);
@@ -5598,7 +5146,7 @@ Funcion struct_period_res <- period_minus(struct_period_A, struct_period_B)
     Definir struct_period_res Como Texto;
     struct_period_res = period_plus(struct_period_A, period_negated(struct_period_B));
 FinFuncion
-//----[ BOOLEANS ]-------------------------------------------------------------------<#>
+//----[ BOOLEANS ]----------------------------------------------------<#>
 Funcion boolean <- period_isNegative(struct_period)
     Definir boolean Como Logico;
     boolean = (period_getYear(struct_period) < 0) | (period_getMonth(struct_period) < 0) | (period_getDay(struct_period) < 0);
@@ -5608,7 +5156,7 @@ Funcion boolean <- period_isZero(struct_period)
     Definir boolean Como Logico;
     boolean = (period_getYear(struct_period) == 0) & (period_getMonth(struct_period) == 0) & (period_getDay(struct_period) == 0);
 FinFuncion
-//----[ BETWEEN ]--------------------------------------------------------------------<#>
+//----[ BETWEEN ]---------------------------------------------------------------------<#>
 Funcion struct_period <- period_between(struct_date_start, struct_date_end)
     Definir year, total_months, month, day, d_start, d_end Como Entero;
     Definir struct_period, previous_month_date Como Texto;
@@ -5625,14 +5173,1863 @@ Funcion struct_period <- period_between(struct_date_start, struct_date_end)
     FinSi    
     struct_period = period_of(year, month, day);
 FinFuncion
-///%%%%%[ OBJECT ]%%%%%%%%%%%%%%%%%%%[   #+3  ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-//....Object
+///%%%%%[ COLLECTION_STORAGE...... ]%%%%%%%[   #CST    ]%%%%%%%%%%%%%%%%%%
+Funcion new_Setter <- collectionStorage_new(type_Struct, TYPE)
+	Definir new_Setter, SetterArea, setterStructure Como Texto;
+	SetterArea = "";
+	setterArea = string_append(SetterArea, type_Struct);//<T>Type<id>
+	setterArea = string_append(SetterArea, symbol_typeArea());//<T>Type<id>
+	setterArea = string_append(SetterArea, TYPE);
+	setterArea = string_append(SetterArea, symbol_lengthArea());//<id>index_length<K>
+	setterArea = string_append(SetterArea, symbol_dataArea());//<K>data<E>
+	setterArea = string_append(SetterArea, symbol_metaData());//<K>data<E>
+	setterArea = string_append(SetterArea, symbol_ExtraData());
+	new_Setter 		= string_append(SetterArea, "0");
+FinFuncion
+//----[ ADD ]------------------------------------------------------------------------<#>
+Funcion result_storage <- collectionStorage_add_byString_force(struct_storage, value_string, index_lenght, index_data)
+	Definir result_storage, length_value Como Texto;
+	Definir index_dataArea, index_lengthArea Como Numero;
+	length_value   = string_append(symbol_Separator(), num_ToString(string_Length(value_string)));
+	result_storage     = string_insert(struct_storage, value_string, index_data);
+	result_storage     = string_insert(result_storage, length_value, index_lenght);
+FinFuncion
+
+Funcion result_storage <- collectionStorage_add_byString(struct_storage, value_string)
+	Definir result_storage Como Texto;
+	Definir index_dataArea, index_lengthArea Como Numero;
+	index_lengthArea   = increment(string_indexOf(struct_storage, symbol_lengthArea()));
+	index_dataArea  = string_lastIndexOf(struct_storage, symbol_metaData());
+	result_storage     = collectionStorage_add_byString_force(struct_storage, value_string, index_lengthArea, index_dataArea);
+	result_storage     = linearCollection_increment_numElement(result_storage);
+FinFuncion
+
+Funcion result_storage <- collectionStorage_add_ByType(struct_storage, value, TYPE)
+	Definir result_storage, value_string Como Texto;
+	value_string = value_TypeToString(value, TYPE);
+	result_storage = collectionStorage_add_byString(struct_storage, value_string);
+FinFuncion
+
+Funcion result_storage <- collectionStorage_add(struct_storage, value)
+	Definir result_storage, TYPE Como Texto;
+	TYPE = collectionStorage_getType(struct_storage);
+	result_storage = collectionStorage_add_ByType(struct_storage, value, TYPE);
+FinFuncion
+//----[ GETTER ]---------------------------------------------------------------------<#>
+Funcion value_string <- collectionStorage_get_toString(struct_storage, index_getter)
+	Definir value_string Como Texto;
+	Definir index_endData Como Numero;
+	index_endData = string_lastIndexOf(struct_storage, symbol_metaData());
+	value_string  = collectionStorage_get_toString_force(struct_storage, index_getter, index_endData);
+FinFuncion
+
+Funcion value_string <- collectionStorage_get_toString_force(struct_storage, index_getter, index_endData)
+	Definir value_string Como Texto;
+	Definir index_lengthArea, index_dataArea Como Numero;
+	Definir sequential_data, sequential_lengths Como Texto;
+	index_lengthArea    = increment(string_indexOf(struct_storage, symbol_lengthArea()));
+	index_dataArea      = string_indexOf_fromIndex(struct_storage, symbol_dataArea(), index_lengthArea);
+	sequential_lengths  = string_substring(struct_storage, index_lengthArea, index_dataArea);
+	sequential_data     = string_substring(struct_storage, increment(index_dataArea), index_endData);
+	value_string        = managerData_get_toString(sequential_data, sequential_lengths, index_getter);
+FinFuncion
+//----[ DELETE ]---------------------------------------------------------------------<#>L
+Funcion result_storage <- collectionStorage_delete(struct_storage, key)
+	Definir result_storage, TYPE Como Texto;
+	TYPE = collectionStorage_getType(struct_storage);
+	result_storage = collectionStorage_delete_ByType(struct_storage, key, TYPE);
+FinFuncion
+
+Funcion result_storage <- collectionStorage_delete_ByType(struct_storage, key, TYPE)
+	Definir result_storage, key_string Como Texto;
+	key_string = value_TypeToString(key, TYPE);
+	result_storage = collectionStorage_delete_ByString(struct_storage, key_string);
+FinFuncion
+
+Funcion result_storage <- collectionStorage_delete_ByString(struct_storage, key)
+	Definir result_storage Como Texto;
+    Definir index_lengthArea, index_dataArea, index_target, count_size Como Numero;
+    index_lengthArea = string_indexOf(struct_storage, symbol_lengthArea());
+    count_size       = collectionStorage_getSize(struct_storage);
+	result_storage   = struct_storage;
+    si count_size > 0 Entonces 
+        index_target = __private_collectionStorage_SearchIdKey(struct_storage, key, count_size);
+        si !value_isNull(index_target, TYPE_INT())Entonces
+            result_storage = __private_collectionStorage_deleteIndexed(struct_storage, index_lengthArea,  index_target, count_size);
+        FinSi
+    FinSi
+FinFuncion
+
+Funcion result_storage <- __private_collectionStorage_deleteIndexed(struct_storage, index_lengthArea, index_target, count_size)
+	Definir result_storage, sequential_data, sequential_lengths, sequential_package Como Texto;
+    Definir index_dataArea, index_metaData Como Numero;
+	result_storage = struct_storage;
+    Si count_size > 0 Entonces
+		index_dataArea     = string_indexOf_fromIndex(struct_storage, symbol_dataArea(), index_lengthArea);
+		index_metaData	   = string_indexOf_fromIndex(struct_storage, symbol_metaData(), index_dataArea);
+		sequential_lengths = string_substring(struct_storage, index_lengthArea, index_dataArea);
+		sequential_data    = string_substring(struct_storage, increment(index_dataArea), index_metaData);
+        sequential_package = managerData_modify(sequential_data, sequential_lengths, index_target, string_NULL(), true());
+        result_storage     =  collection_updateRange(result_storage, index_lengthArea, index_metaData, sequential_package);
+		result_storage     = linearCollection_decrement_numElement(result_storage);
+    FinSi
+FinFuncion
+//----[ GETTERS ]----------------------------------------------------<#>
+Funcion innerIndex <- collectionStorage_GetInnerId(struct_storage, key)
+	Definir innerIndex Como Numero;
+	Definir key_Type Como Texto;
+	key_Type = collectionStorage_getType(struct_storage);
+	innerIndex = collectionStorage_GetInnerId_ByType(struct_storage, key, key_Type);
+FinFuncion
+
+Funcion innerIndex <- collectionStorage_GetInnerId_ByType(struct_storage, key, type)
+	Definir innerIndex Como Numero;
+	Definir key_string Como Texto;
+	key_string = value_TypeToString(key, type);
+	innerIndex = collectionStorage_GetInnerId_ByString(struct_storage, key_string);
+FinFuncion
+
+Funcion innerIndex <- collectionStorage_GetInnerId_ByString(struct_storage, key)
+    Definir innerIndex Como Numero;
+    Definir index_dataArea, count_size Como Numero;
+    innerIndex     = number_NULL();
+    count_size     = collectionStorage_getSize(struct_storage);
+    Si count_size > 0 Entonces
+        innerIndex    = __private_collectionStorage_SearchIdKey(struct_storage, key, count_size);
+    FinSi
+FinFuncion
+
+Funcion Type_keys <- collectionStorage_getType(struct_storage)
+	Definir Type_keys Como Texto;
+	Definir index_TypeKey, index_lengthArea Como Numero;
+	index_TypeKey  = increment(string_indexOf(struct_storage, symbol_typeArea()));
+	index_lengthArea   = string_indexOf_fromIndex(struct_storage, symbol_lengthArea(), index_TypeKey);
+	Type_keys      = string_substring(struct_storage, index_TypeKey, index_lengthArea);
+FinFuncion
+
+Funcion num_Keys <- collectionStorage_getSize(struct_storage)
+	Definir num_Keys Como Numero;
+	num_Keys       = linearCollection_getSize(struct_storage);
+FinFuncion
+//----[ EXIST ]----------------------------------------------------<#>
+Funcion result_storage <- collectionStorage_Exist(struct_storage, key)
+	Definir result_storage Como Logico;
+	result_storage = collectionStorage_GetInnerId(struct_storage, key) >= 0;
+FinFuncion
+
+Funcion result_storage <- collectionStorage_Exist_ByString(struct_storage, key)
+	Definir result_storage Como Logico;
+	result_storage = collectionStorage_GetInnerId_ByString(struct_storage, key) >= 0;
+FinFuncion
+//----[ SEARCH ]----------------------------------------------------<#>
+Funcion key_id <- __private_collectionStorage_SearchIdKey(struct_storage, key_string, collection_size)
+	Definir key_id, index_lengthArea, index_dataArea, index_metaData Como Numero;
+	Definir result_storage, sequential_data, sequential_lengths Como Texto;
+	si collection_size >= 1 Entonces
+		index_lengthArea        = increment(string_indexOf(struct_storage, symbol_lengthArea()));
+		index_dataArea       = string_indexOf_fromIndex(struct_storage, symbol_dataArea(), index_lengthArea);
+		index_metaData 	= string_indexOf_fromIndex(struct_storage, symbol_metaData(), index_dataArea);
+		sequential_lengths     = string_substring(struct_storage, index_lengthArea, index_dataArea);
+		sequential_data           = string_substring(struct_storage, increment(index_dataArea), index_metaData);
+		key_id				= managerData_getInnerIndex(sequential_data, sequential_lengths, collection_size, key_string);
+	SiNo
+		key_id = number_NULL();
+	FinSi
+FinFuncion
+//----[ MODIFY ]----------------------------------------------------<#>
+Funcion result_storage <- collectionStorage_modify(struct_storage, value, index_modify)
+	Definir result_storage, TYPE, value_string Como Texto;
+	TYPE           = collectionStorage_getType(struct_storage);
+	value_string   = value_TypeToString(value, TYPE);
+	result_storage = collectionStorage_modify_byString(struct_storage, value_string, index_modify);
+FinFuncion
+
+Funcion result_storage <- collectionStorage_modify_byString(struct_storage, value_string, index_modify)
+	Definir result_storage, sequential_data, sequential_lengths, sequential_package Como Texto;
+	Definir collection_size, index_lengthArea, index_dataArea, index_metaData Como Numero;
+	collection_size = collectionStorage_getSize(struct_storage);
+	si collection_size >= 1 Entonces
+		index_lengthArea   = increment(string_indexOf(struct_storage, symbol_lengthArea()));
+		index_dataArea     = string_indexOf_fromIndex(struct_storage, symbol_dataArea(), index_lengthArea);
+		index_metaData     = collection_getIndex_metaData(struct_storage);
+		sequential_lengths = string_substring(struct_storage, index_lengthArea, index_dataArea);
+		sequential_data    = string_substring(struct_storage, increment(index_dataArea), index_metaData);
+		sequential_package = managerData_modify(sequential_data, sequential_lengths, index_modify, value_string, true());
+		result_storage     = collection_updateRange(struct_storage, index_lengthArea, index_metaData, sequential_package);
+	SiNo
+		result_storage     = struct_storage;
+	FinSi
+FinFuncion
+//----[ UNIONS ]----------------------------------------------------<#>
+Funcion result_storage <- collectionStorage_AddAll(struct_storage, struct_storage_Match)
+	Definir result_storage Como Texto;
+	result_storage = __private_collectionStorage_ModifyInnerData(struct_storage, struct_storage_Match, false());
+FinFuncion
+
+Funcion result_storage <- collectionStorage_DeleteAll(struct_storage, struct_storage_Match)
+	Definir result_storage Como Texto;
+	result_storage = __private_collectionStorage_ModifyInnerData(struct_storage, struct_storage_Match, true());
+FinFuncion
+
+Funcion result_storage <- collectionStorage_GetKeys_ToSeparatedString(struct_storage, separator)
+    Definir result_storage, sequential_data, sequential_lengths Como Texto;
+    Definir count_size, index_lengthArea, index_dataArea, index_metaData Como Numero;
+    count_size          = collectionStorage_getSize(struct_storage);
+    Si count_size > 0 Entonces
+		index_lengthArea        = increment(string_indexOf(struct_storage, symbol_lengthArea()));
+		index_dataArea       = string_indexOf_fromIndex(struct_storage, symbol_dataArea(), index_lengthArea);
+		index_metaData	= string_indexOf_fromIndex(struct_storage, symbol_metaData(), index_dataArea);
+		sequential_lengths     = string_substring(struct_storage, index_lengthArea, index_dataArea);
+		sequential_data            = string_substring(struct_storage, increment(index_dataArea), index_metaData);
+        result_storage = managerData_getSeparateString(sequential_data, sequential_lengths, separator);
+    FinSi
+FinFuncion
+
+Funcion result_storage <- __private_collectionStorage_ModifyInnerData(struct_storage, struct_storage_Match, isDelete)
+	Definir size_match, i, index_start, index_end Como Numero;
+	Definir result_storage, key_Setter, key_Match, key_current, separator Como Texto;
+	result_storage = struct_storage;
+	size_match = collectionStorage_getSize(struct_storage_Match);
+	separator = symbol_separator();
+	key_Match = collectionStorage_GetKeys_ToSeparatedString(struct_storage_Match, separator);
+	i = 0;
+	index_start = 0;
+	Mientras i < size_match Hacer
+		index_end = string_indexOf_fromIndex(key_Match, separator, index_start);
+		key_current = string_substring(key_Match,index_start, index_end);
+		si isDelete Entonces
+			result_storage = collectionStorage_delete_ByString(result_storage, key_current);
+		SiNo
+			result_storage = collectionStorage_add_byString(result_storage, key_current);
+		FinSi
+		index_start = increment(index_end);
+		i = increment(i);
+	FinMientras
+FinFuncion
+
+Funcion result_storage <- collectionStorage_RetainAll(struct_storage, struct_storage_Match)
+	Definir size, size_match, i, index_start, index_end Como Numero;
+	Definir result_storage, key_Setter, key_Match, key_current, separator Como Texto;
+	Definir ExistInMatch Como Logico;
+	result_storage = struct_storage;
+	size_match = collectionStorage_getSize(struct_storage);
+	separator = symbol_separator();
+	key_Match = collectionStorage_GetKeys_ToSeparatedString(struct_storage, separator);
+	i = 0;
+	index_start = 0;
+	Mientras i < size_match Hacer
+		index_end = string_indexOf_fromIndex(key_Match, separator, index_start);
+		key_current = string_substring(key_Match, index_start, index_end);
+		ExistInMatch = collectionStorage_Exist_ByString(struct_storage_Match, key_Current);
+		si !ExistInMatch Entonces
+			result_storage = collectionStorage_delete_ByString(result_storage, key_current);
+		FinSi
+		index_start = increment(index_end);
+		i = increment(i);
+	FinMientras
+FinFuncion
+
+Funcion isDataValid <- __private_collectionStorage_IsEqualsData(struct_storage, key, size, index)
+	Definir isDataValid Como Logico;
+	Definir data_Inner Como Texto;
+	data_Inner  = string_substring(struct_storage, index, size);
+	isDataValid = number_isEquals(string_Length(key), size) & string_isEquals(key, data_Inner);
+FinFuncion
+
+Funcion result_storage <- collectionStorage_GetKeys_ToString(struct_storage)
+	Definir result_storage Como Texto;
+	result_storage = collectionStorage_GetKeys_ToSeparatedString(struct_storage, symbol_Separator_Simple());
+FinFuncion
+//----[ PRINTER_SETTER ]--------------------------------------------------------------<#>
+Funcion collectionStorage_println(struct_storage)
+	__private_collectionStorage_printer(struct_storage, true());
+FinFuncion
+
+Funcion collectionStorage_print(struct_storage)
+	__private_collectionStorage_printer(struct_storage, false());
+FinFuncion
+
+Funcion __private_collectionStorage_printer(struct_storage, isnewLine)
+	Definir key_id, index_lengthArea, index_dataArea, index_metaData Como Numero;
+	Definir sequential_data, sequential_lengths Como Texto;
+	index_lengthArea        = increment(string_indexOf(struct_storage, symbol_lengthArea()));
+	index_dataArea       = string_indexOf_fromIndex(struct_storage, symbol_dataArea(), index_lengthArea);
+	index_metaData 	= string_indexOf_fromIndex(struct_storage, symbol_metaData(), index_dataArea);
+	sequential_lengths     = string_substring(struct_storage, index_lengthArea, index_dataArea);
+	sequential_data            = string_substring(struct_storage, increment(index_dataArea), index_metaData);
+	__private_collection_printer(sequential_data, sequential_lengths, isnewLine);
+FinFuncion
+//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=======================================
+Funcion symbol_area <- symbol_lengthArea
+    Definir symbol_area Como Texto;
+    symbol_area = "";
+FinFuncion
+///%%%%%[ CELLS_COLLECTION........ ]%%%%%%%[   #CCE    ]%%%%%%%%%%%%%%%%%%
+Funcion new_collectionCells <- collectionCells_new(struct_name, TYPE, fixed_Length)
+	Definir new_collectionCells Como Texto;
+	new_collectionCells = String_append(struct_name, symbol_cell_length());
+	new_collectionCells = String_append(new_collectionCells, collectionCells_setNormCellLength(fixed_Length));
+	new_collectionCells = String_append(new_collectionCells, symbol_typeArea());
+	new_collectionCells = String_append(new_collectionCells, TYPE);
+	new_collectionCells = String_append(new_collectionCells, symbol_dataArea());
+	new_collectionCells = String_append(new_collectionCells, symbol_extraData());
+	new_collectionCells = String_append(new_collectionCells, "0");
+FinFuncion
+//-----[ UTILITIES ]----------------------------------------------------<#>
+Funcion min_fixed <- collectionCells_getMinFixed
+	Definir min_fixed Como Entero;
+	min_fixed = 1;
+FinFuncion
+
+Funcion length_result <- collectionCells_setNormCellLength(fixed_Length)
+	Definir length_result Como Texto;
+    Definir length_valid, min_length Como Entero;
+	min_length = collectionCells_getMinFixed();
+    length_valid = fixed_Length;
+    Si length_valid < min_length Entonces
+        error_message_function("collectionCells_setNormCellLength(fixed_Length)", "fixed_Length < 1");
+        length_valid = min_length;
+    FinSi
+	length_result = num_toString(length_valid);
+FinFuncion
+
+Funcion isChanged <- collectionCells_isChanged(struct_cell, last_length)
+	Definir isChanged Como Logico;
+	isChanged = (string_Length(struct_cell) > last_length);
+FinFuncion
+
+Funcion cells_index <- collectionCells_calcule_indexBlock(index_start, index_search, cell_length)
+	Definir cells_index Como Entero;
+	cells_index = increment_step(index_start, (index_search * cell_length));
+FinFuncion
+
+Funcion cells_index <- collectionCells_calcule_indexBlock_atEnd(index_end, index_search, cell_length)
+	Definir cells_index Como Entero;
+	cells_index = decrement_step(index_end, (index_search * cell_length));
+FinFuncion
+
+Funcion element_cells <- collectionCells_String_normalizedToBlockLegth(element_string, cell_length)
+	Definir element_cells Como Texto;
+	element_cells = string_fit_end(element_string, String_repeatText(collectionCells_symbol_null(), cell_length));
+FinFuncion
+
+Funcion result_string <- collectionCells_clear_cellString(element_string, cell_length)
+	Definir result_string Como Texto;
+	Definir index_clear Como Entero;
+	index_clear = collectionCells_indexOf_clearData(element_string, cell_length);
+	result_string = string_substring(element_string, 0, index_clear);
+FinFuncion
+
+Funcion index_clear <- collectionCells_indexOf_clearData(dataBlock, cell_length)
+	Definir index_clear Como Entero;
+	Definir current_char Como Texto;
+	Definir no_found Como Logico;
+	index_clear = cell_length;
+	no_found = true();
+	Mientras (index_clear > 0) & no_found Hacer
+		current_char = char_At(dataBlock, decrement(index_clear));
+		Si String_isEquals(current_char, collectionCells_symbol_null()) Entonces
+			index_clear = decrement(index_clear);
+		Sino
+			no_found = false();
+		FinSi
+	FinMientras
+FinFuncion
+
+Funcion canEntered <- collectionCells_CanLengthEntered(struct_cells, element_length)
+	Definir canEntered Como Logico;
+	Definir cell_length Como Entero;
+	cell_length = collectionCells_getCellLength(struct_cells);
+	canEntered = (element_length <= cell_length);
+FinFuncion
+//----[ GETTERS ]--------------------------------------------------------------------<#>
+Funcion size_dataBlock <- collectionCells_getSize(struct_name)
+	Definir size_dataBlock Como Entero;	
+	size_dataBlock = linearCollection_getSize(struct_name);
+FinFuncion
+
+Funcion cell_length <- collectionCells_getCellLength(struct_cells)
+	Definir cell_length, index_symbol_cell Como Entero;	
+	Definir cell_length_String Como Texto;
+	index_symbol_cell  = string_indexOf(struct_cells, symbol_cell_length());
+	index_symbol_cell  = increment(index_symbol_cell);
+	cell_length_String = ascii_getPrefix_Numbers_fromIndex(struct_cells, index_symbol_cell);
+	cell_length        = String_toNum(cell_length_String);
+FinFuncion
+
+Funcion index_startData <- collectionCells_getStartData(struct_cells)
+	Definir index_startData Como Entero;
+	index_startData = increment(collection_getIndex_dataArea(struct_cells));
+FinFuncion
+
+Funcion TYPE <- collectionCells_getType(struct_cells)
+	Definir TYPE Como Texto;
+	TYPE = collection_getContent_TypeArea(struct_cells);
+FinFuncion
+
+Funcion element_type <- collectionCells_getCell(struct_cells, index)
+	Definir element_string, TYPE Como Texto;
+	TYPE = collection_getContent_TypeArea(struct_cells);
+	Segun TYPE Hacer
+		caso     TYPE_INT(): Definir element_type Como Numero;
+		caso   TYPE_FLOAT(): Definir element_type Como Real;
+		caso TYPE_BOOLEAN(): Definir element_type Como Logico;
+		De Otro Modo:        Definir element_type Como Texto;
+	FinSegun
+	element_type   =  collectionCells_getCell_toType(struct_cells, index, TYPE);
+FinFuncion
+
+Funcion element_type <- collectionCells_getCell_toType(struct_cells, index, TYPE)
+	Definir element_string Como Texto;
+	Segun TYPE Hacer
+		caso     TYPE_INT(): Definir element_type Como Numero;
+		caso   TYPE_FLOAT(): Definir element_type Como Real;
+		caso TYPE_BOOLEAN(): Definir element_type Como Logico;
+		De Otro Modo:        Definir element_type Como Texto;
+	FinSegun
+	element_string = collectionCells_getCell_toString(struct_cells, index);
+	element_type   = value_stringToType(element_string, TYPE);
+FinFuncion
+
+Funcion element_string <- collectionCells_getCell_toString(struct_cells, index)
+	Definir element_string Como Texto;
+	Definir cells_size, index_clear, cell_length, index_startData Como Entero;
+	cells_size    = collectionCells_getSize(struct_cells);
+	si Collection_IndexIsValid(cells_size, index) Entonces
+		cell_length = collectionCells_getCellLength(struct_cells);
+		index_startData   = collectionCells_getStartData(struct_cells);
+		element_string    = collectionCells_getCell_toString_force(struct_cells, index, index_startData, cell_length);
+		element_string    = collectionCells_clear_cellString(element_string, cell_length);
+	SiNo
+		result_cells = string_NULL();
+		error_message_Function("collectionCells_getCell_toString(struct_cells, index)", "index invalid");
+	FinSi	
+FinFuncion
+
+Funcion result_cells <- collectionCells_getCell_toString_force(struct_cells, index, index_startData, cell_length)
+	Definir result_cells Como Texto;
+	Definir cells_index, cells_index_end Como Entero;
+	result_cells    = struct_cells;
+	cells_index     = collectionCells_calcule_indexBlock(index_startData, index, cell_length);
+	cells_index_end = increment_step(cells_index, cell_length);
+	result_cells    = String_Substring(result_cells, cells_index, cells_index_end);
+FinFuncion
+//----[ ADD ]------------------------------------------------------------------------<#>
+Funcion result_cells <- collectionCells_add(struct_cells, element)
+	Definir result_cells, TYPE Como Texto;
+	TYPE = collection_getContent_TypeArea(struct_cells);
+	result_cells = collectionCells_add_byType(struct_cells, element, TYPE);
+FinFuncion
+
+Funcion result_cells <- collectionCells_add_byType(struct_cells, element, TYPE)
+	Definir result_cells, element_string Como Texto;
+	element_string = value_TypeToString(element, TYPE);
+	result_cells = collectionCells_add_byString(struct_cells, element_string);
+FinFuncion
+
+Funcion result_cells <- collectionCells_add_byString(struct_cells, element_string)
+	Definir result_cells Como Texto;
+	Definir index_dataArea, cell_length, element_length, cells_size Como Entero;
+	result_cells = struct_cells;
+	cell_length = collectionCells_getCellLength(result_cells);
+	element_length = String_length(element_string);
+	si element_length > cell_length Entonces
+		error_message_Function("collectionCells_add_byString(struct_cells, element_string)", "the string length exceeds the defined cells size");
+	SiNo
+		index_dataArea = increment(String_indexOf(result_cells, symbol_dataArea()));
+		cells_size    = collectionCells_getSize(result_cells);
+		result_cells  = collectionCells_add_byString_force(struct_cells, element_string, index_dataArea, cells_size, cell_length);
+		result_cells  = linearCollection_increment_numElement(result_cells);
+	FinSi
+FinFuncion
+
+Funcion result_cells <- collectionCells_add_byString_force(struct_cells, element_string, index_start, index_insert, cell_length)
+	Definir result_cells Como Texto;
+	Definir cells_index, cells_size Como Entero;
+	result_cells = struct_cells;
+	element_string = collectionCells_String_normalizedToBlockLegth(element_string, cell_length);
+	cells_index = collectionCells_calcule_indexBlock(index_start, index_insert, cell_length);
+	result_cells = String_insert(result_cells, element_string, cells_index);
+FinFuncion
+//----[ DELETE ]----------------------------------------------------------------------<#>
+Funcion result_cells <- collectionCells_delete_byIndex(struct, index)
+	Definir result_cells Como Texto;
+	Definir index_dataArea, cells_size, cell_length Como Entero;
+	result_cells = struct_cells;
+	cells_size = collectionCells_getSize(result_cells);
+	si Collection_IndexIsValid(cells_size, index) Entonces
+		cell_length = collectionCells_getCellLength(result_cells);
+		index_dataArea    = increment(String_indexOf(result_cells, symbol_dataArea()));
+		result_cells     = collectionCells_delete_byIndex_force(struct, index, index_dataArea, cell_length);
+		result_cells     = linearCollection_decrement_numElement(result_cells);
+	SiNo
+		error_message_Function("collectionCells_delete_byIndex(struct, index)", "index invalid");
+	FinSi
+FinFuncion
+
+Funcion result_cells <- collectionCells_delete_byIndex_force(struct_cells, index, index_start, cell_length)
+	Definir result_cells Como Texto;
+	Definir cells_index, cells_index_end, cells_size Como Entero;
+	result_cells = struct_cells;
+	cells_index     = collectionCells_calcule_indexBlock(index_start, index, cell_length);
+	cells_index_end = increment_step(cells_index, cell_length);
+	result_cells    = String_Delete(result_cells, cells_index, cells_index_end);
+FinFuncion
+//-----[ MODIFY ]---------------------------------------------------------------------<#>
+Funcion result_cells <- collectionCells_modify(struct_cells, element_remplace, index)
+	Definir result_cells, TYPE Como Texto;
+	TYPE = collection_getContent_TypeArea(struct_cells);
+	result_cells = collectionCells_modify_byType(struct_cells, element_remplace, index, TYPE);
+FinFuncion
+
+Funcion result_cells <- collectionCells_modify_byType(struct_cells, element_remplace, index, TYPE)
+	Definir result_cells, element_string Como Texto;
+	element_string = value_TypeToString(element_remplace, TYPE);
+	result_cells = collectionCells_modify_byString(struct_cells, element_string, index);
+FinFuncion
+
+Funcion result_cells <- collectionCells_modify_byString(struct_cells, element_string, index)
+	Definir result_cells Como Texto;
+	Definir cells_index, cells_size, cell_length, index_dataArea Como Entero;
+	result_cells = struct_cells;
+	cells_size = collectionCells_getSize(result_cells);
+	si Collection_IndexIsValid(cells_size, index) Entonces
+		index_dataArea = increment(String_indexOf(result_cells, symbol_dataArea()));
+		cell_length  = collectionCells_getCellLength(result_cells);
+		cells_index   = collectionCells_calcule_indexBlock(index_dataArea, index, cell_length);
+		result_cells  = collectionCells_modify_byString_force(struct_cells, element_string, cells_index, cell_length);
+	FinSi
+FinFuncion
+
+Funcion result_cells <- collectionCells_modify_byString_force(struct_cells, element_string, cells_index, cell_length)
+	Definir result_cells Como Texto;
+	element_string  = collectionCells_String_normalizedToBlockLegth(element_string, cell_length);
+	result_cells = string_insert_withReplace(struct_cells, element_string, cells_index);
+FinFuncion
+//-----[ SWAP ]----------------------------------------------------------------------<#>
+Funcion result_cells <- collectionCells_swapData(struct_cells, index, index_swap)
+	Definir result_cells, data_origin, data_swap Como Texto;
+	Definir cells_size, cell_length, index_dataArea Como Entero;
+	Definir index_origen, cells_match Como Entero;
+	result_cells = struct_cells;
+	cells_size   = collectionCells_getSize(result_cells);
+	si Collection_IndexIsValid(cells_size, index) & Collection_IndexIsValid(cells_size, index_swap) Entonces
+		cell_length = collectionCells_getCellLength(result_cells);
+		index_dataArea    = increment(String_indexOf(result_cells, symbol_dataArea()));
+		result_cells     = collectionCells_swapData_force(struct_cells, index, index_swap, index_dataArea, cell_length);
+	SiNo
+		error_message_Function("collectionCells_swapData", "invalid index");
+	FinSi
+FinFuncion
+
+Funcion result_cells <- collectionCells_swapData_force(struct_cells, index, index_swap, index_start_swap, cell_length)
+	Definir result_cells, data_origin, data_swap Como Texto;
+	Definir index_origen, cells_match Como Entero;
+	result_cells = struct_cells;
+	index_origen  = collectionCells_calcule_indexBlock(index_start_swap, index, cell_length);
+	cells_match  = collectionCells_calcule_indexBlock(index_start_swap, index_swap, cell_length);
+	data_origin   = String_Substring(result_cells, index_origen, increment_step(index_origen, cell_length));
+	data_swap     = String_Substring(result_cells, cells_match, increment_step(cells_match, cell_length));
+	result_cells = collectionCells_modify_byString_force(result_cells, data_swap, index_origen, cell_length);
+	result_cells = collectionCells_modify_byString_force(result_cells, data_origin, cells_match, cell_length);	
+FinFuncion
+//----[ SEPARATOR ]----------------------------------------------------<#>
+Funcion separate_string <- collectionCells_getSeparateString(struct_cells)
+	Definir separate_string, data_string Como Texto;
+	Definir start_data, end_data, count_size, data_length Como Numero;
+	count_size  = collectionCells_getSize(struct_cells);
+	data_length = collectionCells_getCellLength(struct_cells);
+	start_data  = collectionCells_getStartData(struct_cells);
+	end_data    = collectionCells_calcule_indexBlock(start_data, count_size, data_length);
+	data_string = string_substring(struct_cells, start_data, end_data);
+	separate_string = managerData_getSeparateString_cells(data_string, count_size, data_length);
+FinFuncion
+//----[ PRINTER ]----------------------------------------------------<#>
+Funcion collectionCells_println(struct_cells)
+	__private_collectionCells_printer(struct_cells, true());	
+FinFuncion
+
+Funcion collectionCells_print(struct_cells)
+	__private_collectionCells_printer(struct_cells, false());	
+FinFuncion
+
+Funcion __private_collectionCells_printer(struct_cells, isBreakLine)
+	Definir data_string Como Texto;
+	Definir start_data, end_data, count_size, data_length Como Numero;
+	count_size  = collectionCells_getSize(struct_cells);
+	data_length = collectionCells_getCellLength(struct_cells);
+	start_data  = collectionCells_getStartData(struct_cells);
+	end_data    = collectionCells_calcule_indexBlock(start_data, count_size, data_length);
+	data_string = string_substring(struct_cells, start_data, end_data);
+	managerData_printer_cells(data_string, count_size, data_length, isBreakLine);
+FinFuncion
+//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=======================================
+Funcion symbol <- collectionCells_symbol_null
+	Definir symbol Como Texto;
+	symbol = "";
+FinFuncion
+///%%%%%[ CELLS_COLLECTION_DYNAMIC ]%%%%%%%[   #CCD    ]%%%%%%%%%%%%%%%%%%
+//-----[ UTILITIES ]----------------------------------------------------<#>
+Funcion result_cells <- collectionCells_Dynamic_ensureCapacity(struct_cells, cell_length, required_length)
+	Definir result_cells Como Texto;
+	result_cells = struct_cells;
+	si required_length > cell_length Entonces
+		result_cells = collectionCells_Dynamic_reSize(result_cells, required_length);
+	FinSi
+FinFuncion
+
+Funcion result_cells <- collectionCells_Dynamic_UpdateLength(struct_cells, new_fixed_length)
+	Definir result_cells, fixed_length Como Texto;
+	Definir start_fixed, end_fixed Como Entero;
+	start_fixed = increment(string_indexOf(struct_cells, symbol_cell_length()));
+	end_fixed   = increment(ascii_getEndIndex_Category(struct_cells, start_fixed, ascii_NUMBER()));
+	fixed_length = num_toString(new_fixed_length);
+	result_cells = collection_replaceRange(struct_cells, fixed_length, start_fixed, end_fixed);
+FinFuncion
+//-----[ GETTERS ]----------------------------------------------------<#>
+Funcion element_type <- collectionCells_Dynamic_getCell(struct_cells, index)
+	Definir element_string, TYPE Como Texto;
+	TYPE = collection_getContent_TypeArea(struct_cells);
+	Segun TYPE Hacer
+		caso     TYPE_INT(): Definir element_type Como Numero;
+		caso   TYPE_FLOAT(): Definir element_type Como Real;
+		caso TYPE_BOOLEAN(): Definir element_type Como Logico;
+		De Otro Modo:        Definir element_type Como Texto;
+	FinSegun
+	element_type   =  collectionCells_getCell_toType(struct_cells, index, TYPE);
+FinFuncion
+
+Funcion element_type <- collectionCells_Dynamic_getCell_toType(struct_cells, index, TYPE)
+	Definir element_string Como Texto;
+	Segun TYPE Hacer
+		caso     TYPE_INT(): Definir element_type Como Numero;
+		caso   TYPE_FLOAT(): Definir element_type Como Real;
+		caso TYPE_BOOLEAN(): Definir element_type Como Logico;
+		De Otro Modo:        Definir element_type Como Texto;
+	FinSegun
+	element_type   =  collectionCells_getCell_toType(struct_cells, index, TYPE);
+FinFuncion
+
+Funcion result_cells <- collectionCells_Dynamic_getCell_toString(struct_cells, index)
+	Definir result_cells Como Texto;
+	result_cells = collectionCells_getCell_toString(struct_cells, index);
+FinFuncion
+//----[ ADD ]------------------------------------------------------------------------<#>
+Funcion result_cells <- collectionCells_Dynamic_add(struct_cells, element)
+	Definir result_cells, TYPE Como Texto;
+	TYPE = collection_getContent_TypeArea(struct_cells);
+	result_cells = collectionCells_Dynamic_add_byType(struct_cells, element, TYPE);
+FinFuncion
+
+Funcion result_cells <- collectionCells_Dynamic_add_byType(struct_cells, element, TYPE)
+	Definir result_cells, element_string Como Texto;
+	element_string = value_TypeToString(element, TYPE);
+	result_cells = collectionCells_Dynamic_add_byString(struct_cells, element_string);
+FinFuncion
+
+Funcion result_cells <- collectionCells_Dynamic_add_byString(struct_cells, element_string)
+	Definir result_cells Como Texto;
+	Definir index_dataArea, cell_length, cells_size Como Entero;
+	result_cells  = struct_cells;
+	cell_length  = collectionCells_getCellLength(result_cells);
+	index_dataArea = collectionCells_getStartData(struct_cells);
+	cells_size    = collectionCells_getSize(result_cells);
+	result_cells  =  collectionCells_Dynamic_add_byString_force(struct_cells, element_string, index_dataArea, cells_size, cell_length);
+	result_cells  = linearCollection_increment_numElement(result_cells);
+FinFuncion
+
+Funcion result_cells <- collectionCells_Dynamic_add_byString_force(struct_cells, element_string, index_start, index_insert, cell_length)
+	Definir result_cells Como Texto;
+	Definir element_length Como Entero;
+	result_cells  = struct_cells;
+	element_length = String_length(element_string);
+	result_cells  = collectionCells_Dynamic_ensureCapacity(struct_cells, cell_length, element_length);
+	cell_length  = math_max_Int(cell_length, element_length);
+	result_cells  = collectionCells_add_byString_force(result_cells, element_string, index_start, index_insert, cell_length);
+FinFuncion
+//----[ RESIZE ]----------------------------------------------------------------------<#>
+Funcion result_cells <- collectionCells_Dynamic_reSize(struct_cells, new_fixed_Length)
+	Definir result_cells Como Texto;
+	Definir cells_size Como Entero;
+	result_cells = struct_cells;
+	cells_size   = collectionCells_getSize(result_cells);
+	result_cells = collectionCells_Dynamic_reSize_inRange(result_cells, new_fixed_Length, 0, cells_size);
+	result_cells = collectionCells_Dynamic_UpdateLength(result_cells, new_fixed_Length);
+FinFuncion
+
+Funcion result_cells <- collectionCells_Dynamic_reSize_inRange(struct_cells, new_fixed_Length, index_start, index_end)
+	Definir result_cells Como Texto;
+	Definir cell_length, index_endData, index_startData Como Entero;
+	result_cells = struct_cells;
+	cell_length = collectionCells_getCellLength(result_cells);
+	index_startData = collectionCells_getStartData(result_cells);
+	index_endData = collectionCells_calcule_indexBlock(index_startData, index_end, cell_length);
+	result_cells = collectionCells_Dynamic_reSize_inRange_force(result_cells, new_fixed_Length, index_start, index_end, index_endData, cell_length);
+FinFuncion
+
+Funcion result_cells <- collectionCells_Dynamic_reSize_inRange_force(struct_cells, new_fixed_Length, index_start, index_end, index_endData, cell_length)
+	Definir result_cells Como Texto;
+	Definir  diff Como Entero;
+	diff = decrement_step(new_fixed_Length, cell_length);
+	result_cells = struct_cells;
+	Si diff > 0 Entonces
+		result_cells = __private_collectionCells_Dynamic_applyPadding(result_cells, diff, index_endData, index_start, index_end, cell_length);
+	FinSi
+	Si diff < 0 Entonces
+		diff = math_abs(diff);
+		result_cells = __private_collectionCells_Dynamic_applyCropping(result_cells, diff, index_endData, index_start, index_end, cell_length);
+	FinSi
+FinFuncion
+
+Funcion result_Padding <- __private_collectionCells_Dynamic_applyPadding(struct_cells, amount, index_endData, index_start, index_end, cell_length)
+	Definir result_Padding, padding_null Como Texto;
+	Definir current_pos, i Como Entero;
+	result_Padding = struct_cells;
+	padding_null = string_repeatText(collectionCells_symbol_Null(), amount);
+	i = index_start;
+	Mientras i < index_end Hacer
+		current_pos = collectionCells_calcule_indexBlock_atEnd(index_endData, i, cell_length);
+		result_Padding = String_Insert(result_Padding, padding_null, current_pos);
+		i = increment(i);
+	FinMientras
+FinFuncion
+
+Funcion result_cells <- __private_collectionCells_Dynamic_applyCropping(struct_cells, amount, index_endData, index_start, index_end, cell_length)
+	Definir result_cells Como Texto;
+	Definir current_pos, i Como Entero;
+	result_cells = struct_cells;
+	i = index_start;
+	Mientras i < index_end Hacer
+		current_pos = collectionCells_calcule_indexBlock_atEnd(index_endData, i, cell_length);
+		result_cells = String_Delete(result_cells, decrement_step(current_pos, amount), current_pos);
+		i = increment(i);
+	FinMientras
+FinFuncion
+///%%%%%[ CELLS_COLLECTION_SETTER. ]%%%%%%%[   #CCS    ]%%%%%%%%%%%%%%%%%%
+//----[ ADD ]------------------------------------------------------------------------<#>
+Funcion result_cells <- collectionCells_Setter_add(struct_cells, element)
+	Definir result_cells, TYPE Como Texto;
+	TYPE = collection_getContent_TypeArea(struct_cells);
+	result_cells = collectionCells_Setter_add_byType(struct_cells, element, TYPE);
+FinFuncion
+
+Funcion result_cells <- collectionCells_Setter_add_byType(struct_cells, element, TYPE)
+	Definir result_cells, element_string Como Texto;
+	element_string = value_TypeToString(element, TYPE);
+	result_cells = collectionCells_setter_add_byString(struct_cells, element_string);
+FinFuncion
+
+Funcion result_cells <- collectionCells_setter_add_byString(struct_cells, element_string)
+	Definir result_cells Como Texto;
+	si collectionCells_setter_constains(struct_cells, element_string) Entonces
+		result_cells = struct_cells;
+	SiNo
+		result_cells = collectionCells_add_byString(struct_cells, element_string);
+	FinSi
+FinFuncion
+//----[ ADD_DYNAMIC ]----------------------------------------------------------------<#>
+Funcion result_cells <- collectionCells_setterDynamic_add(struct_cells, element)
+	Definir result_cells, TYPE Como Texto;
+	TYPE = collection_getContent_TypeArea(struct_cells);
+	result_cells = collectionCells_setterDynamic_add_byType(struct_cells, element, TYPE);
+FinFuncion
+
+Funcion result_cells <- collectionCells_setterDynamic_add_byType(struct_cells, element, TYPE)
+	Definir result_cells, element_string Como Texto;
+	element_string = value_TypeToString(element, TYPE);
+	result_cells = collectionCells_setterDynamic_add_byString(struct_cells, element_string);
+FinFuncion
+
+Funcion result_cells <- collectionCells_setterDynamic_add_byString(struct_cells, element_string)
+	Definir result_cells Como Texto;
+	si collectionCells_setter_constains(struct_cells, element_string) Entonces
+		result_cells = struct_cells;
+	SiNo
+		result_cells = collectionCells_Dynamic_add_byString(struct_cells, element_string);
+	FinSi
+FinFuncion
+//----[ DELETE ]----------------------------------------------------<#>
+Funcion result_cells <- collectionCells_setter_delete(struct_cells, value)
+	Definir result_cells, TYPE, value_string Como Texto;
+	TYPE = collectionCells_getType(struct_cells);
+	value_string = value_TypeToString(value, TYPE);
+	result_cells = collectionCells_setter_delete_byString(struct_cells, value_string);
+FinFuncion
+
+Funcion result_cells <- collectionCells_setter_delete_byString(struct_cells, value_string)
+	Definir result_cells Como Texto;
+	Definir index_target Como Entero;
+	index_target = collectionCells_setter_getIndex_byString(struct_cells, value_string);
+	si !number_isEquals(index_target, number_NULL()) Entonces
+		result_cells = collectionCells_delete_byIndex(struct_cells, index_target);
+	FinSi
+FinFuncion
+//----[ CONSTAINS ]----------------------------------------------------<#>
+Funcion constains_string <- collectionCells_setter_constains(struct_cells, element_string)
+	Definir constains_string Como Logico;
+	constains_string = collectionCells_setter_getIndex_byString(struct_cells, element_string) >= 0;
+FinFuncion
+
+Funcion constains_string <- collectionCells_setter_constains_inRange(struct_cells, element_string, index_start, index_end)
+	Definir constains_string Como Logico;
+	constains_string = collectionCells_setter_getIndex_byString_inRange(struct_cells, element_string, index_start, index_end) >= 0;
+FinFuncion
+
+Funcion constains_string <- collectionCells_setter_constains_inRange_force(struct_cells, element_string, index_start, index_end, index_data, cell_length)
+	Definir constains_string Como Logico;
+	constains_string = collectionCells_setter_getIndex_byString_inRange_force(struct_cells, element_string, index_start, index_end, index_data, cell_length) >= 0;
+FinFuncion
+//----[ INDEX ]-----------------------------------------------------------------------<#>
+Funcion index_cell <- collectionCells_setter_getIndex(struct_cells, value_search)
+	Definir TYPE, string_search Como Texto;
+	Definir index_cell Como Entero;
+	TYPE          = collectionCells_getType(struct_cells);
+	string_search = value_TypeToString(value_search, TYPE);
+	index_cell    = collectionCells_setter_getIndex_byString(struct_cells, element_string);
+FinFuncion
+
+Funcion index_cell <- collectionCells_setter_getIndex_byString(struct_cells, element_string)
+	Definir index_cell, cells_size Como Entero;
+	cells_size = collectionCells_getSize(struct_cells);
+	index_cell <- collectionCells_setter_getIndex_byString_inRange(struct_cells, element_string, 0, cells_size);
+FinFuncion
+
+Funcion index_cell <- collectionCells_setter_getIndex_byString_inRange(struct_cells, element_string, index_start, index_end)
+	Definir index_cell, cell_length, index_startData Como Entero;
+	cell_length = collectionCells_getCellLength(struct_cells);
+	index_startData = collectionCells_getStartData(struct_cells);
+	index_cell  = collectionCells_setter_getIndex_byString_inRange_force(struct_cells, element_string, index_start, index_end, index_startData, cell_length);
+FinFuncion
+
+Funcion index_cell <- collectionCells_setter_getIndex_byString_inRange_force(struct_cells, element_string, index_start, index_end, index_data, cell_length)
+	Definir index_cell, i, current_pos, next_pos Como Entero;
+	Definir current_data Como Texto;
+	element_string = collectionCells_String_normalizedToBlockLegth(element_string, cell_length);
+	index_cell = number_NULL();
+	i = index_start;
+	current_pos = index_data;
+	Mientras i < index_end Hacer
+		next_pos = increment_step(current_pos, cell_length);
+		current_data = String_Substring(struct_cells, current_pos, next_pos);
+		Si string_isEquals(element_string, current_data) Entonces
+			index_cell = i;
+			i = index_end;
+		FinSi
+		current_pos = increment_step(current_pos, cell_length);
+		i = increment(i);
+	FinMientras
+FinFuncion
+///%%%%%[ COLLECTION_DUAL_CELLS... ]%%%%%%%[   #CDC    ]%%%%%%%%%%%%%%%%%%
+Funcion new_collectionCells <- collectionDualCells_new(struct_name, TYPE, fixed_Length, TYPE_right, fixed_Length_two)
+	Definir new_collectionCells, quatity_two, type_two Como Texto;
+	Definir index_insert Como Entero;
+	new_collectionCells = collectionCells_new(struct_name, TYPE, fixed_Length);
+	quatity_two = num_toString(fixed_Length_two);
+	type_two  = String_append(symbol_cell_type(), TYPE_right);
+	index_insert = collection_getIndex_typeArea(new_collectionCells);
+	new_collectionCells = string_insert(new_collectionCells, type_two, index_insert);
+	index_insert = linearCollection_getIndex_ExtraData(new_collectionCells);
+	new_collectionCells = string_insert(new_collectionCells, quatity_two, index_insert);
+	new_collectionCells = string_insert(new_collectionCells, symbol_metaData(), index_insert);
+FinFuncion
+//-----[ UTILITIES ]----------------------------------------------------<#>
+Funcion result_cells <- collectionDualCells_UpdateLength_right(struct_cells, new_fixed_Length)
+	Definir result_cells Como Texto;
+	result_cells = collection_replaceRange_between_lastSymbols(struct_cells, num_toString(new_fixed_Length), symbol_metaData(), symbol_ExtraData());
+FinFuncion
+
+Funcion result_cells <- collectionDualCells_Dynamic_ensureCapacity_left(struct_cells, cell_length, required_length)
+	Definir result_cells Como Texto;//wrapper
+	result_cells  = collectionCells_Dynamic_ensureCapacity(struct_cells, cell_length, required_length);
+FinFuncion
+
+Funcion result_cells <- collectionDualCells_Dynamic_ensureCapacity_right(struct_cells, cell_length, required_length)
+	Definir result_cells Como Texto;
+	result_cells = struct_cells;
+	si required_length > cell_length Entonces
+		result_cells = collectionDualCells_Dynamic_reSize_right(result_cells, required_length);
+	FinSi
+FinFuncion
+
+Funcion result_cells <- collectionDualCells_Dynamic_ensureCapacity_right_force(struct_cells, cell_length, required_length, index_endData, cells_size)
+	Definir result_cells Como Texto;
+	result_cells = struct_cells;
+	si required_length > cell_length Entonces
+		result_cells = collectionDualCells_Dynamic_reSize_right_force(struct_cells, required_length, index_endData, cells_size, cell_length);
+	FinSi
+FinFuncion
+
+Funcion isValidLength <- collectionDualCells_validateFixedLength(element_string, cell_length)
+	Definir isValidLength Como Logico;
+	isValidLength = String_length(element_string) <= cell_length;
+FinFuncion
+
+Funcion isValidLength <- collectionDualCells_validateFixedLength_Mode(element_string, cell_length, MODE, direction)
+	Definir isValidLength, mode_isFixed Como Logico;
+	segun MODE Hacer
+		caso CELL_FIXED():
+			mode_isFixed = true();
+		caso CELL_SETTER():
+			mode_isFixed = true();
+		De Otro Modo:
+			mode_isFixed = false();
+	FinSegun
+	isValidLength = true();
+	si mode_isFixed & !collectionDualCells_validateFixedLength(element_string, cell_length) Entonces
+		error_message_Function("collectionDualCells_validateFixedLength_Mode()", string_append(direction, " :: element exceeds cells size"));
+		isValidLength = false();
+	FinSi
+FinFuncion
+//----[ ADD ]------------------------------------------------------------------------<#>
+Funcion result_cells <- collectionDualCells_add_byString_right_force(struct_cells, element_string, index_end, index_insert, cell_length)
+	Definir result_cells Como Texto;
+	Definir cells_index Como Entero;
+	result_cells = struct_cells;
+	element_string = collectionCells_String_normalizedToBlockLegth(element_string, cell_length);
+	cells_index = collectionCells_calcule_indexBlock_atEnd(index_end, index_insert, cell_length);
+	result_cells = String_insert(result_cells, element_string, cells_index);
+FinFuncion
+
+Funcion result_cells <- collectionDualCells_add_byString_left_force(struct_cells, element_string, index_start, index_insert, cell_length)
+	Definir result_cells Como Texto;//wrapper
+	result_cells = collectionCells_add_byString_force(struct_cells, element_string, index_start, index_insert, cell_length);
+FinFuncion
+//----[ ADD_DYNAMIC ]----------------------------------------------------------------<#>
+Funcion result_cells <- collectionDualCells_Dynamic_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length)
+	Definir result_cells Como Texto;
+	Definir element_length, cells_size Como Entero;
+	result_cells  = struct_cells;
+	element_length = String_length(element_string);
+	cells_size    = collectionCells_getSize(result_cells);
+	result_cells  = collectionDualCells_Dynamic_ensureCapacity_right_force(struct_cells, cell_length, element_length, index_endData, cells_size);
+	si  element_length > cell_length Entonces
+		cell_length  =  element_length;
+		index_endData = collectionDualCells_getEndData(result_cells);
+	FinSi
+	result_cells  = collectionDualCells_add_byString_right_force(result_cells, element_string, index_endData, index_insert, cell_length);
+FinFuncion
+
+Funcion result_cells <- collectionDualCells_Dynamic_add_byString_left_force(struct_cells, element_string, index_start, index_insert, cell_length)
+	Definir result_cells Como Texto;
+	result_cells = collectionCells_Dynamic_add_byString_force(struct_cells, element_string, index_start, index_insert, cell_length);
+FinFuncion
+//----[ RESIZE ]----------------------------------------------------------------------<#>
+Funcion result_cells <- collectionDualCells_Dynamic_reSize_right(struct_cells, new_fixed_Length)
+	Definir result_cells Como Texto;
+	Definir cell_length, cells_size, index_endData Como Entero;	
+	cell_length = collectionDualCells_getCellLength_right(struct_cells);
+	index_endData = collectionDualCells_getEndData(struct_cells);
+	cells_size    = collectionCells_getSize(struct_cells);
+	result_cells = collectionCells_Dynamic_reSize_inRange_force(struct_cells, new_fixed_Length, 0, cells_size, index_endData, cell_length);	
+FinFuncion
+
+Funcion result_cells <- collectionDualCells_Dynamic_reSize_right_force(struct_cells, new_fixed_Length, index_endData, cells_size, cell_length)
+	Definir result_cells Como Texto;
+	result_cells = collectionCells_Dynamic_reSize_inRange_force(struct_cells, new_fixed_Length, 0, cells_size, index_endData, cell_length);	
+	result_cells = collectionDualCells_UpdateLength_right(result_cells, new_fixed_Length);
+FinFuncion
+//----[ ADD_SETTER ]----------------------------------------------------<#>
+Funcion result_cells <- collectionDualCells_setter_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length)
+	Definir result_cells Como Texto;
+	Si collectionDualCells_setter_constains_left(struct_cells, element_string) Entonces
+		result_cells = struct_cells;
+	SiNo
+		result_cells = collectionDualCells_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length);
+	FinSi
+FinFuncion
+
+Funcion result_cells <- collectionDualCells_setter_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length)
+	Definir result_cells Como Texto;
+	Si collectionDualCells_setter_constains_right(struct_cells, element_string) Entonces
+		result_cells = struct_cells;
+	SiNo
+		result_cells  = collectionDualCells_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length);
+	FinSi
+FinFuncion
+//----[ CONSTAINS ]-------------------------------------------------------------------<#>
+Funcion constains_string <- collectionDualCells_setter_constains_right(struct_cells, element_string)
+	Definir constains_string Como Logico;
+	constains_string = collectionDualCells_setter_getIndex_right_byString(struct_cells, element_string) >= 0;
+FinFuncion
+
+Funcion constains_string <- collectionDualCells_setter_constains_left(struct_cells, element_string)
+	Definir constains_string Como Logico;
+	constains_string = collectionCells_setter_getIndex_byString(struct_cells, element_string) >= 0;
+FinFuncion
+//----[ INDEX ]-----------------------------------------------------------------------<#>
+Funcion index_cell <- collectionDualCells_setter_getIndex_left_byString(struct_cells, element_string)
+	Definir index_cell Como Entero;
+	index_cell = collectionCells_setter_getIndex_byString(struct_cells, element_string);
+FinFuncion
+
+Funcion index_cell <- collectionDualCells_setter_getIndex_right(struct_cells, value_search)
+	Definir TYPE, string_search Como Texto; 
+	Definir index_cell Como Entero;
+	TYPE          = collectionDualCells_getType_right(struct_cells);
+	string_search = value_TypeToString(value_search, TYPE);
+	index_cell    = collectionDualCells_setter_getIndex_right_byString(struct_cells, string_search);
+FinFuncion
+
+Funcion index_cell <- collectionDualCells_setter_getIndex_right_byString(struct_cells, element_string)
+	Definir index_cell, element_length, cell_length Como Entero;
+	element_length = string_length(element_string);
+	cell_length = collectionDualCells_getCellLength_right(struct_cells);
+	si (element_length > cell_length) Entonces
+		index_cell = number_NULL();
+	SiNo
+		index_cell = collectionDualCells_setter_getIndex_right_byString_force(struct_cells, element_string, cell_length);	
+	FinSi
+FinFuncion
+
+Funcion index_cell <- collectionDualCells_setter_getIndex_right_byString_force(struct_cells, element_string, cell_length)
+	Definir index_cell, index_endData, cells_size, index_startData_right Como Entero;	
+	index_endData         = collectionDualCells_getEndData(struct_cells);
+	cells_size           = collectionCells_getSize(struct_cells);
+	index_startData_right = collectionCells_calcule_indexBlock_atEnd(index_endData, cells_size, cell_length);
+	index_cell          = collectionCells_setter_getIndex_byString_inRange_force(struct_cells, element_string, 0, cells_size, index_startData_right, cell_length);
+	si (index_cell >= 0) Entonces
+		index_cell = decrement_step(decrement(cells_size), index_cell);
+	FinSi
+FinFuncion
+//----[ ADD_SETTER_DYNAMIC ]----------------------------------------------------------<#>
+Funcion result_cells <- collectionDualCells_setterDynamic_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length)
+	Definir result_cells Como Texto;	
+	Si collectionDualCells_setter_constains_right(struct_cells, element_string) Entonces
+		result_cells = struct_cells;
+	SiNo
+		result_cells = collectionDualCells_Dynamic_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length);
+	FinSi
+FinFuncion
+
+Funcion result_cells <- collectionDualCells_setterDynamic_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length)
+	Definir result_cells Como Texto;	
+	Si collectionDualCells_setter_constains_left(struct_cells, element_string) Entonces
+		result_cells = struct_cells;
+	SiNo
+		result_cells = collectionDualCells_Dynamic_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length);
+	FinSi
+FinFuncion
+//----[ ADD ]--------------------------------------------------------------------<#>
+Funcion result_cells <- collectionDualCells_mode_add(struct_cells, element_left, MODE, element_right, MODE_TWO)
+	Definir result_cells, TYPE,TYPE_TWO Como Texto;
+	TYPE          = collectionDualCells_getType_left(struct_cells);
+	TYPE_TWO      = collectionDualCells_getType_right(struct_cells);
+	result_cells = collectionDualCells_mode_add_byType(struct_cells, element_left, MODE, TYPE, element_right, MODE_TWO, TYPE_TWO);
+FinFuncion
+
+Funcion result_cells <- collectionDualCells_mode_add_byType(struct_cells, element_left, MODE, TYPE, element_right, MODE_TWO, TYPE_TWO)
+	Definir result_cells, element_string_left, element_string_right Como Texto;
+	element_string_left  = value_TypeToString(element_left, TYPE);
+	element_string_right = value_TypeToString(element_right, TYPE_TWO);
+	result_cells        = collectionDualCells_mode_add_byString(struct_cells, element_string_left, MODE, element_string_right, MODE_TWO);
+FinFuncion
+
+Funcion result_cells <- collectionDualCells_mode_add_byString(struct_cells, element_string_left, MODE, element_string_right, MODE_TWO)
+	Definir result_cells Como Texto;
+	Definir index_insert, last_length Como Entero;
+	Definir verifyChange Como Logico;
+	result_cells  = struct_cells;
+	last_length   = string_Length(result_cells);
+	index_insert  = collectionDualCells_getSize(struct_cells);
+	result_cells  = collectionDualCells_mode_add_byString_right(result_cells, element_string_right, MODE_TWO, index_insert);
+	verifyChange  = collectionCells_isChanged(result_cells, last_length);
+	si verifyChange Entonces
+		last_length   = string_Length(result_cells);
+		result_cells = collectionDualCells_mode_add_byString_left(result_cells, element_string_left, MODE, index_insert);
+		verifyChange = collectionCells_isChanged(result_cells, last_length);
+	FinSi
+	si verifyChange Entonces
+		result_cells = linearCollection_increment_numElement(result_cells);
+	SiNo
+		result_cells = struct_cells;
+	FinSi
+FinFuncion
+
+Funcion result_cells <- collectionDualCells_mode_add_byString_left(struct_cells, element_string, MODE, index_insert)
+	Definir result_cells Como Texto;
+	Definir index_startData, cell_length Como Entero;
+	result_cells     = struct_cells;
+	index_startData   = collectionCells_getStartData(result_cells);
+	cell_length   = collectionDualCells_getCellLength_left(result_cells);
+	si collectionDualCells_validateFixedLength_Mode(element_string, cell_length, MODE, "[LEFT]") Entonces
+		result_cells = collectionDualCells_mode_add_byString_left_force(result_cells, element_string, index_startData, index_insert, cell_length, MODE);	
+	FinSi
+FinFuncion
+
+Funcion result_cells <- collectionDualCells_mode_add_byString_right(struct_cells, element_string, MODE, index_insert)
+	Definir result_cells Como Texto;
+	Definir index_endData, cell_length Como Entero;
+	result_cells     = struct_cells;
+	index_endData     = collectionDualCells_getEndData(result_cells);
+	cell_length = collectionDualCells_getCellLength_right(result_cells);
+	si collectionDualCells_validateFixedLength_Mode(element_string, cell_length, MODE, "[RIGHT]") Entonces
+		result_cells = collectionDualCells_mode_add_byString_right_force(result_cells, element_string, index_endData, index_insert, cell_length, MODE);
+	FinSi
+FinFuncion
+
+Funcion result_cells <- collectionDualCells_mode_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length, MODE)
+	Definir result_cells Como Texto;
+	segun MODE Hacer
+		caso CELL_FIXED():
+			result_cells = collectionDualCells_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length);
+		caso CELL_SETTER():
+			result_cells = collectionDualCells_setter_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length);
+		caso CELL_DYNAMIC():
+			result_cells = collectionDualCells_Dynamic_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length);
+		caso CELL_SETTER_DYNAMIC():
+			result_cells = collectionDualCells_setterDynamic_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length);
+		De Otro Modo:
+			error_message_Function("collectionDualCells_mode_add_byString_left_force(cells, element, Istart, Iinsert, lengthCell, mode)", string_append("[LEFT] mode not exist: ", MODE));
+			result_cells = struct_cells;
+	FinSegun
+FinFuncion
+
+Funcion result_cells <- collectionDualCells_mode_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length, MODE)
+	Definir result_cells Como Texto;
+	segun MODE Hacer
+		caso CELL_FIXED():
+			result_cells = collectionDualCells_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length);
+		caso CELL_SETTER():
+			result_cells = collectionDualCells_setter_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length);
+		caso CELL_DYNAMIC():
+			result_cells = collectionDualCells_Dynamic_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length);
+		caso CELL_SETTER_DYNAMIC():
+			result_cells = collectionDualCells_setterDynamic_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length);
+		De Otro Modo:
+			error_message_Function("collectionDualCells_mode_add_byString_left_force(cells, element, Istart, Iinsert, lengthCell, mode)", string_append("[right] mode not exist: ", MODE));
+			result_cells = struct_cells;
+	FinSegun
+FinFuncion
+//----[ GETTERS ]--------------------------------------------------------------------<#>
+Funcion element_left <- collectionDualCells_getCellPair_byRightValue(struct_cells, value_right)
+	Definir element_string, TYPE Como Texto;
+	element_string = collectionDualCells_getCellPair_byRightValue_ToString(struct_cells, value_right);
+	TYPE = collectionDualCells_getType_left(struct_cells);
+	Segun TYPE Hacer
+		Caso TYPE_INT():     Definir element_left Como Numero;
+		Caso TYPE_FLOAT():   Definir element_left Como Real;
+		Caso TYPE_BOOLEAN(): Definir element_left Como Logico;
+		De Otro Modo:        Definir element_left Como Texto;
+	FinSegun
+	element_left = value_stringToType(element_string, TYPE);
+FinFuncion
+
+Funcion element_left <- collectionDualCells_getCellPair_byRightValue_ToString(struct_cells, value_right)
+	Definir element_left, TYPE, value_string Como Texto;
+	Definir index_pair Como Entero;
+	TYPE = collectionDualCells_getType_right(struct_cells);
+	value_string = value_TypeToString(value_right, TYPE);
+	index_pair = collectionDualCells_setter_getIndex_right_byString(struct_cells, value_string);
+	Si index_pair >= 0 Entonces
+		element_left = collectionDualCells_getCell_left_toString(struct_cells, index_pair);
+	SiNo
+		element_left = string_NULL();
+	FinSi
+FinFuncion
+
+Funcion element_right <- collectionDualCells_getCellPair_byLeftValue(struct_cells, value_left)
+	Definir element_string, TYPE Como Texto;
+	element_string = collectionDualCells_getCellPair_byLeftValue_ToString(struct_cells, value_left);
+	TYPE = collectionDualCells_getType_right(struct_cells);
+	Segun TYPE Hacer
+		caso     TYPE_INT(): Definir element_right Como Numero;
+		caso   TYPE_FLOAT(): Definir element_right Como Real;
+		caso TYPE_BOOLEAN(): Definir element_right Como Logico;
+		De Otro Modo:        Definir element_right Como Texto;
+	FinSegun
+	element_right = value_stringToType(element_string, TYPE);
+FinFuncion
+
+Funcion element_right <- collectionDualCells_getCellPair_byLeftValue_ToString(struct_cells, value_left)
+	Definir element_right, TYPE, value_string Como Texto;
+	Definir index_pair Como Entero;
+	TYPE = collectionDualCells_getType_left(struct_cells);
+	value_string = value_TypeToString(value_left, TYPE);
+	index_pair = collectionDualCells_setter_getIndex_left_byString(struct_cells, value_string);
+	si index_pair >= 0 Entonces
+		element_right = collectionDualCells_getCell_right_toString(struct_cells, index_pair);
+	SiNo
+		element_right = string_NULL();
+	FinSi
+FinFuncion
+
+Funcion element_type <- collectionDualCells_getCell_left(struct_cells, index)
+	Definir element_string, TYPE Como Texto;
+	TYPE = collection_getContent_TypeArea(struct_cells);
+	Segun TYPE Hacer
+		caso     TYPE_INT(): Definir element_type Como Numero;
+		caso   TYPE_FLOAT(): Definir element_type Como Real;
+		caso TYPE_BOOLEAN(): Definir element_type Como Logico;
+		De Otro Modo:        Definir element_type Como Texto;
+	FinSegun
+	element_string = collectionDualCells_getCell_left_toString(struct_cells, index);
+	element_type   = value_stringToType(element_string, TYPE);
+FinFuncion
+
+Funcion element_type <- collectionDualCells_getCell_left_toType(struct_cells, index, TYPE)
+	Definir element_string Como Texto;
+	Segun TYPE Hacer
+		caso     TYPE_INT(): Definir element_type Como Numero;
+		caso   TYPE_FLOAT(): Definir element_type Como Real;
+		caso TYPE_BOOLEAN(): Definir element_type Como Logico;
+		De Otro Modo:        Definir element_type Como Texto;
+	FinSegun
+	element_string = collectionDualCells_getCell_left_toString(struct_cells, index);
+	element_type   = value_stringToType(element_string, TYPE);
+FinFuncion
+
+
+Funcion element_string <- collectionDualCells_getCell_left_toString(struct_cells, index)
+	Definir element_string Como Texto;
+	element_string = collectionCells_getCell_toString(struct_cells, index);
+FinFuncion
+
+Funcion element_type <- collectionDualCells_getCell_right(struct_cells, index)
+	Definir element_string, TYPE Como Texto;
+	TYPE = collectionDualCells_getType_right(struct_cells);
+	Segun TYPE Hacer
+		caso     TYPE_INT(): Definir element_type Como Numero;
+		caso   TYPE_FLOAT(): Definir element_type Como Real;
+		caso TYPE_BOOLEAN(): Definir element_type Como Logico;
+		De Otro Modo:        Definir element_type Como Texto;
+	FinSegun
+	element_string = collectionDualCells_getCell_right_toString(struct_cells, index);
+	element_type   = value_stringToType(element_string, TYPE);
+FinFuncion
+
+Funcion element_type <- collectionDualCells_getCell_right_toType(struct_cells, index, TYPE)
+	Definir element_string Como Texto;
+	Segun TYPE Hacer
+		caso     TYPE_INT(): Definir element_type Como Numero;
+		caso   TYPE_FLOAT(): Definir element_type Como Real;
+		caso TYPE_BOOLEAN(): Definir element_type Como Logico;
+		De Otro Modo:        Definir element_type Como Texto;
+	FinSegun
+	element_string = collectionDualCells_getCell_right_toString(struct_cells, index);
+	element_type   = value_stringToType(element_string, TYPE);
+FinFuncion
+
+Funcion element_string <- collectionDualCells_getCell_right_toString(struct_cells, index)
+	Definir element_string Como Texto;
+	Definir cells_size, index_norm, cell_length, index_endData, index_startData Como Entero;
+	cells_size    = collectionCells_getSize(struct_cells);
+	si Collection_IndexIsValid(cells_size, index) Entonces
+		cell_length = collectionDualCells_getCellLength_right(struct_cells);
+		index_endData     = collectionDualCells_getEndData(struct_cells);
+		index_startData   = collectionCells_calcule_indexBlock_atEnd(index_endData, cells_size, cell_length);
+		index_norm        = decrement_step(decrement(cells_size), index);
+		element_string    = collectionCells_getCell_toString_force(struct_cells, index_norm, index_startData, cell_length);
+		element_string    = collectionCells_clear_cellString(element_string, cell_length);
+	SiNo
+		error_message_Function("collectionDualCells_getCell_right_toString(struct_cells, index)", "index invalid");
+		result_cells = string_NULL();
+	FinSi	
+FinFuncion
+
+Funcion index_endData <- collectionDualCells_getEndData(struct_cells)
+	Definir index_endData Como Entero;
+	index_endData = String_lastIndexof(struct_cells, symbol_metaData());
+FinFuncion
+
+Funcion cell_length <- collectionDualCells_getCellLength_left(struct_cells)
+	Definir cell_length Como Entero;//wrapper
+	cell_length = collectionCells_getCellLength(struct_cells);
+FinFuncion
+
+Funcion cell_length <- collectionDualCells_getCellLength_right(struct_cells)
+	Definir cell_length Como Entero;	
+	Definir cells_length_String Como Texto;
+	cells_length_String = collection_getContent_Between_lastSymbols(struct_cells, symbol_metaData(), symbol_extraData());
+	cell_length    = String_toNum(cells_length_String);
+FinFuncion
+
+Funcion index_start <- collectionDualCells_getStartIndex_right(struct_cells)
+	Definir cell_length, index_endData, cells_size, index_start Como Entero;	
+	cells_size    = collectionCells_getSize(result_cells);
+	index_endData = collectionDualCells_getEndData(result_cells);
+	cell_length   = collectionCells_getCellLength(result_cells);
+	index_start   = collectionCells_calcule_indexBlock_atEnd(index_endData, cells_size, cell_length);
+FinFuncion
+
+Funcion TYPE <- collectionDualCells_getType_left(struct_cells)
+	Definir TYPE Como Texto;
+	TYPE <- collectionCells_getType(struct_cells);
+FinFuncion
+
+Funcion TYPE <- collectionDualCells_getType_right(struct_cells)
+	Definir TYPE Como Texto;//
+	TYPE = collection_getContent_Between_Symbols(struct_cells, symbol_cell_type(), symbol_typeArea());
+FinFuncion
+
+Funcion size_dataBlock <- collectionDualCells_getSize(struct_cells)
+	Definir size_dataBlock Como Entero;
+	size_dataBlock = collectionCells_getSize(struct_cells);
+FinFuncion
+//----[ MODIFY ]----------------------------------------------------------------------<#>
+Funcion result_cells <- collectionDualCells_modify_left_byString(struct_cells, element_string, index)
+	Definir result_cells Como Texto;
+	result_cells = collectionCells_modify_byString(struct_cells, element_string, index);
+FinFuncion
+
+Funcion result_cells <- collectionDualCells_modify_right_byString(struct_cells, element_string, index)
+	Definir result_cells Como Texto;
+	Definir cells_index, cells_size, cell_length, index_endData Como Entero;
+	result_cells = struct_cells;
+	cells_size = collectionCells_getSize(result_cells);
+	si Collection_IndexIsValid(cells_size, index) Entonces
+		index_endData     = collectionDualCells_getEndData(result_cells);
+		cell_length = collectionCells_getCellLength(result_cells);
+		cells_index      = collectionCells_calcule_indexBlock_atEnd(index_endData, increment(index), cell_length);
+		result_cells  = collectionCells_modify_byString_force(struct_cells, element_string, cells_index, cell_length);
+	SiNo
+		error_message_Function("collectionDualCells_modify_right_byString()", "invalid index");
+	FinSi
+FinFuncion
+//----[ SWAP ]-----------------------------------------------------------------------<#>
+Funcion result_cells <- collectionDualCells_swapData_left(struct_cells, index, index_swap)
+	Definir result_cells Como Texto;
+	result_cells = collectionCells_swapData(struct_cells, index, index_swap);
+FinFuncion
+
+Funcion result_cells <- collectionDualCells_swapData_right(struct_cells, index, index_swap)
+	Definir result_cells, data_origin, data_swap Como Texto;
+	Definir cells_size, cell_length, index_endData, index_dec, index_startData_right Como Entero;
+	Definir index_origen, cells_match Como Entero;
+	result_cells = struct_cells;
+	cells_size   = collectionCells_getSize(result_cells);
+	si Collection_IndexIsValid(cells_size, index) & Collection_IndexIsValid(cells_size, index_swap) Entonces
+		cell_length     = collectionCells_getCellLength(result_cells);
+		index_endData         = collectionDualCells_getEndData(result_cells);
+		index_startData_right = collectionCells_calcule_indexBlock_atEnd(index_endData, cells_size, cell_length);
+		result_cells         = collectionCells_swapData_force(struct_cells, index, index_swap, index_startData_right, cell_length);
+	SiNo
+		error_message_Function("collectionDualCells_swapData_left()", "invalid index");
+	FinSi
+FinFuncion
+//----[ DELETE ]----------------------------------------------------------------------<#>
+Funcion result_cells <- collectionDualCells_delete(struct_cells, index)
+	Definir result_cells Como Texto;
+	Definir cells_size Como Entero;
+	result_cells = struct_cells;
+	cells_size   = collectionDualCells_getSize(result_cells);
+	si Collection_IndexIsValid(cells_size, index) Entonces
+		result_cells = collectionDualCells_delete_left_force(result_cells, index);
+		result_cells = collectionDualCells_delete_right_force(result_cells, index);
+		result_cells = linearCollection_decrement_numElement(result_cells);
+	SiNo
+		error_message_Function("collectionDualCells_swapData_left()", "invalid index");
+	FinSi
+FinFuncion
+
+Funcion result_cells <- collectionDualCells_delete_left_force(struct_cells, index)
+	Definir result_cells Como Texto;
+	Definir index_startData, cell_length Como Entero;
+	result_cells = struct_cells;
+	cell_length = collectionDualCells_getCellLength_left(result_cells);
+	index_startData  = collectionCells_getStartData(result_cells);
+	result_cells     = collectionCells_delete_byIndex_force(result_cells, index, index_startData, cell_length);
+FinFuncion
+
+Funcion result_cells <- collectionDualCells_delete_right_force(struct_cells, index)
+	Definir result_cells Como Texto;
+	Definir cell_length Como Entero;
+	cell_length = collectionDualCells_getCellLength_right(result_cells);	
+	result_cells     = __private_collectionDualCells_delete_right(struct_cells, index, cell_length);
+FinFuncion
+
+Funcion result_cells <- __private_collectionDualCells_delete_right(struct_cells, index, cell_length)
+	Definir result_cells Como Texto;
+	Definir index_endData, cells_index, cells_index_end Como Entero;
+	result_cells     = struct_cells;
+	index_endData    = collectionDualCells_getEndData(result_cells);
+	cells_index_end  = collectionCells_calcule_indexBlock_atEnd(index_endData, index, cell_length);
+	cells_index      = decrement_step(cells_index_end, cell_length);
+	result_cells     = String_Delete(result_cells, cells_index, cells_index_end);
+FinFuncion
+//----[ PRINTER ]----------------------------------------------------<#>
+Funcion separate_string <- collectionDualCells_getSeparateString_right(struct_cells)
+	Definir separate_string, data_string Como Texto;
+	Definir start_data, end_data, count_size, cell_length Como Numero;
+	count_size  = collectionDualCells_getSize(struct_cells);
+	cell_length = collectionDualCells_getCellLength_right(struct_cells);
+	end_data    = collectionDualCells_getEndData(struct_cells);
+	start_data  = collectionCells_calcule_indexBlock_atEnd(end_data, count_size, cell_length);
+	data_string = string_substring(struct_cells, start_data, end_data);
+	separate_string = managerData_getSeparateString_cells(data_string, count_size, cell_length);
+FinFuncion
+//----[ PRINTER ]----------------------------------------------------<#>
+Funcion collectionDualCells_println_right(struct_cells)
+	__private_collectionDualCells_printer_right(struct_cells, true());	
+FinFuncion
+
+Funcion collectionDualCells_print_right(struct_cells)
+	__private_collectionDualCells_printer_right(struct_cells, false());	
+FinFuncion
+
+Funcion __private_collectionDualCells_printer_right(struct_cells, isBreakLine)
+	Definir separate_string, data_string Como Texto;
+	Definir start_data, end_data, count_size, cell_length Como Numero;
+	count_size  = collectionDualCells_getSize(struct_cells);
+	cell_length = collectionDualCells_getCellLength_right(struct_cells);
+	end_data    = collectionDualCells_getEndData(struct_cells);
+	start_data  = collectionCells_calcule_indexBlock_atEnd(end_data, count_size, cell_length);
+	data_string = string_substring(struct_cells, start_data, end_data);
+	managerData_printer_cells(data_string, count_size, cell_length, isBreakLine);
+FinFuncion
+//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=======================================
+Funcion MODE <- CELL_FIXED
+	Definir MODE Como Texto;
+	MODE = "mode_fixed";
+FinFuncion
+
+Funcion MODE <- CELL_DYNAMIC
+	Definir MODE Como Texto;
+	MODE = "mode_dynamic";
+FinFuncion
+
+Funcion MODE <- CELL_SETTER
+	Definir MODE Como Texto;
+	MODE = "mode_setter";
+FinFuncion
+
+Funcion MODE <- CELL_SETTER_DYNAMIC
+	Definir MODE Como Texto;
+	MODE = "mode_setterDynamic";
+FinFuncion
+
+Funcion symbol <- symbol_cell_length
+	Definir symbol Como Texto;
+	symbol = "";
+FinFuncion
+
+Funcion symbol <- symbol_cell_type
+	Definir symbol Como Texto;
+	symbol = "";
+FinFuncion
+///%%%%%[ COLLECTION_STORAGE_CELLS ]%%%%%%%[   #CSC    ]%%%%%%%%%%%%%%%%%%
+Funcion collection_storage <- collectionStorageCells_new(struct_name, TYPE_CELL, TYPE_LINEAR)
+	Definir collection_storage Como Texto;
+	collection_storage = collectionStorageCells_new_setLengthCell(struct_name, TYPE_CELL, TYPE_LINEAR, 1);
+FinFuncion
+
+Funcion collection_storage <- collectionStorageCells_new_setLengthCell(struct_name, TYPE_CELL, TYPE_LINEAR, fixed_Length)
+	Definir collection_storage, min_fixed, region_width, region_type  Como Texto;
+	Definir index_insert Como Entero;
+	collection_storage = collectionStorage_new(struct_name, TYPE_LINEAR);
+	region_type        = String_append(symbol_cell_type(), TYPE_CELL);
+	index_insert       = collection_getIndex_typeArea(collection_storage);
+	collection_storage = string_insert(collection_storage, region_type, index_insert);
+	index_insert       = linearCollection_getIndex_extraData(collection_storage);
+	region_width       = collectionCells_setNormCellLength(fixed_Length);
+	collection_storage = string_insert(collection_storage, region_width, index_insert);
+FinFuncion
+//-----[ MODEFY ]-------------------------------------------------------<#>
+Funcion result_storage <- collectionStorageCells_modifyData_byCell(struct_storageCells, value_search, value)
+	Definir result_storage, TYPE, string_search Como Texto;
+	TYPE           = collectionStorageCells_getType(struct_storageCells);
+	string_search  = value_TypeToString(value_search, TYPE);
+	result_storage = collectionStorageCells_modifyData_byCell_String(struct_storageCells, string_search, value);
+FinFuncion
+
+Funcion result_storage <- collectionStorageCells_modifyData_byCell_String(struct_storageCells, string_search, value)
+	Definir result_storage Como Texto;
+	Definir index_target Como Entero;
+	index_target = collectionStorageCells_getCellIndex_byString(struct_storageCells, string_search);
+	si number_isEquals(value, number_NULL()) Entonces
+		result_storage = struct_storageCells;
+	SiNo
+		result_storage = collectionStorage_modify(struct_storageCells, value, index_target);
+	FinSi
+FinFuncion
+//-----[ GETTERS ]------------------------------------------------------<#>
+Funcion value_result <- collectionStorageCells_getData_byCell(struct_storageCells, value_search)
+	Definir TYPE, value_string Como Texto;
+	value_string = collectionStorageCells_getData_byCell_toString(struct_storageCells, value_search);
+	TYPE = collectionStorage_getType(struct_storageCells);
+	Segun TYPE Hacer
+		caso     TYPE_INT(): Definir value_result Como Numero;
+		caso   TYPE_FLOAT(): Definir value_result Como Real;
+		caso TYPE_BOOLEAN(): Definir value_result Como Logico;
+		De Otro Modo:        Definir value_result Como Texto;
+	FinSegun
+	value_result = value_stringToType(value_string, TYPE);
+FinFuncion
+
+Funcion value_string <- collectionStorageCells_getData_byCell_toString(struct_storageCells, value_search)
+	Definir value_string, TYPE, sequential_data, sequential_lengths, string_search Como Texto;
+	Definir index_target, index_endData, cells_size, right_startData, cell_length Como Entero;
+	Definir index_lengthArea, index_dataArea, index_metaData Como Entero;
+	TYPE = collectionDualCells_getType_right(struct_storageCells);
+	string_search         = value_TypeToString(value_search, TYPE);
+	cell_length           = collectionDualCells_getCellLength_right(struct_storageCells);
+	index_endData         = collectionDualCells_getEndData(struct_storageCells);
+	cells_size            = collectionCells_getSize(struct_storageCells);
+	right_startData       = collectionCells_calcule_indexBlock_atEnd(index_endData, cells_size, cell_length);
+	index_target          = collectionStorageCells_getCellIndex_force(struct_storageCells, string_search, cells_size, right_startData, cell_length);
+	Si (index_target >= 0) Entonces
+		value_string = collectionStorage_get_toString_force(struct_storageCells, index_target, right_startData);
+	SiNo
+		value_string = string_NULL();
+	FinSi
+FinFuncion
+
+Funcion collection_size <- collectionStorageCells_getSize(struct_storageCells)
+	Definir collection_size Como Entero;
+	collection_size = linearCollection_getSize(struct_storageCells);
+FinFuncion
+
+Funcion cell_length <- collectionStorageCells_getCellLength(struct_storageCells)
+	Definir cell_length Como Entero;
+	cell_length = collectionDualCells_getCellLength_right(struct_storageCells);
+FinFuncion
+
+Funcion TYPE <- collectionStorageCells_getType(struct_storageCells)
+	Definir TYPE Como Texto;
+	TYPE = collectionDualCells_getType_right(struct_storageCells);
+FinFuncion
+
+Funcion index_target <- collectionStorageCells_getCellIndex(struct_storageCells, value_search)
+	Definir string_search, TYPE Como Texto;
+	Definir index_target  Como Entero;
+	TYPE          = collectionDualCells_getType_right(struct_storageCells);
+	string_search = value_TypeToString(value_search, TYPE);
+	index_target  = collectionStorageCells_getCellIndex_byString(struct_storageCells, string_search);
+FinFuncion
+
+Funcion index_target <- collectionStorageCells_getCellIndex_byString(struct_storageCells, string_search)
+	Definir index_target, index_endData, cells_size, right_startData, cell_length Como Entero;
+	cell_length     = collectionStorageCells_getCellLength(struct_storageCells);
+	index_endData   = collectionDualCells_getEndData(struct_storageCells);
+	cells_size      = collectionCells_getSize(struct_storageCells);
+	right_startData = collectionCells_calcule_indexBlock_atEnd(index_endData, cells_size, cell_length);	
+	index_target    = collectionStorageCells_getCellIndex_force(struct_storageCells, string_search, cells_size, right_startData, cell_length);
+FinFuncion
+
+Funcion norm_target <- collectionStorageCells_getCellIndex_force(result_storage, string_search, count_size, right_startData, cell_length)
+    Definir norm_target, index_target, search_Length Como Entero;
+	Definir index_isInvalid Como Logico;
+	search_Length   = string_Length(string_search);
+	index_isInvalid = search_Length > cell_length;
+	si !index_isInvalid Entonces
+		index_target    = collectionCells_setter_getIndex_byString_inRange_force(result_storage, string_search, 0, count_size, right_startData, cell_length);
+		index_isInvalid = number_isEquals(index_target, number_NULL());
+	FinSi
+	si index_isInvalid Entonces
+		norm_target = number_NULL();
+	SiNo
+		norm_target = decrement_step(decrement(count_size), index_target);
+	FinSi
+FinFuncion
+//----[ ADD ]------------------------------------------------------------------------<#>
+Funcion result_storage <- collectionStorageCells_add(struct_storage, value_cell, value_linear)
+    Definir result_storage, TYPE_CELL, TYPE_LINEAR Como Texto;
+    TYPE_CELL      = collectionDualCells_getType_right(struct_storage);
+    TYPE_LINEAR    = collectionStorage_getType(struct_storage);
+    result_storage = collectionStorageCells_add_byType(struct_storage, value_cell, value_linear, TYPE_CELL, TYPE_LINEAR);
+FinFuncion
+
+Funcion result_storage <- collectionStorageCells_add_byType(struct_storage, value_cell, value_linear, TYPE_CELL, TYPE_LINEAR)
+    Definir result_storage, value_string, data_string Como Texto;
+    value_string = value_TypeToString(value_cell, TYPE_CELL);
+    data_string  = value_TypeToString(value_linear, TYPE_LINEAR);
+    result_storage = collectionStorageCells_add_byString(struct_storage, value_string, data_string);
+FinFuncion
+
+Funcion result_storage <- collectionStorageCells_add_byString(struct_storage, value_string, data_string)
+	Definir result_storage Como Texto;
+	result_storage = collectionStorageCells_mode_add_byString(struct_storage, value_string, CELL_DYNAMIC(), data_string);
+FinFuncion
+//----[ ADD_SETTER ]-----------------------------------------------------------------<#>
+Funcion result_storage <- collectionStorageCells_add_setter(struct_storage, value_cell, value_linear)
+	Definir result_storage, TYPE_CELL, TYPE_LINEAR Como Texto;
+	TYPE_CELL      = collectionDualCells_getType_right(struct_storage);
+	TYPE_LINEAR    = collectionStorage_getType(struct_storage); 
+	result_storage = collectionStorageCells_add_setter_byType(struct_storage, value_cell, value_linear, TYPE_CELL, TYPE_LINEAR);
+FinFuncion
+
+Funcion result_storage <- collectionStorageCells_add_setter_byType(struct_storage, value_cell, value_linear, TYPE_CELL, TYPE_LINEAR)
+	Definir result_storage, value_string, data_string Como Texto;
+	value_string   = value_TypeToString( value_cell, TYPE_CELL);
+	data_string    = value_TypeToString( value_linear, TYPE_LINEAR);
+	result_storage = collectionStorageCells_add_setter_byString(struct_storage, value_string, data_string);
+FinFuncion
+
+Funcion result_storage <- collectionStorageCells_add_setter_byString(struct_storage, value_string, data_string)
+	Definir result_storage Como Texto;
+	result_storage = collectionStorageCells_mode_add_byString(struct_storage, value_string, CELL_SETTER_DYNAMIC(), data_string);
+FinFuncion
+//----[ ADD_MODE ]-------------------------------------------------------------------<#>
+Funcion result_storage <- collectionStorageCells_mode_add(struct_storage, value_cell, CELL_MODE, value_linear)
+	Definir result_storage, TYPE_CELL, TYPE_LINEAR Como Texto;
+	TYPE_CELL      = collectionDualCells_getType_right(struct_storage);
+	TYPE_LINEAR    = linearCollection_getType(struct_storage); 
+	result_storage = collectionStorageCells_mode_add_byType(struct_storage, value_cell, CELL_MODE, value_linear, TYPE_CELL, TYPE_LINEAR);
+FinFuncion
+
+Funcion result_storage <- collectionStorageCells_mode_add_byType(struct_storage, value_cell, CELL_MODE, value_linear, TYPE_CELL, TYPE_LINEAR)
+	Definir result_storage, value_string, data_string Como Texto;
+	value_string   = value_TypeToString(value_cell, TYPE_CELL);
+	data_string    = value_TypeToString(value_linear, TYPE_LINEAR);
+	result_storage = collectionStorageCells_mode_add_byString(struct_storage, value_string, CELL_MODE, data_string);
+FinFuncion
+
+Funcion result_storage <- collectionStorageCells_mode_add_byString(struct_storageCells, value_string, CELL_MODE, data_string)
+	Definir result_storage Como Texto;
+	Definir index_endData, cell_length, count_size, index_target Como Entero;
+	Definir last_length, right_startData, index_lengthArea Como Entero;
+	Definir isValidFixed, isChanged Como Logico;
+	result_storage = struct_storageCells;
+	cell_length    = collectionStorageCells_getCellLength(result_storage);
+	last_length    = string_Length(result_storage);
+	isValidFixed   = collectionDualCells_validateFixedLength_Mode(value_string, cell_length, CELL_MODE, "[RIGHT]");
+	si isValidFixed Entonces
+		count_size     = collectionDualCells_getSize(result_storage);
+		index_endData  = collectionDualCells_getEndData(result_storage);
+		result_storage = collectionDualCells_mode_add_byString_right_force(result_storage, value_string, index_endData, count_size, cell_length, CELL_MODE);
+	FinSi 
+	right_startData = decrement_step(index_endData, count_size * cell_length);
+	isChanged       = collectionCells_isChanged(result_storage, last_length);
+	si isChanged Entonces
+		index_lengthArea = increment(string_indexOf(result_storage, symbol_lengthArea()));
+		result_storage   = collectionStorage_add_byString_force(result_storage, data_string, index_lengthArea, right_startData);//revisar
+		result_storage   = linearCollection_increment_numElement(result_storage);
+	FinSi
+	Si isValidFixed & !isChanged Entonces
+		index_target     = collectionStorageCells_getCellIndex_force(result_storage, value_string, count_size, right_startData, cell_length);
+		result_storage   = collectionStorage_modify_byString(result_storage, data_string, index_target);
+	FinSi
+FinFuncion
+//----[ DELETE ]---------------------------------------------------------------------<#>
+Funcion result_storage <- collectionStorageCells_delete(struct_storageCells, value_search)
+	Definir result_storage, TYPE, string_search Como Texto;
+	TYPE           = collectionStorageCells_getType(struct_storageCells);
+	string_search  = value_TypeToString(value_search, TYPE);
+	result_storage = collectionStorageCells_delete_byString(struct_storageCells, string_search);
+FinFuncion
+
+Funcion result_storage <- collectionStorageCells_delete_byString(struct_storageCells, string_search)
+	Definir result_storage Como Texto;
+	Definir right_startData, index_endData, count_size, index_target, cell_length, index_lengthArea, norm_target Como Entero;
+	result_storage   = struct_storageCells;
+	count_size       = collectionCells_getSize(result_storage);
+	cell_length      = collectionStorageCells_getCellLength(struct_storageCells);
+	index_endData    = collectionDualCells_getEndData(result_storage);
+	right_startData  = decrement_step(index_endData, count_size * cell_length);
+	index_target     = collectionStorageCells_getCellIndex_force(result_storage, string_search, count_size, right_startData, cell_length);
+	index_lengthArea = string_indexOf(result_storage, symbol_lengthArea());
+	result_storage   = __private_collectionDualCells_delete_right(result_storage, index_target, cell_length);
+	result_storage   = __private_collectionStorage_deleteIndexed(result_storage, index_lengthArea, index_target, count_size);
+FinFuncion
+//----[ UTILITIES ]------------------------------------------------------------------<#>
+Funcion constainsValue <- collectionStorageCells_constainsValue(struct_storageCells, value_search)
+	Definir constainsValue Como Logico;
+	Definir storage_index Como Entero;
+	storage_index = collectionStorage_GetInnerId(struct_storageCells, value_search);
+	constainsValue = !number_isEquals(storage_index, number_NULL());
+FinFuncion
+
+Funcion constainsValue <- collectionStorageCells_constainsCell(struct_storageCells, value_search)
+	Definir constainsValue Como Logico;
+	Definir cell_index Como Entero;
+	cell_index = collectionDualCells_setter_getIndex_right(struct_storageCells, value_search);
+	constainsValue = !number_isEquals(cell_index, number_NULL());
+FinFuncion
+
+Funcion separate_string <- collectionStorageCells_getSeparateString(struct_cells)
+	Definir separate_string Como Texto;
+	separate_string = collectionDualCells_getSeparateString_right(struct_cells);
+FinFuncion
+
+Funcion collectionStorageCells_println(struct_cells)
+	__private_collectionDualCells_printer_right(struct_cells, true());	
+FinFuncion
+
+Funcion collectionStorageCells_print(struct_cells)
+	__private_collectionDualCells_printer_right(struct_cells, false());	
+FinFuncion
+//----------------------------------------------------------------------<#>
+Funcion pixel <- pixel_Qr_plain
+	Definir pixel Como Texto;
+	pixel = "  ";
+FinFuncion
+
+Funcion pixel <- pixel_Qr_clear
+	Definir pixel Como Texto;
+	pixel = "ØØ";
+FinFuncion
+
+Funcion size_version <- canvas_getSizeVersionQr(version)
+	Definir size_version Como Entero;
+	size_version = increment_step(21, (decrement(version) * 4));
+FinFuncion
+//mascara: 111011111000100
+//modo: 0100 -> ubicado seria
+//00
+//10
+//modo mask: (fila % 2 == 0) invertir
+//dando resultado
+//11
+//10
+//antes de la version 7 no hay una zona de 18 bites de version
+Funcion canvas_Qr <- Qr_getBase(version, outer_margin)
+	Definir canvas_Qr Como Texto;
+	Definir size_version, size_x, size_y, outer_margin_norm Como Numero;
+	Definir start_draw_x, start_draw_y, pattern_width, pattern_height Como Numero;
+	size_version    = canvas_getSizeVersionQr(version);
+	outer_margin_norm = outer_margin * string_Length(pixel_Qr_plain());
+	size_y          = increment_step(size_version, outer_margin_norm);
+	size_x          = (size_y * string_Length(pixel_Qr_plain()));
+	start_draw_x    = outer_margin_norm;
+	start_draw_y    = outer_margin;
+	pattern_width   = (string_Length(pixel_Qr_plain()) * 7);
+	pattern_height  = (math_truncate(string_Length(pixel_Qr_plain()) / 2) * 7);
+	canvas_Qr       = canvas_new_withPixel(size_x, size_y, pixel_Qr_clear());
+	canvas_Qr 		= Qr_drawFinderPatterns(canvas_Qr, size_x, size_y, start_draw_x, start_draw_y, pattern_width, pattern_height);
+	canvas_Qr 		= Qr_drawTimingPatterns(canvas_Qr, size_x, size_y, start_draw_x, start_draw_y, pattern_width, pattern_height);
+FinFuncion
+
+Funcion canvas_result <- Qr_drawFinderPatterns(canvas_Qr, size_x, size_y, start_draw_x, start_draw_y, pattern_width, pattern_height)
+	Definir canvas_result, sprite_position Como Texto;
+	Definir end_draw_x, end_draw_y, position_right_x, position_bottom_y, position_point Como Numero;
+	end_draw_x        = decrement_step(size_x, start_draw_x);
+	end_draw_y        = decrement_step(size_y, start_draw_y);
+	sprite_position   = Qr_getSpritePositionPattern();
+	position_right_x  = decrement_step(end_draw_x, pattern_width);
+	position_bottom_y = decrement_step(end_draw_y, pattern_height);
+	position_point = increment_step(increment_step(start_draw_x, pattern_width), string_Length(pixel_Qr_plain()));
+	canvas_result = canvas_Qr;
+	canvas_result = canvas_drawSpriteString(canvas_result, size_x, size_y, sprite_position, start_draw_x, start_draw_y);
+	canvas_result = canvas_drawSpriteString(canvas_result, size_x, size_y, sprite_position, position_right_x, start_draw_y);
+	canvas_result = canvas_drawSpriteString(canvas_result, size_x, size_y, sprite_position, start_draw_x, position_bottom_y);
+	canvas_result = canvas_DrawPoint_withPixel(canvas_result, size_x, size_y, position_point, position_bottom_y, pixel_Qr_Plain());
+FinFuncion
+
+Funcion canvas_result <- Qr_drawTimingPatterns(canvas_Qr, size_x, size_y, start_draw_x, start_draw_y, pattern_width, pattern_height)
+	Definir canvas_result, pixel_current Como Texto;
+	Definir i, origin_timing_x, origin_timing_y, length_pixel, length_pixel_y, length_line Como Numero;
+	length_pixel    = string_Length(pixel_Qr_plain());
+	length_pixel_y  = math_truncate(length_pixel / 2);
+	length_line     = decrement_step(size_x, (pattern_width * 2));
+	length_line     = decrement_step(length_line, (length_pixel * 4));
+	length_line     = math_truncate(length_line / length_pixel);
+	origin_timing_x = increment_step(increment_step(start_draw_x, pattern_width), length_pixel);
+	origin_timing_y = increment_step(increment_step(start_draw_y, pattern_height), length_pixel_y);
+	canvas_result = canvas_Qr;
+	i = 0;
+	Mientras i < length_line Hacer
+		Si math_module(i, 2) == 0 Entonces
+			pixel_current = pixel_Qr_Plain();
+		SiNo
+			pixel_current = pixel_Qr_clear();
+		FinSi
+		canvas_result = canvas_DrawPoint_withPixel(canvas_result, size_x, size_y, increment_step(origin_timing_x, i * length_pixel), pattern_height, pixel_current);
+		canvas_result = canvas_DrawPoint_withPixel(canvas_result, size_x, size_y, pattern_width, increment_step(origin_timing_y, i * length_pixel_y), pixel_current);
+		i = increment(i);
+	FinMientras
+FinFuncion
+
+Funcion sprite_position <- Qr_getSpritePositionPattern
+    Definir row_border_solid, row_frame_inner, row_core_center, sprite_position Como Texto;
+    row_border_solid = String_repeatText(pixel_Qr_plain(), 7);
+    row_frame_inner  = String_append_withSeparator(pixel_Qr_plain(), pixel_Qr_plain(), String_repeatText(pixel_Qr_clear(), 5));
+    row_core_center  = String_append(pixel_Qr_plain(), pixel_Qr_clear());
+    row_core_center  = String_append(row_core_center, String_repeatText(pixel_Qr_plain(), 3));
+    row_core_center  = String_append(row_core_center, String_append(pixel_Qr_clear(), pixel_Qr_plain()));
+    sprite_position = spriteString_new();
+    sprite_position = spriteString_addLine(sprite_position, row_border_solid);// 1
+    sprite_position = spriteString_addLine(sprite_position, row_frame_inner);// 2
+    sprite_position = spriteString_addLine(sprite_position, row_core_center);// 3
+    sprite_position = spriteString_addLine(sprite_position, row_core_center);// 4
+    sprite_position = spriteString_addLine(sprite_position, row_core_center);// 5
+    sprite_position = spriteString_addLine(sprite_position, row_frame_inner);// 6
+    sprite_position = spriteString_addLine(sprite_position, row_border_solid);// 7
+FinFuncion
+///%%%%%[ SET..................... ]%%%%%%%[   #SET    ]%%%%%%%%%%%%%%%%%%
+Funcion new_Set <- util_set_new(TYPE)
+	Definir new_Set Como Texto;
+	new_Set = collectionCells_new(STRUCT_TYPE_SET(), TYPE, collectionCells_getMinFixed());
+FinFuncion
+
+Funcion result_storage <- util_set_Add(struct_set, key_new)
+	Definir result_storage Como Texto;
+	result_storage = collectionCells_setterDynamic_add(struct_set, key_new);
+FinFuncion
+
+Funcion result_storage <- util_set_Delete(struct_set, key_new)
+	Definir result_storage Como Texto;
+	result_storage = collectionCells_setter_delete(struct_set, key_new);
+FinFuncion
+
+Funcion util_set_println(struct_set)
+	collectionCells_println(struct_set);
+FinFuncion
+
+Funcion keyExist <- util_set_Containss(struct_set, key_match)
+	Definir keyExist Como Logico;
+	keyExist = collectionCells_setter_constains(struct_set, key_match);
+FinFuncion
+
+Funcion result_Size <- util_get_Size(struct_set)
+	Definir result_Size Como Numero;
+	result_Size = collectionCells_getSize(struct_set);
+FinFuncion
+///%%%%%[ MAP..................... ]%%%%%%%[   #MAP    ]%%%%%%%%%%%%%%%%%%
+Funcion new_Map <- util_map_new(TYPE, TYPE_VALUE)
+	Definir new_Map Como Texto;
+	new_Map = collectionStorageCells_new(STRUCT_TYPE_MAP(), TYPE, TYPE_VALUE);
+FinFuncion
+
+Funcion result_Map <- util_map_Put(struct_map, key, value)
+	Definir result_Map Como Texto;
+	result_Map = collectionStorageCells_add_setter(struct_map, key, value);
+FinFuncion
+
+Funcion result_Map <- util_map_remove(struct_map, key)
+	Definir result_Map Como Texto;
+	result_Map = collectionStorageCells_delete(struct_map, key);
+FinFuncion
+
+Funcion util_map_println_Key(struct_Map)
+	//collectionStorage_println(struct_Map);
+FinFuncion
+
+Funcion util_map_println_Value(struct_Map)
+	collectionStorage_println(struct_Map);
+FinFuncion
+
+Funcion element_Result <- util_map_Get(struct_map, key)
+	Definir TYPE Como Texto;
+	TYPE = linearCollection_GetType(struct_map);
+	Segun TYPE Hacer
+		caso TYPE_INT(): Definir element_Result Como Numero;
+		caso TYPE_FLOAT(): Definir element_Result Como Real;
+		caso TYPE_BOOLEAN(): Definir element_Result Como Logico;
+		De Otro Modo: Definir element_Result Como Texto;
+	FinSegun
+	element_Result = collectionStorageCells_getData_byCell(struct_map, key);
+FinFuncion
+
+Funcion map_Size <- util_map_Size(struct_map)
+	Definir map_Size Como Numero;
+	map_Size = collectionStorageCells_getSize(struct_map);
+FinFuncion
+
+Funcion mapConstains <- util_map_ContainsValue(struct_map, value_match)
+	Definir mapConstains Como Logico;
+	mapConstains = collectionStorageCells_constainsValue(struct_map, value_match);
+FinFuncion
+
+Funcion mapConstains <- util_map_ContainsKey(struct_map, key_match)
+	Definir mapConstains Como Logico;
+	mapConstains = collectionStorageCells_constainsCell(struct_map, key_match);
+FinFuncion
+///%%%%%[ OBJECT.................. ]%%%%%%%[   #OBJ    ]%%%%%%%%%%%%%%%%%%
 Funcion symbol_char <- symbol_ObjectSeparator
 	Definir symbol_char Como Texto;
 	symbol_char = ".";
 FinFuncion
 
-Funcion object_result <- object_New(name_object)
+Funcion object_result <- object_new(name_object)
 	Definir object_result Como Texto;
 	object_result = linearCollection_new(TYPE_OBJECT(), string_append(name_object, symbol_ExtraData()));
 FinFuncion
@@ -5675,7 +7072,7 @@ Funcion element_Result <- object_Property_GetValue(struct_Object, property_name)
 		caso TYPE_BOOLEAN(): Definir element_Result Como Logico;
 		De Otro Modo: Definir element_Result Como Texto;
 	FinSegun
-	element_Result = value_Parser_StringToType(object_Property_GetValue_toString(struct_Object, property_name), TYPE);
+	element_Result = value_stringToType(object_Property_GetValue_toString(struct_Object, property_name), TYPE);
 FinFuncion
 
 Funcion property_Value  <- object_Property_GetValue_toString(struct_Object, property_name)
@@ -5706,7 +7103,7 @@ Funcion object_Data <- __private_object_Property_GetData(struct_Object, property
 	si object_Property_Exist(struct_Object, property_name) Entonces
 		object_Data = string_append_withSeparator(property_name, struct_Object, symbol_ExtraData());
 	SiNo
-		Innerobject_info = string_Null();
+		Innerobject_info = string_NULL();
 		error_message_Function("__private_object_Property_GetData", string_append_withSeparator("property no exist :: ", " :: ", property_name));
 	FinSi
 FinFuncion
@@ -5718,10 +7115,10 @@ FinFuncion
 
 Funcion object_Result <- object_Property_SetValue_ToSeparator(struct_Object, property_name, property_value, separator)
 	Definir object_Result Como Texto;
-	object_Result = object_Property_ModifyOrRemove_ToSeparator(struct_Object, property_name, property_value, separator, false());
+	object_Result = object_Property_ModifyOrDelete_ToSeparator(struct_Object, property_name, property_value, separator, false());
 FinFuncion
 
-Funcion object_Result <- object_Property_ModifyOrRemove_ToSeparator(struct_Object, property_name, property_value, separator, isRemove)
+Funcion object_Result <- object_Property_ModifyOrDelete_ToSeparator(struct_Object, property_name, property_value, separator, isDelete)
     Definir object_Result, current_Key , stack_Objects, stack_Keys Como Texto;
     Definir dot_Index, property_Index, property_InnerIndex Como Numero;
     Definir property_Type, object_Modify_string Como Texto;
@@ -5750,8 +7147,8 @@ Funcion object_Result <- object_Property_ModifyOrRemove_ToSeparator(struct_Objec
 	SiNo
 		property_InnerIndex = __private_object_Property_GetInnerIndex_IndexProperty(struct_Object, property_name, property_Index);
 		property_Type = __private_object_Property_GetType_IndexProperty(struct_Object, property_name, property_Index);
-		si isRemove Entonces
-			object_Modify_string = linearCollection_RemoveElement(struct_Object, property_InnerIndex);
+		si isDelete Entonces
+			object_Modify_string = linearCollection_DeleteElement(struct_Object, property_InnerIndex);
 			index_property = object_Property_GetIndex(struct_Object, property_name);
 			index_property_end = increment(string_indexOf_fromIndex(struct_Object, symbol_Separator(), index_property));
 			object_Modify_string = string_Delete(object_Modify_string, index_property, index_property_end);
@@ -5771,19 +7168,19 @@ Funcion object_Result <- object_Property_ModifyOrRemove_ToSeparator(struct_Objec
 	FinSi
 FinFuncion
 
-Funcion object_Result <- object_Property_Remove(struct_Object, property_name)
+Funcion object_Result <- object_Property_Delete(struct_Object, property_name)
 	Definir object_Result Como Texto;
-	object_Result = object_Property_ModifyOrRemove_ToSeparator(struct_Object, property_name, string_Null(), symbol_ObjectSeparator(), true());
+	object_Result = object_Property_ModifyOrDelete_ToSeparator(struct_Object, property_name, string_NULL(), symbol_ObjectSeparator(), true());
 FinFuncion
 
 Funcion object_result <- object_InheritsFrom(object_Original, object_Hereditary)
 	Definir object_result Como Texto;
-	object_result = __private_object_process_AddOrRemove_general(object_Original, object_Hereditary, false());
+	object_result = __private_object_process_AddOrDelete_general(object_Original, object_Hereditary, false());
 FinFuncion
 
-Funcion object_depure <- object_Remove_CommonPropertiesFrom(object_Original, object_Compartor)
+Funcion object_depure <- object_Delete_CommonPropertiesFrom(object_Original, object_Compartor)
 	Definir object_depure Como Texto;
-	object_depure = __private_object_process_AddOrRemove_general(object_Original, object_Compartor, true());
+	object_depure = __private_object_process_AddOrDelete_general(object_Original, object_Compartor, true());
 FinFuncion
 //.....................................................................................Helpers
 Funcion isObject <- string_isObject(str_struct)
@@ -5801,7 +7198,7 @@ FinFuncion
 
 Funcion object_Name <- object_getName(struct_Object)
 	Definir object_Name Como Texto;
-	object_Name = collection_getContent_Between_Symbols(struct_Object, symbol_TypeArea(), symbol_ExtraData());
+	object_Name = collection_getContent_Between_Symbols(struct_Object, symbol_typeArea(), symbol_ExtraData());
 FinFuncion
 
 Funcion property_exists <- object_Property_Exist(struct_Object, property_name)
@@ -5850,7 +7247,7 @@ Funcion property_TYPE <- object_Property_GetType(struct_Object, property_name)
 	si object_Property_Exist(struct_Object, property_name) Entonces
 		property_TYPE = __private_object_Property_GetType_IndexProperty(struct_Object, property_name, object_Property_GetIndex(struct_Object, property_name));
 	SiNo
-		property_TYPE = string_Null();
+		property_TYPE = string_NULL();
 		error_message_Function("object_Property_GetType", string_append_withSeparator("property no exist :: ", " :: ", property_name));
 	FinSi
 FinFuncion
@@ -5864,7 +7261,7 @@ Funcion property_TYPE <- __private_object_Property_GetType_IndexProperty(struct_
 		End_index = string_indexOf_fromIndex(struct_Object, symbol_Separator(), start_index);
 		property_TYPE = string_substring(struct_Object, start_index, End_index);
 	SiNo
-		property_TYPE = string_Null();
+		property_TYPE = string_NULL();
 		error_message_Function("__private_object_Property_GetType_IndexProperty", string_append("property no exist :", property_name));
 	FinSi
 FinFuncion
@@ -5872,7 +7269,7 @@ FinFuncion
 Funcion property_InnerIndex <- __private_object_Property_GetInnerIndex_IndexProperty(struct_Object, property_name, IndexProperty)
 	Definir property_InnerIndex Como Numero;
 	property_InnerIndex = -1;
-	Mientras (IndexProperty >= 0) & !string_isEquals(char_At(struct_Object, increment(IndexProperty)), symbol_DataArea()) Hacer
+	Mientras (IndexProperty >= 0) & !string_isEquals(char_At(struct_Object, increment(IndexProperty)), symbol_dataArea()) Hacer
 		IndexProperty = string_indexOf_fromIndex(struct_Object, symbol_Separator(), increment(IndexProperty));
 		property_InnerIndex = increment(property_InnerIndex);
 	FinMientras
@@ -5885,16 +7282,16 @@ FinFuncion
 
 Funcion area_Property <- object_getAreaProperty(struct_Object)
 	Definir Area_Property Como Texto;
-	Area_Property = collection_getContent_Between_Symbols(struct_Object, symbol_ExtraData(), symbol_DataArea());
+	Area_Property = collection_getContent_Between_Symbols(struct_Object, symbol_ExtraData(), symbol_dataArea());
 FinFuncion
 
-Funcion object_result <- __private_object_process_AddOrRemove_general(object_select, object_compartor, isRemove)
+Funcion object_result <- __private_object_process_AddOrDelete_general(object_select, object_compartor, isDelete)
 	Definir object_result, object_Instructions, property_name, property_type Como Texto;
 	Definir length_instructions, End_index Como Numero;
-	object_Instructions = __private_object_GetInstructions_AccordingToProcess(object_select, object_compartor, isRemove);
+	object_Instructions = __private_object_GetInstructions_AccordingToProcess(object_select, object_compartor, isDelete);
 	object_result = object_select;
 	length_instructions = string_Length(object_Instructions);
-	si !string_isEquals(object_Instructions, string_Null()) Entonces
+	si !string_isEquals(object_Instructions, string_NULL()) Entonces
 		Mientras (length_instructions > 1) Hacer		
 			End_index = string_indexOf_fromIndex(object_Instructions, symbol_Key_Value(), 0);
 			property_name = string_substring(object_Instructions, 0, End_index);
@@ -5903,8 +7300,8 @@ Funcion object_result <- __private_object_process_AddOrRemove_general(object_sel
 			property_type = string_substring(object_Instructions, 0, End_index);
 			object_Instructions = string_Delete(object_Instructions, 0, increment(End_index));
 			length_instructions = string_Length(object_Instructions);
-			Si isRemove Entonces
-				object_result = object_Property_Remove(object_result, property_name);
+			Si isDelete Entonces
+				object_result = object_Property_Delete(object_result, property_name);
 			SiNo
 				object_result = object_Property_Add(object_result, property_name, property_type);	
 			FinSi
@@ -5912,14 +7309,14 @@ Funcion object_result <- __private_object_process_AddOrRemove_general(object_sel
 	FinSi
 FinFuncion
 
-Funcion object_Instructions <- __private_object_GetInstructions_AccordingToProcess(object_select, object_compartor, isRemove)
+Funcion object_Instructions <- __private_object_GetInstructions_AccordingToProcess(object_select, object_compartor, isDelete)
 	Definir object_Instructions, Area_Property_Comparator, Area_Property_Select, array_Select, array_Comparator Como Texto;
 	Definir i, Size_Select, Size_Comparator, start_index, End_index Como Numero;
 	
-	Size_Select = linearCollection_GetSize(object_select);
-	Size_Comparator = linearCollection_GetSize(object_compartor);
+	Size_Select = linearCollection_getSize(object_select);
+	Size_Comparator = linearCollection_getSize(object_compartor);
 	Area_Property_Comparator = object_getAreaProperty(object_compartor);
-	object_Instructions = string_Null();
+	object_Instructions = string_NULL();
 	
 	si (Size_Comparator > 0) & (Size_Select > 0) Entonces
 		Dimension array_Select[Size_Select];
@@ -5938,14 +7335,14 @@ Funcion object_Instructions <- __private_object_GetInstructions_AccordingToProce
 			start_index = increment(End_index);
 		FinPara
 		//. . . . . . . . . . start On2 vvvvv
-		object_Instructions = array_ToDeltastring_ByComparation(array_Select, size_Select, array_Comparator, size_Comparator, isRemove);
+		object_Instructions = array_ToDeltastring_ByComparation(array_Select, size_Select, array_Comparator, size_Comparator, isDelete);
 	FinSi
 	
 	si (Size_Select < 1) & (Size_Comparator > 0) Entonces
-		object_Instructions = if_else(isRemove, string_Null(), Area_Property_Comparator, TYPE_STRING());
+		object_Instructions = if_else(isDelete, string_NULL(), Area_Property_Comparator, TYPE_STRING());
 	FinSi
 FinFuncion
-///%%%%%[ CANVAS ]%%%%%%%%%%%%%%%%%%%[   #+4  ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+///%%%%%[ CANVAS.................. ]%%%%%%%[   #CAN    ]%%%%%%%%%%%%%%%%%%
 Funcion canvas <- canvas_new(CWx, CWy)
 	Definir canvas Como Texto;
 	canvas = canvas_new_WithPixel(CWx, CWy, pixel_clear());
@@ -5959,7 +7356,7 @@ Funcion canvas <- canvas_new_WithPixel(CWx, CWy, pixel_BackGround)
 		canvas = string_append(canvas, canvas_x);
 	FinPara
 FinFuncion
-//----[ DISPLAY ]-------------------------------------------------------------------<#>
+//----[ DISPLAY ]----------------------------------------------------<#>
 Funcion canvas_display(canvas, CWx, CWy)
 	canvas_display_MonoColor(canvas, CWx, CWy, "");
 FinFuncion
@@ -5978,13 +7375,12 @@ Funcion canvas_display_MonoColor(canvas, CWx, CWy, color)
 FinFuncion
 
 Funcion canvas_displayWindow(canvas, Cx, Cy, title)
-	canvas_displayWindow_monoColor(canvas, Cx, Cy, title, "");
+	canvas_displayWindow_monoColor(canvas, Cx, Cy, title, COLOR_GREEN());
 FinFuncion
 
 Funcion canvas_displayWindow_monoColor(canvas, Cx, Cy, title, color_window)
 	canvas_displayWindow_color(canvas, Cx, Cy, title, color_window, COLOR_CYAN());
 FinFuncion
-
 
 Funcion canvas_displayWindow_color(canvas, Cx, Cy, title, color_window, color_title)
 	Definir end_line, title_bar como Texto;
@@ -5993,37 +7389,49 @@ Funcion canvas_displayWindow_color(canvas, Cx, Cy, title, color_window, color_ti
 	canvas = canvas_addColumn_atStart_withPixel(canvas, Cx, Cy, "¦");
 	Cx = increment(Cx);
 	title_bar = __private_window_getTitleBar_color(title, Cx, color_window, color_title);
-	canvas_display(title_bar, __private_window_calcTitleBarColorLength(Cx, color_window), 3);
+	canvas_display(title_bar, __private_window_calcTitleBarColorLength(Cx, color_window, color_title), 3);
 	canvas_display_MonoColor(canvas, Cx, Cy, color_window);
 	end_line = canvas_Row_WithText_toBorders("¯", Cx, "`");
 	println_simple(color_setcolorText(end_line, color_window));
 FinFuncion
 
-Funcion length_colors <- __private_window_calcTitleBarColorLength(width_titleBar, color_bar)
-	Definir length_colors Como Entero;
-	length_colors = increment_step(width_titleBar, (string_Length(color_bar) * 3));
+Funcion length_colors <- __private_window_calcTitleBarColorLength(width_titleBar, color_bar, color_title)
+	Definir length_colors, length_decorator, length_titleDecorator, length_padding Como Entero;
+	length_titleDecorator = string_Length(color_title);
+	length_decorator = string_Length(color_bar);
+	length_padding = increment_step((length_decorator * 2), length_titleDecorator);
+	length_colors = increment_step(width_titleBar,  length_padding);
 FinFuncion
 
-Funcion title_string <- __private_window_getTitleBar_color(title, width_titleBar, color_bar, color_title)
-	Definir title_string, titlebar, color_norm Como Texto;
-	Definir width_norm Como Entero; 
-	titlebar     = __private_window_getTitleBar(title, width_titleBar);
-	color_norm   = string_repeatText(color_bar, 3);
-	width_norm   = (width_titleBar * 2);
-	title_string = titlebar;
-	title_string = string_insert(title_string, color_norm, width_norm);
-	title_string = string_insert(title_string, color_bar, decrement_step(width_norm, 1));
-	title_string = string_insert(title_string, color_title, increment(width_titleBar));
-	title_string = string_insert(title_string, color_bar, width_titleBar);
-	title_string = string_append(color_norm, title_string);
+Funcion titlebar <- __private_window_getTitleBar_color(title, width_titleBar, color_bar, color_title)
+	Definir titlebar, top_bar, button_bar, center_bar, padding_end Como Texto;
+	Definir title_color, top_color, button_color, center_color Como Texto;
+	Definir center_width, top_width, res_width Como Entero;
+	top_bar       = canvas_Row_WithText_toBorders("_", width_titleBar, ".");
+	center_bar	  = __private_window_titleBar_getCenterBar(title, width_titleBar);
+	button_bar    = canvas_Row_WithText_toBorders("¨", width_titleBar, "¦");
+	top_color     = color_setColorText(top_bar, color_bar);//...
+	button_color  = color_setColorText(button_bar, color_bar);
+	center_color  = center_bar;
+	center_color  = string_insert(center_color, color_title, 1);
+	center_color  = string_insert(center_color, color_bar, decrement(string_Length(center_color)));
+	center_color  = color_setColorText(center_color, color_bar);
+	top_width     = string_Length(top_color);
+	center_width  = string_Length(center_color);
+	res_width     = math_abs(decrement_step(center_width, top_width));
+	padding_end   = string_repeatText(" ", res_width);
+	si center_width >= top_width Entonces
+		top_color    = string_append(top_color, padding_end);
+		button_color = string_append(button_color, padding_end);
+	SiNo
+		center_color = string_append(center_color, padding_end);
+	FinSi
+	titlebar = string_append_withSeparator(top_color, button_color, center_color);
 FinFuncion
 
 Funcion title_string <- __private_window_getTitleBar(title, width_titleBar)
 	Definir title_string, top_bar, button_bar, center_bar Como Texto;
-	top_bar       = canvas_Row_WithText_toBorders("_", width_titleBar, ".");
-	center_bar	  = __private_window_titleBar_getCenterBar(title, width_titleBar);
-	button_bar    = canvas_Row_WithText_toBorders("¨", width_titleBar, "¦");
-	title_string  = string_append_withSeparator(top_bar, button_bar, center_bar);
+	title_string  = __private_window_getTitleBar_color(title, width_titleBar, "", "");
 FinFuncion
 
 Funcion center_bar <- __private_window_titleBar_getCenterBar(title, width_titleBar)
@@ -6058,17 +7466,17 @@ FinFuncion
 Funcion sprite_canvas <- canvas_toSpriteString(canvas, Cx, Cy)
 	Definir sprite_canvas, metaData_length, length_line Como Texto;
 	Definir index_MetaData Como Entero;
-	sprite_canvas   = linearCollection_new(Tcomponent_TYPE_SPRITE_STRING(), TYPE_STRING());
+	sprite_canvas   = linearCollection_new(tComponent_TYPE_SPRITE_STRING(), TYPE_STRING());
 	length_line     = Num_toString(Cx);
 	sprite_canvas   = linearCollection_addLast(sprite_canvas, length_line);
-	index_MetaData  = string_LastIndexOf(sprite_canvas, symbol_MetaData());
+	index_MetaData  = string_LastIndexOf(sprite_canvas, symbol_metaData());
 	sprite_canvas   = string_insert(sprite_canvas, canvas, index_MetaData);
 	metaData_length = string_repeatText(string_append(symbol_Separator(), length_line), Cy);
-	index_MetaData  = increment(string_LastIndexOf(sprite_canvas, symbol_MetaData()));
+	index_MetaData  = increment(string_LastIndexOf(sprite_canvas, symbol_metaData()));
 	sprite_canvas   = string_insert(sprite_canvas, metaData_length, index_MetaData);
 	sprite_canvas   = linearCollection_update_numElement(sprite_canvas, Cy);
 FinFuncion
-//----[ UTILITIES ]-----------------------------------------------------------------<#>
+//----[ UTILITIES ]----------------------------------------------------<#>
 Funcion sub_canvas <- canvas_extractRegion(canvas, Cx, Cy, x0, y0, x1, y1)
 	Definir sub_canvas, line_text Como Texto;
 	Definir slice_start, slice_end, current_y Como Numero;
@@ -6119,14 +7527,14 @@ Funcion text_fit <- string_fit_toRange(text, index_start, max_width)
             text_fit = "";
         FinSi
         text_len = string_Length(text_fit);
-        index_start = 0; 
+        index_start = 0;
     FinSi
     capacity = decrement_step(max_width, index_start);
     Si text_len > capacity Entonces
         text_fit = string_substring(text_fit, 0, capacity);
     FinSi
 FinFuncion
-//----[ ADD_COLUMN ]------------------------------------------------------------------<#>
+//----[ ADD_COLUMN ]----------------------------------------------------<#>
 Funcion canvas_result <- canvas_addColumns_ofIndex_withPixel(canvas, CWx, CWy, num_columns, x_start, pixel)
 	Definir canvas_result, text_extra Como Texto;
 	Definir i, x_insert Como Numero;
@@ -6189,7 +7597,7 @@ Funcion canvas_result <- canvas_addColumn_atStart(canvas, CWx, CWy)
 	Definir canvas_result Como Texto;
 	canvas_result = canvas_addColumn_atStart_withPixel(canvas, CWx, CWy, pixel_clear());
 FinFuncion
-//----[ REMOVE_COLUMN ]---------------------------------------------------------------<#>
+//----[ DELETE_COLUMN ]--------------------------------------------------------------<#>
 Funcion canvas_result <- canvas_removeColumns_count(canvas, CWx, CWy, num_columns, x_start)
 	Definir canvas_result Como Texto;
 	Definir i, x_remove, index_row Como Numero;
@@ -6230,7 +7638,7 @@ Funcion canvas_result <- canvas_removeColumn_atStart(canvas, CWx, CWy)
 	Definir canvas_result Como Texto;
 	canvas_result = canvas_removeColumns_atStart(canvas, CWx, CWy, 1);
 FinFuncion
-//----[ ADD_ROW ]---------------------------------------------------------------------<#>
+//----[ ADD_ROW ]----------------------------------------------------------------------<#>
 Funcion canvas_result <- canvas_addRows_ofIndex_withPixel(canvas, CWx, CWy, num_rows, y_start, pixel)
     Definir canvas_result, text_rows Como Texto;
     Definir total_chars, y_insert Como Numero;
@@ -6288,7 +7696,7 @@ Funcion canvas_result <- canvas_addRow_atStart(canvas, CWx, CWy)
 	Definir canvas_result Como Texto;
 	canvas_result = canvas_addRow_atStart_withPixel(canvas, CWx, CWy, pixel_clear());
 FinFuncion
-//----[ REMOVE_ROW ]------------------------------------------------------------------<#>
+//----[ DELETE_ROW ]----------------------------------------------------<#>
 Funcion canvas_result <- canvas_removeRows_count(canvas, CWx, CWy, num_rows, isTop)
 	Definir canvas_result Como Texto;
 	Definir total_chars, start_delete Como Numero;
@@ -6474,7 +7882,7 @@ Funcion canvas_move <- canvas_moveContent_bottomRight(canvas, CWx, CWy)
 	Definir canvas_move Como Texto;
 	canvas_move = canvas_moveContent_bottomRight_nPositions(canvas, CWx, CWy, 1);
 FinFuncion
-//----[ RESIZE_EXPAND ]---------------------------------------------------------------<#>
+//----[ RESIZE_EXPAND ]--------------------------------------------------------------<#>
 Funcion canvas_result <- canvas_resize_count_withPixel(canvas, CWx, CWy, num_rows, num_columns, isTop, isLeft, pixel)
 	Definir canvas_result Como Texto;
 	Definir new_CWx Como Numero;
@@ -6570,26 +7978,26 @@ FinFuncion
 
 Funcion canvas_rectangle <- canvas_DrawRectangle(canvas, Cx, Cy, x0, y0, width, height)
 	Definir canvas_rectangle Como Texto;
-	canvas_rectangle = canvas_DrawRectangle_Pixel(canvas, Cx, Cy, pixel_plain(), x0, y0, width, height);
+	canvas_rectangle = canvas_DrawRectangle_whitPixel(canvas, Cx, Cy, pixel_plain(), x0, y0, width, height);
 FinFuncion
 
-Funcion canvas_rectangle <- canvas_DrawRectangle_Pixel(canvas, Cx, Cy, pixelVH, x0, y0, width, height)
+Funcion canvas_rectangle <- canvas_DrawRectangle_whitPixel(canvas, Cx, Cy, pixelVH, x0, y0, width, height)
 	Definir canvas_rectangle Como Texto;
-	canvas_rectangle = canvas_DrawRectangle_Pixels(canvas, Cx, Cy, pixelVH, pixelVH, x0, y0, width, height);
+	canvas_rectangle = canvas_DrawRectangle_whitPixels(canvas, Cx, Cy, pixelVH, pixelVH, x0, y0, width, height);
 FinFuncion
 
-Funcion canvas_rectangle <- canvas_DrawRectangle_Pixels(canvas, Cx, Cy, pixel_H, pixel_V, x0, y0, width, height)
+Funcion canvas_rectangle <- canvas_DrawRectangle_whitPixels(canvas, Cx, Cy, pixel_H, pixel_V, x0, y0, width, height)
     Definir canvas_rectangle Como Texto;
-	canvas_rectangle = canvas_DrawRectangle_Pixels_Full(canvas, Cx, Cy, pixel_H, pixel_H, pixel_V, pixel_V, x0, y0, width, height);
+	canvas_rectangle = canvas_DrawRectangle_whitPixels_Full(canvas, Cx, Cy, pixel_H, pixel_H, pixel_V, pixel_V, x0, y0, width, height);
 FinFuncion
 
-Funcion canvas_rectangle <- canvas_DrawRectangle_Pixels_Full(canvas, Cx, Cy, pixel_H, pixel_H1, pixel_V, pixel_V1, x0, y0, x1, y1)
+Funcion canvas_rectangle <- canvas_DrawRectangle_whitPixels_Full(canvas, Cx, Cy, pixel_H, pixel_H1, pixel_V, pixel_V1, x0, y0, x1, y1)
     Definir canvas_rectangle Como Texto;
 	canvas_rectangle = canvas;
-	canvas_rectangle = canvas_DrawLine_pixel(canvas_rectangle, Cx, Cy, pixel_V,  x0, y0, x0, y1);//left
-	canvas_rectangle = canvas_DrawLine_pixel(canvas_rectangle, Cx, Cy, pixel_V1, decrement(x1), y0, decrement(x1), y1);//Right
-	canvas_rectangle = canvas_DrawLine_pixel(canvas_rectangle, Cx, Cy, pixel_H,  x0, y0, x1, y0);//top
-    canvas_rectangle = canvas_DrawLine_pixel(canvas_rectangle, Cx, Cy, pixel_H1, x0, y1, x1, y1);//botton
+	canvas_rectangle = canvas_DrawLine_whitPixel(canvas_rectangle, Cx, Cy, pixel_V,  x0, y0, x0, y1);//left
+	canvas_rectangle = canvas_DrawLine_whitPixel(canvas_rectangle, Cx, Cy, pixel_V1, decrement(x1), y0, decrement(x1), y1);//Right
+	canvas_rectangle = canvas_DrawLine_whitPixel(canvas_rectangle, Cx, Cy, pixel_H,  x0, y0, x1, y0);//top
+    canvas_rectangle = canvas_DrawLine_whitPixel(canvas_rectangle, Cx, Cy, pixel_H1, x0, y1, x1, y1);//botton
 FinFuncion
 
 Funcion canvas_triangle <- canvas_DrawTriangle_Normalized(canvas, CWx, CWy, x0, y0, x1, y1, x2, y2)
@@ -6613,10 +8021,10 @@ FinFuncion
 
 Funcion canvas_point <- canvas_DrawPoint(canvas, CWx, CWy, x0, y0)
 	Definir canvas_point Como Texto;
-	canvas_point = canvas_DrawPoint_pixel(canvas, CWx, CWy, pixel_plain(), x0, y0);
+	canvas_point = canvas_DrawPoint_withPixel(canvas, CWx, CWy, x0, y0, pixel_plain());
 FinFuncion
 
-Funcion canvas_point <- canvas_DrawPoint_pixel(canvas, CWx, CWy, pixel_symb, x0, y0)
+Funcion canvas_point <- canvas_DrawPoint_withPixel(canvas, CWx, CWy, x0, y0, pixel_symb)
 	Definir canvas_point Como Texto;
 	Definir post_pixel Como Numero;
 	canvas_point = canvas;
@@ -6650,10 +8058,10 @@ FinFuncion
 
 Funcion canvas_line <- canvas_DrawLine(canvas, CWx, CWy, x0, y0, x1, y1)
     Definir canvas_line Como Texto;
-	canvas_line = canvas_DrawLine_pixel(canvas, CWx, CWy, pixel_plain(), x0, y0, x1, y1);
+	canvas_line = canvas_DrawLine_whitPixel(canvas, CWx, CWy, pixel_plain(), x0, y0, x1, y1);
 FinFuncion
 //Bresenham algorithm
-Funcion canvas_line <- canvas_DrawLine_pixel(canvas, CWx, CWy, pixel_symb,  x0, y0, x1, y1)
+Funcion canvas_line <- canvas_DrawLine_whitPixel(canvas, CWx, CWy, pixel_symb,  x0, y0, x1, y1)
     Definir canvas_line Como Texto;
     Definir Cx, Cy, xi, yi, xi_rec, yi_rec, x_, y_, error Como Entero;
 	
@@ -6682,17 +8090,17 @@ Funcion canvas_line <- canvas_DrawLine_pixel(canvas, CWx, CWy, pixel_symb,  x0, 
     x_ = x0;
     y_ = y0;
 	canvas_line = canvas;
-    Mientras !Num_isEquals(x_, x1) | !Num_isEquals(y_, y1) Hacer
-        canvas_line = canvas_DrawPoint_pixel(canvas_line, CWx, CWy, pixel_symb, x_, y_);
+    Mientras !number_isEquals(x_, x1) | !number_isEquals(y_, y1) Hacer
+        canvas_line = canvas_DrawPoint_withPixel(canvas_line, CWx, CWy, x_, y_, pixel_symb);
 		
         Si error >= 0 Entonces
             x_ = increment_step(x_, xi);//10+ -1
             y_ = increment_step(y_, yi);//10+ -1
-            error = error + 2*(Cy - Cx);// 9 + (2*(7-8)) = 9+ -2 = 7
+            error = error + 2 * (Cy - Cx);// 9 + (2*(7-8)) = 9+ -2 = 7
         SiNo
             x_ = increment_step(x_, xi_rec);
             y_ = increment_step(y_, yi_rec);
-            error = error + 2*Cy;
+            error = error + 2 * Cy;
         FinSi
     FinMientras
 FinFuncion
@@ -6703,19 +8111,19 @@ Funcion canvas_line <- canvas_DrawLine_Normalized(canvas, CWx, CWy, x0, y0, x1, 
 	y0 = canvas_Normalized_ToPixelY(CWy, y0);
 	x1 = canvas_Normalized_ToPixelX(CWx, x1);
 	y1 = canvas_Normalized_ToPixelY(CWy, y1);
-	canvas_line = canvas_DrawLine_pixel(canvas, CWx, CWy, pixel_plain(), x0, y0, x1, y1);
+	canvas_line = canvas_DrawLine_whitPixel(canvas, CWx, CWy, pixel_plain(), x0, y0, x1, y1);
 FinFuncion
 
 Funcion canvas_point <- canvas_DrawPoint_Normalized(canvas, CWx, CWy, x0, y0)
 	Definir canvas_point Como Texto;
-	canvas_point = canvas_DrawPoint_Pixel_Normalized(canvas, CWx, CWy, x0, y0, pixel_plain());
+	canvas_point = canvas_DrawPoint_withPixel_Normalized(canvas, CWx, CWy, x0, y0, pixel_plain());
 FinFuncion
 
-Funcion canvas_point <- canvas_DrawPoint_Pixel_Normalized(canvas, CWx, CWy, x0, y0, pixel_symb)
+Funcion canvas_point <- canvas_DrawPoint_withPixel_Normalized(canvas, CWx, CWy, x0, y0, pixel_symb)
 	Definir canvas_point Como Texto;
 	x0 = canvas_Normalized_ToPixelX(CWx, x0);
 	y0 = canvas_Normalized_ToPixelY(CWy, y0);
-	canvas_point = canvas_DrawPoint_pixel(canvas, CWx, CWy, pixel_symb, x0, y0);
+	canvas_point = canvas_DrawPoint_withPixel(canvas, CWx, CWy, x0, y0, pixel_symb);
 FinFuncion
 
 Funcion canvas_rectangle <- canvas_DrawRectangle_Normalized(canvas, CWx, CWy, x0, y0, x1, y1)
@@ -6760,7 +8168,7 @@ Funcion pixel_index <- __private_Noramalized_toPixel(Dc, norm_index, letter)
 	norm_index = norm_index * if_else(string_isEquals(letter, "x"), 1, -1, TYPE_INT);
 	pixel_index = math_min_Int(math_truncate((Dc * 0.5) * (1 + norm_index)), decrement(Dc));
 FinFuncion
-//----[ COMPLEX_DRAW ]---------------------------------------------------------------<#>
+//----[ COMPLEX_DRAW ]--------------------------------------------------------------<#>
 Funcion canvas_result <- canvas_drawCanvas(canvas, Cx, Cy, canvas_draw, Cx2, Cy2, x0, y0)
 	Definir canvas_result, DrawX Como Texto;
 	Definir i, slice_start, slice_end, x_draw, y_draw Como Numero;
@@ -6786,7 +8194,7 @@ Funcion canvas_Result <- canvas_DrawButton(canvas, Cx, Cy, text, x0, y0)
 	yt = increment(y0);
 	x1 = increment_step(xt, increment(length_Text));
 	y1 = increment(yt);
-	canvas_Result = canvas_DrawRectangle_Pixels_Full(canvas_Result, Cx, Cy, "_","¯", "|", "|", x0, y0, x1, y1);
+	canvas_Result = canvas_DrawRectangle_whitPixels_Full(canvas_Result, Cx, Cy, "_","¯", "|", "|", x0, y0, x1, y1);
 	canvas_Result = canvas_DrawText(canvas_Result, Cx, Cy, text, xt, yt);
 	canvas_Result = canvas_DrawRectanglePoint(canvas_Result, Cx, Cy, " ", x0, y0, decrement(x1), y1);
 FinFuncion
@@ -6794,10 +8202,10 @@ FinFuncion
 Funcion canvas_Result <- canvas_DrawRectanglePoint(canvas, Cx, Cy, pixel, x0, y0, x1, y1)
 	Definir canvas_Result Como Texto;
 	canvas_Result = canvas;
-	canvas_Result = canvas_DrawPoint_pixel(canvas_Result, Cx, Cy, pixel, x0, y0);
-	canvas_Result = canvas_DrawPoint_pixel(canvas_Result, Cx, Cy, pixel, x0, y1);
-	canvas_Result = canvas_DrawPoint_pixel(canvas_Result, Cx, Cy, pixel, x1, y0);
-	canvas_Result = canvas_DrawPoint_pixel(canvas_Result, Cx, Cy, pixel, x1, y1);
+	canvas_Result = canvas_DrawPoint_withPixel(canvas_Result, Cx, Cy, x0, y0, pixel);
+	canvas_Result = canvas_DrawPoint_withPixel(canvas_Result, Cx, Cy, x0, y1, pixel);
+	canvas_Result = canvas_DrawPoint_withPixel(canvas_Result, Cx, Cy, x1, y0, pixel);
+	canvas_Result = canvas_DrawPoint_withPixel(canvas_Result, Cx, Cy, x1, y1, pixel);
 FinFuncion
 
 Funcion canvas_Result <- canvas_DrawPanel(canvas, Cx, Cy, x0, y0, width, height)
@@ -6808,11 +8216,11 @@ Funcion canvas_Result <- canvas_DrawPanel(canvas, Cx, Cy, x0, y0, width, height)
 	canvas_Result = canvas_DrawLine_Horizontal(canvas_Result, Cx, Cy, x0, y0, width);
 	height = decrement(height);
 	canvas_Result = canvas_DrawLine_Horizontal(canvas_Result, Cx, Cy, x0, height, width);
-	canvas_Result = canvas_DrawPoint_pixel(canvas_Result, Cx, Cy, ".", x0, y0);
-	canvas_Result = canvas_DrawPoint_pixel(canvas_Result, Cx, Cy, "`", x0, height);
+	canvas_Result = canvas_DrawPoint_withPixel(canvas_Result, Cx, Cy, x0, y0, ".");
+	canvas_Result = canvas_DrawPoint_withPixel(canvas_Result, Cx, Cy, x0, height, "`");
 	width = decrement(width);
-	canvas_Result = canvas_DrawPoint_pixel(canvas_Result, Cx, Cy, ".", width, y0);
-	canvas_Result = canvas_DrawPoint_pixel(canvas_Result, Cx, Cy, "`", width, height);
+	canvas_Result = canvas_DrawPoint_withPixel(canvas_Result, Cx, Cy, width, y0, ".");
+	canvas_Result = canvas_DrawPoint_withPixel(canvas_Result, Cx, Cy, width, height, "`");
 FinFuncion
 
 Funcion canvas_Result <- canvas_DrawLine_Horizontal(canvas, Cx, Cy, x0, y0, width)
@@ -6838,7 +8246,7 @@ Funcion canvas_Result <- canvas_DrawLine_Vertical_withPixel(canvas, Cx, Cy, x0, 
 	Definir canvas_Result Como Texto;
 	canvas_Result = canvas;
 	si height > 0 Entonces
-		canvas_Result = canvas_DrawLine_pixel(canvas_Result, Cx, Cy, pixel, x0, y0, x0, increment_step(y0, height));
+		canvas_Result = canvas_DrawLine_whitPixel(canvas_Result, Cx, Cy, pixel, x0, y0, x0, increment_step(y0, height));
 	FinSi
 FinFuncion
 
@@ -6851,7 +8259,7 @@ Funcion canvas_Result <- canvas_DrawLine_Vertical_Full(canvas, Cx, Cy, x0)
 	Definir canvas_Result Como Texto;
 	canvas_Result = canvas_DrawLine_Vertical(canvas, Cx, Cy, x0, 0, Cy);
 FinFuncion
-//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=========================================
+//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=======================================
 Funcion pixel <- pixel_clear
 	Definir pixel Como Texto;
 	pixel =  get_pixel_withIndex(0);
@@ -6885,11 +8293,11 @@ Funcion pixel <- get_pixel_withIndex(index)
 			pixel = "Ø";
 	FinSegun
 FinFuncion
-///$$$$$[ SPRITE ]$$$$$$$$$$$$$$$$$$$[  -+4_1 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-//----[ SPRITESTRING ]---------------------------------------------------------------<#>
+///%%%%%[ SPRITE.................. ]%%%%%%%[   #SPR    ]%%%%%%%%%%%%%%%%%%
+//----[ SPRITESTRING ]--------------------------------------------------------------<#>
 Funcion spriteString_struct <- spriteString_new
 	Definir spriteString_struct Como Texto;
-	spriteString_struct = linearCollection_new(Tcomponent_TYPE_SPRITE_STRING(), TYPE_STRING());
+	spriteString_struct = linearCollection_new(tComponent_TYPE_SPRITE_STRING(), TYPE_STRING());
 	spriteString_struct = linearCollection_addLast(spriteString_struct, "0");
 FinFuncion
 
@@ -6897,7 +8305,7 @@ Funcion sprite_string <- SpriteString_titleBar_color(title, width_titleBar, colo
 	Definir sprite_string, title_bar Como Texto;
 	Definir width_titleBar_color Como Entero;
 	title_bar = __private_window_getTitleBar_color(title, width_titleBar, color_bar, color_title);
-	width_titleBar_color = __private_window_calcTitleBarColorLength(width_titleBar, color_bar);
+	width_titleBar_color = __private_window_calcTitleBarColorLength(width_titleBar, color_bar, color_title);
 	sprite_string = __private_SpriteString_titleBar_build(title_bar, width_titleBar_color );
 FinFuncion
 
@@ -6928,7 +8336,7 @@ Funcion canvas_sprite <- SpriteString_toCanvas_Size(spriteString_struct, Cx, Cy)
 	canvas_init = canvas_new_WithPixel(Cx, Cy, " ");
 	canvas_sprite = canvas_DrawSpriteString(canvas_init, Cx, Cy, spriteString_struct, 0, 0);
 FinFuncion
-//----[ GETTERS ]-------------------------------------------------------------------<#>
+//----[ GETTERS ]----------------------------------------------------<#>
 Funcion length_MaxLine <- spriteString_GetWidth(spriteString_struct)
 	Definir length_MaxLine Como Numero;
 	length_MaxLine = string_ToNum(linearCollection_getFirst_ToString(spriteString_struct));
@@ -6936,7 +8344,7 @@ FinFuncion
 
 Funcion sizeSprite <- spriteString_GetSize(spriteString_struct)
 	Definir sizeSprite Como Numero;
-	sizeSprite = decrement(linearCollection_GetSize(spriteString_struct));
+	sizeSprite = decrement(linearCollection_getSize(spriteString_struct));
 FinFuncion
 
 Funcion height_lines <- spriteString_getHeight(spriteString_struct)
@@ -6954,75 +8362,75 @@ Funcion spriteString_newChange <- spriteString_UpdateMaxWidth(spriteString_struc
 	FinSi
 FinFuncion
 
-Funcion is_valid <- spriteString_IndexValidate(spriteString_struct, index_line)
+Funcion is_valid <- spriteString_num_indexValidate(spriteString_struct, index_line)
     Definir is_valid Como Logico;
 	is_valid = linearCollection_IndexIsValid(spriteString_struct, index_line);
 FinFuncion
-//----[ UTILITIES ]-----------------------------------------------------------------<#>
+//----[ UTILITIES ]----------------------------------------------------<#>
 Funcion isSpriteValid <- spriteString_isSpriteValid(spriteString_struct)
 	Definir isSpriteValid Como Logico;
-	isSpriteValid = string_isEquals(collection_getNameCollection(spriteString_struct), Tcomponent_TYPE_SPRITE_STRING());
+	isSpriteValid = string_isEquals(collection_getNameCollection(spriteString_struct), tComponent_TYPE_SPRITE_STRING());
 FinFuncion
 
-Funcion spriteString_newChange <- spriteString_ModefyLine(spriteString_struct, index_line, part_modefy, index_start)
+Funcion spriteString_newChange <- spriteString_modifyLine(spriteString_struct, index_line, part_modify, index_start)
     Definir spriteString_newChange Como Texto;
     Definir index_end Como Entero;
-    index_end = increment_step(index_start, string_Length(part_modefy));
-    spriteString_newChange = __private_spriteString_ModefyLine(spriteString_struct, index_line, part_modefy, index_start, index_end);
+    index_end = increment_step(index_start, string_Length(part_modify));
+    spriteString_newChange = __private_spriteString_modifyLine(spriteString_struct, index_line, part_modify, index_start, index_end);
 FinFuncion
 
-Funcion spriteString_newChange <- spriteString_ModefyLine_strict(spriteString_struct, index_line, part_modefy, index_start, index_end)
+Funcion spriteString_newChange <- spriteString_modifyLine_strict(spriteString_struct, index_line, part_modify, index_start, index_end)
     Definir spriteString_newChange Como Texto;
-    spriteString_newChange = __private_spriteString_ModefyLine(spriteString_struct, index_line, part_modefy, index_start, index_end);
+    spriteString_newChange = __private_spriteString_modifyLine(spriteString_struct, index_line, part_modify, index_start, index_end);
 FinFuncion
 
-Funcion spriteString_newChange <- __private_spriteString_ModefyLine(spriteString_struct, index_line, part_modefy, index_start, index_end)
+Funcion spriteString_newChange <- __private_spriteString_modifyLine(spriteString_struct, index_line, part_modify, index_start, index_end)
     Definir spriteString_newChange, line_String, line_result Como Texto;
     Definir length_line Como Entero;
 	Definir indexLineIsValid, indexIsValid Como Logico;
 	spriteString_newChange = spriteString_struct;
-	indexIsValid = spriteString_IndexValidate(spriteString_newChange, index_line);
+	indexIsValid = spriteString_num_indexValidate(spriteString_newChange, index_line);
     Si indexIsValid Entonces
 		line_String = linearCollection_getElement(spriteString_newChange, index_line);
 		length_line = string_Length(line_String);
-		indexLineIsValid = indexValidate(length_line, index_start, length_line);
+		indexLineIsValid = num_indexValidate(length_line, index_start, length_line);
 	SiNo
 		indexLineIsValid = false();
-        error_message_Function("ModefyLine", "Invalid Index");
+        error_message_Function("modifyLine", "Invalid Index");
     FinSi
 	si indexIsValid & !indexLineIsValid Entonces
-		error_message_Function("ModefyLine", "Invalid Index line");
+		error_message_Function("modifyLine", "Invalid Index line");
 	FinSi
 	si indexLineIsValid Entonces
 		index_end = math_min_int(index_end, length_line);
-		part_modefy = string_fit_toRange(part_modefy, index_start, index_end);
-		index_end = increment_step(index_start, string_Length(part_modefy));
+		part_modify = string_fit_toRange(part_modify, index_start, index_end);
+		index_end = increment_step(index_start, string_Length(part_modify));
 		line_result = string_delete(line_String, index_start, index_end);
-		line_result = string_insert(line_result, part_modefy, index_start);
+		line_result = string_insert(line_result, part_modify, index_start);
 		spriteString_newChange = spriteString_setLine(spriteString_newChange, index_line, line_result);
 	FinSi
 FinFuncion
 
-Funcion spriteString_newChange <- spriteString_writeLine(spriteString_struct, index_line, part_modefy, index_start)
+Funcion spriteString_newChange <- spriteString_writeLine(spriteString_struct, index_line, part_modify, index_start)
     Definir spriteString_newChange, line_String, line_result Como Texto;
     Definir length_line Como Entero;
 	Definir indexLineIsValid, indexIsValid Como Logico;
 	index_line = increment(index_line);
 	spriteString_newChange = spriteString_struct;
-	indexIsValid = spriteString_IndexValidate(spriteString_newChange, index_line);
+	indexIsValid = spriteString_num_indexValidate(spriteString_newChange, index_line);
     Si indexIsValid Entonces
 		line_String = linearCollection_getElement(spriteString_newChange, index_line);
 		length_line = string_Length(line_String);
-		indexLineIsValid = indexValidate(length_line, index_start, length_line);
+		indexLineIsValid = num_indexValidate(length_line, index_start, length_line);
 	SiNo
 		indexLineIsValid = false();
-        error_message_Function("ModefyLine", "Invalid Index");
+        error_message_Function("modifyLine", "Invalid Index");
     FinSi
 	si indexIsValid & !indexLineIsValid Entonces
-		error_message_Function("ModefyLine", "Invalid Index line");
+		error_message_Function("modifyLine", "Invalid Index line");
 	FinSi
 	si indexLineIsValid Entonces
-		line_result = string_insert(line_String, part_modefy, index_start);
+		line_result = string_insert(line_String, part_modify, index_start);
 		spriteString_newChange = spriteString_setLine(spriteString_newChange, index_line, line_result);	
 	FinSi
 FinFuncion
@@ -7063,18 +8471,18 @@ Funcion canvas_Sprite <- canvas_DrawspriteString_Cutout_FlipVertical(canvas, Cx,
     Definir canvas_Sprite Como Texto;
     canvas_Sprite = __private_canvas_DrawspriteString_sprite_effect(canvas, Cx, Cy, spriteString_struct, x0, y0, "null", sprite_EFFECT_FLIP_V());
 FinFuncion
-//----[ EFFECT ]-------------------------------------------------------------------<#>
+//----[ EFFECT ]----------------------------------------------------<#>
 Funcion canvas_Sprite <- __private_canvas_DrawspriteString_sprite_effect(canvas, Cx, Cy, spriteString_struct, x0, y0, symbol_Trimmed, sprite_effect)
-	Definir canvas_Sprite, string_sumation, data_soup Como Texto;
+	Definir canvas_Sprite, sequential_lengths, sequential_data Como Texto;
 	Definir index_Data, index_MetaData, index_ExtraData, size_Sprite Como Numero;
 	size_Sprite 	 = spriteString_getHeight(spriteString_struct);
-	spriteString_struct = linearCollection_RemoveFirst(spriteString_struct);
-	index_Data 		 = increment(string_indexOf(spriteString_struct, symbol_DataArea()));
+	spriteString_struct = linearCollection_DeleteFirst(spriteString_struct);
+	index_Data 		 = increment(string_indexOf(spriteString_struct, symbol_dataArea()));
 	index_ExtraData  = string_LastindexOf(spriteString_struct, symbol_ExtraData());
-	index_MetaData   = string_LastindexOf_fromIndex(spriteString_struct, symbol_MetaData(), index_ExtraData);
-	data_soup		 = string_substring(spriteString_struct, index_Data, index_MetaData);
-	string_sumation  = string_substring(spriteString_struct, increment(index_MetaData), index_ExtraData);
-	canvas_Sprite 	 = __private_Canvas_RenderSpriteString(canvas, Cx, Cy, data_soup, string_sumation,  size_Sprite, symbol_Trimmed, x0, y0, sprite_effect);
+	index_MetaData   = string_LastindexOf_fromIndex(spriteString_struct, symbol_metaData(), index_ExtraData);
+	sequential_data		 = string_substring(spriteString_struct, index_Data, index_MetaData);
+	sequential_lengths  = string_substring(spriteString_struct, increment(index_MetaData), index_ExtraData);
+	canvas_Sprite 	 = __private_Canvas_RenderSpriteString(canvas, Cx, Cy, sequential_data, sequential_lengths,  size_Sprite, symbol_Trimmed, x0, y0, sprite_effect);
 FinFuncion
 
 Funcion spriteString_display(spriteString_struct)
@@ -7082,16 +8490,16 @@ Funcion spriteString_display(spriteString_struct)
 FinFuncion
 
 Funcion spriteString_display_monocolor(spriteString_struct, color)
-    Definir string_sumation, data_soup, sprite_Stripped Como Texto;
+    Definir sequential_lengths, sequential_data, sprite_Stripped Como Texto;
     Definir index_Data, index_MetaData, index_ExtraData, size_Sprite Como Numero;
     size_Sprite = spriteString_getHeight(spriteString_struct);
-    sprite_Stripped = linearCollection_RemoveFirst(spriteString_struct);
-    index_Data      = increment(string_indexOf(sprite_Stripped, symbol_DataArea()));
+    sprite_Stripped = linearCollection_DeleteFirst(spriteString_struct);
+    index_Data      = increment(string_indexOf(sprite_Stripped, symbol_dataArea()));
     index_ExtraData = string_LastindexOf(sprite_Stripped, symbol_ExtraData());
-    index_MetaData  = string_LastindexOf_fromIndex(sprite_Stripped, symbol_MetaData(), index_ExtraData);
-    data_soup       = string_substring(sprite_Stripped, index_Data, index_MetaData);
-    string_sumation = string_substring(sprite_Stripped, increment(index_MetaData), index_ExtraData);
-	__private_Collection_Printer_color(data_soup, string_sumation, true(), color);
+    index_MetaData  = string_LastindexOf_fromIndex(sprite_Stripped, symbol_metaData(), index_ExtraData);
+    sequential_data       = string_substring(sprite_Stripped, index_Data, index_MetaData);
+    sequential_lengths = string_substring(sprite_Stripped, increment(index_MetaData), index_ExtraData);
+	managerData_printer_color(sequential_data, sequential_lengths, true(), color);
 FinFuncion
 
 Funcion canvas_Sprite <- Canvas_ApplyRenderEffect(canvas, Cx, Cy, x0, y0, array_sprite, size_Sprite, symbol_Trimmed, sprite_effect)
@@ -7111,38 +8519,38 @@ Funcion canvas_Sprite <- Canvas_ApplyRenderEffect(canvas, Cx, Cy, x0, y0, array_
             canvas_Sprite = canvas;
     FinSegun
 FinFuncion
-//----[ RENDER ]-------------------------------------------------------------------<#>
-Funcion canvas_Sprite <- __private_Canvas_RenderSpriteString(canvas, Cx, Cy, data_soup, string_sumation, size_Sprite, symbol_Trimmed, x0, y0, sprite_effect)
-	Definir canvas_Sprite, num_carry, Char_Current, line_Current, array_sprite Como Texto;
-	Definir i, num_range, num_range_Inc, length_data_value, length_Sumation, count_line Como Numero;
+//----[ RENDER ]----------------------------------------------------<#>
+Funcion canvas_Sprite <- __private_Canvas_RenderSpriteString(canvas, Cx, Cy, sequential_data, sequential_lengths, size_Sprite, symbol_Trimmed, x0, y0, sprite_effect)
+	Definir canvas_Sprite, num_carry, Char_Current, current_data, array_sprite Como Texto;
+	Definir i, num_range, num_range_inc, length_value, length_summations, count_line Como Numero;
 	Definir IsNumber Como Logico;
 	Dimension array_sprite[size_Sprite];
 	num_carry 	    = "";
 	num_range		= 0;	
 	i				= 0;
 	count_line   	= 0;
-	length_Sumation = string_Length(string_sumation);
+	length_summations = string_Length(sequential_lengths);
 	canvas_Sprite = canvas;
-	Mientras i <= length_Sumation & size_Sprite <= Cy Hacer
-		Char_Current = char_At(string_sumation, i);
+	Mientras i <= length_summations & size_Sprite <= Cy Hacer
+		Char_Current = char_At(sequential_lengths, i);
 		IsNumber = char_isNumber(Char_Current);
 		Si IsNumber Entonces
 			num_carry = string_append(num_carry, Char_Current);
 		FinSi
-		Si !IsNumber & !string_isEmpty(num_carry) | Num_isEquals(i, length_Sumation) Entonces
-			length_data_value = string_ToNum(num_carry);
-			num_range_Inc = increment_step(num_range, length_data_value);
-			line_Current  = string_substring(data_soup, num_range, num_range_Inc);
-			array_sprite[count_line] = line_Current;
+		Si !IsNumber & !string_isEmpty(num_carry) | number_isEquals(i, length_summations) Entonces
+			length_value = string_ToNum(num_carry);
+			num_range_inc = increment_step(num_range, length_value);
+			current_data  = string_substring(sequential_data, num_range, num_range_inc);
+			array_sprite[count_line] = current_data;
 			count_line = increment(count_line);
 			num_carry       = "";// clear
-			num_range       = num_range_Inc;
+			num_range       = num_range_inc;
 		FinSi
 		i = increment(i);
 	FinMientras
 	canvas_Sprite = Canvas_ApplyRenderEffect(canvas, Cx, Cy, x0, y0, array_sprite, size_Sprite, symbol_Trimmed, sprite_effect);
 FinFuncion
-//----[ DRAW_SPRITE ]----------------------------------------------------------------<#>
+//----[ DRAW_SPRITE ]----------------------------------------------------<#>
 Funcion canvas_Sprite <- canvas_DrawSprite_Array(canvas, Cx, Cy, x0, y0, array_sprite, size)	
 	Definir canvas_Sprite Como Texto;
 	Definir i Como Numero;
@@ -7209,7 +8617,7 @@ Funcion canvas_Sprite <- canvas_Drawsprite_Cutout_FlipVertical(canvas, Cx, Cy, x
 	FinMientras
 	canvas_Sprite = canvas_Drawsprite_Cutout(canvas, Cx, Cy, x0, y0, array_column_invert, size);
 FinFuncion
-//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=========================================
+//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=======================================
 Funcion sprite_effect <- sprite_EFFECT_NONE
     Definir sprite_effect Como Texto;
     sprite_effect = "DIRECT";
@@ -7234,583 +8642,702 @@ Funcion sprite_effect <- sprite_EFFECT_FLIP_V
     Definir sprite_effect Como Texto;
     sprite_effect = "FLIP_V";
 FinFuncion
-///%%%%%[ TUI ]%%%%%%%%%%%%%%%%%%%%%%[   #+5  ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Funcion tui_TFrame <- TUI_New(Wx,Wy)
-	Definir tui_TFrame, stores_Tcomponents, size_TFrame Como Texto;
-	tui_TFrame  = linearCollection_new(TUI_TYPE_TFRAME(), TYPE_STRING());
-	stores_Tcomponents = collectionSetter_addValueFunction(collectionSetter_New(TUI_TYPE_TSTORE(), TYPE_STRING()), TYPE_STRING());
-	size_TFrame = TUI_ParsePointXY_ToString(Wx, Wy);
-	tui_TFrame  = linearCollection_addFirst(tui_TFrame, stores_Tcomponents);//index:2
-	tui_TFrame  = linearCollection_addFirst(tui_TFrame, collectionSetter_New(TUI_TYPE_TINPUT(),TYPE_STRING()));//index:1
-	tui_TFrame  = linearCollection_addFirst(tui_TFrame, size_TFrame);//index:0
-FinFuncion
-//----[ DISPLAY ]-------------------------------------------------------------------<#>
-Funcion TUI_display(tui_window, title)
-	TUI_display_monocolor(tui_window, title, "");
+///%%%%%[ TUI..................... ]%%%%%%%[   #TUI    ]%%%%%%%%%%%%%%%%%%
+Funcion tui_frame <- tui_new
+	Definir tui_frame Como Texto;
+	tui_frame = tui_new_withSize(20, 10);
 FinFuncion
 
-Funcion TUI_display_monocolor(tui_window, title, color)
+Funcion tui_frame <- tui_new_withSize(Wx, Wy)
+	Definir tui_frame Como Texto;
+	tui_frame = tui_new_withSizeTitle(Wx, Wy, "window");
+FinFuncion
+
+Funcion tui_frame <- tui_new_withSizeTitle(Wx, Wy, title)
+	Definir tui_frame Como Texto;
+	tui_frame = tui_new_withConfig(Wx, Wy, title, COLOR_GREEN());
+FinFuncion
+
+Funcion tui_frame <- tui_new_withConfig(Wx,Wy, title, color_window)
+	Definir tui_frame, stores_Tcomponents, Tposition, input_Tcomponents Como Texto;
+	tui_frame  = linearCollection_new(tui_TYPE_TFRAME(), TYPE_STRING());
+	stores_Tcomponents = collectionStorageCells_new(tui_TYPE_TSTORE(), TYPE_STRING(), TYPE_STRING());
+	input_Tcomponents  = collectionCells_new(tui_TYPE_TINPUT(), TYPE_STRING(), 1);
+	Tposition   = tui_ParsePointXY_ToString(Wx, Wy);
+	tui_frame  = linearCollection_addFirst(tui_frame, stores_Tcomponents);//index:4
+	tui_frame  = linearCollection_addFirst(tui_frame, color_window);//index:3
+	tui_frame  = linearCollection_addFirst(tui_frame, Tposition);//index:2
+	tui_frame  = linearCollection_addFirst(tui_frame, title);//index:1
+	tui_frame  = linearCollection_addFirst(tui_frame, input_Tcomponents);//index:0
+FinFuncion
+
+Funcion sandbox_development
+	Definir tui Como Texto;
+	Definir Cx, Cy Como Entero;
+	Cx = 31;Cy = 7;
+    tui = tui_new_withConfig(Cx, Cy, "terminal_window", COLOR_WHITE());
+	tui = tui_addTComponent_newLabel(tui, "label_hello", "hello world", 10, 3);
+	tui_display(tui);
+FinFuncion
+//----[ DISPLAY ]----------------------------------------------------<#>
+Funcion tui_display(tui_frame)
 	Definir Wx, Wy, index_separator Como Numero;
-	Definir Wsize, window_view Como Texto;
-	Si TUI_IsInterface_Valid(tui_window) Entonces 
-		Wsize = TUI_GetTproperty_Position(tui_window);
+	Definir Wsize, window_view, title, color Como Texto;
+	Si tui_IsInterface_Valid(tui_frame) Entonces 
+		Wsize = tui_getSize(tui_frame);
 		index_separator = string_indexOf(Wsize, symbol_Separator_Simple());
 		Wx = string_ToNum(string_substring(Wsize, 0, index_separator));
 		Wy = string_ToNum(string_substring_from(Wsize, increment(index_separator)));
-		canvas_displayWindow_monoColor(TUI_ToCanvas(tui_window), Wx,Wy, title, color);
+		title = tui_getTitle(tui_frame);
+		color = tui_getColor(tui_frame);
+		canvas_displayWindow_monoColor(tui_ToCanvas(tui_frame), Wx,Wy, title, color);
 	SiNo
-		error_message_Function("TUI_Display(tui_window)","Its not a TUI interface");
+		error_message_Function("tui_Display(tui_frame)","Its not a TUI interface");
 	FinSi
 FinFuncion
-//----[ GETTERS ]-------------------------------------------------------------------<#>
-Funcion size_String <- TUI_GetTproperty_Position(tui_TFrame) 
-	Definir size_String Como Texto;
-	size_String = linearCollection_getFirst_ToString(tui_TFrame);
+//----[ GETTERS ]----------------------------------------------------<#>
+Funcion tIndex <- tui_getIdStore
+	Definir tIndex Como Numero;
+	tIndex = 4;
 FinFuncion
 
-Funcion input_Inner <- TUI_GetTProperty_Input(tui_window)
-	Definir input_Inner Como Texto;
-	input_Inner = linearCollection_getElement_toString(tui_window,  1);
+Funcion tIndex <- tui_getIdColor
+	Definir tIndex Como Numero;
+	tIndex = 3;
 FinFuncion
 
-Funcion input_Inner <- TUI_GetTProperty_Store(tui_window)
-	Definir input_Inner Como Texto;
-	input_inner = linearCollection_getLast_ToString(tui_window);
+Funcion tIndex <- tui_getIdSize
+	Definir tIndex Como Numero;
+	tIndex = 2;
 FinFuncion
 
-Funcion inputs_TUI <- TUI_GetInputOptions(tui_window)
+Funcion tIndex <- tui_getIdTitle
+	Definir tIndex Como Numero;
+	tIndex = 1;
+FinFuncion
+
+Funcion tIndex <- tui_getIdInput
+	Definir tIndex Como Numero;
+	tIndex = 0;
+FinFuncion
+
+Funcion TProperty <- tui_getTitle(tui_frame)
+	Definir TProperty Como Texto;//id_input
+	TProperty = linearCollection_getElement_toString(tui_frame, tui_getIdTitle());
+FinFuncion
+
+Funcion TProperty <- tui_getSize(tui_frame) 
+	Definir TProperty Como Texto;
+	TProperty = linearCollection_getElement_toString(tui_frame, tui_getIdSize());
+FinFuncion
+
+Funcion TProperty <- tui_getColor(tui_frame)
+	Definir TProperty Como Texto;
+	TProperty = linearCollection_getElement_toString(tui_frame,  tui_getIdColor());
+FinFuncion
+
+Funcion TProperty <- tui_getInput(tui_frame)
+	Definir TProperty Como Texto;//id_store
+	TProperty = linearCollection_getFirst_ToString(tui_frame);
+FinFuncion
+
+Funcion TProperty <- tui_getStore(tui_frame)
+	Definir TProperty Como Texto;
+	TProperty = linearCollection_getLast_ToString(tui_frame);
+FinFuncion
+
+Funcion tComponent_result <- tui_getStore_Tcomponent(tui_frame, name_tcomponent)
+	Definir tComponent_result, store_tcomponent Como Texto;	
+	store_tcomponent  = tui_getStore(tui_frame);
+	tComponent_result = tui_getStore_tComponent_force(store_tcomponent, name_tcomponent);
+FinFuncion
+
+Funcion tComponent_result <- tui_getStore_tComponent_force(store_tcomponent, name_tcomponent)
+	Definir tComponent_result Como Texto;
+	tComponent_result = collectionStorageCells_getData_byCell_toString(store_tcomponent, name_tcomponent);
+FinFuncion
+
+Funcion inputs_TUI <- tui_getInputOptions(tui_frame)
 	Definir inputs_TUI, input_inner Como Texto;
-	input_inner = TUI_GetTProperty_Input(tui_window);
-	inputs_TUI = CollectionSetter_GetKeys_ToSeparatedString(input_inner, symbol_Separator());
+	input_inner = tui_getInput(tui_frame);
+	inputs_TUI = collectionStorageCells_getSeparateString(input_inner);
 FinFuncion
 
-Funcion user_input <- TUI_GetUser_Input_message(tui_window, message, TYPE)
-	Si TUI_IsInterface_Valid(tui_window) Entonces 
+Funcion user_input <- tui_GetUser_Input_message(tui_frame, message, TYPE)
+	Si tui_IsInterface_Valid(tui_frame) Entonces 
 		Segun TYPE Hacer
 			caso TYPE_BOOLEAN(): Definir user_input Como Logico;
 			caso TYPE_INT(): Definir user_input Como Numero;
 			caso TYPE_FLOAT(): Definir user_input Como Real;
 			De Otro Modo: Definir user_input Como Texto;
 		FinSegun
-		user_input = user_input_options_separator_message(TUI_GetInputOptions(tui_window), symbol_Separator(), message, TYPE);
+		user_input = user_input_options_separator_message(tui_getInputOptions(tui_frame), symbol_Separator(), message, TYPE);
 	SiNo
-		error_message_Function("TUI_GetUser_Input_message(tui_window, message, TYPE)","Its not a TUI interface");
+		error_message_Function("tui_GetUser_Input_message(tui_frame, message, TYPE)","Its not a TUI interface");
 		user_input = value_getNullType(TYPE);
 	FinSi
 FinFuncion
 
-Funcion user_input <- TUI_GetUser_Input(tui_window, TYPE)
-	Si TUI_IsInterface_Valid(tui_window) Entonces 
+Funcion user_input <- tui_GetUser_Input(tui_frame, TYPE)
+	Si tui_IsInterface_Valid(tui_frame) Entonces 
 		Segun TYPE Hacer
 			caso TYPE_BOOLEAN(): Definir user_input Como Logico;
 			caso TYPE_INT(): Definir user_input Como Numero;
 			caso TYPE_FLOAT(): Definir user_input Como Real;
 			De Otro Modo: Definir user_input Como Texto;
 		FinSegun
-		user_input = user_input_options_separator(TUI_GetInputOptions(tui_window), symbol_Separator(), TYPE);
+		user_input = user_input_options_separator(tui_getInputOptions(tui_frame), symbol_Separator(), TYPE);
 	SiNo
-		error_message_Function("TUI_GetUser_Input(tui_window, TYPE)","Its not a TUI interface");
+		error_message_Function("tui_GetUser_Input(tui_frame, TYPE)","Its not a TUI interface");
 		user_input = value_getNullType(TYPE);
 	FinSi
 FinFuncion
-//----[ SETTERS ]-------------------------------------------------------------------<#>
-Funcion tui_resize <- TUI_SetSize(tui_window, Wx, Wy) 
-	Definir tui_resize, size_string Como Texto;
-	size_string = TUI_ParsePointXY_ToString(Wx, Wy);
-	tui_resize  = linearCollection_SetElement_ToString(tui_window,  TindexFrame_Size(), size_string);
+//----[ SETTERS ]----------------------------------------------------<#>
+Funcion tui_result <- tui_setSize(tui_frame, Wx, Wy) 
+	Definir tui_result, size_string Como Texto;
+	size_string = tui_ParsePointXY_ToString(Wx, Wy);
+	tui_result  = __private_tui_set(tui_frame,  tui_getIdSize(), size_string);
 FinFuncion
 
-Funcion TUI_result <- TUI_Tcomponent_SetTproperty_Text(tui_window, reference_Name, value_string) 
-	Definir TUI_result Como Texto;
-	TUI_result =  TUI_Tcomponent_SetTproperty(tui_window, reference_Name, TProperty_Text(), value_string);
+Funcion tui_result <- tui_setTitle(tui_frame, title)
+	Definir tui_result Como Texto;
+	tui_result = __private_tui_set(tui_frame,  tui_getIdTitle(), title);
 FinFuncion
 
-Funcion TUI_result <- TUI_Tcomponent_SetTproperty_Input(tui_window, reference_Name, value_string) 
-	Definir TUI_result Como Texto;
-	TUI_result =  TUI_Tcomponent_SetTproperty(tui_window, reference_Name, TProperty_Input(), value_string);
+Funcion tui_result <- tui_setColor(tui_frame, color)
+	Definir tui_result Como Texto;
+	tui_result = __private_tui_set(tui_frame,  tui_getIdColor(), color);
 FinFuncion
 
-Funcion TUI_result <- TUI_Tcomponent_SetTproperty_Value(tui_window, reference_Name, value, TYPE) 
-	Definir TUI_result Como Texto;
-	TUI_result =  TUI_Tcomponent_SetTproperty_Value_ByString(tui_window, reference_Name, value_Parser_TypeToString(value, TYPE));
+Funcion tui_result <- __private_tui_setStore(tui_frame, store_collection)
+	Definir tui_result Como Texto;
+	tui_result = __private_tui_set(tui_frame,  tui_getIdStore(), store_collection);
 FinFuncion
 
-Funcion TUI_result <- TUI_Tcomponent_SetTproperty_Value_ByString(tui_window, reference_Name, value_string) 
-	Definir TUI_result Como Texto;
-	TUI_result =  TUI_Tcomponent_SetTproperty(tui_window, reference_Name, TProperty_Value(), value_string);
+Funcion tui_result <- __private_tui_setInput(tui_frame, input_collection)
+	Definir tui_result Como Texto;
+	tui_result = __private_tui_set(tui_frame,  tui_getIdInput(), setInput);
 FinFuncion
 
-Funcion TUI_result <- TUI_Tcomponent_SetTproperty_Position_ByString(tui_window, reference_Name, value_string) 
-	Definir TUI_result Como Texto;
-	TUI_result =  TUI_Tcomponent_SetTproperty(tui_window, reference_Name, TProperty_Position(), value_string);
+Funcion tui_result <- __private_tui_set(tui_frame, id_set, value_string)
+	Definir tui_result Como Texto;
+	tui_result = linearCollection_SetElement_ToString(tui_frame, id_set, value_string);
+FinFuncion
+//----[ SETTERS_TCOMPONENT ]-----------------------------------------<#>
+Funcion tui_result <- tui_tComponent_setTProperty_text(tui_frame, name_tcomponent, value_string) 
+	Definir tui_result Como Texto;
+	tui_result =  tui_tComponent_setTProperty(tui_frame, name_tcomponent, TProperty_text(), value_string);
 FinFuncion
 
-Funcion TUI_result <- TUI_Tcomponent_SetTproperty_Position(tui_window, reference_Name, x0, y0) 
-	Definir TUI_result, point_String Como Texto;
-	point_String = TUI_ParsePointXY_ToString(x0, y0);
-	TUI_result =  TUI_Tcomponent_SetTproperty(tui_window, reference_Name, TProperty_Position(), point_String);
+Funcion tui_result <- tui_tComponent_setTProperty_input(tui_frame, name_tcomponent, value_string) 
+	Definir tui_result Como Texto;
+	tui_result =  tui_tComponent_setTProperty(tui_frame, name_tcomponent, TProperty_input(), value_string);
 FinFuncion
 
-Funcion TUI_result <- TUI_Tcomponent_SetTproperty_Position_TwoPoints(tui_window, reference_Name, x0, y0, x1, y1) 
-	Definir TUI_result, points_String Como Texto;
-	points_String = TUI_ParseTwoPointsXY_ToString(x0, y0, x1, y1);
-	TUI_result =  TUI_Tcomponent_SetTproperty(tui_window, reference_Name, TProperty_Position(), points_String);
+Funcion tui_result <- tui_tComponent_setTProperty_value(tui_frame, name_tcomponent, value, TYPE) 
+	Definir tui_result Como Texto;
+	tui_result =  tui_tComponent_setTProperty_value_ByString(tui_frame, name_tcomponent, value_TypeToString(value, TYPE));
 FinFuncion
 
-Funcion TUI_result <- TUI_Tcomponent_SetTproperty(tui_window, reference_Name, Tproperty_Component, value_string) 
-	Definir TUI_result, Store_Setter, New_TComponent Como Texto;
-	Store_Setter = TUI_GetTProperty_Store(tui_window);
-	New_TComponent = collectionSetter_Key_GetValue_ToString(Store_Setter, reference_Name);
-	Segun Tproperty_Component Hacer
-		Caso TProperty_Input():
-			New_TComponent = Tcomponent_SetTproperty_Input(New_TComponent, value_string);
-		Caso TProperty_Position():
-			New_TComponent = Tcomponent_SetTproperty_Position_ByString(New_TComponent, value_string);
-		Caso TProperty_Text():
-			New_TComponent = Tcomponent_SetTproperty_Text(New_TComponent, value_string);
-		Caso TProperty_Value():
-			New_TComponent = Tcomponent_SetTproperty_value_ByString(New_TComponent, value_string);
+Funcion tui_result <- tui_tComponent_setTProperty_value_ByString(tui_frame, name_tcomponent, value_string) 
+	Definir tui_result Como Texto;
+	tui_result =  tui_tComponent_setTProperty(tui_frame, name_tcomponent, TProperty_value(), value_string);
+FinFuncion
+
+Funcion tui_result <- tui_tComponent_setTProperty_position_ByString(tui_frame, name_tcomponent, value_string) 
+	Definir tui_result Como Texto;
+	tui_result =  tui_tComponent_setTProperty(tui_frame, name_tcomponent, TProperty_position(), value_string);
+FinFuncion
+
+Funcion tui_result <- tui_tComponent_setTProperty_position(tui_frame, name_tcomponent, x0, y0) 
+	Definir tui_result, point_String Como Texto;
+	point_String = tui_ParsePointXY_ToString(x0, y0);
+	tui_result =  tui_tComponent_setTProperty(tui_frame, name_tcomponent, TProperty_position(), point_String);
+FinFuncion
+
+Funcion tui_result <- tui_tComponent_setTProperty_position_TwoPoints(tui_frame, name_tcomponent, x0, y0, x1, y1) 
+	Definir tui_result, points_String Como Texto;
+	points_String = tui_ParseTwoPointsXY_ToString(x0, y0, x1, y1);
+	tui_result =  tui_tComponent_setTProperty(tui_frame, name_tcomponent, TProperty_position(), points_String);
+FinFuncion
+
+Funcion tui_result <- tui_tComponent_setTProperty(tui_frame, name_tcomponent, TProperty_simpleName, value_string) 
+	Definir tui_result, tui_store, tcomponent_target, tcomponent_result Como Texto;
+	tui_store = tui_getStore(tui_frame);
+	tcomponent_target = collectionStorageCells_getData_byCell_toString(tui_store, name_tcomponent);
+	Segun TProperty_simpleName Hacer
+		Caso TProperty_input():
+			tcomponent_result = tComponent_setTProperty_input(tcomponent_target, value_string);
+		Caso TProperty_position():
+			tcomponent_result = tComponent_setTProperty_position_ByString(tcomponent_target, value_string);
+		Caso TProperty_text():
+			tcomponent_result = tComponent_setTProperty_text(tcomponent_target, value_string);
+		Caso TProperty_value():
+			tcomponent_result = tComponent_setTProperty_value_ByString(tcomponent_target, value_string);
 		De Otro Modo:
-			New_TComponent = Tcomponent_SetTproperty(New_TComponent, Tproperty_Component, value_string);
+			tcomponent_result = tComponent_setTProperty(tcomponent_target, TProperty_Component, value_string);
 	FinSegun
-	Store_Setter = collectionSetter_Key_SetValue_ByString(Store_Setter, reference_Name, New_TComponent);
-	TUI_result   = linearCollection_SetElement_ToString(tui_window, TindexFrame_Store(), Store_Setter);
+	tui_result = tui_store_addTComponent_force(tui_frame, tui_store, name_tcomponent, tcomponent_result);
 FinFuncion
 //----[ ADD ]------------------------------------------------------------------------<#>
-Funcion tui_input <- TUI_AddInput(tui_window, input_string)
+Funcion tui_input <- tui_input_add(tui_frame, input_string)
 	Definir tui_input, input_inner Como Texto;
-	input_inner = TUI_GetTProperty_Input(tui_window);
-	input_inner = collectionSetter_AddKey(input_inner, input_string);
-	tui_input   = linearCollection_SetElement_ToString(tui_window, TindexFrame_Input(), input_inner);
+	input_inner = tui_getInput(tui_frame);
+	input_inner = collectionCells_setterDynamic_add(input_inner, input_string);
+	tui_input   = __private_tui_setInput(tui_frame, input_inner);
 FinFuncion
-//----( tcomponent ) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . <#>
-Funcion TUI_result <- TUI_AddTcomponent(tui_window, reference_Name, tcomponent_Element)
-	Definir TUI_result Como Texto;
-	si Tcomponent_IsTcomponent(tcomponent_Element) Entonces
-		si Tcomponent_HasInput(tcomponent_Element) Entonces
-			TUI_result = TUI_AddTcomponent_TypeInput_Forced(tui_window, reference_Name, tcomponent_Element);
+
+Funcion tui_result <- tui_store_addTComponent(tui_frame, name_tcomponent, tcomponent)
+	Definir tui_result, tui_store Como Texto;
+	tui_store  = tui_getStore(tui_frame);
+	tui_result = tui_store_addTComponent_force(tui_frame, tui_store, name_tcomponent, tcomponent);
+FinFuncion
+
+Funcion tui_result <- tui_store_addTComponent_force(tui_frame, tui_store, name_tcomponent, tcomponent)
+	Definir tui_result Como Texto;
+	tui_store  = collectionStorageCells_add_setter_byString(tui_store, name_tcomponent, tcomponent);
+	tui_result = __private_tui_setStore(tui_frame, tui_store);
+FinFuncion
+
+Funcion tui_result <- tui_store_addTComponent_input(tui_frame, name_tcomponent, tComponent_target)
+	Definir tui_result, tui_input Como Texto;
+	tui_input = tui_getInput(tui_frame);
+	tui_result = tui_store_addTComponent_input_force(tui_frame, name_tcomponent, tComponent_target, tui_input);
+FinFuncion
+
+Funcion tui_result <- tui_store_addTComponent_input_force(tui_frame, name_tcomponent, tComponent_target, tui_input)
+	Definir tui_result, input_Tcomponent Como Texto;
+	input_Tcomponent = tComponent_getTProperty_input(tComponent_target);
+	si collectionStorage_Exist_ByString(tui_input, input_Tcomponent) Entonces
+		tui_result = tui_frame;
+		error_message_Function("tui_store_addTComponent_input_force(tui, name, tcomponent)","exist input");
+	SiNo
+		tui_result = tui_store_addTComponent(tui_frame, name_tcomponent, tComponent_target);
+		tui_result = tui_input_add(tui_result, input_Tcomponent);
+	FinSi
+FinFuncion
+//----[ GETTERS_TCOMPONENT ]-----------------------------------------<#>
+Funcion tui_result <- tui_addTComponent(tui_frame, name_tcomponent, tComponent_target)
+	Definir tui_result Como Texto;
+	si tComponent_IsTcomponent(tComponent_target) Entonces
+		si tComponent_HasInput(tComponent_target) Entonces
+			tui_result = tui_store_addTComponent_input(tui_frame, name_tcomponent, tComponent_target);
 		SiNo
-			TUI_result = TUI_AddTcomponent_Forced(tui_window, reference_Name, tcomponent_Element);
+			tui_result = tui_store_addTComponent(tui_frame, name_tcomponent, tComponent_target);
 		FinSi
 	SiNo
-		TUI_result = tui_window;
-		error_message_Function("TUI_AddTcomponent","Its not a TUI interface");
+		tui_result = tui_frame;
+		error_message_Function("tui_addTComponent","Its not a TUI interface");
 	FinSi
 FinFuncion
 
-Funcion TUI_result <- TUI_AddTcomponent_TypeInput_Forced(tui_window, reference_Name, tcomponent_Element)
-	Definir TUI_result, input_TUI, input_Tcomponent Como Texto;
-	input_TUI		 = TUI_GetTProperty_Input(tui_window);
-	input_Tcomponent = Tcomponent_GetTproperty_Input(tcomponent_Element);
-	si collectionSetter_Exist_ByString(input_TUI, input_Tcomponent) Entonces
-		TUI_result = tui_window;
-		error_message_Function("TUI_AddTcomponent_TypeInput_Forced(tui, name, tcomponent)","exist input");
+Funcion tui_newTcomponent <- tui_addTComponent_newButton(tui_frame, name_tcomponent, text, input_string, x0, y0)
+	Definir tui_newTcomponent, Tbutton Como Texto;
+	tui_newTcomponent = tui_frame;
+	Si tui_IsInterface_Valid(tui_frame) Entonces
+		Tbutton = tComponent_newButton(text, input_string, x0, y0);
+		tui_newTcomponent = tui_store_addTComponent_input(tui_newTcomponent, name_tcomponent, Tbutton);
 	SiNo
-		TUI_result = TUI_AddTcomponent_Forced(tui_window, reference_Name, tcomponent_Element);
-		TUI_result = TUI_AddInput(TUI_result, input_Tcomponent);
+		error_message_Function("tui_addTComponent_newButton()", "Its not a TUI interface");
 	FinSi
 FinFuncion
 
-Funcion TUI_result <- TUI_AddTcomponent_Forced(tui_window, reference_Name, tcomponent_Element)
-	Definir TUI_result, Store_Setter Como Texto;
-	Store_Setter = TUI_GetTProperty_Store(tui_window);
-	Store_Setter = collectionSetter_AddKeyValue_ByString(Store_Setter, reference_Name, tcomponent_Element);
-	TUI_result   = linearCollection_SetElement_ToString(tui_window, TindexFrame_Store(), Store_Setter);
-FinFuncion
-
-Funcion tui_NewTcomponent <- TUI_AddTComponent_NewButton(tui_window, reference_Name, text, input_string, x0, y0)
-	Definir tui_NewTcomponent, Tbutton Como Texto;
-	tui_NewTcomponent = tui_window;
-	Si TUI_IsInterface_Valid(tui_window) Entonces
-		Tbutton = TComponent_NewButton(text, input_string, x0, y0);
-		tui_NewTcomponent = TUI_AddTcomponent_TypeInput_Forced(tui_NewTcomponent, reference_Name, Tbutton);
+Funcion tui_newTcomponent <- tui_addTComponent_newLabel(tui_frame, name_tcomponent, text, x0, y0)
+	Definir tui_newTcomponent, Tlabel Como Texto;
+	tui_newTcomponent = tui_frame;
+	Si tui_IsInterface_Valid(tui_frame) Entonces
+		Tlabel = tComponent_newLabel(text, x0, y0);
+		tui_newTcomponent = tui_addTComponent(tui_newTcomponent, name_tcomponent, Tlabel);
 	SiNo
-		error_message_Function("TUI_AddTComponent_NewButton()", "Its not a TUI interface");
+		error_message_Function("tui_addTComponent_newLabel()", "Its not a TUI interface");
 	FinSi
 FinFuncion
 
-Funcion tui_NewTcomponent <- TUI_AddTComponent_NewLabel(tui_window, reference_Name, text, x0, y0)
-	Definir tui_NewTcomponent, Tlabel Como Texto;
-	tui_NewTcomponent = tui_window;
-	Si TUI_IsInterface_Valid(tui_window) Entonces
-		Tlabel = TComponent_NewLabel(text, x0, y0);
-		tui_NewTcomponent = TUI_AddTcomponent_Forced(tui_NewTcomponent, reference_Name, Tlabel);
+Funcion tui_newTcomponent <- tui_addTComponent_newHorizontalRuler(tui_frame, name_tcomponent, x0, y0, value)
+	Definir tui_newTcomponent, THorizontal Como Texto;
+	tui_newTcomponent = tui_frame;
+	Si tui_IsInterface_Valid(tui_frame) Entonces
+		THorizontal= tComponent_newHorizontalRuler(x0, y0, value);
+		tui_newTcomponent = tui_addTComponent(tui_newTcomponent, name_tcomponent, THorizontal);
 	SiNo
-		error_message_Function("TUI_AddTComponent_NewLabel()", "Its not a TUI interface");
+		error_message_Function("tui_addTComponent_newHorizontalRuler()", "Its not a TUI interface");
 	FinSi
 FinFuncion
 
-Funcion tui_NewTcomponent <- TUI_AddTComponent_NewHorizontalRuler(tui_window, reference_Name, x0, y0, value)
-	Definir tui_NewTcomponent, THorizontal Como Texto;
-	tui_NewTcomponent = tui_window;
-	Si TUI_IsInterface_Valid(tui_window) Entonces
-		THorizontal= TComponent_NewHorizontalRuler(x0, y0, value);
-		tui_NewTcomponent = TUI_AddTcomponent_Forced(tui_NewTcomponent, reference_Name, THorizontal);
+Funcion tui_newTcomponent <- tui_addTComponent_newVerticalRuler(tui_frame, name_tcomponent, x0, y0, value)
+	Definir tui_newTcomponent, TVertical Como Texto;
+	tui_newTcomponent = tui_frame;
+	Si tui_IsInterface_Valid(tui_frame) Entonces
+		TVertical = tComponent_newVerticalRuler(x0, y0, value);
+		tui_newTcomponent = tui_addTComponent(tui_newTcomponent, name_tcomponent, TVertical);
 	SiNo
-		error_message_Function("TUI_AddTComponent_NewHorizontalRuler()", "Its not a TUI interface");
+		error_message_Function("tui_addTComponent_newVerticalRuler()", "Its not a TUI interface");
 	FinSi
 FinFuncion
 
-Funcion tui_NewTcomponent <- TUI_AddTComponent_NewVerticalRuler(tui_window, reference_Name, x0, y0, value)
-	Definir tui_NewTcomponent, TVertical Como Texto;
-	tui_NewTcomponent = tui_window;
-	Si TUI_IsInterface_Valid(tui_window) Entonces
-		TVertical = TComponent_NewVerticalRuler(x0, y0, value);
-		tui_NewTcomponent = TUI_AddTcomponent_Forced(tui_NewTcomponent, reference_Name, TVertical);
+Funcion tui_newTcomponent <- tui_addTComponent_newPanel(tui_frame, name_tcomponent, x0, y0, x1, y1)
+	Definir tui_newTcomponent, TPanel Como Texto;
+	tui_newTcomponent = tui_frame;
+	Si tui_IsInterface_Valid(tui_frame) Entonces
+		TPanel = tComponent_newPanel(x0, y0, x1, y1);
+		tui_newTcomponent = tui_addTComponent(tui_newTcomponent, name_tcomponent, TPanel);
 	SiNo
-		error_message_Function("TUI_AddTComponent_NewVerticalRuler()", "Its not a TUI interface");
+		error_message_Function("tui_addTComponent_newPanel()", "Its not a TUI interface");
 	FinSi
 FinFuncion
 
-Funcion tui_NewTcomponent <- TUI_AddTComponent_NewPanel(tui_window, reference_Name, x0, y0, x1, y1)
-	Definir tui_NewTcomponent, TPanel Como Texto;
-	tui_NewTcomponent = tui_window;
-	Si TUI_IsInterface_Valid(tui_window) Entonces
-		TPanel = TComponent_NewPanel(x0, y0, x1, y1);
-		tui_NewTcomponent = TUI_AddTcomponent_Forced(tui_NewTcomponent, reference_Name, TPanel);
+Funcion tui_newTcomponent <- tui_addTComponent_newSpriteString(tui_frame, name_tcomponent, spriteString_struct, sprite_Effect, x0, y0)
+	Definir tui_newTcomponent, TSprite Como Texto;
+	tui_newTcomponent = tui_frame;
+	Si tui_IsInterface_Valid(tui_frame) Entonces
+		TSprite = __private_tComponent_ForcerdnewSpriteString(spriteString_struct, sprite_effect, x0, y0);
+		tui_newTcomponent = tui_addTComponent(tui_newTcomponent, name_tcomponent, TSprite);
 	SiNo
-		error_message_Function("TUI_AddTComponent_NewPanel()", "Its not a TUI interface");
+		error_message_Function("tui_addTComponent_newPanel()", "Its not a TUI interface");
 	FinSi
 FinFuncion
-
-Funcion tui_NewTcomponent <- TUI_AddTComponent_NewSpriteString(tui_window, reference_Name, spriteString_struct, sprite_Effect, x0, y0)
-	Definir tui_NewTcomponent, TSprite Como Texto;
-	tui_NewTcomponent = tui_window;
-	Si TUI_IsInterface_Valid(tui_window) Entonces
-		TSprite = __private_TComponent_ForcerdNewSpriteString(spriteString_struct, sprite_effect, x0, y0);
-		tui_NewTcomponent = TUI_AddTcomponent_Forced(tui_NewTcomponent, reference_Name, TSprite);
-	SiNo
-		error_message_Function("TUI_AddTComponent_NewPanel()", "Its not a TUI interface");
-	FinSi
-FinFuncion
-//----[ TUI_TOCANVAS ]-------------------------------------------------------------------<#>
-Funcion new_canvas <- TUI_ToCanvas(tui_window)
-	Definir new_canvas, Wsize, Store_Setter Como Texto;
+//----[ tui_TOCANVAS ]----------------------------------------------------<#>
+Funcion new_canvas <- tui_ToCanvas(tui_frame)
+	Definir new_canvas, Wsize, store_tcomponents, canvas Como Texto;
 	Definir Wx, Wy, index_separator Como Numero;
-	Si TUI_IsInterface_Valid(tui_window) Entonces 
-		Wsize = TUI_GetTproperty_Position(tui_window);
+	Si tui_IsInterface_Valid(tui_frame) Entonces 
+		Wsize = tui_getSize(tui_frame);
 		index_separator = string_indexOf(Wsize, symbol_Separator_Simple());
 		Wx = string_ToNum(string_substring(Wsize, 0, index_separator));
 		Wy = string_ToNum(string_substring_from(Wsize, increment(index_separator)));
-		Store_Setter = TUI_GetTProperty_Store(tui_window);
-		new_canvas = __private_canvas_DrawLinearCollection_Tcomponent(canvas_new(Wx,Wy), Wx, Wy, Store_Setter);
+		store_tcomponents = tui_getStore(tui_frame);
+		canvas = canvas_new_WithPixel(Wx,Wy, " ");
+		new_canvas = __private_canvas_DrawlinearCollection_Tcomponent(canvas, Wx, Wy, store_tcomponents);
 	SiNo
-		error_message_Function("TUI_Tocanvas(tui_window)","Its not a TUI interface");
+		error_message_Function("tui_Tocanvas(tui_frame)","Its not a TUI interface");
 	FinSi
 FinFuncion
 
-Funcion new_canvas <- __private_canvas_DrawLinearCollection_Tcomponent(canvas, Cx, Cy, TlinearCollection)
-	Definir new_canvas, data_soup, string_sumation Como Texto;
-	Definir index_DataArea, index_MetaData, index_ExtraData, size_Linear Como Numero;
-	index_DataArea = increment(string_indexOf(TlinearCollection, symbol_DataArea()));
-	index_ExtraData = string_LastindexOf(TlinearCollection, symbol_ExtraData());
-	index_MetaData = string_LastindexOf_fromIndex(TlinearCollection, symbol_MetaData(), index_ExtraData);
-	data_soup = string_substring(TlinearCollection, index_DataArea, index_MetaData);
-	string_sumation= string_substring(TlinearCollection, increment(index_MetaData), index_ExtraData);
-	new_canvas = __private_Tocanvas_Bydata_soup(canvas, Cx, Cy, data_soup, string_sumation);
+Funcion new_canvas <- __private_canvas_DrawlinearCollection_Tcomponent(canvas, Cx, Cy, struct_storage)
+	Definir new_canvas, sequential_data, sequential_lengths Como Texto;
+	Definir index_lengthArea, index_dataArea, index_endData Como Entero;
+	Definir count_size, cell_length, right_startData Como Entero;
+	index_endData = string_lastIndexOf(struct_storage, symbol_metaData());
+	index_lengthArea    = increment(string_indexOf(struct_storage, symbol_lengthArea()));
+	index_dataArea      = string_indexOf_fromIndex(struct_storage, symbol_dataArea(), index_lengthArea);
+	count_size          = collectionCells_getSize(struct_storage);
+	cell_length         = collectionStorageCells_getCellLength(struct_storage);
+	right_startData     = decrement_step(index_endData, count_size * cell_length);
+	sequential_lengths  = string_substring(struct_storage, index_lengthArea, index_dataArea);
+	sequential_data     = string_substring(struct_storage, increment(index_dataArea), right_startData);
+	new_canvas = __private_toCanvas_bySequential_data(canvas, Cx, Cy, sequential_data, sequential_lengths);
 FinFuncion
 
-Funcion new_canvas <- __private_Tocanvas_Bydata_soup(canvas, Cx, Cy, data_soup, string_sumation)
+Funcion new_canvas <- __private_toCanvas_bySequential_data(canvas, Cx, Cy, sequential_data, sequential_lengths)
 	Definir new_canvas, num_carry, Char_Current, data_Current Como Texto;
-	Definir i, index_Tcomponent, index_Tcomponent_Dec, length_data_value Como Numero;
-	Definir length_StringSumation Como Numero;
+	Definir i, index_Tcomponent, index_tComponent_Dec, length_value Como Numero;
+	Definir length_Stringsummations Como Numero;
 	Definir IsNumber Como Logico;
 	num_carry 	     = "";
 	i				 = 0;
-	length_StringSumation  = string_Length(string_sumation);
-	index_Tcomponent	    = string_Length(data_soup);
+	length_Stringsummations  = string_Length(sequential_lengths);
+	index_Tcomponent	    = string_Length(sequential_data);
 	new_canvas = canvas;
-	si string_Length(data_soup) < 1 Entonces
-		i = increment(length_StringSumation);
+	si string_Length(sequential_data) < 1 Entonces
+		i = increment(length_Stringsummations);
 	FinSi
-	Mientras i <= length_StringSumation Hacer
-		Char_Current = char_At(string_sumation, i);
+	Mientras i <= length_Stringsummations Hacer
+		Char_Current = char_At(sequential_lengths, i);
 		IsNumber = char_isNumber(Char_Current);
 		Si IsNumber Entonces
 			num_carry = string_append(num_carry, Char_Current);
 		FinSi
-		Si !IsNumber & !string_isEmpty(num_carry) | Num_isEquals(i, length_StringSumation) Entonces
-			length_data_value   	 = string_ToNum(num_carry);
-			si length_data_value > 0 Entonces
-				index_Tcomponent_Dec = decrement_step(index_Tcomponent, length_data_value);
-				data_Current 	     = string_substring(data_soup, index_Tcomponent_Dec, index_Tcomponent);
+		Si !IsNumber & !string_isEmpty(num_carry) | number_isEquals(i, length_Stringsummations) Entonces
+			length_value = string_ToNum(num_carry);
+			si length_value > 0 Entonces
+				index_tComponent_Dec = decrement_step(index_Tcomponent, length_value);
+				data_Current 	     = string_substring(sequential_data, index_tComponent_Dec, index_Tcomponent);
 				new_canvas  		 = canvas_DrawTComponent(new_canvas, Cx, Cy, data_Current);
-				index_Tcomponent     = index_Tcomponent_Dec;
+				index_Tcomponent     = index_tComponent_Dec;
 			SiNo
-				error_message_Function("__private_Tocanvas_Bydata_soup()","size tcomponent length < 1");
+				error_message_Function("__private_toCanvas_bySequential_data()","size tcomponent length < 1");
 			FinSi
 			num_carry      		 = "";// clear
 		FinSi
 		i = increment(i);
 	FinMientras
 FinFuncion
-//----[ REMOVE ]-------------------------------------------------------------------<#>
-Funcion TUI_result <- TUI_RemoveTcomponent(tui_window, reference_Name) 
-	Definir TUI_result, Store_Setter, tcomponent_Element Como Texto;
-	Store_Setter = TUI_GetTProperty_Store(tui_window);
-	tcomponent_Element = collectionSetter_Key_GetValue_ToString(Store_Setter, reference_Name);
-	si Tcomponent_IsTcomponent(tcomponent_Element) Entonces
-		si Tcomponent_HasInput(tcomponent_Element) Entonces
-			TUI_result = __private_TUI_RemoveTcomponent_InStore(tui_window, reference_Name, Store_Setter);
+//----[ DELETE ]---------------------------------------------------------------------<#>
+Funcion tui_result <- tui_store_deleteTComponent(tui_frame, name_tcomponent) 
+	Definir tui_result, store_tcomponents Como Texto;
+	store_tcomponents = tui_getStore(tui_frame);
+	tui_result        = tui_store_deleteTComponent_force(tui_frame, store_tcomponents, name_tcomponent);
+FinFuncion
+
+Funcion tui_result <- tui_store_deleteTComponent_force(tui_frame, store_tcomponents, name_tcomponent) 
+	Definir tui_result, store_result Como Texto;
+	store_result = collectionStorageCells_delete_byString(store_tcomponents, name_tcomponent);
+	tui_result   = __private_tui_setStore(tui_frame, store_result);
+FinFuncion
+
+Funcion tui_result <- tui_input_delete(tui_frame, input_target)
+	Definir tui_result, tui_input Como Texto;
+	tui_input  = tui_getInput(tui_frame);
+	tui_result = tui_input_delete_force(tui_frame, tui_input, input_target);
+FinFuncion
+
+Funcion tui_result <- tui_input_delete_force(tui_frame, input_tui, input_target) 
+	Definir tui_result, tui_input_result Como Texto;
+	tui_input_result = collectionCells_setter_delete_byString(input_tui, input_target);
+	tui_result       = __private_tui_setInput(tui_result, tui_input_result);
+FinFuncion
+
+Funcion tui_result <- tui_store_deleteTComponent_input(tui_frame, name_tcomponent) 
+	Definir tui_result, store_tcomponents Como Texto;
+	store_tcomponents = tui_getStore(tui_frame);
+	tui_result        = tui_store_deleteTComponent_input_force(tui_frame, store_tcomponents, name_tcomponent);
+FinFuncion
+
+Funcion tui_result <- tui_store_deleteTComponent_input_force(tui_frame, store_tcomponents, name_tcomponent) 
+	Definir tui_result, tui_input, tComponent_target, tComponent_input Como Texto;
+	tComponent_target = tui_getStore_tComponent_force(store_tcomponent, name_tcomponent);
+	tComponent_input  = tComponent_getTProperty_input(tComponent_target);
+	tui_result        = tui_input_delete(tui_frame, tComponent_input);
+	tui_result        = tui_store_deleteTComponent_force(tui_result, store_tcomponents, name_tcomponent);
+FinFuncion
+
+Funcion tui_result <- tui_deleteTcomponent(tui_frame, name_tcomponent) 
+	Definir tui_result, store_tcomponents, tComponent_target Como Texto;
+	store_tcomponents = tui_getStore(tui_frame);
+	tComponent_target = tui_getStore_tComponent_force(store_tcomponents, name_tcomponent);
+	si tComponent_IsTcomponent(tComponent_target) Entonces
+		si tComponent_HasInput(tComponent_target) Entonces
+			tui_result = tui_store_deleteTComponent_force(tui_frame, store_tcomponents, name_tcomponent);
 		SiNo
-			TUI_result = __private_TUI_TcomponentInput_Remove_inStore(tui_window, reference_Name, Store_Setter);
+			tui_result = tui_store_deleteTComponent_force(tui_frame, store_tcomponents, name_tcomponent);
 		FinSi
 	SiNo
-		TUI_result = tui_window;
-		error_message_Function("TUI_AddTcomponent","Its not a Tcomponent valid");
+		tui_result = tui_frame;
+		error_message_Function("tui_addTComponent","Its not a Tcomponent valid");
 	FinSi	
 FinFuncion
-
-Funcion TUI_result <- TUI_RemoveTcomponent_Forced(tui_window, reference_Name) 
-	Definir TUI_result, Store_Setter Como Texto;
-	Store_Setter = TUI_GetTProperty_Store(tui_window);
-	TUI_result   = __private_TUI_RemoveTcomponent_InStore(tui_window, reference_Name, Store_Setter);
+//----[ BOOLEANS ]----------------------------------------------------<#>
+Funcion Exist_input <- tui_Input_Exist(tui_frame, input_string)
+	Definir Exist_input, tui_input Como Logico;
+	tui_input = tui_getInput(tui_frame);
+	Exist_input = tui_Input_Exist_force(tui_frame, tui_input, input_string);
 FinFuncion
 
-Funcion TUI_result <- TUI_TcomponentInput_Remove_Forced(tui_window, reference_Name) 
-	Definir TUI_result, Store_Setter Como Texto;
-	Store_Setter = TUI_GetTProperty_Store(tui_window);
-	TUI_result = __private_TUI_TcomponentInput_Remove_inStore(tui_window, reference_Name, Store_Setter);
-FinFuncion
-
-Funcion TUI_result <- __private_TUI_RemoveTcomponent_InStore(tui_window, reference_Name, Store_Setter) 
-	Definir TUI_result Como Texto;
-	Store_Setter = collectionSetter_RemoveKeyValue_ByString(Store_Setter, reference_Name);
-	TUI_result   = linearCollection_SetElement_ToString(tui_window, TindexFrame_Store(), Store_Setter);
-FinFuncion
-
-Funcion TUI_result <- __private_TUI_TcomponentInput_Remove_inStore(tui_window, reference_Name, Store_Setter) 
-	Definir TUI_result, input_TUI, tcomponent_Element, input_Tcomponent Como Texto;
-	input_TUI	 = TUI_GetTProperty_Input(tui_window);
-	tcomponent_Element = collectionSetter_Key_GetValue_ToString(Store_Setter, reference_Name);
-	input_Tcomponent = Tcomponent_GetTproperty_Input(tcomponent_Element);
-	input_TUI	 = collectionSetter_RemoveKeyValue_ByString(Store_Setter, input_Tcomponent);
-	Store_Setter = collectionSetter_RemoveKeyValue_ByString(Store_Setter, reference_Name);
-	TUI_result   = linearCollection_SetElement_ToString(tui_window, TindexFrame_Store(), Store_Setter);
-	TUI_result   = linearCollection_SetElement_ToString(TUI_result, TindexFrame_Input(), input_TUI);
-FinFuncion
-//----[ BOOLEANS ]-----------------------------------------------------------------<#>
-Funcion Exist_input <- TUI_TFrameInput_Exist(tui_window, input_string)
+Funcion Exist_input <- tui_Input_Exist_force(tui_frame, tui_input, input_string)
 	Definir Exist_input, input_inner Como Logico;
-	input_inner = TUI_GetTProperty_Input(tui_window);
-	Exist_input = collectionSetter_Exist_ByString(input_inner, input_string);
+	input_inner = tui_getInput(tui_frame);
+	Exist_input = collectionCells_setter_constains(input_inner, input_string);
 FinFuncion
 
-Funcion isTUI <- TUI_IsInterface_Valid(interface_string)
+Funcion isTUI <- tui_IsInterface_Valid(interface_string)
 	Definir isTUI Como Logico;
-	isTUI = string_isEquals(collection_getNameCollection(interface_string), TUI_TYPE_TFRAME());
+	isTUI = string_isEquals(collection_getNameCollection(interface_string), tui_TYPE_TFRAME());
 FinFuncion
-//----[ PARSE_POINT ]----------------------------------------------------------------<#>
-Funcion tcomponent_Point <- TUI_ParsePointXY_ToString(x0, y0)
-	Definir tcomponent_Point Como Texto;	
-	tcomponent_Point = string_append_withSeparator(num_ToString(x0), num_ToString(y0), symbol_Separator_Simple());
+//----[ PARSE_POINT ]----------------------------------------------------<#>
+Funcion tComponent_Point <- tui_ParsePointXY_ToString(x0, y0)
+	Definir tComponent_Point Como Texto;	
+	tComponent_Point = string_append_withSeparator(num_ToString(x0), num_ToString(y0), symbol_Separator_Simple());
 FinFuncion
 
-Funcion tcomponent_Point_Full <- TUI_ParseTwoPointsXY_ToString(x0, y0, x1, y1)
-	Definir tcomponent_Point, tcomponent_Point2, tcomponent_Point_Full Como Texto;
-	tcomponent_Point = TUI_ParsePointXY_ToString(x0, y0);
-	tcomponent_Point2 = TUI_ParsePointXY_ToString(x1, y1);
-	tcomponent_Point_Full = string_append_withSeparator(tcomponent_Point, tcomponent_Point2, symbol_Separator());
+Funcion tComponent_Point_Full <- tui_ParseTwoPointsXY_ToString(x0, y0, x1, y1)
+	Definir tComponent_Point, tComponent_Point2, tComponent_Point_Full Como Texto;
+	tComponent_Point = tui_ParsePointXY_ToString(x0, y0);
+	tComponent_Point2 = tui_ParsePointXY_ToString(x1, y1);
+	tComponent_Point_Full = string_append_withSeparator(tComponent_Point, tComponent_Point2, symbol_Separator());
 FinFuncion
-//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=========================================
-Funcion TYPE <- TUI_TYPE_TFRAME
+//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=======================================
+Funcion TYPE <- tui_TYPE_TFRAME
 	Definir TYPE Como Texto;
 	TYPE = "TUI";
 FinFuncion
 
-Funcion TYPE <- TUI_TYPE_TSTORE
+Funcion TYPE <- tui_TYPE_TSTORE
 	Definir TYPE Como Texto;
-	TYPE = "TStore";
+	TYPE = "[ tStore ]";
 FinFuncion
 
-Funcion TYPE <- TUI_TYPE_TINPUT
+Funcion TYPE <- tui_TYPE_TINPUT
 	Definir TYPE Como Texto;
-	TYPE = "Tinput";
+	TYPE = "[ tInput ]";
 FinFuncion
 
-Funcion TYPE <- TUI_TYPE_TCOMPONENT
+Funcion TYPE <- tui_TYPE_TCOMPONENT
 	Definir TYPE Como Texto;
-	TYPE = "Tcomponent";
+	TYPE = "tComponent";
+FinFuncion
+///%%%%%[ TCOMPONENT.............. ]%%%%%%%[   #TCO    ]%%%%%%%%%%%%%%%%%%
+Funcion tComponent_Build <- tComponent_new(simple_name, x0, y0)
+	Definir tComponent_Build, tComponent_position Como Texto;
+	tComponent_position = tui_ParsePointXY_ToString(x0, y0);
+	tComponent_Build = collectionStorageCells_new(tui_TYPE_TCOMPONENT(), TYPE_STRING(), TYPE_STRING());
+	tComponent_Build = collectionStorageCells_add_byString(tComponent_Build , TProperty_position(), tComponent_position);
+	tComponent_Build = collectionStorageCells_add_byString(tComponent_Build , TProperty_simpleName(), simple_name);
+FinFuncion
+//----[ ADD_PROPERTY ]--------------------------------------------------------------<#>
+Funcion tComponent_Build <- tComponent_addTPropertyInput(tcomponent, input)
+	Definir tComponent_Build Como Texto;
+	tComponent_Build = tComponent_addTProperty(tcomponent, TProperty_input(), input);
 FinFuncion
 
-Funcion tIndex <- TindexFrame_Store
-	Definir tIndex Como Numero;
-	tIndex = 2;
+Funcion tComponent_Build <- tComponent_addTPropertyText(tcomponent, text)
+	Definir tComponent_Build Como Texto;
+    tComponent_Build = tComponent_addTProperty(tcomponent, TProperty_text(), text);
 FinFuncion
 
-Funcion tIndex <- TindexFrame_Input
-	Definir tIndex Como Numero;
-	tIndex = 1;
+Funcion tComponent_Build <- tComponent_addTPropertyValue(tcomponent, value)
+	Definir tComponent_Build Como Texto;
+	tComponent_Build = tComponent_addTProperty(tcomponent, TProperty_value(), value);
 FinFuncion
 
-Funcion tIndex <- TindexFrame_Size
-	Definir tIndex Como Numero;
-	tIndex = 0;
+Funcion tComponent_Build <- tComponent_addTProperty(tcomponent, TProperty, value)
+	Definir tComponent_Build Como Texto;
+    tComponent_Build = collectionStorageCells_add_byString(tcomponent, TProperty, value);
 FinFuncion
-///$$$$$[ TCOMPONETN ]$$$$$$$$$$$$$$$$[  -+5_1 ]$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Funcion tcomponent_Build <- Tcomponent_New(type, x0, y0)
-	Definir tcomponent_Build, tcomponent_Size Como Texto;
-	tcomponent_Size = TUI_ParsePointXY_ToString(x0, y0);
-	tcomponent_Build = collectionSetter_New(TUI_TYPE_TCOMPONENT(), TYPE_STRING());
-	tcomponent_Build = collectionSetter_addValueFunction(tcomponent_Build, TYPE_STRING());
-	tcomponent_Build = collectionSetter_AddKeyValue_ByStringForced(tcomponent_Build ,  TProperty_Position(), tcomponent_Size);
-	tcomponent_Build = collectionSetter_AddKeyValue_ByStringForced(tcomponent_Build ,  TProperty_Type(), type);
-FinFuncion
-//----[ ADD_PROPERTY ]---------------------------------------------------------------<#>
-Funcion tcomponent_Build <- Tcomponent_AddTPropertyInput(tcomponent, input)
-	Definir tcomponent_Build Como Texto;
-	tcomponent_Build = collectionSetter_AddKeyValue_ByStringForced(tcomponent,  TProperty_Input(), input);
-FinFuncion
-
-Funcion tcomponent_Build <- Tcomponent_AddTPropertyText(tcomponent, text)
-	Definir tcomponent_Build Como Texto;
-    tcomponent_Build = collectionSetter_AddKeyValue_ByStringForced(tcomponent, TProperty_Text(), text);
-FinFuncion
-
-Funcion tcomponent_Build <- Tcomponent_AddTPropertyValue(tcomponent, value)
-	Definir tcomponent_Build Como Texto;
-    tcomponent_Build = collectionSetter_AddKeyValue_ByStringForced(tcomponent, TProperty_Value(), value);
-FinFuncion
-//----[ BOOLEANS ]-----------------------------------------------------------------<#>
-Funcion isTUI <- Tcomponent_IsTcomponent(interface_string)
+//----[ BOOLEANS ]----------------------------------------------------<#>
+Funcion isTUI <- tComponent_IsTcomponent(interface_string)
 	Definir isTUI Como Logico;
-	isTUI = string_isEquals(collection_getNameCollection(interface_string), TUI_TYPE_TCOMPONENT());
+	isTUI = string_isEquals(collection_getNameCollection(interface_string), tui_TYPE_TCOMPONENT());
 FinFuncion
 
-Funcion isTUI <- Tcomponent_IsTcomponentType(interface_string, type_Tcomponent)
+Funcion isTUI <- tComponent_matchSimpleName(tComponent_target, simpleName_Tcomponent)
 	Definir isTUI Como Logico;
-	isTUI = string_isEquals(collectionSetter_Key_GetValue_ToString(interface_string, TProperty_Type()), type_Tcomponent);	
+	isTUI = string_isEquals(tComponent_getTProperty_simpleName(tComponent_target), simpleName_Tcomponent);
 FinFuncion
 
-Funcion THasInput <- Tcomponent_HasInput(tcomponent)
+Funcion THasInput <- tComponent_HasInput(tcomponent)
 	Definir THasInput Como Logico;
-	THasInput = collectionSetter_Exist_ByString(tcomponent, TProperty_Input());
+	THasInput = collectionStorageCells_constainsCell(tcomponent, TProperty_input());
 FinFuncion
-//----[ GETTERS ]-------------------------------------------------------------------<#>
-Funcion Tproperty <- Tcomponent_GetTproperty_Position(tcomponent_Element)
-	Definir Tproperty Como Texto;
-	Tproperty = linearCollection_getFirst_ToString(tcomponent_Element);
-FinFuncion
-
-Funcion Tproperty <- Tcomponent_GetTproperty_Type(tcomponent_Element)
-	Definir Tproperty Como Texto;
-	Tproperty = linearCollection_getElement_ToString(tcomponent_Element, 1);
+//----[ GETTERS ]----------------------------------------------------<#>
+Funcion TProperty <- tComponent_getTProperty_position(tComponent_target)
+	Definir TProperty Como Texto;
+	TProperty = tComponent_getTProperty(tComponent_target, TProperty_position());
 FinFuncion
 
-Funcion Tproperty <- Tcomponent_GetTproperty_Value(tcomponent_Element)
-	Definir Tproperty Como Texto;
-	Tproperty = collectionSetter_Key_GetValue_ToString(tcomponent_Element, TProperty_Value());
+Funcion TProperty <- tComponent_getTProperty_simpleName(tComponent_target)
+	Definir TProperty Como Texto;
+	TProperty = tComponent_getTProperty(tComponent_target, TProperty_simpleName());
 FinFuncion
 
-Funcion Tproperty <- Tcomponent_GetTproperty_Input(tcomponent_Element)
-	Definir Tproperty Como Texto;
-	Tproperty = collectionSetter_Key_GetValue_ToString(tcomponent_Element, TProperty_Input());
+Funcion TProperty <- tComponent_getTProperty_value(tComponent_target)
+	Definir TProperty Como Texto;
+	TProperty = tComponent_getTProperty(tComponent_target, TProperty_value());
 FinFuncion
 
-Funcion Tproperty <- Tcomponent_GetTproperty_Text(tcomponent_Element)
-	Definir Tproperty Como Texto;
-	Tproperty = collectionSetter_Key_GetValue_ToString(tcomponent_Element, TProperty_Text());
-FinFuncion
-//----[ SETTERS ]-------------------------------------------------------------------<#>
-Funcion New_TComponent <- Tcomponent_SetTproperty(Tcomponent, Tproperty_Component, value_string) 
-	Definir New_TComponent Como Texto;
-	New_TComponent = collectionSetter_Key_SetValue_ByString(Tcomponent, Tproperty_Component, value_string);
+Funcion TProperty <- tComponent_getTProperty_input(tComponent_target)
+	Definir TProperty Como Texto;
+	TProperty = tComponent_getTProperty(tComponent_target, TProperty_input());
 FinFuncion
 
-Funcion New_TComponent <- Tcomponent_SetTproperty_Text(Tcomponent, value_string) 
-	Definir New_TComponent Como Texto;
-	New_TComponent = Tcomponent_SetTproperty(Tcomponent, Tproperty_Text(), value_string);
+Funcion TProperty <- tComponent_getTProperty_text(tComponent_target)
+	Definir TProperty Como Texto;
+	TProperty = tComponent_getTProperty(tComponent_target, TProperty_text());
 FinFuncion
 
-Funcion New_TComponent <- Tcomponent_SetTproperty_Input(Tcomponent, value_string) 
-	Definir New_TComponent Como Texto;
-	New_TComponent = Tcomponent_SetTproperty(Tcomponent, TProperty_Input(), value_string);
+Funcion TProperty <- tComponent_getTProperty(tComponent_target, type_TProperty)
+	Definir TProperty Como Texto;
+	TProperty = collectionStorageCells_getData_byCell_toString(tComponent_target, type_TProperty);
+FinFuncion
+//----[ SETTERS ]----------------------------------------------------<#>
+Funcion new_TComponent <- tComponent_setTProperty(Tcomponent, TProperty_Component, value_string) 
+	Definir new_TComponent Como Texto;
+	new_TComponent = collectionStorageCells_add_setter_byString(Tcomponent, TProperty_Component, value_string);
 FinFuncion
 
-Funcion New_TComponent <- Tcomponent_SetTproperty_value_ByString(Tcomponent, value_string) 
-	Definir New_TComponent Como Texto;
-	New_TComponent = Tcomponent_SetTproperty(Tcomponent, TProperty_Value(), value_string);
+Funcion new_TComponent <- tComponent_setTProperty_text(Tcomponent, value_string) 
+	Definir new_TComponent Como Texto;
+	new_TComponent = tComponent_setTProperty(Tcomponent, TProperty_text(), value_string);
 FinFuncion
 
-Funcion New_TComponent <- Tcomponent_SetTproperty_value(Tcomponent, value_type, TYPE) 
-	Definir New_TComponent Como Texto;
-	New_TComponent = Tcomponent_SetTproperty(Tcomponent, TProperty_Value(), value_Parser_TypeToString(value_type, TYPE));
+Funcion new_TComponent <- tComponent_setTProperty_input(Tcomponent, value_string) 
+	Definir new_TComponent Como Texto;
+	new_TComponent = tComponent_setTProperty(Tcomponent, TProperty_input(), value_string);
 FinFuncion
 
-Funcion New_TComponent <- Tcomponent_SetTproperty_Position_TwoPoints(Tcomponent, x0, y0, x1, y1) 
-	Definir New_TComponent Como Texto;
-	tcomponent_Points = TUI_ParseTwoPointsXY_ToString(x0, y0, x1, y1);
-	New_TComponent = Tcomponent_SetTproperty_Position_ByString(Tcomponent, tcomponent_Points);
+Funcion new_TComponent <- tComponent_setTProperty_value_ByString(Tcomponent, value_string) 
+	Definir new_TComponent Como Texto;
+	new_TComponent = tComponent_setTProperty(Tcomponent, TProperty_value(), value_string);
 FinFuncion
 
-Funcion New_TComponent <- Tcomponent_SetTproperty_Position(Tcomponent, x0, y0) 
-	Definir New_TComponent Como Texto;
-	New_TComponent = Tcomponent_SetTproperty_Position_ByString(Tcomponent, TUI_ParsePointXY_ToString(x0, y0));
+Funcion new_TComponent <- tComponent_setTProperty_value(Tcomponent, value_type, TYPE) 
+	Definir new_TComponent Como Texto;
+	new_TComponent = tComponent_setTProperty(Tcomponent, TProperty_value(), value_TypeToString(value_type, TYPE));
 FinFuncion
 
-Funcion New_TComponent <- Tcomponent_SetTproperty_Position_ByString(Tcomponent, value_string) 
-	Definir New_TComponent Como Texto;
-	New_TComponent = Tcomponent_SetTproperty(Tcomponent, TProperty_Position(), value_string);
-FinFuncion
-//----[ NEW ]------------------------------------------------------------------------<#>
-Funcion NewTButton <- TComponent_NewButton(text, input_string, x0, y0)
-	Definir NewTButton Como Texto;
-	NewTButton = Tcomponent_New(Tcomponent_TYPE_BUTTON(), x0, y0);
-	NewTButton = Tcomponent_AddTPropertyInput(NewTButton, input_string);
-	NewTButton = Tcomponent_AddTPropertyText(NewTButton, text);
+Funcion new_TComponent <- tComponent_setTProperty_position_TwoPoints(Tcomponent, x0, y0, x1, y1) 
+	Definir new_TComponent Como Texto;
+	tComponent_Points = tui_ParseTwoPointsXY_ToString(x0, y0, x1, y1);
+	new_TComponent = tComponent_setTProperty_position_ByString(Tcomponent, tComponent_Points);
 FinFuncion
 
-Funcion NewTComponent <- TComponent_NewLabel(text, x0, y0)
-	Definir NewTComponent Como Texto;
-	NewTComponent = Tcomponent_New(Tcomponent_TYPE_LABEL(), x0, y0);
-	NewTComponent = Tcomponent_AddTPropertyText(NewTComponent, text);
+Funcion new_TComponent <- tComponent_setTProperty_position(Tcomponent, x0, y0) 
+	Definir new_TComponent Como Texto;
+	new_TComponent = tComponent_setTProperty_position_ByString(Tcomponent, tui_ParsePointXY_ToString(x0, y0));
 FinFuncion
 
-Funcion NewTComponent <- TComponent_NewHorizontalRuler(x0, y0, width)
-	Definir NewTComponent Como Texto;
-	NewTComponent = Tcomponent_New(Tcomponent_TYPE_HORIZONTAL_RULER(), x0, y0);
-	NewTComponent = Tcomponent_AddTPropertyValue(NewTComponent, num_ToString(width));
+Funcion new_TComponent <- tComponent_setTProperty_position_ByString(Tcomponent, value_string) 
+	Definir new_TComponent Como Texto;
+	new_TComponent = tComponent_setTProperty(Tcomponent, TProperty_position(), value_string);
+FinFuncion
+//----[ new ]------------------------------------------------------------------------<#>
+Funcion newTButton <- tComponent_newButton(text, input_string, x0, y0)
+	Definir newTButton Como Texto;
+	newTButton = tComponent_new(tComponent_TYPE_BUTTON(), x0, y0);
+	newTButton = tComponent_addTPropertyInput(newTButton, input_string);
+	newTButton = tComponent_addTPropertyText(newTButton, text);
 FinFuncion
 
-Funcion NewTComponent <- TComponent_NewVerticalRuler(x0, y0, height)
-	Definir NewTComponent Como Texto;
-	NewTComponent = Tcomponent_New(Tcomponent_TYPE_VERTICAL_RULER(), x0, y0);
-	NewTComponent = Tcomponent_AddTPropertyValue(NewTComponent, num_ToString(height));
+Funcion newTComponent <- tComponent_newLabel(text, x0, y0)
+	Definir newTComponent Como Texto;
+	newTComponent = tComponent_new(tComponent_TYPE_LABEL(), x0, y0);
+	newTComponent = tComponent_addTPropertyText(newTComponent, text);
 FinFuncion
 
-Funcion NewTComponent <- TComponent_NewPanel(x0, y0, x1, y1)
-	Definir NewTComponent, pos_panel, pos_panel_down, pos_final Como Texto;
-	NewTComponent = Tcomponent_New(Tcomponent_TYPE_PANEL(), x0, y0);
-	pos_panel = Tcomponent_GetTproperty_Position(NewTComponent);
-	pos_panel_down = TUI_ParsePointXY_ToString(x1, y1);
+Funcion newTComponent <- tComponent_newHorizontalRuler(x0, y0, width)
+	Definir newTComponent Como Texto;
+	newTComponent = tComponent_new(tComponent_TYPE_HORIZONTAL_RULER(), x0, y0);
+	newTComponent = tComponent_addTPropertyValue(newTComponent, num_ToString(width));
+FinFuncion
+
+Funcion newTComponent <- tComponent_newVerticalRuler(x0, y0, height)
+	Definir newTComponent Como Texto;
+	newTComponent = tComponent_new(tComponent_TYPE_VERTICAL_RULER(), x0, y0);
+	newTComponent = tComponent_addTPropertyValue(newTComponent, num_ToString(height));
+FinFuncion
+
+Funcion newTComponent <- tComponent_newPanel(x0, y0, x1, y1)
+	Definir newTComponent, pos_panel, pos_panel_down, pos_final Como Texto;
+	newTComponent = tComponent_new(tComponent_TYPE_PANEL(), x0, y0);
+	pos_panel = tComponent_getTProperty_position(newTComponent);
+	pos_panel_down = tui_ParsePointXY_ToString(x1, y1);
 	pos_final = string_append_withSeparator(pos_panel, pos_panel_down, symbol_Separator());
-	NewTComponent = collectionSetter_Key_SetValue_ByString(NewTComponent, TProperty_Position(), pos_final);
+	newTComponent = tComponent_setTProperty_position_ByString(newTComponent, pos_final);
 FinFuncion
 
-Funcion NewTComponent <- TComponent_NewSpriteString(string_Sprite, sprite_effect, x0, y0)
-	Definir NewTComponent, pos_panel  Como Texto;
+Funcion newTComponent <- tComponent_newSpriteString(string_Sprite, sprite_effect, x0, y0)
+	Definir newTComponent, pos_panel Como Texto;
 	si spriteString_isSpriteValid(string_Sprite) Entonces
-		NewTComponent = __private_TComponent_ForcerdNewSpriteString(string_Sprite, sprite_effect, x0, y0);
+		newTComponent = __private_tComponent_ForcerdnewSpriteString(string_Sprite, sprite_effect, x0, y0);
 	SiNo
-		NewTComponent = TComponent_NewLabel("<ERROR_sprite_STRING>", x0, y0);
-		error_message_Function("TComponent_NewSpriteString(sprite, separator, x, y)", "sprite not is TYPE_SPRITESTRING() [use spriteString_new()]");
+		newTComponent = tComponent_newLabel("<ERROR_sprite_STRING>", x0, y0);
+		error_message_Function("tComponent_newSpriteString(sprite, separator, x, y)", "sprite not is TYPE_SPRITESTRING() [use spriteString_new()]");
 	FinSi
 FinFuncion
 
-Funcion NewTComponent <- __private_TComponent_ForcerdNewSpriteString(string_Sprite, sprite_effect, x0, y0)
-	Definir NewTComponent, pos_panel  Como Texto;
-	NewTComponent = Tcomponent_New(Tcomponent_TYPE_SPRITE_STRING(), x0, y0);
-	NewTComponent = Tcomponent_AddTPropertyText(NewTComponent, string_Sprite);
-	NewTComponent = Tcomponent_AddTPropertyValue(NewTComponent, sprite_effect);
+Funcion newTComponent <- __private_tComponent_ForcerdnewSpriteString(string_Sprite, sprite_effect, x0, y0)
+	Definir newTComponent, pos_panel Como Texto;
+	newTComponent = tComponent_new(tComponent_TYPE_SPRITE_STRING(), x0, y0);
+	newTComponent = tComponent_addTPropertyText(newTComponent, string_Sprite);
+	newTComponent = tComponent_addTPropertyValue(newTComponent, sprite_effect);
 FinFuncion
 //----[ DRAW_TCOMPONENT ]------------------------------------------------------------<#>
-Funcion canvas_Result <- canvas_DrawTComponent_Button(canvas, Cx, Cy, Tbutton)
+Funcion canvas_Result <- canvas_DrawtComponent_Button(canvas, Cx, Cy, Tbutton)
 	Definir canvas_Result, pos_Tbutton, text_Tbutton Como Texto;
 	Definir index_separator, x0, y0 Como Numero;
 	canvas_Result = canvas;
-	si Tcomponent_IsTcomponent(Tbutton) Entonces
-		pos_Tbutton = Tcomponent_GetTproperty_Position(Tbutton);
-		text_Tbutton = collectionSetter_Key_GetValue_ToString(Tbutton, TProperty_Text());
+	si tComponent_IsTcomponent(Tbutton) Entonces
+		pos_Tbutton = tComponent_getTProperty_position(Tbutton);
+		text_Tbutton = tComponent_getTProperty_text(Tbutton);
 		index_separator = string_indexOf(pos_Tbutton, symbol_Separator_Simple());
 		x0 = string_ToNum(string_substring(pos_Tbutton, 0, index_separator));
 		y0 = string_ToNum(string_substring_from(pos_Tbutton, increment(index_separator)));
@@ -7818,55 +9345,55 @@ Funcion canvas_Result <- canvas_DrawTComponent_Button(canvas, Cx, Cy, Tbutton)
 	FinSi
 FinFuncion
 
-Funcion canvas_Result <- canvas_DrawTComponent_Label(canvas, Cx, Cy, Tlabel)
+Funcion canvas_Result <- canvas_DrawtComponent_Label(canvas, Cx, Cy, Tlabel)
 	Definir canvas_Result, pos_Tlabel, text_Tlabel Como Texto;
 	Definir index_separator, x0, y0 Como Numero;
 	canvas_Result = canvas;
-	si Tcomponent_IsTcomponent(Tlabel) Entonces
-		pos_Tlabel = Tcomponent_GetTproperty_Position(Tlabel);
+	si tComponent_IsTcomponent(Tlabel) Entonces
+		pos_Tlabel = tComponent_getTProperty_position(Tlabel);
 		index_separator = string_indexOf(pos_Tlabel, symbol_Separator_Simple());
 		x0 = string_ToNum(string_substring(pos_Tlabel, 0, index_separator));
 		y0 = string_ToNum(string_substring_from(pos_Tlabel, increment(index_separator)));
-		text_Tlabel = Tcomponent_GetTproperty_Text(Tlabel);
+		text_Tlabel = tComponent_getTProperty_text(Tlabel);
 		canvas_Result = canvas_DrawText(canvas_Result, Cx, Cy, text_Tlabel, x0, y0);
 	FinSi
 FinFuncion
 
-Funcion canvas_Result <- canvas_DrawTComponent_HorizontalRuler(canvas, Cx, Cy, THrzRuler)
+Funcion canvas_Result <- canvas_DrawtComponent_HorizontalRuler(canvas, Cx, Cy, THrzRuler)
 	Definir canvas_Result, pos_Thrz_ruler Como Texto;
 	Definir index_separator, x0, y0, width_hr Como Numero;
 	canvas_Result = canvas;
-	si Tcomponent_IsTcomponent(THrzRuler) Entonces
-		pos_Thrz_ruler = Tcomponent_GetTproperty_Position(THrzRuler);
+	si tComponent_IsTcomponent(THrzRuler) Entonces
+		pos_Thrz_ruler = tComponent_getTProperty_position(THrzRuler);
 		index_separator = string_indexOf(pos_Thrz_ruler, symbol_Separator_Simple());
 		x0 = string_ToNum(string_substring(pos_Thrz_ruler, 0, index_separator));
 		y0 = string_ToNum(string_substring_from(pos_Thrz_ruler, increment(index_separator)));
-		width_hr = string_ToNum(Tcomponent_GetTproperty_Value(THrzRuler));
+		width_hr = string_ToNum(tComponent_getTProperty_value(THrzRuler));
 		canvas_Result = canvas_DrawLine_Horizontal(canvas_Result, Cx, Cy, x0, y0, width_hr);
 	FinSi
 FinFuncion
 
-Funcion canvas_Result <- canvas_DrawTComponent_VerticalRuler(canvas, Cx, Cy, TVrtRuler)
+Funcion canvas_Result <- canvas_DrawtComponent_VerticalRuler(canvas, Cx, Cy, TVrtRuler)
 	Definir canvas_Result, pos_Tvrz_ruler Como Texto;
 	Definir index_separator, x0, y0, height_vrz Como Numero;
 	canvas_Result = canvas;
-	si Tcomponent_IsTcomponent(TVrtRuler) Entonces
-		pos_Tvrz_ruler = Tcomponent_GetTproperty_Position(TVrtRuler);
+	si tComponent_IsTcomponent(TVrtRuler) Entonces
+		pos_Tvrz_ruler = tComponent_getTProperty_position(TVrtRuler);
 		index_separator = string_indexOf(pos_Tvrz_ruler, symbol_Separator_Simple());
 		x0 = string_ToNum(string_substring(pos_Tvrz_ruler, 0, index_separator));
 		y0 = string_ToNum(string_substring_from(pos_Tvrz_ruler, increment(index_separator)));
-		height_vrz = string_ToNum(Tcomponent_GetTproperty_Value(TVrtRuler));
+		height_vrz = string_ToNum(tComponent_getTProperty_value(TVrtRuler));
 		canvas_Result = canvas_DrawLine_Vertical(canvas_Result, Cx, Cy, x0, y0, height_vrz);
 	FinSi
 FinFuncion
 
-Funcion canvas_Result <- canvas_DrawTComponent_Panel(canvas, Cx, Cy, TPanel)
+Funcion canvas_Result <- canvas_DrawtComponent_Panel(canvas, Cx, Cy, TPanel)
 	Definir canvas_Result, pos_Tpanel Como Texto;
 	Definir index_separator, index_separator_down, index_separatorPos Como Numero;
 	Definir x0, y0, width, height Como Numero;
 	canvas_Result = canvas;
-	si Tcomponent_IsTcomponent(TPanel) Entonces
-		pos_Tpanel = Tcomponent_GetTproperty_Position(TPanel);
+	si tComponent_IsTcomponent(TPanel) Entonces
+		pos_Tpanel = tComponent_getTProperty_position(TPanel);
 		index_separator = string_indexOf(pos_Tpanel, symbol_Separator_Simple());
 		index_separator_down = string_LastIndexOf(pos_Tpanel, symbol_Separator_Simple());
 		index_separatorPos = string_LastIndexOf_fromIndex(pos_Tpanel, symbol_Separator(), index_separator_down);
@@ -7878,110 +9405,110 @@ Funcion canvas_Result <- canvas_DrawTComponent_Panel(canvas, Cx, Cy, TPanel)
 	FinSi
 FinFuncion
 
-Funcion canvas_Result <- canvas_DrawTComponent_SpriteString(canvas, Cx, Cy, TSprite)
+Funcion canvas_Result <- canvas_DrawtComponent_SpriteString(canvas, Cx, Cy, TSprite)
 	Definir canvas_Result, pos_TSprite, SpriteString, sprite_Effect Como Texto;
 	Definir x0, y0, index_separator Como Numero;
 	canvas_Result = canvas;
-	si Tcomponent_IsTcomponent(TSprite) Entonces
-		pos_TSprite = Tcomponent_GetTproperty_Position(TSprite);
+	si tComponent_IsTcomponent(TSprite) Entonces
+		pos_TSprite = tComponent_getTProperty_position(TSprite);
 		index_separator = string_indexOf(pos_TSprite, symbol_Separator_Simple());
 		x0 = string_ToNum(string_substring(pos_TSprite, 0, index_separator));
 		y0 = string_ToNum(string_substring_from(pos_TSprite, increment(index_separator)));
-		SpriteString = Tcomponent_GetTproperty_Text(TSprite);
-		sprite_Effect = Tcomponent_GetTproperty_Value(TSprite);
+		SpriteString = tComponent_getTProperty_text(TSprite);
+		sprite_Effect = tComponent_getTProperty_value(TSprite);
 		canvas_Result = __private_canvas_DrawspriteString_sprite_effect(canvas, Cx, Cy, SpriteString, x0, y0, pixel_clear(), sprite_Effect);
 	FinSi
 FinFuncion
 
 Funcion canvas_Result <- canvas_DrawTComponent(canvas, Cx, Cy, Tcomponent)
-	Definir canvas_Result, type Como Texto;
-	type = Tcomponent_GetTproperty_Type(tcomponent);
-	Segun type Hacer
-		caso Tcomponent_TYPE_BUTTON():
-			canvas_Result = canvas_DrawTComponent_Button(canvas, Cx, Cy, Tcomponent);
-		caso Tcomponent_TYPE_LABEL():
-			canvas_Result = canvas_DrawTComponent_Label(canvas, Cx, Cy, Tcomponent);
-		caso Tcomponent_TYPE_HORIZONTAL_RULER():
-			canvas_Result = canvas_DrawTComponent_HorizontalRuler(canvas, Cx, Cy, Tcomponent);
-		caso Tcomponent_TYPE_VERTICAL_RULER():
-			canvas_Result = canvas_DrawTComponent_VerticalRuler(canvas, Cx, Cy, Tcomponent);
-		caso Tcomponent_TYPE_PANEL():
-			canvas_Result = canvas_DrawTComponent_Panel(canvas, Cx, Cy, Tcomponent);
-		caso Tcomponent_TYPE_SPRITE_STRING():
-			canvas_Result = canvas_DrawTComponent_SpriteString(canvas, Cx, Cy, Tcomponent);
+	Definir canvas_Result, simple_name Como Texto;
+	simple_name = tComponent_getTProperty_simpleName(tcomponent);
+	Segun simple_name Hacer
+		caso tComponent_TYPE_BUTTON():
+			canvas_Result = canvas_DrawtComponent_Button(canvas, Cx, Cy, Tcomponent);
+		caso tComponent_TYPE_LABEL():
+			canvas_Result = canvas_DrawtComponent_Label(canvas, Cx, Cy, Tcomponent);
+		caso tComponent_TYPE_HORIZONTAL_RULER():
+			canvas_Result = canvas_DrawtComponent_HorizontalRuler(canvas, Cx, Cy, Tcomponent);
+		caso tComponent_TYPE_VERTICAL_RULER():
+			canvas_Result = canvas_DrawtComponent_VerticalRuler(canvas, Cx, Cy, Tcomponent);
+		caso tComponent_TYPE_PANEL():
+			canvas_Result = canvas_DrawtComponent_Panel(canvas, Cx, Cy, Tcomponent);
+		caso tComponent_TYPE_SPRITE_STRING():
+			canvas_Result = canvas_DrawtComponent_SpriteString(canvas, Cx, Cy, Tcomponent);
 		De Otro Modo:
 			canvas_Result = canvas;
 	FinSegun
 FinFuncion
-//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=========================================
+//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=======================================
 Funcion symbol_area <- symbol_TComponent
 	Definir symbol_area Como Texto;
 	symbol_area = "";//001C
 FinFuncion
 //....[ property ]......................................................................
-Funcion tcomponent <- TProperty_Position
+Funcion tcomponent <- TProperty_position
 	Definir tcomponent Como Texto;
 	tcomponent = "[position]";
 FinFuncion
 
-Funcion tcomponent <- TProperty_Text
+Funcion tcomponent <- TProperty_text
 	Definir tcomponent Como Texto;
 	tcomponent = "[text]";
 FinFuncion
 
-Funcion tcomponent <- TProperty_Value
+Funcion tcomponent <- TProperty_value
 	Definir tcomponent Como Texto;
 	tcomponent = "[value]";
 FinFuncion
 
-Funcion tcomponent <- TProperty_Input
+Funcion tcomponent <- TProperty_input
 	Definir tcomponent Como Texto;
 	tcomponent = "[input]";
 FinFuncion
 
-Funcion tcomponent <- TProperty_Type
+Funcion tcomponent <- TProperty_simpleName
 	Definir tcomponent Como Texto;
-	tcomponent = "[type]";
+	tcomponent = "[simple_name]";
 FinFuncion
 
-Funcion tcomponent <- TProperty_Visible
+Funcion tcomponent <- TProperty_visible
 	Definir tcomponent Como Texto;
 	tcomponent = "[visible]";
 FinFuncion
-//....[ tcomponent_type ]...............................................................
-Funcion Tcomponent_Type <- Tcomponent_TYPE_BUTTON
-	Definir Tcomponent_Type Como Texto;
-	Tcomponent_Type = "Tbutton";
+//....[ tComponent_type ]...............................................................
+Funcion tComponent_Type <- tComponent_TYPE_BUTTON
+	Definir tComponent_Type Como Texto;
+	tComponent_Type = "@Tbutton@";
 FinFuncion
 
-Funcion Tcomponent_Type <- Tcomponent_TYPE_LABEL
-	Definir Tcomponent_Type Como Texto;
-	Tcomponent_Type = "Tlabel";
+Funcion tComponent_Type <- tComponent_TYPE_LABEL
+	Definir tComponent_Type Como Texto;
+	tComponent_Type = "@Tlabel@";
 FinFuncion
 
-Funcion Tcomponent_Type <- Tcomponent_TYPE_HORIZONTAL_RULER
-	Definir Tcomponent_Type Como Texto;
-	Tcomponent_Type = "THorizontalRuler";
+Funcion tComponent_Type <- tComponent_TYPE_HORIZONTAL_RULER
+	Definir tComponent_Type Como Texto;
+	tComponent_Type = "@THorizontalRuler@";
 FinFuncion
 
-Funcion Tcomponent_Type <- Tcomponent_TYPE_VERTICAL_RULER
-	Definir Tcomponent_Type Como Texto;
-	Tcomponent_Type = "TVerticalRuler";
+Funcion tComponent_Type <- tComponent_TYPE_VERTICAL_RULER
+	Definir tComponent_Type Como Texto;
+	tComponent_Type = "@TVerticalRuler@";
 FinFuncion
 
-Funcion Tcomponent_Type <- Tcomponent_TYPE_PANEL
-	Definir Tcomponent_Type Como Texto;
-	Tcomponent_Type = "TPanel";
+Funcion tComponent_Type <- tComponent_TYPE_PANEL
+	Definir tComponent_Type Como Texto;
+	tComponent_Type = "@TPanel@";
 FinFuncion
 
-Funcion Tcomponent_Type <- Tcomponent_TYPE_SPRITE_STRING
-	Definir Tcomponent_Type Como Texto;
-	Tcomponent_Type = "TSpriteString";
+Funcion tComponent_Type <- tComponent_TYPE_SPRITE_STRING
+	Definir tComponent_Type Como Texto;
+	tComponent_Type = "@TSpriteString@";
 FinFuncion
-///%%%%%[ VEC ]%%%%%%%%%%%%%%%%%%%%%%[   #+6  ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+///%%%%%[ VEC..................... ]%%%%%%%[   #VEC    ]%%%%%%%%%%%%%%%%%%
 // ------------------- NULL FunctionS
-///%%%%%[ ASCCI/HASH ]%%%%%%%%%%%%%%%[   #+7  ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-//----[ PARSE ]-------------------------------------------------------------------<#>
+///%%%%%[ ASCII/HASH.............. ]%%%%%%%[   #ASC    ]%%%%%%%%%%%%%%%%%%
+//----[ PARSE ]----------------------------------------------------<#>
 Funcion char <- ascii_char(code)
 	Definir i Como Numero;
 	Definir char Como Texto;
@@ -7989,7 +9516,6 @@ Funcion char <- ascii_char(code)
 	Mientras code >= ascii_getOffSet_Category(i+1) Hacer
 		i = increment(i);
 	FinMientras
-	
 	segun i Hacer
 		0: char = char_At(ascii_GetControlSymbols(), code);
 		1: char = char_At(ascii_GetBasicSymbols(), decrement_step(code, 32));
@@ -8006,10 +9532,9 @@ FinFuncion
 Funcion ascii_codeCategory <- ascii_ord(char)
 	Definir ascii_codeCategory, i Como Numero;
 	i=0;
-	Mientras !ascii_IsCategory_Num(char, i) Hacer
+	Mientras !ascii_IsCategory_index(char, i) Hacer
 		i = increment(i);
 	FinMientras
-	
 	segun i Hacer
 		0: ascii_codeCategory = string_indexOf(ascii_GetControlSymbols(), char);
 		1: ascii_codeCategory = increment_step(string_indexOf(ascii_GetBasicSymbols(), char), 32);
@@ -8049,7 +9574,7 @@ Funcion hash <- ascii_hash_DBJ2(result_string)
 		hash = (hash * 33) + ascii_ord( char_At(result_string, i) );
 	FinPara
 FinFuncion
-//----[ GETTERS ]-------------------------------------------------------------------<#>
+//----[ GETTERS ]----------------------------------------------------<#>
 Funcion ascii_codeCategory <- ascii_getOffSet_Category(index)
 	Definir ascii_codeCategory Como Numero;
 	segun index Hacer
@@ -8067,12 +9592,12 @@ FinFuncion
 
 Funcion ControlSymbols <- ascii_GetControlSymbols
 	Definir ControlSymbols Como Texto;
-	ControlSymbols = "	";//TAP BL
+	ControlSymbols = "	";//TAP BL LF
 FinFuncion
 
 Funcion BasicSymbols <- ascii_GetBasicSymbols
 	Definir BasicSymbols Como Texto;
-	BasicSymbols = " ! #+$%& ()*+, -./";// !"#$%&'()*+, -./
+	BasicSymbols = " !!#+$%&&()*+,,-./";// !"#$%&'()*+, -./
 FinFuncion
 
 Funcion NumberSymbols <- ascii_GetNumberSymbols
@@ -8104,8 +9629,42 @@ Funcion ExtraSymbols <- ascii_GetExtraSymbols
 	Definir ExtraSymbols Como Texto;
 	ExtraSymbols = "{|}~";
 FinFuncion
-//----[ IS_CATEGORY ]----------------------------------------------------------------<#>
-Funcion category_Check <- ascii_IsCategory_Num(char, index)
+//----[ IS_CATEGORY ]----------------------------------------------------<#>
+Funcion index_category <- ascii_getIndexCategory(ascii_category)
+    Definir index_category Como Entero;
+    Segun ascii_category Hacer
+        ascii_CONTROL():
+            index_category = 0;
+        ascii_BASIC():
+            index_category = 1;
+        ascii_NUMBER():
+            index_category = 2;
+        ascii_OPERATOR():
+            index_category = 3;
+        ascii_ALPHABETIC_UPPER():
+            index_category = 4;
+        ascii_SPECIAL():
+            index_category = 5;
+        ascii_ALPHABETIC_LOWER():
+            index_category = 6;
+        ascii_EXTRA():
+            index_category = 7;
+        De Otro Modo:
+            index_category = -1; 
+    FinSegun
+FinFuncion
+
+Funcion category_Check <- ascii_IsCategory(char, category_name)
+    Definir category_Check Como Logico;
+    Definir index_category Como Entero;
+    index_category = ascii_getIndexCategory(category_name);
+    category_Check = ascii_IsCategory_index(char, index_category);
+	si string_isEquals(category_name, ascii_ALPHABETIC()) Entonces
+		category_Check = ascii_IsLetters(char);
+	FinSi
+FinFuncion
+
+Funcion category_Check <- ascii_IsCategory_index(char, index)
 	Definir category_Check Como Logico;
 	segun index Hacer
 		0: category_Check  = ascii_IsControlSymbols(char);
@@ -8116,8 +9675,13 @@ Funcion category_Check <- ascii_IsCategory_Num(char, index)
 		5: category_Check  = ascii_IsSpecialSymbols(char);
 		6: category_Check  = ascii_IsLetter_LowerCase(char);
 		7: category_Check  = ascii_IsExtraSymbols(char);
-		De Otro Modo: category_Check  = true();
+		De Otro Modo: category_Check  = false();
 	FinSegun
+FinFuncion
+
+Funcion isType <- ascii_IsLetters(char)
+	Definir isType Como Logico;
+	isType = ascii_IsLetters_UpperCase(char) | ascii_IsLetter_LowerCase(char);//65-90
 FinFuncion
 
 Funcion isType <- ascii_IsControlSymbols(char)
@@ -8164,22 +9728,185 @@ Funcion iSinRangue <- ascii_isInRangue(char, char_start, char_end)
 	Definir iSinRangue Como Logico;
 	iSinRangue = (char_start <= char & char <= char_end);
 FinFuncion
-///%%%%%[ START_CODE ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Funcion duration_Timer <- Execution_Timer(localTime_Start, funtion_return)
-	Definir duration_Timer, localTime_End Como Texto;
-	localTime_End = localTime_now();
-	duration_Timer = duration_between(localTime_Start, localTime_End);
+//----[ GETCONTENT ]----------------------------------------------------<#>
+Funcion result_String <- asci_getPrefix_alphabetic(text_input)
+	Definir result_String Como Texto;
+	result_String = asci_getPrefix_alphabetic_fromIndex(text_input, 0);
 FinFuncion
 
+Funcion result_String <- asci_getPrefix_alphabetic_fromIndex(text_input, start_position)
+    Definir result_String Como Texto;
+	result_String = ascii_getPrefix_Category_fromIndex(text_input, start_position, ascii_ALPHABETIC());
+FinFuncion
+
+Funcion result_String <- ascii_getPrefix_Control(text_input)
+    Definir result_String Como Texto;
+    result_String = ascii_getPrefix_Control_fromIndex(text_input, 0);
+FinFuncion
+
+Funcion result_String <- ascii_getPrefix_Control_fromIndex(text_input, start_position)
+    Definir result_String Como Texto;
+    result_String = ascii_getPrefix_Category_fromIndex(text_input, start_position, ascii_CONTROL());
+FinFuncion
+
+Funcion result_String <- ascii_getPrefix_Basic(text_input)
+    Definir result_String Como Texto;
+    result_String = ascii_getPrefix_Basic_fromIndex(text_input, 0);
+FinFuncion
+
+Funcion result_String <- ascii_getPrefix_Basic_fromIndex(text_input, start_position)
+    Definir result_String Como Texto;
+    result_String = ascii_getPrefix_Category_fromIndex(text_input, start_position, ascii_BASIC());
+FinFuncion
+
+Funcion result_String <- ascii_getPrefix_Numbers(text_input)
+    Definir result_String Como Texto;
+    result_String = ascii_getPrefix_Numbers_fromIndex(text_input, 0);
+FinFuncion
+
+Funcion result_String <- ascii_getPrefix_Numbers_fromIndex(text_input, start_position)
+    Definir result_String Como Texto;
+    result_String = ascii_getPrefix_Category_fromIndex(text_input, start_position, ascii_NUMBER());
+FinFuncion
+
+Funcion result_String <- ascii_getPrefix_Operators(text_input)
+    Definir result_String Como Texto;
+    result_String = ascii_getPrefix_Operators_fromIndex(text_input, 0);
+FinFuncion
+
+Funcion result_String <- ascii_getPrefix_Operators_fromIndex(text_input, start_position)
+    Definir result_String Como Texto;
+    result_String = ascii_getPrefix_Category_fromIndex(text_input, start_position, ascii_OPERATOR());
+FinFuncion
+
+Funcion result_String <- ascii_getPrefix_Upper(text_input)
+    Definir result_String Como Texto;
+    result_String = ascii_getPrefix_Upper_fromIndex(text_input, 0);
+FinFuncion
+
+Funcion result_String <- ascii_getPrefix_Upper_fromIndex(text_input, start_position)
+    Definir result_String Como Texto;
+    result_String = ascii_getPrefix_Category_fromIndex(text_input, start_position, ascii_ALPHABETIC_UPPER());
+FinFuncion
+
+Funcion result_String <- ascii_getPrefix_Special(text_input)
+    Definir result_String Como Texto;
+    result_String = ascii_getPrefix_Special_fromIndex(text_input, 0);
+FinFuncion
+
+Funcion result_String <- ascii_getPrefix_Special_fromIndex(text_input, start_position)
+    Definir result_String Como Texto;
+    result_String = ascii_getPrefix_Category_fromIndex(text_input, start_position, ascii_SPECIAL());
+FinFuncion
+
+Funcion result_String <- ascii_getPrefix_Lower(text_input)
+    Definir result_String Como Texto;
+    result_String = ascii_getPrefix_Lower_fromIndex(text_input, 0);
+FinFuncion
+
+Funcion result_String <- ascii_getPrefix_Lower_fromIndex(text_input, start_position)
+    Definir result_String Como Texto;
+    result_String = ascii_getPrefix_Category_fromIndex(text_input, start_position, ascii_ALPHABETIC_LOWER());
+FinFuncion
+
+Funcion result_String <- ascii_getPrefix_Extra(text_input)
+    Definir result_String Como Texto;
+    result_String = ascii_getPrefix_Extra_fromIndex(text_input, 0);
+FinFuncion
+
+Funcion result_String <- ascii_getPrefix_Extra_fromIndex(text_input, start_position)
+    Definir result_String Como Texto;
+    result_String = ascii_getPrefix_Category_fromIndex(text_input, start_position, ascii_EXTRA());
+FinFuncion
+
+Funcion result_String <- ascii_getPrefix_Category_fromIndex(text_input, start_position, ascii_category)
+    Definir result_String Como Texto;
+    Definir end_position Como Entero;
+	end_position = ascii_getEndIndex_Category(text_input, start_position, ascii_category);
+	si number_isEquals(end_position, number_NULL()) Entonces
+		result_String = string_NULL();
+	SiNo
+		result_String = string_substring(text_input, start_position, increment(end_position));
+	FinSi
+FinFuncion
+
+Funcion end_position <- ascii_getEndIndex_Category(text_input, start_position, ascii_category)
+    Definir end_position, i, length_Text Como Entero;
+    Definir Char_Current Como Texto;
+    Definir isCategoryValid Como Logico;
+    i = start_position;
+    end_position = number_NULL();
+    isCategoryValid = true();
+    length_Text = string_Length(text_input);
+    Mientras i < length_Text & isCategoryValid Hacer
+        Char_Current = char_At(text_input, i);
+        isCategoryValid = ascii_IsCategory(Char_Current, ascii_category);
+        Si isCategoryValid Entonces
+            end_position = i;
+            i = increment(i);
+        FinSi
+    FinMientras
+FinFuncion
+//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=======================================
+Funcion ascii_category <- ascii_CONTROL
+    Definir ascii_category Como Texto; 
+    ascii_category = "CONTROL";
+FinFuncion
+
+Funcion ascii_category <- ascii_BASIC
+    Definir ascii_category Como Texto; 
+    ascii_category = "BASIC";
+FinFuncion
+
+Funcion ascii_category <- ascii_NUMBER
+    Definir ascii_category Como Texto; 
+    ascii_category = "NUMBER";
+FinFuncion
+
+Funcion ascii_category <- ascii_OPERATOR
+    Definir ascii_category Como Texto; 
+    ascii_category = "OPERATOR";
+FinFuncion
+
+Funcion ascii_category <- ascii_ALPHABETIC_UPPER
+    Definir ascii_category Como Texto; 
+    ascii_category = "ALPHABETIC_UPPER";
+FinFuncion
+
+Funcion ascii_category <- ascii_SPECIAL
+    Definir ascii_category Como Texto; 
+    ascii_category = "SPECIAL";
+FinFuncion
+
+Funcion ascii_category <- ascii_ALPHABETIC_LOWER
+    Definir ascii_category Como Texto; 
+    ascii_category = "ALPHABETIC_LOWER";
+FinFuncion
+
+Funcion ascii_category <- ascii_EXTRA
+    Definir ascii_category Como Texto; 
+    ascii_category = "EXTRA";
+FinFuncion
+
+Funcion ascii_category <- ascii_ALPHABETIC
+    Definir ascii_category Como Texto; 
+    ascii_category = "ALPHABETIC";
+FinFuncion
+
+Funcion ascii_category <- ascii_UNKNOWN_CATEGORY
+    Definir ascii_category Como Texto; 
+    ascii_category = "UNKNOWN";
+FinFuncion
+///%%%%%[ END_CODE................ ]%%%%%%%[    ++0    ]%%%%%%%%%%%%%%%%%%
 Funcion message_duration(struct_localTime)
 	Definir time_Total, time_message Como Texto;
-	time_Total 	  = Color_setColorText(localTime_ToString(struct_localTime), COLOR_CYAN());
-	time_message  = Color_setColorText("::: execution time ::: format(hh:mm:ss) ::: ", COLOR_BLUE());
+	time_Total 	  = color_setColorText(localTime_ToString(struct_localTime), COLOR_CYAN());
+	time_message  = color_setColorText("::: execution time ::: format(hh:mm:ss) ::: ", COLOR_BLUE());
 	println(string_append(time_message, time_Total));
 FinFuncion
 
 Algoritmo run_code
-	Definir duration_Timer, localTime_Start, localTime_End  Como Texto;
+	Definir duration_Timer, localTime_Start, localTime_End Como Texto;
 	localTime_Start = localTime_Now();
 	clear_Console();
 	//sandbox_development();
@@ -8188,4 +9915,4 @@ Algoritmo run_code
 	duration_Timer = duration_between(localTime_Start, localTime_End);
 	message_duration(duration_Timer);
 FinAlgoritmo
-///%%%%%[ END_CODE ]%%%%%%%%[ ++0 ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+///%%%%%[ ........................ ]%%%%%%%[    ---    ]%%%%%%%%%%%%%%%%%%

@@ -16,62 +16,69 @@ PseudoLib es una infraestructura integral de pseudo-código desarrollada para PSe
 
 ## Estructura del Proyecto
 ```
-//--------------------------------------------------------------------------------------
-//    NAME	       /		CODE_SEARCH 		/      USE			/      STATE	   
-//--------------------------------------------------------------------------------------
-//1--INPUT  ·  ·  ·  ·  ·  ·  · #1 					user_input_				[+]
-//1--STRING ·  ·  ·  ·  ·  ·  · #2  			 	string_					[+]
-//1--ARRAY  ·  ·  ·  ·  ·  ·  · #3  				array_					[P]
-//1--PRINTERS  ·  ·  ·  ·  ·  · #4 		        	print_ : prinln_ 		[P]
-//1    \--SLEEP   ·  ·  ·  ·  · ++4_1				sleep_					[+]
-//1    \--LOGS ·  ·  ·  ·  ·  · ++4_2				Log_					[+]
-//1    \--TEST ·  ·  ·  ·  ·  · ++4_3				Test_					[+]
-//1--INT ·  ·  ·  ·  ·  ·  ·  · #5  				int_					[+]
-//1    \--BINARY_STRING ·  ·  ·	++5					binarystring_			[+]
-//1--MATH   ·  ·  ·  ·  ·  ·  ·	#6 				 	math_					[+]
-//1--BOOLEAN   ·  ·  ·  ·  ·  ·	#7 					 ...					[+]
-//1--CONDITIONS   ·  ·  ·  ·  ·	#8    	 			if_ : condition_		[+]
-//1--COLOR  ·  ·  ·  ·  ·  ·  · #9  				COLOR_     				[P]
-//1--TEMPORAL\CHRONO_UNIT ·  ·	#+0					localDate_time_			[+]
-//1    \--LOCALTIME  ·  ·  ·  · -+0_1				localTime_				[+]
-//1    \--LOCALDATE  ·  ·  ·  · -+0_2				localDate_				[+]
-//1    \--LOCALDATE_TIME·  ·  ·	-+0_3				localDate_time_			[+]
-//1--DURATION  ·  ·  ·  ·  ·  · -+0_4				duration_				[+]	
-//1--PERIOD ·  ·  ·  ·  ·  ·  · -+0_5				period_  				[+]
-//1--VALUE  ·  ·  ·  ·  ·  ·  · #+1				    value_					[+]
-//1--UTIL   ·  ·  ·  ·  ·  ·  · /// 			 	...						[+] 
-//1    \--COLLECTION ·  ·  ·  · #+2				    collection_				[+]
-//1      \--LINEAR_COLLECTION ·	-+2_1		    	linearCollection_		[+]
-//1    	   \--DEQUE  ·  ·  ·  · -+2_2				util_Deque_				[+]
-//1    	   \--QUEUE  ·  ·  ·  ·	-+2_3				util_Queue_				[+]
-//1    	   \--STACK  ·  ·  ·  ·	-+2_4				util_Stack				[+]
-//1        \--LIST   ·  ·  ·  ·	-+2_5				util_List_				[+]
-//1        \--COLLECTION_SETTER -+2_6				collectionSetter_		[+]
-//1    			\--SET  ·  ·  ·	-+2_7				util_Set_				[+]
-//1 			\--MAP  ·  ·  ·	-+2_8				util_Map_				[+]
-//1--OBJECT ·  ·  ·  ·  ·  ·  ·	#+3   			 	object_					[+]
-//1--CANVAS ·  ·  ·  ·  ·  ·  ·	#+4  			 	canvas_					[+]
-//1    \--SPRITE  ·  ·  ·  ·  ·	-+4_1  			 	sprite_					[+]
-//1--TUI ·  ·  ·  ·  ·  ·  ·  · #+5  				TUI_					[+]
-//1    \--TCOMPONENT ·  ·  ·  ·	-+5_1  			 	Tcomponent_				[+]
-//1--VEC 	   ·  ·  ·  ·  ·  · #+6   				VEC_					[X]
-//1--ASCCI/HASH   ·  ·  ·  ·  · #+7   				ascii_					[+]
-//1-- END_CODE ++0
-//¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
-//[+]: Stable
-//[D]: Current Development (Unusable temporaly)
-//[P]: stable (Pending additions)
-//[X]: Unusable / undeveloped state
-//Pseint --version 2023
-//LINES_CODE: ~8000
+//------------------------------------------------------------------------
+//  CODE  ::        NAME MODULE         ::         USE           :: STATE
+//------------------------------------------------------------------------
+//  #INP  ::  INPUT                     ::  user_input_          ::  [+]
+//  #STR  ::  STRING                    ::  string_              ::  [+]
+//  #ARR  ::  ARRAY                     ::  array_               ::  [p]
+//  #PRN  ::  PRINTERS                  ::  print_ : prinln_     ::  [p]
+//  #SLP  ::  SLEEP                     ::  sleep_               ::  [+]
+//  #LOG  ::  LOGS                      ::  log_                 ::  [+]
+//  #TST  ::  TEST                      ::  test_                ::  [+]
+//  #INT  ::  INT                       ::  int_                 ::  [+]
+//  #BST  ::  BINARY_STRING             ::  binarystring_        ::  [+]
+//  #MTH  ::  MATH                      ::  math_                ::  [+]
+//  #BLN  ::  BOOLEAN                   ::  boolean_             ::  [+]
+//  #CDT  ::  CONDITIONS                ::  if_ : condition_     ::  [+]
+//  #COL  ::  COLOR                     ::  COLOR_               ::  [+]
+//  #VAL  ::  VALUE                     ::  value_               ::  [+]
+//  #CLL  ::  COLLECTION                ::  collection_          ::  [+]
+//  #MDA  ::  MANAGET_DATA              ::  managerData_         ::  [+]
+//  #LCL  ::  LINEAR_COLLECTION         ::  linearCollection_    ::  [+]
+//  #DEQ  ::  DEQUE                     ::  util_deque_          ::  [+]
+//  #QUE  ::  QUEUE                     ::  util_queue_          ::  [+]
+//  #STA  ::  STACK                     ::  util_stack_          ::  [+]
+//  #TMP  ::  TEMPORAL\CHRONO_UNIT      ::  localDate_time_      ::  [+]
+//  #LDA  ::  LOCALDATE                 ::  localDate_           ::  [+]
+//  #LTI  ::  LOCALTIME                 ::  localTime_           ::  [+]
+//  #LDT  ::  LOCALDATE_TIME            ::  localDate_time_      ::  [+]
+//  #DUR  ::  DURATION                  ::  duration_            ::  [+]
+//  #PER  ::  PERIOD                    ::  period_              ::  [+]
+//  #LIS  ::  LIST                      ::  util_List_           ::  [+]
+//  #CST  ::  COLLECTION_STORAGE        ::  collectionStorage_   ::  [+]
+//  #CCE  ::  CELLS_COLLECTION          ::  collectionCells_     ::  [+]
+//  #CCD  ::  CELLS_COLLECTION_DYNAMIC  ::  ...nCells_Dynamic_   ::  [+]
+//  #CCS  ::  CELLS_COLLECTION_SETTER   ::  ...nCells_Setter_    ::  [+]
+//  #SET  ::  SET                       ::  util_set_            ::  [+]
+//  #CDC  ::  COLLECTION_DUAL_CELLS     ::  collectionDualCell_  ::  [+]
+//  #CSC  ::  COLLECTION_STORAGE_CELLS  ::  collStorageCells_    ::  [p]
+//  #MAP  ::  MAP                       ::  util_map_            ::  [+]
+//  #OBJ  ::  OBJECTS                   ::  object_              ::  [+]
+//  #CAN  ::  CANVAS                    ::  canvas_              ::  [+]
+//  #SPR  ::  SPRITE                    ::  sprite_              ::  [+]
+//  #TUI  ::  TUI                       ::  tui_                 ::  [+]
+//  #TCO  ::  TCOMPONENT                ::  tComponent_          ::  [+]
+//  #VEC  ::  VEC                       ::  vec_                 ::  [x]
+//  #ASC  ::  ASCCI/HASH                ::  ascii_               ::  [+]
+//------------------------------------------------------------------------
+//:::: LINES_CODE: ~9600 ::: 41 MODULES ::: ( Pseint / version.2023 ) ::::
+//________________________________________________________________________
+//:::::::::::::::::::::::::: ( STATE MEANING ) :::::::::::::::::::::::::::
+//------------------------------------------------------------------------
+//  [+]: Stable                                                        
+//  [D]: Current Development (Unusable temporaly)                      
+//  [p]: stable (Pending additions)                                    
+//  [x]: Unusable / undeveloped state  
 ```
 ---
 
 ## Próximamente / En desarrollo
 
-- Algoritmos de ordenamiento de arreglos compatibles con la estructura String  
-- mejora de setters 
-- Vectores Cruz y Punto a partir de Cadenas y arreglos  
+- Algoritmos de ordenamiento de arreglos compatibles con la estructura String 
+- Vectores Cruz y Punto a partir de Cadenas y arreglos
+- Regex(Pattern/Matcher)
+- QR
 
 > la mayoria de cosas complejas se manejan mediante asignaciones y texto
 > es simulacion con el objetivo de programar cosas complejas con flexibilidad 
