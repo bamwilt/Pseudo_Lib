@@ -42,12 +42,12 @@ FinFuncion
 //  #PER  ::  PERIOD                    ::  period_              ::  [+]
 //  #LIS  ::  LIST                      ::  util_List_           ::  [+]
 //  #CST  ::  COLLECTION_STORAGE        ::  collectionStorage_   ::  [+]
-//  #CCE  ::  CELLS_COLLECTION          ::  collectionCells_     ::  [+]
-//  #CCD  ::  CELLS_COLLECTION_DYNAMIC  ::  ...nCells_Dynamic_   ::  [+]
-//  #CCS  ::  CELLS_COLLECTION_SETTER   ::  ...nCells_Setter_    ::  [+]
+//  #CCE  ::  CELLS_COLLECTION          ::  cellsCollection_     ::  [+]
+//  #CCD  ::  CELLS_COLLECTION_DYNAMIC  ::  CellsCol..._dynamic_ ::  [+]
+//  #CCS  ::  CELLS_COLLECTION_SETTER   ::  CellsCol..._setter_  ::  [+]
 //  #SET  ::  SET                       ::  util_set_            ::  [+]
-//  #CDC  ::  COLLECTION_DUAL_CELLS     ::  collectionDualCell_  ::  [+]
-//  #CSC  ::  COLLECTION_STORAGE_CELLS  ::  collStorageCells_    ::  [p]
+//  #CDC  ::  DUAL_CELLS_COLLECTION     ::  collectionDualCells_ ::  [+]
+//  #CSC  ::  STORAGE_CELLS_COLLECTION  ::  collStorageCells_    ::  [p]
 //  #MAP  ::  MAP                       ::  util_map_            ::  [+]
 //  #OBJ  ::  OBJECTS                   ::  object_              ::  [+]
 //  #CAN  ::  CANVAS                    ::  canvas_              ::  [+]
@@ -2643,7 +2643,7 @@ Funcion separated_String <- managerData_getSeparateString_cells(struct_cells, co
 	Mientras i < count_size Hacer
 		next_pos         = increment_step(current_pos, cell_length);
 		current_data     = String_Substring(struct_cells, current_pos, next_pos);
-		current_data     = collectionCells_clear_cellString(current_data, cell_length);
+		current_data     = cellsCollection_clear_cellString(current_data, cell_length);
 		separated_String = String_append_withSeparator(separated_String, symbol_separator(), current_data);
 		current_pos      = next_pos;
 		i = increment(i);
@@ -2662,7 +2662,7 @@ Funcion managerData_printer_cells_decorator(struct_cells, count_size, data_lengt
 	Mientras i < count_size Hacer
 		next_pos = increment_step(current_pos, data_length);
 		current_data = String_Substring(struct_cells, current_pos, next_pos);
-		current_data = collectionCells_clear_cellString(current_data, data_length);
+		current_data = cellsCollection_clear_cellString(current_data, data_length);
 		current_data = string_append(decorator, current_data);
 		Si isBreakLine Entonces
 			println_simple(current_data);
@@ -5465,62 +5465,62 @@ Funcion symbol_area <- symbol_lengthArea
     symbol_area = "";
 FinFuncion
 ///%%%%%[ CELLS_COLLECTION........ ]%%%%%%%[   #CCE    ]%%%%%%%%%%%%%%%%%%
-Funcion new_collectionCells <- collectionCells_new(struct_name, TYPE, fixed_Length)
-	Definir new_collectionCells Como Texto;
-	new_collectionCells = String_append(struct_name, symbol_cell_length());
-	new_collectionCells = String_append(new_collectionCells, collectionCells_setNormCellLength(fixed_Length));
-	new_collectionCells = String_append(new_collectionCells, symbol_typeArea());
-	new_collectionCells = String_append(new_collectionCells, TYPE);
-	new_collectionCells = String_append(new_collectionCells, symbol_dataArea());
-	new_collectionCells = String_append(new_collectionCells, symbol_extraData());
-	new_collectionCells = String_append(new_collectionCells, "0");
+Funcion new_cellsCollection <- cellsCollection_new(struct_name, TYPE, fixed_Length)
+	Definir new_cellsCollection Como Texto;
+	new_cellsCollection = String_append(struct_name, symbol_cell_length());
+	new_cellsCollection = String_append(new_cellsCollection, cellsCollection_setNormCellLength(fixed_Length));
+	new_cellsCollection = String_append(new_cellsCollection, symbol_typeArea());
+	new_cellsCollection = String_append(new_cellsCollection, TYPE);
+	new_cellsCollection = String_append(new_cellsCollection, symbol_dataArea());
+	new_cellsCollection = String_append(new_cellsCollection, symbol_extraData());
+	new_cellsCollection = String_append(new_cellsCollection, "0");
 FinFuncion
 //-----[ UTILITIES ]----------------------------------------------------<#>
-Funcion min_fixed <- collectionCells_getMinFixed
+Funcion min_fixed <- cellsCollection_getMinFixed
 	Definir min_fixed Como Entero;
 	min_fixed = 1;
 FinFuncion
 
-Funcion length_result <- collectionCells_setNormCellLength(fixed_Length)
+Funcion length_result <- cellsCollection_setNormCellLength(fixed_Length)
 	Definir length_result Como Texto;
     Definir length_valid, min_length Como Entero;
-	min_length = collectionCells_getMinFixed();
+	min_length = cellsCollection_getMinFixed();
     length_valid = fixed_Length;
     Si length_valid < min_length Entonces
-        error_message_function("collectionCells_setNormCellLength(fixed_Length)", "fixed_Length < 1");
+        error_message_function("cellsCollection_setNormCellLength(fixed_Length)", "fixed_Length < 1");
         length_valid = min_length;
     FinSi
 	length_result = num_toString(length_valid);
 FinFuncion
 
-Funcion isChanged <- collectionCells_isChanged(struct_cell, last_length)
+Funcion isChanged <- cellsCollection_isChanged(struct_cell, last_length)
 	Definir isChanged Como Logico;
 	isChanged = (string_Length(struct_cell) > last_length);
 FinFuncion
 
-Funcion cells_index <- collectionCells_calcule_indexBlock(index_start, index_search, cell_length)
+Funcion cells_index <- cellsCollection_calcule_indexBlock(index_start, index_search, cell_length)
 	Definir cells_index Como Entero;
 	cells_index = increment_step(index_start, (index_search * cell_length));
 FinFuncion
 
-Funcion cells_index <- collectionCells_calcule_indexBlock_atEnd(index_end, index_search, cell_length)
+Funcion cells_index <- cellsCollection_calcule_indexBlock_atEnd(index_end, index_search, cell_length)
 	Definir cells_index Como Entero;
 	cells_index = decrement_step(index_end, (index_search * cell_length));
 FinFuncion
 
-Funcion element_cells <- collectionCells_String_normalizedToBlockLegth(element_string, cell_length)
+Funcion element_cells <- cellsCollection_String_normalizedToBlockLegth(element_string, cell_length)
 	Definir element_cells Como Texto;
-	element_cells = string_fit_end(element_string, String_repeatText(collectionCells_symbol_null(), cell_length));
+	element_cells = string_fit_end(element_string, String_repeatText(cellsCollection_symbol_null(), cell_length));
 FinFuncion
 
-Funcion result_string <- collectionCells_clear_cellString(element_string, cell_length)
+Funcion result_string <- cellsCollection_clear_cellString(element_string, cell_length)
 	Definir result_string Como Texto;
 	Definir index_clear Como Entero;
-	index_clear = collectionCells_indexOf_clearData(element_string, cell_length);
+	index_clear = cellsCollection_indexOf_clearData(element_string, cell_length);
 	result_string = string_substring(element_string, 0, index_clear);
 FinFuncion
 
-Funcion index_clear <- collectionCells_indexOf_clearData(dataBlock, cell_length)
+Funcion index_clear <- cellsCollection_indexOf_clearData(dataBlock, cell_length)
 	Definir index_clear Como Entero;
 	Definir current_char Como Texto;
 	Definir no_found Como Logico;
@@ -5528,7 +5528,7 @@ Funcion index_clear <- collectionCells_indexOf_clearData(dataBlock, cell_length)
 	no_found = true();
 	Mientras (index_clear > 0) & no_found Hacer
 		current_char = char_At(dataBlock, decrement(index_clear));
-		Si String_isEquals(current_char, collectionCells_symbol_null()) Entonces
+		Si String_isEquals(current_char, cellsCollection_symbol_null()) Entonces
 			index_clear = decrement(index_clear);
 		Sino
 			no_found = false();
@@ -5536,19 +5536,19 @@ Funcion index_clear <- collectionCells_indexOf_clearData(dataBlock, cell_length)
 	FinMientras
 FinFuncion
 
-Funcion canEntered <- collectionCells_CanLengthEntered(struct_cells, element_length)
+Funcion canEntered <- cellsCollection_CanLengthEntered(struct_cells, element_length)
 	Definir canEntered Como Logico;
 	Definir cell_length Como Entero;
-	cell_length = collectionCells_getCellLength(struct_cells);
+	cell_length = cellsCollection_getCellLength(struct_cells);
 	canEntered = (element_length <= cell_length);
 FinFuncion
 //----[ GETTERS ]--------------------------------------------------------------------<#>
-Funcion size_dataBlock <- collectionCells_getSize(struct_name)
+Funcion size_dataBlock <- cellsCollection_getSize(struct_name)
 	Definir size_dataBlock Como Entero;	
 	size_dataBlock = linearCollection_getSize(struct_name);
 FinFuncion
 
-Funcion cell_length <- collectionCells_getCellLength(struct_cells)
+Funcion cell_length <- cellsCollection_getCellLength(struct_cells)
 	Definir cell_length, index_symbol_cell Como Entero;	
 	Definir cell_length_String Como Texto;
 	index_symbol_cell  = string_indexOf(struct_cells, symbol_cell_length());
@@ -5557,17 +5557,17 @@ Funcion cell_length <- collectionCells_getCellLength(struct_cells)
 	cell_length        = String_toNum(cell_length_String);
 FinFuncion
 
-Funcion index_startData <- collectionCells_getStartData(struct_cells)
+Funcion index_startData <- cellsCollection_getStartData(struct_cells)
 	Definir index_startData Como Entero;
 	index_startData = increment(collection_getIndex_dataArea(struct_cells));
 FinFuncion
 
-Funcion TYPE <- collectionCells_getType(struct_cells)
+Funcion TYPE <- cellsCollection_getType(struct_cells)
 	Definir TYPE Como Texto;
 	TYPE = collection_getContent_TypeArea(struct_cells);
 FinFuncion
 
-Funcion element_type <- collectionCells_getCell(struct_cells, index)
+Funcion element_type <- cellsCollection_getCell(struct_cells, index)
 	Definir element_string, TYPE Como Texto;
 	TYPE = collection_getContent_TypeArea(struct_cells);
 	Segun TYPE Hacer
@@ -5576,10 +5576,10 @@ Funcion element_type <- collectionCells_getCell(struct_cells, index)
 		caso TYPE_BOOLEAN(): Definir element_type Como Logico;
 		De Otro Modo:        Definir element_type Como Texto;
 	FinSegun
-	element_type   =  collectionCells_getCell_toType(struct_cells, index, TYPE);
+	element_type   =  cellsCollection_getCell_toType(struct_cells, index, TYPE);
 FinFuncion
 
-Funcion element_type <- collectionCells_getCell_toType(struct_cells, index, TYPE)
+Funcion element_type <- cellsCollection_getCell_toType(struct_cells, index, TYPE)
 	Definir element_string Como Texto;
 	Segun TYPE Hacer
 		caso     TYPE_INT(): Definir element_type Como Numero;
@@ -5587,198 +5587,198 @@ Funcion element_type <- collectionCells_getCell_toType(struct_cells, index, TYPE
 		caso TYPE_BOOLEAN(): Definir element_type Como Logico;
 		De Otro Modo:        Definir element_type Como Texto;
 	FinSegun
-	element_string = collectionCells_getCell_toString(struct_cells, index);
+	element_string = cellsCollection_getCell_toString(struct_cells, index);
 	element_type   = value_stringToType(element_string, TYPE);
 FinFuncion
 
-Funcion element_string <- collectionCells_getCell_toString(struct_cells, index)
+Funcion element_string <- cellsCollection_getCell_toString(struct_cells, index)
 	Definir element_string Como Texto;
 	Definir cells_size, index_clear, cell_length, index_startData Como Entero;
-	cells_size    = collectionCells_getSize(struct_cells);
+	cells_size    = cellsCollection_getSize(struct_cells);
 	si Collection_IndexIsValid(cells_size, index) Entonces
-		cell_length = collectionCells_getCellLength(struct_cells);
-		index_startData   = collectionCells_getStartData(struct_cells);
-		element_string    = collectionCells_getCell_toString_force(struct_cells, index, index_startData, cell_length);
-		element_string    = collectionCells_clear_cellString(element_string, cell_length);
+		cell_length = cellsCollection_getCellLength(struct_cells);
+		index_startData   = cellsCollection_getStartData(struct_cells);
+		element_string    = cellsCollection_getCell_toString_force(struct_cells, index, index_startData, cell_length);
+		element_string    = cellsCollection_clear_cellString(element_string, cell_length);
 	SiNo
 		result_cells = string_NULL();
-		error_message_Function("collectionCells_getCell_toString(struct_cells, index)", "index invalid");
+		error_message_Function("cellsCollection_getCell_toString(struct_cells, index)", "index invalid");
 	FinSi	
 FinFuncion
 
-Funcion result_cells <- collectionCells_getCell_toString_force(struct_cells, index, index_startData, cell_length)
+Funcion result_cells <- cellsCollection_getCell_toString_force(struct_cells, index, index_startData, cell_length)
 	Definir result_cells Como Texto;
 	Definir cells_index, cells_index_end Como Entero;
 	result_cells    = struct_cells;
-	cells_index     = collectionCells_calcule_indexBlock(index_startData, index, cell_length);
+	cells_index     = cellsCollection_calcule_indexBlock(index_startData, index, cell_length);
 	cells_index_end = increment_step(cells_index, cell_length);
 	result_cells    = String_Substring(result_cells, cells_index, cells_index_end);
 FinFuncion
 //----[ ADD ]------------------------------------------------------------------------<#>
-Funcion result_cells <- collectionCells_add(struct_cells, element)
+Funcion result_cells <- cellsCollection_add(struct_cells, element)
 	Definir result_cells, TYPE Como Texto;
 	TYPE = collection_getContent_TypeArea(struct_cells);
-	result_cells = collectionCells_add_byType(struct_cells, element, TYPE);
+	result_cells = cellsCollection_add_byType(struct_cells, element, TYPE);
 FinFuncion
 
-Funcion result_cells <- collectionCells_add_byType(struct_cells, element, TYPE)
+Funcion result_cells <- cellsCollection_add_byType(struct_cells, element, TYPE)
 	Definir result_cells, element_string Como Texto;
 	element_string = value_TypeToString(element, TYPE);
-	result_cells = collectionCells_add_byString(struct_cells, element_string);
+	result_cells = cellsCollection_add_byString(struct_cells, element_string);
 FinFuncion
 
-Funcion result_cells <- collectionCells_add_byString(struct_cells, element_string)
+Funcion result_cells <- cellsCollection_add_byString(struct_cells, element_string)
 	Definir result_cells Como Texto;
 	Definir index_dataArea, cell_length, element_length, cells_size Como Entero;
 	result_cells = struct_cells;
-	cell_length = collectionCells_getCellLength(result_cells);
+	cell_length = cellsCollection_getCellLength(result_cells);
 	element_length = String_length(element_string);
 	si element_length > cell_length Entonces
-		error_message_Function("collectionCells_add_byString(struct_cells, element_string)", "the string length exceeds the defined cells size");
+		error_message_Function("cellsCollection_add_byString(struct_cells, element_string)", "the string length exceeds the defined cells size");
 	SiNo
 		index_dataArea = increment(String_indexOf(result_cells, symbol_dataArea()));
-		cells_size    = collectionCells_getSize(result_cells);
-		result_cells  = collectionCells_add_byString_force(struct_cells, element_string, index_dataArea, cells_size, cell_length);
+		cells_size    = cellsCollection_getSize(result_cells);
+		result_cells  = cellsCollection_add_byString_force(struct_cells, element_string, index_dataArea, cells_size, cell_length);
 		result_cells  = linearCollection_increment_numElement(result_cells);
 	FinSi
 FinFuncion
 
-Funcion result_cells <- collectionCells_add_byString_force(struct_cells, element_string, index_start, index_insert, cell_length)
+Funcion result_cells <- cellsCollection_add_byString_force(struct_cells, element_string, index_start, index_insert, cell_length)
 	Definir result_cells Como Texto;
 	Definir cells_index, cells_size Como Entero;
 	result_cells = struct_cells;
-	element_string = collectionCells_String_normalizedToBlockLegth(element_string, cell_length);
-	cells_index = collectionCells_calcule_indexBlock(index_start, index_insert, cell_length);
+	element_string = cellsCollection_String_normalizedToBlockLegth(element_string, cell_length);
+	cells_index = cellsCollection_calcule_indexBlock(index_start, index_insert, cell_length);
 	result_cells = String_insert(result_cells, element_string, cells_index);
 FinFuncion
 //----[ DELETE ]----------------------------------------------------------------------<#>
-Funcion result_cells <- collectionCells_delete_byIndex(struct, index)
+Funcion result_cells <- cellsCollection_delete_byIndex(struct, index)
 	Definir result_cells Como Texto;
 	Definir index_dataArea, cells_size, cell_length Como Entero;
 	result_cells = struct_cells;
-	cells_size = collectionCells_getSize(result_cells);
+	cells_size = cellsCollection_getSize(result_cells);
 	si Collection_IndexIsValid(cells_size, index) Entonces
-		cell_length = collectionCells_getCellLength(result_cells);
+		cell_length = cellsCollection_getCellLength(result_cells);
 		index_dataArea    = increment(String_indexOf(result_cells, symbol_dataArea()));
-		result_cells     = collectionCells_delete_byIndex_force(struct, index, index_dataArea, cell_length);
+		result_cells     = cellsCollection_delete_byIndex_force(struct, index, index_dataArea, cell_length);
 		result_cells     = linearCollection_decrement_numElement(result_cells);
 	SiNo
-		error_message_Function("collectionCells_delete_byIndex(struct, index)", "index invalid");
+		error_message_Function("cellsCollection_delete_byIndex(struct, index)", "index invalid");
 	FinSi
 FinFuncion
 
-Funcion result_cells <- collectionCells_delete_byIndex_force(struct_cells, index, index_start, cell_length)
+Funcion result_cells <- cellsCollection_delete_byIndex_force(struct_cells, index, index_start, cell_length)
 	Definir result_cells Como Texto;
 	Definir cells_index, cells_index_end, cells_size Como Entero;
 	result_cells = struct_cells;
-	cells_index     = collectionCells_calcule_indexBlock(index_start, index, cell_length);
+	cells_index     = cellsCollection_calcule_indexBlock(index_start, index, cell_length);
 	cells_index_end = increment_step(cells_index, cell_length);
 	result_cells    = String_Delete(result_cells, cells_index, cells_index_end);
 FinFuncion
 //-----[ MODIFY ]---------------------------------------------------------------------<#>
-Funcion result_cells <- collectionCells_modify(struct_cells, element_remplace, index)
+Funcion result_cells <- cellsCollection_modify(struct_cells, element_remplace, index)
 	Definir result_cells, TYPE Como Texto;
 	TYPE = collection_getContent_TypeArea(struct_cells);
-	result_cells = collectionCells_modify_byType(struct_cells, element_remplace, index, TYPE);
+	result_cells = cellsCollection_modify_byType(struct_cells, element_remplace, index, TYPE);
 FinFuncion
 
-Funcion result_cells <- collectionCells_modify_byType(struct_cells, element_remplace, index, TYPE)
+Funcion result_cells <- cellsCollection_modify_byType(struct_cells, element_remplace, index, TYPE)
 	Definir result_cells, element_string Como Texto;
 	element_string = value_TypeToString(element_remplace, TYPE);
-	result_cells = collectionCells_modify_byString(struct_cells, element_string, index);
+	result_cells = cellsCollection_modify_byString(struct_cells, element_string, index);
 FinFuncion
 
-Funcion result_cells <- collectionCells_modify_byString(struct_cells, element_string, index)
+Funcion result_cells <- cellsCollection_modify_byString(struct_cells, element_string, index)
 	Definir result_cells Como Texto;
 	Definir cells_index, cells_size, cell_length, index_dataArea Como Entero;
 	result_cells = struct_cells;
-	cells_size = collectionCells_getSize(result_cells);
+	cells_size = cellsCollection_getSize(result_cells);
 	si Collection_IndexIsValid(cells_size, index) Entonces
 		index_dataArea = increment(String_indexOf(result_cells, symbol_dataArea()));
-		cell_length  = collectionCells_getCellLength(result_cells);
-		cells_index   = collectionCells_calcule_indexBlock(index_dataArea, index, cell_length);
-		result_cells  = collectionCells_modify_byString_force(struct_cells, element_string, cells_index, cell_length);
+		cell_length  = cellsCollection_getCellLength(result_cells);
+		cells_index   = cellsCollection_calcule_indexBlock(index_dataArea, index, cell_length);
+		result_cells  = cellsCollection_modify_byString_force(struct_cells, element_string, cells_index, cell_length);
 	FinSi
 FinFuncion
 
-Funcion result_cells <- collectionCells_modify_byString_force(struct_cells, element_string, cells_index, cell_length)
+Funcion result_cells <- cellsCollection_modify_byString_force(struct_cells, element_string, cells_index, cell_length)
 	Definir result_cells Como Texto;
-	element_string  = collectionCells_String_normalizedToBlockLegth(element_string, cell_length);
+	element_string  = cellsCollection_String_normalizedToBlockLegth(element_string, cell_length);
 	result_cells = string_insert_withReplace(struct_cells, element_string, cells_index);
 FinFuncion
 //-----[ SWAP ]----------------------------------------------------------------------<#>
-Funcion result_cells <- collectionCells_swapData(struct_cells, index, index_swap)
+Funcion result_cells <- cellsCollection_swapData(struct_cells, index, index_swap)
 	Definir result_cells, data_origin, data_swap Como Texto;
 	Definir cells_size, cell_length, index_dataArea Como Entero;
 	Definir index_origen, cells_match Como Entero;
 	result_cells = struct_cells;
-	cells_size   = collectionCells_getSize(result_cells);
+	cells_size   = cellsCollection_getSize(result_cells);
 	si Collection_IndexIsValid(cells_size, index) & Collection_IndexIsValid(cells_size, index_swap) Entonces
-		cell_length = collectionCells_getCellLength(result_cells);
+		cell_length = cellsCollection_getCellLength(result_cells);
 		index_dataArea    = increment(String_indexOf(result_cells, symbol_dataArea()));
-		result_cells     = collectionCells_swapData_force(struct_cells, index, index_swap, index_dataArea, cell_length);
+		result_cells     = cellsCollection_swapData_force(struct_cells, index, index_swap, index_dataArea, cell_length);
 	SiNo
-		error_message_Function("collectionCells_swapData", "invalid index");
+		error_message_Function("cellsCollection_swapData", "invalid index");
 	FinSi
 FinFuncion
 
-Funcion result_cells <- collectionCells_swapData_force(struct_cells, index, index_swap, index_start_swap, cell_length)
+Funcion result_cells <- cellsCollection_swapData_force(struct_cells, index, index_swap, index_start_swap, cell_length)
 	Definir result_cells, data_origin, data_swap Como Texto;
 	Definir index_origen, cells_match Como Entero;
 	result_cells = struct_cells;
-	index_origen  = collectionCells_calcule_indexBlock(index_start_swap, index, cell_length);
-	cells_match  = collectionCells_calcule_indexBlock(index_start_swap, index_swap, cell_length);
+	index_origen  = cellsCollection_calcule_indexBlock(index_start_swap, index, cell_length);
+	cells_match  = cellsCollection_calcule_indexBlock(index_start_swap, index_swap, cell_length);
 	data_origin   = String_Substring(result_cells, index_origen, increment_step(index_origen, cell_length));
 	data_swap     = String_Substring(result_cells, cells_match, increment_step(cells_match, cell_length));
-	result_cells = collectionCells_modify_byString_force(result_cells, data_swap, index_origen, cell_length);
-	result_cells = collectionCells_modify_byString_force(result_cells, data_origin, cells_match, cell_length);	
+	result_cells = cellsCollection_modify_byString_force(result_cells, data_swap, index_origen, cell_length);
+	result_cells = cellsCollection_modify_byString_force(result_cells, data_origin, cells_match, cell_length);	
 FinFuncion
 //----[ SEPARATOR ]----------------------------------------------------<#>
-Funcion separate_string <- collectionCells_getSeparateString(struct_cells)
+Funcion separate_string <- cellsCollection_getSeparateString(struct_cells)
 	Definir separate_string, data_string Como Texto;
 	Definir start_data, end_data, count_size, data_length Como Numero;
-	count_size  = collectionCells_getSize(struct_cells);
-	data_length = collectionCells_getCellLength(struct_cells);
-	start_data  = collectionCells_getStartData(struct_cells);
-	end_data    = collectionCells_calcule_indexBlock(start_data, count_size, data_length);
+	count_size  = cellsCollection_getSize(struct_cells);
+	data_length = cellsCollection_getCellLength(struct_cells);
+	start_data  = cellsCollection_getStartData(struct_cells);
+	end_data    = cellsCollection_calcule_indexBlock(start_data, count_size, data_length);
 	data_string = string_substring(struct_cells, start_data, end_data);
 	separate_string = managerData_getSeparateString_cells(data_string, count_size, data_length);
 FinFuncion
 //----[ PRINTER ]----------------------------------------------------<#>
-Funcion collectionCells_println(struct_cells)
-	__private_collectionCells_printer(struct_cells, true());	
+Funcion cellsCollection_println(struct_cells)
+	__private_cellsCollection_printer(struct_cells, true());	
 FinFuncion
 
-Funcion collectionCells_print(struct_cells)
-	__private_collectionCells_printer(struct_cells, false());	
+Funcion cellsCollection_print(struct_cells)
+	__private_cellsCollection_printer(struct_cells, false());	
 FinFuncion
 
-Funcion __private_collectionCells_printer(struct_cells, isBreakLine)
+Funcion __private_cellsCollection_printer(struct_cells, isBreakLine)
 	Definir data_string Como Texto;
 	Definir start_data, end_data, count_size, data_length Como Numero;
-	count_size  = collectionCells_getSize(struct_cells);
-	data_length = collectionCells_getCellLength(struct_cells);
-	start_data  = collectionCells_getStartData(struct_cells);
-	end_data    = collectionCells_calcule_indexBlock(start_data, count_size, data_length);
+	count_size  = cellsCollection_getSize(struct_cells);
+	data_length = cellsCollection_getCellLength(struct_cells);
+	start_data  = cellsCollection_getStartData(struct_cells);
+	end_data    = cellsCollection_calcule_indexBlock(start_data, count_size, data_length);
 	data_string = string_substring(struct_cells, start_data, end_data);
 	managerData_printer_cells(data_string, count_size, data_length, isBreakLine);
 FinFuncion
 //=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=======================================
-Funcion symbol <- collectionCells_symbol_null
+Funcion symbol <- cellsCollection_symbol_null
 	Definir symbol Como Texto;
 	symbol = "";
 FinFuncion
 ///%%%%%[ CELLS_COLLECTION_DYNAMIC ]%%%%%%%[   #CCD    ]%%%%%%%%%%%%%%%%%%
 //-----[ UTILITIES ]----------------------------------------------------<#>
-Funcion result_cells <- collectionCells_Dynamic_ensureCapacity(struct_cells, cell_length, required_length)
+Funcion result_cells <- cellsCollection_Dynamic_ensureCapacity(struct_cells, cell_length, required_length)
 	Definir result_cells Como Texto;
 	result_cells = struct_cells;
 	si required_length > cell_length Entonces
-		result_cells = collectionCells_Dynamic_reSize(result_cells, required_length);
+		result_cells = cellsCollection_Dynamic_reSize(result_cells, required_length);
 	FinSi
 FinFuncion
 
-Funcion result_cells <- collectionCells_Dynamic_UpdateLength(struct_cells, new_fixed_length)
+Funcion result_cells <- cellsCollection_Dynamic_UpdateLength(struct_cells, new_fixed_length)
 	Definir result_cells, fixed_length Como Texto;
 	Definir start_fixed, end_fixed Como Entero;
 	start_fixed = increment(string_indexOf(struct_cells, symbol_cell_length()));
@@ -5787,7 +5787,7 @@ Funcion result_cells <- collectionCells_Dynamic_UpdateLength(struct_cells, new_f
 	result_cells = collection_replaceRange(struct_cells, fixed_length, start_fixed, end_fixed);
 FinFuncion
 //-----[ GETTERS ]----------------------------------------------------<#>
-Funcion element_type <- collectionCells_Dynamic_getCell(struct_cells, index)
+Funcion element_type <- cellsCollection_Dynamic_getCell(struct_cells, index)
 	Definir element_string, TYPE Como Texto;
 	TYPE = collection_getContent_TypeArea(struct_cells);
 	Segun TYPE Hacer
@@ -5796,10 +5796,10 @@ Funcion element_type <- collectionCells_Dynamic_getCell(struct_cells, index)
 		caso TYPE_BOOLEAN(): Definir element_type Como Logico;
 		De Otro Modo:        Definir element_type Como Texto;
 	FinSegun
-	element_type   =  collectionCells_getCell_toType(struct_cells, index, TYPE);
+	element_type   =  cellsCollection_getCell_toType(struct_cells, index, TYPE);
 FinFuncion
 
-Funcion element_type <- collectionCells_Dynamic_getCell_toType(struct_cells, index, TYPE)
+Funcion element_type <- cellsCollection_Dynamic_getCell_toType(struct_cells, index, TYPE)
 	Definir element_string Como Texto;
 	Segun TYPE Hacer
 		caso     TYPE_INT(): Definir element_type Como Numero;
@@ -5807,204 +5807,204 @@ Funcion element_type <- collectionCells_Dynamic_getCell_toType(struct_cells, ind
 		caso TYPE_BOOLEAN(): Definir element_type Como Logico;
 		De Otro Modo:        Definir element_type Como Texto;
 	FinSegun
-	element_type   =  collectionCells_getCell_toType(struct_cells, index, TYPE);
+	element_type   =  cellsCollection_getCell_toType(struct_cells, index, TYPE);
 FinFuncion
 
-Funcion result_cells <- collectionCells_Dynamic_getCell_toString(struct_cells, index)
+Funcion result_cells <- cellsCollection_Dynamic_getCell_toString(struct_cells, index)
 	Definir result_cells Como Texto;
-	result_cells = collectionCells_getCell_toString(struct_cells, index);
+	result_cells = cellsCollection_getCell_toString(struct_cells, index);
 FinFuncion
 //----[ ADD ]------------------------------------------------------------------------<#>
-Funcion result_cells <- collectionCells_Dynamic_add(struct_cells, element)
+Funcion result_cells <- cellsCollection_Dynamic_add(struct_cells, element)
 	Definir result_cells, TYPE Como Texto;
 	TYPE = collection_getContent_TypeArea(struct_cells);
-	result_cells = collectionCells_Dynamic_add_byType(struct_cells, element, TYPE);
+	result_cells = cellsCollection_Dynamic_add_byType(struct_cells, element, TYPE);
 FinFuncion
 
-Funcion result_cells <- collectionCells_Dynamic_add_byType(struct_cells, element, TYPE)
+Funcion result_cells <- cellsCollection_Dynamic_add_byType(struct_cells, element, TYPE)
 	Definir result_cells, element_string Como Texto;
 	element_string = value_TypeToString(element, TYPE);
-	result_cells = collectionCells_Dynamic_add_byString(struct_cells, element_string);
+	result_cells = cellsCollection_Dynamic_add_byString(struct_cells, element_string);
 FinFuncion
 
-Funcion result_cells <- collectionCells_Dynamic_add_byString(struct_cells, element_string)
+Funcion result_cells <- cellsCollection_Dynamic_add_byString(struct_cells, element_string)
 	Definir result_cells Como Texto;
 	Definir index_dataArea, cell_length, cells_size Como Entero;
 	result_cells  = struct_cells;
-	cell_length  = collectionCells_getCellLength(result_cells);
-	index_dataArea = collectionCells_getStartData(struct_cells);
-	cells_size    = collectionCells_getSize(result_cells);
-	result_cells  =  collectionCells_Dynamic_add_byString_force(struct_cells, element_string, index_dataArea, cells_size, cell_length);
+	cell_length  = cellsCollection_getCellLength(result_cells);
+	index_dataArea = cellsCollection_getStartData(struct_cells);
+	cells_size    = cellsCollection_getSize(result_cells);
+	result_cells  =  cellsCollection_Dynamic_add_byString_force(struct_cells, element_string, index_dataArea, cells_size, cell_length);
 	result_cells  = linearCollection_increment_numElement(result_cells);
 FinFuncion
 
-Funcion result_cells <- collectionCells_Dynamic_add_byString_force(struct_cells, element_string, index_start, index_insert, cell_length)
+Funcion result_cells <- cellsCollection_Dynamic_add_byString_force(struct_cells, element_string, index_start, index_insert, cell_length)
 	Definir result_cells Como Texto;
 	Definir element_length Como Entero;
 	result_cells  = struct_cells;
 	element_length = String_length(element_string);
-	result_cells  = collectionCells_Dynamic_ensureCapacity(struct_cells, cell_length, element_length);
+	result_cells  = cellsCollection_Dynamic_ensureCapacity(struct_cells, cell_length, element_length);
 	cell_length  = math_max_Int(cell_length, element_length);
-	result_cells  = collectionCells_add_byString_force(result_cells, element_string, index_start, index_insert, cell_length);
+	result_cells  = cellsCollection_add_byString_force(result_cells, element_string, index_start, index_insert, cell_length);
 FinFuncion
 //----[ RESIZE ]----------------------------------------------------------------------<#>
-Funcion result_cells <- collectionCells_Dynamic_reSize(struct_cells, new_fixed_Length)
+Funcion result_cells <- cellsCollection_Dynamic_reSize(struct_cells, new_fixed_Length)
 	Definir result_cells Como Texto;
 	Definir cells_size Como Entero;
 	result_cells = struct_cells;
-	cells_size   = collectionCells_getSize(result_cells);
-	result_cells = collectionCells_Dynamic_reSize_inRange(result_cells, new_fixed_Length, 0, cells_size);
-	result_cells = collectionCells_Dynamic_UpdateLength(result_cells, new_fixed_Length);
+	cells_size   = cellsCollection_getSize(result_cells);
+	result_cells = cellsCollection_Dynamic_reSize_inRange(result_cells, new_fixed_Length, 0, cells_size);
+	result_cells = cellsCollection_Dynamic_UpdateLength(result_cells, new_fixed_Length);
 FinFuncion
 
-Funcion result_cells <- collectionCells_Dynamic_reSize_inRange(struct_cells, new_fixed_Length, index_start, index_end)
+Funcion result_cells <- cellsCollection_Dynamic_reSize_inRange(struct_cells, new_fixed_Length, index_start, index_end)
 	Definir result_cells Como Texto;
 	Definir cell_length, index_endData, index_startData Como Entero;
 	result_cells = struct_cells;
-	cell_length = collectionCells_getCellLength(result_cells);
-	index_startData = collectionCells_getStartData(result_cells);
-	index_endData = collectionCells_calcule_indexBlock(index_startData, index_end, cell_length);
-	result_cells = collectionCells_Dynamic_reSize_inRange_force(result_cells, new_fixed_Length, index_start, index_end, index_endData, cell_length);
+	cell_length = cellsCollection_getCellLength(result_cells);
+	index_startData = cellsCollection_getStartData(result_cells);
+	index_endData = cellsCollection_calcule_indexBlock(index_startData, index_end, cell_length);
+	result_cells = cellsCollection_Dynamic_reSize_inRange_force(result_cells, new_fixed_Length, index_start, index_end, index_endData, cell_length);
 FinFuncion
 
-Funcion result_cells <- collectionCells_Dynamic_reSize_inRange_force(struct_cells, new_fixed_Length, index_start, index_end, index_endData, cell_length)
+Funcion result_cells <- cellsCollection_Dynamic_reSize_inRange_force(struct_cells, new_fixed_Length, index_start, index_end, index_endData, cell_length)
 	Definir result_cells Como Texto;
 	Definir  diff Como Entero;
 	diff = decrement_step(new_fixed_Length, cell_length);
 	result_cells = struct_cells;
 	Si diff > 0 Entonces
-		result_cells = __private_collectionCells_Dynamic_applyPadding(result_cells, diff, index_endData, index_start, index_end, cell_length);
+		result_cells = __private_cellsCollection_Dynamic_applyPadding(result_cells, diff, index_endData, index_start, index_end, cell_length);
 	FinSi
 	Si diff < 0 Entonces
 		diff = math_abs(diff);
-		result_cells = __private_collectionCells_Dynamic_applyCropping(result_cells, diff, index_endData, index_start, index_end, cell_length);
+		result_cells = __private_cellsCollection_Dynamic_applyCropping(result_cells, diff, index_endData, index_start, index_end, cell_length);
 	FinSi
 FinFuncion
 
-Funcion result_Padding <- __private_collectionCells_Dynamic_applyPadding(struct_cells, amount, index_endData, index_start, index_end, cell_length)
+Funcion result_Padding <- __private_cellsCollection_Dynamic_applyPadding(struct_cells, amount, index_endData, index_start, index_end, cell_length)
 	Definir result_Padding, padding_null Como Texto;
 	Definir current_pos, i Como Entero;
 	result_Padding = struct_cells;
-	padding_null = string_repeatText(collectionCells_symbol_Null(), amount);
+	padding_null = string_repeatText(cellsCollection_symbol_Null(), amount);
 	i = index_start;
 	Mientras i < index_end Hacer
-		current_pos = collectionCells_calcule_indexBlock_atEnd(index_endData, i, cell_length);
+		current_pos = cellsCollection_calcule_indexBlock_atEnd(index_endData, i, cell_length);
 		result_Padding = String_Insert(result_Padding, padding_null, current_pos);
 		i = increment(i);
 	FinMientras
 FinFuncion
 
-Funcion result_cells <- __private_collectionCells_Dynamic_applyCropping(struct_cells, amount, index_endData, index_start, index_end, cell_length)
+Funcion result_cells <- __private_cellsCollection_Dynamic_applyCropping(struct_cells, amount, index_endData, index_start, index_end, cell_length)
 	Definir result_cells Como Texto;
 	Definir current_pos, i Como Entero;
 	result_cells = struct_cells;
 	i = index_start;
 	Mientras i < index_end Hacer
-		current_pos = collectionCells_calcule_indexBlock_atEnd(index_endData, i, cell_length);
+		current_pos = cellsCollection_calcule_indexBlock_atEnd(index_endData, i, cell_length);
 		result_cells = String_Delete(result_cells, decrement_step(current_pos, amount), current_pos);
 		i = increment(i);
 	FinMientras
 FinFuncion
 ///%%%%%[ CELLS_COLLECTION_SETTER. ]%%%%%%%[   #CCS    ]%%%%%%%%%%%%%%%%%%
 //----[ ADD ]------------------------------------------------------------------------<#>
-Funcion result_cells <- collectionCells_Setter_add(struct_cells, element)
+Funcion result_cells <- cellsCollection_Setter_add(struct_cells, element)
 	Definir result_cells, TYPE Como Texto;
 	TYPE = collection_getContent_TypeArea(struct_cells);
-	result_cells = collectionCells_Setter_add_byType(struct_cells, element, TYPE);
+	result_cells = cellsCollection_Setter_add_byType(struct_cells, element, TYPE);
 FinFuncion
 
-Funcion result_cells <- collectionCells_Setter_add_byType(struct_cells, element, TYPE)
+Funcion result_cells <- cellsCollection_Setter_add_byType(struct_cells, element, TYPE)
 	Definir result_cells, element_string Como Texto;
 	element_string = value_TypeToString(element, TYPE);
-	result_cells = collectionCells_setter_add_byString(struct_cells, element_string);
+	result_cells = cellsCollection_setter_add_byString(struct_cells, element_string);
 FinFuncion
 
-Funcion result_cells <- collectionCells_setter_add_byString(struct_cells, element_string)
+Funcion result_cells <- cellsCollection_setter_add_byString(struct_cells, element_string)
 	Definir result_cells Como Texto;
-	si collectionCells_setter_constains(struct_cells, element_string) Entonces
+	si cellsCollection_setter_constains(struct_cells, element_string) Entonces
 		result_cells = struct_cells;
 	SiNo
-		result_cells = collectionCells_add_byString(struct_cells, element_string);
+		result_cells = cellsCollection_add_byString(struct_cells, element_string);
 	FinSi
 FinFuncion
 //----[ ADD_DYNAMIC ]----------------------------------------------------------------<#>
-Funcion result_cells <- collectionCells_setterDynamic_add(struct_cells, element)
+Funcion result_cells <- cellsCollection_setterDynamic_add(struct_cells, element)
 	Definir result_cells, TYPE Como Texto;
 	TYPE = collection_getContent_TypeArea(struct_cells);
-	result_cells = collectionCells_setterDynamic_add_byType(struct_cells, element, TYPE);
+	result_cells = cellsCollection_setterDynamic_add_byType(struct_cells, element, TYPE);
 FinFuncion
 
-Funcion result_cells <- collectionCells_setterDynamic_add_byType(struct_cells, element, TYPE)
+Funcion result_cells <- cellsCollection_setterDynamic_add_byType(struct_cells, element, TYPE)
 	Definir result_cells, element_string Como Texto;
 	element_string = value_TypeToString(element, TYPE);
-	result_cells = collectionCells_setterDynamic_add_byString(struct_cells, element_string);
+	result_cells = cellsCollection_setterDynamic_add_byString(struct_cells, element_string);
 FinFuncion
 
-Funcion result_cells <- collectionCells_setterDynamic_add_byString(struct_cells, element_string)
+Funcion result_cells <- cellsCollection_setterDynamic_add_byString(struct_cells, element_string)
 	Definir result_cells Como Texto;
-	si collectionCells_setter_constains(struct_cells, element_string) Entonces
+	si cellsCollection_setter_constains(struct_cells, element_string) Entonces
 		result_cells = struct_cells;
 	SiNo
-		result_cells = collectionCells_Dynamic_add_byString(struct_cells, element_string);
+		result_cells = cellsCollection_Dynamic_add_byString(struct_cells, element_string);
 	FinSi
 FinFuncion
 //----[ DELETE ]----------------------------------------------------<#>
-Funcion result_cells <- collectionCells_setter_delete(struct_cells, value)
+Funcion result_cells <- cellsCollection_setter_delete(struct_cells, value)
 	Definir result_cells, TYPE, value_string Como Texto;
-	TYPE = collectionCells_getType(struct_cells);
+	TYPE = cellsCollection_getType(struct_cells);
 	value_string = value_TypeToString(value, TYPE);
-	result_cells = collectionCells_setter_delete_byString(struct_cells, value_string);
+	result_cells = cellsCollection_setter_delete_byString(struct_cells, value_string);
 FinFuncion
 
-Funcion result_cells <- collectionCells_setter_delete_byString(struct_cells, value_string)
+Funcion result_cells <- cellsCollection_setter_delete_byString(struct_cells, value_string)
 	Definir result_cells Como Texto;
 	Definir index_target Como Entero;
-	index_target = collectionCells_setter_getIndex_byString(struct_cells, value_string);
+	index_target = cellsCollection_setter_getIndex_byString(struct_cells, value_string);
 	si !number_isEquals(index_target, number_NULL()) Entonces
-		result_cells = collectionCells_delete_byIndex(struct_cells, index_target);
+		result_cells = cellsCollection_delete_byIndex(struct_cells, index_target);
 	FinSi
 FinFuncion
 //----[ CONSTAINS ]----------------------------------------------------<#>
-Funcion constains_string <- collectionCells_setter_constains(struct_cells, element_string)
+Funcion constains_string <- cellsCollection_setter_constains(struct_cells, element_string)
 	Definir constains_string Como Logico;
-	constains_string = collectionCells_setter_getIndex_byString(struct_cells, element_string) >= 0;
+	constains_string = cellsCollection_setter_getIndex_byString(struct_cells, element_string) >= 0;
 FinFuncion
 
-Funcion constains_string <- collectionCells_setter_constains_inRange(struct_cells, element_string, index_start, index_end)
+Funcion constains_string <- cellsCollection_setter_constains_inRange(struct_cells, element_string, index_start, index_end)
 	Definir constains_string Como Logico;
-	constains_string = collectionCells_setter_getIndex_byString_inRange(struct_cells, element_string, index_start, index_end) >= 0;
+	constains_string = cellsCollection_setter_getIndex_byString_inRange(struct_cells, element_string, index_start, index_end) >= 0;
 FinFuncion
 
-Funcion constains_string <- collectionCells_setter_constains_inRange_force(struct_cells, element_string, index_start, index_end, index_data, cell_length)
+Funcion constains_string <- cellsCollection_setter_constains_inRange_force(struct_cells, element_string, index_start, index_end, index_data, cell_length)
 	Definir constains_string Como Logico;
-	constains_string = collectionCells_setter_getIndex_byString_inRange_force(struct_cells, element_string, index_start, index_end, index_data, cell_length) >= 0;
+	constains_string = cellsCollection_setter_getIndex_byString_inRange_force(struct_cells, element_string, index_start, index_end, index_data, cell_length) >= 0;
 FinFuncion
 //----[ INDEX ]-----------------------------------------------------------------------<#>
-Funcion index_cell <- collectionCells_setter_getIndex(struct_cells, value_search)
+Funcion index_cell <- cellsCollection_setter_getIndex(struct_cells, value_search)
 	Definir TYPE, string_search Como Texto;
 	Definir index_cell Como Entero;
-	TYPE          = collectionCells_getType(struct_cells);
+	TYPE          = cellsCollection_getType(struct_cells);
 	string_search = value_TypeToString(value_search, TYPE);
-	index_cell    = collectionCells_setter_getIndex_byString(struct_cells, element_string);
+	index_cell    = cellsCollection_setter_getIndex_byString(struct_cells, element_string);
 FinFuncion
 
-Funcion index_cell <- collectionCells_setter_getIndex_byString(struct_cells, element_string)
+Funcion index_cell <- cellsCollection_setter_getIndex_byString(struct_cells, element_string)
 	Definir index_cell, cells_size Como Entero;
-	cells_size = collectionCells_getSize(struct_cells);
-	index_cell <- collectionCells_setter_getIndex_byString_inRange(struct_cells, element_string, 0, cells_size);
+	cells_size = cellsCollection_getSize(struct_cells);
+	index_cell <- cellsCollection_setter_getIndex_byString_inRange(struct_cells, element_string, 0, cells_size);
 FinFuncion
 
-Funcion index_cell <- collectionCells_setter_getIndex_byString_inRange(struct_cells, element_string, index_start, index_end)
+Funcion index_cell <- cellsCollection_setter_getIndex_byString_inRange(struct_cells, element_string, index_start, index_end)
 	Definir index_cell, cell_length, index_startData Como Entero;
-	cell_length = collectionCells_getCellLength(struct_cells);
-	index_startData = collectionCells_getStartData(struct_cells);
-	index_cell  = collectionCells_setter_getIndex_byString_inRange_force(struct_cells, element_string, index_start, index_end, index_startData, cell_length);
+	cell_length = cellsCollection_getCellLength(struct_cells);
+	index_startData = cellsCollection_getStartData(struct_cells);
+	index_cell  = cellsCollection_setter_getIndex_byString_inRange_force(struct_cells, element_string, index_start, index_end, index_startData, cell_length);
 FinFuncion
 
-Funcion index_cell <- collectionCells_setter_getIndex_byString_inRange_force(struct_cells, element_string, index_start, index_end, index_data, cell_length)
+Funcion index_cell <- cellsCollection_setter_getIndex_byString_inRange_force(struct_cells, element_string, index_start, index_end, index_data, cell_length)
 	Definir index_cell, i, current_pos, next_pos Como Entero;
 	Definir current_data Como Texto;
-	element_string = collectionCells_String_normalizedToBlockLegth(element_string, cell_length);
+	element_string = cellsCollection_String_normalizedToBlockLegth(element_string, cell_length);
 	index_cell = number_NULL();
 	i = index_start;
 	current_pos = index_data;
@@ -6019,52 +6019,52 @@ Funcion index_cell <- collectionCells_setter_getIndex_byString_inRange_force(str
 		i = increment(i);
 	FinMientras
 FinFuncion
-///%%%%%[ COLLECTION_DUAL_CELLS... ]%%%%%%%[   #CDC    ]%%%%%%%%%%%%%%%%%%
-Funcion new_collectionCells <- collectionDualCells_new(struct_name, TYPE, fixed_Length, TYPE_right, fixed_Length_two)
-	Definir new_collectionCells, quatity_two, type_two Como Texto;
+///%%%%%[ DUAL_CELLS_COLLECTION... ]%%%%%%%[   #DCC    ]%%%%%%%%%%%%%%%%%%
+Funcion new_cellsCollection <- dualCellsCollection_new(struct_name, TYPE, fixed_Length, TYPE_right, fixed_Length_two)
+	Definir new_cellsCollection, quatity_two, type_two Como Texto;
 	Definir index_insert Como Entero;
-	new_collectionCells = collectionCells_new(struct_name, TYPE, fixed_Length);
+	new_cellsCollection = cellsCollection_new(struct_name, TYPE, fixed_Length);
 	quatity_two = num_toString(fixed_Length_two);
 	type_two  = String_append(symbol_cell_type(), TYPE_right);
-	index_insert = collection_getIndex_typeArea(new_collectionCells);
-	new_collectionCells = string_insert(new_collectionCells, type_two, index_insert);
-	index_insert = linearCollection_getIndex_ExtraData(new_collectionCells);
-	new_collectionCells = string_insert(new_collectionCells, quatity_two, index_insert);
-	new_collectionCells = string_insert(new_collectionCells, symbol_metaData(), index_insert);
+	index_insert = collection_getIndex_typeArea(new_cellsCollection);
+	new_cellsCollection = string_insert(new_cellsCollection, type_two, index_insert);
+	index_insert = linearCollection_getIndex_ExtraData(new_cellsCollection);
+	new_cellsCollection = string_insert(new_cellsCollection, quatity_two, index_insert);
+	new_cellsCollection = string_insert(new_cellsCollection, symbol_metaData(), index_insert);
 FinFuncion
 //-----[ UTILITIES ]----------------------------------------------------<#>
-Funcion result_cells <- collectionDualCells_UpdateLength_right(struct_cells, new_fixed_Length)
+Funcion result_cells <- dualCellsCollection_UpdateLength_right(struct_cells, new_fixed_Length)
 	Definir result_cells Como Texto;
 	result_cells = collection_replaceRange_between_lastSymbols(struct_cells, num_toString(new_fixed_Length), symbol_metaData(), symbol_ExtraData());
 FinFuncion
 
-Funcion result_cells <- collectionDualCells_Dynamic_ensureCapacity_left(struct_cells, cell_length, required_length)
+Funcion result_cells <- dualCellsCollection_Dynamic_ensureCapacity_left(struct_cells, cell_length, required_length)
 	Definir result_cells Como Texto;//wrapper
-	result_cells  = collectionCells_Dynamic_ensureCapacity(struct_cells, cell_length, required_length);
+	result_cells  = cellsCollection_Dynamic_ensureCapacity(struct_cells, cell_length, required_length);
 FinFuncion
 
-Funcion result_cells <- collectionDualCells_Dynamic_ensureCapacity_right(struct_cells, cell_length, required_length)
+Funcion result_cells <- dualCellsCollection_Dynamic_ensureCapacity_right(struct_cells, cell_length, required_length)
 	Definir result_cells Como Texto;
 	result_cells = struct_cells;
 	si required_length > cell_length Entonces
-		result_cells = collectionDualCells_Dynamic_reSize_right(result_cells, required_length);
+		result_cells = dualCellsCollection_Dynamic_reSize_right(result_cells, required_length);
 	FinSi
 FinFuncion
 
-Funcion result_cells <- collectionDualCells_Dynamic_ensureCapacity_right_force(struct_cells, cell_length, required_length, index_endData, cells_size)
+Funcion result_cells <- dualCellsCollection_Dynamic_ensureCapacity_right_force(struct_cells, cell_length, required_length, index_endData, cells_size)
 	Definir result_cells Como Texto;
 	result_cells = struct_cells;
 	si required_length > cell_length Entonces
-		result_cells = collectionDualCells_Dynamic_reSize_right_force(struct_cells, required_length, index_endData, cells_size, cell_length);
+		result_cells = dualCellsCollection_Dynamic_reSize_right_force(struct_cells, required_length, index_endData, cells_size, cell_length);
 	FinSi
 FinFuncion
 
-Funcion isValidLength <- collectionDualCells_validateFixedLength(element_string, cell_length)
+Funcion isValidLength <- dualCellsCollection_validateFixedLength(element_string, cell_length)
 	Definir isValidLength Como Logico;
 	isValidLength = String_length(element_string) <= cell_length;
 FinFuncion
 
-Funcion isValidLength <- collectionDualCells_validateFixedLength_Mode(element_string, cell_length, MODE, direction)
+Funcion isValidLength <- dualCellsCollection_validateFixedLength_Mode(element_string, cell_length, MODE, direction)
 	Definir isValidLength, mode_isFixed Como Logico;
 	segun MODE Hacer
 		caso CELL_FIXED():
@@ -6075,168 +6075,168 @@ Funcion isValidLength <- collectionDualCells_validateFixedLength_Mode(element_st
 			mode_isFixed = false();
 	FinSegun
 	isValidLength = true();
-	si mode_isFixed & !collectionDualCells_validateFixedLength(element_string, cell_length) Entonces
-		error_message_Function("collectionDualCells_validateFixedLength_Mode()", string_append(direction, " :: element exceeds cells size"));
+	si mode_isFixed & !dualCellsCollection_validateFixedLength(element_string, cell_length) Entonces
+		error_message_Function("dualCellsCollection_validateFixedLength_Mode()", string_append(direction, " :: element exceeds cells size"));
 		isValidLength = false();
 	FinSi
 FinFuncion
 //----[ ADD ]------------------------------------------------------------------------<#>
-Funcion result_cells <- collectionDualCells_add_byString_right_force(struct_cells, element_string, index_end, index_insert, cell_length)
+Funcion result_cells <- dualCellsCollection_add_byString_right_force(struct_cells, element_string, index_end, index_insert, cell_length)
 	Definir result_cells Como Texto;
 	Definir cells_index Como Entero;
 	result_cells = struct_cells;
-	element_string = collectionCells_String_normalizedToBlockLegth(element_string, cell_length);
-	cells_index = collectionCells_calcule_indexBlock_atEnd(index_end, index_insert, cell_length);
+	element_string = cellsCollection_String_normalizedToBlockLegth(element_string, cell_length);
+	cells_index = cellsCollection_calcule_indexBlock_atEnd(index_end, index_insert, cell_length);
 	result_cells = String_insert(result_cells, element_string, cells_index);
 FinFuncion
 
-Funcion result_cells <- collectionDualCells_add_byString_left_force(struct_cells, element_string, index_start, index_insert, cell_length)
+Funcion result_cells <- dualCellsCollection_add_byString_left_force(struct_cells, element_string, index_start, index_insert, cell_length)
 	Definir result_cells Como Texto;//wrapper
-	result_cells = collectionCells_add_byString_force(struct_cells, element_string, index_start, index_insert, cell_length);
+	result_cells = cellsCollection_add_byString_force(struct_cells, element_string, index_start, index_insert, cell_length);
 FinFuncion
 //----[ ADD_DYNAMIC ]----------------------------------------------------------------<#>
-Funcion result_cells <- collectionDualCells_Dynamic_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length)
+Funcion result_cells <- dualCellsCollection_Dynamic_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length)
 	Definir result_cells Como Texto;
 	Definir element_length, cells_size Como Entero;
 	result_cells  = struct_cells;
 	element_length = String_length(element_string);
-	cells_size    = collectionCells_getSize(result_cells);
-	result_cells  = collectionDualCells_Dynamic_ensureCapacity_right_force(struct_cells, cell_length, element_length, index_endData, cells_size);
+	cells_size    = cellsCollection_getSize(result_cells);
+	result_cells  = dualCellsCollection_Dynamic_ensureCapacity_right_force(struct_cells, cell_length, element_length, index_endData, cells_size);
 	si  element_length > cell_length Entonces
 		cell_length  =  element_length;
-		index_endData = collectionDualCells_getEndData(result_cells);
+		index_endData = dualCellsCollection_getEndData(result_cells);
 	FinSi
-	result_cells  = collectionDualCells_add_byString_right_force(result_cells, element_string, index_endData, index_insert, cell_length);
+	result_cells  = dualCellsCollection_add_byString_right_force(result_cells, element_string, index_endData, index_insert, cell_length);
 FinFuncion
 
-Funcion result_cells <- collectionDualCells_Dynamic_add_byString_left_force(struct_cells, element_string, index_start, index_insert, cell_length)
+Funcion result_cells <- dualCellsCollection_Dynamic_add_byString_left_force(struct_cells, element_string, index_start, index_insert, cell_length)
 	Definir result_cells Como Texto;
-	result_cells = collectionCells_Dynamic_add_byString_force(struct_cells, element_string, index_start, index_insert, cell_length);
+	result_cells = cellsCollection_Dynamic_add_byString_force(struct_cells, element_string, index_start, index_insert, cell_length);
 FinFuncion
 //----[ RESIZE ]----------------------------------------------------------------------<#>
-Funcion result_cells <- collectionDualCells_Dynamic_reSize_right(struct_cells, new_fixed_Length)
+Funcion result_cells <- dualCellsCollection_Dynamic_reSize_right(struct_cells, new_fixed_Length)
 	Definir result_cells Como Texto;
 	Definir cell_length, cells_size, index_endData Como Entero;	
-	cell_length = collectionDualCells_getCellLength_right(struct_cells);
-	index_endData = collectionDualCells_getEndData(struct_cells);
-	cells_size    = collectionCells_getSize(struct_cells);
-	result_cells = collectionCells_Dynamic_reSize_inRange_force(struct_cells, new_fixed_Length, 0, cells_size, index_endData, cell_length);	
+	cell_length = dualCellsCollection_getCellLength_right(struct_cells);
+	index_endData = dualCellsCollection_getEndData(struct_cells);
+	cells_size    = cellsCollection_getSize(struct_cells);
+	result_cells = cellsCollection_Dynamic_reSize_inRange_force(struct_cells, new_fixed_Length, 0, cells_size, index_endData, cell_length);	
 FinFuncion
 
-Funcion result_cells <- collectionDualCells_Dynamic_reSize_right_force(struct_cells, new_fixed_Length, index_endData, cells_size, cell_length)
+Funcion result_cells <- dualCellsCollection_Dynamic_reSize_right_force(struct_cells, new_fixed_Length, index_endData, cells_size, cell_length)
 	Definir result_cells Como Texto;
-	result_cells = collectionCells_Dynamic_reSize_inRange_force(struct_cells, new_fixed_Length, 0, cells_size, index_endData, cell_length);	
-	result_cells = collectionDualCells_UpdateLength_right(result_cells, new_fixed_Length);
+	result_cells = cellsCollection_Dynamic_reSize_inRange_force(struct_cells, new_fixed_Length, 0, cells_size, index_endData, cell_length);	
+	result_cells = dualCellsCollection_UpdateLength_right(result_cells, new_fixed_Length);
 FinFuncion
 //----[ ADD_SETTER ]----------------------------------------------------<#>
-Funcion result_cells <- collectionDualCells_setter_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length)
+Funcion result_cells <- dualCellsCollection_setter_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length)
 	Definir result_cells Como Texto;
-	Si collectionDualCells_setter_constains_left(struct_cells, element_string) Entonces
+	Si dualCellsCollection_setter_constains_left(struct_cells, element_string) Entonces
 		result_cells = struct_cells;
 	SiNo
-		result_cells = collectionDualCells_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length);
+		result_cells = dualCellsCollection_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length);
 	FinSi
 FinFuncion
 
-Funcion result_cells <- collectionDualCells_setter_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length)
+Funcion result_cells <- dualCellsCollection_setter_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length)
 	Definir result_cells Como Texto;
-	Si collectionDualCells_setter_constains_right(struct_cells, element_string) Entonces
+	Si dualCellsCollection_setter_constains_right(struct_cells, element_string) Entonces
 		result_cells = struct_cells;
 	SiNo
-		result_cells  = collectionDualCells_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length);
+		result_cells  = dualCellsCollection_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length);
 	FinSi
 FinFuncion
 //----[ CONSTAINS ]-------------------------------------------------------------------<#>
-Funcion constains_string <- collectionDualCells_setter_constains_right(struct_cells, element_string)
+Funcion constains_string <- dualCellsCollection_setter_constains_right(struct_cells, element_string)
 	Definir constains_string Como Logico;
-	constains_string = collectionDualCells_setter_getIndex_right_byString(struct_cells, element_string) >= 0;
+	constains_string = dualCellsCollection_setter_getIndex_right_byString(struct_cells, element_string) >= 0;
 FinFuncion
 
-Funcion constains_string <- collectionDualCells_setter_constains_left(struct_cells, element_string)
+Funcion constains_string <- dualCellsCollection_setter_constains_left(struct_cells, element_string)
 	Definir constains_string Como Logico;
-	constains_string = collectionCells_setter_getIndex_byString(struct_cells, element_string) >= 0;
+	constains_string = cellsCollection_setter_getIndex_byString(struct_cells, element_string) >= 0;
 FinFuncion
 //----[ INDEX ]-----------------------------------------------------------------------<#>
-Funcion index_cell <- collectionDualCells_setter_getIndex_left_byString(struct_cells, element_string)
+Funcion index_cell <- dualCellsCollection_setter_getIndex_left_byString(struct_cells, element_string)
 	Definir index_cell Como Entero;
-	index_cell = collectionCells_setter_getIndex_byString(struct_cells, element_string);
+	index_cell = cellsCollection_setter_getIndex_byString(struct_cells, element_string);
 FinFuncion
 
-Funcion index_cell <- collectionDualCells_setter_getIndex_right(struct_cells, value_search)
+Funcion index_cell <- dualCellsCollection_setter_getIndex_right(struct_cells, value_search)
 	Definir TYPE, string_search Como Texto; 
 	Definir index_cell Como Entero;
-	TYPE          = collectionDualCells_getType_right(struct_cells);
+	TYPE          = dualCellsCollection_getType_right(struct_cells);
 	string_search = value_TypeToString(value_search, TYPE);
-	index_cell    = collectionDualCells_setter_getIndex_right_byString(struct_cells, string_search);
+	index_cell    = dualCellsCollection_setter_getIndex_right_byString(struct_cells, string_search);
 FinFuncion
 
-Funcion index_cell <- collectionDualCells_setter_getIndex_right_byString(struct_cells, element_string)
+Funcion index_cell <- dualCellsCollection_setter_getIndex_right_byString(struct_cells, element_string)
 	Definir index_cell, element_length, cell_length Como Entero;
 	element_length = string_length(element_string);
-	cell_length = collectionDualCells_getCellLength_right(struct_cells);
+	cell_length = dualCellsCollection_getCellLength_right(struct_cells);
 	si (element_length > cell_length) Entonces
 		index_cell = number_NULL();
 	SiNo
-		index_cell = collectionDualCells_setter_getIndex_right_byString_force(struct_cells, element_string, cell_length);	
+		index_cell = dualCellsCollection_setter_getIndex_right_byString_force(struct_cells, element_string, cell_length);	
 	FinSi
 FinFuncion
 
-Funcion index_cell <- collectionDualCells_setter_getIndex_right_byString_force(struct_cells, element_string, cell_length)
+Funcion index_cell <- dualCellsCollection_setter_getIndex_right_byString_force(struct_cells, element_string, cell_length)
 	Definir index_cell, index_endData, cells_size, index_startData_right Como Entero;	
-	index_endData         = collectionDualCells_getEndData(struct_cells);
-	cells_size           = collectionCells_getSize(struct_cells);
-	index_startData_right = collectionCells_calcule_indexBlock_atEnd(index_endData, cells_size, cell_length);
-	index_cell          = collectionCells_setter_getIndex_byString_inRange_force(struct_cells, element_string, 0, cells_size, index_startData_right, cell_length);
+	index_endData         = dualCellsCollection_getEndData(struct_cells);
+	cells_size           = cellsCollection_getSize(struct_cells);
+	index_startData_right = cellsCollection_calcule_indexBlock_atEnd(index_endData, cells_size, cell_length);
+	index_cell          = cellsCollection_setter_getIndex_byString_inRange_force(struct_cells, element_string, 0, cells_size, index_startData_right, cell_length);
 	si (index_cell >= 0) Entonces
 		index_cell = decrement_step(decrement(cells_size), index_cell);
 	FinSi
 FinFuncion
 //----[ ADD_SETTER_DYNAMIC ]----------------------------------------------------------<#>
-Funcion result_cells <- collectionDualCells_setterDynamic_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length)
+Funcion result_cells <- dualCellsCollection_setterDynamic_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length)
 	Definir result_cells Como Texto;	
-	Si collectionDualCells_setter_constains_right(struct_cells, element_string) Entonces
+	Si dualCellsCollection_setter_constains_right(struct_cells, element_string) Entonces
 		result_cells = struct_cells;
 	SiNo
-		result_cells = collectionDualCells_Dynamic_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length);
+		result_cells = dualCellsCollection_Dynamic_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length);
 	FinSi
 FinFuncion
 
-Funcion result_cells <- collectionDualCells_setterDynamic_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length)
+Funcion result_cells <- dualCellsCollection_setterDynamic_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length)
 	Definir result_cells Como Texto;	
-	Si collectionDualCells_setter_constains_left(struct_cells, element_string) Entonces
+	Si dualCellsCollection_setter_constains_left(struct_cells, element_string) Entonces
 		result_cells = struct_cells;
 	SiNo
-		result_cells = collectionDualCells_Dynamic_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length);
+		result_cells = dualCellsCollection_Dynamic_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length);
 	FinSi
 FinFuncion
 //----[ ADD ]--------------------------------------------------------------------<#>
-Funcion result_cells <- collectionDualCells_mode_add(struct_cells, element_left, MODE, element_right, MODE_TWO)
+Funcion result_cells <- dualCellsCollection_mode_add(struct_cells, element_left, MODE, element_right, MODE_TWO)
 	Definir result_cells, TYPE,TYPE_TWO Como Texto;
-	TYPE          = collectionDualCells_getType_left(struct_cells);
-	TYPE_TWO      = collectionDualCells_getType_right(struct_cells);
-	result_cells = collectionDualCells_mode_add_byType(struct_cells, element_left, MODE, TYPE, element_right, MODE_TWO, TYPE_TWO);
+	TYPE          = dualCellsCollection_getType_left(struct_cells);
+	TYPE_TWO      = dualCellsCollection_getType_right(struct_cells);
+	result_cells = dualCellsCollection_mode_add_byType(struct_cells, element_left, MODE, TYPE, element_right, MODE_TWO, TYPE_TWO);
 FinFuncion
 
-Funcion result_cells <- collectionDualCells_mode_add_byType(struct_cells, element_left, MODE, TYPE, element_right, MODE_TWO, TYPE_TWO)
+Funcion result_cells <- dualCellsCollection_mode_add_byType(struct_cells, element_left, MODE, TYPE, element_right, MODE_TWO, TYPE_TWO)
 	Definir result_cells, element_string_left, element_string_right Como Texto;
 	element_string_left  = value_TypeToString(element_left, TYPE);
 	element_string_right = value_TypeToString(element_right, TYPE_TWO);
-	result_cells        = collectionDualCells_mode_add_byString(struct_cells, element_string_left, MODE, element_string_right, MODE_TWO);
+	result_cells        = dualCellsCollection_mode_add_byString(struct_cells, element_string_left, MODE, element_string_right, MODE_TWO);
 FinFuncion
 
-Funcion result_cells <- collectionDualCells_mode_add_byString(struct_cells, element_string_left, MODE, element_string_right, MODE_TWO)
+Funcion result_cells <- dualCellsCollection_mode_add_byString(struct_cells, element_string_left, MODE, element_string_right, MODE_TWO)
 	Definir result_cells Como Texto;
 	Definir index_insert, last_length Como Entero;
 	Definir verifyChange Como Logico;
 	result_cells  = struct_cells;
 	last_length   = string_Length(result_cells);
-	index_insert  = collectionDualCells_getSize(struct_cells);
-	result_cells  = collectionDualCells_mode_add_byString_right(result_cells, element_string_right, MODE_TWO, index_insert);
-	verifyChange  = collectionCells_isChanged(result_cells, last_length);
+	index_insert  = dualCellsCollection_getSize(struct_cells);
+	result_cells  = dualCellsCollection_mode_add_byString_right(result_cells, element_string_right, MODE_TWO, index_insert);
+	verifyChange  = cellsCollection_isChanged(result_cells, last_length);
 	si verifyChange Entonces
 		last_length   = string_Length(result_cells);
-		result_cells = collectionDualCells_mode_add_byString_left(result_cells, element_string_left, MODE, index_insert);
-		verifyChange = collectionCells_isChanged(result_cells, last_length);
+		result_cells = dualCellsCollection_mode_add_byString_left(result_cells, element_string_left, MODE, index_insert);
+		verifyChange = cellsCollection_isChanged(result_cells, last_length);
 	FinSi
 	si verifyChange Entonces
 		result_cells = linearCollection_increment_numElement(result_cells);
@@ -6245,66 +6245,66 @@ Funcion result_cells <- collectionDualCells_mode_add_byString(struct_cells, elem
 	FinSi
 FinFuncion
 
-Funcion result_cells <- collectionDualCells_mode_add_byString_left(struct_cells, element_string, MODE, index_insert)
+Funcion result_cells <- dualCellsCollection_mode_add_byString_left(struct_cells, element_string, MODE, index_insert)
 	Definir result_cells Como Texto;
 	Definir index_startData, cell_length Como Entero;
 	result_cells     = struct_cells;
-	index_startData   = collectionCells_getStartData(result_cells);
-	cell_length   = collectionDualCells_getCellLength_left(result_cells);
-	si collectionDualCells_validateFixedLength_Mode(element_string, cell_length, MODE, "[LEFT]") Entonces
-		result_cells = collectionDualCells_mode_add_byString_left_force(result_cells, element_string, index_startData, index_insert, cell_length, MODE);	
+	index_startData   = cellsCollection_getStartData(result_cells);
+	cell_length   = dualCellsCollection_getCellLength_left(result_cells);
+	si dualCellsCollection_validateFixedLength_Mode(element_string, cell_length, MODE, "[LEFT]") Entonces
+		result_cells = dualCellsCollection_mode_add_byString_left_force(result_cells, element_string, index_startData, index_insert, cell_length, MODE);	
 	FinSi
 FinFuncion
 
-Funcion result_cells <- collectionDualCells_mode_add_byString_right(struct_cells, element_string, MODE, index_insert)
+Funcion result_cells <- dualCellsCollection_mode_add_byString_right(struct_cells, element_string, MODE, index_insert)
 	Definir result_cells Como Texto;
 	Definir index_endData, cell_length Como Entero;
 	result_cells     = struct_cells;
-	index_endData     = collectionDualCells_getEndData(result_cells);
-	cell_length = collectionDualCells_getCellLength_right(result_cells);
-	si collectionDualCells_validateFixedLength_Mode(element_string, cell_length, MODE, "[RIGHT]") Entonces
-		result_cells = collectionDualCells_mode_add_byString_right_force(result_cells, element_string, index_endData, index_insert, cell_length, MODE);
+	index_endData     = dualCellsCollection_getEndData(result_cells);
+	cell_length = dualCellsCollection_getCellLength_right(result_cells);
+	si dualCellsCollection_validateFixedLength_Mode(element_string, cell_length, MODE, "[RIGHT]") Entonces
+		result_cells = dualCellsCollection_mode_add_byString_right_force(result_cells, element_string, index_endData, index_insert, cell_length, MODE);
 	FinSi
 FinFuncion
 
-Funcion result_cells <- collectionDualCells_mode_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length, MODE)
+Funcion result_cells <- dualCellsCollection_mode_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length, MODE)
 	Definir result_cells Como Texto;
 	segun MODE Hacer
 		caso CELL_FIXED():
-			result_cells = collectionDualCells_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length);
+			result_cells = dualCellsCollection_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length);
 		caso CELL_SETTER():
-			result_cells = collectionDualCells_setter_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length);
+			result_cells = dualCellsCollection_setter_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length);
 		caso CELL_DYNAMIC():
-			result_cells = collectionDualCells_Dynamic_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length);
+			result_cells = dualCellsCollection_Dynamic_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length);
 		caso CELL_SETTER_DYNAMIC():
-			result_cells = collectionDualCells_setterDynamic_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length);
+			result_cells = dualCellsCollection_setterDynamic_add_byString_left_force(struct_cells, element_string, index_startData, index_insert, cell_length);
 		De Otro Modo:
-			error_message_Function("collectionDualCells_mode_add_byString_left_force(cells, element, Istart, Iinsert, lengthCell, mode)", string_append("[LEFT] mode not exist: ", MODE));
+			error_message_Function("dualCellsCollection_mode_add_byString_left_force(cells, element, Istart, Iinsert, lengthCell, mode)", string_append("[LEFT] mode not exist: ", MODE));
 			result_cells = struct_cells;
 	FinSegun
 FinFuncion
 
-Funcion result_cells <- collectionDualCells_mode_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length, MODE)
+Funcion result_cells <- dualCellsCollection_mode_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length, MODE)
 	Definir result_cells Como Texto;
 	segun MODE Hacer
 		caso CELL_FIXED():
-			result_cells = collectionDualCells_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length);
+			result_cells = dualCellsCollection_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length);
 		caso CELL_SETTER():
-			result_cells = collectionDualCells_setter_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length);
+			result_cells = dualCellsCollection_setter_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length);
 		caso CELL_DYNAMIC():
-			result_cells = collectionDualCells_Dynamic_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length);
+			result_cells = dualCellsCollection_Dynamic_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length);
 		caso CELL_SETTER_DYNAMIC():
-			result_cells = collectionDualCells_setterDynamic_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length);
+			result_cells = dualCellsCollection_setterDynamic_add_byString_right_force(struct_cells, element_string, index_endData, index_insert, cell_length);
 		De Otro Modo:
-			error_message_Function("collectionDualCells_mode_add_byString_left_force(cells, element, Istart, Iinsert, lengthCell, mode)", string_append("[right] mode not exist: ", MODE));
+			error_message_Function("dualCellsCollection_mode_add_byString_left_force(cells, element, Istart, Iinsert, lengthCell, mode)", string_append("[right] mode not exist: ", MODE));
 			result_cells = struct_cells;
 	FinSegun
 FinFuncion
 //----[ GETTERS ]--------------------------------------------------------------------<#>
-Funcion element_left <- collectionDualCells_getCellPair_byRightValue(struct_cells, value_right)
+Funcion element_left <- dualCellsCollection_getCellPair_byRightValue(struct_cells, value_right)
 	Definir element_string, TYPE Como Texto;
-	element_string = collectionDualCells_getCellPair_byRightValue_ToString(struct_cells, value_right);
-	TYPE = collectionDualCells_getType_left(struct_cells);
+	element_string = dualCellsCollection_getCellPair_byRightValue_ToString(struct_cells, value_right);
+	TYPE = dualCellsCollection_getType_left(struct_cells);
 	Segun TYPE Hacer
 		Caso TYPE_INT():     Definir element_left Como Numero;
 		Caso TYPE_FLOAT():   Definir element_left Como Real;
@@ -6314,23 +6314,23 @@ Funcion element_left <- collectionDualCells_getCellPair_byRightValue(struct_cell
 	element_left = value_stringToType(element_string, TYPE);
 FinFuncion
 
-Funcion element_left <- collectionDualCells_getCellPair_byRightValue_ToString(struct_cells, value_right)
+Funcion element_left <- dualCellsCollection_getCellPair_byRightValue_ToString(struct_cells, value_right)
 	Definir element_left, TYPE, value_string Como Texto;
 	Definir index_pair Como Entero;
-	TYPE = collectionDualCells_getType_right(struct_cells);
+	TYPE = dualCellsCollection_getType_right(struct_cells);
 	value_string = value_TypeToString(value_right, TYPE);
-	index_pair = collectionDualCells_setter_getIndex_right_byString(struct_cells, value_string);
+	index_pair = dualCellsCollection_setter_getIndex_right_byString(struct_cells, value_string);
 	Si index_pair >= 0 Entonces
-		element_left = collectionDualCells_getCell_left_toString(struct_cells, index_pair);
+		element_left = dualCellsCollection_getCell_left_toString(struct_cells, index_pair);
 	SiNo
 		element_left = string_NULL();
 	FinSi
 FinFuncion
 
-Funcion element_right <- collectionDualCells_getCellPair_byLeftValue(struct_cells, value_left)
+Funcion element_right <- dualCellsCollection_getCellPair_byLeftValue(struct_cells, value_left)
 	Definir element_string, TYPE Como Texto;
-	element_string = collectionDualCells_getCellPair_byLeftValue_ToString(struct_cells, value_left);
-	TYPE = collectionDualCells_getType_right(struct_cells);
+	element_string = dualCellsCollection_getCellPair_byLeftValue_ToString(struct_cells, value_left);
+	TYPE = dualCellsCollection_getType_right(struct_cells);
 	Segun TYPE Hacer
 		caso     TYPE_INT(): Definir element_right Como Numero;
 		caso   TYPE_FLOAT(): Definir element_right Como Real;
@@ -6340,20 +6340,20 @@ Funcion element_right <- collectionDualCells_getCellPair_byLeftValue(struct_cell
 	element_right = value_stringToType(element_string, TYPE);
 FinFuncion
 
-Funcion element_right <- collectionDualCells_getCellPair_byLeftValue_ToString(struct_cells, value_left)
+Funcion element_right <- dualCellsCollection_getCellPair_byLeftValue_ToString(struct_cells, value_left)
 	Definir element_right, TYPE, value_string Como Texto;
 	Definir index_pair Como Entero;
-	TYPE = collectionDualCells_getType_left(struct_cells);
+	TYPE = dualCellsCollection_getType_left(struct_cells);
 	value_string = value_TypeToString(value_left, TYPE);
-	index_pair = collectionDualCells_setter_getIndex_left_byString(struct_cells, value_string);
+	index_pair = dualCellsCollection_setter_getIndex_left_byString(struct_cells, value_string);
 	si index_pair >= 0 Entonces
-		element_right = collectionDualCells_getCell_right_toString(struct_cells, index_pair);
+		element_right = dualCellsCollection_getCell_right_toString(struct_cells, index_pair);
 	SiNo
 		element_right = string_NULL();
 	FinSi
 FinFuncion
 
-Funcion element_type <- collectionDualCells_getCell_left(struct_cells, index)
+Funcion element_type <- dualCellsCollection_getCell_left(struct_cells, index)
 	Definir element_string, TYPE Como Texto;
 	TYPE = collection_getContent_TypeArea(struct_cells);
 	Segun TYPE Hacer
@@ -6362,11 +6362,11 @@ Funcion element_type <- collectionDualCells_getCell_left(struct_cells, index)
 		caso TYPE_BOOLEAN(): Definir element_type Como Logico;
 		De Otro Modo:        Definir element_type Como Texto;
 	FinSegun
-	element_string = collectionDualCells_getCell_left_toString(struct_cells, index);
+	element_string = dualCellsCollection_getCell_left_toString(struct_cells, index);
 	element_type   = value_stringToType(element_string, TYPE);
 FinFuncion
 
-Funcion element_type <- collectionDualCells_getCell_left_toType(struct_cells, index, TYPE)
+Funcion element_type <- dualCellsCollection_getCell_left_toType(struct_cells, index, TYPE)
 	Definir element_string Como Texto;
 	Segun TYPE Hacer
 		caso     TYPE_INT(): Definir element_type Como Numero;
@@ -6374,30 +6374,30 @@ Funcion element_type <- collectionDualCells_getCell_left_toType(struct_cells, in
 		caso TYPE_BOOLEAN(): Definir element_type Como Logico;
 		De Otro Modo:        Definir element_type Como Texto;
 	FinSegun
-	element_string = collectionDualCells_getCell_left_toString(struct_cells, index);
+	element_string = dualCellsCollection_getCell_left_toString(struct_cells, index);
 	element_type   = value_stringToType(element_string, TYPE);
 FinFuncion
 
 
-Funcion element_string <- collectionDualCells_getCell_left_toString(struct_cells, index)
+Funcion element_string <- dualCellsCollection_getCell_left_toString(struct_cells, index)
 	Definir element_string Como Texto;
-	element_string = collectionCells_getCell_toString(struct_cells, index);
+	element_string = cellsCollection_getCell_toString(struct_cells, index);
 FinFuncion
 
-Funcion element_type <- collectionDualCells_getCell_right(struct_cells, index)
+Funcion element_type <- dualCellsCollection_getCell_right(struct_cells, index)
 	Definir element_string, TYPE Como Texto;
-	TYPE = collectionDualCells_getType_right(struct_cells);
+	TYPE = dualCellsCollection_getType_right(struct_cells);
 	Segun TYPE Hacer
 		caso     TYPE_INT(): Definir element_type Como Numero;
 		caso   TYPE_FLOAT(): Definir element_type Como Real;
 		caso TYPE_BOOLEAN(): Definir element_type Como Logico;
 		De Otro Modo:        Definir element_type Como Texto;
 	FinSegun
-	element_string = collectionDualCells_getCell_right_toString(struct_cells, index);
+	element_string = dualCellsCollection_getCell_right_toString(struct_cells, index);
 	element_type   = value_stringToType(element_string, TYPE);
 FinFuncion
 
-Funcion element_type <- collectionDualCells_getCell_right_toType(struct_cells, index, TYPE)
+Funcion element_type <- dualCellsCollection_getCell_right_toType(struct_cells, index, TYPE)
 	Definir element_string Como Texto;
 	Segun TYPE Hacer
 		caso     TYPE_INT(): Definir element_type Como Numero;
@@ -6405,174 +6405,174 @@ Funcion element_type <- collectionDualCells_getCell_right_toType(struct_cells, i
 		caso TYPE_BOOLEAN(): Definir element_type Como Logico;
 		De Otro Modo:        Definir element_type Como Texto;
 	FinSegun
-	element_string = collectionDualCells_getCell_right_toString(struct_cells, index);
+	element_string = dualCellsCollection_getCell_right_toString(struct_cells, index);
 	element_type   = value_stringToType(element_string, TYPE);
 FinFuncion
 
-Funcion element_string <- collectionDualCells_getCell_right_toString(struct_cells, index)
+Funcion element_string <- dualCellsCollection_getCell_right_toString(struct_cells, index)
 	Definir element_string Como Texto;
 	Definir cells_size, index_norm, cell_length, index_endData, index_startData Como Entero;
-	cells_size    = collectionCells_getSize(struct_cells);
+	cells_size    = cellsCollection_getSize(struct_cells);
 	si Collection_IndexIsValid(cells_size, index) Entonces
-		cell_length = collectionDualCells_getCellLength_right(struct_cells);
-		index_endData     = collectionDualCells_getEndData(struct_cells);
-		index_startData   = collectionCells_calcule_indexBlock_atEnd(index_endData, cells_size, cell_length);
+		cell_length = dualCellsCollection_getCellLength_right(struct_cells);
+		index_endData     = dualCellsCollection_getEndData(struct_cells);
+		index_startData   = cellsCollection_calcule_indexBlock_atEnd(index_endData, cells_size, cell_length);
 		index_norm        = decrement_step(decrement(cells_size), index);
-		element_string    = collectionCells_getCell_toString_force(struct_cells, index_norm, index_startData, cell_length);
-		element_string    = collectionCells_clear_cellString(element_string, cell_length);
+		element_string    = cellsCollection_getCell_toString_force(struct_cells, index_norm, index_startData, cell_length);
+		element_string    = cellsCollection_clear_cellString(element_string, cell_length);
 	SiNo
-		error_message_Function("collectionDualCells_getCell_right_toString(struct_cells, index)", "index invalid");
+		error_message_Function("dualCellsCollection_getCell_right_toString(struct_cells, index)", "index invalid");
 		result_cells = string_NULL();
 	FinSi	
 FinFuncion
 
-Funcion index_endData <- collectionDualCells_getEndData(struct_cells)
+Funcion index_endData <- dualCellsCollection_getEndData(struct_cells)
 	Definir index_endData Como Entero;
 	index_endData = String_lastIndexof(struct_cells, symbol_metaData());
 FinFuncion
 
-Funcion cell_length <- collectionDualCells_getCellLength_left(struct_cells)
+Funcion cell_length <- dualCellsCollection_getCellLength_left(struct_cells)
 	Definir cell_length Como Entero;//wrapper
-	cell_length = collectionCells_getCellLength(struct_cells);
+	cell_length = cellsCollection_getCellLength(struct_cells);
 FinFuncion
 
-Funcion cell_length <- collectionDualCells_getCellLength_right(struct_cells)
+Funcion cell_length <- dualCellsCollection_getCellLength_right(struct_cells)
 	Definir cell_length Como Entero;	
 	Definir cells_length_String Como Texto;
 	cells_length_String = collection_getContent_Between_lastSymbols(struct_cells, symbol_metaData(), symbol_extraData());
 	cell_length    = String_toNum(cells_length_String);
 FinFuncion
 
-Funcion index_start <- collectionDualCells_getStartIndex_right(struct_cells)
+Funcion index_start <- dualCellsCollection_getStartIndex_right(struct_cells)
 	Definir cell_length, index_endData, cells_size, index_start Como Entero;	
-	cells_size    = collectionCells_getSize(result_cells);
-	index_endData = collectionDualCells_getEndData(result_cells);
-	cell_length   = collectionCells_getCellLength(result_cells);
-	index_start   = collectionCells_calcule_indexBlock_atEnd(index_endData, cells_size, cell_length);
+	cells_size    = cellsCollection_getSize(result_cells);
+	index_endData = dualCellsCollection_getEndData(result_cells);
+	cell_length   = cellsCollection_getCellLength(result_cells);
+	index_start   = cellsCollection_calcule_indexBlock_atEnd(index_endData, cells_size, cell_length);
 FinFuncion
 
-Funcion TYPE <- collectionDualCells_getType_left(struct_cells)
+Funcion TYPE <- dualCellsCollection_getType_left(struct_cells)
 	Definir TYPE Como Texto;
-	TYPE <- collectionCells_getType(struct_cells);
+	TYPE <- cellsCollection_getType(struct_cells);
 FinFuncion
 
-Funcion TYPE <- collectionDualCells_getType_right(struct_cells)
+Funcion TYPE <- dualCellsCollection_getType_right(struct_cells)
 	Definir TYPE Como Texto;//
 	TYPE = collection_getContent_Between_Symbols(struct_cells, symbol_cell_type(), symbol_typeArea());
 FinFuncion
 
-Funcion size_dataBlock <- collectionDualCells_getSize(struct_cells)
+Funcion size_dataBlock <- dualCellsCollection_getSize(struct_cells)
 	Definir size_dataBlock Como Entero;
-	size_dataBlock = collectionCells_getSize(struct_cells);
+	size_dataBlock = cellsCollection_getSize(struct_cells);
 FinFuncion
 //----[ MODIFY ]----------------------------------------------------------------------<#>
-Funcion result_cells <- collectionDualCells_modify_left_byString(struct_cells, element_string, index)
+Funcion result_cells <- dualCellsCollection_modify_left_byString(struct_cells, element_string, index)
 	Definir result_cells Como Texto;
-	result_cells = collectionCells_modify_byString(struct_cells, element_string, index);
+	result_cells = cellsCollection_modify_byString(struct_cells, element_string, index);
 FinFuncion
 
-Funcion result_cells <- collectionDualCells_modify_right_byString(struct_cells, element_string, index)
+Funcion result_cells <- dualCellsCollection_modify_right_byString(struct_cells, element_string, index)
 	Definir result_cells Como Texto;
 	Definir cells_index, cells_size, cell_length, index_endData Como Entero;
 	result_cells = struct_cells;
-	cells_size = collectionCells_getSize(result_cells);
+	cells_size = cellsCollection_getSize(result_cells);
 	si Collection_IndexIsValid(cells_size, index) Entonces
-		index_endData     = collectionDualCells_getEndData(result_cells);
-		cell_length = collectionCells_getCellLength(result_cells);
-		cells_index      = collectionCells_calcule_indexBlock_atEnd(index_endData, increment(index), cell_length);
-		result_cells  = collectionCells_modify_byString_force(struct_cells, element_string, cells_index, cell_length);
+		index_endData     = dualCellsCollection_getEndData(result_cells);
+		cell_length = cellsCollection_getCellLength(result_cells);
+		cells_index      = cellsCollection_calcule_indexBlock_atEnd(index_endData, increment(index), cell_length);
+		result_cells  = cellsCollection_modify_byString_force(struct_cells, element_string, cells_index, cell_length);
 	SiNo
-		error_message_Function("collectionDualCells_modify_right_byString()", "invalid index");
+		error_message_Function("dualCellsCollection_modify_right_byString()", "invalid index");
 	FinSi
 FinFuncion
 //----[ SWAP ]-----------------------------------------------------------------------<#>
-Funcion result_cells <- collectionDualCells_swapData_left(struct_cells, index, index_swap)
+Funcion result_cells <- dualCellsCollection_swapData_left(struct_cells, index, index_swap)
 	Definir result_cells Como Texto;
-	result_cells = collectionCells_swapData(struct_cells, index, index_swap);
+	result_cells = cellsCollection_swapData(struct_cells, index, index_swap);
 FinFuncion
 
-Funcion result_cells <- collectionDualCells_swapData_right(struct_cells, index, index_swap)
+Funcion result_cells <- dualCellsCollection_swapData_right(struct_cells, index, index_swap)
 	Definir result_cells, data_origin, data_swap Como Texto;
 	Definir cells_size, cell_length, index_endData, index_dec, index_startData_right Como Entero;
 	Definir index_origen, cells_match Como Entero;
 	result_cells = struct_cells;
-	cells_size   = collectionCells_getSize(result_cells);
+	cells_size   = cellsCollection_getSize(result_cells);
 	si Collection_IndexIsValid(cells_size, index) & Collection_IndexIsValid(cells_size, index_swap) Entonces
-		cell_length     = collectionCells_getCellLength(result_cells);
-		index_endData         = collectionDualCells_getEndData(result_cells);
-		index_startData_right = collectionCells_calcule_indexBlock_atEnd(index_endData, cells_size, cell_length);
-		result_cells         = collectionCells_swapData_force(struct_cells, index, index_swap, index_startData_right, cell_length);
+		cell_length     = cellsCollection_getCellLength(result_cells);
+		index_endData         = dualCellsCollection_getEndData(result_cells);
+		index_startData_right = cellsCollection_calcule_indexBlock_atEnd(index_endData, cells_size, cell_length);
+		result_cells         = cellsCollection_swapData_force(struct_cells, index, index_swap, index_startData_right, cell_length);
 	SiNo
-		error_message_Function("collectionDualCells_swapData_left()", "invalid index");
+		error_message_Function("dualCellsCollection_swapData_left()", "invalid index");
 	FinSi
 FinFuncion
 //----[ DELETE ]----------------------------------------------------------------------<#>
-Funcion result_cells <- collectionDualCells_delete(struct_cells, index)
+Funcion result_cells <- dualCellsCollection_delete(struct_cells, index)
 	Definir result_cells Como Texto;
 	Definir cells_size Como Entero;
 	result_cells = struct_cells;
-	cells_size   = collectionDualCells_getSize(result_cells);
+	cells_size   = dualCellsCollection_getSize(result_cells);
 	si Collection_IndexIsValid(cells_size, index) Entonces
-		result_cells = collectionDualCells_delete_left_force(result_cells, index);
-		result_cells = collectionDualCells_delete_right_force(result_cells, index);
+		result_cells = dualCellsCollection_delete_left_force(result_cells, index);
+		result_cells = dualCellsCollection_delete_right_force(result_cells, index);
 		result_cells = linearCollection_decrement_numElement(result_cells);
 	SiNo
-		error_message_Function("collectionDualCells_swapData_left()", "invalid index");
+		error_message_Function("dualCellsCollection_swapData_left()", "invalid index");
 	FinSi
 FinFuncion
 
-Funcion result_cells <- collectionDualCells_delete_left_force(struct_cells, index)
+Funcion result_cells <- dualCellsCollection_delete_left_force(struct_cells, index)
 	Definir result_cells Como Texto;
 	Definir index_startData, cell_length Como Entero;
 	result_cells = struct_cells;
-	cell_length = collectionDualCells_getCellLength_left(result_cells);
-	index_startData  = collectionCells_getStartData(result_cells);
-	result_cells     = collectionCells_delete_byIndex_force(result_cells, index, index_startData, cell_length);
+	cell_length = dualCellsCollection_getCellLength_left(result_cells);
+	index_startData  = cellsCollection_getStartData(result_cells);
+	result_cells     = cellsCollection_delete_byIndex_force(result_cells, index, index_startData, cell_length);
 FinFuncion
 
-Funcion result_cells <- collectionDualCells_delete_right_force(struct_cells, index)
+Funcion result_cells <- dualCellsCollection_delete_right_force(struct_cells, index)
 	Definir result_cells Como Texto;
 	Definir cell_length Como Entero;
-	cell_length = collectionDualCells_getCellLength_right(result_cells);	
-	result_cells     = __private_collectionDualCells_delete_right(struct_cells, index, cell_length);
+	cell_length = dualCellsCollection_getCellLength_right(result_cells);	
+	result_cells     = __private_dualCellsCollection_delete_right(struct_cells, index, cell_length);
 FinFuncion
 
-Funcion result_cells <- __private_collectionDualCells_delete_right(struct_cells, index, cell_length)
+Funcion result_cells <- __private_dualCellsCollection_delete_right(struct_cells, index, cell_length)
 	Definir result_cells Como Texto;
 	Definir index_endData, cells_index, cells_index_end Como Entero;
 	result_cells     = struct_cells;
-	index_endData    = collectionDualCells_getEndData(result_cells);
-	cells_index_end  = collectionCells_calcule_indexBlock_atEnd(index_endData, index, cell_length);
+	index_endData    = dualCellsCollection_getEndData(result_cells);
+	cells_index_end  = cellsCollection_calcule_indexBlock_atEnd(index_endData, index, cell_length);
 	cells_index      = decrement_step(cells_index_end, cell_length);
 	result_cells     = String_Delete(result_cells, cells_index, cells_index_end);
 FinFuncion
 //----[ PRINTER ]----------------------------------------------------<#>
-Funcion separate_string <- collectionDualCells_getSeparateString_right(struct_cells)
+Funcion separate_string <- dualCellsCollection_getSeparateString_right(struct_cells)
 	Definir separate_string, data_string Como Texto;
 	Definir start_data, end_data, count_size, cell_length Como Numero;
-	count_size  = collectionDualCells_getSize(struct_cells);
-	cell_length = collectionDualCells_getCellLength_right(struct_cells);
-	end_data    = collectionDualCells_getEndData(struct_cells);
-	start_data  = collectionCells_calcule_indexBlock_atEnd(end_data, count_size, cell_length);
+	count_size  = dualCellsCollection_getSize(struct_cells);
+	cell_length = dualCellsCollection_getCellLength_right(struct_cells);
+	end_data    = dualCellsCollection_getEndData(struct_cells);
+	start_data  = cellsCollection_calcule_indexBlock_atEnd(end_data, count_size, cell_length);
 	data_string = string_substring(struct_cells, start_data, end_data);
 	separate_string = managerData_getSeparateString_cells(data_string, count_size, cell_length);
 FinFuncion
 //----[ PRINTER ]----------------------------------------------------<#>
-Funcion collectionDualCells_println_right(struct_cells)
-	__private_collectionDualCells_printer_right(struct_cells, true());	
+Funcion dualCellsCollection_println_right(struct_cells)
+	__private_dualCellsCollection_printer_right(struct_cells, true());	
 FinFuncion
 
-Funcion collectionDualCells_print_right(struct_cells)
-	__private_collectionDualCells_printer_right(struct_cells, false());	
+Funcion dualCellsCollection_print_right(struct_cells)
+	__private_dualCellsCollection_printer_right(struct_cells, false());	
 FinFuncion
 
-Funcion __private_collectionDualCells_printer_right(struct_cells, isBreakLine)
+Funcion __private_dualCellsCollection_printer_right(struct_cells, isBreakLine)
 	Definir separate_string, data_string Como Texto;
 	Definir start_data, end_data, count_size, cell_length Como Numero;
-	count_size  = collectionDualCells_getSize(struct_cells);
-	cell_length = collectionDualCells_getCellLength_right(struct_cells);
-	end_data    = collectionDualCells_getEndData(struct_cells);
-	start_data  = collectionCells_calcule_indexBlock_atEnd(end_data, count_size, cell_length);
+	count_size  = dualCellsCollection_getSize(struct_cells);
+	cell_length = dualCellsCollection_getCellLength_right(struct_cells);
+	end_data    = dualCellsCollection_getEndData(struct_cells);
+	start_data  = cellsCollection_calcule_indexBlock_atEnd(end_data, count_size, cell_length);
 	data_string = string_substring(struct_cells, start_data, end_data);
 	managerData_printer_cells(data_string, count_size, cell_length, isBreakLine);
 FinFuncion
@@ -6606,13 +6606,13 @@ Funcion symbol <- symbol_cell_type
 	Definir symbol Como Texto;
 	symbol = "";
 FinFuncion
-///%%%%%[ COLLECTION_STORAGE_CELLS ]%%%%%%%[   #CSC    ]%%%%%%%%%%%%%%%%%%
-Funcion collection_storage <- collectionStorageCells_new(struct_name, TYPE_CELL, TYPE_LINEAR)
+///%%%%%[ STORAGE_CELLS_COLLECTION ]%%%%%%%[   #SCC    ]%%%%%%%%%%%%%%%%%%
+Funcion collection_storage <- storageCellsCollection_new(struct_name, TYPE_CELL, TYPE_LINEAR)
 	Definir collection_storage Como Texto;
-	collection_storage = collectionStorageCells_new_setLengthCell(struct_name, TYPE_CELL, TYPE_LINEAR, 1);
+	collection_storage = storageCellsCollection_new_setLengthCell(struct_name, TYPE_CELL, TYPE_LINEAR, 1);
 FinFuncion
 
-Funcion collection_storage <- collectionStorageCells_new_setLengthCell(struct_name, TYPE_CELL, TYPE_LINEAR, fixed_Length)
+Funcion collection_storage <- storageCellsCollection_new_setLengthCell(struct_name, TYPE_CELL, TYPE_LINEAR, fixed_Length)
 	Definir collection_storage, min_fixed, region_width, region_type  Como Texto;
 	Definir index_insert Como Entero;
 	collection_storage = collectionStorage_new(struct_name, TYPE_LINEAR);
@@ -6620,21 +6620,21 @@ Funcion collection_storage <- collectionStorageCells_new_setLengthCell(struct_na
 	index_insert       = collection_getIndex_typeArea(collection_storage);
 	collection_storage = string_insert(collection_storage, region_type, index_insert);
 	index_insert       = linearCollection_getIndex_extraData(collection_storage);
-	region_width       = collectionCells_setNormCellLength(fixed_Length);
+	region_width       = cellsCollection_setNormCellLength(fixed_Length);
 	collection_storage = string_insert(collection_storage, region_width, index_insert);
 FinFuncion
 //-----[ MODEFY ]-------------------------------------------------------<#>
-Funcion result_storage <- collectionStorageCells_modifyData_byCell(struct_storageCells, value_search, value)
+Funcion result_storage <- storageCellsCollection_modifyData_byCell(struct_storageCells, value_search, value)
 	Definir result_storage, TYPE, string_search Como Texto;
-	TYPE           = collectionStorageCells_getType(struct_storageCells);
+	TYPE           = storageCellsCollection_getType(struct_storageCells);
 	string_search  = value_TypeToString(value_search, TYPE);
-	result_storage = collectionStorageCells_modifyData_byCell_String(struct_storageCells, string_search, value);
+	result_storage = storageCellsCollection_modifyData_byCell_String(struct_storageCells, string_search, value);
 FinFuncion
 
-Funcion result_storage <- collectionStorageCells_modifyData_byCell_String(struct_storageCells, string_search, value)
+Funcion result_storage <- storageCellsCollection_modifyData_byCell_String(struct_storageCells, string_search, value)
 	Definir result_storage Como Texto;
 	Definir index_target Como Entero;
-	index_target = collectionStorageCells_getCellIndex_byString(struct_storageCells, string_search);
+	index_target = storageCellsCollection_getCellIndex_byString(struct_storageCells, string_search);
 	si number_isEquals(value, number_NULL()) Entonces
 		result_storage = struct_storageCells;
 	SiNo
@@ -6642,9 +6642,9 @@ Funcion result_storage <- collectionStorageCells_modifyData_byCell_String(struct
 	FinSi
 FinFuncion
 //-----[ GETTERS ]------------------------------------------------------<#>
-Funcion value_result <- collectionStorageCells_getData_byCell(struct_storageCells, value_search)
+Funcion value_result <- storageCellsCollection_getData_byCell(struct_storageCells, value_search)
 	Definir TYPE, value_string Como Texto;
-	value_string = collectionStorageCells_getData_byCell_toString(struct_storageCells, value_search);
+	value_string = storageCellsCollection_getData_byCell_toString(struct_storageCells, value_search);
 	TYPE = collectionStorage_getType(struct_storageCells);
 	Segun TYPE Hacer
 		caso     TYPE_INT(): Definir value_result Como Numero;
@@ -6655,17 +6655,17 @@ Funcion value_result <- collectionStorageCells_getData_byCell(struct_storageCell
 	value_result = value_stringToType(value_string, TYPE);
 FinFuncion
 
-Funcion value_string <- collectionStorageCells_getData_byCell_toString(struct_storageCells, value_search)
+Funcion value_string <- storageCellsCollection_getData_byCell_toString(struct_storageCells, value_search)
 	Definir value_string, TYPE, sequential_data, sequential_lengths, string_search Como Texto;
 	Definir index_target, index_endData, cells_size, right_startData, cell_length Como Entero;
 	Definir index_lengthArea, index_dataArea, index_metaData Como Entero;
-	TYPE = collectionDualCells_getType_right(struct_storageCells);
+	TYPE = dualCellsCollection_getType_right(struct_storageCells);
 	string_search         = value_TypeToString(value_search, TYPE);
-	cell_length           = collectionDualCells_getCellLength_right(struct_storageCells);
-	index_endData         = collectionDualCells_getEndData(struct_storageCells);
-	cells_size            = collectionCells_getSize(struct_storageCells);
-	right_startData       = collectionCells_calcule_indexBlock_atEnd(index_endData, cells_size, cell_length);
-	index_target          = collectionStorageCells_getCellIndex_force(struct_storageCells, string_search, cells_size, right_startData, cell_length);
+	cell_length           = dualCellsCollection_getCellLength_right(struct_storageCells);
+	index_endData         = dualCellsCollection_getEndData(struct_storageCells);
+	cells_size            = cellsCollection_getSize(struct_storageCells);
+	right_startData       = cellsCollection_calcule_indexBlock_atEnd(index_endData, cells_size, cell_length);
+	index_target          = storageCellsCollection_getCellIndex_force(struct_storageCells, string_search, cells_size, right_startData, cell_length);
 	Si (index_target >= 0) Entonces
 		value_string = collectionStorage_get_toString_force(struct_storageCells, index_target, right_startData);
 	SiNo
@@ -6673,45 +6673,45 @@ Funcion value_string <- collectionStorageCells_getData_byCell_toString(struct_st
 	FinSi
 FinFuncion
 
-Funcion collection_size <- collectionStorageCells_getSize(struct_storageCells)
+Funcion collection_size <- storageCellsCollection_getSize(struct_storageCells)
 	Definir collection_size Como Entero;
 	collection_size = linearCollection_getSize(struct_storageCells);
 FinFuncion
 
-Funcion cell_length <- collectionStorageCells_getCellLength(struct_storageCells)
+Funcion cell_length <- storageCellsCollection_getCellLength(struct_storageCells)
 	Definir cell_length Como Entero;
-	cell_length = collectionDualCells_getCellLength_right(struct_storageCells);
+	cell_length = dualCellsCollection_getCellLength_right(struct_storageCells);
 FinFuncion
 
-Funcion TYPE <- collectionStorageCells_getType(struct_storageCells)
+Funcion TYPE <- storageCellsCollection_getType(struct_storageCells)
 	Definir TYPE Como Texto;
-	TYPE = collectionDualCells_getType_right(struct_storageCells);
+	TYPE = dualCellsCollection_getType_right(struct_storageCells);
 FinFuncion
 
-Funcion index_target <- collectionStorageCells_getCellIndex(struct_storageCells, value_search)
+Funcion index_target <- storageCellsCollection_getCellIndex(struct_storageCells, value_search)
 	Definir string_search, TYPE Como Texto;
 	Definir index_target  Como Entero;
-	TYPE          = collectionDualCells_getType_right(struct_storageCells);
+	TYPE          = dualCellsCollection_getType_right(struct_storageCells);
 	string_search = value_TypeToString(value_search, TYPE);
-	index_target  = collectionStorageCells_getCellIndex_byString(struct_storageCells, string_search);
+	index_target  = storageCellsCollection_getCellIndex_byString(struct_storageCells, string_search);
 FinFuncion
 
-Funcion index_target <- collectionStorageCells_getCellIndex_byString(struct_storageCells, string_search)
+Funcion index_target <- storageCellsCollection_getCellIndex_byString(struct_storageCells, string_search)
 	Definir index_target, index_endData, cells_size, right_startData, cell_length Como Entero;
-	cell_length     = collectionStorageCells_getCellLength(struct_storageCells);
-	index_endData   = collectionDualCells_getEndData(struct_storageCells);
-	cells_size      = collectionCells_getSize(struct_storageCells);
-	right_startData = collectionCells_calcule_indexBlock_atEnd(index_endData, cells_size, cell_length);	
-	index_target    = collectionStorageCells_getCellIndex_force(struct_storageCells, string_search, cells_size, right_startData, cell_length);
+	cell_length     = storageCellsCollection_getCellLength(struct_storageCells);
+	index_endData   = dualCellsCollection_getEndData(struct_storageCells);
+	cells_size      = cellsCollection_getSize(struct_storageCells);
+	right_startData = cellsCollection_calcule_indexBlock_atEnd(index_endData, cells_size, cell_length);	
+	index_target    = storageCellsCollection_getCellIndex_force(struct_storageCells, string_search, cells_size, right_startData, cell_length);
 FinFuncion
 
-Funcion norm_target <- collectionStorageCells_getCellIndex_force(result_storage, string_search, count_size, right_startData, cell_length)
+Funcion norm_target <- storageCellsCollection_getCellIndex_force(result_storage, string_search, count_size, right_startData, cell_length)
     Definir norm_target, index_target, search_Length Como Entero;
 	Definir index_isInvalid Como Logico;
 	search_Length   = string_Length(string_search);
 	index_isInvalid = search_Length > cell_length;
 	si !index_isInvalid Entonces
-		index_target    = collectionCells_setter_getIndex_byString_inRange_force(result_storage, string_search, 0, count_size, right_startData, cell_length);
+		index_target    = cellsCollection_setter_getIndex_byString_inRange_force(result_storage, string_search, 0, count_size, right_startData, cell_length);
 		index_isInvalid = number_isEquals(index_target, number_NULL());
 	FinSi
 	si index_isInvalid Entonces
@@ -6721,131 +6721,131 @@ Funcion norm_target <- collectionStorageCells_getCellIndex_force(result_storage,
 	FinSi
 FinFuncion
 //----[ ADD ]------------------------------------------------------------------------<#>
-Funcion result_storage <- collectionStorageCells_add(struct_storage, value_cell, value_linear)
+Funcion result_storage <- storageCellsCollection_add(struct_storage, value_cell, value_linear)
     Definir result_storage, TYPE_CELL, TYPE_LINEAR Como Texto;
-    TYPE_CELL      = collectionDualCells_getType_right(struct_storage);
+    TYPE_CELL      = dualCellsCollection_getType_right(struct_storage);
     TYPE_LINEAR    = collectionStorage_getType(struct_storage);
-    result_storage = collectionStorageCells_add_byType(struct_storage, value_cell, value_linear, TYPE_CELL, TYPE_LINEAR);
+    result_storage = storageCellsCollection_add_byType(struct_storage, value_cell, value_linear, TYPE_CELL, TYPE_LINEAR);
 FinFuncion
 
-Funcion result_storage <- collectionStorageCells_add_byType(struct_storage, value_cell, value_linear, TYPE_CELL, TYPE_LINEAR)
+Funcion result_storage <- storageCellsCollection_add_byType(struct_storage, value_cell, value_linear, TYPE_CELL, TYPE_LINEAR)
     Definir result_storage, value_string, data_string Como Texto;
     value_string = value_TypeToString(value_cell, TYPE_CELL);
     data_string  = value_TypeToString(value_linear, TYPE_LINEAR);
-    result_storage = collectionStorageCells_add_byString(struct_storage, value_string, data_string);
+    result_storage = storageCellsCollection_add_byString(struct_storage, value_string, data_string);
 FinFuncion
 
-Funcion result_storage <- collectionStorageCells_add_byString(struct_storage, value_string, data_string)
+Funcion result_storage <- storageCellsCollection_add_byString(struct_storage, value_string, data_string)
 	Definir result_storage Como Texto;
-	result_storage = collectionStorageCells_mode_add_byString(struct_storage, value_string, CELL_DYNAMIC(), data_string);
+	result_storage = storageCellsCollection_mode_add_byString(struct_storage, value_string, CELL_DYNAMIC(), data_string);
 FinFuncion
 //----[ ADD_SETTER ]-----------------------------------------------------------------<#>
-Funcion result_storage <- collectionStorageCells_add_setter(struct_storage, value_cell, value_linear)
+Funcion result_storage <- storageCellsCollection_add_setter(struct_storage, value_cell, value_linear)
 	Definir result_storage, TYPE_CELL, TYPE_LINEAR Como Texto;
-	TYPE_CELL      = collectionDualCells_getType_right(struct_storage);
+	TYPE_CELL      = dualCellsCollection_getType_right(struct_storage);
 	TYPE_LINEAR    = collectionStorage_getType(struct_storage); 
-	result_storage = collectionStorageCells_add_setter_byType(struct_storage, value_cell, value_linear, TYPE_CELL, TYPE_LINEAR);
+	result_storage = storageCellsCollection_add_setter_byType(struct_storage, value_cell, value_linear, TYPE_CELL, TYPE_LINEAR);
 FinFuncion
 
-Funcion result_storage <- collectionStorageCells_add_setter_byType(struct_storage, value_cell, value_linear, TYPE_CELL, TYPE_LINEAR)
+Funcion result_storage <- storageCellsCollection_add_setter_byType(struct_storage, value_cell, value_linear, TYPE_CELL, TYPE_LINEAR)
 	Definir result_storage, value_string, data_string Como Texto;
 	value_string   = value_TypeToString( value_cell, TYPE_CELL);
 	data_string    = value_TypeToString( value_linear, TYPE_LINEAR);
-	result_storage = collectionStorageCells_add_setter_byString(struct_storage, value_string, data_string);
+	result_storage = storageCellsCollection_add_setter_byString(struct_storage, value_string, data_string);
 FinFuncion
 
-Funcion result_storage <- collectionStorageCells_add_setter_byString(struct_storage, value_string, data_string)
+Funcion result_storage <- storageCellsCollection_add_setter_byString(struct_storage, value_string, data_string)
 	Definir result_storage Como Texto;
-	result_storage = collectionStorageCells_mode_add_byString(struct_storage, value_string, CELL_SETTER_DYNAMIC(), data_string);
+	result_storage = storageCellsCollection_mode_add_byString(struct_storage, value_string, CELL_SETTER_DYNAMIC(), data_string);
 FinFuncion
 //----[ ADD_MODE ]-------------------------------------------------------------------<#>
-Funcion result_storage <- collectionStorageCells_mode_add(struct_storage, value_cell, CELL_MODE, value_linear)
+Funcion result_storage <- storageCellsCollection_mode_add(struct_storage, value_cell, CELL_MODE, value_linear)
 	Definir result_storage, TYPE_CELL, TYPE_LINEAR Como Texto;
-	TYPE_CELL      = collectionDualCells_getType_right(struct_storage);
+	TYPE_CELL      = dualCellsCollection_getType_right(struct_storage);
 	TYPE_LINEAR    = linearCollection_getType(struct_storage); 
-	result_storage = collectionStorageCells_mode_add_byType(struct_storage, value_cell, CELL_MODE, value_linear, TYPE_CELL, TYPE_LINEAR);
+	result_storage = storageCellsCollection_mode_add_byType(struct_storage, value_cell, CELL_MODE, value_linear, TYPE_CELL, TYPE_LINEAR);
 FinFuncion
 
-Funcion result_storage <- collectionStorageCells_mode_add_byType(struct_storage, value_cell, CELL_MODE, value_linear, TYPE_CELL, TYPE_LINEAR)
+Funcion result_storage <- storageCellsCollection_mode_add_byType(struct_storage, value_cell, CELL_MODE, value_linear, TYPE_CELL, TYPE_LINEAR)
 	Definir result_storage, value_string, data_string Como Texto;
 	value_string   = value_TypeToString(value_cell, TYPE_CELL);
 	data_string    = value_TypeToString(value_linear, TYPE_LINEAR);
-	result_storage = collectionStorageCells_mode_add_byString(struct_storage, value_string, CELL_MODE, data_string);
+	result_storage = storageCellsCollection_mode_add_byString(struct_storage, value_string, CELL_MODE, data_string);
 FinFuncion
 
-Funcion result_storage <- collectionStorageCells_mode_add_byString(struct_storageCells, value_string, CELL_MODE, data_string)
+Funcion result_storage <- storageCellsCollection_mode_add_byString(struct_storageCells, value_string, CELL_MODE, data_string)
 	Definir result_storage Como Texto;
 	Definir index_endData, cell_length, count_size, index_target Como Entero;
 	Definir last_length, right_startData, index_lengthArea Como Entero;
 	Definir isValidFixed, isChanged Como Logico;
 	result_storage = struct_storageCells;
-	cell_length    = collectionStorageCells_getCellLength(result_storage);
+	cell_length    = storageCellsCollection_getCellLength(result_storage);
 	last_length    = string_Length(result_storage);
-	isValidFixed   = collectionDualCells_validateFixedLength_Mode(value_string, cell_length, CELL_MODE, "[RIGHT]");
+	isValidFixed   = dualCellsCollection_validateFixedLength_Mode(value_string, cell_length, CELL_MODE, "[RIGHT]");
 	si isValidFixed Entonces
-		count_size     = collectionDualCells_getSize(result_storage);
-		index_endData  = collectionDualCells_getEndData(result_storage);
-		result_storage = collectionDualCells_mode_add_byString_right_force(result_storage, value_string, index_endData, count_size, cell_length, CELL_MODE);
+		count_size     = dualCellsCollection_getSize(result_storage);
+		index_endData  = dualCellsCollection_getEndData(result_storage);
+		result_storage = dualCellsCollection_mode_add_byString_right_force(result_storage, value_string, index_endData, count_size, cell_length, CELL_MODE);
 	FinSi 
 	right_startData = decrement_step(index_endData, count_size * cell_length);
-	isChanged       = collectionCells_isChanged(result_storage, last_length);
+	isChanged       = cellsCollection_isChanged(result_storage, last_length);
 	si isChanged Entonces
 		index_lengthArea = increment(string_indexOf(result_storage, symbol_lengthArea()));
 		result_storage   = collectionStorage_add_byString_force(result_storage, data_string, index_lengthArea, right_startData);//revisar
 		result_storage   = linearCollection_increment_numElement(result_storage);
 	FinSi
 	Si isValidFixed & !isChanged Entonces
-		index_target     = collectionStorageCells_getCellIndex_force(result_storage, value_string, count_size, right_startData, cell_length);
+		index_target     = storageCellsCollection_getCellIndex_force(result_storage, value_string, count_size, right_startData, cell_length);
 		result_storage   = collectionStorage_modify_byString(result_storage, data_string, index_target);
 	FinSi
 FinFuncion
 //----[ DELETE ]---------------------------------------------------------------------<#>
-Funcion result_storage <- collectionStorageCells_delete(struct_storageCells, value_search)
+Funcion result_storage <- storageCellsCollection_delete(struct_storageCells, value_search)
 	Definir result_storage, TYPE, string_search Como Texto;
-	TYPE           = collectionStorageCells_getType(struct_storageCells);
+	TYPE           = storageCellsCollection_getType(struct_storageCells);
 	string_search  = value_TypeToString(value_search, TYPE);
-	result_storage = collectionStorageCells_delete_byString(struct_storageCells, string_search);
+	result_storage = storageCellsCollection_delete_byString(struct_storageCells, string_search);
 FinFuncion
 
-Funcion result_storage <- collectionStorageCells_delete_byString(struct_storageCells, string_search)
+Funcion result_storage <- storageCellsCollection_delete_byString(struct_storageCells, string_search)
 	Definir result_storage Como Texto;
 	Definir right_startData, index_endData, count_size, index_target, cell_length, index_lengthArea, norm_target Como Entero;
 	result_storage   = struct_storageCells;
-	count_size       = collectionCells_getSize(result_storage);
-	cell_length      = collectionStorageCells_getCellLength(struct_storageCells);
-	index_endData    = collectionDualCells_getEndData(result_storage);
+	count_size       = cellsCollection_getSize(result_storage);
+	cell_length      = storageCellsCollection_getCellLength(struct_storageCells);
+	index_endData    = dualCellsCollection_getEndData(result_storage);
 	right_startData  = decrement_step(index_endData, count_size * cell_length);
-	index_target     = collectionStorageCells_getCellIndex_force(result_storage, string_search, count_size, right_startData, cell_length);
+	index_target     = storageCellsCollection_getCellIndex_force(result_storage, string_search, count_size, right_startData, cell_length);
 	index_lengthArea = string_indexOf(result_storage, symbol_lengthArea());
-	result_storage   = __private_collectionDualCells_delete_right(result_storage, index_target, cell_length);
+	result_storage   = __private_dualCellsCollection_delete_right(result_storage, index_target, cell_length);
 	result_storage   = __private_collectionStorage_deleteIndexed(result_storage, index_lengthArea, index_target, count_size);
 FinFuncion
 //----[ UTILITIES ]------------------------------------------------------------------<#>
-Funcion constainsValue <- collectionStorageCells_constainsValue(struct_storageCells, value_search)
+Funcion constainsValue <- storageCellsCollection_constainsValue(struct_storageCells, value_search)
 	Definir constainsValue Como Logico;
 	Definir storage_index Como Entero;
 	storage_index = collectionStorage_GetInnerId(struct_storageCells, value_search);
 	constainsValue = !number_isEquals(storage_index, number_NULL());
 FinFuncion
 
-Funcion constainsValue <- collectionStorageCells_constainsCell(struct_storageCells, value_search)
+Funcion constainsValue <- storageCellsCollection_constainsCell(struct_storageCells, value_search)
 	Definir constainsValue Como Logico;
 	Definir cell_index Como Entero;
-	cell_index = collectionDualCells_setter_getIndex_right(struct_storageCells, value_search);
+	cell_index = dualCellsCollection_setter_getIndex_right(struct_storageCells, value_search);
 	constainsValue = !number_isEquals(cell_index, number_NULL());
 FinFuncion
 
-Funcion separate_string <- collectionStorageCells_getSeparateString(struct_cells)
+Funcion separate_string <- storageCellsCollection_getSeparateString(struct_cells)
 	Definir separate_string Como Texto;
-	separate_string = collectionDualCells_getSeparateString_right(struct_cells);
+	separate_string = dualCellsCollection_getSeparateString_right(struct_cells);
 FinFuncion
 
-Funcion collectionStorageCells_println(struct_cells)
-	__private_collectionDualCells_printer_right(struct_cells, true());	
+Funcion storageCellsCollection_println(struct_cells)
+	__private_dualCellsCollection_printer_right(struct_cells, true());	
 FinFuncion
 
-Funcion collectionStorageCells_print(struct_cells)
-	__private_collectionDualCells_printer_right(struct_cells, false());	
+Funcion storageCellsCollection_print(struct_cells)
+	__private_dualCellsCollection_printer_right(struct_cells, false());	
 FinFuncion
 //----------------------------------------------------------------------<#>
 Funcion pixel <- pixel_Qr_plain
@@ -6947,46 +6947,46 @@ FinFuncion
 ///%%%%%[ SET..................... ]%%%%%%%[   #SET    ]%%%%%%%%%%%%%%%%%%
 Funcion new_Set <- util_set_new(TYPE)
 	Definir new_Set Como Texto;
-	new_Set = collectionCells_new(STRUCT_TYPE_SET(), TYPE, collectionCells_getMinFixed());
+	new_Set = cellsCollection_new(STRUCT_TYPE_SET(), TYPE, cellsCollection_getMinFixed());
 FinFuncion
 
 Funcion result_storage <- util_set_Add(struct_set, key_new)
 	Definir result_storage Como Texto;
-	result_storage = collectionCells_setterDynamic_add(struct_set, key_new);
+	result_storage = cellsCollection_setterDynamic_add(struct_set, key_new);
 FinFuncion
 
 Funcion result_storage <- util_set_Delete(struct_set, key_new)
 	Definir result_storage Como Texto;
-	result_storage = collectionCells_setter_delete(struct_set, key_new);
+	result_storage = cellsCollection_setter_delete(struct_set, key_new);
 FinFuncion
 
 Funcion util_set_println(struct_set)
-	collectionCells_println(struct_set);
+	cellsCollection_println(struct_set);
 FinFuncion
 
 Funcion keyExist <- util_set_Containss(struct_set, key_match)
 	Definir keyExist Como Logico;
-	keyExist = collectionCells_setter_constains(struct_set, key_match);
+	keyExist = cellsCollection_setter_constains(struct_set, key_match);
 FinFuncion
 
 Funcion result_Size <- util_get_Size(struct_set)
 	Definir result_Size Como Numero;
-	result_Size = collectionCells_getSize(struct_set);
+	result_Size = cellsCollection_getSize(struct_set);
 FinFuncion
 ///%%%%%[ MAP..................... ]%%%%%%%[   #MAP    ]%%%%%%%%%%%%%%%%%%
 Funcion new_Map <- util_map_new(TYPE, TYPE_VALUE)
 	Definir new_Map Como Texto;
-	new_Map = collectionStorageCells_new(STRUCT_TYPE_MAP(), TYPE, TYPE_VALUE);
+	new_Map = storageCellsCollection_new(STRUCT_TYPE_MAP(), TYPE, TYPE_VALUE);
 FinFuncion
 
 Funcion result_Map <- util_map_Put(struct_map, key, value)
 	Definir result_Map Como Texto;
-	result_Map = collectionStorageCells_add_setter(struct_map, key, value);
+	result_Map = storageCellsCollection_add_setter(struct_map, key, value);
 FinFuncion
 
 Funcion result_Map <- util_map_remove(struct_map, key)
 	Definir result_Map Como Texto;
-	result_Map = collectionStorageCells_delete(struct_map, key);
+	result_Map = storageCellsCollection_delete(struct_map, key);
 FinFuncion
 
 Funcion util_map_println_Key(struct_Map)
@@ -7006,22 +7006,22 @@ Funcion element_Result <- util_map_Get(struct_map, key)
 		caso TYPE_BOOLEAN(): Definir element_Result Como Logico;
 		De Otro Modo: Definir element_Result Como Texto;
 	FinSegun
-	element_Result = collectionStorageCells_getData_byCell(struct_map, key);
+	element_Result = storageCellsCollection_getData_byCell(struct_map, key);
 FinFuncion
 
 Funcion map_Size <- util_map_Size(struct_map)
 	Definir map_Size Como Numero;
-	map_Size = collectionStorageCells_getSize(struct_map);
+	map_Size = storageCellsCollection_getSize(struct_map);
 FinFuncion
 
 Funcion mapConstains <- util_map_ContainsValue(struct_map, value_match)
 	Definir mapConstains Como Logico;
-	mapConstains = collectionStorageCells_constainsValue(struct_map, value_match);
+	mapConstains = storageCellsCollection_constainsValue(struct_map, value_match);
 FinFuncion
 
 Funcion mapConstains <- util_map_ContainsKey(struct_map, key_match)
 	Definir mapConstains Como Logico;
-	mapConstains = collectionStorageCells_constainsCell(struct_map, key_match);
+	mapConstains = storageCellsCollection_constainsCell(struct_map, key_match);
 FinFuncion
 ///%%%%%[ OBJECT.................. ]%%%%%%%[   #OBJ    ]%%%%%%%%%%%%%%%%%%
 Funcion symbol_char <- symbol_ObjectSeparator
@@ -8661,8 +8661,8 @@ FinFuncion
 Funcion tui_frame <- tui_new_withConfig(Wx,Wy, title, color_window)
 	Definir tui_frame, stores_Tcomponents, Tposition, input_Tcomponents Como Texto;
 	tui_frame  = linearCollection_new(tui_TYPE_TFRAME(), TYPE_STRING());
-	stores_Tcomponents = collectionStorageCells_new(tui_TYPE_TSTORE(), TYPE_STRING(), TYPE_STRING());
-	input_Tcomponents  = collectionCells_new(tui_TYPE_TINPUT(), TYPE_STRING(), 1);
+	stores_Tcomponents = storageCellsCollection_new(tui_TYPE_TSTORE(), TYPE_STRING(), TYPE_STRING());
+	input_Tcomponents  = cellsCollection_new(tui_TYPE_TINPUT(), TYPE_STRING(), 1);
 	Tposition   = tui_ParsePointXY_ToString(Wx, Wy);
 	tui_frame  = linearCollection_addFirst(tui_frame, stores_Tcomponents);//index:4
 	tui_frame  = linearCollection_addFirst(tui_frame, color_window);//index:3
@@ -8754,13 +8754,13 @@ FinFuncion
 
 Funcion tComponent_result <- tui_getStore_tComponent_force(store_tcomponent, name_tcomponent)
 	Definir tComponent_result Como Texto;
-	tComponent_result = collectionStorageCells_getData_byCell_toString(store_tcomponent, name_tcomponent);
+	tComponent_result = storageCellsCollection_getData_byCell_toString(store_tcomponent, name_tcomponent);
 FinFuncion
 
 Funcion inputs_TUI <- tui_getInputOptions(tui_frame)
 	Definir inputs_TUI, input_inner Como Texto;
 	input_inner = tui_getInput(tui_frame);
-	inputs_TUI = collectionStorageCells_getSeparateString(input_inner);
+	inputs_TUI = storageCellsCollection_getSeparateString(input_inner);
 FinFuncion
 
 Funcion user_input <- tui_GetUser_Input_message(tui_frame, message, TYPE)
@@ -8864,7 +8864,7 @@ FinFuncion
 Funcion tui_result <- tui_tComponent_setTProperty(tui_frame, name_tcomponent, TProperty_simpleName, value_string) 
 	Definir tui_result, tui_store, tcomponent_target, tcomponent_result Como Texto;
 	tui_store = tui_getStore(tui_frame);
-	tcomponent_target = collectionStorageCells_getData_byCell_toString(tui_store, name_tcomponent);
+	tcomponent_target = storageCellsCollection_getData_byCell_toString(tui_store, name_tcomponent);
 	Segun TProperty_simpleName Hacer
 		Caso TProperty_input():
 			tcomponent_result = tComponent_setTProperty_input(tcomponent_target, value_string);
@@ -8883,7 +8883,7 @@ FinFuncion
 Funcion tui_input <- tui_input_add(tui_frame, input_string)
 	Definir tui_input, input_inner Como Texto;
 	input_inner = tui_getInput(tui_frame);
-	input_inner = collectionCells_setterDynamic_add(input_inner, input_string);
+	input_inner = cellsCollection_setterDynamic_add(input_inner, input_string);
 	tui_input   = __private_tui_setInput(tui_frame, input_inner);
 FinFuncion
 
@@ -8895,7 +8895,7 @@ FinFuncion
 
 Funcion tui_result <- tui_store_addTComponent_force(tui_frame, tui_store, name_tcomponent, tcomponent)
 	Definir tui_result Como Texto;
-	tui_store  = collectionStorageCells_add_setter_byString(tui_store, name_tcomponent, tcomponent);
+	tui_store  = storageCellsCollection_add_setter_byString(tui_store, name_tcomponent, tcomponent);
 	tui_result = __private_tui_setStore(tui_frame, tui_store);
 FinFuncion
 
@@ -9020,8 +9020,8 @@ Funcion new_canvas <- __private_canvas_DrawlinearCollection_Tcomponent(canvas, C
 	index_endData = string_lastIndexOf(struct_storage, symbol_metaData());
 	index_lengthArea    = increment(string_indexOf(struct_storage, symbol_lengthArea()));
 	index_dataArea      = string_indexOf_fromIndex(struct_storage, symbol_dataArea(), index_lengthArea);
-	count_size          = collectionCells_getSize(struct_storage);
-	cell_length         = collectionStorageCells_getCellLength(struct_storage);
+	count_size          = cellsCollection_getSize(struct_storage);
+	cell_length         = storageCellsCollection_getCellLength(struct_storage);
 	right_startData     = decrement_step(index_endData, count_size * cell_length);
 	sequential_lengths  = string_substring(struct_storage, index_lengthArea, index_dataArea);
 	sequential_data     = string_substring(struct_storage, increment(index_dataArea), right_startData);
@@ -9071,7 +9071,7 @@ FinFuncion
 
 Funcion tui_result <- tui_store_deleteTComponent_force(tui_frame, store_tcomponents, name_tcomponent) 
 	Definir tui_result, store_result Como Texto;
-	store_result = collectionStorageCells_delete_byString(store_tcomponents, name_tcomponent);
+	store_result = storageCellsCollection_delete_byString(store_tcomponents, name_tcomponent);
 	tui_result   = __private_tui_setStore(tui_frame, store_result);
 FinFuncion
 
@@ -9083,7 +9083,7 @@ FinFuncion
 
 Funcion tui_result <- tui_input_delete_force(tui_frame, input_tui, input_target) 
 	Definir tui_result, tui_input_result Como Texto;
-	tui_input_result = collectionCells_setter_delete_byString(input_tui, input_target);
+	tui_input_result = cellsCollection_setter_delete_byString(input_tui, input_target);
 	tui_result       = __private_tui_setInput(tui_result, tui_input_result);
 FinFuncion
 
@@ -9126,7 +9126,7 @@ FinFuncion
 Funcion Exist_input <- tui_Input_Exist_force(tui_frame, tui_input, input_string)
 	Definir Exist_input, input_inner Como Logico;
 	input_inner = tui_getInput(tui_frame);
-	Exist_input = collectionCells_setter_constains(input_inner, input_string);
+	Exist_input = cellsCollection_setter_constains(input_inner, input_string);
 FinFuncion
 
 Funcion isTUI <- tui_IsInterface_Valid(interface_string)
@@ -9169,9 +9169,9 @@ FinFuncion
 Funcion tComponent_Build <- tComponent_new(simple_name, x0, y0)
 	Definir tComponent_Build, tComponent_position Como Texto;
 	tComponent_position = tui_ParsePointXY_ToString(x0, y0);
-	tComponent_Build = collectionStorageCells_new(tui_TYPE_TCOMPONENT(), TYPE_STRING(), TYPE_STRING());
-	tComponent_Build = collectionStorageCells_add_byString(tComponent_Build , TProperty_position(), tComponent_position);
-	tComponent_Build = collectionStorageCells_add_byString(tComponent_Build , TProperty_simpleName(), simple_name);
+	tComponent_Build = storageCellsCollection_new(tui_TYPE_TCOMPONENT(), TYPE_STRING(), TYPE_STRING());
+	tComponent_Build = storageCellsCollection_add_byString(tComponent_Build , TProperty_position(), tComponent_position);
+	tComponent_Build = storageCellsCollection_add_byString(tComponent_Build , TProperty_simpleName(), simple_name);
 FinFuncion
 //----[ ADD_PROPERTY ]--------------------------------------------------------------<#>
 Funcion tComponent_Build <- tComponent_addTPropertyInput(tcomponent, input)
@@ -9191,7 +9191,7 @@ FinFuncion
 
 Funcion tComponent_Build <- tComponent_addTProperty(tcomponent, TProperty, value)
 	Definir tComponent_Build Como Texto;
-    tComponent_Build = collectionStorageCells_add_byString(tcomponent, TProperty, value);
+    tComponent_Build = storageCellsCollection_add_byString(tcomponent, TProperty, value);
 FinFuncion
 //----[ BOOLEANS ]----------------------------------------------------<#>
 Funcion isTUI <- tComponent_IsTcomponent(interface_string)
@@ -9206,7 +9206,7 @@ FinFuncion
 
 Funcion THasInput <- tComponent_HasInput(tcomponent)
 	Definir THasInput Como Logico;
-	THasInput = collectionStorageCells_constainsCell(tcomponent, TProperty_input());
+	THasInput = storageCellsCollection_constainsCell(tcomponent, TProperty_input());
 FinFuncion
 //----[ GETTERS ]----------------------------------------------------<#>
 Funcion TProperty <- tComponent_getTProperty_position(tComponent_target)
@@ -9236,12 +9236,12 @@ FinFuncion
 
 Funcion TProperty <- tComponent_getTProperty(tComponent_target, type_TProperty)
 	Definir TProperty Como Texto;
-	TProperty = collectionStorageCells_getData_byCell_toString(tComponent_target, type_TProperty);
+	TProperty = storageCellsCollection_getData_byCell_toString(tComponent_target, type_TProperty);
 FinFuncion
 //----[ SETTERS ]----------------------------------------------------<#>
 Funcion new_TComponent <- tComponent_setTProperty(Tcomponent, TProperty_Component, value_string) 
 	Definir new_TComponent Como Texto;
-	new_TComponent = collectionStorageCells_add_setter_byString(Tcomponent, TProperty_Component, value_string);
+	new_TComponent = storageCellsCollection_add_setter_byString(Tcomponent, TProperty_Component, value_string);
 FinFuncion
 
 Funcion new_TComponent <- tComponent_setTProperty_text(Tcomponent, value_string) 

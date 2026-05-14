@@ -16,7 +16,7 @@ PseudoLib es una infraestructura integral de pseudo-código desarrollada para PSe
 
 ## Estructura del Proyecto
 ```
-//------------------------------------------------------------------------
+//________________________________________________________________________
 //  CODE  ::        NAME MODULE         ::         USE           :: STATE
 //------------------------------------------------------------------------
 //  #INP  ::  INPUT                     ::  user_input_          ::  [+]
@@ -47,12 +47,12 @@ PseudoLib es una infraestructura integral de pseudo-código desarrollada para PSe
 //  #PER  ::  PERIOD                    ::  period_              ::  [+]
 //  #LIS  ::  LIST                      ::  util_List_           ::  [+]
 //  #CST  ::  COLLECTION_STORAGE        ::  collectionStorage_   ::  [+]
-//  #CCE  ::  CELLS_COLLECTION          ::  collectionCells_     ::  [+]
-//  #CCD  ::  CELLS_COLLECTION_DYNAMIC  ::  ...nCells_Dynamic_   ::  [+]
-//  #CCS  ::  CELLS_COLLECTION_SETTER   ::  ...nCells_Setter_    ::  [+]
+//  #CCE  ::  CELLS_COLLECTION          ::  cellsCollection_     ::  [+]
+//  #CCD  ::  CELLS_COLLECTION_DYNAMIC  ::  CellsCol..._dynamic_ ::  [+]
+//  #CCS  ::  CELLS_COLLECTION_SETTER   ::  CellsCol..._setter_  ::  [+]
 //  #SET  ::  SET                       ::  util_set_            ::  [+]
-//  #CDC  ::  COLLECTION_DUAL_CELLS     ::  collectionDualCell_  ::  [+]
-//  #CSC  ::  COLLECTION_STORAGE_CELLS  ::  collStorageCells_    ::  [p]
+//  #CDC  ::  DUAL_CELLS_COLLECTION     ::  collectionDualCells_ ::  [+]
+//  #CSC  ::  STORAGE_CELLS_COLLECTION  ::  collStorageCells_    ::  [+]
 //  #MAP  ::  MAP                       ::  util_map_            ::  [+]
 //  #OBJ  ::  OBJECTS                   ::  object_              ::  [+]
 //  #CAN  ::  CANVAS                    ::  canvas_              ::  [+]
@@ -69,7 +69,8 @@ PseudoLib es una infraestructura integral de pseudo-código desarrollada para PSe
 //  [+]: Stable                                                        
 //  [D]: Current Development (Unusable temporaly)                      
 //  [p]: stable (Pending additions)                                    
-//  [x]: Unusable / undeveloped state  
+//  [x]: Unusable / undeveloped state                                  
+//________________________________________________________________________
 ```
 ---
 
