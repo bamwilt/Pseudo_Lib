@@ -1,19 +1,18 @@
-# Pseudo Lib: Objects, Graphics & Libraries
-
 ![Banner de Pseudo Lib](media/PseudoLib_banner_.png)
+---
 
-### Acerca del Proyecto
 PseudoLib es una infraestructura integral de pseudo-código desarrollada para PSeInt. Su objetivo es romper las limitaciones del entorno educativo, emulando la arquitectura y robustez de una librería estándar profesional (inspirada Java, C y JavaScript).
 > [!IMPORTANT]
 > Este proyecto no tiene un fin pedagógico básico. Es una implementación técnica de naturaleza experimental. Para su correcta integración y aprovechamiento, se requiere comprensión previa de ciertos conceptos de programación.
-
-> Spirtal Demostracion
-![demoSpiral](media/Spiral.png)
-> poder de dibujo con TUI o Canvas
-![demoTUI](media/TUI_Example.png)
-
 ---
-## Módulos del Sistema
+## Media
+![demoSpiral](media/Spiral.png)
+*Demostración del Espiral.*
+
+![demoTUI](media/TUI_Example.png)
+*Ejemplo del poder de dibujo utilizando TUI o Canvas.*
+---
+## Modules 
 
 | NAME MODULE              | USE                          | STATE |
 | :----------------------- | :--------------------------- | :---: |
@@ -74,9 +73,8 @@ PseudoLib es una infraestructura integral de pseudo-código desarrollada para PSe
 | `[x]` | Unusable / undeveloped state                |
 
 ---
----
 
-## Próximamente / En desarrollo
+#### Próximamente / En desarrollo
 
 - Algoritmos de ordenamiento de arreglos compatibles con la estructura String 
 - Vectores Cruz y Punto a partir de Cadenas y arreglos
