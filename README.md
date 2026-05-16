@@ -13,67 +13,67 @@ PseudoLib es una infraestructura integral de pseudo-código desarrollada para PSe
 ![demoTUI](media/TUI_Example.png)
 
 ---
+## Módulos del Sistema
 
-## Estructura del Proyecto
-```
-//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// :::: [ #0 / MAIN ] :::: [ $1 TABLE MODULES ] :::: [ $$0 / END CODE ] :::::
-//___________________________________________________________________________
-//  CODE  ::        NAME MODULE         ::         USE           :: STATE
-//---------------------------------------------------------------------------
-//  #INP  ::  INPUT                     ::  user_input_               ::  [+]
-//  #STR  ::  STRING                    ::  string_                   ::  [+]
-//  #ARR  ::  ARRAY                     ::  array_                    ::  [p]
-//  #PRN  ::  PRINTERS                  ::  print_ : prinln_          ::  [p]
-//  #SLP  ::  SLEEP                     ::  sleep_                    ::  [+]
-//  #LOG  ::  LOGS                      ::  log_                      ::  [+]
-//  #TST  ::  TEST                      ::  test_                     ::  [+]
-//  #INT  ::  INT                       ::  int_                      ::  [+]
-//  #BST  ::  BINARY_STRING             ::  binarystring_             ::  [+]
-//  #MTH  ::  MATH                      ::  math_                     ::  [+]
-//  #BLN  ::  BOOLEAN                   ::  boolean_                  ::  [+]
-//  #CDT  ::  CONDITIONS                ::  if_ : condition_          ::  [+]
-//  #COL  ::  COLOR                     ::  COLOR_                    ::  [+]
-//  #VAL  ::  VALUE                     ::  value_                    ::  [+]
-//  #CLL  ::  COLLECTION                ::  collection_               ::  [+]
-//  #MDA  ::  MANAGET_DATA              ::  managerData_              ::  [+]
-//  #LCL  ::  LINEAR_COLLECTION         ::  linearCollection_         ::  [+]
-//  #DEQ  ::  DEQUE                     ::  util_deque_               ::  [+]
-//  #QUE  ::  QUEUE                     ::  util_queue_               ::  [+]
-//  #STA  ::  STACK                     ::  util_stack_               ::  [+]
-//  #TMP  ::  TEMPORAL\CHRONO_UNIT      ::  localDate_time_           ::  [+]
-//  #LDA  ::  LOCALDATE                 ::  localDate_                ::  [+]
-//  #LTI  ::  LOCALTIME                 ::  localTime_                ::  [+]
-//  #LDT  ::  LOCALDATE_TIME            ::  localDate_time_           ::  [+]
-//  #DUR  ::  DURATION                  ::  duration_                 ::  [+]
-//  #PER  ::  PERIOD                    ::  period_                   ::  [+]
-//  #LIS  ::  LIST                      ::  util_List_                ::  [+]
-//  #CST  ::  COLLECTION_STORAGE        ::  collectionStorage_        ::  [+]
-//  #CCO  ::  CELLS_COLLECTION          ::  cellsCollection_          ::  [+]
-//  #CCD  ::  CELLS_COLLECTION_DYNAMIC  ::  cellsCollection_dynamic_  ::  [+]
-//  #CCS  ::  CELLS_COLLECTION_SETTER   ::  cellsCollection_setter_   ::  [+]
-//  #SET  ::  SET                       ::  util_set_                 ::  [+]
-//  #DCC  ::  DUAL_CELLS_COLLECTION     ::  collectionDualCells_      ::  [+]
-//  #SCC  ::  STORAGE_CELLS_COLLECTION  ::  collStorageCells_         ::  [p]
-//  #MAP  ::  MAP                       ::  util_map_                 ::  [+]
-//  #OBJ  ::  OBJECTS                   ::  object_                   ::  [+]
-//  #CAN  ::  CANVAS                    ::  canvas_                   ::  [+]
-//  #SPR  ::  SPRITE                    ::  sprite_                   ::  [+]
-//  #TUI  ::  TUI                       ::  tui_                      ::  [+]
-//  #TCO  ::  TCOMPONENT                ::  tComponent_               ::  [+]
-//  #VEC  ::  VEC                       ::  vec_                      ::  [x]
-//  #ASC  ::  ASCCI/HASH                ::  ascii_                    ::  [+]
-//---------------------------------------------------------------------------
-// :::: LINES_CODE: ~9600 ::: 41 MODULES ::: ( Pseint / version.2023 ) ::::
-//___________________________________________________________________________
-//::::::::::::::::::::::::::: ( STATE MEANING ) :::::::::::::::::::::::::::::
-//---------------------------------------------------------------------------
-//  [+]: Stable                                                        
-//  [D]: Current Development (Unusable temporaly)                      
-//  [p]: stable (Pending additions)                                    
-//  [x]: Unusable / undeveloped state                                  
-//___________________________________________________________________________
-```
+| NAME MODULE              | USE                          | STATE |
+| :----------------------- | :--------------------------- | :---: |
+| INPUT                    | `user_input_`                |  `[+]` |
+| STRING                   | `string_`                    |  `[+]` |
+| ARRAY                    | `array_`                     |  `[p]` |
+| PRINTERS                 | `print_ : prinln_`           |  `[p]` |
+| SLEEP                    | `sleep_`                     |  `[+]` |
+| LOGS                     | `log_`                       |  `[+]` |
+| TEST                     | `test_`                      |  `[+]` |
+| INT                      | `int_`                       |  `[+]` |
+| BINARY_STRING            | `binarystring_`              |  `[+]` |
+| MATH                     | `math_`                      |  `[+]` |
+| BOOLEAN                  | `boolean_`                   |  `[+]` |
+| CONDITIONS               | `if_ : condition_`           |  `[+]` |
+| COLOR                    | `COLOR_`                     |  `[+]` |
+| VALUE                    | `value_`                     |  `[+]` |
+| COLLECTION               | `collection_`                |  `[+]` |
+| MANAGERs_DATA            | `managerData_`               |  `[+]` |
+| LINEAR_COLLECTION        | `linearCollection_`          |  `[+]` |
+| DEQUE                    | `util_deque_`                |  `[+]` |
+| QUEUE                    | `util_queue_`                |  `[+]` |
+| STACK                    | `util_stack_`                |  `[+]` |
+| TEMPORAL\CHRONO_UNIT     | `localDate_time_`            |  `[+]` |
+| LOCALDATE                | `localDate_`                 |  `[+]` |
+| LOCALTIME                | `localTime_`                 |  `[+]` |
+| LOCALDATE_TIME           | `localDate_time_`            |  `[+]` |
+| DURATION                 | `duration_`                  |  `[+]` |
+| PERIOD                   | `period_`                    |  `[+]` |
+| LIST                     | `util_List_`                 |  `[+]` |
+| COLLECTION_STORAGE       | `collectionStorage_`         |  `[+]` |
+| CELLS_COLLECTION         | `cellsCollection_`           |  `[+]` |
+| CELLS_COLLECTION_DYNAMIC | `cellsCollection_dynamic_`   |  `[+]` |
+| CELLS_COLLECTION_SETTER  | `cellsCollection_setter_`    |  `[+]` |
+| SET                      | `util_set_`                  |  `[+]` |
+| DUAL_CELLS_COLLECTION    | `collectionDualCells_`       |  `[+]` |
+| STORAGE_CELLS_COLLECTION | `collStorageCells_`          |  `[p]` |
+| MAP                      | `util_map_`                  |  `[+]` |
+| OBJECTS                  | `object_`                    |  `[+]` |
+| CANVAS                   | `canvas_`                    |  `[+]` |
+| SPRITE                   | `sprite_`                    |  `[+]` |
+| TUI                      | `tui_`                       |  `[+]` |
+| TCOMPONENT               | `tComponent_`                |  `[+]` |
+| VEC                      | `vec_`                       |  `[x]` |
+| ASCII/HASH               | `ascii_`                     |  `[+]` |
+
+> [!NOTE]
+> -  ~9600 lines | `pseint.2023` | 41 modules
+---
+
+#### State module
+
+| STATE | DESCRIPTION                                 |
+| :---: | :------------------------------------------ |
+| `[+]` | Stable                                      |
+| `[D]` | Current Development (Unusable temporarily)  |
+| `[p]` | Stable (Pending additions)                  |
+| `[x]` | Unusable / undeveloped state                |
+
+---
 ---
 
 ## Próximamente / En desarrollo

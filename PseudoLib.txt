@@ -29,7 +29,7 @@ FinFuncion
 //  #COL  ::  COLOR                     ::  COLOR_                    ::  [+]
 //  #VAL  ::  VALUE                     ::  value_                    ::  [+]
 //  #CLL  ::  COLLECTION                ::  collection_               ::  [+]
-//  #MDA  ::  MANAGET_DATA              ::  managerData_              ::  [+]
+//  #MDA  ::  MANAGERs_DATA              ::  managerData_              ::  [+]
 //  #LCL  ::  LINEAR_COLLECTION         ::  linearCollection_         ::  [+]
 //  #DEQ  ::  DEQUE                     ::  util_deque_               ::  [+]
 //  #QUE  ::  QUEUE                     ::  util_queue_               ::  [+]
