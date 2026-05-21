@@ -1,15 +1,119 @@
-body {
-    background-color: #0d1117; 
-    color: #c9d1d9;          
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+.modo-oscuro {
+    --bg-principal: #0d1117;
+    --bg-paneles: #161b22;
+    --bg-tarjetas: #21262d;
+    --bg-visores: #010409;
+    --texto-principal: #c9d1d9;
+    --texto-secundario: #8b949e;
+    --borde: #30363d;
+    --color-activo: #58a6ff;
+    --color-exito: #238636;
+    --color-exito-hover: #2ea043;
+    --bg-seleccionado: #1f6feb;
 }
 
-h1 {
-    font-size: 32px;
-    font-weight: 600;
+.modo-claro {
+    --bg-principal: #f6f8fa;
+    --bg-paneles: #ffffff;
+    --bg-tarjetas: #f6f8fa;
+    --bg-visores: #ffffff;
+    --texto-principal: #24292f;
+    --texto-secundario: #57606a;
+    --borde: #d0d7de;
+    --color-activo: #0969da;
+    --color-exito: #1a7f37;
+    --color-exito-hover: #1f883d;
+    --bg-seleccionado: #54a3ff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s ease, border-color 0.2s ease; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--bg-principal); color: var(--texto-principal); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+
+.barra-superior { height: 55px; background: var(--bg-paneles); border-bottom: 1px solid var(--borde); display: flex; justify-content: space-between; align-items: center; padding: 0 20px; flex-shrink: 0; }
+.logo { font-size: 18px; font-weight: 600; }
+.logo span { color: var(--color-activo); }
+
+.area-trabajo { display: flex; flex: 1; overflow: hidden; position: relative; }
+.panel { width: 320px; background: var(--bg-paneles); border-right: 1px solid var(--borde); display: flex; flex-direction: column; flex-shrink: 0; }
+#panelDerecho { border-right: none; border-left: 1px solid var(--borde); width: 740px;min-width: 200px; max-width: 50%; flex-shrink: 0;}
+.contenido-panel { padding: 15px; overflow-y: auto; flex: 1; }
+.flex-col { display: flex; flex-direction: column; }
+
+.cabecera-panel { height: 45px; padding: 0 15px; border-bottom: 1px solid var(--borde); display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.05); flex-shrink: 0; }
+.cabecera-panel h3 { font-size: 14px; font-weight: 600; color: var(--texto-principal); }
+
+.panel-central { flex: 1; display: flex; flex-direction: column; background: var(--bg-principal); overflow: hidden; }
+pre { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 13px; background: var(--bg-visores); border: 1px solid var(--borde); border-radius: 6px; padding: 15px; white-space: pre-wrap; word-wrap: break-word; overflow-y: auto; flex: 1; color: var(--texto-principal); }
+.visor-individual { height: 100%; min-height: 150px; }
+.visor-resultado { margin: 15px; border-radius: 8px; }
+
+.tarjeta { background: var(--bg-tarjetas); border: 1px solid var(--borde); border-radius: 6px; padding: 15px; margin-bottom: 15px; }
+.etiqueta { font-weight: 600; font-size: 13px; display: block; margin-bottom: 8px; color: var(--texto-principal); }
+.instruccion { font-size: 12px; color: var(--texto-secundario); margin-bottom: 8px; }
+
+.contenedor-botones { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px; background: var(--bg-visores); border: 1px solid var(--borde); border-radius: 6px; max-height: 200px; overflow-y: auto; font-size: 12px; color: var(--texto-secundario); }
+
+button { border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 13px; border: 1px solid transparent; display: inline-flex; align-items: center; justify-content: center; }
+.btn-principal { background: var(--color-exito); color: #ffffff; padding: 10px 16px; font-size: 14px; font-weight: 600; width: 100%; margin-top: 15px; }
+.btn-principal:hover { background: var(--color-exito-hover); }
+.btn-secundario { background: var(--bg-tarjetas); border-color: var(--borde); color: var(--texto-principal); padding: 6px 12px; }
+.btn-secundario:hover { background: rgba(255,255,255,0.05); border-color: var(--texto-secundario); }
+.btn-secundario:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-icono { background: transparent; color: var(--texto-secundario); width: 28px; height: 28px; font-size: 12px; }
+.btn-icono:hover { color: var(--texto-principal); background: rgba(255,255,255,0.1); }
+
+.btn-modulo { background: var(--bg-tarjetas); color: var(--texto-principal); border: 1px solid var(--borde); padding: 5px 10px; font-size: 12px; transition: all 0.1s ease; }
+.btn-modulo:hover { border-color: var(--texto-secundario); }
+.btn-modulo.seleccionado { background: var(--bg-seleccionado); color: #ffffff; border-color: transparent; font-weight: 600; box-shadow: 0 0 8px rgba(88, 166, 255, 0.3); }
+
+.archivo-actual { font-size: 13px; color: var(--color-activo); margin-bottom: 8px; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
+.controles-lector { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; gap: 10px; }
+.badge { background: var(--bg-tarjetas); border: 1px solid var(--borde); padding: 4px 8px; border-radius: 12px; font-size: 12px; color: var(--texto-secundario); }
+
+/* SISTEMA COMPLETO DE OCULTACIÓN */
+.panel.oculto { width: 0px !important; display: none !important; }
+.btn-flotante { position: absolute; top: 15px; z-index: 10; padding: 10px; background: var(--bg-paneles); border: 1px solid var(--borde); box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: none; border-radius: 0 6px 6px 0; color: var(--texto-principal); }
+.flotante-izq { left: 0; border-left: none; }
+.flotante-der { right: 0; border-right: none; border-radius: 6px 0 0 6px; }
+
+.resizer-vertical {
+    width: 6px;
+    cursor: col-resize;
+    background-color: transparent;
+    transition: background-color 0.2s;
+    z-index: 10;
+}
+
+.resizer-vertical:hover,
+.resizer-vertical.arrastrando {
+    background-color: #444; /* Línea gris oscuro al arrastrar o pasar el mouse */
+}
+
+@media (max-width: 768px) {
+    .area-trabajo {
+        flex-direction: column !important;
+        height: auto !important;
+    }
+
+    #resizerDerecho {
+        display: none !important;
+    }
+
+    /* Hacemos que todos los paneles ocupen el 100% del ancho del celular */
+    #panelIzquierdo, 
+    #panelCentral, 
+    #panelDerecho {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+        flex: none !important;
+        box-sizing: border-box;
+    }
+
+    /* Le damos una altura fija y cómoda a las zonas de texto para que no sean infinitas */
+    #contenidoResultado, 
+    #contenidoTexto {
+        max-height: 400px;
+        overflow-y: auto;
+    }
 }

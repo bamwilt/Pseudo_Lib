@@ -1,0 +1,8 @@
+--- ARCHIVO: end.txt ---
+
+World
+
+--- ARCHIVO: start.txt ---
+
+Hello
+

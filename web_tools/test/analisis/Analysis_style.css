@@ -1,0 +1,204 @@
+:root {
+    --bg-darker: #181818;
+    --bg-editor: #1e1e1e;
+    --bg-card: #252526;
+    --border: #333;
+    --text-main: #cccccc;
+    --accent: #007acc;
+    
+    /* Colores de sintaxis y reportes originales */
+    --syntax-func: #dcdcaa;
+    --syntax-string: #ce9178;
+    --syntax-private: #f48771;
+    --syntax-dep: #4fc1ff;
+    
+    /* Variantes para estados del reporte */
+    --syntax-error: #f44336;
+    --syntax-ok: #4caf50;
+    --text-dim: #717171;
+}
+
+body {
+    background-color: var(--bg-darker);
+    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.app-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+.app-header {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+h1 {
+    color: var(--text-main);
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.actions-bar {
+    display: flex;
+    gap: 0.75rem;
+}
+
+button {
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: bold;
+    padding: 0.55rem 1.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    border: none;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+#btnAgregar {
+    background-color: var(--bg-editor);
+    color: var(--text-main);
+    border: 1px solid var(--border);
+}
+
+.editor-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.modulo-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.modulo-header {
+    background-color: var(--bg-darker);
+    padding: 0.6rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.modulo-prefijo {
+    background-color: var(--bg-editor);
+    color: var(--syntax-dep);
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    width: 220px;
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 0.85rem;
+}
+
+.btn-ejecutar-modulo {
+    background-color: var(--accent);
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 0.35rem 0.8rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn-ejecutar-modulo:hover {
+    opacity: 0.9;
+}
+
+.btn-eliminar {
+    background: none;
+    color: var(--syntax-error);
+    font-size: 1.4rem;
+    padding: 0;
+}
+
+.modulo-body {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    min-height: 380px;
+}
+
+.editor-section {
+    border-right: 1px solid var(--border);
+}
+
+.modulo-codigo {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: var(--bg-editor);
+    color: var(--text-main);
+    border: none;
+    padding: 1rem;
+    resize: vertical;
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    outline: none;
+}
+
+.report-section {
+    background-color: var(--bg-darker);
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.vacio-hint {
+    color: var(--text-dim);
+    text-align: center;
+    margin-top: 5rem;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.report-item {
+    margin-bottom: 1.2rem;
+}
+
+.report-item h4 {
+    margin: 0 0 0.4rem 0;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-main);
+}
+
+.report-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 0.85rem;
+}
+
+.report-item li {
+    padding: 0.25rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.status-ok { color: var(--syntax-ok); }
+.status-missing { color: var(--syntax-error); }
+.func-pub { color: var(--syntax-func); }
+.func-priv { color: var(--syntax-private); }

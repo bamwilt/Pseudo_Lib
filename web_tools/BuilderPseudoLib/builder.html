@@ -3,12 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
+    <title>Fábrica de Libros - Builder Workspace</title>
     <link rel="stylesheet" href="builder_style.css">
 </head>
-<body>
+<body class="modo-oscuro">
 
-    <h1>Hello World</h1>
+    <header class="barra-superior">
+        <div class="logo"><span>Builder Workspace</span></div>
+        <button id="btnTema" class="btn-secundario" onclick="alternarTema()">Modo Claro</button>
+    </header>
 
+    <div class="area-trabajo">
+        
+        <aside id="panelIzquierdo" class="panel">
+            <div class="cabecera-panel">
+                <h3>Controles</h3>
+                <button class="btn-icono" onclick="colapsarPanel('panelIzquierdo')">◀</button>
+                <button id="btnReset" class="btn-secundario" onclick="reiniciarAplicacion()">Reiniciar todo</button>
+            </div>
+            
+            <div class="contenido-panel">
+                <div class="tarjeta">
+                    <label class="etiqueta">1. Cargar Módulos (Carpeta)</label>
+                    <input type="file" id="selectorCarpeta" webkitdirectory directory multiple>
+                </div>
+                
+                <div class="tarjeta" id="bloqueCompilar">
+                    <label class="etiqueta">2. Ordenar y Activar Módulos</label>
+                    <p class="instruccion">Haz clic en el orden en que deseas unirlos:</p>
+                    <div id="zonaBotones" class="contenedor-botones">Ninguna carpeta cargada...</div>
+                    <button class="btn-principal" onclick="descargarLibro()">Concatenar & Descarga</button>
+                </div>
+            </div>
+        </aside>
+
+        <button id="btnAbrirIzquierdo" class="btn-flotante flotante-izq" onclick="colapsarPanel('panelIzquierdo')">🛠️</button>
+
+        <main class="panel-central">
+            <div class="cabecera-panel">
+                <h3>👁️ Previsualización del Resultado (Sin Comentarios)</h3>
+            </div>
+            <pre id="contenidoResultado" class="visor-resultado">Carga tus módulos y selecciónalos a la izquierda para ver cómo se estructuran en tiempo real...</pre>
+        </main>
+<div id="resizerDerecho" class="resizer-vertical"></div>
+        <aside id="panelDerecho" class="panel">
+            <div class="cabecera-panel">
+                <button class="btn-icono" onclick="colapsarPanel('panelDerecho')">▶</button>
+                <h3>📖 Lector Individual</h3>
+            </div>
+            
+            <div class="contenido-panel flex-col">
+                <div class="controles-lector">
+                    <button id="btnAnterior" class="btn-secundario" onclick="cambiarArchivo(-1)" disabled>&lt;</button>
+                    <span id="indicadorPosicion" class="badge">0 / 0</span>
+                    <button id="btnSiguiente" class="btn-secundario" onclick="cambiarArchivo(1)" disabled>&gt;</button>
+                </div>
+                <strong id="nombreArchivo" class="archivo-actual">Archivo: -</strong>
+                <pre id="contenidoTexto" class="visor-individual">Ningún archivo cargado...</pre>
+            </div>
+        </aside>
+
+        <button id="btnAbrirDerecho" class="btn-flotante flotante-der" onclick="colapsarPanel('panelDerecho')">📖</button>
+
+    </div>
+
+    <script src="js/global_vars.js"></script>
+    <script src="js/viewer.js"></script>
+    <script src="js/ui_controller.js"></script>
+    <script src="js/builder.js"></script>
+    <script src="js/main_controller.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
