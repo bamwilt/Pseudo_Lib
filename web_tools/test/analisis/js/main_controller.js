@@ -1,130 +1,128 @@
-function ejecutarAnalisisIndividual(botonPresionado) {
-    const tarjetas = document.querySelectorAll('.modulo-card');
-    const tarjetaActual = botonPresionado.closest('.modulo-card');
+/**
+ * Vuelca el archivo en el editor de la librería padre.
+ */
+function detectarCargaArchivoManual(input) {
+    const archivo = input.files[0];
+    if (!archivo) return;
+
+    const lector = new FileReader();
+    const statusDiv = document.getElementById("statusPadre");
+    statusDiv.textContent = "Estado: Transfiriendo archivo...";
+
+    lector.onload = function(evento) {
+        document.getElementById("codigoPadreManual").value = evento.target.result;
+        statusDiv.innerHTML = `<span style="color: var(--syntax-dep)">✔ Código volcado. Pulsa "Analizar Código".</span>`;
+    };
+    lector.readAsText(archivo, "UTF-8");
+}
+
+/**
+ * Indexa el contenido del padre en memoria.
+ */
+function procesarArchivoPadreManual() {
+    const textoCompleto = document.getElementById("codigoPadreManual").value;
+    const statusDiv = document.getElementById("statusPadre");
     
+    if (!textoCompleto.trim()) {
+        alert("Primero carga o pega el código de la librería.");
+        return;
+    }
+
+    const totalFunciones = indexarArchivoPadre(textoCompleto);
+    statusDiv.innerHTML = `<span style="color: var(--syntax-ok)">✔ Éxito: <b>${totalFunciones}</b> funciones indexadas.</span>`;
+}
+
+/**
+ * Solicita el análisis cruzado con el padre (sin combos).
+ */
+function solicitarAnalisis() {
+    // Busca la tarjeta principal (data-id="1")
+    const tarjeta = document.querySelector('.modulo-card[data-id="1"]');
+    if (!tarjeta) {
+        alert("No se encontró el módulo principal.");
+        return;
+    }
+    // true: indica que debe consultar el índice del padre
+    ejecutarAnalisisCore(tarjeta, true);
+}
+
+/**
+ * Análisis local de una tarjeta (sin consultar al padre).
+ */
+function ejecutarAnalisisIndividual(boton) {
+    ejecutarAnalisisCore(boton.closest('.modulo-card'), false);
+}
+
+/**
+ * Corazón del análisis.
+ */
+function ejecutarAnalisisCore(tarjetaActual, consultarPadre) {
+    const meta = extraerMetaDelBloque(tarjetaActual.querySelector('.modulo-codigo').value);
+    
+    // Obtenemos los metadatos de todas las tarjetas para el contexto global
+    const tarjetas = document.querySelectorAll('#contenedorModulos .modulo-card');
     const universoDeclaradas = new Set();
     const todasLasLlamadasGlobales = new Set();
-    let moduloActualData = null;
-
-    // 1. Mapeamos rápido el estado global de todos los módulos abiertos
-    tarjetas.forEach(tarjeta => {
-        const codigo = tarjeta.querySelector('.modulo-codigo').value;
-        const prefijo = tarjeta.querySelector('.modulo-prefijo').value.trim();
-        const meta = extraerMetaDelBloque(codigo);
-        
-        meta.declaradas.forEach(f => universoDeclaradas.add(f));
-        meta.llamadas.forEach(ll => todasLasLlamadasGlobales.add(ll));
-        
-        if (tarjeta === tarjetaActual) {
-            moduloActualData = {
-                id: tarjeta.getAttribute('data-id'),
-                prefijo,
-                declaradas: meta.declaradas,
-                llamadas: meta.llamadas
-            };
-        }
+    
+    tarjetas.forEach(t => {
+        const m = extraerMetaDelBloque(t.querySelector('.modulo-codigo').value);
+        m.declaradas.forEach(d => universoDeclaradas.add(d));
+        m.llamadas.forEach(l => todasLasLlamadasGlobales.add(l));
     });
 
-    if (!moduloActualData) return;
+    const resultado = analizarDependenciasModulares(
+        { 
+            id: tarjetaActual.getAttribute('data-id'), 
+            prefijo: tarjetaActual.querySelector('.modulo-prefijo').value.trim(),
+            declaradas: meta.declaradas, 
+            llamadas: meta.llamadas 
+        }, 
+        universoDeclaradas, 
+        todasLasLlamadasGlobales, 
+        consultarPadre
+    );
 
-    // 2. Procesamos e inyectamos el reporte ÚNICAMENTE en la tarjeta que se ejecutó
-    const reportDiv = document.getElementById(`report-${moduloActualData.id}`);
-    reportDiv.innerHTML = '';
+    UIRenderer.renderizarReporte(tarjetaActual.getAttribute('data-id'), resultado);
+}
 
-    const listaDeseos = new Set();
-    moduloActualData.llamadas.forEach(ll => {
-        const esLocal = moduloActualData.declaradas.has(ll);
-        const esMismoPrefijo = ll.toLowerCase().startsWith(moduloActualData.prefijo.toLowerCase() + "_");
-        
-        if (!esLocal && !esMismoPrefijo) {
-            listaDeseos.add(ll);
-        }
-    });
+/**
+ * Inyecta las funciones faltantes al editor.
+ */
+function inyectarFuncionesAlModulo(idModulo) {
+    const tarjeta = document.querySelector(`.modulo-card[data-id="${idModulo}"]`);
+    const textarea = tarjeta.querySelector('.modulo-codigo');
+    
+    // 1. Extraemos qué tenemos YA declarado para que NO se inyecte de nuevo
+    const metaActual = extraerMetaDelBloque(textarea.value);
+    
+    // Pasamos metaActual.declaradas como set para filtrar duplicados
+    const mapaFunciones = resolverArbolDependencias(metaActual.llamadas, metaActual.declaradas);
 
-    const dependenciasResueltas = [];
-    const dependenciasFaltantes = [];
-
-    listaDeseos.forEach(funcionDeseada => {
-        if (universoDeclaradas.has(funcionDeseada)) {
-            dependenciasResueltas.push(funcionDeseada);
-        } else {
-            dependenciasFaltantes.push(funcionDeseada);
-        }
-    });
-
-    // --- SECCIÓN 1: MISSING ENDPOINTS ---
-    const missingSection = document.createElement('div');
-    missingSection.className = 'report-item';
-    missingSection.innerHTML = '<h4 style="color: var(--syntax-error)">Missing Endpoints (Faltan)</h4>';
-    const missingList = document.createElement('ul');
-
-    if (dependenciasFaltantes.length === 0) {
-        missingList.innerHTML = '<li class="status-ok">▶ Checklist complete</li>';
-    } else {
-        dependenciasFaltantes.sort().forEach(dep => {
-            const li = document.createElement('li');
-            li.className = 'status-missing';
-            li.textContent = '⚠ ' + dep;
-            missingList.appendChild(li);
-        });
+    if (mapaFunciones.size === 0) {
+        alert("Todo está en orden, no hay nuevas dependencias por inyectar.");
+        return;
     }
-    missingSection.appendChild(missingList);
-    reportDiv.appendChild(missingSection);
 
-    // --- SECCIÓN 2: RESOLVED DEPENDENCIES ---
-    const resolvedSection = document.createElement('div');
-    resolvedSection.className = 'report-item';
-    resolvedSection.innerHTML = '<h4 style="color: var(--syntax-dep)">Resolved Dependencies (Vinculadas)</h4>';
-    const resolvedList = document.createElement('ul');
+    // 2. Ordenar por prefijo y construir el bloque (mantiene tu lógica anterior)
+    let bloquesOrdenados = {};
+    mapaFunciones.forEach((info, nombre) => {
+        let prefijo = nombre.split('_')[0].toUpperCase() || "GENERAL";
+        if (!bloquesOrdenados[prefijo]) bloquesOrdenados[prefijo] = [];
+        bloquesOrdenados[prefijo].push(info.codigo);
+    });
 
-    if (dependenciasResueltas.length === 0) {
-        resolvedList.innerHTML = '<li style="color: var(--text-dim)">▪ No external links</li>';
-    } else {
-        dependenciasResueltas.sort().forEach(dep => {
-            const li = document.createElement('li');
-            li.style.color = 'var(--syntax-dep)';
-            li.textContent = '▶ ' + dep;
-            resolvedList.appendChild(li);
+    let textoInyeccion = "\n\n///=====[ DEPENDENCIES ]=====[  ///   ]=====================================\n";
+    Object.keys(bloquesOrdenados).sort().forEach(prefijo => {
+        textoInyeccion += `//--[${prefijo}]-- -- -- -- -- -- -- -- -- -- -- -- -- --\n`;
+        bloquesOrdenados[prefijo].forEach(c => {
+            textoInyeccion += c.trim() + "\n\n";
         });
-    }
-    resolvedSection.appendChild(resolvedList);
-    reportDiv.appendChild(resolvedSection);
-
-    // --- SECCIÓN 3: UNUSED FUNCTIONS ---
-    const sobranSection = document.createElement('div');
-    sobranSection.className = 'report-item';
-    sobranSection.innerHTML = '<h4 style="color: var(--text-dim)">Unused Functions (Sobran)</h4>';
-    const sobranList = document.createElement('ul');
-
-    let tieneSobrantes = false;
-    moduloActualData.declaradas.forEach(f => {
-        if (!todasLasLlamadasGlobales.has(f)) {
-            tieneSobrantes = true;
-            const li = document.createElement('li');
-            li.style.color = 'var(--text-dim)';
-            li.textContent = '⌫ ' + f;
-            sobranList.appendChild(li);
-        }
     });
 
-    if (!tieneSobrantes) sobranList.innerHTML = '<li class="status-ok">▶ Clean! No unused functions</li>';
-    sobranSection.appendChild(sobranList);
-    reportDiv.appendChild(sobranSection);
-
-    // --- SECCIÓN 4: TOTAL DE DECLARADAS EN EL MÓDULO ---
-    const funcSection = document.createElement('div');
-    funcSection.className = 'report-item';
-    funcSection.innerHTML = `<h4>Declared Functions (${moduloActualData.declaradas.size})</h4>`;
-    const funcList = document.createElement('ul');
-
-    Array.from(moduloActualData.declaradas).sort().forEach(f => {
-        const li = document.createElement('li');
-        const esPrivada = f.includes('private') || f.startsWith('_');
-        li.className = esPrivada ? 'func-priv' : 'func-pub';
-        li.textContent = (esPrivada ? '⧚ ' : '⚙ ') + f;
-        funcList.appendChild(li);
-    });
-
-    funcSection.appendChild(funcList);
-    reportDiv.appendChild(funcSection);
+    // 3. Aplicar
+    textarea.value = textarea.value.trim() + textoInyeccion + "\n";
+    
+    // 4. Limpiar y re-analizar
+    document.getElementById(`report-${idModulo}`).innerHTML = `<div class="status-ok">✔ Inyectado. Re-analizando...</div>`;
+    setTimeout(solicitarAnalisis, 500);
 }
