@@ -2138,13 +2138,13 @@ Funcion pixel <- get_pixel_withIndex(index)
 	Definir pixel Como Texto;
 	Segun index Hacer
 		caso 0:
-			pixel = "?";
+			pixel = "·";
 		caso 1:
-			pixel = "?";//*
+			pixel = "¤";//*
 		caso 2: 
-			pixel = "?";
+			pixel = "ø";
 		De Otro Modo:
-			pixel = "?";
+			pixel = "Ø";
 	FinSegun
 FinFuncion
 

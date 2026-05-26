@@ -22,7 +22,7 @@ FinFuncion
 //  #SLP  ::  SLEEP                     ::  sleep_                    ::  [+]
 //  #LOG  ::  LOGS                      ::  log_                      ::  [+]
 //  #TST  ::  TEST                      ::  test_                     ::  [+]
-//  #INT  ::  INT                       ::  int_                      ::  [+]
+//  #NUM  ::  NUMBER                    ::  int_ : number_ : float    ::  [+]
 //  #BST  ::  BINARY_STRING             ::  binarystring_             ::  [+]
 //  #MAT  ::  MATH                      ::  math_                     ::  [+]
 //  #BOO  ::  BOOLEAN                   ::  boolean_                  ::  [+]
@@ -35,7 +35,7 @@ FinFuncion
 //  #DEQ  ::  DEQUE                     ::  util_deque_               ::  [+]
 //  #QUE  ::  QUEUE                     ::  util_queue_               ::  [+]
 //  #STA  ::  STACK                     ::  util_stack_               ::  [+]
-//  #TMP  ::  TEMPORAL\CHRONO_UNIT      ::  localDate_time_           ::  [+]
+//  #TMP  ::  TEMPORAL\CHRONO_UNIT      ::  temporal_ : chrono_unit   ::  [+]
 //  #LDA  ::  LOCALDATE                 ::  localDate_                ::  [+]
 //  #LTI  ::  LOCALTIME                 ::  localTime_                ::  [+]
 //  #LDT  ::  LOCALDATE_TIME            ::  localDate_time_           ::  [+]
@@ -91,10 +91,7 @@ FinFuncion
 // metodos: array_sort, Array_reverse, array_filter, Runnable(opcional)
 // contains_IgnoreCase, posible agregado de mas componentes (opcional)
 // print color 
-// <TODO: update con Index_FromIndex> __private_string_occurrences_general
 // <TODO: Agregar un CompareTo para cadenas > String
-// <TODO: Eliminar o modifcar las animacion para hacerlas utiles > sleep
-// <TODO: Mejorar lectura o dejarlo Como esta>  math_ Serie de Taylor
 // <TODO: agregar hasColor y DeleteColor >  Color
 // <TODO: agregar soporte para monocolor y agregar Como maquina de 
 //        escritura (Hell_ luego Hello)>  en print_progress_formater()
@@ -288,7 +285,7 @@ Funcion user_input <- user_input_options_separator(options_text, separator, TYPE
 FinFuncion
 
 Funcion user_input <- __private_user_input_options_separator(user_input_obtained, options_text, separator, TYPE)
-	user_input_obtained = if(string_Struct_Contains(user_input_obtained, options_text, separator), user_input_obtained, TYPE_STRING());
+	user_input_obtained = if(string_struct_contains(user_input_obtained, options_text, separator), user_input_obtained, TYPE_STRING());
 	Segun TYPE Hacer
 		caso TYPE_BOOLEAN(): Definir user_input Como Logico;
 		caso TYPE_INT(): Definir user_input Como Numero;
@@ -297,8 +294,13 @@ Funcion user_input <- __private_user_input_options_separator(user_input_obtained
 	FinSegun
 	user_input = value_stringToType(user_input_obtained, TYPE);
 FinFuncion
+//=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=======================================
+Funcion result_string <- symbol_Separator_Simple
+	Definir result_string Como Texto;
+	result_string = ",";
+FinFuncion
 ///%%%%%[ STRING.................. ]%%%%%%%[   #STR    ]%%%%%%%%%%%%%%%%%%%%
-//----[ APPENDS ]----------------------------------------------------<#>
+//----[ APPENDS ]--------------------------------------------------------<#>
 Funcion result <- string_append_withSeparator(str1, str2, separator)
 	Definir result Como Texto;
 	result = str1+separator+str2+"";
@@ -318,18 +320,18 @@ Funcion text_Color <- string_append_in_separators(text, text_append, separator)
     Definir text_Color Como Texto;
     Definir index_sep, sep_length Como Numero;
     text_Color = "";
-    sep_length = string_Length(separator);
+    sep_length = native_string_length(separator);
     text_Color = string_append(text_Color, text_append);
     index_sep = string_indexOf(text, separator);
     Mientras index_sep >= 0 Hacer
-        text_Color = string_append(text_Color, string_substring(text, 0, index_sep + sep_length));
+        text_Color = string_append(text_Color, string_substring(text, 0, math_sum(index_sep, sep_length)));
         text_Color = string_append(text_Color, text_append);
-        text = string_substring_from(text, index_sep + sep_length);
+        text = string_substring_from(text, math_sum(index_sep, sep_length));
         index_sep = string_indexOf_fromIndex(text, separator, 0);
     FinMientras
     text_Color = string_append(text_Color, text);
 FinFuncion
-//----[ STRING_PARSE ]--------------------------------------------------------------<#>
+//----[ STRING_PARSE ]---------------------------------------------------<#>
 Funcion boolean <- string_toBoolean(result_string)
 	Definir boolean Como Logico;
 	boolean = string_isBoolean_true(result_string);
@@ -344,17 +346,17 @@ Funcion num <- string_toNumber(result_string)
 	FinSi
 	num = native_string_toNumber(result_string);
 FinFuncion
-//----[ LENGTH ]----------------------------------------------------<#>
-Funcion num <- string_Length(text)
+//----[ LENGTH ]---------------------------------------------------------<#>
+Funcion num <- string_length(text)
 	Definir num Como Numero;
 	num = native_string_length(text);
 FinFuncion
 
-Funcion length_String <- string_Length_ToString(text)
+Funcion length_String <- string_length_ToString(text)
 	Definir length_String Como Texto;
-	length_String = number_toString(string_Length(text));
+	length_String = native_number_toString(native_string_length(text));
 FinFuncion
-//----[ INSERT ]----------------------------------------------------<#>
+//----[ INSERT ]---------------------------------------------------------<#>
 Funcion result_string <- string_insert(text, text_insert, index)
 	Definir result_string Como Texto;
 	result_string=__private_string_insert_general(text, text_insert, index, false);
@@ -367,38 +369,65 @@ FinFuncion
 
 Funcion result_string <- string_insert_from_End(text, text_insert)
 	Definir result_string Como Texto;
-	result_string = string_insert(text, text_insert, string_Length(text));
+	result_string = string_insert(text, text_insert, native_string_length(text));
 FinFuncion
 
 Funcion result_string <- __private_string_insert_general(text, text_insert, index, isReplace)
 	Definir result_string, before, after Como Texto;
-	Definir index_after Como Numero;
-	before        = string_substring_from_start(text, index);
-	index_after   = math_sum(index, if_else(isReplace, string_Length(text_insert), 0, TYPE_INT()));
-	after         = string_substring_from(text, math_min_int(index_after, string_Length(text)));
+	Definir index_after Como Entero;
+	before        = string_substring(text, 0, index);
+	index_after   = math_sum(index, if_else(isReplace, native_string_length(text_insert), 0));
+	after         = string_substring_from(text, math_min_int(index_after, native_string_length(text)));
 	result_string = string_append_withSeparator(before, after, text_insert);
 FinFuncion
 
-Funcion result_string <- string_pad_start(text, text_pad)
+Funcion result_string <- string_pad_limitStart(text, text_pad, pad_length)
+	Definir result_string, res_pad Como Texto;
+	Definir text_length, res_length, end_substring Como Entero;
+	text_length   = native_string_length(text);
+	res_length    = math_minus(pad_length, text_length);
+	end_substring = math_max_Int(res_length, 0);
+	res_pad       = string_substring(text_pad, 0, end_substring);
+	result_string = string_insert(text, res_pad, 0);	
+FinFuncion
+
+Funcion result_string <- string_pad_limitEnd(text, text_pad, pad_length)
+	Definir result_string, res_pad Como Texto;
+	Definir text_length, res_length Como Entero;
+	text_length		= native_string_length(text);
+	res_length      = math_min_Int(text_length, pad_length);
+	res_pad         = string_substring(text_pad, res_length, pad_length);
+	result_string	= string_insert(text, res_pad, text_length);
+FinFuncion
+
+Funcion result_string <- string_pad(text, text_pad)
 	Definir result_string Como Texto;
-	result_string=string_insert(text, string_substring_from_start(text_pad, math_max_Int(math_minus(string_Length(text_pad), string_Length(text)), 0)), 0);
+	Definir pad_length Como Entero;
+	pad_length    = native_string_length(text_pad);
+	result_string = string_pad_limitStart(text, text_pad, pad_length);
+FinFuncion
+
+Funcion result_string <- string_pad_end(text, text_pad)
+	Definir result_string Como Texto;
+	Definir pad_length Como Entero;
+	pad_length		= native_string_length(text_pad);
+	result_string   = string_pad_limitEnd(text, text_pad, pad_length);
 FinFuncion
 
 Funcion result_string <- string_fit(text, text_pad)
-	Definir result_string Como Texto;
-	Definir text_length, pad_length, start_positionition Como Entero;
-	text_length		= string_Length(text);
-	pad_length		= string_Length(text_pad);
-	start_positionition	= math_max_Int(math_minus(pad_length, text_length), 0);
-	result_string	= string_insert(text, string_substring(text_pad, 0, start_positionition), 0);
+	Definir result_string, res_pad Como Texto;
+	Definir pad_length Como Entero;
+	pad_length		= native_string_length(text_pad);
+	result_string   = string_pad_limitStart(text, text_pad, pad_length);
 	result_string	= string_substring(result_string, 0, pad_length);
 FinFuncion
 
-Funcion result_string <-  string_fit_end(text, text_pad)
-	Definir result_string, pad_text Como Texto;
-	pad_text		= string_substring_from(text_pad, math_min_Int(string_Length(text), string_Length(text_pad)));
-	result_string	= string_insert(text, pad_text, string_Length(text));
-	result_string	= string_substring(result_string, 0, string_Length(text_pad));
+Funcion result_string <- string_fit_end(text, text_pad)
+	Definir result_string, res_pad Como Texto;
+	Definir pad_length Como Entero;
+	pad_length		= native_string_length(text_pad);
+	result_string   = string_pad_limitEnd(text, text_pad, pad_length);
+	result_string	= string_substring(result_string, 0, pad_length);
 FinFuncion
 
 Funcion result_string <- string_repeatText(text, repeats)
@@ -409,7 +438,7 @@ Funcion result_string <- string_repeatText(text, repeats)
 	SiNo
 		result_string = text;
 		current_repeats = 1;
-		text_length = String_length(text);
+		text_length = native_string_length(text);
 		next_repeats = math_sum(current_repeats, current_repeats);
 		Mientras next_repeats <= repeats Hacer
 			result_string = string_append(result_string, result_string);
@@ -422,44 +451,44 @@ Funcion result_string <- string_repeatText(text, repeats)
 		FinSi
 	FinSi
 FinFuncion
-//----[ DELETE ]---------------------------------------------------------------------<#>
+//----[ DELETE ]---------------------------------------------------------<#>
 Funcion result_str <- string_delete(text, start, end)
 	Definir result_str, start_Str, end_Str Como Texto;//Hello World (5, 8)
 	message_validateIndexRange("string_delete", text, start, end);
-	start_Str = string_substring_from_start(text, start);//Hello <-]
+	start_Str = string_substring(text, 0, start);//Hello <-]
 	end_Str = string_substring_from(text, end);//.->rld  
 	result_str = string_append(start_Str, end_Str);//Hello+rld = Hellorld
 FinFuncion
 
 Funcion result_str <- string_delete_From(text, start)
 	Definir result_str Como Texto;
-	result_str = string_delete(text, start, string_Length(text));
+	result_str = string_delete(text, start, native_string_length(text));
 FinFuncion
-//----[ REMPLACE ]----------------------------------------------------<#>
+//----[ REMPLACE ]-------------------------------------------------------<#>
 Funcion result <- string_replace(text, text_match, text_Replace)
-	Definir result, text_Current Como Texto;
-	Definir index, match_length, index_end Como Numero;//Hello World, "o", "X" = HellX World
-	index = string_indexOf(text, text_match);
-	match_length = string_Length(text_match);
-	result = "";
-	Mientras index >= 0 Hacer
-		index_end = index + match_length;
-		result = string_append(result, string_substring(text, 0, index));//Hell
-		result = string_append(result, text_Replace);//X
-		text = string_substring_from(text, math_sum(index, match_length));
-		index = string_indexOf_fromIndex(text, text_match, 0);
-	FinMientras
-	result = string_append(result, text);// World
+    Definir result Como Texto;
+    Definir index, match_length, current_position Como Numero;
+    match_length = native_string_length(text_match);
+    result = "";
+    current_position = 0;
+    index = string_indexOf_fromIndex(text, text_match, current_position);
+    Mientras index >= 0 Hacer
+        result = string_append(result, string_substring(text, current_position, index));
+        result = string_append(result, text_Replace);
+        current_position = math_sum(index, match_length);
+        index = string_indexOf_fromIndex(text, text_match, current_position);
+    FinMientras
+    result = string_append(result, string_substring_from(text, current_position));
 FinFuncion
 
-Funcion result <- string_replace_First(text, text_match, text_Replace)
+Funcion result <- string_replace_first(text, text_match, text_Replace)
 	Definir result Como Texto;
     Definir index Como Numero;
-    index = string_indexOf_fromIndex(text, text_match, 0);
+    index = string_indexOf(text, text_match);
     result = __private_string_replace_inIndex(text, text_match, text_Replace, index);
 FinFuncion
 
-Funcion result <- string_replace_Last(text, text_match, text_Replace)
+Funcion result <- string_replace_last(text, text_match, text_Replace)
 	Definir result Como Texto;
     Definir index Como Numero;
     index = String_lastIndexOf(text, text_match);
@@ -473,7 +502,7 @@ Funcion result <- __private_string_replace_inIndex(text, text_match, text_Replac
     SiNo
         result = string_substring(text, 0, index);
         result = string_append(result, text_Replace);
-		end_text = string_substring_from(text, math_sum(index, string_Length(text_match)));
+		end_text = string_substring_from(text, math_sum(index, native_string_length(text_match)));
         result = string_append(result, end_text);
     FinSi
 FinFuncion
@@ -486,7 +515,7 @@ FinFuncion
 Funcion result_string <- string_Strip(text, strip_symbol)
     Definir result_string Como Texto;
     Definir start, end, length_text Como Entero;
-    length_text = string_Length(text);
+    length_text = native_string_length(text);
     start = 0;
     Mientras start < length_text & string_isEquals(char_At(text, start), strip_symbol) Hacer
         start = math_increment(start);
@@ -500,7 +529,7 @@ FinFuncion
 
 Funcion result_string <- string_Strip_Left(text, strip_symbol)
 	Definir result_string Como Texto;
-	result_string = string_SubString(text, string_FindInterruption_Left(text, strip_symbol), string_Length(text));
+	result_string = string_SubString(text, string_FindInterruption_Left(text, strip_symbol), native_string_length(text));
 FinFuncion
 
 Funcion result_string <- string_Strip_Right(text, strip_symbol)
@@ -510,7 +539,7 @@ FinFuncion
 
 Funcion index_interruption <- string_FindInterruption_Left(text, strip_symbol)
 	Definir index_interruption, length_text Como Entero;
-	length_text = string_Length(text);
+	length_text = native_string_length(text);
 	index_interruption = 0;
 	Mientras index_interruption < length_text & string_isEquals(char_At(text, index_interruption), strip_symbol) Hacer
 		index_interruption = math_increment(index_interruption);
@@ -519,7 +548,7 @@ FinFuncion
 
 Funcion index_interruption <- string_FindInterruption_Right(text, strip_symbol)
 	Definir index_interruption Como Entero;
-    index_interruption = string_Length(text);
+    index_interruption = native_string_length(text);
     Mientras index_interruption > 0 & string_isEquals(char_At(text, math_decrement(index_interruption)), strip_symbol) Hacer
         index_interruption = math_decrement(index_interruption);
     FinMientras
@@ -529,27 +558,27 @@ Funcion text_Reverse <- string_TextReverse(text)
 	Definir text_Reverse Como Texto;
 	Definir i, indexText Como Numero;
 	text_Reverse = "";
-	indexText = string_Length(text);
-	Para i=0 Hasta indexText Con Paso 1 Hacer
-		text_Reverse = string_append(text_Reverse, char_At(text, indexText-i));
+	indexText = native_string_length(text);
+	Para i = 0 Hasta indexText Con Paso 1 Hacer
+		text_Reverse = string_append(text_Reverse, char_At(text, math_minus(indexText, i)));
 	FinPara
 FinFuncion
-//----[ UPPER/LOWER CASE ]-----------------------------------------------------------<#>
-Funcion result_string <- string_ToUpperCase(text)
+//----[ UPPER/LOWER CASE ]-----------------------------------------------<#>
+Funcion result_string <- string_toUpperCase(text)
 	Definir result_string Como Texto;
 	result_string = native_string_ToUpperCase(text);
 FinFuncion
 
-Funcion result_string <- string_ToLowerCase(text)
+Funcion result_string <- string_toLowerCase(text)
 	Definir result_string Como Texto;
 	result_string = native_string_ToLowerCase(text);
 FinFuncion
-//----[ REVERSE ]----------------------------------------------------<#>
+//----[ REVERSE ]--------------------------------------------------------<#>
 Funcion text_Reverse <- string_TextReverse_Caracters(text, array_Carathers, array_size)
     Definir text_Reverse, array_symbol, Char_Current Como Texto;
     Definir i, j, indexText Como Numero;
     text_Reverse = "";
-    indexText = math_decrement(string_Length(text));
+    indexText = math_decrement(native_string_length(text));
     i = 0;
     Mientras i <= indexText  Hacer
         Char_Current = char_At(text, math_minus(indexText, i));
@@ -581,12 +610,12 @@ Funcion char_Reverse <- __private_string_CharReverse_Caracters(char_, array_Cara
 	FinSi
 FinFuncion
 
-Funcion inverted_text <- string_ReverseSeparatedValues(text, separator)
+Funcion inverted_text <- string_reverse_separated_values(text, separator)
     Definir inverted_text, current_token, current_char Como Texto;
     Definir i Como Numero;
     inverted_text = "";
     current_token = "";
-    i = string_Length(text);
+    i = native_string_length(text);
     Mientras i >= 0 Hacer
         current_char = char_At(text, i);
         Si string_isEquals(current_char, separator) Entonces
@@ -601,35 +630,31 @@ Funcion inverted_text <- string_ReverseSeparatedValues(text, separator)
         i = math_decrement(i);
     FinMientras
 FinFuncion
-//----[ SUBSTRING ]----------------------------------------------------<#>
+//----[ SUBSTRING ]------------------------------------------------------<#>
 Funcion strSubs <- string_substring(result_string, start, end)
-	Definir strSubs Como Texto;
+	Definir strSubs, str_data Como Texto;
+	Definir end_substring Como Entero;
 	message_validateIndexRange("string_substring", result_string, start, end);
-	strSubs = if_else(number_isEquals(start, end), "", native_string_substring(result_string, start, math_max_int(end-1, 0)), TYPE_STRING());
+	end_substring = math_max_int( math_minus(end, 1), 0);
+	str_data = native_string_substring(result_string, start, end_substring);
+	strSubs = if_else(number_isEquals(start, end), "", str_data);
 FinFuncion
 
 Funcion strSubs <- string_substring_from(result_string, start)
 	Definir strSubs Como Texto;
-	strSubs = string_substring(result_string, start, string_Length(result_string));
-FinFuncion
-
-Funcion strSubs <- string_substring_from_start(result_string, numLimit)
-	Definir strSubs Como Texto;
-	strSubs = string_substring(result_string, 0, numLimit);
-FinFuncion
-
-Funcion strSubs <- string_substring_from_end(result_string, numIndex)
-	Definir strSubs Como Texto;
-	Definir end Como Numero;
-	end = math_minus(string_Length(result_string), numIndex);
-	strSubs = string_substring_from(result_string, end);
+	Definir end_substring Como Entero;
+	end_substring = native_string_length(result_string);
+	strSubs = string_substring(result_string, start, end_substring);
 FinFuncion
 
 Funcion result_string <- char_At(text, index)
 	Definir result_string Como Texto;
-	result_string = string_substring(text, index, math_min_int(math_increment(index), string_Length(text)));
+	Definir end_substring, text_length Como Entero;
+	text_length   = native_string_length(text);
+	end_substring = math_min_int(math_increment(index), text_length);
+	result_string = string_substring(text, index, end_substring);
 FinFuncion
-//----[ INDEX ]----------------------------------------------------<#>
+//----[ INDEX ]----------------------------------------------------------<#>
 Funcion result <- string_indexOf(text, text_match)// --- >
 	Definir result Como Numero;
 	result = string_indexOf_fromIndex(text, text_match, 0);
@@ -639,11 +664,11 @@ Funcion index <- string_indexOf_fromIndex(text, match, index_Start)
 	Definir index, i, match_length, index_end Como Numero;
 	Definir condition Como Logico;
     index = -1;
-    match_length = string_Length(match);
+    match_length = native_string_length(match);
 	i = math_max_Int(index_Start, 0);
-	index_end = string_Length(text) - match_length;
+	index_end = math_minus(native_string_length(text), match_length);
 	Mientras index_end >= i & number_isEquals(index, -1) Hacer
-		Si string_isEquals(match, string_substring(text, i, i+match_length)) Entonces
+		Si string_isEquals(match, string_substring(text, i, math_sum(i, match_length))) Entonces
 			index = i;
 			i = math_sum(index_end, 1);
 		SiNo
@@ -654,36 +679,37 @@ FinFuncion
 
 Funcion result <- string_lastIndexOf(text, text_match)//< ---
 	Definir result Como Numero;
-	result = string_lastindexOf_fromIndex(text, text_match, string_Length(text));
+	result = string_lastindexOf_fromIndex(text, text_match, native_string_length(text));
 FinFuncion
 //speed 23 s string_test:100*100 +4
 Funcion index <- string_LastindexOf_fromIndex(text, match, index_Start)
 	Definir index, i, match_length, index_end Como Numero;
 	Definir condition Como Logico;
     index = -1;
-    match_length = string_Length(match);
+    match_length = native_string_length(match);
 	i = math_max_Int(index_Start, match_length);
 	index_end = match_length;
 	Mientras index_end <= i & number_isEquals(index, -1) Hacer
 		Si string_isEquals(match, string_substring(text, math_minus(i, match_length), i)) Entonces
-			index = i-match_length;
+			index = math_minus(i, match_length);
 			i = -1;
 		SiNo
 			i = math_decrement(i);
 		FinSi
 	FinMientras
 FinFuncion
-//----[ OCURRENCES ]----------------------------------------------------<#>
+//----[ OCURRENCES ]-----------------------------------------------------<#>
 Funcion result <- __private_string_occurrences_general(text, text_match, isOverLap)
-	Definir result, count, index, progress_sum Como Numero;
+	Definir result, count, next_index, progress_sum, current_index Como Entero;
 	Definir text_Current Como Texto;
 	text_Current = text;
 	count = 0;
-	progress_sum = if_else(isOverLap, 1, string_Length(text_match), TYPE_INT());
-	Mientras string_Contains(text_Current, text_match) Hacer
-		index = string_indexOf(text_Current, text_match);
-		text_Current = string_delete(text_Current, 0, index+progress_sum);
-		count = math_increment(count);// i++
+	next_index = 0;
+	progress_sum = if_else(isOverLap, 1, native_string_length(text_match));
+	Mientras current_index >= 0 Hacer
+		current_index = string_indexOf_fromIndex(text_Current, text_match, next_index);
+		next_index = math_sum(current_index, progress_sum);
+		count = math_increment(count);
 	FinMientras 
 	result = count;
 FinFuncion
@@ -697,28 +723,7 @@ Funcion result <- string_occurrences_overlap(text, text_match)
 	Definir result Como Numero;
 	result = __private_string_occurrences_general(text, text_match, true);
 FinFuncion
-//---[ COVERSIONS ]----------------------------------------------------<#>
-Funcion result_string <- interger_ToString(num)
-	Definir result_string Como Texto;
-	result_string = number_toString(num);
-	Si !string_isNumber_int(result_string) Entonces
-		exection_Error(string_append("Error de tipado Interger: ", result_string));
-	FinSi
-FinFuncion
-
-Funcion result_string <- float_ToString(num)
-	Definir result_string Como Texto;
-	result_string = number_toString(num);
-	Si !string_isNumber_float(result_string) Entonces
-		exection_Error(string_append("Error de tipado Float: ", result_string));
-	FinSi
-FinFuncion
-
-Funcion result_string <- number_toString(num)
-	Definir result_string Como Texto;
-	result_string = native_number_ToString(num);
-FinFuncion
-//----[ COUNTMATCH ]----------------------------------------------------<#>
+//----[ COUNT_MATCH ]----------------------------------------------------<#>
 Funcion count <- string_countMatches(text, text_matcher)
 	Definir count Como Numero;
 	count =	__private_string_countMatches_general(text, text_matcher, false);
@@ -731,43 +736,120 @@ FinFuncion
 
 Funcion count <- __private_string_countMatches_general(text, text_matcher, isOverLap)
 	Definir index, count , length_Match Como Numero;
-	length_Match = if_else(isOverLap, 1, string_Length(text_matcher), TYPE_INT());
+	length_Match = if_else(isOverLap, 1, native_string_length(text_matcher));
 	count = 0;
 	index = string_indexOf_fromIndex(text, text_matcher, 0);
-	Mientras index>=0 Hacer
+	Mientras index >= 0 Hacer
 		count = math_increment(count);
-		text = string_substring_from(text, if_else(isOverLap, 1, index, TYPE_INT()));
+		text = string_substring_from(text, if_else(isOverLap, 1, index));
 		index = string_indexOf_fromIndex(text, text_matcher, length_Match);
 	FinMientras
 FinFuncion
-//----[ IS_TYPE ]----------------------------------------------------<#>
-Funcion boolean <- string_isNumber(text)
+//----[ CONSTAINS ]------------------------------------------------------<#>
+Funcion boolean <- string_contains(text, text_match)
 	Definir boolean Como Logico;
-	boolean = string_isNumber_int(text) O string_isNumber_float(text);
+	boolean = string_indexOf(text, text_match) > -1;
 FinFuncion
 
-Funcion boolean <- string_isNumber_int(text)
+Funcion found <- string_struct_contains_ignoreCase(text_search, string_struct, separator)
+	Definir found Como Logico;
+	found = string_struct_contains(native_string_toLowerCase(text_search), native_string_toLowerCase(string_struct), separator);
+FinFuncion
+
+Funcion found <- string_struct_contains(text_search, string_struct, separator)
+	Definir found Como Logico;
+	Definir startIndex, endIndex, collectionLength, separatorLength Como Numero;
+	Definir currentToken Como Texto;
+	found = false();
+	startIndex = 0;
+	collectionLength = native_string_length(string_struct);
+	separatorLength = native_string_length(separator);
+	Mientras startIndex < collectionLength Hacer
+		endIndex = string_indexOf_fromIndex(string_struct, separator, startIndex);
+		Si endIndex < 0 Entonces
+			endIndex = collectionLength;
+		FinSi
+		currentToken = string_substring(string_struct, startIndex, endIndex);
+		Si string_isEquals(text_search, currentToken) Entonces
+			found = true();
+			startIndex = collectionLength;
+		SiNo
+			startIndex = math_sum(endIndex, separatorLength);
+		FinSi
+	FinMientras
+FinFuncion
+//----[ STATE ]----------------------------------------------------------<#>
+Funcion boolean <- string_isEmpty(text)
 	Definir boolean Como Logico;
-	Definir i, length Como Numero;
-	text = if_else(string_startsWith(text, "-"), string_substring_from(text, 1), text, TYPE_STRING());
-	length = string_Length(text);
-	boolean = false;
+	boolean = __private_isEquals_general(text, "");
+FinFuncion
+
+Funcion boolean <- string_isBlank(text)
+	Definir boolean Como Logico;
+	Definir i Como Numero;
+	Definir char_Current Como Texto;
+	boolean = true();
 	i = 0;
-	Mientras i<length Hacer
-		boolean = char_isNumber(char_At(text, i));
-		i = if_else(boolean, math_increment(i), length, TYPE_INT());
+	Mientras i < native_string_length(text) Hacer
+		char_Current = char_At(text, i);
+		boolean = __private_isEquals_general(Char_Current, " ");
+		i = if_else(boolean, math_increment(i), math_sum(i, native_string_length(text)));
+	FinMientras
+FinFuncion
+//----[ REVERSE ]--------------------------------------------------------<#>
+Funcion boolean <- string_startsWith(text, text_match)
+	Definir boolean Como Logico;
+	boolean = string_isEquals(string_substring(text, 0, native_string_length(text_match)), text_match);
+FinFuncion
+
+Funcion boolean <- string_endsWith(text, text_match)
+	Definir boolean Como Logico;
+	boolean = string_isEquals(string_substring_from(text, math_minus(native_string_length(result_string), numIndex)), text_match);
+FinFuncion
+//----[ COMPARISON ]-----------------------------------------------------<#>
+Funcion boolean <- string_isEquals(str1, str2)
+	Definir boolean Como Logico;
+	boolean = __private_isEquals_general(str1, str2);
+FinFuncion
+
+Funcion boolean <- string_isEquals_ignoreCase(str1, str2)
+	Definir boolean Como Logico;
+	boolean = string_isEquals(native_string_toUpperCase(str1), native_string_toUpperCase(str2));
+FinFuncion
+
+Funcion isNull <- string_isNull(value_string) 
+	Definir isNull Como Logico;
+	isNull = string_isEquals(value_string, string_NULL());
+FinFuncion
+
+Funcion boolean <- string_isNumber(text)
+	Definir boolean Como Logico;
+	boolean = string_isNumber_int(text) | string_isNumber_float(text);
+FinFuncion
+
+Funcion isNumber <- string_isNumber_int(text_check)
+	Definir isNumber Como Logico;
+	Definir i, length Como Numero;
+	text_check = string_trim(text_check);
+	text_check = if_else(string_startsWith(text_check, "-"), string_substring_from(text_check, 1), text_check);
+	length = native_string_length(text_check);
+	isNumber = true(); 
+	i = 0;
+	Mientras isNumber & (i < length) Hacer
+		isNumber = ascii_IsNumberSymbols(char_At(text_check, i));
+		i = math_increment(i);
 	FinMientras
 FinFuncion
 
 Funcion boolean <- string_isNumber_float(str_num)
 	Definir boolean, interger_valid, decimal_valid Como Logico;
 	Definir str_decimal Como Texto;
-	str_num = if_else(string_Contains(str_num, " "), string_trim(str_num), str_num, TYPE_STRING());// poner esto en trim
-	Si string_Contains(str_num, ".") & string_indexOf(str_num, ".") > 0 Entonces
-		interger_valid = string_isNumber(string_substring_from_start(str_num, string_indexOf(str_num, ".")));
+	str_num = string_trim(str_num);
+	Si string_contains(str_num, ".") & string_indexOf(str_num, ".") > 0 Entonces
+		interger_valid = string_isNumber(string_substring(str_num, 0, string_indexOf(str_num, ".")));
 		str_decimal = string_substring_from(str_num, math_increment(string_indexOf(str_num, ".")));
 		decimal_valid = string_isNumber(str_decimal) & !string_startsWith(str_decimal, "-");
-		boolean = decimal_valid & interger_valid;
+		boolean = interger_valid & decimal_valid;
 	SiNo
 		boolean = string_isNumber_int(str_num);
 	FinSi
@@ -782,7 +864,7 @@ Funcion boolean <- string_isBoolean_false(text)
 	Definir boolean Como Logico;
 	Definir index Como Numero;
 	boolean = false;
-	text = string_ToLowerCase(text);
+	text = native_string_toLowerCase(text);
 	index = 0;
 	Mientras !boolean & !string_isEquals(array_string_Booleans_False(index), string_NULL()) hacer 
 		boolean = string_isEquals(text, array_string_Booleans_False(index));
@@ -794,125 +876,19 @@ Funcion boolean <- string_isBoolean_true(text)
 	Definir boolean Como Logico;
 	Definir index Como Numero;
 	boolean = false;
-	text = string_ToLowerCase(text);
+	text = native_string_toLowerCase(text);
 	index = 0;
 	Mientras !boolean & !string_isEquals(array_string_Booleans_True(index), string_NULL()) hacer 
 		boolean = string_isEquals(text, array_string_Booleans_True(index));
 		index = math_increment(index);
 	FinMientras
 FinFuncion
-//----[ CONSTAINS ]----------------------------------------------------<#>
-Funcion boolean <- string_Contains(text, text_match)
-	Definir boolean Como Logico;
-	boolean = string_indexOf(text, text_match) > -1;
-FinFuncion
 
-Funcion found <- string_Struct_Contains_ignoreCase(text_search, string_struct, separator)
-	Definir found Como Logico;
-	found = string_Struct_Contains(string_ToLowerCase(text_search), string_ToLowerCase(string_struct), separator);
-FinFuncion
-
-Funcion found <- string_Struct_Contains(text_search, string_struct, separator)
-	Definir found Como Logico;
-	Definir startIndex, endIndex, collectionLength Como Numero;
-	Definir currentToken Como Texto;
-	found = false();
-	startIndex = 0;
-	endIndex = 0;
-	collectionLength = string_Length(string_struct);
-	Mientras endIndex < collectionLength Hacer
-		endIndex = string_indexOf_fromIndex(string_struct, separator, startIndex);
-		endIndex = if_else(endIndex < 0, collectionLength, endIndex, TYPE_INT());
-		
-		currentToken = string_substring(string_struct, startIndex, endIndex);
-		
-		Si string_isEquals(text_search, currentToken) Entonces
-			found = true();
-			endIndex = collectionLength;
-		FinSi
-		
-		startIndex = math_increment(endIndex);
-	FinMientras
-FinFuncion
-//----[ STATE ]----------------------------------------------------<#>
-Funcion boolean <- string_isEmpty(text)
+Funcion boolean <- char_isNumber(char)
 	Definir boolean Como Logico;
-	boolean = __private_isEquals_general(text, "");
-FinFuncion
-
-Funcion boolean <- string_isBlank(text)
-	Definir boolean Como Logico;
-	Definir i Como Numero;
-	Definir char_Current Como Texto;
-	boolean = true();
-	i = 0;
-	Mientras i < string_Length(text) Hacer
-		char_Current = char_At(text, i);
-		boolean = __private_isEquals_general(Char_Current, " ");
-		i = if_else(boolean, math_increment(i), math_sum(i, string_Length(text)), TYPE_INT());
-	FinMientras
-FinFuncion
-
-Funcion boolean <- string_hasColor(text)
-	Definir boolean Como Logico;
-	boolean = __private_string_hasStyle_or_Color(text);
-FinFuncion
-
-Funcion boolean <- string_hasStyle(text)
-	Definir boolean Como Logico;
-	boolean = __private_string_hasStyle_or_Color(text);
-FinFuncion
-
-Funcion boolean <- string_hascolor_or_Style(text)
-	Definir boolean Como Logico;
-	boolean =__private_string_hasStyle_or_Color(text);
-FinFuncion
-
-Funcion boolean <- __private_string_hasStyle_or_Color(text)
-	Definir boolean Como Logico;
-	boolean = string_Contains(text, symbol_Escape());
-FinFuncion
-
-Funcion isNull <- string_isNull(value_string) 
-	Definir isNull Como Logico;
-	isNull = string_isEquals(value_string, string_NULL());
-FinFuncion
-//----[ AFFIX ]----------------------------------------------------<#>
-Funcion boolean <- string_startsWith(text, text_match)
-	Definir boolean Como Logico;
-	boolean = string_isEquals(string_substring_from_start(text, string_Length(text_match)), text_match);
-FinFuncion
-
-Funcion boolean <- string_endsWith(text, text_match)
-	Definir boolean Como Logico;
-	boolean = string_isEquals(string_substring_from_end(text, string_Length(text_match)), text_match);
-FinFuncion
-//----[ COMPARISON ]----------------------------------------------------<#>
-Funcion boolean <- string_isEquals(str1, str2)
-	Definir boolean Como Logico;
-	boolean = __private_isEquals_general(str1, str2);
-FinFuncion
-
-Funcion boolean <- string_isEquals_IgnoreCase(str1, str2)
-	Definir boolean Como Logico;
-	boolean = string_isEquals(string_ToUpperCase(str1), string_ToUpperCase(str2));
+	boolean = ascii_IsNumberSymbols(char);
 FinFuncion
 //=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=======================================
-Funcion result_string <- symbol_Separator
-	Definir result_string Como Texto;
-	result_string = "";//001F
-FinFuncion
-
-Funcion result_string <- symbol_Separator_Simple
-	Definir result_string Como Texto;
-	result_string = ",";
-FinFuncion
-
-Funcion result_string <- symbol_Key_Value
-	Definir result_string Como Texto;
-	result_string = "=";
-FinFuncion
-
 Funcion value <- array_string_Booleans_False(index)
 	Definir value Como Texto;
 	segun index hacer 
@@ -944,9 +920,9 @@ Funcion value <- array_string_Booleans_True(index)
 	FinSegun
 FinFuncion
 
-Funcion boolean <- char_isNumber(char)
-	Definir boolean Como Logico;
-	boolean = ascii_IsNumberSymbols(char);
+Funcion result_string <- string_NULL
+	Definir result_string Como Texto;
+	result_string = "";
 FinFuncion
 ///%%%%%[ ARRAY................... ]%%%%%%%[   #ARR    ]%%%%%%%%%%%%%%%%%%%%
 //----[ OFSTRING ]----------------------------------------------------<#>
@@ -1053,15 +1029,15 @@ FinFuncion
 //----[ PROGRESS ]----------------------------------------------------<#>
 Funcion println_progress(text)
 	text = string_append(text, "\n");
-	print_progress_with_speed(text, 100);
+	print_progress_with_speed(text, 60);
 FinFuncion
 
 Funcion print_progress(text)
-	print_progress_with_speed(text, 100);
+	print_progress_with_speed(text, 60);
 FinFuncion
 
 Funcion print_progress_Simple(text)
-	print_progress_with_speed_Simple(text, 100);
+	print_progress_with_speed_Simple(text, 60);
 FinFuncion
 
 Funcion print_progress_with_speed(text, speed)
@@ -1360,7 +1336,12 @@ Funcion duration_Timer <- Execution_Timer(localTime_Start, funtion_return)
 	localTime_End = localTime_now();
 	duration_Timer = duration_between(localTime_Start, localTime_End);
 FinFuncion
-///%%%%%[ INT.............. ]%%%%%%%%%%%%%%[   #INT    ]%%%%%%%%%%%%%%%%%%%%
+///%%%%%[ NUM.............. ]%%%%%%%%%%%%%%[   #NUM    ]%%%%%%%%%%%%%%%%%%%%
+Funcion result_string <- number_toString(num)
+	Definir result_string Como Texto;
+	result_string = native_number_ToString(num);
+FinFuncion
+
 Funcion num_range <- int_getRangeCeil_ToFromSeparatedString(num, list_Str)
 	Definir num_range, i, length_value, length_listStr Como Numero;
 	Definir num_carry, Char_Current Como Texto;
@@ -1394,6 +1375,27 @@ Funcion int_result <- int_CompareTo(number0, number1)
         FinSi
     FinSi
 FinFuncion
+
+Funcion boolean <- Num_isInterger(num)
+	Definir boolean Como Logico;
+	boolean = (num == math_truncate(num));
+FinFuncion
+//---[ COVERSIONS ]------------------------------------------------------<#>
+Funcion result_string <- interger_ToString(num)
+	Definir result_string Como Texto;
+	result_string = native_number_toString(num);
+	Si !string_isNumber_int(result_string) Entonces
+		exection_Error(string_append("Error de tipado Interger: ", result_string));
+	FinSi
+FinFuncion
+
+Funcion result_string <- float_ToString(num)
+	Definir result_string Como Texto;
+	result_string = native_number_toString(num);
+	Si !string_isNumber_float(result_string) Entonces
+		exection_Error(string_append("Error de tipado Float: ", result_string));
+	FinSi
+FinFuncion
 //----[ BYNARY_OPERATION ]-----------------------------------------------------------<#>
 Funcion int_result <- int_bitSum(A_int, B_int)
 	Definir int_result Como Numero;
@@ -1407,7 +1409,7 @@ Funcion binaryString <- int_ToBinaryString(num)
 		binaryString = string_insert(binaryString, reSidue, 0);
 		num = math_truncate(num/2);
 	FinMientras
-	binaryString = string_pad_start(binaryString, "0000");
+	binaryString = string_pad(binaryString, "0000");
 FinFuncion
 
 Funcion int_result <- Int_BitMoveLeft(int_num, num_movements)
@@ -1464,13 +1466,13 @@ Funcion binarystring_Result <- binarystring_LogicalOperations(binaryString1, bin
 	Definir binary_MaxSize, i Como Numero;
 	binarystring_Result = "";
 	Norm_binary = binarystring_GetPad_MaxSize(binaryString1, binaryString2);
-	binaryString1 = string_pad_start(binaryString1, Norm_binary);
-	binaryString2 = string_pad_start(binaryString2, Norm_binary);
+	binaryString1 = string_pad(binaryString1, Norm_binary);
+	binaryString2 = string_pad(binaryString2, Norm_binary);
 	binary_MaxSize = math_decrement(string_Length(Norm_binary));
 	para i = 0 Hasta binary_MaxSize Con Paso 1 Hacer
 		binarystring_Result = string_append(binarystring_result, array_bitChar_LogicalOperations(char_At(binaryString1, i), char_At(binaryString2, i), index));
 	FinPara
-	binarystring_Result = string_delete(binarystring_result, 0, if_else(string_indexOf(binarystring_result, "1") <> -1, string_indexOf(binarystring_result, "1"), 0, TYPE_INT()));
+	binarystring_Result = string_delete(binarystring_result, 0, if_else(string_indexOf(binarystring_result, "1") <> -1, string_indexOf(binarystring_result, "1"), 0));
 FinFuncion
 //----[ GETTERS ]----------------------------------------------------<#>
 Funcion binaryPad <- binarystring_GetPad_MaxSize(binaryString1, binaryString2)
@@ -1482,22 +1484,22 @@ FinFuncion
 //----[ BIT_LOGICAL_OPERATIONS ]-----------------------------------------------------<#>
 Funcion bitChar_Result <- bitChar_AND(bit_char1, bit_char2)
 	Definir bitChar_Result Como Texto;
-	bitChar_Result = if_else(string_isEquals(bit_char1, "1") & string_isEquals(bit_char2, "1"), "1", "0", TYPE_STRING());
+	bitChar_Result = if_else(string_isEquals(bit_char1, "1") & string_isEquals(bit_char2, "1"), "1", "0");
 FinFuncion
 
 Funcion bitChar_Result <- bitChar_OR(bit_char1, bit_char2)
 	Definir bitChar_Result Como Texto;
-	bitChar_Result = if_else(string_isEquals(bit_char1, "0") & string_isEquals(bit_char2, "0"), "0", "1", TYPE_STRING());
+	bitChar_Result = if_else(string_isEquals(bit_char1, "0") & string_isEquals(bit_char2, "0"), "0", "1");
 FinFuncion
 
 Funcion bitChar_Result <- bitChar_XOR(bit_char1, bit_char2)
 	Definir bitChar_Result Como Texto;
-	bitChar_Result = if_else(string_isEquals(bit_char1, bit_char2), "0", "1", TYPE_STRING());
+	bitChar_Result = if_else(string_isEquals(bit_char1, bit_char2), "0", "1");
 FinFuncion
 
 Funcion bitChar_Result <- bitChar_NOT(bit_char1)
 	Definir bitChar_Result Como Texto;
-	bitChar_Result = if_else(string_isEquals(bit_char1, "1"), "0", "1", TYPE_STRING());
+	bitChar_Result = if_else(string_isEquals(bit_char1, "1"), "0", "1");
 FinFuncion
 //----[ SHIFTING ]----------------------------------------------------<#>
 Funcion binarystring_result <- binarystring_MoveLeft(binaryString, num_movements)
@@ -1522,7 +1524,7 @@ FinFuncion
 
 Funcion binarystring_result <- binarystring_TwosComplement(binaryString)
 	Definir binarystring_result Como Texto;
-	binarystring_result = binarystring_SUM(binarystring_NOT(binaryString), string_pad_start("1", string_repeatText("0", string_Length(binaryString))));
+	binarystring_result = binarystring_SUM(binarystring_NOT(binaryString), string_pad("1", string_repeatText("0", string_Length(binaryString))));
 FinFuncion
 ///%%%%%[ MATH.................... ]%%%%%%%[   #MAT    ]%%%%%%%%%%%%%%%%%%%%
 //----[ MAX ]------------------------------------------------------------------------<#>
@@ -1606,11 +1608,6 @@ Funcion id <- TAYLOR_LN
     id = "TAYLOR_LN"; 
 FinFuncion
 
-Funcion id <- TAYLOR_LN_BILINEAR
-    Definir id Como Texto;
-    id = "TAYLOR_LN_BILINEAR"; 
-FinFuncion
-
 // ((-1)^i * x^(2i+1)) / (2i+1)!
 Funcion term <- __private_taylor_helper_sin(x, i)
     Definir term Como Real;
@@ -1641,13 +1638,6 @@ Funcion term <- __private_taylor_helper_ln(x, i)
     term = (signo * math_pow(x, exponente)) / exponente;
 FinFuncion
 
-Funcion term <- __private_taylor_helper_ln_bilinear(x, i)
-    Definir term Como Real;
-    Definir exponente Como Entero;
-    exponente = (2 * i) + 1;
-    term = math_pow(x, exponente) / exponente;
-FinFuncion
-
 Funcion numerical_term <- __private_taylor_operation(name_func, x, i)
     Definir numerical_term Como Real;
     Segun name_func Hacer
@@ -1659,8 +1649,6 @@ Funcion numerical_term <- __private_taylor_operation(name_func, x, i)
             numerical_term = __private_taylor_helper_exp(x, i);
         TAYLOR_LN():
             numerical_term = __private_taylor_helper_ln(x, i);
-		TAYLOR_LN_BILINEAR():
-            numerical_term = __private_taylor_helper_ln_bilinear(x, i);
         De Otro Modo:
             error_message_function("__private_taylor_operation(name_func, x, i)", "unsupported operation");
             numerical_term = 0;
@@ -1683,10 +1671,15 @@ Funcion num_taylor <- math_serie_taylor(x, name_function)
 FinFuncion
 
 Funcion sandbox_development
-	Definir tui Como Texto;
+	Definir canvas, tui Como Texto;
 	Definir Cx, Cy, x, i, n Como Entero;
+	Cx = 10;
+	Cy = 5;
+	canvas = canvas_new(Cx, Cy);
+	Escribir string_append("cadena: ",canvas);
+	Escribir "canvas:";
+	canvas_display(canvas, Cx, Cy);
 FinFuncion
-
 //----[ TRIGONOMETRY ]--------------------------------------------------------------<#>
 Funcion n_result <- math_sin(x)
     Definir n_result, x_norm Como Real;
@@ -1733,14 +1726,15 @@ Funcion x_bounds <- math_bilinear_map(x)
 FinFuncion
 
 Funcion num_ln <- math_ln(x)
-    Definir num_ln, z, taylor_res Como Real;
+    Definir num_ln, resultado, z, taylorLn_pos, taylorLn_neg Como Real;
     Si x <= 0 Entonces
         error_message_function("math_ln(x)", "Math Error: Logarithm of non-positive number");
         num_ln = number_NULL(); 
     SiNo
         z = math_bilinear_map(x);
-        taylor_res = math_serie_taylor(z, TAYLOR_LN_BILINEAR());
-        num_ln = 2 * taylor_res;
+		taylorLn_pos = math_serie_taylor(z, TAYLOR_LN());
+		taylorLn_neg = math_serie_taylor(math_negated(z), TAYLOR_LN());
+        num_ln = math_minus(taylorLn_pos, taylorLn_neg);
     FinSi
 FinFuncion
 
@@ -1789,7 +1783,7 @@ FinFuncion
 //----[ BASIC_ARITHMETIC ]-----------------------------------------------------------<#>
 Funcion num_abs <- math_abs(num)
 	Definir num_abs Como Numero;
-	num_abs = if_else(num < 0, math_negated(num), num, TYPE_FLOAT());
+	num_abs = if_else(num < 0, math_negated(num), num);
 FinFuncion
 
 Funcion num_Negate <- math_negated(num)
@@ -1816,7 +1810,7 @@ FinFuncion
 //----[ SIGN_ANALYSIS ]--------------------------------------------------------------<#>
 Funcion num_Signum <- math_signum(num)
 	Definir num_Signum Como Numero;
-	num_Signum = if_else(num>0, 1, if_else(num<0, -1, 0, TYPE_INT()), TYPE_INT());
+	num_Signum = if_else(num>0, 1, if_else(num<0, -1, 0));
 FinFuncion
 
 Funcion isPositive <- math_numberIsPosive(num)
@@ -1949,7 +1943,7 @@ FinFuncion
 
 Funcion text <- boolean_ToString(boolean)	
 	Definir text Como Texto;
-	text=if_else(boolean, "True", "False", TYPE_STRING());
+	text = if_else(boolean, "true", "false");
 FinFuncion
 
 Funcion boolean <- __private_isEquals_general(value1, value2)
@@ -1957,54 +1951,20 @@ Funcion boolean <- __private_isEquals_general(value1, value2)
 	boolean = (value1 == value2);
 FinFuncion
 
-Funcion boolean <- Num_isInterger(num)
-	Definir boolean Como Logico;
-	boolean = (num == math_truncate(num));
-FinFuncion
-
 Funcion boolean <- number_isEquals(num, num2)
 	Definir boolean Como Logico;
 	boolean = __private_isEquals_general(num, num2);
 FinFuncion
 ///%%%%%[ CONDITIONS.............. ]%%%%%%%[   #CON    ]%%%%%%%%%%%%%%%%%%%%
-Funcion result <- if_else(condition, result1, result2, TYPE)
-	Segun TYPE Hacer
-		caso TYPE_INT():
-			Definir result Como Entero;
-		caso TYPE_BOOLEAN():
-			Definir result Como Logico;
-		caso TYPE_FLOAT():
-			Definir result Como Real;
-		De Otro Modo:
-			Definir result Como Texto;
-	FinSegun	
-	Si condition Entonces
-		result = result1;
-	SiNo
+Funcion result <- if_else(condition, result, result2)
+	Si !(condition) Entonces
 		result = result2;
 	FinSi	
 FinFuncion
 
-Funcion result <- __private_if_else(condition, result, result2)
-	Si condition Entonces
-		result = result2;
-	FinSi	
-FinFuncion
-
-Funcion result <- if(condition, result1, TYPE)
-	Segun TYPE Hacer
-		caso TYPE_INT():
-			Definir result Como Entero;
-		caso TYPE_FLOAT():
-			Definir result Como Real;
-		caso TYPE_BOOLEAN():
-			Definir result Como Logico;
-		De Otro Modo:
-			Definir result Como Texto;
-	FinSegun
-	result = value_getNullType(TYPE);
-	Si condition Entonces
-		result = result1;
+Funcion result <- if(condition, result, TYPE)
+	Si !(condition) Entonces
+		result = value_getNullType(TYPE);
 	FinSi
 FinFuncion
 
@@ -2013,7 +1973,7 @@ Funcion error_message_Function(method, message)
 FinFuncion
 
 Funcion error_message(message)
-	native_println(symbol_Escape()+"31m[ERROR] // "+message+".");
+	native_println(symbol_Escape() + "31m[ERROR] // " + message + ".");
 FinFuncion
 
 Funcion condition_message_log(condition, message, log)
@@ -2161,7 +2121,7 @@ FinFuncion
 
 Funcion text_Color <- color_setColorText_brakelines(text, color)
 	Definir text_Color Como Texto;
-	si !string_hasColor(color) Entonces
+	si !color_text_hasColor(color) Entonces
 		error_message_Function("color_setColorText", string_append("invalid color `", string_append(color, "`")));
 		text_Color = string_append_in_brakelines(text, COLOR_TRANSPARENT());
 	SiNo
@@ -2188,6 +2148,26 @@ FinFuncion
 Funcion text_dark <- color_Normal(text)
 	Definir text_dark Como Texto;
 	text_dark = string_append(DARK, text);
+FinFuncion
+
+Funcion boolean <- color_text_hasColor(text)
+	Definir boolean Como Logico;
+	boolean = __private_color_text_hasStyle_or_Color(text);
+FinFuncion
+
+Funcion boolean <- color_text_hasStyle(text)
+	Definir boolean Como Logico;
+	boolean = __private_color_text_hasStyle_or_Color(text);
+FinFuncion
+
+Funcion boolean <- color_text_hasColor_or_Style(text)
+	Definir boolean Como Logico;
+	boolean =__private_color_text_hasStyle_or_Color(text);
+FinFuncion
+
+Funcion boolean <- __private_color_text_hasStyle_or_Color(text)
+	Definir boolean Como Logico;
+	boolean = string_contains(text, symbol_Escape());
 FinFuncion
 //=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]=======================================
 Funcion result_string <- symbol_Escape
@@ -2222,10 +2202,8 @@ Funcion result <- value_TypeToString(data, TYPE)
 			result = float_ToString(data);
 		caso TYPE_BOOLEAN():
 			result = boolean_ToString(data);
-		caso TYPE_STRING():
-			result = string_append(data, "");//wrapper
 		De Otro Modo:
-			result = object_ToString(data, TYPE);
+			result = string_append(data, "");//wrapper
 	FinSegun
 FinFuncion
 //----[ GETTERS ]----------------------------------------------------<#>
@@ -2388,11 +2366,6 @@ Funcion Num <- number_NULL
 	Num = -1;
 FinFuncion
 
-Funcion result_string <- string_NULL
-	Definir result_string Como Texto;
-	result_string = "";
-FinFuncion
-
 Funcion result_string <- object_Empty(type_Name)
 	Definir result_string Como Texto;
 	result_string = object_new(type_Name);
@@ -2525,10 +2498,9 @@ Funcion str_element <- collection_getElement_AtIndex_withSeparator(text, index, 
 	Definir count_sep, i, index_match, index_matchEnd, sum Como Real;
 	Definir str_element, Slice_After Como Texto;
 	index_matchEnd = collection_getIndex_FromNumElement_Separator(text, index, separator);
-	index_matchEnd= if_else(index_Matchend<0, string_Length(text), index_Matchend, TYPE_INT);
-	
-	index_match = string_LastindexOf_fromIndex(text, separator, index_MatchEnd)+1;
-	index_match = if_else(index_Match<0, 0, index_Match, TYPE_INT);
+	index_matchEnd= if_else(index_Matchend<0, string_Length(text), index_Matchend);	
+	index_match = math_increment(string_LastindexOf_fromIndex(text, separator, index_MatchEnd));
+	index_match = if_else(index_Match<0, 0, index_Match);
 	
 	Si index >= 0 & index <= string_countMatches(text, separator) Entonces
 		str_element = string_substring(text, index_Match, index_Matchend);
@@ -2566,7 +2538,7 @@ FinFuncion
 //=====[ CONSTANTS/DEFINITIONS ]=====[  ///   ]===========================
 Funcion symbol_area <- symbol_dataArea
 	Definir symbol_area Como Texto;
-	symbol_area = "";//001A
+	symbol_area = "";
 FinFuncion
 
 Funcion symbol_area <- symbol_typeArea
@@ -2577,6 +2549,16 @@ FinFuncion
 Funcion symbol_area <- symbol_metaData
 	Definir symbol_area Como Texto;
 	symbol_area = "";//001E
+FinFuncion
+
+Funcion result_string <- symbol_Separator
+	Definir result_string Como Texto;
+	result_string = "";//001F
+FinFuncion
+
+Funcion result_string <- symbol_Key_Value
+	Definir result_string Como Texto;
+	result_string = "=";
 FinFuncion
 ///%%%%%[ MANAGER_DATA............ ]%%%%%%%[   #MDA    ]%%%%%%%%%%%%%%%%%%%%
 Funcion sequential_package <- managerData_modify(sequential_data, sequential_lengths, index_modify, value_string, isStorage)
@@ -2879,7 +2861,7 @@ Funcion collection_result <- linearCollection_DeleteLast(struct_Collection)
 	length_separator = string_Length(symbol_Separator());
 	index_MetaData = math_sum(collection_getIndex_metaData(struct_Collection), length_separator);
 	property_ = string_indexOf_fromIndex(struct_Collection, symbol_Separator(), math_increment(index_MetaData));
-	property_ = if_else(property_ > 0, property_, index_EndMetaData, TYPE_INT());
+	property_ = if_else(property_ > 0, property_, index_EndMetaData);
 	element_Length = string_toNumber(string_substring(struct_Collection, math_increment(index_MetaData), property_));
 	collection_result = string_delete(struct_Collection, index_MetaData, property_);
 	index_MetaData = math_minus(index_MetaData, length_separator);
@@ -3028,7 +3010,7 @@ Funcion element_String <- linearCollection_getLast_ToString(struct_Collection)
 		length_separator = string_Length(symbol_Separator());
 		index_MetaData = math_sum(collection_getIndex_metaData(struct_Collection), length_separator);
 		property_ = string_indexOf_fromIndex(struct_Collection, symbol_Separator(), math_increment(index_MetaData));
-		property_ = if_else(property_ > 0, property_, Index_EndMetaData, TYPE_INT());
+		property_ = if_else(property_ > 0, property_, Index_EndMetaData);
 		element_Length = string_toNumber(string_substring(struct_Collection, math_increment(index_MetaData), property_));
 		index_MetaData = math_minus(index_MetaData, length_separator);
 		element_String = string_substring(struct_Collection, math_minus(index_MetaData, element_Length), index_MetaData);
@@ -4194,9 +4176,9 @@ FinFuncion
 Funcion numDay <- localDate_getDayOfYear(year, month, day)
 	Definir numDay, leap_factor Como Entero;
 	si temporal_isValidDate(year, month, day) Entonces
-		leap_factor = if_else(localDate_isLeapYear(year), 2, 3, TYPE_INT());
-		leap_factor = if_else(month == 1, 1, leap_factor, TYPE_INT());
-		leap_factor = if_else(month == 2, 0, leap_factor, TYPE_INT());
+		leap_factor = if_else(localDate_isLeapYear(year), 2, 3);
+		leap_factor = if_else(month == 1, 1, leap_factor);
+		leap_factor = if_else(month == 2, 0, leap_factor);
 		numDay = math_floor(30.6 * month - 29.4 - leap_factor) + day;
 	sino
 		numDay = number_NULL();
@@ -4222,7 +4204,7 @@ Funcion numDay <- __private_localDate_getDayOfTheWeek_Value(year, month, day)
     Dimension monthTable[12];
     monthTable[0]=0;monthTable[1]=3;monthTable[2]=2;monthTable[3]=5;monthTable[4]=0;monthTable[5]=3;
     monthTable[6]=5;monthTable[7]=1;monthTable[8]=4;monthTable[9]=6;monthTable[10]=2;monthTable[11]=4;
-    yearAdjusted = if_else(month < 3, year - 1, year, TYPE_INT);
+    yearAdjusted = if_else(month < 3, year - 1, year);
 	y_total = yearAdjusted + math_floor(yearAdjusted / 4) - math_floor(yearAdjusted / 100) + math_floor(yearAdjusted / 400);
     numDay = math_module(y_total + monthTable[month - 1] + day, 7);
 	si numDay < 1 Entonces
@@ -4272,7 +4254,7 @@ FinFuncion
 Funcion lengthOfYear <- localDate_lengthOfYear(struct_date)
 	Definir lengthOfYear, year_date Como Entero;
 	year_date = localDate_getYear(struct_date);
-	lengthOfYear = if_else(localDate_isLeapYear(year_date), 366, 365, TYPE_INT());
+	lengthOfYear = if_else(localDate_isLeapYear(year_date), 366, 365);
 FinFuncion
 
 Funcion days <- localDate_lengthOfMonth(year, month)
@@ -4425,9 +4407,9 @@ Funcion Date <- localDate_format(text)
 	Definir index Como Numero;
 	Dimension dateParts(3);
 	
-	dateParts[0] = string_substring_from_start(localDate_now, 4);
+	dateParts[0] = string_substring(localDate_now, 0, 4);
 	dateParts[1] = string_substring(localDate_now, 4, 6);
-	dateParts[2] = string_substring_from_end(localDate_now, 2);
+	dateParts[2] = string_substring(localDate_now, 6, 8);
 	
 	Si string_Contains(text, "Y") Entonces
 		index = string_indexOf(text, "Y");
@@ -4441,20 +4423,20 @@ Funcion Date <- localDate_format(text)
 FinFuncion
 ///%%%%%[ LOCAL_TIME.............. ]%%%%%%%[   #LTI    ]%%%%%%%%%%%%%%%%%%%%
 //----[ PRIVATE_TIME ]----------------------------------------------------<#>
-Funcion Time_num <- __private_localTime_Now
+Funcion Time_num <- native_localTime_Now
 	Definir Time_num Como Numero;
 	Time_num = HoraActual();
 FinFuncion
 //in pseint == 1223 (4) \ 06:12:23  pseint == 61223 (5)\ 12:12:23 pseint == 121223 (6)
-Funcion time_value_String <- __private_localTime_Now_toString
+Funcion time_value_String <- native_localTime_Now_toString
 	Definir time_value_String Como Texto;
-	time_value_String = string_fit(number_toString(__private_localTime_Now()), "000000");
+	time_value_String = string_fit(number_toString(native_localTime_Now()), "000000");
 FinFuncion
 //----[ INIT ]------------------------------------------------------------------------<#>
 Funcion LocalTime_result <- localTime_now
 	Definir LocalTime_result, TimeNow_String Como Texto;
 	Definir hours, minutes, seconds Como Real;
-	TimeNow_String = __private_localTime_Now_toString();
+	TimeNow_String = native_localTime_Now_toString();
 	hours = string_toNumber(string_substring(TimeNow_String, 0, 2));
 	minutes = string_toNumber(string_substring(TimeNow_String, 2, 4));
 	seconds = string_toNumber(string_substring(TimeNow_String, 4, 6));
@@ -6968,6 +6950,14 @@ Funcion separate_string <- storageCellsCollection_getSeparateString(struct_cells
 	separate_string = dualCellsCollection_getSeparateString_right(struct_cells);
 FinFuncion
 
+Funcion storageCellsCollection_println_value(struct_cells)
+	collectionStorage_println(struct_cells);
+FinFuncion
+
+Funcion storageCellsCollection_print_value(struct_cells)
+	collectionStorage_print(struct_cells);
+FinFuncion
+
 Funcion storageCellsCollection_println(struct_cells)
 	__private_dualCellsCollection_printer_right(struct_cells, true());	
 FinFuncion
@@ -7118,7 +7108,7 @@ Funcion result_Map <- util_map_remove(struct_map, key)
 FinFuncion
 
 Funcion util_map_println_Key(struct_Map)
-	//collectionStorage_println(struct_Map);
+	storageCellsCollection_println(struct_Map);
 FinFuncion
 
 Funcion util_map_println_Value(struct_Map)
@@ -7479,7 +7469,7 @@ Funcion object_Instructions <- __private_object_GetInstructions_AccordingToProce
 	FinSi
 	
 	si (Size_Select < 1) & (Size_Comparator > 0) Entonces
-		object_Instructions = if_else(isDelete, string_NULL(), Area_Property_Comparator, TYPE_STRING());
+		object_Instructions = if_else(isDelete, string_NULL(), Area_Property_Comparator);
 	FinSi
 FinFuncion
 ///%%%%%[ CANVAS.................. ]%%%%%%%[   #CAN    ]%%%%%%%%%%%%%%%%%%%%
@@ -7841,7 +7831,7 @@ Funcion canvas_result <- canvas_removeRows_count(canvas, CWx, CWy, num_rows, isT
 	Definir canvas_result Como Texto;
 	Definir total_chars, start_delete Como Numero;
 	total_chars = CWx * num_rows;
-	start_delete = if_else(isTop, 0, math_minus(CWx * CWy, total_chars), TYPE_INT());
+	start_delete = if_else(isTop, 0, math_minus(CWx * CWy, total_chars));
 	canvas_result = string_delete(canvas, start_delete, math_sum(start_delete, total_chars));
 FinFuncion
 
@@ -8208,8 +8198,8 @@ Funcion canvas_line <- canvas_DrawLine_whitPixel(canvas, CWx, CWy, pixel_symb,  
     Cx = x1 - x0;//2-10=-8
     Cy = y1 - y0;//3-10=-7
 	
-    xi = if_else(Cx >= 0, 1, -1, TYPE_INT());// -1
-    yi = if_else(Cy >= 0, 1, -1, TYPE_INT());// -1
+    xi = if_else(Cx >= 0, 1, -1);// -1
+    yi = if_else(Cy >= 0, 1, -1);// -1
 	
     Cx = math_abs(Cx);// -8 -> 8
     Cy = math_abs(Cy);// -7 -> 7
@@ -8299,13 +8289,13 @@ FinFuncion
 Funcion c <- __private_Pixel_ToNormalized(Dc, pixel_index, letter)
     Definir c Como Real;
     Definir s Como Entero;
-    s = if_else(string_isEquals(letter, "x"), 1, -1, TYPE_INT);
+    s = if_else(string_isEquals(letter, "x"), 1, -1);
     c = ((2 * pixel_index) / Dc - 1) * s;
 FinFuncion
 
 Funcion pixel_index <- __private_Noramalized_toPixel(Dc, norm_index, letter)
 	Definir pixel_index Como Numero;
-	norm_index = norm_index * if_else(string_isEquals(letter, "x"), 1, -1, TYPE_INT);
+	norm_index = norm_index * if_else(string_isEquals(letter, "x"), 1, -1);
 	pixel_index = math_min_Int(math_truncate((Dc * 0.5) * (1 + norm_index)), math_decrement(Dc));
 FinFuncion
 //----[ COMPLEX_DRAW ]--------------------------------------------------------------<#>
@@ -9725,10 +9715,10 @@ Funcion ascii_codeCategory <- ascii_getOffSet_Category(index)
 		De Otro Modo: ascii_codeCategory = 164;
 	FinSegun
 FinFuncion
-
+//001A
 Funcion ControlSymbols <- ascii_GetControlSymbols
 	Definir ControlSymbols Como Texto;
-	ControlSymbols = "	";//TAP BL LF
+	ControlSymbols = "	";//TAP BL LF
 FinFuncion
 
 Funcion BasicSymbols <- ascii_GetBasicSymbols
@@ -10033,6 +10023,7 @@ Funcion ascii_category <- ascii_UNKNOWN_CATEGORY
     Definir ascii_category Como Texto; 
     ascii_category = "UNKNOWN";
 FinFuncion
+
 ///%%%%%[ END_CODE................ ]%%%%%%%[    ++0    ]%%%%%%%%%%%%%%%%%%%%
 Funcion message_duration(struct_localTime)
 	Definir time_Total, time_message Como Texto;

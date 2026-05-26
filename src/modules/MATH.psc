@@ -1,27 +1,29 @@
 Algoritmo MODULE_MATH
+	// Test call disabled: math_max_int() requires arguments
+	// TODO: add valid arguments for standalone execution
 FinAlgoritmo
-///%%%%%[ MATH.................... ]%%%%%%%[   #MAT    ]%%%%%%%%%%%%%%%%%%%%
-//----[ MAX ]------------------------------------------------------------------------<#>
+///%%%%%[ MATH................................ ]%%%%%%%[   #MAT    ]%%%%%%%%%%%%%%%%%%%%
+
 Funcion result <- math_max_int(value, limit)
 	Definir result Como Entero;	
 	result = __private_math_choose(value, limit, true());
 FinFuncion
-// max = (1>0, 1, 0) result = 1
+
 Funcion result <- math_max_Float(value, limit)
 	Definir result Como Real;
 	result = __private_math_choose(value, limit, true());
 FinFuncion
-//----[ MIN ]------------------------------------------------------------------------<#>
+
 Funcion result <- math_min_int(value, limit)
 	Definir result Como Entero;
 	result = __private_math_choose(value, limit, false());
 FinFuncion
-// min = (1<0, 0, 1) result = 0
+
 Funcion result <- math_min_float(value, limit)
 	Definir result Como Real;
 	result = __private_math_choose(value, limit, false());
 FinFuncion
-//-----------
+
 Funcion result <- __private_math_choose(value, limit, isMax)
 	Definir result Como Numero;
 	Definir operation_flag Como Logico;
@@ -33,17 +35,17 @@ Funcion result <- __private_math_choose(value, limit, isMax)
 		result = limit;
 	FinSi
 FinFuncion
-//----[ RANGE_LIMIT ]----------------------------------------------------<#>
+
 Funcion result <- math_rangeLimit_Float(value, limit_min, limit_max)
 	Definir result Como Real;
 	result = math_max_Float(limit_min, math_min_float(limit_max, value));
 FinFuncion
-// rangeLimit =  [min = (1<2, 2, 1)] result min = 2 -> max(0>min, 0, min) result = 2
+
 Funcion result <- math_rangeLimit_Int(value, limit_min, limit_max)
 	Definir result Como Numero;
 	result = math_max_Int(limit_min, math_min_int(limit_max, value));
 FinFuncion
-//----[ POW ]------------------------------------------------------------------------<#>
+
 Funcion num_pow <- math_pow(x, exponent)
     Definir num_pow Como Real;
     num_pow = 1;
@@ -61,7 +63,7 @@ Funcion num_pow <- math_pow_float(base, exponente)
     ln_base = math_ln(base);
     num_pow = math_exp(exponente * ln_base);
 FinFuncion
-//----[ TAYLOR ]----------------------------------------------------<#>
+
 Funcion id <- TAYLOR_SIN
     Definir id Como Texto;
     id = "TAYLOR_SIN"; 
@@ -82,7 +84,6 @@ Funcion id <- TAYLOR_LN
     id = "TAYLOR_LN"; 
 FinFuncion
 
-// ((-1)^i * x^(2i+1)) / (2i+1)!
 Funcion term <- __private_taylor_helper_sin(x, i)
     Definir term Como Real;
     Definir signo, exponente Como Entero;
@@ -90,7 +91,7 @@ Funcion term <- __private_taylor_helper_sin(x, i)
     exponente = math_sum((2 * i), 1);
     term = (signo * math_pow(x, exponente)) / math_factorial(exponente);
 FinFuncion
-// ((-1)^i * x^(2i)) / (2i)!
+
 Funcion term <- __private_taylor_helper_cos(x, i)
     Definir term Como Real;
     Definir signo, exponente Como Entero;
@@ -98,12 +99,12 @@ Funcion term <- __private_taylor_helper_cos(x, i)
     exponente = 2 * i;
     term = (signo * math_pow(x, exponente)) / math_factorial(exponente);
 FinFuncion
-// Taylor para e^x: x^i / i!
+
 Funcion term <- __private_taylor_helper_exp(x, i)
     Definir term Como Real;
     term = math_pow(x, i) / math_factorial(i);
 FinFuncion
-// ((-1)^(i) * x^(i+1)) / (i+1)  
+
 Funcion term <- __private_taylor_helper_ln(x, i)
     Definir term Como Real;
     Definir signo, exponente Como Entero;
@@ -144,12 +145,6 @@ Funcion num_taylor <- math_serie_taylor(x, name_function)
 	FinMientras
 FinFuncion
 
-Funcion sandbox_development
-	Definir tui Como Texto;
-	Definir Cx, Cy, x, i, n Como Entero;
-	
-FinFuncion
-//----[ TRIGONOMETRY ]--------------------------------------------------------------<#>
 Funcion n_result <- math_sin(x)
     Definir n_result, x_norm Como Real;
     x_norm = math_Normalize_InPiRange(x);
@@ -188,7 +183,7 @@ Funcion x_norm <- math_Normalize_InPiRange(x)
 	pi_2 = 2 * pi_;
 	x_norm = math_minus(math_module( math_sum(x, pi_), pi_2), pi_);
 FinFuncion
-//----[ EXPONENTIAL ]--------------------------------------------------------------<#>
+
 Funcion x_bounds <- math_bilinear_map(x)
     Definir x_bounds Como Real;
     x_bounds = (x - 1) / (x + 1);
@@ -249,7 +244,7 @@ Funcion num_range <- math_Summation_ToFromSeparatedString(separatedString, separ
 		i = math_increment(i);
 	FinMientras
 FinFuncion
-//----[ BASIC_ARITHMETIC ]-----------------------------------------------------------<#>
+
 Funcion num_abs <- math_abs(num)
 	Definir num_abs Como Numero;
 	num_abs = if_else(num < 0, math_negated(num), num);
@@ -276,7 +271,7 @@ Funcion num_fact <- math_factorial(x)
 		num_fact = num_fact * i;
 	FinPara
 FinFuncion
-//----[ SIGN_ANALYSIS ]--------------------------------------------------------------<#>
+
 Funcion num_Signum <- math_signum(num)
 	Definir num_Signum Como Numero;
 	num_Signum = if_else(num>0, 1, if_else(num<0, -1, 0));
@@ -291,7 +286,7 @@ Funcion isNegative <- math_numberIsNegative(num)
 	Definir isNegative Como Logico;
 	isNegative = num < 0;
 FinFuncion
-//----[ ROUNDING ]----------------------------------------------------<#>
+
 Funcion number_Round <- math_round(number)
 	Definir number_Round, index_point Como Numero;
 	Definir number_String, number_Point Como Texto;
@@ -340,7 +335,7 @@ Funcion float_lim <- math_limitDecimals(num, limitFloat)
 	FinSi
 	float_lim = string_toNumber(str_num);
 FinFuncion
-//----[ MODULE ]----------------------------------------------------<#>
+
 Funcion module <- math_module(dividend, divisor)
 	Definir module Como Numero;// module = a-floor(a/b)*b
 	divisor = math_max_float(divisor, 1);
@@ -354,7 +349,7 @@ Funcion value_normalized <- math_NormalizeCycle(current_value, max_limit)
         value_normalized = math_sum(value_normalized, max_limit);
     FinSi
 FinFuncion
-//----[ CONSTANTS ]----------------------------------------------------<#>
+
 Funcion num_PI <- math_PI
 	Definir num_PI Como Real;
 	num_PI = 3.141592653589793;
@@ -400,72 +395,9 @@ Funcion numDec <- math_minus(num, value)
 	numDec = num - value;
 FinFuncion
 
-///=====[ DEPENDENCIES ]=====[  ///   ]=====================================
-//--[ASCII]-- -- -- -- -- -- -- -- -- -- -- -- -- --
-Funcion isType <- ascii_IsNumberSymbols(char)
-	Definir isType Como Logico;
-	isType = ascii_isInRangue(char, '0', '9');//48-57
-FinFuncion
+///==========[DEPENDECES]=============================================
+//---[ native_ (#NAV) ]--------------------------------------------------------------------
 
-Funcion iSinRangue <- ascii_isInRangue(char, char_start, char_end)
-	Definir iSinRangue Como Logico;
-	iSinRangue = (char_start <= char & char <= char_end);
-FinFuncion
-
-//--[CHAR]-- -- -- -- -- -- -- -- -- -- -- -- -- --
-Funcion result_string <- char_At(text, index)
-	Definir result_string Como Texto;
-	Definir end_substring, text_length Como Entero;
-	text_length   = native_string_length(text);
-	end_substring = math_min_int(math_increment(index), text_length);
-	result_string = string_substring(text, index, end_substring);
-FinFuncion
-
-Funcion boolean <- char_isNumber(char)
-	Definir boolean Como Logico;
-	boolean = ascii_IsNumberSymbols(char);
-FinFuncion
-
-//--[ERROR]-- -- -- -- -- -- -- -- -- -- -- -- -- --
-Funcion error_message_Function(method, message)
-	error_message(string_append_withSeparator(method, message, "//"));
-FinFuncion
-
-Funcion error_message(message)
-	native_println(symbol_Escape() + "31m[ERROR] // " + message + ".");
-FinFuncion
-
-//--[FALSE]-- -- -- -- -- -- -- -- -- -- -- -- -- --
-Funcion boolean <- false
-	Definir boolean Como Logico;
-	boolean = Falso;
-FinFuncion
-
-//--[GENERAL]-- -- -- -- -- -- -- -- -- -- -- -- -- --
-Funcion boolean <- __private_isEquals_general(value1, value2)
-	Definir boolean Como Logico;
-	boolean = (value1 == value2);
-FinFuncion
-
-//--[IF]-- -- -- -- -- -- -- -- -- -- -- -- -- --
-Funcion result <- if_else(condition, result, result2)
-	Si !(condition) Entonces
-		result = result2;
-	FinSi	
-FinFuncion
-
-//--[MESSAGE]-- -- -- -- -- -- -- -- -- -- -- -- -- --
-Funcion message_validateIndexRange(Function_name, result_string, start, end)
-    Definir num_length Como Numero;
-    num_length = string_Length(result_string);
-    number_validateNumberRange(Function_name, start, 0, num_length);
-    number_validateNumberRange(Function_name, end, 0, num_length);
-	si (start > end) Entonces
-		error_message_Function(Function_name, "Index Error: Start > End");
-	FinSi
-FinFuncion
-
-//--[NATIVE]-- -- -- -- -- -- -- -- -- -- -- -- -- --
 Funcion num_module <- native_math_module(number1, number2)
 	Definir num_module Como Numero;
 	num_module = number1 MOD number2;
@@ -494,46 +426,24 @@ Funcion strSubs <- native_string_substring(result_string, start, end)
 	Definir strSubs Como Texto;
 	strSubs = subcadena(result_string, start, end);
 FinFuncion
+//---[ string_ (#STR) ]--------------------------------------------------------------------
 
-//--[NUMBER]-- -- -- -- -- -- -- -- -- -- -- -- -- --
-Funcion Num <- number_NULL
-	Definir Num Como Numero;
-	Num = -1;
-FinFuncion
-
-Funcion result_string <- number_toString(num)
-	Definir result_string Como Texto;
-	result_string = native_number_ToString(num);
-FinFuncion
-
-Funcion boolean <- number_isEquals(num, num2)
-	Definir boolean Como Logico;
-	boolean = __private_isEquals_general(num, num2);
-FinFuncion
-
-Funcion number_validateNumberRange(Function_name, value, min_val, max_val)
-	si (min_val > max_val) Entonces
-		error_message_Function(Function_name, "Config Error: Min > Max");
-	FinSi
-    Si !number_IsInRange(value, min_val, max_val) Entonces
-        Definir error_msg Como Texto;
-        error_msg = string_append("Value out of range: ", number_toString(value));
-        error_msg = string_append(error_msg, string_append(" [Limit: ", number_toString(min_val)));
-        error_msg = string_append(error_msg, string_append(" - ", number_toString(max_val)));
-        error_msg = string_append(error_msg, "]");
-        error_message_Function(Function_name, error_msg);
-    FinSi
-FinFuncion
-
-Funcion IsInRange <- number_IsInRange(value, min_val, max_val)
-    Definir IsInRange Como Logico;
-    IsInRange = value >= min_val & value <= max_val;
-FinFuncion
-
-//--[STRING]-- -- -- -- -- -- -- -- -- -- -- -- -- --
 Funcion num <- string_length(text)
 	Definir num Como Numero;
 	num = native_string_length(text);
+FinFuncion
+
+Funcion result_string <- char_At(text, index)
+	Definir result_string Como Texto;
+	Definir end_substring, text_length Como Entero;
+	text_length   = native_string_length(text);
+	end_substring = math_min_int(math_increment(index), text_length);
+	result_string = string_substring(text, index, end_substring);
+FinFuncion
+
+Funcion boolean <- char_isNumber(char)
+	Definir boolean Como Logico;
+	boolean = ascii_IsNumberSymbols(char);
 FinFuncion
 
 Funcion result <- string_append(str1, str2)
@@ -679,15 +589,96 @@ Funcion result_string <- string_Strip(text, strip_symbol)
     FinMientras
     result_string = string_SubString(text, start, end);
 FinFuncion
+//---[ int_ (#NUM) ]-----------------------------------------------------------------------
 
-//--[SYMBOL]-- -- -- -- -- -- -- -- -- -- -- -- -- --
+Funcion Num <- number_NULL
+	Definir Num Como Numero;
+	Num = -1;
+FinFuncion
+
+Funcion result_string <- number_toString(num)
+	Definir result_string Como Texto;
+	result_string = native_number_ToString(num);
+FinFuncion
+
+Funcion boolean <- number_isEquals(num, num2)
+	Definir boolean Como Logico;
+	boolean = __private_isEquals_general(num, num2);
+FinFuncion
+
+Funcion number_validateNumberRange(Function_name, value, min_val, max_val)
+	si (min_val > max_val) Entonces
+		error_message_Function(Function_name, "Config Error: Min > Max");
+	FinSi
+    Si !number_IsInRange(value, min_val, max_val) Entonces
+        Definir error_msg Como Texto;
+        error_msg = string_append("Value out of range: ", number_toString(value));
+        error_msg = string_append(error_msg, string_append(" [Limit: ", number_toString(min_val)));
+        error_msg = string_append(error_msg, string_append(" - ", number_toString(max_val)));
+        error_msg = string_append(error_msg, "]");
+        error_message_Function(Function_name, error_msg);
+    FinSi
+FinFuncion
+
+Funcion IsInRange <- number_IsInRange(value, min_val, max_val)
+    Definir IsInRange Como Logico;
+    IsInRange = value >= min_val & value <= max_val;
+FinFuncion
+//---[ boolean_ (#BOO) ]-------------------------------------------------------------------
+
+Funcion boolean <- true
+	Definir boolean Como Logico;
+	boolean = Verdadero;
+FinFuncion
+
+Funcion boolean <- false
+	Definir boolean Como Logico;
+	boolean = Falso;
+FinFuncion
+
+Funcion boolean <- __private_isEquals_general(value1, value2)
+	Definir boolean Como Logico;
+	boolean = (value1 == value2);
+FinFuncion
+//---[ if_ (#CDT) ]------------------------------------------------------------------------
+
+Funcion error_message_Function(method, message)
+	error_message(string_append_withSeparator(method, message, "//"));
+FinFuncion
+
+Funcion result <- if_else(condition, result, result2)
+	Si !(condition) Entonces
+		result = result2;
+	FinSi	
+FinFuncion
+
+Funcion error_message(message)
+	native_println(symbol_Escape() + "31m[ERROR] // " + message + ".");
+FinFuncion
+
+Funcion message_validateIndexRange(Function_name, result_string, start, end)
+    Definir num_length Como Numero;
+    num_length = string_Length(result_string);
+    number_validateNumberRange(Function_name, start, 0, num_length);
+    number_validateNumberRange(Function_name, end, 0, num_length);
+	si (start > end) Entonces
+		error_message_Function(Function_name, "Index Error: Start > End");
+	FinSi
+FinFuncion
+//---[ collection_ (#CLL) ]----------------------------------------------------------------
+
 Funcion result_string <- symbol_Escape
 	Definir result_string Como Texto;
 	result_string = "[";
 FinFuncion
+//---[ ascii_ (#ASC) ]---------------------------------------------------------------------
 
-//--[TRUE]-- -- -- -- -- -- -- -- -- -- -- -- -- --
-Funcion boolean <- true
-	Definir boolean Como Logico;
-	boolean = Verdadero;
+Funcion isType <- ascii_IsNumberSymbols(char)
+	Definir isType Como Logico;
+	isType = ascii_isInRangue(char, '0', '9');//48-57
+FinFuncion
+
+Funcion iSinRangue <- ascii_isInRangue(char, char_start, char_end)
+	Definir iSinRangue Como Logico;
+	iSinRangue = (char_start <= char & char <= char_end);
 FinFuncion

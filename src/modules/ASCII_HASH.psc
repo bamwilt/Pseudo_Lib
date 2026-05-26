@@ -1,7 +1,9 @@
-Algoritmo MODULE_HASH
+Algoritmo MODULE_ASCII_HASH
+	// Test call disabled: ascii_char() requires arguments
+	// TODO: add valid arguments for standalone execution
 FinAlgoritmo
-///%%%%%[ ASCII/HASH.............. ]%%%%%%%[   #ASC    ]%%%%%%%%%%%%%%%%%%%%
-//----[ PARSE ]----------------------------------------------------<#>
+///%%%%%[ ASCCI/HASH.......................... ]%%%%%%%[   #ASC    ]%%%%%%%%%%%%%%%%%%%%
+
 Funcion char <- ascii_char(code)
 	Definir i Como Numero;
 	Definir char Como Texto;
@@ -18,7 +20,7 @@ Funcion char <- ascii_char(code)
 		5: char = char_At(ascii_GetSpecialSymbols(), math_minus(code, 91));
 		6: char = char_At(ascii_GetLetters_LowerCase(), math_minus(code, 97));
 		7: char = char_At(ascii_GetExtraSymbols(), math_minus(code, 123));
-		De Otro Modo: char = 'ñ';
+		De Otro Modo: char = 'ï¿½';
 	FinSegun
 FinFuncion
 
@@ -40,7 +42,7 @@ Funcion ascii_codeCategory <- ascii_ord(char)
 		De Otro Modo: ascii_codeCategory = 164;
 	FinSegun
 FinFuncion
-//----[ HASH ]----------------------------------------------------------------------<#>
+
 Funcion hash <- ascii_hash_Mini_DBJ2(result_string)
 	Definir hash, i, text_length, num_limited Como Numero;
 	Definir key, left, Right, center, hash_str Como Texto;
@@ -72,7 +74,7 @@ Funcion value_StringHash <- ascii_hash_mini_toString(value_String)
 	Definir value_StringHash Como Texto;
 	value_StringHash = number_toString(ascii_hash_Mini_DBJ2(value_String));
 FinFuncion
-//----[ GETTERS ]----------------------------------------------------<#>
+
 Funcion ascii_codeCategory <- ascii_getOffSet_Category(index)
 	Definir ascii_codeCategory Como Numero;
 	segun index Hacer
@@ -90,7 +92,7 @@ FinFuncion
 
 Funcion ControlSymbols <- ascii_GetControlSymbols
 	Definir ControlSymbols Como Texto;
-	ControlSymbols = "	";//TAP BL LF
+	ControlSymbols = "	";//TAP BL LF
 FinFuncion
 
 Funcion BasicSymbols <- ascii_GetBasicSymbols
@@ -127,7 +129,7 @@ Funcion ExtraSymbols <- ascii_GetExtraSymbols
 	Definir ExtraSymbols Como Texto;
 	ExtraSymbols = "{|}~";
 FinFuncion
-//----[ IS_CATEGORY ]----------------------------------------------------<#>
+
 Funcion index_category <- ascii_getIndexCategory(ascii_category)
     Definir index_category Como Entero;
     Segun ascii_category Hacer
@@ -226,7 +228,7 @@ Funcion iSinRangue <- ascii_isInRangue(char, char_start, char_end)
 	Definir iSinRangue Como Logico;
 	iSinRangue = (char_start <= char & char <= char_end);
 FinFuncion
-//----[ GETCONTENT ]----------------------------------------------------<#>
+
 Funcion result_String <- asci_getPrefix_alphabetic(text_input)
 	Definir result_String Como Texto;
 	result_String = asci_getPrefix_alphabetic_fromIndex(text_input, 0);
@@ -345,7 +347,7 @@ Funcion end_position <- ascii_getEndIndex_Category(text_input, start_position, a
         FinSi
     FinMientras
 FinFuncion
-//--[ASCII]-- -- -- -- -- -- -- -- -- -- -- -- -- --
+
 Funcion ascii_category <- ascii_CONTROL
     Definir ascii_category Como Texto; 
     ascii_category = "CONTROL";
@@ -390,99 +392,15 @@ Funcion ascii_category <- ascii_ALPHABETIC
     Definir ascii_category Como Texto; 
     ascii_category = "ALPHABETIC";
 FinFuncion
-///=====[ DEPENDENCIES ]=====[  ///   ]=====================================
-//--[CHAR]-- -- -- -- -- -- -- -- -- -- -- -- -- --
-Funcion result_string <- char_At(text, index)
-	Definir result_string Como Texto;
-	Definir end_substring, text_length Como Entero;
-	text_length   = native_string_length(text);
-	end_substring = math_min_int(math_increment(index), text_length);
-	result_string = string_substring(text, index, end_substring);
+
+Funcion ascii_category <- ascii_UNKNOWN_CATEGORY
+    Definir ascii_category Como Texto; 
+    ascii_category = "UNKNOWN";
 FinFuncion
 
-//--[ERROR]-- -- -- -- -- -- -- -- -- -- -- -- -- --
-Funcion error_message_Function(method, message)
-	error_message(string_append_withSeparator(method, message, "//"));
-FinFuncion
+///==========[DEPENDECES]=============================================
+//---[ native_ (#NAV) ]--------------------------------------------------------------------
 
-Funcion error_message(message)
-	native_println(symbol_Escape() + "31m[ERROR] // " + message + ".");
-FinFuncion
-
-//--[FALSE]-- -- -- -- -- -- -- -- -- -- -- -- -- --
-Funcion boolean <- false
-	Definir boolean Como Logico;
-	boolean = Falso;
-FinFuncion
-
-//--[GENERAL]-- -- -- -- -- -- -- -- -- -- -- -- -- --
-Funcion result <- __private_math_choose(value, limit, isMax)
-	Definir result Como Numero;
-	Definir operation_flag Como Logico;
-	operation_flag = (value > limit) & isMax;
-	operation_flag = operation_flag | ((value < limit) & !isMax);
-	Si operation_flag Entonces
-		result = value; 
-	SiNo
-		result = limit;
-	FinSi
-FinFuncion
-
-Funcion boolean <- __private_isEquals_general(value1, value2)
-	Definir boolean Como Logico;
-	boolean = (value1 == value2);
-FinFuncion
-
-//--[IF]-- -- -- -- -- -- -- -- -- -- -- -- -- --
-Funcion result <- if_else(condition, result, result2)
-	Si !(condition) Entonces
-		result = result2;
-	FinSi	
-FinFuncion
-
-//--[MATH]-- -- -- -- -- -- -- -- -- -- -- -- -- --
-Funcion numInc <- math_increment(num)
-	Definir numInc Como Numero;
-	numInc = num + 1;
-FinFuncion
-
-Funcion numDec <- math_minus(num, value)
-	Definir numDec Como Numero;
-	numDec = num - value;
-FinFuncion
-
-Funcion numInc <- math_sum(num, value)
-	Definir numInc Como Numero;
-	numInc = num + value;
-FinFuncion
-
-Funcion result <- math_max_int(value, limit)
-	Definir result Como Entero;	
-	result = __private_math_choose(value, limit, true());
-FinFuncion
-
-Funcion result <- math_min_int(value, limit)
-	Definir result Como Entero;
-	result = __private_math_choose(value, limit, false());
-FinFuncion
-
-Funcion numDec <- math_decrement(num)
-	Definir numDec Como Numero;
-	numDec = num - 1;
-FinFuncion
-
-//--[MESSAGE]-- -- -- -- -- -- -- -- -- -- -- -- -- --
-Funcion message_validateIndexRange(Function_name, result_string, start, end)
-    Definir num_length Como Numero;
-    num_length = string_Length(result_string);
-    number_validateNumberRange(Function_name, start, 0, num_length);
-    number_validateNumberRange(Function_name, end, 0, num_length);
-	si (start > end) Entonces
-		error_message_Function(Function_name, "Index Error: Start > End");
-	FinSi
-FinFuncion
-
-//--[NATIVE]-- -- -- -- -- -- -- -- -- -- -- -- -- --
 Funcion length <- native_string_length(text)
 	Definir length Como Numero;
 	length = Longitud(text);
@@ -506,43 +424,16 @@ FinFuncion
 Funcion native_println(text)
 	Escribir text;
 FinFuncion
+//---[ string_ (#STR) ]--------------------------------------------------------------------
 
-//--[NUMBER]-- -- -- -- -- -- -- -- -- -- -- -- -- --
-Funcion result_string <- number_toString(num)
+Funcion result_string <- char_At(text, index)
 	Definir result_string Como Texto;
-	result_string = native_number_ToString(num);
+	Definir end_substring, text_length Como Entero;
+	text_length   = native_string_length(text);
+	end_substring = math_min_int(math_increment(index), text_length);
+	result_string = string_substring(text, index, end_substring);
 FinFuncion
 
-Funcion boolean <- number_isEquals(num, num2)
-	Definir boolean Como Logico;
-	boolean = __private_isEquals_general(num, num2);
-FinFuncion
-
-Funcion Num <- number_NULL
-	Definir Num Como Numero;
-	Num = -1;
-FinFuncion
-
-Funcion number_validateNumberRange(Function_name, value, min_val, max_val)
-	si (min_val > max_val) Entonces
-		error_message_Function(Function_name, "Config Error: Min > Max");
-	FinSi
-    Si !number_IsInRange(value, min_val, max_val) Entonces
-        Definir error_msg Como Texto;
-        error_msg = string_append("Value out of range: ", number_toString(value));
-        error_msg = string_append(error_msg, string_append(" [Limit: ", number_toString(min_val)));
-        error_msg = string_append(error_msg, string_append(" - ", number_toString(max_val)));
-        error_msg = string_append(error_msg, "]");
-        error_message_Function(Function_name, error_msg);
-    FinSi
-FinFuncion
-
-Funcion IsInRange <- number_IsInRange(value, min_val, max_val)
-    Definir IsInRange Como Logico;
-    IsInRange = value >= min_val & value <= max_val;
-FinFuncion
-
-//--[STRING]-- -- -- -- -- -- -- -- -- -- -- -- -- --
 Funcion result <- string_indexOf(text, text_match)// --- >
 	Definir result Como Numero;
 	result = string_indexOf_fromIndex(text, text_match, 0);
@@ -683,15 +574,128 @@ Funcion result_string <- string_Strip(text, strip_symbol)
     FinMientras
     result_string = string_SubString(text, start, end);
 FinFuncion
+//---[ int_ (#NUM) ]-----------------------------------------------------------------------
 
-//--[SYMBOL]-- -- -- -- -- -- -- -- -- -- -- -- -- --
-Funcion result_string <- symbol_Escape
+Funcion result_string <- number_toString(num)
 	Definir result_string Como Texto;
-	result_string = "[";
+	result_string = native_number_ToString(num);
 FinFuncion
 
-//--[TRUE]-- -- -- -- -- -- -- -- -- -- -- -- -- --
+Funcion boolean <- number_isEquals(num, num2)
+	Definir boolean Como Logico;
+	boolean = __private_isEquals_general(num, num2);
+FinFuncion
+
+Funcion Num <- number_NULL
+	Definir Num Como Numero;
+	Num = -1;
+FinFuncion
+
+Funcion number_validateNumberRange(Function_name, value, min_val, max_val)
+	si (min_val > max_val) Entonces
+		error_message_Function(Function_name, "Config Error: Min > Max");
+	FinSi
+    Si !number_IsInRange(value, min_val, max_val) Entonces
+        Definir error_msg Como Texto;
+        error_msg = string_append("Value out of range: ", number_toString(value));
+        error_msg = string_append(error_msg, string_append(" [Limit: ", number_toString(min_val)));
+        error_msg = string_append(error_msg, string_append(" - ", number_toString(max_val)));
+        error_msg = string_append(error_msg, "]");
+        error_message_Function(Function_name, error_msg);
+    FinSi
+FinFuncion
+
+Funcion IsInRange <- number_IsInRange(value, min_val, max_val)
+    Definir IsInRange Como Logico;
+    IsInRange = value >= min_val & value <= max_val;
+FinFuncion
+//---[ math_ (#MAT) ]----------------------------------------------------------------------
+
+Funcion numInc <- math_increment(num)
+	Definir numInc Como Numero;
+	numInc = num + 1;
+FinFuncion
+
+Funcion numDec <- math_minus(num, value)
+	Definir numDec Como Numero;
+	numDec = num - value;
+FinFuncion
+
+Funcion numInc <- math_sum(num, value)
+	Definir numInc Como Numero;
+	numInc = num + value;
+FinFuncion
+
+Funcion result <- math_max_int(value, limit)
+	Definir result Como Entero;	
+	result = __private_math_choose(value, limit, true());
+FinFuncion
+
+Funcion result <- math_min_int(value, limit)
+	Definir result Como Entero;
+	result = __private_math_choose(value, limit, false());
+FinFuncion
+
+Funcion numDec <- math_decrement(num)
+	Definir numDec Como Numero;
+	numDec = num - 1;
+FinFuncion
+
+Funcion result <- __private_math_choose(value, limit, isMax)
+	Definir result Como Numero;
+	Definir operation_flag Como Logico;
+	operation_flag = (value > limit) & isMax;
+	operation_flag = operation_flag | ((value < limit) & !isMax);
+	Si operation_flag Entonces
+		result = value; 
+	SiNo
+		result = limit;
+	FinSi
+FinFuncion
+//---[ boolean_ (#BOO) ]-------------------------------------------------------------------
+
+Funcion boolean <- false
+	Definir boolean Como Logico;
+	boolean = Falso;
+FinFuncion
+
 Funcion boolean <- true
 	Definir boolean Como Logico;
 	boolean = Verdadero;
+FinFuncion
+
+Funcion boolean <- __private_isEquals_general(value1, value2)
+	Definir boolean Como Logico;
+	boolean = (value1 == value2);
+FinFuncion
+//---[ if_ (#CDT) ]------------------------------------------------------------------------
+
+Funcion message_validateIndexRange(Function_name, result_string, start, end)
+    Definir num_length Como Numero;
+    num_length = string_Length(result_string);
+    number_validateNumberRange(Function_name, start, 0, num_length);
+    number_validateNumberRange(Function_name, end, 0, num_length);
+	si (start > end) Entonces
+		error_message_Function(Function_name, "Index Error: Start > End");
+	FinSi
+FinFuncion
+
+Funcion result <- if_else(condition, result, result2)
+	Si !(condition) Entonces
+		result = result2;
+	FinSi	
+FinFuncion
+
+Funcion error_message_Function(method, message)
+	error_message(string_append_withSeparator(method, message, "//"));
+FinFuncion
+
+Funcion error_message(message)
+	native_println(symbol_Escape() + "31m[ERROR] // " + message + ".");
+FinFuncion
+//---[ collection_ (#CLL) ]----------------------------------------------------------------
+
+Funcion result_string <- symbol_Escape
+	Definir result_string Como Texto;
+	result_string = "[";
 FinFuncion
