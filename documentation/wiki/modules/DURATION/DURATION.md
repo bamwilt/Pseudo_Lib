@@ -5,7 +5,7 @@
 **Estado:** [+] Stable
 
 ## Descripción
-Módulo para la representación y manipulación de duraciones basadas en segundos. Permite crear, convertir, comparar y operar aritméticamente con lapsos de tiempo.
+Módulo para la representación y manipulación de duraciones basadas en segundos. Permite crear duraciones a partir de días, horas, minutos o segundos, obtener su valor en segundos, convertir segundos a distintas unidades temporales (días, horas, minutos), calcular la diferencia entre dos duraciones, y realizar operaciones aritméticas de suma, resta, negación, multiplicación y división.
 
 ## Funciones
 
@@ -43,3 +43,23 @@ Módulo para la representación y manipulación de duraciones basadas en segundo
 | [`duration_MinusMinutes(struct, minutes)`](functions/duration_MinusMinutes.md) | Resta minutos a la duración |
 | [`duration_MinusSeconds(struct, seconds)`](functions/duration_MinusSeconds.md) | Resta segundos a la duración |
 | [`duration_CompareTo(struct, match)`](functions/duration_CompareTo.md) | Compara dos duraciones |
+
+## Ejemplo de Uso
+```pseudocode
+Algoritmo Ejemplo_Duration
+    Definir dur, start, end, diff Como Texto;
+    Definir segundos Como Real;
+    // Crear una duración de 2 horas
+    dur = duration_ofHours(2);
+    // Obtener los segundos totales
+    segundos = duration_getSeconds(dur);
+    Escribir "2 horas en segundos: ", segundos;
+    // Calcular duración entre dos momentos
+    start = duration_ofHours(1); // 1:00
+    end = duration_ofHours(3);   // 3:00
+    diff = duration_between(start, end);
+    Escribir "Diferencia en segundos: ", duration_getSeconds(diff);
+    // Convertir segundos a horas
+    Escribir "Segundos a horas: ", duration_secondsToHours(7200);
+FinAlgoritmo
+```

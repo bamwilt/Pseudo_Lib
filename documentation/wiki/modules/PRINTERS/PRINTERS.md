@@ -6,7 +6,7 @@
 
 ## Descripción
 
-Módulo de salida de texto con formato avanzado para la consola. Proporciona funciones para imprimir texto con animaciones progresivas, efectos de "disparo", repetición de texto, colores y formato de arreglos.
+Módulo de salida de texto con formato para la consola. Proporciona funciones para imprimir texto plano (`print`, `println`), impresión dividida por separadores (`print_byseparator`, `println_bySeparator`), animaciones progresivas de escritura carácter por carácter (`print_progress`, `print_progress_with_speed`), efectos de "disparo" que imprimen múltiples líneas rápidamente (`print_shoot`, `println_shoot`), impresión de arreglos línea por línea con o sin color (`println_array`, `println_array_color`), repetición de texto (`print_Repeat`, `println_Repeat`), salto de línea (`break_Line`) y limpieza de consola (`hide_Text`).
 
 ## Funciones
 
@@ -35,3 +35,32 @@ Módulo de salida de texto con formato avanzado para la consola. Proporciona fun
 | [`println_Repeat()`](functions/println_Repeat.md) | Repite un texto con salto varias veces |
 | [`break_Line()`](functions/break_Line.md) | Imprime un salto de línea |
 | [`hide_Text()`](functions/hide_Text.md) | Limpia la consola |
+
+## Ejemplo de Uso
+
+```pseudocode
+Algoritmo Ejemplo_PRINTERS
+    Definir mensaje, lista, i Como Numero;
+    Dimension lista[3];
+
+    lista[0] = 10;
+    lista[1] = 20;
+    lista[2] = 30;
+
+    println("Imprimiendo arreglo:");
+    println_array(lista, 3);
+
+    break_Line();
+
+    println("Repitiendo texto:");
+    print_Repeat("-", 10);
+    Escribir "";
+
+    println("Linea 1");
+    println("Linea 2");
+    println("Linea 3");
+
+    println("Texto con progreso:");
+    print_progress("Hola");
+FinAlgoritmo
+```

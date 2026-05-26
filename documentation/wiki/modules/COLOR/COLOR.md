@@ -6,7 +6,7 @@
 
 ## Descripción
 
-Provides ANSI terminal color and style utilities. Includes predefined colors (TRANSPARENT, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE), text coloring functions, bold/plain styles, multi-color text generation, dark mode, and color/style detection in strings.
+Proporciona códigos de color ANSI para terminal y utilidades de estilo de texto. Incluye colores predefinidos (TRANSPARENT, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE), funciones para aplicar color a textos, generación de texto multicolor con colores cíclicos, estilos bold/plain, y detección de códigos de color o estilo dentro de cadenas.
 
 ## Funciones
 
@@ -34,3 +34,35 @@ Provides ANSI terminal color and style utilities. Includes predefined colors (TR
 | [`color_text_hasStyle()`](functions/color_text_hasStyle.md) | Checks if text contains a style code |
 | [`color_text_hasColor_or_Style()`](functions/color_text_hasColor_or_Style.md) | Checks if text contains color or style |
 | [`__private_color_text_hasStyle_or_Color()`](functions/__private_color_text_hasStyle_or_Color.md) | Internal: checks for escape character presence |
+
+## Ejemplo de Uso
+
+```pseudocode
+Algoritmo Ejemplo_COLOR
+    Definir mensaje Como Texto;
+    
+    // Colores basicos
+    Escribir COLOR_ROJO() + "Texto en rojo";
+    Escribir COLOR_VERDE() + "Texto en verde";
+    Escribir COLOR_AZUL() + "Texto en azul";
+    
+    // color_setColorText: antepone un color a un texto
+    mensaje <- color_setColorText("Hola Mundo", COLOR_AMARILLO());
+    Escribir mensaje;
+    
+    // COLOR_getcolor_forIndex: obtener color por indice (0-7)
+    Escribir COLOR_getcolor_forIndex(2) + "Color por indice 2 (verde)";
+    
+    // color_setColorText_multiColor: colores ciclicos por caracter
+    Escribir color_setColorText_multiColor("Texto multicolor");
+    
+    // color_text_hasColor: detecta si un texto tiene codigos de color
+    Definir tieneColor Como Logico;
+    tieneColor <- color_text_hasColor(COLOR_ROJO() + "texto");
+    Escribir "Tiene color: ", tieneColor;
+    
+    // Estilos
+    Escribir COLOR_STYLE_BOLD() + "Texto en negrita";
+    Escribir COLOR_STYLE_PLAIN() + "Texto plano";
+FinAlgoritmo
+```

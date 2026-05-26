@@ -6,7 +6,7 @@
 
 ## Descripción
 
-Proporciona wrappers directos sobre las funciones nativas/built-in de PSeInt. Abarca operaciones de string (longitud, subcadena, conversión de mayúsculas/minúsculas), matemáticas (truncado, valor absoluto, redondeo, raíz cuadrada, trigonometría, logaritmos, potencias), entrada/salida por consola y obtención de la hora local.
+Proporciona wrappers directos sobre las funciones nativas/built-in de PSeInt. Abarca operaciones de string (`Longitud`, `Subcadena`, `Mayusculas`, `Minusculas`, `ConvertirATexto`, `ConvertirANumero`), matemáticas (`Trunc`, `Redon`, `Abs`, `Raiz`, `Sen`, `Cos`, `Tan`, `Ln`, `Exp`, potencias, módulo), entrada/salida por consola (`Escribir`, `Limpiar Pantalla`) y obtención de la hora local (`HoraActual`). Incluye validaciones de seguridad en `native_math_sqrt` (retorna 0 para negativos) y `native_math_ln` (retorna 0 para valores <= 0).
 
 ## Funciones
 
@@ -35,3 +35,27 @@ Proporciona wrappers directos sobre las funciones nativas/built-in de PSeInt. Ab
 | [`clear_Console()`](functions/clear_Console.md) | Limpia la pantalla de la consola (alias) |
 | [`native_localTime_Now()`](functions/native_localTime_Now.md) | Retorna la hora actual como número |
 | [`native_localTime_Now_toString()`](functions/native_localTime_Now_toString.md) | Retorna la hora actual como texto formateado |
+
+## Ejemplo de Uso
+
+```pseudocode
+Algoritmo Ejemplo_NATIVE
+    Definir texto, num, raiz Como Texto;
+    Definir valor, longitud Como Numero;
+
+    texto = "Hola Mundo";
+    longitud = native_string_length(texto);
+    native_println("Longitud: " + native_number_ToString(longitud));
+
+    native_print("Texto en mayusculas: ");
+    native_println(native_string_ToUpperCase(texto));
+
+    valor = 16;
+    raiz = native_number_ToString(native_math_sqrt(valor));
+    native_println("Raiz cuadrada de 16: " + raiz);
+
+    native_println("Seno de 0 radianes: " + native_number_ToString(native_math_sin(0)));
+
+    native_println("Hora actual: " + native_localTime_Now_toString());
+FinAlgoritmo
+```

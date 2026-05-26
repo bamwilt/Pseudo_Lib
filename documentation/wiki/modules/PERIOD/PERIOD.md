@@ -5,7 +5,7 @@
 **Estado:** [+] Stable
 
 ## Descripción
-Módulo para la representación y manipulación de periodos basados en años, meses y días. A diferencia de Duration, Period trabaja con unidades de calendario (no segundos).
+Módulo para la representación y manipulación de periodos basados en años, meses y días. A diferencia de Duration, Period trabaja con unidades de calendario (no segundos). Proporciona funciones para crear periodos, obtener sus componentes individuales (año, mes, día), sumar y restar periodos, multiplicar por un escalar, negar, normalizar los meses a rango 0-11, convertir a string en formato "Y:años M:meses D:días", y calcular la diferencia entre dos fechas.
 
 ## Funciones
 
@@ -38,3 +38,28 @@ Módulo para la representación y manipulación de periodos basados en años, me
 | [`period_isNegative(struct)`](functions/period_isNegative.md) | Verifica si el Period es negativo |
 | [`period_isZero(struct)`](functions/period_isZero.md) | Verifica si el Period es cero |
 | [`period_between(date_start, date_end)`](functions/period_between.md) | Calcula el Period entre dos fechas |
+
+## Ejemplo de Uso
+```pseudocode
+Algoritmo Ejemplo_Period
+    Definir per, per2, per_suma, per_str Como Texto;
+    Definir anios, meses, dias Como Entero;
+    // Crear un periodo de 1 año, 6 meses y 15 días
+    per = period_of(1, 6, 15);
+    // Obtener componentes
+    anios = period_getYear(per);
+    meses = period_getMonth(per);
+    dias = period_getDay(per);
+    Escribir "Años: ", anios, " Meses: ", meses, " Días: ", dias;
+    // Multiplicar por 2 y negar
+    per2 = period_multipliedBy(per, 2);
+    // Sumar periodos
+    per_suma = period_plus(per, per2);
+    // Convertir a texto
+    per_str = period_toString(per_suma);
+    Escribir "Periodo sumado: ", per_str;
+    // Normalizar meses
+    per_str = period_toString(period_normalized(period_of(0, 14, 0)));
+    Escribir "14 meses normalizado: ", per_str;
+FinAlgoritmo
+```

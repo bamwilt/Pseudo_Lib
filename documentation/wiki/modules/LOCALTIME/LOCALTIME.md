@@ -5,7 +5,7 @@
 **Estado:** [+] Stable
 
 ## Descripción
-Módulo para la representación y manipulación de horas locales (sin fecha). Proporciona funciones para crear, comparar, formatear y modificar objetos de tiempo local en el rango 00:00:00 - 23:59:59.
+Módulo para la representación y manipulación de horas locales (sin fecha). Proporciona funciones para crear objetos LocalTime a partir de hora/minuto/segundo o segundos del día, obtener la hora actual del sistema, convertir a texto en formato HH:mm:ss, y realizar operaciones de comparación, suma/resta de unidades temporales, modificación de campos y truncado.
 
 ## Funciones
 
@@ -34,3 +34,23 @@ Módulo para la representación y manipulación de horas locales (sin fecha). Pr
 | [`localTime_withSecond(struct, second)`](functions/localTime_withSecond.md) | Establece el segundo del LocalTime |
 | [`localTime_truncatedToHours(struct)`](functions/localTime_truncatedToHours.md) | Trunca el LocalTime a la hora |
 | [`localTime_truncatedToMinutes(struct)`](functions/localTime_truncatedToMinutes.md) | Trunca el LocalTime al minuto |
+
+## Ejemplo de Uso
+```pseudocode
+Algoritmo Ejemplo_LocalTime
+    Definir hora_actual, hora_personalizada Como Texto;
+    Definir hora_str Como Texto;
+    // Obtener hora actual del sistema
+    hora_actual = localTime_now();
+    // Crear una hora personalizada (10:30:00)
+    hora_personalizada = localTime_of(10, 30, 0);
+    // Convertir a texto y mostrar
+    hora_str = localTime_ToString(hora_actual);
+    Escribir "Hora actual: ", hora_str;
+    Escribir "Hora personalizada: ", localTime_ToString(hora_personalizada);
+    // Comparar horas
+    Si localTime_isBefore(hora_actual, hora_personalizada) Entonces
+        Escribir "La hora actual es antes de las 10:30";
+    FinSi
+FinAlgoritmo
+```

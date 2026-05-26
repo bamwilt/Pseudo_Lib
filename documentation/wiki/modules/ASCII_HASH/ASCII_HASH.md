@@ -6,7 +6,7 @@
 
 ## Descripción
 
-Módulo de manipulación de caracteres ASCII y generación de hashes. Proporciona funciones para convertir entre códigos ASCII y caracteres, clasificar caracteres por categorías (control, básico, número, operador, mayúsculas, especial, minúsculas, extra), extraer prefijos por categoría, y generar hashes DJB2 y DJB2-mini.
+Módulo de manipulación de caracteres ASCII y generación de hashes. Proporciona funciones para convertir entre códigos ASCII numéricos y caracteres (`ascii_char`, `ascii_ord`), clasificar caracteres por categorías (control, básico, número, operador, mayúsculas, especial, minúsculas, extra) mediante funciones como `ascii_IsControlSymbols`, `ascii_IsNumberSymbols`, `ascii_IsLetters_UpperCase`, etc., y extraer prefijos de texto que pertenecen a una categoría específica (`ascii_getPrefix_alphabetic`, `ascii_getPrefix_Numbers_fromIndex`, `ascii_getEndIndex_Category`). También incluye generación de hashes DJB2 completo y mini (`ascii_hash_DBJ2`, `ascii_hash_Mini_DBJ2`), y constantes de categoría (`ascii_ALPHABETIC`, `ascii_NUMBER`, `ascii_CONTROL`, etc.).
 
 ## Funciones
 
@@ -60,3 +60,24 @@ Módulo de manipulación de caracteres ASCII y generación de hashes. Proporcion
 | [`ascii_EXTRA()`](functions/ascii_EXTRA.md) | Constante EXTRA |
 | [`ascii_ALPHABETIC()`](functions/ascii_ALPHABETIC.md) | Constante ALPHABETIC |
 | [`ascii_UNKNOWN_CATEGORY()`](functions/ascii_UNKNOWN_CATEGORY.md) | Constante UNKNOWN |
+
+## Ejemplo de Uso
+
+```pseudocode
+Funcion main
+    Definir texto Como Texto;
+    texto = "Hola123Mundo";
+
+    // Verificar categorías de caracteres
+    Escribir ascii_IsLetters('A');       // Verdadero
+    Escribir ascii_IsNumberSymbols('5'); // Verdadero
+    Escribir ascii_IsCategory('>', ascii_OPERATOR()); // Verdadero
+
+    // Extraer prefijos por categoría
+    Escribir ascii_getPrefix_alphabetic(texto); // "Hola"
+    Escribir ascii_getPrefix_Numbers(texto);     // ""
+
+    // Hash
+    Escribir ascii_hash_mini_toString("datos");  // Hash numérico
+FinFuncion
+```

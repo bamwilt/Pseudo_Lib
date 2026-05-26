@@ -5,7 +5,7 @@
 **Estado:** [+] Stable
 
 ## Descripción
-Módulo que implementa una colección de dos regiones de celdas (izquierda y derecha), permitiendo almacenar pares de datos en una misma estructura lineal. Soporta modos fijo, dinámico, setter y setter dinámico para cada lado.
+Módulo que implementa una colección con dos regiones de celdas (izquierda y derecha) que comparten el mismo contador de elementos, permitiendo almacenar pares de datos en una misma estructura lineal. Los elementos izquierdos se insertan desde el inicio hacia adelante y los derechos desde el final hacia atrás, separados por un marcador de metadatos. Soporta cuatro modos de adición por lado: fijo, dinámico (redimensiona las celdas), setter (sin duplicados) y setter dinámico.
 
 ## Funciones
 
@@ -68,3 +68,21 @@ Módulo que implementa una colección de dos regiones de celdas (izquierda y der
 | [`dualCellsCollection_getSeparateString_right()`](functions/dualCellsCollection_getSeparateString_right.md) | Obtiene el string separado del lado derecho |
 | [`dualCellsCollection_println_right()`](functions/dualCellsCollection_println_right.md) | Imprime el lado derecho con salto de línea |
 | [`dualCellsCollection_print_right()`](functions/dualCellsCollection_print_right.md) | Imprime el lado derecho sin salto de línea |
+
+## Ejemplo de Uso
+```pseudocode
+Algoritmo ejemplo_DualCells
+    Definir dual Como Texto;
+    Definir valido Como Logico;
+    Definir indice Como Entero;
+    dual = dualCellsCollection_new("pares", TYPE_STRING(), 10, TYPE_INT(), 4);
+    valido = dualCellsCollection_validateFixedLength("Hola", 10);
+    Escribir valido;
+    valido = dualCellsCollection_validateFixedLength("Cadena muy larga", 10);
+    Escribir valido;
+    dual = dualCellsCollection_add_byString_right_force(dual, "123", 0, 0, 4);
+    Escribir dualCellsCollection_getSize(dual);
+    indice = dualCellsCollection_setter_getIndex_right(dual, "123");
+    Escribir indice;
+FinAlgoritmo
+```

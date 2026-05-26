@@ -5,7 +5,7 @@
 **Estado:** [+] Stable
 
 ## Descripción
-Módulo para la gestión de colecciones basadas en celdas de longitud fija. Cada elemento se almacena en un bloque de tamaño normalizado, permitiendo acceso directo por índice, operaciones de inserción, eliminación, modificación e intercambio de datos.
+Módulo que gestiona colecciones basadas en bloques de celdas de longitud fija, donde cada elemento se almacena en un bloque normalizado relleno con un carácter nulo. Proporciona acceso directo por índice mediante cálculo de posición, inserción, eliminación, modificación, intercambio de datos y normalización de strings al tamaño del bloque. También incluye un modo setter dinámico que evita duplicados y redimensiona automáticamente la celda según el tamaño del elemento.
 
 ## Funciones
 
@@ -49,3 +49,20 @@ Módulo para la gestión de colecciones basadas en celdas de longitud fija. Cada
 | [`cellsCollection_setterDynamic_add()`](functions/cellsCollection_setterDynamic_add.md) | Añade un elemento con verificación de duplicados |
 | [`cellsCollection_setterDynamic_add_byType()`](functions/cellsCollection_setterDynamic_add_byType.md) | Añade un elemento tipado con verificación |
 | [`cellsCollection_setterDynamic_add_byString()`](functions/cellsCollection_setterDynamic_add_byString.md) | Añade un elemento string con verificación |
+
+## Ejemplo de Uso
+```pseudocode
+Algoritmo ejemplo_CellsCollection
+    Definir cells Como Texto;
+    Definir tamano, indice, longCelda Como Entero;
+    cells = cellsCollection_new("datos", TYPE_INT(), 5);
+    cells = cellsCollection_add_byString(cells, "123");
+    cells = cellsCollection_add_byString(cells, "456");
+    tamano = cellsCollection_getSize(cells);
+    Escribir tamano;
+    longCelda = cellsCollection_getCellLength(cells);
+    indice = cellsCollection_calcule_indexBlock(0, 1, longCelda);
+    Escribir indice;
+    cells = cellsCollection_delete_byIndex(cells, 0);
+FinAlgoritmo
+```

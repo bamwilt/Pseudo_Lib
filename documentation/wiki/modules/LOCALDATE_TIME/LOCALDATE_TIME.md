@@ -5,7 +5,7 @@
 **Estado:** [+] Stable
 
 ## Descripción
-Módulo que combina fecha y hora local en un único objeto (LocalDateTime). Proporciona operaciones aritméticas, de comparación, consulta y formateo para fechas con hora.
+Módulo que combina fecha y hora local en un único objeto (LocalDateTime). Proporciona funciones para construir un LocalDateTime a partir de año, mes, día, hora, minuto y segundo (o usando nombre del mes), convertirlo a texto en formato "yyyy-MM-dd HH:mm:ss", y realizar operaciones aritméticas de suma/resta de unidades, comparación, consulta de campos individuales, truncado y extracción de las partes de fecha y hora.
 
 ## Funciones
 
@@ -54,3 +54,22 @@ Módulo que combina fecha y hora local en un único objeto (LocalDateTime). Prop
 | [`localDateTime_toLocalTime(struct)`](functions/localDateTime_toLocalTime.md) | Extrae la parte de hora |
 | [`localDateTime_truncatedToHours(struct)`](functions/localDateTime_truncatedToHours.md) | Trunca a la hora |
 | [`localDateTime_truncatedToMinutes(struct)`](functions/localDateTime_truncatedToMinutes.md) | Trunca al minuto |
+
+## Ejemplo de Uso
+```pseudocode
+Algoritmo Ejemplo_LocalDateTime
+    Definir dt, dt2, dt_str Como Texto;
+    // Crear un LocalDateTime: 15 de marzo de 2024 a las 10:30:00
+    dt = localDateTime_of(2024, 3, 15, 10, 30, 0);
+    // Convertir a texto y mostrar
+    dt_str = localDateTime_toString(dt);
+    Escribir "Fecha y hora: ", dt_str;
+    // Crear usando nombre del mes
+    dt2 = localDateTime_of_monthName(2024, Month_MARCH(), 15, 10, 30, 0);
+    // Obtener año, mes, día, hora
+    Escribir "Año: ", localDateTime_getYear(dt);
+    Escribir "Mes: ", localDateTime_getMonthValue(dt);
+    Escribir "Día: ", localDateTime_getDayOfMonth(dt);
+    Escribir "Hora: ", localDateTime_getHour(dt);
+FinAlgoritmo
+```

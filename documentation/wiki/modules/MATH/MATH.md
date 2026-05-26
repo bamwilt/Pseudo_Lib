@@ -6,7 +6,7 @@
 
 ## Descripción
 
-Provides a comprehensive set of mathematical functions including trigonometric (sin, cos, tan via Taylor series), logarithms, exponentiation, power, square root, factorial, signum, rounding, floor, truncation, min/max, range limiting, and normalization. Includes mathematical constants (PI, 2PI, EULER, PHI, EPSILON) and basic arithmetic helpers.
+Proporciona un conjunto completo de funciones matemáticas: aritmética básica (`math_increment`, `math_decrement`, `math_sum`, `math_minus`), comparación (`math_max_int`, `math_max_Float`, `math_min_int`, `math_min_float`), acotación de rangos (`math_rangeLimit_Int`, `math_rangeLimit_Float`), trigonometría mediante series de Taylor (`math_sin`, `math_cos`, `math_tan` y sus variantes en grados), logaritmos (`math_ln`, `math_log`), exponencial (`math_exp`), potencias (`math_pow`, `math_pow_float`), raíz cuadrada (`math_sqrt`), redondeo (`math_round`, `math_floor`, `math_truncate`, `math_limitDecimals`), módulo (`math_module`), absoluto (`math_abs`), negación (`math_negated`), división segura (`math_div`), factorial (`math_factorial`), signo (`math_signum`), constantes (`math_PI`, `math_2PI`, `math_EULER`, `math_PHI`, `math_EPSILON`), y normalización cíclica (`math_NormalizeCycle`). También incluye `math_Summation_ToFromSeparatedString` para sumar valores numéricos extraídos de una cadena separada.
 
 ## Funciones
 
@@ -66,3 +66,22 @@ Provides a comprehensive set of mathematical functions including trigonometric (
 | [`math_sum()`](functions/math_sum.md) | Adds two numbers |
 | [`math_decrement()`](functions/math_decrement.md) | Decrements a number by 1 |
 | [`math_minus()`](functions/math_minus.md) | Subtracts two numbers |
+
+## Ejemplo de Uso
+
+```pseudocode
+Algoritmo EjemploMath
+    Escribir math_increment(5)
+    Escribir math_max_int(3, 7)
+    Escribir math_min_int(10, 4)
+    Escribir math_rangeLimit_Int(15, 0, 10)
+    Escribir math_abs(-8)
+    Escribir math_negated(6)
+    Escribir math_truncate(3.1415)
+    Escribir math_limitDecimals(3.14159, 2)
+    Escribir math_module(10, 3)
+    Escribir math_sum(4, 5)
+    Escribir math_minus(10, 3)
+    Escribir math_decrement(9)
+FinAlgoritmo
+```

@@ -6,7 +6,7 @@
 
 ## Descripción
 
-Módulo de creación y manipulación de canvases (lienzos) de texto para renderizar gráficos ASCII en la terminal. Proporciona funciones para dibujar puntos, líneas, rectángulos, elipses, triángulos, sprites, botones, paneles y componentes TUI, además de operaciones de redimensionado, desplazamiento y extracción de regiones. También incluye generación de códigos QR.
+Módulo de creación y manipulación de canvases (lienzos) de texto para renderizar gráficos ASCII en la terminal. El canvas es una cadena plana donde cada carácter representa un píxel y las coordenadas (x, y) se convierten a índices lineales mediante `x + (y * Cx)`. Proporciona funciones para dibujar puntos, líneas (algoritmo de Bresenham), rectángulos, elipses, triángulos, texto, botones, paneles y sprites con efectos como recorte y volteo. También incluye generación de códigos QR con patrones de búsqueda y sincronización, operaciones de redimensionado, desplazamiento de contenido, extracción de regiones y conversión a sprites.
 
 ## Funciones
 
@@ -134,3 +134,27 @@ Módulo de creación y manipulación de canvases (lienzos) de texto para renderi
 | [`canvas_decrementSizeOne(canvas, CWx, CWy)`](functions/canvas_decrementSizeOne.md) | Reduce en 1px |
 | [`canvas_decrementSizeOne_atStart(canvas, CWx, CWy)`](functions/canvas_decrementSizeOne_atStart.md) | Reduce 1px desde inicio |
 | [`Qr_getSpritePositionPattern()`](functions/Qr_getSpritePositionPattern.md) | Obtiene sprite de patrón QR |
+
+## Ejemplo de Uso
+
+```pseudocode
+Funcion main
+    Definir canvas, sprite Como Texto;
+    Definir Cx, Cy Como Numero;
+    Cx = 34; Cy = 14;
+
+    sprite = SpriteString_New();
+    sprite = SpriteString_AddLine(sprite, "  _    _       _ _ ");
+    sprite = SpriteString_AddLine(sprite, " | |  | | ___ | | |");
+    sprite = SpriteString_AddLine(sprite, " | |__| |/ _ \| | |");
+    sprite = SpriteString_AddLine(sprite, " |_____/ \___/|_|_|");
+
+    canvas = canvas_New(Cx, Cy);
+    canvas = canvas_DrawSpriteString_Cutout(canvas, Cx, Cy, sprite, 2, 1);
+    canvas = canvas_DrawHorizontalLine_Full(canvas, Cx, Cy, 6);
+    canvas = canvas_DrawText(canvas, Cx, Cy, "Hola Mundo!", 10, 7);
+    canvas = canvas_DrawButton(canvas, Cx, Cy, " OK ", 14, 9);
+    canvas = canvas_DrawPanel(canvas, Cx, Cy, 0, 0, Cx, Cy);
+    canvas_Display(canvas, Cx, Cy);
+FinFuncion
+```

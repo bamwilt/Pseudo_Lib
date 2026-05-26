@@ -5,7 +5,7 @@
 **Estado:** [+] Stable
 
 ## Descripción
-Módulo de almacenamiento basado en cadenas de texto para colecciones lineales. Proporciona operaciones de inserción, eliminación, modificación y búsqueda de elementos dentro de una estructura serializada, gestionando tipos de datos mediante una notación interna de áreas (type, length, data, metadata).
+Módulo que implementa un almacenamiento serializado en string para colecciones lineales, organizado en áreas de tipo, longitud, datos y metadatos. Permite agregar, obtener, modificar, eliminar y buscar elementos por clave string o tipada, gestionando internamente las longitudes de cada valor mediante un sistema de índices secuenciales. Soporta operaciones por lotes como AddAll, DeleteAll y RetainAll sobre colecciones completas.
 
 ## Funciones
 
@@ -42,3 +42,20 @@ Módulo de almacenamiento basado en cadenas de texto para colecciones lineales. 
 | [`collectionStorage_println()`](functions/collectionStorage_println.md) | Imprime el almacenamiento con salto de línea |
 | [`collectionStorage_print()`](functions/collectionStorage_print.md) | Imprime el almacenamiento sin salto de línea |
 | [`__private_collectionStorage_printer()`](functions/__private_collectionStorage_printer.md) | Imprime los datos secuencialmente |
+
+## Ejemplo de Uso
+```pseudocode
+Algoritmo ejemplo_CollectionStorage
+    Definir storage, valor Como Texto;
+    Definir existe Como Logico;
+    storage = collectionStorage_new("misdatos", TYPE_STRING());
+    storage = collectionStorage_add_byString(storage, "Hola");
+    storage = collectionStorage_add_byString(storage, "Mundo");
+    Escribir collectionStorage_getSize(storage);
+    valor = collectionStorage_get_toString(storage, 0);
+    Escribir valor;
+    existe = collectionStorage_Exist_ByString(storage, "Mundo");
+    Escribir existe;
+    Escribir collectionStorage_GetInnerId_ByString(storage, "Hola");
+FinAlgoritmo
+```

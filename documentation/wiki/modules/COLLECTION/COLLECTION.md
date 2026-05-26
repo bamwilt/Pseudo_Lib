@@ -6,7 +6,7 @@
 
 ## Descripción
 
-Módulo base para la creación y manipulación de estructuras de datos serializadas. Define los símbolos de control internos y las operaciones fundamentales para acceder, modificar y consultar colecciones almacenadas como cadenas de texto estructuradas.
+Módulo base para la creación y manipulación de estructuras de datos serializadas como cadenas de texto. Define símbolos de control internos (typeArea, dataArea, metaData, separadores) y proporciona operaciones fundamentales para crear, limpiar, consultar, acceder por índice, reemplazar rangos, y extraer contenido entre símbolos delimitadores dentro de colecciones estructuradas.
 
 ## Funciones
 
@@ -46,3 +46,50 @@ Módulo base para la creación y manipulación de estructuras de datos serializa
 | [`Collection_IndexIsValid()`](functions/Collection_IndexIsValid.md) | Verifica si un índice es válido |
 | [`symbol_ExtraData()`](functions/symbol_ExtraData.md) | Retorna el símbolo de datos extra |
 | [`symbol_lengthArea()`](functions/symbol_lengthArea.md) | Retorna el símbolo de área de longitud |
+
+## Ejemplo de Uso
+
+```pseudocode
+Algoritmo Ejemplo_COLLECTION
+    Definir coleccion, dataArea, typeArea Como Texto;
+    Definir elemento Como Texto;
+    
+    // collection_new: crea una nueva coleccion con tipo y estructura
+    coleccion <- collection_new("lista", TYPE_STRING());
+    Escribir "Coleccion creada: ", coleccion;
+    
+    // Simbolos de separacion
+    Escribir "Separador simple: ", symbol_Separator_Simple();
+    Escribir "Separador interno: ", symbol_Separator();
+    Escribir "Area de datos: ", symbol_dataArea();
+    Escribir "Area de tipo: ", symbol_typeArea();
+    
+    // Obtener areas de la coleccion
+    dataArea <- collection_getContent_DataArea(coleccion);
+    Escribir "Area de datos: ", dataArea;
+    
+    typeArea <- collection_getContent_TypeArea(coleccion);
+    Escribir "Area de tipo: ", typeArea;
+    
+    // Verificar si la coleccion esta vacia
+    Definir vacia Como Logico;
+    vacia <- collection_isEmpty(coleccion);
+    Escribir "Coleccion vacia? ", vacia;
+    
+    // Obtener nombre de la coleccion
+    Definir nombre Como Texto;
+    nombre <- collection_getNameCollection(coleccion);
+    Escribir "Nombre de coleccion: ", nombre;
+    
+    // Obtener elemento por indice (con separador por coma)
+    // coleccion_getElement_AtIndex("a,b,c", 1) devuelve "b"
+    elemento <- collection_getElement_AtIndex("a,b,c", 0);
+    Escribir "Elemento en indice 0: ", elemento;
+    elemento <- collection_getElement_AtIndex("a,b,c", 1);
+    Escribir "Elemento en indice 1: ", elemento;
+    
+    // Limpiar coleccion
+    coleccion <- collection_Clear(coleccion);
+    Escribir "Coleccion limpiada: ", coleccion;
+FinAlgoritmo
+```

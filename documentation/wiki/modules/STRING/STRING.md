@@ -6,7 +6,7 @@
 
 ## Descripción
 
-Librería completa de manipulación de cadenas de texto. Incluye operaciones de concatenación, parseo (a número, booleano), medición de longitud, inserción y padding, eliminación, reemplazo, recorte (trim), cambio de mayúsculas/minúsculas, reversión, subcadenas, búsqueda de índices, conteo de ocurrencias, verificación de contención, comparaciones y detección de tipos (número, booleano, vacío, nulo).
+Librería completa de manipulación de cadenas de texto. Incluye operaciones de concatenación (`string_append`, `string_append_withSeparator`), parseo a número y booleano, medición de longitud, inserción y padding (inicio/fin con límite), eliminación por rango, reemplazo de ocurrencias (todas, primera, última), recorte y strip de caracteres, cambio de mayúsculas/minúsculas, reversión de texto y valores separados, subcadenas con validación de índices, búsqueda de índices (desde inicio, desde posición, hacia atrás), conteo de ocurrencias y coincidencias (con/sin solapamiento), verificación de contención en estructuras separadas, y detección de tipo (número entero/flotante, booleano verdadero/falso, vacío, nulo, blanco).
 
 ## Funciones
 
@@ -75,3 +75,39 @@ Librería completa de manipulación de cadenas de texto. Incluye operaciones de 
 | [`string_isBoolean_true()`](functions/string_isBoolean_true.md) | Verifica si un texto representa verdadero |
 | [`char_isNumber()`](functions/char_isNumber.md) | Verifica si un carácter es un dígito |
 | [`string_NULL()`](functions/string_NULL.md) | Retorna el valor nulo para textos |
+
+## Ejemplo de Uso
+
+```pseudocode
+Algoritmo Ejemplo_STRING
+    Definir saludo, nombre, resultado, sub Como Texto;
+    Definir posicion, cantidad Como Numero;
+    Definir vacio Como Logico;
+
+    saludo = "Hola";
+    nombre = "Mundo";
+    resultado = string_append_withSeparator(saludo, nombre, " ");
+    Escribir resultado;
+
+    sub = string_substring("Programacion", 0, 7);
+    Escribir "Subcadena: ", sub;
+
+    posicion = string_indexOf("Hoja de calculo", "de");
+    Escribir "Posicion de 'de': ", posicion;
+
+    vacio = string_contains("PSeInt", "Int");
+    Escribir "Contiene 'Int'?: ", vacio;
+
+    resultado = string_replace("casa blanca", "blanca", "roja");
+    Escribir "Reemplazo: ", resultado;
+
+    resultado = string_repeatText("AB", 4);
+    Escribir "Repetido: ", resultado;
+
+    resultado = string_trim("  texto con espacios  ");
+    Escribir "Trim: '", resultado, "'";
+
+    resultado = string_toUpperCase("minusculas");
+    Escribir "Mayusculas: ", resultado;
+FinAlgoritmo
+```

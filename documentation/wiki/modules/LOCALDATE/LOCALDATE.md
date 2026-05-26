@@ -6,7 +6,7 @@
 
 ## Descripción
 
-Módulo que implementa una fecha sin zona horaria (año-mes-día) basada en colecciones lineales. Proporciona operaciones de creación, manipulación, comparación y formato de fechas, incluyendo soporte para días de la semana, meses del año y cálculos de epoch day.
+Módulo que implementa una fecha sin zona horaria (año-mes-día) basada en colecciones lineales. Permite crear fechas desde la fecha actual o valores explícitos, consultar año/mes/día, sumar y restar días/semanas/meses/años, comparar fechas, obtener el día de la semana, verificar años bisiestos, calcular longitud de meses y convertir a epoch day. Las fechas inválidas retornan un objeto nulo.
 
 ## Funciones
 
@@ -69,3 +69,27 @@ Módulo que implementa una fecha sin zona horaria (año-mes-día) basada en cole
 | [`__private_localDate_getEpochOffset()`](functions/__private_localDate_getEpochOffset.md) | Obtiene el offset de epoch |
 | [`__private_localDate_getDaysFromYears(year_int)`](functions/__private_localDate_getDaysFromYears.md) | Calcula días desde años |
 | [`localDate_format(text)`](functions/localDate_format.md) | Formatea una fecha según patrón |
+
+## Ejemplo de Uso
+
+```pseudocode
+Algoritmo EjemploLocalDate
+    Definir fecha, fecha2 Como Texto
+	
+    fecha = localDate_now()
+    Escribir "Fecha actual: ", localDate_toString(fecha)
+	
+    fecha2 = localDate_of(2024, 3, 15)
+    Escribir "Fecha creada: ", localDate_toString(fecha2)
+    Escribir "Año: ", localDate_getYear(fecha2)
+    Escribir "Mes: ", localDate_getMonth(fecha2)
+    Escribir "Día: ", localDate_getDayOfMonth(fecha2)
+	
+    Si localDate_isLeapYear(2024) Entonces
+        Escribir "2024 es bisiesto"
+    FinSi
+	
+    Escribir "Días en febrero 2024: ", localDate_lengthOfMonth(2024, 2)
+    Escribir "Día de la semana: ", localDate_getDayOfTheWeek(fecha2)
+FinAlgoritmo
+```

@@ -5,7 +5,7 @@
 **Estado:** [+] Stable
 
 ## Descripción
-Módulo que implementa un almacenamiento clave-valor basado en celdas, combinando una colección de celdas duales con un almacenamiento lineal indexado. Permite asociar una clave (celda) con un valor (dato lineal) y operaciones de modificación, consulta y eliminación.
+Módulo que combina una colección de celdas duales (para claves en el lado derecho) con un almacenamiento lineal indexado (para valores), implementando una estructura clave-valor donde las claves se almacenan como celdas ajustables dinámicamente y los valores se guardan en el área de storage con longitud variable. Soporta modos de inserción fijo, dinámico, setter (sin duplicados de clave) y setter dinámico, además de modificación, eliminación y verificación de existencia tanto por clave como por valor.
 
 ## Funciones
 
@@ -41,3 +41,20 @@ Módulo que implementa un almacenamiento clave-valor basado en celdas, combinand
 | [`storageCellsCollection_print_value()`](functions/storageCellsCollection_print_value.md) | Imprime los valores sin salto |
 | [`storageCellsCollection_println()`](functions/storageCellsCollection_println.md) | Imprime las claves con salto |
 | [`storageCellsCollection_print()`](functions/storageCellsCollection_print.md) | Imprime las claves sin salto |
+
+## Ejemplo de Uso
+```pseudocode
+Algoritmo ejemplo_StorageCells
+    Definir sc, valor Como Texto;
+    Definir existe Como Logico;
+    sc = storageCellsCollection_new("config", TYPE_STRING(), TYPE_INT());
+    sc = storageCellsCollection_add_setter_byString(sc, "clave1", "100");
+    sc = storageCellsCollection_add_setter_byString(sc, "clave2", "200");
+    valor = storageCellsCollection_getData_byCell_toString(sc, "clave1");
+    Escribir valor;
+    existe = storageCellsCollection_constainsCell(sc, "clave2");
+    Escribir existe;
+    sc = storageCellsCollection_delete_byString(sc, "clave1");
+    Escribir storageCellsCollection_constainsCell(sc, "clave1");
+FinAlgoritmo
+```

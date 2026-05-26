@@ -6,7 +6,7 @@
 
 ## Descripción
 
-Módulo que proporciona unidades de tiempo y operaciones temporales para PseudoLib. Define constantes de unidades cronológicas (segundos, minutos, horas, días, semanas, meses, años, décadas), operaciones aritméticas sobre estructuras temporales y utilidades de conversión entre unidades.
+Módulo que proporciona constantes de unidades cronológicas (segundos, minutos, horas, días, semanas, meses, años, décadas), validación y aritmética temporal sobre estructuras de fecha/hora. Incluye funciones para convertir entre unidades de tiempo, obtener la duración en segundos de cada unidad, validar rangos de horas/minutos/segundos y fechas completas, así como constantes para días de la semana y meses del año.
 
 ## Funciones
 
@@ -86,3 +86,23 @@ Módulo que proporciona unidades de tiempo y operaciones temporales para PseudoL
 | [`duration_secondsToMinutes(unit_second)`](functions/duration_secondsToMinutes.md) | Convierte segundos a minutos |
 | [`localDate_lengthOfMonth(year, month)`](functions/localDate_lengthOfMonth.md) | Obtiene la longitud de un mes |
 | [`localDate_isLeapYear(year)`](functions/localDate_isLeapYear.md) | Verifica si un año es bisiesto |
+
+## Ejemplo de Uso
+
+```pseudocode
+Algoritmo EjemploTemporal
+    Definir segundos_por_hora Como Entero
+	
+    segundos_por_hora = chronoUnit_getDuration(chronoUnit_HOURS())
+    Escribir "1 hora = ", segundos_por_hora, " segundos"
+    Escribir "1 día = ", chronoUnit_getDuration(chronoUnit_DAYS()), " segundos"
+    Escribir "1 semana = ", chronoUnit_getDuration(chronoUnit_WEEKS()), " segundos"
+	
+    Si temporal_isValid(12, 30, 45) Entonces
+        Escribir "La hora 12:30:45 es válida"
+    FinSi
+	
+    Escribir temporal_isValidHours(25) // Falso
+    Escribir temporal_daysToSecond(2)  // 172800
+FinAlgoritmo
+```

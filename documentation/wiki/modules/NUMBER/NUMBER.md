@@ -6,7 +6,7 @@
 
 ## Descripción
 
-Provides number manipulation utilities including type conversion (integer/float to string), comparison, range validation, binary bitwise operations, type constants, and structure type identifiers. Also includes utility functions for working with separated-string numeric lists and null-value representation.
+Proporciona utilidades de manipulación numérica: conversión a texto con validación de tipo (`interger_ToString`, `float_ToString`), comparación (`int_CompareTo`, `number_isEquals`), validación de rango (`number_validateNumberRange`, `number_IsInRange`), operaciones binarias a nivel de bits (`int_bitSum`, `int_ToBinaryString`, `Int_BitMoveLeft/Right`), constantes de tipo (`TYPE_INT`, `TYPE_FLOAT`, `TYPE_BOOLEAN`, etc.), constantes de tipo de estructura (`STRUCT_TYPE_LIST`, `STRUCT_TYPE_MAP`, etc.), y valor nulo numérico (`number_NULL`). También incluye `int_getRangeCeil_ToFromSeparatedString` para buscar el primer valor >= un límite en una cadena separada.
 
 ## Funciones
 
@@ -37,3 +37,26 @@ Provides number manipulation utilities including type conversion (integer/float 
 | [`STRUCT_TYPE_QUEUE()`](functions/STRUCT_TYPE_QUEUE.md) | Returns the "queue" structure type constant |
 | [`STRUCT_TYPE_STACK()`](functions/STRUCT_TYPE_STACK.md) | Returns the "stack" structure type constant |
 | [`STRUCT_TYPE_DEQUE()`](functions/STRUCT_TYPE_DEQUE.md) | Returns the "deque" structure type constant |
+
+## Ejemplo de Uso
+
+```pseudocode
+Algoritmo EjemploNumber
+    Definir texto Como Texto
+    texto = number_toString(42)
+    Escribir texto
+    
+    Si number_IsInRange(5, 1, 10) Entonces
+        Escribir "5 está entre 1 y 10"
+    FinSi
+    
+    number_validateNumberRange("miFuncion", 15, 0, 10)
+    
+    Escribir TYPE_INT()
+    Escribir number_NULL()
+    
+    Si number_isEquals(3.14, 3.14) Entonces
+        Escribir "Son iguales"
+    FinSi
+FinAlgoritmo
+```

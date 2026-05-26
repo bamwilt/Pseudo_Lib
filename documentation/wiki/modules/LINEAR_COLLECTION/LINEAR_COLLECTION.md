@@ -6,7 +6,7 @@
 
 ## Descripción
 
-Módulo que implementa una colección lineal (lista) sobre la estructura base de COLLECTION. Proporciona operaciones de inserción, eliminación, acceso y modificación de elementos en una secuencia ordenada con tipado dinámico.
+Módulo base que implementa una colección lineal (lista) mediante representación en cadena de texto con delimitadores especiales. Proporciona operaciones de inserción al inicio y al final, eliminación por índice o extremos, acceso a elementos por posición, modificación, búsqueda de valores y control de tamaño. Es la estructura fundamental sobre la que se construyen deque, cola, pila y otros módulos de datos secuenciales.
 
 ## Funciones
 
@@ -49,3 +49,26 @@ Módulo que implementa una colección lineal (lista) sobre la estructura base de
 | [`__private_linearCollection_println()`](functions/__private_linearCollection_println.md) | Imprime datos de la colección internamente |
 | [`linearCollection_getIndex_EndMetaData()`](functions/linearCollection_getIndex_EndMetaData.md) | Obtiene el índice final del metaData |
 | [`__private_linearCollection_ModifyElement()`](functions/__private_linearCollection_ModifyElement.md) | Modifica un elemento internamente |
+
+## Ejemplo de Uso
+
+```pseudocode
+Algoritmo EjemploLinearCollection
+    Definir lista, elemento Como Texto
+    Definir tamanio, i Como Entero
+	
+    lista = linearCollection_new(TYPE_STRING(), "string")
+	
+    lista = linearCollection_addLast(lista, "Manzana")
+    lista = linearCollection_addLast(lista, "Banana")
+    lista = linearCollection_addFirst(lista, "Cereza")
+	
+    Escribir "Tamaño: ", linearCollection_getSize(lista)
+    Escribir "Primero: ", linearCollection_getFirst_ToString(lista)
+    Escribir "Último: ", linearCollection_getLast_ToString(lista)
+	
+    Para i = 0 Hasta linearCollection_getSize(lista) - 1 Hacer
+        Escribir "Elemento[", i, "]: ", linearCollection_getElement_toString(lista, i)
+    FinPara
+FinAlgoritmo
+```

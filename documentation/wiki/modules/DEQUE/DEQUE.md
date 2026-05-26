@@ -6,7 +6,7 @@
 
 ## Descripción
 
-Módulo que implementa una estructura de datos de doble extremo (deque) basada en colecciones lineales. Permite agregar, eliminar y consultar elementos tanto al inicio como al final de la estructura.
+Módulo que implementa una estructura de datos de doble extremo (deque) basada en colecciones lineales. Permite agregar, eliminar y consultar elementos tanto al inicio como al final de la estructura, con tipado dinámico según el tipo especificado en su creación.
 
 ## Funciones
 
@@ -21,3 +21,28 @@ Módulo que implementa una estructura de datos de doble extremo (deque) basada e
 | [`util_deque_println(struct_Deque)`](functions/util_deque_println.md) | Imprime el contenido del deque |
 | [`util_deque_getFirst(struct_Deque)`](functions/util_deque_getFirst.md) | Obtiene el primer elemento |
 | [`util_deque_getLast(struct_Deque)`](functions/util_deque_getLast.md) | Obtiene el último elemento |
+
+## Ejemplo de Uso
+
+```pseudocode
+Algoritmo EjemploDeque
+    Definir deque, elemento Como Texto
+    Definir primerElem, ultimoElem Como Entero
+	
+    deque = util_deque_new(TYPE_INT())
+    deque = util_deque_AddFirst(deque, 10)
+    deque = util_deque_AddLast(deque, 20)
+    deque = util_deque_AddFirst(deque, 5)
+    deque = util_deque_AddLast(deque, 25)
+	
+    Escribir "Tamaño: ", util_deque_Size(deque)
+    Escribir "Primero: ", util_deque_getFirst(deque)
+    Escribir "Último: ", util_deque_getLast(deque)
+	
+    deque = util_deque_DeleteFirst(deque)
+    Escribir "Primero tras eliminar: ", util_deque_getFirst(deque)
+	
+    deque = util_deque_DeleteLast(deque)
+    Escribir "Último tras eliminar: ", util_deque_getLast(deque)
+FinAlgoritmo
+```

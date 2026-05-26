@@ -6,7 +6,7 @@
 
 ## Descripción
 
-Módulo de interfaz de usuario textual (TUI) que permite crear ventanas con componentes como botones, etiquetas, reglas, paneles y sprites. Proporciona manejo de entradas del usuario y almacenamiento de componentes. Soporta renderizado a canvas con colores.
+Módulo de interfaz de usuario textual (TUI) que permite crear ventanas con componentes como botones, etiquetas, reglas horizontales/verticales, paneles y sprites. Una TUI se construye con `tui_new` (o variantes con tamaño, título y color) y almacena sus componentes en un store interno identificado por nombre. Proporciona funciones para añadir componentes (`tui_addTComponent`, `tui_addTComponent_newButton`, `tui_addTComponent_newLabel`, etc.), gestionar entradas de usuario (`tui_GetUser_Input`), modificar propiedades de componentes (`tui_setTitle`, `tui_setColor`), y renderizar la interfaz a un canvas con colores mediante `tui_ToCanvas` y `tui_display`.
 
 ## Funciones
 
@@ -52,3 +52,17 @@ Módulo de interfaz de usuario textual (TUI) que permite crear ventanas con comp
 | [`tui_TYPE_TSTORE()`](functions/tui_TYPE_TSTORE.md) | Constante de tipo Store |
 | [`tui_TYPE_TINPUT()`](functions/tui_TYPE_TINPUT.md) | Constante de tipo Input |
 | [`tui_TYPE_TCOMPONENT()`](functions/tui_TYPE_TCOMPONENT.md) | Constante de tipo TComponent |
+
+## Ejemplo de Uso
+
+```pseudocode
+Funcion main
+    Definir tui Como Texto;
+
+    tui = tui_new_withSizeTitle(40, 12, "Mi Ventana");
+    tui = tui_addTComponent_newLabel(tui, "label1", "Bienvenido!", 2, 2);
+    tui = tui_addTComponent_newButton(tui, "btn1", "Salir", "salir_op", 15, 6);
+
+    tui_Display(tui);
+FinFuncion
+```

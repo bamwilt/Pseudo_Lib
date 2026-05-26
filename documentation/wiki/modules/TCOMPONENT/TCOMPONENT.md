@@ -6,7 +6,7 @@
 
 ## Descripción
 
-Módulo de componentes TUI que define la estructura base para botones, etiquetas, reglas, paneles y sprites. Proporciona constructores, getters y setters para propiedades como posición, texto, valor e input. Cada componente tiene un nombre simple que identifica su tipo.
+Módulo de componentes TUI que define la estructura base para elementos de interfaz. Cada TComponent es un storageCellsCollection con un nombre simple (que identifica su tipo: botón, etiqueta, regla, panel o sprite) y propiedades como posición, texto, valor e input. Proporciona constructores específicos (`tComponent_newButton`, `tComponent_newLabel`, `tComponent_newHorizontalRuler`, `tComponent_newVerticalRuler`, `tComponent_newPanel`), getters y setters para cada propiedad (`tComponent_getTProperty_position/text/value/input`, `tComponent_setTProperty_position/text/value/input`), y funciones para añadir propiedades adicionales (`tComponent_addTProperty`, `tComponent_addTPropertyText`, `tComponent_addTPropertyInput`, `tComponent_addTPropertyValue`).
 
 ## Funciones
 
@@ -53,3 +53,18 @@ Módulo de componentes TUI que define la estructura base para botones, etiquetas
 | [`TProperty_simpleName()`](functions/TProperty_simpleName.md) | Constante nombre simple |
 | [`TProperty_visible()`](functions/TProperty_visible.md) | Constante propiedad visible |
 | [`symbol_TComponent()`](functions/symbol_TComponent.md) | Símbolo separador TComponent |
+
+## Ejemplo de Uso
+
+```pseudocode
+Funcion main
+    Definir btn, lbl Como Texto;
+
+    btn = tComponent_newButton("Aceptar", "btn_input", 5, 3);
+    lbl = tComponent_newLabel("Nombre:", 2, 2);
+
+    Escribir tComponent_getTProperty_text(btn);
+    Escribir tComponent_getTProperty_position(btn);
+    Escribir tComponent_getTProperty_input(btn);
+FinFuncion
+```

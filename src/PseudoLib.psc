@@ -6,7 +6,7 @@ Funcion main
 FinFuncion
 
 
-///%%%%%[ Pseudo_lib v 0.8.7 ]%%%%%%%%%%%%%%[    #1     ]%%%%%%%%%%%%%%%%%%%%
+///%%%%%[ Pseudo_lib v 0.9.3 ]%%%%%%%%%%%%%%[    #1     ]%%%%%%%%%%%%%%%%%%%%
 //___________________________________________________________________________
 // ::: TABLE MODULES / CODE_SEARCH: Ctrl+F / year:2026 / © Bryan.A.M.Wilt ::: 
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -10036,8 +10036,8 @@ Algoritmo run_code
 	Definir duration_Timer, localTime_Start, localTime_End Como Texto;
 	localTime_Start = localTime_Now();
 	clear_Console();
-	sandbox_development();
-	//main();
+	//sandbox_development();
+	main();
 	localTime_End = localTime_now();
 	duration_Timer = duration_between(localTime_Start, localTime_End);
 	message_duration(duration_Timer);
