@@ -2,7 +2,7 @@
 
 
 Funcion main
-	println("Hello\nPseudoLib !!!");
+	println("Hello\nWorld");
 FinFuncion
 
 
@@ -48,7 +48,7 @@ FinFuncion
 //  #CCS  ::  CELLS_COLLECTION_SETTER   ::  cellsCollection_setter_   ::  [+]
 //  #SET  ::  SET                       ::  util_set_                 ::  [+]
 //  #DCC  ::  DUAL_CELLS_COLLECTION     ::  collectionDualCells_      ::  [+]
-//  #SCC  ::  STORAGE_CELLS_COLLECTION  ::  collStorageCells_         ::  [p]
+//  #SCC  ::  STORAGE_CELLS_COLLECTION  ::  collStorageCells_         ::  [+]
 //  #MAP  ::  MAP                       ::  util_map_                 ::  [+]
 //  #OBJ  ::  OBJECTS                   ::  object_                   ::  [+]
 //  #CAN  ::  CANVAS                    ::  canvas_                   ::  [+]
@@ -77,7 +77,7 @@ FinFuncion
 //     & 	   =  &&
 //  return  = var <- FinFuncion(returns var at the end of the function)
 //___________________________________________________________________________
-//::::::::::::::::::::::: ( EXTENDED SYMBOLS SPANISH ) :::::::::::::::::::::::
+//::::::::::::::::::::::: ( EXTENDED SYMBOLS SPANISH ) ::::::::[#ASCODE]:::::
 //---------------------------------------------------------------------------
 //  ¡ ¢ £ ¤ ¥ ¦ § ¨ © ª « ~ ­® ¯ ° ± ² ³ ´ µ ¶ · ¸ ¹ º » ¼ ½ ¾ ¿ À Á Â Ã Ä 
 // 
@@ -1673,12 +1673,12 @@ FinFuncion
 Funcion sandbox_development
 	Definir canvas, tui Como Texto;
 	Definir Cx, Cy, x, i, n Como Entero;
-	Cx = 10;
-	Cy = 5;
-	canvas = canvas_new(Cx, Cy);
-	Escribir string_append("cadena: ",canvas);
-	Escribir "canvas:";
-	canvas_display(canvas, Cx, Cy);
+	tui = tui_new_withConfig(25, 5, "pseint", COLOR_YELLOW());
+	//tui = tui_addTComponent_newLabel(tui, "jlabel", "+ Hello PseudoLib +", 2, 0);
+	tui = tui_addTComponent_newPanel(tui, "jPanel", 0, 0, 2, 4);
+	//tui = tui_addTComponent_newButton(tui, "jButton2", " Button  ", "2", 2, 1);
+	tui_display(tui);
+	
 FinFuncion
 //----[ TRIGONOMETRY ]--------------------------------------------------------------<#>
 Funcion n_result <- math_sin(x)
@@ -2401,14 +2401,14 @@ FinFuncion
 //----[ GETTERS ]----------------------------------------------------<#>
 Funcion name_Collection <- collection_getNameCollection(collection)
 	Definir name_Collection Como Texto;
-	name_Collection = asci_getPrefix_alphabetic(collection);
+	name_Collection = ascii_getPrefix_alphabetic(collection);
 FinFuncion
 
 Funcion type_Area <- collection_getContent_fromSymbol(collection, symbol)
 	Definir type_Area Como Texto;
 	Definir index_symbol Como Entero;
 	index_symbol = math_increment(string_indexOf(collection, symbol));
-	type_Area    = asci_getPrefix_alphabetic_fromIndex(collection, index_symbol);
+	type_Area    = ascii_getPrefix_alphabetic_fromIndex(collection, index_symbol);
 FinFuncion
 
 Funcion data_Area <- collection_getContent_DataArea(collection)
@@ -7115,7 +7115,7 @@ Funcion util_map_println_Value(struct_Map)
 	collectionStorage_println(struct_Map);
 FinFuncion
 
-Funcion element_Result <- util_map_Get(struct_map, key)
+Funcion element_Result <- util_map_get(struct_map, key)
 	Definir TYPE Como Texto;
 	TYPE = linearCollection_GetType(struct_map);
 	Segun TYPE Hacer
@@ -7488,10 +7488,10 @@ Funcion canvas <- canvas_new_WithPixel(CWx, CWy, pixel_BackGround)
 FinFuncion
 //----[ DISPLAY ]----------------------------------------------------<#>
 Funcion canvas_display(canvas, CWx, CWy)
-	canvas_display_MonoColor(canvas, CWx, CWy, "");
+	canvas_display_monoColor(canvas, CWx, CWy, "");
 FinFuncion
 
-Funcion canvas_display_MonoColor(canvas, CWx, CWy, color)
+Funcion canvas_display_monoColor(canvas, CWx, CWy, color)
 	Definir i, slice_start, slice_end Como Numero;
 	Definir canvas_array, DrawX Como Texto;
 	Dimension canvas_array[CWy];
@@ -7520,7 +7520,7 @@ Funcion canvas_displayWindow_color(canvas, Cx, Cy, title, color_window, color_ti
 	Cx = math_increment(Cx);
 	title_bar = __private_window_getTitleBar_color(title, Cx, color_window, color_title);
 	canvas_display(title_bar, __private_window_calcTitleBarColorLength(Cx, color_window, color_title), 3);
-	canvas_display_MonoColor(canvas, Cx, Cy, color_window);
+	canvas_display_monoColor(canvas, Cx, Cy, color_window);
 	end_line = canvas_Row_WithText_toBorders("¯", Cx, "`");
 	native_println(color_setcolorText(end_line, color_window));
 FinFuncion
@@ -8125,9 +8125,10 @@ Funcion canvas_rectangle <- canvas_DrawRectangle_whitPixels_Full(canvas, Cx, Cy,
     Definir canvas_rectangle Como Texto;
 	canvas_rectangle = canvas;
 	canvas_rectangle = canvas_DrawLine_whitPixel(canvas_rectangle, Cx, Cy, pixel_V,  x0, y0, x0, y1);//left
-	canvas_rectangle = canvas_DrawLine_whitPixel(canvas_rectangle, Cx, Cy, pixel_V1, math_decrement(x1), y0, math_decrement(x1), y1);//Right
-	canvas_rectangle = canvas_DrawLine_whitPixel(canvas_rectangle, Cx, Cy, pixel_H,  x0, y0, x1, y0);//top
-    canvas_rectangle = canvas_DrawLine_whitPixel(canvas_rectangle, Cx, Cy, pixel_H1, x0, y1, x1, y1);//botton
+	canvas_rectangle = canvas_DrawLine_whitPixel(canvas_rectangle, Cx, Cy, pixel_V1, x1, y0, x1, y1);//Right
+	canvas_rectangle = canvas_DrawLine_Horizontal_withPixel(canvas_rectangle , Cx, Cy, x0, y0, x1, pixel_H);//top
+	canvas_rectangle = canvas_DrawLine_Horizontal_withPixel(canvas_rectangle, Cx, Cy, x0, y1, x1, pixel_H);//botton
+	//#todo: las lineas horizontales no se terminan de dibujar esa es mi teoria no son inclusivas
 FinFuncion
 
 Funcion canvas_triangle <- canvas_DrawTriangle_Normalized(canvas, CWx, CWy, x0, y0, x1, y1, x2, y2)
@@ -8244,7 +8245,7 @@ Funcion canvas_line <- canvas_DrawLine_Normalized(canvas, CWx, CWy, x0, y0, x1, 
 	canvas_line = canvas_DrawLine_whitPixel(canvas, CWx, CWy, pixel_plain(), x0, y0, x1, y1);
 FinFuncion
 
-Funcion canvas_point <- canvas_DrawPoint_Normalized(canvas, CWx, CWy, x0, y0)
+Funcion canvas_point <- canvas_drawPoint_normalized(canvas, CWx, CWy, x0, y0)
 	Definir canvas_point Como Texto;
 	canvas_point = canvas_DrawPoint_withPixel_Normalized(canvas, CWx, CWy, x0, y0, pixel_plain());
 FinFuncion
@@ -8324,9 +8325,8 @@ Funcion canvas_Result <- canvas_DrawButton(canvas, Cx, Cy, text, x0, y0)
 	yt = math_increment(y0);
 	x1 = math_sum(xt, math_increment(length_Text));
 	y1 = math_increment(yt);
-	canvas_Result = canvas_DrawRectangle_whitPixels_Full(canvas_Result, Cx, Cy, "_","¯", "|", "|", x0, y0, x1, y1);
+	canvas_Result = canvas_DrawRectangle_whitPixels_Full(canvas_Result, Cx, Cy, "_","¯", "[", "]", x0, y0, x1, y1);
 	canvas_Result = canvas_DrawText(canvas_Result, Cx, Cy, text, xt, yt);
-	canvas_Result = canvas_DrawRectanglePoint(canvas_Result, Cx, Cy, " ", x0, y0, math_decrement(x1), y1);
 FinFuncion
 
 Funcion canvas_Result <- canvas_DrawRectanglePoint(canvas, Cx, Cy, pixel, x0, y0, x1, y1)
@@ -8341,16 +8341,8 @@ FinFuncion
 Funcion canvas_Result <- canvas_DrawPanel(canvas, Cx, Cy, x0, y0, width, height)
 	Definir canvas_Result Como Texto;
 	canvas_Result = canvas;
-	canvas_Result  = canvas_DrawLine_Vertical(canvas_Result, Cx, Cy, x0, y0, height);
-	canvas_Result = canvas_DrawLine_Vertical(canvas_Result, Cx, Cy, math_decrement(width), y0, height);
-	canvas_Result = canvas_DrawLine_Horizontal(canvas_Result, Cx, Cy, x0, y0, width);
-	height = math_decrement(height);
-	canvas_Result = canvas_DrawLine_Horizontal(canvas_Result, Cx, Cy, x0, height, width);
-	canvas_Result = canvas_DrawPoint_withPixel(canvas_Result, Cx, Cy, x0, y0, ".");
-	canvas_Result = canvas_DrawPoint_withPixel(canvas_Result, Cx, Cy, x0, height, "`");
-	width = math_decrement(width);
-	canvas_Result = canvas_DrawPoint_withPixel(canvas_Result, Cx, Cy, width, y0, ".");
-	canvas_Result = canvas_DrawPoint_withPixel(canvas_Result, Cx, Cy, width, height, "`");
+	canvas_Result = canvas_DrawRectangle_whitPixels(canvas_Result, Cx, Cy, "-", "|", x0, y0, width, height);
+	canvas_Result = canvas_DrawRectanglePoint(canvas_Result , Cx, Cy, "·", x0, y0, width, height);
 FinFuncion
 
 Funcion canvas_Result <- canvas_DrawLine_Horizontal(canvas, Cx, Cy, x0, y0, width)
@@ -8881,7 +8873,7 @@ FinFuncion
 Funcion inputs_TUI <- tui_getInputOptions(tui_frame)
 	Definir inputs_TUI, input_inner Como Texto;
 	input_inner = tui_getInput(tui_frame);
-	inputs_TUI = storageCellsCollection_getSeparateString(input_inner);
+	inputs_TUI  = cellsCollection_getSeparateString(input_inner);
 FinFuncion
 
 Funcion user_input <- tui_GetUser_Input_message(tui_frame, message, TYPE)
@@ -8937,7 +8929,7 @@ FinFuncion
 
 Funcion tui_result <- __private_tui_setInput(tui_frame, input_collection)
 	Definir tui_result Como Texto;
-	tui_result = __private_tui_set(tui_frame,  tui_getIdInput(), setInput);
+	tui_result = __private_tui_set(tui_frame,  tui_getIdInput(), input_collection);
 FinFuncion
 
 Funcion tui_result <- __private_tui_set(tui_frame, id_set, value_string)
@@ -9029,7 +9021,7 @@ FinFuncion
 Funcion tui_result <- tui_store_addTComponent_input_force(tui_frame, name_tcomponent, tComponent_target, tui_input)
 	Definir tui_result, input_Tcomponent Como Texto;
 	input_Tcomponent = tComponent_getTProperty_input(tComponent_target);
-	si collectionStorage_Exist_ByString(tui_input, input_Tcomponent) Entonces
+	si cellsCollection_setter_constains(tui_input, input_Tcomponent) Entonces
 		tui_result = tui_frame;
 		error_message_Function("tui_store_addTComponent_input_force(tui, name, tcomponent)","exist input");
 	SiNo
@@ -9855,12 +9847,12 @@ Funcion iSinRangue <- ascii_isInRangue(char, char_start, char_end)
 	iSinRangue = (char_start <= char & char <= char_end);
 FinFuncion
 //----[ GETCONTENT ]----------------------------------------------------<#>
-Funcion result_String <- asci_getPrefix_alphabetic(text_input)
+Funcion result_String <- ascii_getPrefix_alphabetic(text_input)
 	Definir result_String Como Texto;
-	result_String = asci_getPrefix_alphabetic_fromIndex(text_input, 0);
+	result_String = ascii_getPrefix_alphabetic_fromIndex(text_input, 0);
 FinFuncion
 
-Funcion result_String <- asci_getPrefix_alphabetic_fromIndex(text_input, start_position)
+Funcion result_String <- ascii_getPrefix_alphabetic_fromIndex(text_input, start_position)
     Definir result_String Como Texto;
 	result_String = ascii_getPrefix_Category_fromIndex(text_input, start_position, ascii_ALPHABETIC());
 FinFuncion
@@ -10036,8 +10028,8 @@ Algoritmo run_code
 	Definir duration_Timer, localTime_Start, localTime_End Como Texto;
 	localTime_Start = localTime_Now();
 	clear_Console();
-	//sandbox_development();
-	main();
+	sandbox_development();
+	//main();
 	localTime_End = localTime_now();
 	duration_Timer = duration_between(localTime_Start, localTime_End);
 	message_duration(duration_Timer);
