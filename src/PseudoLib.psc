@@ -77,7 +77,7 @@ FinFuncion
 //     & 	   =  &&
 //  return  = var <- FinFuncion(returns var at the end of the function)
 //___________________________________________________________________________
-//::::::::::::::::::::::: ( EXTENDED SYMBOLS SPANISH ) ::::::::[#ASCODE]:::::
+//::::::::::::::::::::::: ( EXTENDED SYMBOLS SPANISH ) ::::::::[#SPN]::::::::
 //---------------------------------------------------------------------------
 //  ¡ ¢ £ ¤ ¥ ¦ § ¨ © ª « ~ ­® ¯ ° ± ² ³ ´ µ ¶ · ¸ ¹ º » ¼ ½ ¾ ¿ À Á Â Ã Ä 
 // 
@@ -1654,7 +1654,7 @@ Funcion numerical_term <- __private_taylor_operation(name_func, x, i)
             numerical_term = 0;
     FinSegun
 FinFuncion
-
+//
 Funcion num_taylor <- math_serie_taylor(x, name_function)
 	Definir num_taylor, numerical_term, max_iterations, limite_epsilon Como Real;
 	Definir i, max_iteraciones Como Entero;
@@ -1671,14 +1671,13 @@ Funcion num_taylor <- math_serie_taylor(x, name_function)
 FinFuncion
 
 Funcion sandbox_development
-	Definir canvas, tui Como Texto;
+	Definir canvas, tui Como Texto;//#w1
 	Definir Cx, Cy, x, i, n Como Entero;
-	tui = tui_new_withConfig(25, 5, "pseint", COLOR_YELLOW());
-	//tui = tui_addTComponent_newLabel(tui, "jlabel", "+ Hello PseudoLib +", 2, 0);
-	tui = tui_addTComponent_newPanel(tui, "jPanel", 0, 0, 2, 4);
-	//tui = tui_addTComponent_newButton(tui, "jButton2", " Button  ", "2", 2, 1);
-	tui_display(tui);
-	
+	Cx     = 10;
+	Cy     = 5;
+	canvas = canvas_new(Cx, Cy);
+	canvas = canvas_DrawPanel(canvas, Cx, Cy, 0, 0, 4, 4);//left
+	canvas_display(canvas, Cx, Cy);
 FinFuncion
 //----[ TRIGONOMETRY ]--------------------------------------------------------------<#>
 Funcion n_result <- math_sin(x)
@@ -8123,12 +8122,13 @@ FinFuncion
 
 Funcion canvas_rectangle <- canvas_DrawRectangle_whitPixels_Full(canvas, Cx, Cy, pixel_H, pixel_H1, pixel_V, pixel_V1, x0, y0, x1, y1)
     Definir canvas_rectangle Como Texto;
-	canvas_rectangle = canvas;
-	canvas_rectangle = canvas_DrawLine_whitPixel(canvas_rectangle, Cx, Cy, pixel_V,  x0, y0, x0, y1);//left
-	canvas_rectangle = canvas_DrawLine_whitPixel(canvas_rectangle, Cx, Cy, pixel_V1, x1, y0, x1, y1);//Right
+	canvas_rectangle = canvas;//w1
 	canvas_rectangle = canvas_DrawLine_Horizontal_withPixel(canvas_rectangle , Cx, Cy, x0, y0, x1, pixel_H);//top
-	canvas_rectangle = canvas_DrawLine_Horizontal_withPixel(canvas_rectangle, Cx, Cy, x0, y1, x1, pixel_H);//botton
-	//#todo: las lineas horizontales no se terminan de dibujar esa es mi teoria no son inclusivas
+	canvas_rectangle = canvas_DrawLine_Horizontal_withPixel(canvas_rectangle, Cx, Cy, x0, y1, x1, pixel_H1);//botton
+	y0 = math_increment(y0);
+	y1 = math_decrement(y1);
+	canvas_rectangle = canvas_DrawLine_Vertical_withPixel(canvas_rectangle, Cx, Cy, x0, y0, y1, pixel_V);//left
+	canvas_rectangle = canvas_DrawLine_Vertical_withPixel(canvas_rectangle, Cx, Cy, x1, y0, y1, pixel_V1);//Right
 FinFuncion
 
 Funcion canvas_triangle <- canvas_DrawTriangle_Normalized(canvas, CWx, CWy, x0, y0, x1, y1, x2, y2)
@@ -8192,48 +8192,34 @@ Funcion canvas_line <- canvas_DrawLine(canvas, CWx, CWy, x0, y0, x1, y1)
 	canvas_line = canvas_DrawLine_whitPixel(canvas, CWx, CWy, pixel_plain(), x0, y0, x1, y1);
 FinFuncion
 //Bresenham algorithm
-Funcion canvas_line <- canvas_DrawLine_whitPixel(canvas, CWx, CWy, pixel_symb,  x0, y0, x1, y1)
-    Definir canvas_line Como Texto;
-    Definir Cx, Cy, xi, yi, xi_rec, yi_rec, x_, y_, error Como Entero;
+Funcion canvas_line <- canvas_DrawLine_whitPixel(canvas, CWx, CWy, sy, x0, y0, x1, y1)
+    Definir dx, dy, xi, yi, er, e2, ps, ix, iy, i Como Entero;
+    Definir canvas_line Como Texto;	
+    canvas_line = canvas;
+    ix = x0;
+    iy = y0;
 	
-    Cx = x1 - x0;//2-10=-8
-    Cy = y1 - y0;//3-10=-7
+    dx = math_abs(x1 - x0);
+    dy = math_abs(y1 - y0);
 	
-    xi = if_else(Cx >= 0, 1, -1);// -1
-    yi = if_else(Cy >= 0, 1, -1);// -1
+    xi = if_else(x0 < x1, 1, -1);
+    yi = if_else(y0 < y1, 1, -1);
 	
-    Cx = math_abs(Cx);// -8 -> 8
-    Cy = math_abs(Cy);// -7 -> 7
-	
-    Si Cx >= Cy Entonces
-        xi_rec = xi;//-1
-        yi_rec = 0;// 0 
-        error = 2*Cy - Cx;//2*8 = 16-7= 9
-    Sino
-        xi_rec = 0;
-        yi_rec = yi;
-        error = 2*Cx - Cy;
-        Cx = Cx + Cy;//(10, 20) 30
-        Cy = Cx - Cy;//30-20=10
-        Cx = Cx - Cy;//30-10=20
-    FinSi
-	
-    x_ = x0;
-    y_ = y0;
-	canvas_line = canvas;
-    Mientras !number_isEquals(x_, x1) | !number_isEquals(y_, y1) Hacer
-        canvas_line = canvas_DrawPoint_withPixel(canvas_line, CWx, CWy, x_, y_, pixel_symb);
-		
-        Si error >= 0 Entonces
-            x_ = math_sum(x_, xi);//10+ -1
-            y_ = math_sum(y_, yi);//10+ -1
-            error = error + 2 * (Cy - Cx);// 9 + (2*(7-8)) = 9+ -2 = 7
-        SiNo
-            x_ = math_sum(x_, xi_rec);
-            y_ = math_sum(y_, yi_rec);
-            error = error + 2 * Cy;
+    er = dx - dy;
+    ps = math_max_int(dx, dy);
+
+    Para i desde 0 hasta ps Hacer
+        canvas_line = canvas_DrawPoint_withPixel(canvas_line, CWx, CWy, ix, iy, sy);
+        e2 = 2 * er;
+        Si e2 > -dy Entonces
+            er = er - dy;
+            ix = ix + xi;
         FinSi
-    FinMientras
+        Si e2 < dx Entonces
+            er = er + dx;
+            iy = iy + yi;
+        FinSi
+    FinPara
 FinFuncion
 //----[ NORMALIZED (-1 ... 1) ]-------------------------------------------------------<#>
 Funcion canvas_line <- canvas_DrawLine_Normalized(canvas, CWx, CWy, x0, y0, x1, y1)
@@ -8325,24 +8311,30 @@ Funcion canvas_Result <- canvas_DrawButton(canvas, Cx, Cy, text, x0, y0)
 	yt = math_increment(y0);
 	x1 = math_sum(xt, math_increment(length_Text));
 	y1 = math_increment(yt);
-	canvas_Result = canvas_DrawRectangle_whitPixels_Full(canvas_Result, Cx, Cy, "_","¯", "[", "]", x0, y0, x1, y1);
+	canvas_Result = canvas_DrawRectangle_whitPixels_Full(canvas_Result, Cx, Cy, "_","¯", "|", "|", x0, y0, x1, y1);
+	canvas_Result = canvas_DrawRectanglePoint_withPixels(canvas_Result, Cx, Cy, x0, y0, x1, y1, ".", "`");
 	canvas_Result = canvas_DrawText(canvas_Result, Cx, Cy, text, xt, yt);
 FinFuncion
 
-Funcion canvas_Result <- canvas_DrawRectanglePoint(canvas, Cx, Cy, pixel, x0, y0, x1, y1)
+Funcion canvas_Result <- canvas_DrawRectanglePoint(canvas, Cx, Cy, x0, y0, x1, y1, pixel)
 	Definir canvas_Result Como Texto;
-	canvas_Result = canvas;
-	canvas_Result = canvas_DrawPoint_withPixel(canvas_Result, Cx, Cy, x0, y0, pixel);
-	canvas_Result = canvas_DrawPoint_withPixel(canvas_Result, Cx, Cy, x0, y1, pixel);
-	canvas_Result = canvas_DrawPoint_withPixel(canvas_Result, Cx, Cy, x1, y0, pixel);
-	canvas_Result = canvas_DrawPoint_withPixel(canvas_Result, Cx, Cy, x1, y1, pixel);
+	canvas_Result = canvas_DrawRectanglePoint_withPixels(canvas, Cx, Cy, x0, y0, x1, y1, pixel, pixel);
 FinFuncion
 
-Funcion canvas_Result <- canvas_DrawPanel(canvas, Cx, Cy, x0, y0, width, height)
+Funcion canvas_Result <- canvas_DrawRectanglePoint_withPixels(canvas, Cx, Cy, x0, y0, x1, y1, pixel_t, pixel_b)
 	Definir canvas_Result Como Texto;
 	canvas_Result = canvas;
-	canvas_Result = canvas_DrawRectangle_whitPixels(canvas_Result, Cx, Cy, "-", "|", x0, y0, width, height);
-	canvas_Result = canvas_DrawRectanglePoint(canvas_Result , Cx, Cy, "·", x0, y0, width, height);
+	canvas_Result = canvas_DrawPoint_withPixel(canvas_Result, Cx, Cy, x0, y0, pixel_t);
+	canvas_Result = canvas_DrawPoint_withPixel(canvas_Result, Cx, Cy, x1, y0, pixel_t);
+	canvas_Result = canvas_DrawPoint_withPixel(canvas_Result, Cx, Cy, x1, y1, pixel_b);
+	canvas_Result = canvas_DrawPoint_withPixel(canvas_Result, Cx, Cy, x0, y1, pixel_b);
+FinFuncion
+
+Funcion canvas_Result <- canvas_DrawPanel(canvas, Cx, Cy, x0, y0, x1, y1)
+	Definir canvas_Result Como Texto;
+	canvas_Result = canvas;
+	canvas_Result = canvas_DrawRectangle_whitPixels_Full(canvas_Result, Cx, Cy, "-","_", "¦", "¦", x0, y0, x1, y1);
+	canvas_Result = canvas_DrawRectanglePoint_withPixels(canvas_Result, Cx, Cy, x0, y0, x1, y1, ";", "¦");
 FinFuncion
 
 Funcion canvas_Result <- canvas_DrawLine_Horizontal(canvas, Cx, Cy, x0, y0, width)
@@ -8350,26 +8342,50 @@ Funcion canvas_Result <- canvas_DrawLine_Horizontal(canvas, Cx, Cy, x0, y0, widt
 	canvas_Result = canvas_DrawLine_Horizontal_withPixel(canvas, Cx, Cy, x0, y0, width, "_");
 FinFuncion
 
-Funcion canvas_Result <- canvas_DrawLine_Horizontal_withPixel(canvas, Cx, Cy, x0, y0, width, pixel)
-	Definir canvas_Result, horizontalLine_String Como Texto;
+Funcion canvas_Result <- canvas_DrawLine_Horizontal_withPixel(canvas, Cx, Cy, x0, y0, x1, pixel)
+	Definir canvas_Result, head_chunk, tail_chunk, middle_chunk Como Texto;
+	Definir length_rest Como Entero;
+	Definir  head_end, tail_start, l_repeats Como Entero;
 	canvas_Result = canvas;
-	si width > 0 Entonces
-		horizontalLine_String  = string_repeatText(Pixel, width);
-		canvas_Result = canvas_DrawText(canvas_Result, Cx, Cy, horizontalLine_String, x0, y0);
+	l_repeats = math_minus(x1,x0);
+	si l_repeats >= 0 Entonces
+		head_end = math_decrement(canvas_getIndex(x0, y0, Cx));
+		si head_end >= 0 Entonces
+			head_chunk = native_string_substring(canvas, 0, head_end);
+		FinSi
+		l_repeats = math_increment(l_repeats);
+		tail_start = math_increment(math_sum(head_end, l_repeats));
+		tail_chunk = native_string_substring(canvas, tail_start, string_length(canvas));
+		middle_chunk = string_repeatText(pixel, l_repeats);
+		canvas_Result = String_append_withSeparator(head_chunk, tail_chunk, middle_chunk);
 	FinSi
 FinFuncion
 
 Funcion canvas_Result <- canvas_DrawLine_Vertical(canvas, Cx, Cy, x0, y0, height)
 	Definir canvas_Result Como Texto;
-	canvas_Result = canvas_DrawLine_Vertical_withPixel(canvas, Cx, Cy, x0, y0, height,  "¦");
+	canvas_Result = canvas_DrawLine_Vertical_withPixel(canvas, Cx, Cy, x0, y0, height,  "|");
 FinFuncion
 
-Funcion canvas_Result <- canvas_DrawLine_Vertical_withPixel(canvas, Cx, Cy, x0, y0, height, pixel)
-	Definir canvas_Result Como Texto;
-	canvas_Result = canvas;
-	si height > 0 Entonces
-		canvas_Result = canvas_DrawLine_whitPixel(canvas_Result, Cx, Cy, pixel, x0, y0, x0, math_sum(y0, height));
-	FinSi
+Funcion canvas_Result <- canvas_DrawLine_Vertical_withPixel(canvas, Cx, Cy, x0, y0, y1, pixel)
+    Definir canvas_Result, head, middle, tail, lineSuffix Como Texto;
+    Definir firstIdx, lastIdx, rowWidth, startCut, endCut, rowCount, i Como Entero;
+    firstIdx = canvas_getIndex(x0, y0, Cx);
+    head = native_string_substring(canvas, 0, math_decrement(firstIdx));
+    lastIdx = canvas_getIndex(x0, y1, Cx);
+    tail = native_string_substring(canvas, math_increment(lastIdx), string_length(canvas));
+    rowWidth = math_decrement(Cx);
+    startCut = math_increment(firstIdx);
+    endCut = math_sum(firstIdx, rowWidth);
+    rowCount = math_decrement(math_minus(y1, y0)); 
+    middle = "";
+    Para i = 0 Hasta rowCount Con Paso 1 Hacer
+        lineSuffix = native_string_substring(canvas, startCut, endCut);
+        middle = String_append_withSeparator(middle, lineSuffix, pixel);
+        startCut = math_sum(startCut, Cx);
+        endCut = math_sum(endCut, Cx);
+    FinPara
+    middle = String_append(middle, pixel);
+    canvas_Result = String_append_withSeparator(head, tail, middle);
 FinFuncion
 
 Funcion canvas_Result <- canvas_DrawLine_Horizontal_Full(canvas, Cx, Cy, y0)
